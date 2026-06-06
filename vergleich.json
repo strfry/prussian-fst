@@ -1,0 +1,3906 @@
+{
+  "9_kas": {
+    "paradigm": "9",
+    "lemma": "kas",
+    "Tabula": {
+      "m": {
+        "Nom sg": "kas",
+        "Nom pl": "kwāi",
+        "Gen sg": "kasse",
+        "Gen pl": "kwēisan",
+        "Dat sg": "kasmu",
+        "Dat pl": "kwēimans",
+        "Akk sg": "kan",
+        "Akk pl": "kans"
+      },
+      "f": {
+        "Nom sg": "kwāi",
+        "Nom pl": "kwās",
+        "Gen sg": "kasses",
+        "Gen pl": "kwēisan",
+        "Dat sg": "kassei",
+        "Dat pl": "kwēimans",
+        "Akk sg": "kan",
+        "Akk pl": "kans"
+      },
+      "n": {
+        "Nom sg": "ka",
+        "Nom pl": "ka",
+        "Gen sg": "kasse",
+        "Gen pl": "kasse",
+        "Dat sg": "kasmu",
+        "Dat pl": "kasmu",
+        "Akk sg": "ka",
+        "Akk pl": "ka"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "kas",
+        "Nom pl": "kwāi",
+        "Gen sg": "kasse",
+        "Gen pl": "kwēisan",
+        "Dat sg": "kasmu",
+        "Dat pl": "kwēimans",
+        "Akk sg": "kan",
+        "Akk pl": "kans"
+      },
+      "f": {
+        "Nom sg": "kwāi",
+        "Nom pl": "kwās",
+        "Gen sg": "kasses",
+        "Gen pl": "kwēisan",
+        "Dat sg": "kassei",
+        "Dat pl": "kwēimans",
+        "Akk sg": "kan",
+        "Akk pl": "kans"
+      },
+      "n": {
+        "Nom sg": "ka",
+        "Nom pl": "ka",
+        "Gen sg": "kasse",
+        "Gen pl": "kasse",
+        "Dat sg": "kasmu",
+        "Dat pl": "kasmu",
+        "Akk sg": "ka",
+        "Akk pl": "ka"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "kas",
+        "Nom pl": "kwāi",
+        "Gen sg": "kasse",
+        "Gen pl": "kwēisan",
+        "Dat sg": "kasmu",
+        "Dat pl": "kwēimans",
+        "Akk sg": "kan",
+        "Akk pl": "kans"
+      },
+      "f": {
+        "Nom sg": "kwāi",
+        "Nom pl": "kwās",
+        "Gen sg": "kasses",
+        "Gen pl": "kwēisan",
+        "Dat sg": "kassei",
+        "Dat pl": "kwēimans",
+        "Akk sg": "kan",
+        "Akk pl": "kans"
+      },
+      "n": {
+        "Nom sg": "ka",
+        "Nom pl": "ka",
+        "Gen sg": "kasse",
+        "Gen pl": "kasse",
+        "Dat sg": "kasmu",
+        "Dat pl": "kasmu",
+        "Akk sg": "ka",
+        "Akk pl": "ka"
+      }
+    }
+  },
+  "10_dis": {
+    "paradigm": "10",
+    "lemma": "dis",
+    "Tabula": {
+      "m": {
+        "Nom sg": "dis",
+        "Nom pl": "dei",
+        "Gen sg": "din",
+        "Gen pl": "dins",
+        "Dat sg": "din",
+        "Dat pl": "dins",
+        "Akk sg": "din",
+        "Akk pl": "dins"
+      },
+      "f": {
+        "Nom sg": "dis",
+        "Nom pl": "dei",
+        "Gen sg": "din",
+        "Gen pl": "dins",
+        "Dat sg": "din",
+        "Dat pl": "dins",
+        "Akk sg": "din",
+        "Akk pl": "dins"
+      },
+      "n": {
+        "Nom sg": "di",
+        "Nom pl": "di",
+        "Gen sg": "di",
+        "Gen pl": "di",
+        "Dat sg": "di",
+        "Dat pl": "di",
+        "Akk sg": "di",
+        "Akk pl": "di"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "dis",
+        "Nom pl": "dei",
+        "Gen sg": "din",
+        "Gen pl": "dins",
+        "Dat sg": "din",
+        "Dat pl": "dins",
+        "Akk sg": "din",
+        "Akk pl": "dins"
+      },
+      "f": {
+        "Nom sg": "dis",
+        "Nom pl": "dei",
+        "Gen sg": "din",
+        "Gen pl": "dins",
+        "Dat sg": "din",
+        "Dat pl": "dins",
+        "Akk sg": "din",
+        "Akk pl": "dins"
+      },
+      "n": {
+        "Nom sg": "di",
+        "Nom pl": "di",
+        "Gen sg": "di",
+        "Gen pl": "di",
+        "Dat sg": "di",
+        "Dat pl": "di",
+        "Akk sg": "di",
+        "Akk pl": "di"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "dis",
+        "Nom pl": "dei",
+        "Gen sg": "din",
+        "Gen pl": "dins",
+        "Dat sg": "din",
+        "Dat pl": "dins",
+        "Akk sg": "din",
+        "Akk pl": "dins"
+      },
+      "f": {
+        "Nom sg": "dis",
+        "Nom pl": "dei",
+        "Gen sg": "din",
+        "Gen pl": "dins",
+        "Dat sg": "din",
+        "Dat pl": "dins",
+        "Akk sg": "din",
+        "Akk pl": "dins"
+      },
+      "n": {
+        "Nom sg": "di",
+        "Nom pl": "di",
+        "Gen sg": "di",
+        "Gen pl": "di",
+        "Dat sg": "di",
+        "Dat pl": "di",
+        "Akk sg": "di",
+        "Akk pl": "di"
+      }
+    }
+  },
+  "11_stas": {
+    "paradigm": "11",
+    "lemma": "stas",
+    "Tabula": {
+      "m": {
+        "Nom sg": "stas",
+        "Nom pl": "stāi",
+        "Gen sg": "stesse",
+        "Gen pl": "stēisan",
+        "Dat sg": "stesmu",
+        "Dat pl": "stēimans",
+        "Akk sg": "stan",
+        "Akk pl": "stans"
+      },
+      "f": {
+        "Nom sg": "stāi",
+        "Nom pl": "stās",
+        "Gen sg": "stesses",
+        "Gen pl": "stēisan",
+        "Dat sg": "stessei",
+        "Dat pl": "stēimans",
+        "Akk sg": "stan",
+        "Akk pl": "stans"
+      },
+      "n": {
+        "Nom sg": "sta/stan",
+        "Nom pl": "sta/stāi",
+        "Gen sg": "stesse",
+        "Gen pl": "stesse/stēisan",
+        "Dat sg": "stesmu",
+        "Dat pl": "stesmu/stēimans",
+        "Akk sg": "sta/stan",
+        "Akk pl": "sta/stans"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "stas",
+        "Nom pl": "stāi",
+        "Gen sg": "stesse",
+        "Gen pl": "stēisan",
+        "Dat sg": "stesmu",
+        "Dat pl": "stēimans",
+        "Akk sg": "stan",
+        "Akk pl": "stans"
+      },
+      "f": {
+        "Nom sg": "stāi",
+        "Nom pl": "stās",
+        "Gen sg": "stesses",
+        "Gen pl": "stēisan",
+        "Dat sg": "stessei",
+        "Dat pl": "stēimans",
+        "Akk sg": "stan",
+        "Akk pl": "stans"
+      },
+      "n": {
+        "Nom sg": "sta/stan",
+        "Nom pl": "sta/stāi",
+        "Gen sg": "stesse",
+        "Gen pl": "stesse/stēisan",
+        "Dat sg": "stesmu",
+        "Dat pl": "stesmu/stēimans",
+        "Akk sg": "sta/stan",
+        "Akk pl": "sta/stans"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "stas",
+        "Nom pl": "stāi",
+        "Gen sg": "stesse",
+        "Gen pl": "stēisan",
+        "Dat sg": "stesmu",
+        "Dat pl": "stēimans",
+        "Akk sg": "stan",
+        "Akk pl": "stans"
+      },
+      "f": {
+        "Nom sg": "stāi",
+        "Nom pl": "stās",
+        "Gen sg": "stesses",
+        "Gen pl": "stēisan",
+        "Dat sg": "stessei",
+        "Dat pl": "stēimans",
+        "Akk sg": "stan",
+        "Akk pl": "stans"
+      },
+      "n": {
+        "Nom sg": "sta / stan",
+        "Nom pl": "sta / stāi",
+        "Gen sg": "stesse",
+        "Gen pl": "stesse / stēisan",
+        "Dat sg": "stesmu",
+        "Dat pl": "stesmu / stēimans",
+        "Akk sg": "sta / stan",
+        "Akk pl": "sta / stans"
+      }
+    }
+  },
+  "12_tāns": {
+    "paradigm": "12",
+    "lemma": "tāns",
+    "Tabula": {
+      "m": {
+        "Nom sg": "tāns",
+        "Nom pl": "tenēi",
+        "Gen sg": "tenesse",
+        "Gen pl": "tenēisan",
+        "Dat sg": "tenesmu",
+        "Dat pl": "tenēimans",
+        "Akk sg": "tennan",
+        "Akk pl": "tennans"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "tāns",
+        "Nom pl": "tenēi",
+        "Gen sg": "tenesse",
+        "Gen pl": "tenēisan",
+        "Dat sg": "tenesmu",
+        "Dat pl": "tenēimans",
+        "Akk sg": "tennan",
+        "Akk pl": "tennans"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "tāns",
+        "Nom pl": "tenēi",
+        "Gen sg": "tenesse",
+        "Gen pl": "tenēisan",
+        "Dat sg": "tenesmu",
+        "Dat pl": "tenēimans",
+        "Akk sg": "tennan",
+        "Akk pl": "tennans"
+      }
+    }
+  },
+  "13_tenā": {
+    "paradigm": "13",
+    "lemma": "tenā",
+    "Tabula": {
+      "f": {
+        "Nom sg": "tenā",
+        "Nom pl": "tennas",
+        "Gen sg": "tenesses",
+        "Gen pl": "tenēisan",
+        "Dat sg": "tenessei",
+        "Dat pl": "tenēimans",
+        "Akk sg": "tennan",
+        "Akk pl": "tennans"
+      }
+    },
+    "Prusaspira": {
+      "f": {
+        "Nom sg": "tenā",
+        "Nom pl": "tennas",
+        "Gen sg": "tenesses",
+        "Gen pl": "tenēisan",
+        "Dat sg": "tenessei",
+        "Dat pl": "tenēimans",
+        "Akk sg": "tennan",
+        "Akk pl": "tennans"
+      }
+    },
+    "Twanksta": {
+      "f": {
+        "Nom sg": "tenā",
+        "Nom pl": "tennas",
+        "Gen sg": "tenesses",
+        "Gen pl": "tenēisan",
+        "Dat sg": "tenessei",
+        "Dat pl": "tenēimans",
+        "Akk sg": "tennan",
+        "Akk pl": "tennans"
+      }
+    }
+  },
+  "14_tennan": {
+    "paradigm": "14",
+    "lemma": "tennan",
+    "Tabula": {
+      "n": {
+        "Nom sg": "tennan",
+        "Nom pl": "tenēi",
+        "Gen sg": "tenesse",
+        "Gen pl": "tenēisan",
+        "Dat sg": "tenesmu",
+        "Dat pl": "tenēimans",
+        "Akk sg": "tennan",
+        "Akk pl": "tennans"
+      }
+    },
+    "Prusaspira": {
+      "n": {
+        "Nom sg": "tennan",
+        "Nom pl": "tenēi",
+        "Gen sg": "tenesse",
+        "Gen pl": "tenēisan",
+        "Dat sg": "tenesmu",
+        "Dat pl": "tenēimans",
+        "Akk sg": "tennan",
+        "Akk pl": "tennans"
+      }
+    }
+  },
+  "15_šis": {
+    "paradigm": "15",
+    "lemma": "šis",
+    "Tabula": {
+      "m": {
+        "Nom sg": "šis",
+        "Nom pl": "šāi",
+        "Gen sg": "šisse",
+        "Gen pl": "šēisan",
+        "Dat sg": "šismu",
+        "Dat pl": "šēimans",
+        "Akk sg": "šin",
+        "Akk pl": "šans"
+      },
+      "f": {
+        "Nom sg": "šī",
+        "Nom pl": "šās",
+        "Gen sg": "šisses",
+        "Gen pl": "šēisan",
+        "Dat sg": "šissei",
+        "Dat pl": "šēimans",
+        "Akk sg": "šan",
+        "Akk pl": "šans"
+      },
+      "n": {
+        "Nom sg": "šin",
+        "Nom pl": "šāi",
+        "Gen sg": "šisse",
+        "Gen pl": "šēisan",
+        "Dat sg": "šismu",
+        "Dat pl": "šēimans",
+        "Akk sg": "šin",
+        "Akk pl": "šans"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "šis",
+        "Nom pl": "šāi",
+        "Gen sg": "šisse",
+        "Gen pl": "šēisan",
+        "Dat sg": "šismu",
+        "Dat pl": "šēimans",
+        "Akk sg": "šin",
+        "Akk pl": "šans"
+      },
+      "f": {
+        "Nom sg": "šī",
+        "Nom pl": "šās",
+        "Gen sg": "šisses",
+        "Gen pl": "šēisan",
+        "Dat sg": "šissei",
+        "Dat pl": "šēimans",
+        "Akk sg": "šan",
+        "Akk pl": "šans"
+      },
+      "n": {
+        "Nom sg": "šin",
+        "Nom pl": "šāi",
+        "Gen sg": "šisse",
+        "Gen pl": "šēisan",
+        "Dat sg": "šismu",
+        "Dat pl": "šēimans",
+        "Akk sg": "šin",
+        "Akk pl": "šans"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "šis",
+        "Nom pl": "šāi",
+        "Gen sg": "šisse",
+        "Gen pl": "šēisan",
+        "Dat sg": "šismu",
+        "Dat pl": "šēimans",
+        "Akk sg": "šin",
+        "Akk pl": "šins"
+      },
+      "f": {
+        "Nom sg": "šī",
+        "Nom pl": "šās",
+        "Gen sg": "šisses",
+        "Gen pl": "šēisan",
+        "Dat sg": "šissei",
+        "Dat pl": "šēimans",
+        "Akk sg": "šan",
+        "Akk pl": "šans"
+      },
+      "n": {
+        "Nom sg": "šin",
+        "Nom pl": "šāi",
+        "Gen sg": "šisse",
+        "Gen pl": "šēisan",
+        "Dat sg": "šismu",
+        "Dat pl": "šēimans",
+        "Akk sg": "šin",
+        "Akk pl": "šins"
+      }
+    }
+  },
+  "16_subs": {
+    "paradigm": "16",
+    "lemma": "subs",
+    "Tabula": {
+      "m": {
+        "Nom sg": "subs",
+        "Nom pl": "subbai",
+        "Gen sg": "subse",
+        "Gen pl": "subbeisan",
+        "Dat sg": "subsmu",
+        "Dat pl": "subbeimans",
+        "Akk sg": "subban",
+        "Akk pl": "subbans"
+      },
+      "f": {
+        "Nom sg": "subba",
+        "Nom pl": "subbas",
+        "Gen sg": "subses",
+        "Gen pl": "subbeisan",
+        "Dat sg": "subsei",
+        "Dat pl": "subbeimans",
+        "Akk sg": "subban",
+        "Akk pl": "subbans"
+      },
+      "n": {
+        "Nom sg": "subban",
+        "Nom pl": "subban/subbai",
+        "Gen sg": "subse",
+        "Gen pl": "subse/subbeisan",
+        "Dat sg": "subsmu",
+        "Dat pl": "subsmu/subbeimans",
+        "Akk sg": "subban",
+        "Akk pl": "subban/subbans"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "subs",
+        "Nom pl": "subbai",
+        "Gen sg": "subse",
+        "Gen pl": "subbeisan",
+        "Dat sg": "subsmu",
+        "Dat pl": "subbeimans",
+        "Akk sg": "subban",
+        "Akk pl": "subbans"
+      },
+      "f": {
+        "Nom sg": "subba",
+        "Nom pl": "subbas",
+        "Gen sg": "subses",
+        "Gen pl": "subbeisan",
+        "Dat sg": "subsei",
+        "Dat pl": "subbeimans",
+        "Akk sg": "subban",
+        "Akk pl": "subbans"
+      },
+      "n": {
+        "Nom sg": "subban",
+        "Nom pl": "subban/subbai",
+        "Gen sg": "subse",
+        "Gen pl": "subse/subbeisan",
+        "Dat sg": "subsmu",
+        "Dat pl": "subsmu/subbeimans",
+        "Akk sg": "subban",
+        "Akk pl": "subban/subbans"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "subs",
+        "Nom pl": "subbai",
+        "Gen sg": "subse",
+        "Gen pl": "subbeisan",
+        "Dat sg": "subsmu",
+        "Dat pl": "subbeimans",
+        "Akk sg": "subban",
+        "Akk pl": "subbans"
+      },
+      "f": {
+        "Nom sg": "subba",
+        "Nom pl": "subbas",
+        "Gen sg": "subses",
+        "Gen pl": "subbeisan",
+        "Dat sg": "subsei",
+        "Dat pl": "subbeimans",
+        "Akk sg": "subban",
+        "Akk pl": "subbans"
+      },
+      "n": {
+        "Nom sg": "subban",
+        "Nom pl": "subban / subbai",
+        "Gen sg": "subse",
+        "Gen pl": "subse / subbeisan",
+        "Dat sg": "subsmu",
+        "Dat pl": "subsmu / subbeimans",
+        "Akk sg": "subban",
+        "Akk pl": "subban / subbans"
+      }
+    }
+  },
+  "17_wiss": {
+    "paradigm": "17",
+    "lemma": "wiss",
+    "Tabula": {
+      "m": {
+        "Nom sg": "wiss",
+        "Nom pl": "wisāi",
+        "Gen sg": "wisse",
+        "Gen pl": "wisēisan",
+        "Dat sg": "wismu",
+        "Dat pl": "wisēimans",
+        "Akk sg": "wissan",
+        "Akk pl": "wissans"
+      },
+      "f": {
+        "Nom sg": "wisā",
+        "Nom pl": "wissas",
+        "Gen sg": "wissas",
+        "Gen pl": "wissan",
+        "Dat sg": "wissai",
+        "Dat pl": "wisāmans",
+        "Akk sg": "wissan",
+        "Akk pl": "wissans"
+      },
+      "n": {
+        "Nom sg": "wissan",
+        "Nom pl": "wisāi",
+        "Gen sg": "wisse",
+        "Gen pl": "wisēisan",
+        "Dat sg": "wismu",
+        "Dat pl": "wisēimans",
+        "Akk sg": "wissan",
+        "Akk pl": "wissans"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "wiss",
+        "Nom pl": "wisāi",
+        "Gen sg": "wisse",
+        "Gen pl": "wisēisan",
+        "Dat sg": "wismu",
+        "Dat pl": "wisēimans",
+        "Akk sg": "wissan",
+        "Akk pl": "wissans"
+      },
+      "f": {
+        "Nom sg": "wisā",
+        "Nom pl": "wissas",
+        "Gen sg": "wissas",
+        "Gen pl": "wissan",
+        "Dat sg": "wissai",
+        "Dat pl": "wisāmans",
+        "Akk sg": "wissan",
+        "Akk pl": "wissans"
+      },
+      "n": {
+        "Nom sg": "wissan",
+        "Nom pl": "wisāi",
+        "Gen sg": "wisse",
+        "Gen pl": "wisēisan",
+        "Dat sg": "wismu",
+        "Dat pl": "wisēimans",
+        "Akk sg": "wissan",
+        "Akk pl": "wissans"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "wiss",
+        "Nom pl": "wisāi",
+        "Gen sg": "wisse",
+        "Gen pl": "wisēisan",
+        "Dat sg": "wismu",
+        "Dat pl": "wisēimans",
+        "Akk sg": "wissan",
+        "Akk pl": "wissans"
+      },
+      "f": {
+        "Nom sg": "wisā",
+        "Nom pl": "wissas",
+        "Gen sg": "wissas",
+        "Gen pl": "wissan",
+        "Dat sg": "wisssai",
+        "Dat pl": "wisāmans",
+        "Akk sg": "wissan",
+        "Akk pl": "wisans"
+      },
+      "n": {
+        "Nom sg": "wissan",
+        "Nom pl": "wisāi",
+        "Gen sg": "wisse",
+        "Gen pl": "wisēisan",
+        "Dat sg": "wismu",
+        "Dat pl": "wisēimans",
+        "Akk sg": "wissan",
+        "Akk pl": "wissans"
+      }
+    }
+  },
+  "18_kits": {
+    "paradigm": "18",
+    "lemma": "kits",
+    "Tabula": {
+      "m": {
+        "Nom sg": "kits",
+        "Nom pl": "kitāi",
+        "Gen sg": "kitse",
+        "Gen pl": "kitēisan",
+        "Dat sg": "kitsmu",
+        "Dat pl": "kitēimans",
+        "Akk sg": "kittan",
+        "Akk pl": "kittans"
+      },
+      "f": {
+        "Nom sg": "kitā",
+        "Nom pl": "kittas",
+        "Gen sg": "kitses",
+        "Gen pl": "kitēisan",
+        "Dat sg": "kitsei",
+        "Dat pl": "kitēimans",
+        "Akk sg": "kittan",
+        "Akk pl": "kittans"
+      },
+      "n": {
+        "Nom sg": "kittan",
+        "Nom pl": "kittan/kitāi",
+        "Gen sg": "kitse",
+        "Gen pl": "kitse/kitēisan",
+        "Dat sg": "kitsmu",
+        "Dat pl": "kitsmu/kitēimans",
+        "Akk sg": "kittan",
+        "Akk pl": "kittan/kittans"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "kits",
+        "Nom pl": "kitāi",
+        "Gen sg": "kitse",
+        "Gen pl": "kitēisan",
+        "Dat sg": "kitsmu",
+        "Dat pl": "kitēimans",
+        "Akk sg": "kittan",
+        "Akk pl": "kittans"
+      },
+      "f": {
+        "Nom sg": "kitā",
+        "Nom pl": "kittas",
+        "Gen sg": "kitses",
+        "Gen pl": "kitēisan",
+        "Dat sg": "kitsei",
+        "Dat pl": "kitēimans",
+        "Akk sg": "kittan",
+        "Akk pl": "kittans"
+      },
+      "n": {
+        "Nom sg": "kittan",
+        "Nom pl": "kittan/kitāi",
+        "Gen sg": "kitse",
+        "Gen pl": "kitse/kitēisan",
+        "Dat sg": "kitsmu",
+        "Dat pl": "kitsmu/kitēimans",
+        "Akk sg": "kittan",
+        "Akk pl": "kittan/kittans"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "kits",
+        "Nom pl": "kitāi",
+        "Gen sg": "kitse",
+        "Gen pl": "kitēisan",
+        "Dat sg": "kitsmu",
+        "Dat pl": "kitēimans",
+        "Akk sg": "kittan",
+        "Akk pl": "kittans"
+      },
+      "f": {
+        "Nom sg": "kitā",
+        "Nom pl": "kittas",
+        "Gen sg": "kitses",
+        "Gen pl": "kitēisan",
+        "Dat sg": "kitsei",
+        "Dat pl": "kitēimans",
+        "Akk sg": "kittan",
+        "Akk pl": "kitans"
+      },
+      "n": {
+        "Nom sg": "kittan",
+        "Nom pl": "kittan / kitāi",
+        "Gen sg": "kitse",
+        "Gen pl": "kitse / kitēisan",
+        "Dat sg": "kitsmu",
+        "Dat pl": "kitsmu / kitēimans",
+        "Akk sg": "kittan",
+        "Akk pl": "kittan / kittans"
+      }
+    }
+  },
+  "19_kawīds": {
+    "paradigm": "19",
+    "lemma": "kawīds",
+    "Tabula": {
+      "m": {
+        "Nom sg": "kawīds",
+        "Nom pl": "kawīdai",
+        "Gen sg": "kawīdse",
+        "Gen pl": "kawīdan",
+        "Dat sg": "kawīdsmu",
+        "Dat pl": "kawīdamans",
+        "Akk sg": "kawīdan",
+        "Akk pl": "kawīdans"
+      },
+      "f": {
+        "Nom sg": "kawīda",
+        "Nom pl": "kawīdas",
+        "Gen sg": "kawīdses",
+        "Gen pl": "kawīdan",
+        "Dat sg": "kawīdsei",
+        "Dat pl": "kawīdamans",
+        "Akk sg": "kawīdan",
+        "Akk pl": "kawīdans"
+      },
+      "n": {
+        "Nom sg": "kawīdan",
+        "Nom pl": "kawīdai",
+        "Gen sg": "kawīdse",
+        "Gen pl": "kawīdan",
+        "Dat sg": "kawīdsmu",
+        "Dat pl": "kawīdamans",
+        "Akk sg": "kawīdan",
+        "Akk pl": "kawīdans"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "kawīds",
+        "Nom pl": "kawīdai",
+        "Gen sg": "kawīdse",
+        "Gen pl": "kawīdan",
+        "Dat sg": "kawīdsmu",
+        "Dat pl": "kawīdamans",
+        "Akk sg": "kawīdan",
+        "Akk pl": "kawīdans"
+      },
+      "f": {
+        "Nom sg": "kawīda",
+        "Nom pl": "kawīdas",
+        "Gen sg": "kawīdses",
+        "Gen pl": "kawīdan",
+        "Dat sg": "kawīdsei",
+        "Dat pl": "kawīdamans",
+        "Akk sg": "kawīdan",
+        "Akk pl": "kawīdans"
+      },
+      "n": {
+        "Nom sg": "kawīdan",
+        "Nom pl": "kawīdai",
+        "Gen sg": "kawīdse",
+        "Gen pl": "kawīdan",
+        "Dat sg": "kawīdsmu",
+        "Dat pl": "kawīdamans",
+        "Akk sg": "kawīdan",
+        "Akk pl": "kawīdans"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "kawīds",
+        "Nom pl": "kawīdai",
+        "Gen sg": "kawīdse",
+        "Gen pl": "kawīdan",
+        "Dat sg": "kawīdsmu",
+        "Dat pl": "kawīdamans",
+        "Akk sg": "kawīdan",
+        "Akk pl": "kawīdans"
+      },
+      "f": {
+        "Nom sg": "kawīda",
+        "Nom pl": "kawīdas",
+        "Gen sg": "kawīdses",
+        "Gen pl": "kawīdan",
+        "Dat sg": "kawīdsei",
+        "Dat pl": "kawīdamans",
+        "Akk sg": "kawīdan",
+        "Akk pl": "kawīdans"
+      },
+      "n": {
+        "Nom sg": "kawīdan",
+        "Nom pl": "kawīdai",
+        "Gen sg": "kawīdse",
+        "Gen pl": "kawīdan",
+        "Dat sg": "kawīdsmu",
+        "Dat pl": "kawīdamans",
+        "Akk sg": "kawīdan",
+        "Akk pl": "kawīdans"
+      }
+    }
+  },
+  "20_majs": {
+    "paradigm": "20",
+    "lemma": "majs",
+    "Tabula": {
+      "m": {
+        "Nom sg": "majs",
+        "Nom pl": "majāi",
+        "Gen sg": "māise",
+        "Gen pl": "māisan",
+        "Dat sg": "majasmu",
+        "Dat pl": "māimans",
+        "Akk sg": "majjan",
+        "Akk pl": "majjans"
+      },
+      "f": {
+        "Nom sg": "majā",
+        "Nom pl": "majjas",
+        "Gen sg": "majāses",
+        "Gen pl": "majāsan",
+        "Dat sg": "majjai",
+        "Dat pl": "majāmans",
+        "Akk sg": "majjan",
+        "Akk pl": "majjans"
+      },
+      "n": {
+        "Nom sg": "majjan",
+        "Nom pl": "majāi",
+        "Gen sg": "māise",
+        "Gen pl": "māisan",
+        "Dat sg": "majasmu",
+        "Dat pl": "māimans",
+        "Akk sg": "majjan",
+        "Akk pl": "majjans"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "majs",
+        "Nom pl": "majāi",
+        "Gen sg": "māise",
+        "Gen pl": "māisan",
+        "Dat sg": "majasmu",
+        "Dat pl": "māimans",
+        "Akk sg": "majjan",
+        "Akk pl": "majjans"
+      },
+      "f": {
+        "Nom sg": "majā",
+        "Nom pl": "majjas",
+        "Gen sg": "majāses",
+        "Gen pl": "majāsan",
+        "Dat sg": "majjai",
+        "Dat pl": "majāmans",
+        "Akk sg": "majjan",
+        "Akk pl": "majjans"
+      },
+      "n": {
+        "Nom sg": "majjan",
+        "Nom pl": "majāi",
+        "Gen sg": "māise",
+        "Gen pl": "māisan",
+        "Dat sg": "majasmu",
+        "Dat pl": "māimans",
+        "Akk sg": "majjan",
+        "Akk pl": "majjans"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "majs",
+        "Nom pl": "majāi",
+        "Gen sg": "māise",
+        "Gen pl": "māisan",
+        "Dat sg": "majasmu",
+        "Dat pl": "māimans",
+        "Akk sg": "majjan",
+        "Akk pl": "majjans"
+      },
+      "f": {
+        "Nom sg": "majā",
+        "Nom pl": "majjas",
+        "Gen sg": "majāses",
+        "Gen pl": "majāsan",
+        "Dat sg": "majjai",
+        "Dat pl": "majāmans",
+        "Akk sg": "majjan",
+        "Akk pl": "majjans"
+      },
+      "n": {
+        "Nom sg": "majjan",
+        "Nom pl": "majāi",
+        "Gen sg": "māise",
+        "Gen pl": "māisan",
+        "Dat sg": "majasmu",
+        "Dat pl": "māimans",
+        "Akk sg": "majjan",
+        "Akk pl": "majans"
+      }
+    }
+  },
+  "21_aīns": {
+    "paradigm": "21",
+    "lemma": "aīns",
+    "Tabula": {
+      "m": {
+        "Nom sg": "aīns",
+        "Nom pl": "aināi",
+        "Gen sg": "ainasse",
+        "Gen pl": "aīnan",
+        "Dat sg": "ainasmu",
+        "Dat pl": "ainammans",
+        "Akk sg": "aīnan",
+        "Akk pl": "aīnans"
+      },
+      "f": {
+        "Nom sg": "ainā",
+        "Nom pl": "aīnas",
+        "Gen sg": "ainasses",
+        "Gen pl": "aīnan",
+        "Dat sg": "ainassei",
+        "Dat pl": "aināmans",
+        "Akk sg": "aīnan",
+        "Akk pl": "aīnans"
+      },
+      "n": {
+        "Nom sg": "aīnan",
+        "Nom pl": "aīnan/aināi",
+        "Gen sg": "ainasse",
+        "Gen pl": "ainasse/aīnan",
+        "Dat sg": "ainasmu",
+        "Dat pl": "ainasmu/ainammans",
+        "Akk sg": "aīnan",
+        "Akk pl": "aīnan/aīnans"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "aīns",
+        "Nom pl": "aināi",
+        "Gen sg": "ainasse",
+        "Gen pl": "aīnan",
+        "Dat sg": "ainasmu",
+        "Dat pl": "ainammans",
+        "Akk sg": "aīnan",
+        "Akk pl": "aīnans"
+      },
+      "f": {
+        "Nom sg": "ainā",
+        "Nom pl": "aīnas",
+        "Gen sg": "ainasses",
+        "Gen pl": "aīnan",
+        "Dat sg": "ainassei",
+        "Dat pl": "aināmans",
+        "Akk sg": "aīnan",
+        "Akk pl": "aīnans"
+      },
+      "n": {
+        "Nom sg": "aīnan",
+        "Nom pl": "aīnan/aināi",
+        "Gen sg": "ainasse",
+        "Gen pl": "ainasse/aīnan",
+        "Dat sg": "ainasmu",
+        "Dat pl": "aīnasmu/ainammans",
+        "Akk sg": "aīnan",
+        "Akk pl": "aīnan/aīnans"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "aīns",
+        "Nom pl": "aināi",
+        "Gen sg": "ainasse",
+        "Gen pl": "aīnan",
+        "Dat sg": "ainasmu",
+        "Dat pl": "ainammans",
+        "Akk sg": "aīnan",
+        "Akk pl": "aīnans"
+      },
+      "f": {
+        "Nom sg": "ainā",
+        "Nom pl": "aīnas",
+        "Gen sg": "ainasses",
+        "Gen pl": "aīnan",
+        "Dat sg": "ainassei",
+        "Dat pl": "aināmans",
+        "Akk sg": "aīnan",
+        "Akk pl": "aīnans"
+      },
+      "n": {
+        "Nom sg": "aīnan",
+        "Nom pl": "aīnan / aināi",
+        "Gen sg": "aīnase",
+        "Gen pl": "ainasse / aīnan",
+        "Dat sg": "aīnasmu",
+        "Dat pl": "ainasmu / ainammans",
+        "Akk sg": "aīnan",
+        "Akk pl": "aīnan / aīnans"
+      }
+    }
+  },
+  "22_abbai": {
+    "paradigm": "22",
+    "lemma": "abbai",
+    "Tabula": {
+      "m": {
+        "Nom sg": "abbai",
+        "Nom pl": "abbai",
+        "Gen sg": "abbejan",
+        "Gen pl": "abbejan",
+        "Dat sg": "abbeimas",
+        "Dat pl": "abbeimas",
+        "Akk sg": "abbans",
+        "Akk pl": "abbans"
+      },
+      "f": {
+        "Nom sg": "abbai",
+        "Nom pl": "abbai",
+        "Gen sg": "abbejan",
+        "Gen pl": "abbejan",
+        "Dat sg": "abbeimas",
+        "Dat pl": "abbeimas",
+        "Akk sg": "abbans",
+        "Akk pl": "abbans"
+      },
+      "n": {
+        "Nom sg": "abbai",
+        "Nom pl": "abbai",
+        "Gen sg": "abbejan",
+        "Gen pl": "abbejan",
+        "Dat sg": "abbeimas",
+        "Dat pl": "abbeimas",
+        "Akk sg": "abbans",
+        "Akk pl": "abbans"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom pl": "abbai",
+        "Gen pl": "abbejan",
+        "Dat pl": "abbeimas",
+        "Akk pl": "abbans"
+      },
+      "f": {
+        "Nom pl": "abbai",
+        "Gen pl": "abbejan",
+        "Dat pl": "abbeimas",
+        "Akk pl": "abbans"
+      },
+      "n": {
+        "Nom pl": "abbai",
+        "Gen pl": "abbejan",
+        "Dat pl": "abbeimas",
+        "Akk pl": "abbans"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom pl": "abbai",
+        "Gen pl": "abbejan",
+        "Dat pl": "abbeimas",
+        "Akk pl": "abbans"
+      },
+      "f": {
+        "Nom pl": "abbai",
+        "Gen pl": "abbejan",
+        "Dat pl": "abbeimas",
+        "Akk pl": "abbans"
+      },
+      "n": {
+        "Nom pl": "abbai",
+        "Gen pl": "abbejan",
+        "Dat pl": "abbeimas",
+        "Akk pl": "abbans"
+      }
+    }
+  },
+  "23_dwāi": {
+    "paradigm": "23",
+    "lemma": "dwāi",
+    "Tabula": {
+      "m": {
+        "Nom sg": "dwāi",
+        "Nom pl": "dwāi",
+        "Gen sg": "dwejjan",
+        "Gen pl": "dwejjan",
+        "Dat sg": "dwēimas",
+        "Dat pl": "dwēimas",
+        "Akk sg": "dwāi",
+        "Akk pl": "dwāi"
+      },
+      "f": {
+        "Nom sg": "dwāi",
+        "Nom pl": "dwāi",
+        "Gen sg": "dwejjan",
+        "Gen pl": "dwejjan",
+        "Dat sg": "dwēimas",
+        "Dat pl": "dwēimas",
+        "Akk sg": "dwāi",
+        "Akk pl": "dwāi"
+      },
+      "n": {
+        "Nom sg": "dwāi",
+        "Nom pl": "dwāi",
+        "Gen sg": "dwejjan",
+        "Gen pl": "dwejjan",
+        "Dat sg": "dwēimas",
+        "Dat pl": "dwēimas",
+        "Akk sg": "dwāi",
+        "Akk pl": "dwāi"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom pl": "dwāi",
+        "Gen pl": "dwejjan",
+        "Dat pl": "dwēimas",
+        "Akk pl": "dwāi"
+      },
+      "f": {
+        "Nom pl": "dwāi",
+        "Gen pl": "dwejjan",
+        "Dat pl": "dwēimas",
+        "Akk pl": "dwāi"
+      },
+      "n": {
+        "Nom pl": "dwāi",
+        "Gen pl": "dwejjan",
+        "Dat pl": "dwēimas",
+        "Akk pl": "dwāi"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "dwāi",
+        "Gen sg": "dwejjan",
+        "Dat sg": "dwēimas",
+        "Akk sg": "dwāi"
+      },
+      "f": {
+        "Nom sg": "dwāi",
+        "Gen sg": "dwejjan",
+        "Dat sg": "dwēimas",
+        "Akk sg": "dwāi"
+      },
+      "n": {
+        "Nom sg": "dwāi",
+        "Gen sg": "dwejjan",
+        "Dat sg": "dwēimas",
+        "Akk sg": "dwāi"
+      }
+    }
+  },
+  "24_trīs": {
+    "paradigm": "24",
+    "lemma": "trīs",
+    "Tabula": {
+      "m": {
+        "Nom sg": "trīs",
+        "Nom pl": "trīs",
+        "Gen sg": "trijjan",
+        "Gen pl": "trijjan",
+        "Dat sg": "trimmans",
+        "Dat pl": "trimmans",
+        "Akk sg": "trins",
+        "Akk pl": "trins"
+      },
+      "f": {
+        "Nom sg": "trīs",
+        "Nom pl": "trīs",
+        "Gen sg": "trijjan",
+        "Gen pl": "trijjan",
+        "Dat sg": "trimmans",
+        "Dat pl": "trimmans",
+        "Akk sg": "trins",
+        "Akk pl": "trins"
+      },
+      "n": {
+        "Nom sg": "trīs",
+        "Nom pl": "trīs",
+        "Gen sg": "trijjan",
+        "Gen pl": "trijjan",
+        "Dat sg": "trimmans",
+        "Dat pl": "trimmans",
+        "Akk sg": "trins",
+        "Akk pl": "trins"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom pl": "trīs",
+        "Gen pl": "trijjan",
+        "Dat pl": "trimmans",
+        "Akk pl": "trins"
+      },
+      "f": {
+        "Nom pl": "trīs",
+        "Gen pl": "trijjan",
+        "Dat pl": "trimmans",
+        "Akk pl": "trins"
+      },
+      "n": {
+        "Nom pl": "trīs",
+        "Gen pl": "trijjan",
+        "Dat pl": "trimmans",
+        "Akk pl": "trins"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "trīs",
+        "Gen sg": "trijjan",
+        "Dat sg": "trimmans",
+        "Akk sg": "trins"
+      },
+      "f": {
+        "Nom sg": "trīs",
+        "Gen sg": "trijjan",
+        "Dat sg": "trimmans",
+        "Akk sg": "trins"
+      },
+      "n": {
+        "Nom sg": "trīs",
+        "Gen sg": "trijjan",
+        "Dat sg": "trimmans",
+        "Akk sg": "trins"
+      }
+    }
+  },
+  "25_debīks": {
+    "paradigm": "25",
+    "lemma": "debīks",
+    "Tabula": {
+      "m": {
+        "Nom sg": "debīks",
+        "Nom pl": "debīkai",
+        "Gen sg": "debīkas",
+        "Gen pl": "debīkan",
+        "Dat sg": "debīkasmu",
+        "Dat pl": "debīkamans",
+        "Akk sg": "debīkan",
+        "Akk pl": "debīkans"
+      },
+      "f": {
+        "Nom sg": "debīka",
+        "Nom pl": "debīkas",
+        "Gen sg": "debīkas",
+        "Gen pl": "debīkan",
+        "Dat sg": "debīkai",
+        "Dat pl": "debīkamans",
+        "Akk sg": "debīkan",
+        "Akk pl": "debīkans"
+      },
+      "n": {
+        "Nom sg": "debīkan",
+        "Nom pl": "debīkai",
+        "Gen sg": "debīkas",
+        "Gen pl": "debīkan",
+        "Dat sg": "debīkasmu",
+        "Dat pl": "debīkamans",
+        "Akk sg": "debīkan",
+        "Akk pl": "debīkans"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "debīks",
+        "Nom pl": "debīkai",
+        "Gen sg": "debīkas",
+        "Gen pl": "debīkan",
+        "Dat sg": "debīkasmu",
+        "Dat pl": "debīkamans",
+        "Akk sg": "debīkan",
+        "Akk pl": "debīkans"
+      },
+      "f": {
+        "Nom sg": "debīka",
+        "Nom pl": "debīkas",
+        "Gen sg": "debīkas",
+        "Gen pl": "debīkan",
+        "Dat sg": "debīkai",
+        "Dat pl": "debīkamans",
+        "Akk sg": "debīkan",
+        "Akk pl": "debīkans"
+      },
+      "n": {
+        "Nom sg": "debīkan",
+        "Nom pl": "debīkai",
+        "Gen sg": "debīkas",
+        "Gen pl": "debīkan",
+        "Dat sg": "debīkasmu",
+        "Dat pl": "debīkamans",
+        "Akk sg": "debīkan",
+        "Akk pl": "debīkans"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "debīks",
+        "Nom pl": "debīkai",
+        "Gen sg": "debīkas",
+        "Gen pl": "debīkan",
+        "Dat sg": "debīkasmu",
+        "Dat pl": "debīkamans",
+        "Akk sg": "debīkan",
+        "Akk pl": "debīkans"
+      },
+      "f": {
+        "Nom sg": "debīka",
+        "Nom pl": "debīkas",
+        "Gen sg": "debīkas",
+        "Gen pl": "debīkan",
+        "Dat sg": "debīkai",
+        "Dat pl": "debīkamans",
+        "Akk sg": "debīkan",
+        "Akk pl": "debīkans"
+      },
+      "n": {
+        "Nom sg": "debīkan",
+        "Nom pl": "debīkai",
+        "Gen sg": "debīkas",
+        "Gen pl": "debīkan",
+        "Dat sg": "debīkasmu",
+        "Dat pl": "debīkamans",
+        "Akk sg": "debīkan",
+        "Akk pl": "debīkans"
+      }
+    }
+  },
+  "26_labs": {
+    "paradigm": "26",
+    "lemma": "labs",
+    "Tabula": {
+      "m": {
+        "Nom sg": "labs",
+        "Nom pl": "labāi",
+        "Gen sg": "labbas",
+        "Gen pl": "labban",
+        "Dat sg": "labasmu",
+        "Dat pl": "labammans",
+        "Akk sg": "labban",
+        "Akk pl": "labbans"
+      },
+      "f": {
+        "Nom sg": "labā",
+        "Nom pl": "labbas",
+        "Gen sg": "labbas",
+        "Gen pl": "labban",
+        "Dat sg": "labbai",
+        "Dat pl": "labāmans",
+        "Akk sg": "labban",
+        "Akk pl": "labbans"
+      },
+      "n": {
+        "Nom sg": "labban",
+        "Nom pl": "labāi",
+        "Gen sg": "labbas",
+        "Gen pl": "labban",
+        "Dat sg": "labasmu",
+        "Dat pl": "labammans",
+        "Akk sg": "labban",
+        "Akk pl": "labbans"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "labs",
+        "Nom pl": "labāi",
+        "Gen sg": "labbas",
+        "Gen pl": "labban",
+        "Dat sg": "labàsmu",
+        "Dat pl": "labammans",
+        "Akk sg": "labban",
+        "Akk pl": "labbans"
+      },
+      "f": {
+        "Nom sg": "labā",
+        "Nom pl": "labbas",
+        "Gen sg": "labbas",
+        "Gen pl": "labban",
+        "Dat sg": "labbai",
+        "Dat pl": "labāmans",
+        "Akk sg": "labban",
+        "Akk pl": "labbans"
+      },
+      "n": {
+        "Nom sg": "labban",
+        "Nom pl": "labāi",
+        "Gen sg": "labbas",
+        "Gen pl": "labban",
+        "Dat sg": "labàsmu",
+        "Dat pl": "labammans",
+        "Akk sg": "labban",
+        "Akk pl": "labbans"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "labs",
+        "Nom pl": "labāi",
+        "Gen sg": "labbas",
+        "Gen pl": "labban",
+        "Dat sg": "labàsmu",
+        "Dat pl": "labammans",
+        "Akk sg": "labban",
+        "Akk pl": "labbans"
+      },
+      "f": {
+        "Nom sg": "labā",
+        "Nom pl": "labbas",
+        "Gen sg": "labbas",
+        "Gen pl": "labban",
+        "Dat sg": "labai",
+        "Dat pl": "labāmans",
+        "Akk sg": "labban",
+        "Akk pl": "labbans"
+      },
+      "n": {
+        "Nom sg": "labban",
+        "Nom pl": "labāi",
+        "Gen sg": "labbas",
+        "Gen pl": "labban",
+        "Dat sg": "labàsmu",
+        "Dat pl": "labammans",
+        "Akk sg": "labban",
+        "Akk pl": "labbans"
+      }
+    }
+  },
+  "27_weselīngis": {
+    "paradigm": "27",
+    "lemma": "weselīngis",
+    "Tabula": {
+      "m": {
+        "Nom sg": "weselīngis",
+        "Nom pl": "weselīngei",
+        "Gen sg": "weselīngis",
+        "Gen pl": "weselīngin",
+        "Dat sg": "weselīngismu",
+        "Dat pl": "weselīngimans",
+        "Akk sg": "weselīngin",
+        "Akk pl": "weselīngins"
+      },
+      "f": {
+        "Nom sg": "weselīngi",
+        "Nom pl": "weselīngis",
+        "Gen sg": "weselīngis",
+        "Gen pl": "weselīngin",
+        "Dat sg": "weselīngei",
+        "Dat pl": "weselīngimans",
+        "Akk sg": "weselīngin",
+        "Akk pl": "weselīngins"
+      },
+      "n": {
+        "Nom sg": "weselīngi",
+        "Nom pl": "weselīngei",
+        "Gen sg": "weselīngis",
+        "Gen pl": "weselīngin",
+        "Dat sg": "weselīngismu",
+        "Dat pl": "weselīngimans",
+        "Akk sg": "weselīngi",
+        "Akk pl": "weselīngins"
+      }
+    }
+  },
+  "27_wesselingi": {
+    "paradigm": "27",
+    "lemma": "wesselingi",
+    "Tabula": {
+      "m": {
+        "Nom sg": "weselīngis",
+        "Nom pl": "weselīngei",
+        "Gen sg": "weselīngis",
+        "Gen pl": "weselīngin",
+        "Dat sg": "weselīngismu",
+        "Dat pl": "weselīngimans",
+        "Akk sg": "weselīngin",
+        "Akk pl": "weselīngins"
+      },
+      "f": {
+        "Nom sg": "weselīngi",
+        "Nom pl": "weselīngis",
+        "Gen sg": "weselīngis",
+        "Gen pl": "weselīngin",
+        "Dat sg": "weselīngei",
+        "Dat pl": "weselīngimans",
+        "Akk sg": "weselīngin",
+        "Akk pl": "weselīngins"
+      },
+      "n": {
+        "Nom sg": "weselīngi",
+        "Nom pl": "weselīngei",
+        "Gen sg": "weselīngis",
+        "Gen pl": "weselīngin",
+        "Dat sg": "weselīngismu",
+        "Dat pl": "weselīngimans",
+        "Akk sg": "weselīngi",
+        "Akk pl": "weselīngins"
+      }
+    }
+  },
+  "28_māldaisis": {
+    "paradigm": "28",
+    "lemma": "māldaisis",
+    "Tabula": {
+      "m": {
+        "Nom sg": "māldaisis",
+        "Nom pl": "māldaišai",
+        "Gen sg": "māldaišas",
+        "Gen pl": "māldaisin",
+        "Dat sg": "māldaišasmu",
+        "Dat pl": "māldaisimans",
+        "Akk sg": "māldaisin",
+        "Akk pl": "māldaisins"
+      },
+      "f": {
+        "Nom sg": "māldaisi",
+        "Nom pl": "māldaisis",
+        "Gen sg": "māldaišas",
+        "Gen pl": "māldaisin",
+        "Dat sg": "māldaišai",
+        "Dat pl": "māldaisimans",
+        "Akk sg": "māldaisin",
+        "Akk pl": "māldaisins"
+      },
+      "n": {
+        "Nom sg": "māldaisi",
+        "Nom pl": "māldaišai",
+        "Gen sg": "māldaišas",
+        "Gen pl": "māldaisin",
+        "Dat sg": "māldaišasmu",
+        "Dat pl": "māldaisimans",
+        "Akk sg": "māldaisi",
+        "Akk pl": "māldaisins"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "māldaisis",
+        "Nom pl": "māldaišai",
+        "Gen sg": "māldaišas",
+        "Gen pl": "māldaisin",
+        "Dat sg": "māldaišu",
+        "Dat pl": "māldaišamans",
+        "Akk sg": "māldaisin",
+        "Akk pl": "māldaisins"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "māldaisis",
+        "Nom pl": "māldaisjai",
+        "Gen sg": "māldaisjas",
+        "Gen pl": "māldaisjan",
+        "Dat sg": "māldaisju",
+        "Dat pl": "māldaisjamans",
+        "Akk sg": "māldaisjan",
+        "Akk pl": "māldaisjans"
+      },
+      "f": {
+        "Nom sg": "māldaisi",
+        "Nom pl": "māldaisis",
+        "Gen sg": "māldaišas",
+        "Gen pl": "māldaisin",
+        "Dat sg": "māldaišai",
+        "Dat pl": "māldaisimans",
+        "Akk sg": "māldaisin",
+        "Akk pl": "māldaisins"
+      },
+      "n": {
+        "Nom sg": "māldaisi",
+        "Nom pl": "māldaišai",
+        "Gen sg": "māldaišas",
+        "Gen pl": "māldaisin",
+        "Dat sg": "māldaišasmu",
+        "Dat pl": "māldaisimans",
+        "Akk sg": "māldaisi",
+        "Akk pl": "māldaisins"
+      }
+    }
+  },
+  "29_sēnts": {
+    "paradigm": "29",
+    "lemma": "sēnts",
+    "Tabula": {
+      "m": {
+        "Nom sg": "sēnts",
+        "Nom pl": "sēntei",
+        "Gen sg": "sēntis",
+        "Gen pl": "sēntin",
+        "Dat sg": "sentismu",
+        "Dat pl": "sentimmans",
+        "Akk sg": "sēntin",
+        "Akk pl": "sēntins"
+      },
+      "f": {
+        "Nom sg": "sentī",
+        "Nom pl": "sēntes",
+        "Gen sg": "sēntes",
+        "Gen pl": "sēntin",
+        "Dat sg": "sēntei",
+        "Dat pl": "sentjāmans",
+        "Akk sg": "sēntin",
+        "Akk pl": "sēntins"
+      },
+      "n": {
+        "Nom sg": "sēnti",
+        "Nom pl": "sēntei",
+        "Gen sg": "sēntis",
+        "Gen pl": "sēntin",
+        "Dat sg": "sentismu",
+        "Dat pl": "sēntimmans",
+        "Akk sg": "sēnti",
+        "Akk pl": "sēntins"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "swints",
+        "Nom pl": "swintai",
+        "Gen sg": "swintas",
+        "Gen pl": "swintan",
+        "Dat sg": "swintasmu",
+        "Dat pl": "swintamans",
+        "Akk sg": "swintan",
+        "Akk pl": "swintans"
+      },
+      "f": {
+        "Nom sg": "swinta",
+        "Nom pl": "swintas",
+        "Gen sg": "swintas",
+        "Gen pl": "swintan",
+        "Dat sg": "swintai",
+        "Dat pl": "swintamans",
+        "Akk sg": "swintan",
+        "Akk pl": "swintans"
+      },
+      "n": {
+        "Nom sg": "swintan",
+        "Nom pl": "swintai",
+        "Gen sg": "swintas",
+        "Gen pl": "swintan",
+        "Dat sg": "swintasmu",
+        "Dat pl": "swintamans",
+        "Akk sg": "swintan",
+        "Akk pl": "swintans"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "swents",
+        "Nom pl": "swentai",
+        "Gen sg": "swentas",
+        "Gen pl": "swentan",
+        "Dat sg": "swentasmu",
+        "Dat pl": "swentamans",
+        "Akk sg": "swentan",
+        "Akk pl": "swentans"
+      },
+      "f": {
+        "Nom sg": "swenta",
+        "Nom pl": "swentas",
+        "Gen sg": "swentas",
+        "Gen pl": "swentan",
+        "Dat sg": "swentai",
+        "Dat pl": "swentamans",
+        "Akk sg": "swentan",
+        "Akk pl": "swentans"
+      },
+      "n": {
+        "Nom sg": "swentan",
+        "Nom pl": "swentai",
+        "Gen sg": "swentas",
+        "Gen pl": "swentan",
+        "Dat sg": "swentasmu",
+        "Dat pl": "swentamans",
+        "Akk sg": "swentan",
+        "Akk pl": "swentans"
+      }
+    }
+  },
+  "30_āngus": {
+    "paradigm": "30",
+    "lemma": "āngus",
+    "Tabula": {
+      "m": {
+        "Nom sg": "āngus",
+        "Nom pl": "āngwai",
+        "Gen sg": "āngwas",
+        "Gen pl": "āngun",
+        "Dat sg": "āngusmu",
+        "Dat pl": "āngumans",
+        "Akk sg": "āngun",
+        "Akk pl": "ānguns"
+      },
+      "f": {
+        "Nom sg": "āngi",
+        "Nom pl": "ānges",
+        "Gen sg": "ānges",
+        "Gen pl": "āngin",
+        "Dat sg": "āngei",
+        "Dat pl": "āngemans",
+        "Akk sg": "āngin",
+        "Akk pl": "āngins"
+      },
+      "n": {
+        "Nom sg": "āngu",
+        "Nom pl": "āngwai",
+        "Gen sg": "āngwas",
+        "Gen pl": "āngun",
+        "Dat sg": "āngusmu",
+        "Dat pl": "āngumans",
+        "Akk sg": "āngu",
+        "Akk pl": "ānguns"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "āngus",
+        "Nom pl": "āngwai",
+        "Gen sg": "āngwas",
+        "Gen pl": "āngun",
+        "Dat sg": "āngusmu",
+        "Dat pl": "āngumans",
+        "Akk sg": "āngun",
+        "Akk pl": "ānguns"
+      },
+      "f": {
+        "Nom sg": "āngi",
+        "Nom pl": "ānges",
+        "Gen sg": "ānges",
+        "Gen pl": "āngin",
+        "Dat sg": "āngei",
+        "Dat pl": "āngemans",
+        "Akk sg": "āngin",
+        "Akk pl": "āngins"
+      },
+      "n": {
+        "Nom sg": "āngu",
+        "Nom pl": "āngwai",
+        "Gen sg": "āngwas",
+        "Gen pl": "āngun",
+        "Dat sg": "āngusmu",
+        "Dat pl": "āngumans",
+        "Akk sg": "āngu",
+        "Akk pl": "ānguns"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "āngus",
+        "Nom pl": "āngwai",
+        "Gen sg": "āngwas",
+        "Gen pl": "āngun",
+        "Dat sg": "āngusmu",
+        "Dat pl": "āngumans",
+        "Akk sg": "āngun",
+        "Akk pl": "ānguns"
+      },
+      "f": {
+        "Nom sg": "āngi",
+        "Nom pl": "āngjas",
+        "Gen sg": "āngjas",
+        "Gen pl": "āngjan",
+        "Dat sg": "āngjai",
+        "Dat pl": "āngjamans",
+        "Akk sg": "āngjan",
+        "Akk pl": "āngjans"
+      },
+      "n": {
+        "Nom sg": "āngu",
+        "Nom pl": "āngwai",
+        "Gen sg": "āngwas",
+        "Gen pl": "āngun",
+        "Dat sg": "āngusmu",
+        "Dat pl": "āngumans",
+        "Akk sg": "āngu",
+        "Akk pl": "ānguns"
+      }
+    }
+  },
+  "30a_stāws": {
+    "paradigm": "30a",
+    "lemma": "stāws",
+    "Tabula": {
+      "m": {
+        "Nom sg": "staūs",
+        "Nom pl": "staūwai",
+        "Gen sg": "staūwas",
+        "Gen pl": "stāwun",
+        "Dat sg": "stāwusmu",
+        "Dat pl": "stāwumans",
+        "Akk sg": "stāwun",
+        "Akk pl": "stāwuns"
+      },
+      "f": {
+        "Nom sg": "stāwi",
+        "Nom pl": "stāwjas",
+        "Gen sg": "stāwjas",
+        "Gen pl": "stāwin",
+        "Dat sg": "stāwjai",
+        "Dat pl": "stāwjamans",
+        "Akk sg": "stāwin",
+        "Akk pl": "stāwins"
+      },
+      "n": {
+        "Nom sg": "stāwu",
+        "Nom pl": "staūwai",
+        "Gen sg": "staūwas",
+        "Gen pl": "stāwun",
+        "Dat sg": "stāwusmu",
+        "Dat pl": "stāwumans",
+        "Akk sg": "stāwu",
+        "Akk pl": "stāwuns"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "stāws",
+        "Nom pl": "staūwai",
+        "Gen sg": "staūwas",
+        "Gen pl": "stāwun",
+        "Dat sg": "stāwusmu",
+        "Dat pl": "stāwumans",
+        "Akk sg": "stāwun",
+        "Akk pl": "stāwuns"
+      },
+      "f": {
+        "Nom sg": "stāwi",
+        "Nom pl": "stāwjas",
+        "Gen sg": "stāwjas",
+        "Gen pl": "stāwin",
+        "Dat sg": "stāwjai",
+        "Dat pl": "stāwjamans",
+        "Akk sg": "stāwin",
+        "Akk pl": "stāwins"
+      },
+      "n": {
+        "Nom sg": "stāwu",
+        "Nom pl": "staūwai",
+        "Gen sg": "staūwas",
+        "Gen pl": "stāwun",
+        "Dat sg": "stāwusmu",
+        "Dat pl": "stāwumans",
+        "Akk sg": "stāwu",
+        "Akk pl": "stāwuns"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "stāws",
+        "Nom pl": "stāwai",
+        "Gen sg": "stāwas",
+        "Gen pl": "stāwan",
+        "Dat sg": "stāwasmu",
+        "Dat pl": "stāwamans",
+        "Akk sg": "stāwan",
+        "Akk pl": "stāwans"
+      },
+      "f": {
+        "Nom sg": "stāwa",
+        "Nom pl": "stāwas",
+        "Gen sg": "stāwas",
+        "Gen pl": "stāwan",
+        "Dat sg": "stāwai",
+        "Dat pl": "stāwamans",
+        "Akk sg": "stāwan",
+        "Akk pl": "stāwans"
+      },
+      "n": {
+        "Nom sg": "stāwan",
+        "Nom pl": "stāwai",
+        "Gen sg": "stāwas",
+        "Gen pl": "stāwan",
+        "Dat sg": "stāwasmu",
+        "Dat pl": "stāwamans",
+        "Akk sg": "stāwan",
+        "Akk pl": "stāwans"
+      }
+    }
+  },
+  "31_līgus": {
+    "paradigm": "31",
+    "lemma": "līgus",
+    "Tabula": {
+      "m": {
+        "Nom sg": "līgus",
+        "Nom pl": "ligwāi",
+        "Gen sg": "līgwas",
+        "Gen pl": "līgun",
+        "Dat sg": "ligusmu",
+        "Dat pl": "ligummans",
+        "Akk sg": "līgun",
+        "Akk pl": "līguns"
+      },
+      "f": {
+        "Nom sg": "ligī",
+        "Nom pl": "līges",
+        "Gen sg": "līges",
+        "Gen pl": "līgin",
+        "Dat sg": "līgei",
+        "Dat pl": "liģāmans",
+        "Akk sg": "līgin",
+        "Akk pl": "līgins"
+      },
+      "n": {
+        "Nom sg": "līgu",
+        "Nom pl": "ligwāi",
+        "Gen sg": "līgwas",
+        "Gen pl": "līgun",
+        "Dat sg": "ligusmu",
+        "Dat pl": "ligummans",
+        "Akk sg": "līgu",
+        "Akk pl": "līguns"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "līgus",
+        "Nom pl": "ligwāi",
+        "Gen sg": "līgwas",
+        "Gen pl": "līgun",
+        "Dat sg": "līgusmu",
+        "Dat pl": "ligummans",
+        "Akk sg": "līgun",
+        "Akk pl": "līguns"
+      },
+      "f": {
+        "Nom sg": "ligī",
+        "Nom pl": "līges",
+        "Gen sg": "līges",
+        "Gen pl": "līgin",
+        "Dat sg": "līgei",
+        "Dat pl": "liģāmans",
+        "Akk sg": "līgin",
+        "Akk pl": "līgins"
+      },
+      "n": {
+        "Nom sg": "līgu",
+        "Nom pl": "ligwāi",
+        "Gen sg": "līgwas",
+        "Gen pl": "līgun",
+        "Dat sg": "līgusmu",
+        "Dat pl": "ligummans",
+        "Akk sg": "līgu",
+        "Akk pl": "līguns"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "līgus",
+        "Nom pl": "ligwāi",
+        "Gen sg": "ligwas",
+        "Gen pl": "līgun",
+        "Dat sg": "līgusmu",
+        "Dat pl": "ligummans",
+        "Akk sg": "līgun",
+        "Akk pl": "līguns"
+      },
+      "f": {
+        "Nom sg": "ligī",
+        "Nom pl": "līgjas",
+        "Gen sg": "līgjas",
+        "Gen pl": "līgjan",
+        "Dat sg": "līgjai",
+        "Dat pl": "ligjāmans",
+        "Akk sg": "līgjan",
+        "Akk pl": "līgjans"
+      },
+      "n": {
+        "Nom sg": "līgu",
+        "Nom pl": "ligwāi",
+        "Gen sg": "ligwas",
+        "Gen pl": "līgun",
+        "Dat sg": "līgusmu",
+        "Dat pl": "ligummans",
+        "Akk sg": "līgu",
+        "Akk pl": "līguns"
+      }
+    }
+  },
+  "32_wīrs": {
+    "paradigm": "32",
+    "lemma": "wīrs",
+    "Tabula": {
+      "m": {
+        "Nom sg": "wīrs",
+        "Nom pl": "wīrai",
+        "Gen sg": "wīras",
+        "Gen pl": "wīran",
+        "Dat sg": "wīru",
+        "Dat pl": "wīramans",
+        "Akk sg": "wīran",
+        "Akk pl": "wīrans"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "wīrs",
+        "Nom pl": "wīrai",
+        "Gen sg": "wīras",
+        "Gen pl": "wīran",
+        "Dat sg": "wīru",
+        "Dat pl": "wīramans",
+        "Akk sg": "wīran",
+        "Akk pl": "wīrans"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "wīrs",
+        "Nom pl": "wīrai",
+        "Gen sg": "wīras",
+        "Gen pl": "wīran",
+        "Dat sg": "wīru",
+        "Dat pl": "wīramans",
+        "Akk sg": "wīran",
+        "Akk pl": "wīrans"
+      }
+    }
+  },
+  "33_šmaws": {
+    "paradigm": "33",
+    "lemma": "šmaws",
+    "Tabula": {
+      "m": {
+        "Nom sg": "šmaws",
+        "Nom pl": "šmāuwai",
+        "Gen sg": "šmāuwas",
+        "Gen pl": "šmāuwan",
+        "Dat sg": "šmāuwu",
+        "Dat pl": "šmāumans",
+        "Akk sg": "šmāuwan",
+        "Akk pl": "šmāuwans"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "šmaws",
+        "Nom pl": "šmāuwai",
+        "Gen sg": "šmāuwas",
+        "Gen pl": "šmāuwan",
+        "Dat sg": "šmāuwu",
+        "Dat pl": "šmāumans",
+        "Akk sg": "šmāuwan",
+        "Akk pl": "šmāuwans"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "šmaws",
+        "Nom pl": "šmāuwai",
+        "Gen sg": "šmāuwas",
+        "Gen pl": "šmāuwan",
+        "Dat sg": "šmāuwu",
+        "Dat pl": "šmāuamans",
+        "Akk sg": "šmāuwan",
+        "Akk pl": "šmāuwans"
+      }
+    }
+  },
+  "34_aliskans": {
+    "paradigm": "34",
+    "lemma": "aliskans",
+    "Tabula": {
+      "m": {
+        "Nom sg": "aliskans",
+        "Nom pl": "alisknai",
+        "Gen sg": "alisknas",
+        "Gen pl": "alisknan",
+        "Dat sg": "alisknu",
+        "Dat pl": "alisknamans",
+        "Akk sg": "alisknan",
+        "Akk pl": "alisknans"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "aliskans",
+        "Nom pl": "alisknai",
+        "Gen sg": "alisknas",
+        "Gen pl": "alisknan",
+        "Dat sg": "alisknu",
+        "Dat pl": "alisknamans",
+        "Akk sg": "alisknan",
+        "Akk pl": "alisknans"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "aliskans",
+        "Nom pl": "alisknai",
+        "Gen sg": "alisknas",
+        "Gen pl": "alisknan",
+        "Dat sg": "alisknu",
+        "Dat pl": "alisknamans",
+        "Akk sg": "alisknan",
+        "Akk pl": "alisknans"
+      }
+    }
+  },
+  "35_mīstan": {
+    "paradigm": "35",
+    "lemma": "mīstan",
+    "Tabula": {
+      "n": {
+        "Nom sg": "mīstan",
+        "Nom pl": "mistāi",
+        "Gen sg": "mīstas",
+        "Gen pl": "mīstan",
+        "Dat sg": "mīstu",
+        "Dat pl": "mīstamans",
+        "Akk sg": "mīstan",
+        "Akk pl": "mīstans"
+      }
+    },
+    "Prusaspira": {
+      "n": {
+        "Nom sg": "mīstan",
+        "Nom pl": "mistāi",
+        "Gen sg": "mīstas",
+        "Gen pl": "mīstan",
+        "Dat sg": "mīstu",
+        "Dat pl": "mistammans",
+        "Akk sg": "mīstan",
+        "Akk pl": "mīstans"
+      }
+    },
+    "Twanksta": {
+      "n": {
+        "Nom sg": "mīstan",
+        "Nom pl": "mistāi",
+        "Gen sg": "mīstas",
+        "Gen pl": "mīstan",
+        "Dat sg": "mīstu",
+        "Dat pl": "mīstamans",
+        "Akk sg": "mīstan",
+        "Akk pl": "mīstans"
+      }
+    }
+  },
+  "35a_interwallin": {
+    "paradigm": "35a",
+    "lemma": "interwallin",
+    "Tabula": {
+      "n": {
+        "Nom sg": "interwallin",
+        "Nom pl": "interwalāi",
+        "Gen sg": "interwallas",
+        "Gen pl": "interwallin",
+        "Dat sg": "interwallu",
+        "Dat pl": "interwalimmans",
+        "Akk sg": "interwallin",
+        "Akk pl": "interwallins"
+      }
+    },
+    "Prusaspira": {
+      "n": {
+        "Nom sg": "interwallin",
+        "Nom pl": "interwallai",
+        "Gen sg": "interwallas",
+        "Gen pl": "interwallin",
+        "Dat sg": "interwallu",
+        "Dat pl": "interwallamans",
+        "Akk sg": "interwallin",
+        "Akk pl": "interwallins"
+      }
+    },
+    "Twanksta": {
+      "n": {
+        "Nom sg": "interwallan",
+        "Nom pl": "interwalāi",
+        "Gen sg": "interwallas",
+        "Gen pl": "interwallan",
+        "Dat sg": "interwallu",
+        "Dat pl": "interwalammans",
+        "Akk sg": "interwallan",
+        "Akk pl": "interwallans"
+      }
+    }
+  },
+  "36_wāiks": {
+    "paradigm": "36",
+    "lemma": "wāiks",
+    "Tabula": {
+      "m": {
+        "Nom sg": "wāiks",
+        "Nom pl": "waikāi",
+        "Gen sg": "wāikas",
+        "Gen pl": "wāikan",
+        "Dat sg": "wāiku",
+        "Dat pl": "waikammans",
+        "Akk sg": "wāikan",
+        "Akk pl": "wāikans"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "wāiks",
+        "Nom pl": "waikāi",
+        "Gen sg": "wāikas",
+        "Gen pl": "wāikan",
+        "Dat sg": "wāiku",
+        "Dat pl": "waikammans",
+        "Akk sg": "wāikan",
+        "Akk pl": "wāikans"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "wāiks",
+        "Nom pl": "waikāi",
+        "Gen sg": "wāikas",
+        "Gen pl": "wāikan",
+        "Dat sg": "wāiku",
+        "Dat pl": "waikammans",
+        "Akk sg": "wāikan",
+        "Akk pl": "wāikans"
+      }
+    }
+  },
+  "37_pannin": {
+    "paradigm": "37",
+    "lemma": "pannin",
+    "Tabula": {
+      "n": {
+        "Nom sg": "pannin",
+        "Nom pl": "panēi",
+        "Gen sg": "pannes",
+        "Gen pl": "pannin",
+        "Dat sg": "paņņu",
+        "Dat pl": "panemmans",
+        "Akk sg": "pannin",
+        "Akk pl": "pannins"
+      }
+    },
+    "Prusaspira": {
+      "n": {
+        "Nom sg": "pannin",
+        "Nom pl": "panēi",
+        "Gen sg": "pannes",
+        "Gen pl": "pannin",
+        "Dat sg": "paņņu",
+        "Dat pl": "panemmans",
+        "Akk sg": "pannin",
+        "Akk pl": "pannins"
+      }
+    },
+    "Twanksta": {
+      "n": {
+        "Nom sg": "pannjan",
+        "Nom pl": "panjāi",
+        "Gen sg": "pannjas",
+        "Gen pl": "pannjan",
+        "Dat sg": "pannju",
+        "Dat pl": "panjammans",
+        "Akk sg": "pannjan",
+        "Akk pl": "pannjans"
+      }
+    }
+  },
+  "37a_amzin": {
+    "paradigm": "37a",
+    "lemma": "amzin",
+    "Tabula": {
+      "n": {
+        "Nom sg": "amzin",
+        "Nom pl": "amžāi",
+        "Gen sg": "amžas",
+        "Gen pl": "amzin",
+        "Dat sg": "amžu",
+        "Dat pl": "amzimmans",
+        "Akk sg": "amzin",
+        "Akk pl": "amzins"
+      }
+    },
+    "Prusaspira": {
+      "n": {
+        "Nom sg": "amzin",
+        "Nom pl": "amžāi",
+        "Gen sg": "amžas",
+        "Gen pl": "amzin",
+        "Dat sg": "amžu",
+        "Dat pl": "amžammans",
+        "Akk sg": "amzin",
+        "Akk pl": "amzins"
+      }
+    },
+    "Twanksta": {
+      "n": {
+        "Nom sg": "amzjan",
+        "Nom pl": "amzjāi",
+        "Gen sg": "amzjas",
+        "Gen pl": "amzjan",
+        "Dat sg": "amzju",
+        "Dat pl": "amzjammans",
+        "Akk sg": "amzjan",
+        "Akk pl": "amzjans"
+      }
+    }
+  },
+  "38_gewinīs": {
+    "paradigm": "38",
+    "lemma": "gewinīs",
+    "Tabula": {
+      "m": {
+        "Nom sg": "gewinīs",
+        "Nom pl": "gewinījai",
+        "Gen sg": "gewinījas",
+        "Gen pl": "gewinījan",
+        "Dat sg": "gewinīju",
+        "Dat pl": "gewinīmans",
+        "Akk sg": "gewinījan",
+        "Akk pl": "gewinījans"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "gewinīs",
+        "Nom pl": "gewinījai",
+        "Gen sg": "gewinījas",
+        "Gen pl": "gewinījan",
+        "Dat sg": "gewinīju",
+        "Dat pl": "gewinīmans",
+        "Akk sg": "gewinījan",
+        "Akk pl": "gewinījans"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "gewinīs",
+        "Nom pl": "gewinījai",
+        "Gen sg": "gewinījas",
+        "Gen pl": "gewinījan",
+        "Dat sg": "gewinīju",
+        "Dat pl": "gewinīmans",
+        "Akk sg": "gewinījan",
+        "Akk pl": "gewinījans"
+      }
+    }
+  },
+  "39_rikīs": {
+    "paradigm": "39",
+    "lemma": "rikīs",
+    "Tabula": {
+      "m": {
+        "Nom sg": "rikīs",
+        "Nom pl": "rikijjai",
+        "Gen sg": "rikijjas",
+        "Gen pl": "rikijjan",
+        "Dat sg": "rikijju",
+        "Dat pl": "rikīmans",
+        "Akk sg": "rikijjan",
+        "Akk pl": "rikijjans"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "Rikīs",
+        "Nom pl": "Rikijjai",
+        "Gen sg": "Rikijjas",
+        "Gen pl": "Rikijjan",
+        "Dat sg": "Rikijju",
+        "Dat pl": "Rikkijmans",
+        "Akk sg": "Rikijjan",
+        "Akk pl": "Rikijjans"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "Rikīs",
+        "Nom pl": "Rikijjai",
+        "Gen sg": "Rikijjas",
+        "Gen pl": "Rikijjan",
+        "Dat sg": "Rikijju",
+        "Dat pl": "Rikkimans",
+        "Akk sg": "Rikijjan",
+        "Akk pl": "Rikijjans"
+      }
+    }
+  },
+  "40_kūgis": {
+    "paradigm": "40",
+    "lemma": "kūgis",
+    "Tabula": {
+      "m": {
+        "Nom sg": "kūgis",
+        "Nom pl": "kūgei",
+        "Gen sg": "kūges",
+        "Gen pl": "kūgin",
+        "Dat sg": "kūģu",
+        "Dat pl": "kūgemans",
+        "Akk sg": "kūgin",
+        "Akk pl": "kūgins"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "kūgis",
+        "Nom pl": "kūgei",
+        "Gen sg": "kūges",
+        "Gen pl": "kūgin",
+        "Dat sg": "kūģu",
+        "Dat pl": "kūgemans",
+        "Akk sg": "kūgin",
+        "Akk pl": "kūgins"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "kūgis",
+        "Nom pl": "kūgjai",
+        "Gen sg": "kūgjas",
+        "Gen pl": "kūgjan",
+        "Dat sg": "kūgju",
+        "Dat pl": "kūgjamans",
+        "Akk sg": "kūgjan",
+        "Akk pl": "kūgjans"
+      }
+    }
+  },
+  "40a_dulzis": {
+    "paradigm": "40a",
+    "lemma": "dulzis",
+    "Tabula": {
+      "m": {
+        "Nom sg": "dulzis",
+        "Nom pl": "dulžai",
+        "Gen sg": "dulžas",
+        "Gen pl": "dulzin",
+        "Dat sg": "dulžu",
+        "Dat pl": "dulžamans",
+        "Akk sg": "dulzin",
+        "Akk pl": "dulzins"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "dulzis",
+        "Nom pl": "dulžai",
+        "Gen sg": "dulžas",
+        "Gen pl": "dulzin",
+        "Dat sg": "dulžu",
+        "Dat pl": "dulžamans",
+        "Akk sg": "dulzin",
+        "Akk pl": "dulzins"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "dulzis",
+        "Nom pl": "dulzjai",
+        "Gen sg": "dulzjas",
+        "Gen pl": "dulzjan",
+        "Dat sg": "dulzju",
+        "Dat pl": "dulzjamans",
+        "Akk sg": "dulzjan",
+        "Akk pl": "dulzjans"
+      }
+    }
+  },
+  "40b_gīrbis": {
+    "paradigm": "40b",
+    "lemma": "gīrbis",
+    "Tabula": {
+      "m": {
+        "Nom sg": "gīrbis",
+        "Nom pl": "gīrbjai",
+        "Gen sg": "gīrbjas",
+        "Gen pl": "gīrbin",
+        "Dat sg": "gīrbju",
+        "Dat pl": "gīrbjamans",
+        "Akk sg": "gīrbin",
+        "Akk pl": "gīrbins"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "gīrbis",
+        "Nom pl": "gīrbjai",
+        "Gen sg": "gīrbjas",
+        "Gen pl": "gīrbin",
+        "Dat sg": "gīrbju",
+        "Dat pl": "gīrbjamans",
+        "Akk sg": "gīrbin",
+        "Akk pl": "gīrbins"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "gīrbis",
+        "Nom pl": "gīrbjai",
+        "Gen sg": "gīrbjas",
+        "Gen pl": "gīrbjan",
+        "Dat sg": "gīrbju",
+        "Dat pl": "gīrbjamans",
+        "Akk sg": "gīrbjan",
+        "Akk pl": "gīrbjans"
+      }
+    }
+  },
+  "40c_buccis": {
+    "paradigm": "40c",
+    "lemma": "buccis",
+    "Tabula": {
+      "n": {
+        "Nom sg": "buccis",
+        "Nom pl": "buccai",
+        "Gen sg": "buccas",
+        "Gen pl": "buccin",
+        "Dat sg": "buccu",
+        "Dat pl": "buccimans",
+        "Akk sg": "buccin",
+        "Akk pl": "buccins"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "buccis",
+        "Nom pl": "buccai",
+        "Gen sg": "buccas",
+        "Gen pl": "buccin",
+        "Dat sg": "buccu",
+        "Dat pl": "buccamans",
+        "Akk sg": "buccin",
+        "Akk pl": "buccins"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "buccis",
+        "Nom pl": "buccjai",
+        "Gen sg": "buccjas",
+        "Gen pl": "buccjan",
+        "Dat sg": "buccju",
+        "Dat pl": "buccjamans",
+        "Akk sg": "buccjan",
+        "Akk pl": "buccjans"
+      }
+    }
+  },
+  "41_klākis": {
+    "paradigm": "41",
+    "lemma": "klākis",
+    "Tabula": {
+      "m": {
+        "Nom sg": "klākis",
+        "Nom pl": "klakēi",
+        "Gen sg": "klākes",
+        "Gen pl": "klākin",
+        "Dat sg": "klāķu",
+        "Dat pl": "klakemmans",
+        "Akk sg": "klākin",
+        "Akk pl": "klākins"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "klākis",
+        "Nom pl": "klakēi",
+        "Gen sg": "klākes",
+        "Gen pl": "klākin",
+        "Dat sg": "klāķu",
+        "Dat pl": "klakemmans",
+        "Akk sg": "klākin",
+        "Akk pl": "klākins"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "tlākis",
+        "Nom pl": "tlakjāi",
+        "Gen sg": "tlākjas",
+        "Gen pl": "tlākjan",
+        "Dat sg": "tlākju",
+        "Dat pl": "tlakjammans",
+        "Akk sg": "tlākjan",
+        "Akk pl": "tlākjans"
+      }
+    }
+  },
+  "42_tals": {
+    "paradigm": "42",
+    "lemma": "tals",
+    "Tabula": {
+      "m": {
+        "Nom sg": "tals",
+        "Nom pl": "tallus",
+        "Gen sg": "tallus",
+        "Gen pl": "tallun",
+        "Dat sg": "tallu",
+        "Dat pl": "tallumans",
+        "Akk sg": "tallun",
+        "Akk pl": "talluns"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "tals",
+        "Nom pl": "tallus",
+        "Gen sg": "tallus",
+        "Gen pl": "tallun",
+        "Dat sg": "tallu",
+        "Dat pl": "tallumans",
+        "Akk sg": "tallun",
+        "Akk pl": "talluns"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "tals",
+        "Nom pl": "tallus",
+        "Gen sg": "tallus",
+        "Gen pl": "tallun",
+        "Dat sg": "tallu",
+        "Dat pl": "tallumans",
+        "Akk sg": "tallun",
+        "Akk pl": "talluns"
+      }
+    }
+  },
+  "43_sūns": {
+    "paradigm": "43",
+    "lemma": "sūns",
+    "Tabula": {
+      "m": {
+        "Nom sg": "sūns",
+        "Nom pl": "sūnus",
+        "Gen sg": "sūnus",
+        "Gen pl": "sūnun",
+        "Dat sg": "sūnu",
+        "Dat pl": "sunummans",
+        "Akk sg": "sūnun",
+        "Akk pl": "sūnuns"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "sūns",
+        "Nom pl": "sūnus",
+        "Gen sg": "sūnus",
+        "Gen pl": "sūnun",
+        "Dat sg": "sūnu",
+        "Dat pl": "sunummans",
+        "Akk sg": "sūnun",
+        "Akk pl": "sūnuns"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "sūns",
+        "Nom pl": "sūnus",
+        "Gen sg": "sūnus",
+        "Gen pl": "sūnun",
+        "Dat sg": "sūnu",
+        "Dat pl": "sunummans",
+        "Akk sg": "sūnun",
+        "Akk pl": "sūnuns"
+      }
+    }
+  },
+  "44_pannu": {
+    "paradigm": "44",
+    "lemma": "pannu",
+    "Tabula": {
+      "n": {
+        "Nom sg": "pannu",
+        "Nom pl": "pannu",
+        "Gen sg": "pannus",
+        "Gen pl": "pannus",
+        "Dat sg": "pannu",
+        "Dat pl": "pannu",
+        "Akk sg": "pannu",
+        "Akk pl": "pannu"
+      }
+    },
+    "Prusaspira": {
+      "n": {
+        "Nom sg": "pannu",
+        "Nom pl": "pannu",
+        "Gen sg": "pannus",
+        "Gen pl": "pannus",
+        "Dat sg": "pannu",
+        "Dat pl": "pannu",
+        "Akk sg": "pannu",
+        "Akk pl": "pannu"
+      }
+    },
+    "Twanksta": {
+      "n": {
+        "Nom sg": "pannu",
+        "Nom pl": "pannu",
+        "Gen sg": "pannus",
+        "Gen pl": "pannus",
+        "Dat sg": "pannu",
+        "Dat pl": "pannu",
+        "Akk sg": "pannu",
+        "Akk pl": "pannu"
+      }
+    }
+  },
+  "45_mūsa": {
+    "paradigm": "45",
+    "lemma": "mūsa",
+    "Tabula": {
+      "f": {
+        "Nom sg": "mūsa",
+        "Nom pl": "mūsas",
+        "Gen sg": "mūsas",
+        "Gen pl": "mūsan",
+        "Dat sg": "mūsai",
+        "Dat pl": "mūsamans",
+        "Akk sg": "mūsan",
+        "Akk pl": "mūsans"
+      }
+    },
+    "Prusaspira": {
+      "f": {
+        "Nom sg": "mūsa",
+        "Nom pl": "mūsas",
+        "Gen sg": "mūsas",
+        "Gen pl": "mūsan",
+        "Dat sg": "mūsai",
+        "Dat pl": "mūsamans",
+        "Akk sg": "mūsan",
+        "Akk pl": "mūsans"
+      }
+    },
+    "Twanksta": {
+      "f": {
+        "Nom sg": "mūsa",
+        "Nom pl": "mūsas",
+        "Gen sg": "mūsas",
+        "Gen pl": "mūsan",
+        "Dat sg": "mūsai",
+        "Dat pl": "mūsamans",
+        "Akk sg": "mūsan",
+        "Akk pl": "mūsans"
+      }
+    }
+  },
+  "46_spigsnā": {
+    "paradigm": "46",
+    "lemma": "spigsnā",
+    "Tabula": {
+      "f": {
+        "Nom sg": "spigsnā",
+        "Nom pl": "spīgsnas",
+        "Gen sg": "spīgsnas",
+        "Gen pl": "spīgsnan",
+        "Dat sg": "spīgsnai",
+        "Dat pl": "spigsnāmans",
+        "Akk sg": "spīgsnan",
+        "Akk pl": "spīgsnans"
+      }
+    },
+    "Prusaspira": {
+      "f": {
+        "Nom sg": "spigsnā",
+        "Nom pl": "spīgsnas",
+        "Gen sg": "spīgsnas",
+        "Gen pl": "spīgsnan",
+        "Dat sg": "spīgsnai",
+        "Dat pl": "spigsnāmans",
+        "Akk sg": "spīgsnan",
+        "Akk pl": "spīgsnans"
+      }
+    },
+    "Twanksta": {
+      "f": {
+        "Nom sg": "spegsnā",
+        "Nom pl": "spēgsnas",
+        "Gen sg": "spēgsnas",
+        "Gen pl": "spēgsnan",
+        "Dat sg": "spēgsnai",
+        "Dat pl": "spegsnāmans",
+        "Akk sg": "spēgsnan",
+        "Akk pl": "spēgsnans"
+      }
+    }
+  },
+  "47_āubirga": {
+    "paradigm": "47",
+    "lemma": "āubirga",
+    "Tabula": {
+      "m": {
+        "Nom sg": "āubirga",
+        "Nom pl": "āubirgas",
+        "Gen sg": "āubirgas",
+        "Gen pl": "āubirgan",
+        "Dat sg": "āubirgai",
+        "Dat pl": "āubirgamans",
+        "Akk sg": "āubirgan",
+        "Akk pl": "āubirgans"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "āubirga",
+        "Nom pl": "āubirgas",
+        "Gen sg": "āubirgas",
+        "Gen pl": "āubirgan",
+        "Dat sg": "āubirgai",
+        "Dat pl": "āubirgamans",
+        "Akk sg": "āubirgan",
+        "Akk pl": "āubirgans"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "āubirga",
+        "Nom pl": "āubirgas",
+        "Gen sg": "āubirgas",
+        "Gen pl": "āubirgan",
+        "Dat sg": "āubirgai",
+        "Dat pl": "āubirgamans",
+        "Akk sg": "āubirgan",
+        "Akk pl": "āubirgans"
+      }
+    }
+  },
+  "48_galwā": {
+    "paradigm": "48",
+    "lemma": "galwā",
+    "Tabula": {
+      "m": {
+        "Nom sg": "galwā",
+        "Nom pl": "galwas",
+        "Gen sg": "galwas",
+        "Gen pl": "galwan",
+        "Dat sg": "galwai",
+        "Dat pl": "galwāmans",
+        "Akk sg": "galwan",
+        "Akk pl": "galwans"
+      }
+    },
+    "Prusaspira": {
+      "f": {
+        "Nom sg": "galwā",
+        "Nom pl": "galwas",
+        "Gen sg": "galwas",
+        "Gen pl": "galwan",
+        "Dat sg": "galwai",
+        "Dat pl": "galwāmans",
+        "Akk sg": "galwan",
+        "Akk pl": "galwans"
+      }
+    },
+    "Twanksta": {
+      "f": {
+        "Nom sg": "galwā",
+        "Nom pl": "galwas",
+        "Gen sg": "galwas",
+        "Gen pl": "galwan",
+        "Dat sg": "galwai",
+        "Dat pl": "galwāmans",
+        "Akk sg": "galwan",
+        "Akk pl": "galwans"
+      }
+    }
+  },
+  "49_auktimmisku": {
+    "paradigm": "49",
+    "lemma": "auktimmisku",
+    "Tabula": {
+      "f": {
+        "Nom sg": "auktimmisku",
+        "Nom pl": "auktimmiskwas",
+        "Gen sg": "auktimmiskwas",
+        "Gen pl": "auktimmiskwan",
+        "Dat sg": "auktimmiskwai",
+        "Dat pl": "auktimmiskwamans",
+        "Akk sg": "auktimmiskwan",
+        "Akk pl": "auktimmiskwans"
+      }
+    },
+    "Prusaspira": {
+      "f": {
+        "Nom sg": "auktimmisku",
+        "Nom pl": "auktimmiskwas",
+        "Gen sg": "auktimmiskwas",
+        "Gen pl": "auktimmiskwan",
+        "Dat sg": "auktimmiskwai",
+        "Dat pl": "auktimmiskwamans",
+        "Akk sg": "auktimmiskwan",
+        "Akk pl": "auktimmiskwans"
+      }
+    },
+    "Twanksta": {
+      "n": {
+        "Nom sg": "auktimmiskan",
+        "Nom pl": "auktimiskāi",
+        "Gen sg": "auktimmiskas",
+        "Gen pl": "auktimmiskan",
+        "Dat sg": "auktimmisku",
+        "Dat pl": "auktimiskammans",
+        "Akk sg": "auktimmiskan",
+        "Akk pl": "auktimmiskans"
+      }
+    }
+  },
+  "50_garkīti": {
+    "paradigm": "50",
+    "lemma": "garkīti",
+    "Tabula": {
+      "f": {
+        "Nom sg": "garkīti",
+        "Nom pl": "garkītes",
+        "Gen sg": "garkītes",
+        "Gen pl": "garkītin",
+        "Dat sg": "garkītei",
+        "Dat pl": "garkītemans",
+        "Akk sg": "garkītin",
+        "Akk pl": "garkītins"
+      }
+    },
+    "Prusaspira": {
+      "f": {
+        "Nom sg": "garkīti",
+        "Nom pl": "garkītes",
+        "Gen sg": "garkītes",
+        "Gen pl": "garkītin",
+        "Dat sg": "garkītei",
+        "Dat pl": "garkītemans",
+        "Akk sg": "garkītin",
+        "Akk pl": "garkītins"
+      }
+    },
+    "Twanksta": {
+      "f": {
+        "Nom sg": "garkīti",
+        "Nom pl": "garkītjas",
+        "Gen sg": "garkītjas",
+        "Gen pl": "garkītjan",
+        "Dat sg": "garkītjai",
+        "Dat pl": "garkītjamans",
+        "Akk sg": "garkītjan",
+        "Akk pl": "garkītjans"
+      }
+    }
+  },
+  "50a_ķāsi": {
+    "paradigm": "50a",
+    "lemma": "ķāsi",
+    "Tabula": {
+      "f": {
+        "Nom sg": "ķāsi",
+        "Nom pl": "ķāšas",
+        "Gen sg": "ķāšas",
+        "Gen pl": "ķāsin",
+        "Dat sg": "ķāšai",
+        "Dat pl": "ķāšamans",
+        "Akk sg": "ķāsin",
+        "Akk pl": "ķāsins"
+      }
+    },
+    "Prusaspira": {
+      "f": {
+        "Nom sg": "ķāsi",
+        "Nom pl": "ķāšas",
+        "Gen sg": "ķāšas",
+        "Gen pl": "ķāsin",
+        "Dat sg": "ķāšai",
+        "Dat pl": "ķāšamans",
+        "Akk sg": "ķāsin",
+        "Akk pl": "ķāsins"
+      }
+    },
+    "Twanksta": {
+      "f": {
+        "Nom sg": "kjāsi",
+        "Nom pl": "kjāsjas",
+        "Gen sg": "kjāsjas",
+        "Gen pl": "kjāsjan",
+        "Dat sg": "kjāsjai",
+        "Dat pl": "kjāsjamans",
+        "Akk sg": "kjāsjan",
+        "Akk pl": "kjāsjans"
+      }
+    }
+  },
+  "51_martī": {
+    "paradigm": "51",
+    "lemma": "martī",
+    "Tabula": {
+      "f": {
+        "Nom sg": "martī",
+        "Nom pl": "mārtes",
+        "Gen sg": "mārtes",
+        "Gen pl": "mārtin",
+        "Dat sg": "mārtei",
+        "Dat pl": "marţāmans",
+        "Akk sg": "mārtin",
+        "Akk pl": "mārtins"
+      }
+    },
+    "Prusaspira": {
+      "f": {
+        "Nom sg": "martī",
+        "Nom pl": "mārtes",
+        "Gen sg": "mārtes",
+        "Gen pl": "mārtin",
+        "Dat sg": "mārtei",
+        "Dat pl": "marțāmans",
+        "Akk sg": "mārtin",
+        "Akk pl": "mārtins"
+      }
+    },
+    "Twanksta": {
+      "f": {
+        "Nom sg": "martī",
+        "Nom pl": "mārtjas",
+        "Gen sg": "mārtjas",
+        "Gen pl": "mārtjan",
+        "Dat sg": "mārtjai",
+        "Dat pl": "martjāmans",
+        "Akk sg": "mārtjan",
+        "Akk pl": "mārtjans"
+      }
+    }
+  },
+  "51a_zansī": {
+    "paradigm": "51a",
+    "lemma": "zansī",
+    "Tabula": {
+      "f": {
+        "Nom sg": "zansī",
+        "Nom pl": "zānšas",
+        "Gen sg": "zānšas",
+        "Gen pl": "zānsin",
+        "Dat sg": "zānšai",
+        "Dat pl": "zanšāmans",
+        "Akk sg": "zānsin",
+        "Akk pl": "zānsins"
+      }
+    },
+    "Prusaspira": {
+      "f": {
+        "Nom sg": "zansī",
+        "Nom pl": "zānšas",
+        "Gen sg": "zānšas",
+        "Gen pl": "zānsin",
+        "Dat sg": "zānšai",
+        "Dat pl": "zanšāmans",
+        "Akk sg": "zānsin",
+        "Akk pl": "zānsins"
+      }
+    },
+    "Twanksta": {
+      "f": {
+        "Nom sg": "zansī",
+        "Nom pl": "zānsjas",
+        "Gen sg": "zānsjas",
+        "Gen pl": "zānsjan",
+        "Dat sg": "zānsjai",
+        "Dat pl": "zansjāmans",
+        "Akk sg": "zānsjan",
+        "Akk pl": "zānsjans"
+      }
+    }
+  },
+  "52_bitti": {
+    "paradigm": "52",
+    "lemma": "bitti",
+    "Tabula": {
+      "f": {
+        "Nom sg": "bitti",
+        "Nom pl": "bittis",
+        "Gen sg": "bittis",
+        "Gen pl": "bittin",
+        "Dat sg": "bittei",
+        "Dat pl": "bittimans",
+        "Akk sg": "bittin",
+        "Akk pl": "bittins"
+      }
+    },
+    "Prusaspira": {
+      "f": {
+        "Nom sg": "bitti",
+        "Nom pl": "bittis",
+        "Gen sg": "bittis",
+        "Gen pl": "bittin",
+        "Dat sg": "bittei",
+        "Dat pl": "bittimans",
+        "Akk sg": "bittin",
+        "Akk pl": "bittins"
+      }
+    },
+    "Twanksta": {
+      "f": {
+        "Nom sg": "bitti",
+        "Nom pl": "bittis",
+        "Gen sg": "bittis",
+        "Gen pl": "bittin",
+        "Dat sg": "bittei",
+        "Dat pl": "bittimans",
+        "Akk sg": "bittin",
+        "Akk pl": "bittins"
+      }
+    }
+  },
+  "53_zemē": {
+    "paradigm": "53",
+    "lemma": "zemē",
+    "Tabula": {
+      "f": {
+        "Nom sg": "zemē",
+        "Nom pl": "zemmis",
+        "Gen sg": "zemmis",
+        "Gen pl": "zemmin",
+        "Dat sg": "zemmei",
+        "Dat pl": "zemīmans",
+        "Akk sg": "zemmin",
+        "Akk pl": "zemmins"
+      }
+    },
+    "Prusaspira": {
+      "f": {
+        "Nom sg": "zemē",
+        "Nom pl": "zemmis",
+        "Gen sg": "zemmis",
+        "Gen pl": "zemmin",
+        "Dat sg": "zemmei",
+        "Dat pl": "zemīmans",
+        "Akk sg": "zemmin",
+        "Akk pl": "zemmins"
+      }
+    },
+    "Twanksta": {
+      "f": {
+        "Nom sg": "zemē",
+        "Nom pl": "zemmis",
+        "Gen sg": "zemmis",
+        "Gen pl": "zemmin",
+        "Dat sg": "zemmei",
+        "Dat pl": "zemīmans",
+        "Akk sg": "zemmin",
+        "Akk pl": "zemmins"
+      }
+    }
+  },
+  "54_pekūri": {
+    "paradigm": "54",
+    "lemma": "pekūri",
+    "Tabula": {
+      "m": {
+        "Nom sg": "pekūri",
+        "Nom pl": "pekūris",
+        "Gen sg": "pekūris",
+        "Gen pl": "pekūrin",
+        "Dat sg": "pekūrei",
+        "Dat pl": "pekūrimans",
+        "Akk sg": "pekūrin",
+        "Akk pl": "pekūrins"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "pekūris",
+        "Nom pl": "pekūrei",
+        "Gen sg": "pekūres",
+        "Gen pl": "pekūrin",
+        "Dat sg": "pekūŗu",
+        "Dat pl": "pekūremans",
+        "Akk sg": "pekūrin",
+        "Akk pl": "pekūrins"
+      },
+      "f": {
+        "Nom sg": "pekūri",
+        "Nom pl": "pekūres",
+        "Gen sg": "pekūres",
+        "Gen pl": "pekūrin",
+        "Dat sg": "pekūrei",
+        "Dat pl": "pekūremans",
+        "Akk sg": "pekūrin",
+        "Akk pl": "pekūrins"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "pekāris",
+        "Nom pl": "pekārjai",
+        "Gen sg": "pekārjas",
+        "Gen pl": "pekārjan",
+        "Dat sg": "pekārju",
+        "Dat pl": "pekārjamans",
+        "Akk sg": "pekārjan",
+        "Akk pl": "pekārjans"
+      },
+      "f": {
+        "Nom sg": "pekāri",
+        "Nom pl": "pekāris",
+        "Gen sg": "pekāris",
+        "Gen pl": "pekārin",
+        "Dat sg": "pekārei",
+        "Dat pl": "pekārimans",
+        "Akk sg": "pekārin",
+        "Akk pl": "pekārins"
+      }
+    }
+  },
+  "55_Rhode": {
+    "paradigm": "55",
+    "lemma": "Rhode",
+    "Tabula": {
+      "m": {
+        "Nom sg": "Rhode",
+        "Nom pl": "Rhodes",
+        "Gen sg": "Rhodes",
+        "Gen pl": "Rhoden",
+        "Dat sg": "Rhodei",
+        "Dat pl": "Rhodemans",
+        "Akk sg": "Rhoden",
+        "Akk pl": "Rhodens"
+      }
+    }
+  },
+  "56_gigānts": {
+    "paradigm": "56",
+    "lemma": "gigānts",
+    "Tabula": {
+      "m": {
+        "Nom sg": "gigānts",
+        "Nom pl": "gigāntei",
+        "Gen sg": "gigāntis",
+        "Gen pl": "gigāntin",
+        "Dat sg": "gigānti",
+        "Dat pl": "gigāntimans",
+        "Akk sg": "gigāntin",
+        "Akk pl": "gigāntins"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "gigānts",
+        "Nom pl": "gigāntei",
+        "Gen sg": "gigāntis",
+        "Gen pl": "gigāntin",
+        "Dat sg": "gigānti",
+        "Dat pl": "gigāntimans",
+        "Akk sg": "gigāntin",
+        "Akk pl": "gigāntins"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "gigānts",
+        "Nom pl": "gigāntjai",
+        "Gen sg": "gigāntis",
+        "Gen pl": "gigāntin",
+        "Dat sg": "gigānti",
+        "Dat pl": "gigāntimans",
+        "Akk sg": "gigāntin",
+        "Akk pl": "gigāntins"
+      }
+    }
+  },
+  "57_dānts": {
+    "paradigm": "57",
+    "lemma": "dānts",
+    "Tabula": {
+      "m": {
+        "Nom sg": "dānts",
+        "Nom pl": "dāntei",
+        "Gen sg": "dāntis",
+        "Gen pl": "dāntin",
+        "Dat sg": "dānti",
+        "Dat pl": "dantimmans",
+        "Akk sg": "dāntin",
+        "Akk pl": "dāntins"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "dānts",
+        "Nom pl": "dāntei",
+        "Gen sg": "dāntis",
+        "Gen pl": "dāntin",
+        "Dat sg": "dānti",
+        "Dat pl": "dantimmans",
+        "Akk sg": "dāntin",
+        "Akk pl": "dāntins"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "dānts",
+        "Nom pl": "dāntes / dāntjai",
+        "Gen sg": "dāntis",
+        "Gen pl": "dāntin",
+        "Dat sg": "dānti",
+        "Dat pl": "dantimmans",
+        "Akk sg": "dāntin",
+        "Akk pl": "dāntins"
+      }
+    }
+  },
+  "58_klīts": {
+    "paradigm": "58",
+    "lemma": "klīts",
+    "Tabula": {
+      "f": {
+        "Nom sg": "klīts",
+        "Nom pl": "klītis",
+        "Gen sg": "klītis",
+        "Gen pl": "klītin",
+        "Dat sg": "klītei",
+        "Dat pl": "klītimans",
+        "Akk sg": "klītin",
+        "Akk pl": "klītins"
+      }
+    },
+    "Prusaspira": {
+      "f": {
+        "Nom sg": "klīts",
+        "Nom pl": "klītis",
+        "Gen sg": "klītis",
+        "Gen pl": "klītin",
+        "Dat sg": "klītei",
+        "Dat pl": "klītimans",
+        "Akk sg": "klītin",
+        "Akk pl": "klītins"
+      }
+    },
+    "Twanksta": {
+      "f": {
+        "Nom sg": "klēts",
+        "Nom pl": "klētis",
+        "Gen sg": "klētis",
+        "Gen pl": "klētin",
+        "Dat sg": "klētei",
+        "Dat pl": "klētimans",
+        "Akk sg": "klētin",
+        "Akk pl": "klētins"
+      }
+    }
+  },
+  "59_kiŕksni": {
+    "paradigm": "59",
+    "lemma": "kiŕksni",
+    "Tabula": {
+      "n": {
+        "Nom sg": "kiŕksni",
+        "Nom pl": "kiŕksni",
+        "Gen sg": "kiŕksnis",
+        "Gen pl": "kiŕksnis",
+        "Dat sg": "kiŕksni",
+        "Dat pl": "kiŕksni",
+        "Akk sg": "kiŕksni",
+        "Akk pl": "kiŕksni"
+      }
+    },
+    "Prusaspira": {
+      "n": {
+        "Nom sg": "kirksni",
+        "Nom pl": "kirksni",
+        "Gen sg": "kirksnis",
+        "Gen pl": "kirksnis",
+        "Dat sg": "kirksni",
+        "Dat pl": "kirksni",
+        "Akk sg": "kirksni",
+        "Akk pl": "kirksni"
+      }
+    },
+    "Twanksta": {
+      "f": {
+        "Nom sg": "kirksni",
+        "Nom pl": "kirksnis",
+        "Gen sg": "kirksnis",
+        "Gen pl": "kirksnin",
+        "Dat sg": "kirksnei",
+        "Dat pl": "kirksnimans",
+        "Akk sg": "kirksnin",
+        "Akk pl": "kirksnins"
+      }
+    }
+  },
+  "60_aks": {
+    "paradigm": "60",
+    "lemma": "aks",
+    "Tabula": {
+      "f": {
+        "Nom sg": "aks",
+        "Nom pl": "akkis",
+        "Gen sg": "akkis",
+        "Gen pl": "akkin",
+        "Dat sg": "akkei",
+        "Dat pl": "akimmans",
+        "Akk sg": "akkin",
+        "Akk pl": "akkins"
+      }
+    },
+    "Prusaspira": {
+      "f": {
+        "Nom sg": "aks",
+        "Nom pl": "akkis",
+        "Gen sg": "akkis",
+        "Gen pl": "akkin",
+        "Dat sg": "akkei",
+        "Dat pl": "akimmans",
+        "Akk sg": "akkin",
+        "Akk pl": "akkins"
+      }
+    },
+    "Twanksta": {
+      "f": {
+        "Nom sg": "aks",
+        "Nom pl": "akkis",
+        "Gen sg": "akkis",
+        "Gen pl": "akkin",
+        "Dat sg": "akkei",
+        "Dat pl": "akimmans",
+        "Akk sg": "akkin",
+        "Akk pl": "akkins"
+      }
+    }
+  },
+  "61_kērmens": {
+    "paradigm": "61",
+    "lemma": "kērmens",
+    "Tabula": {
+      "m": {
+        "Nom sg": "kērmens",
+        "Nom pl": "kērmenei",
+        "Gen sg": "kērmenes",
+        "Gen pl": "kērmenin",
+        "Dat sg": "kērmeni",
+        "Dat pl": "kērmenimans",
+        "Akk sg": "kērmenin",
+        "Akk pl": "kērmenins"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "kērmens",
+        "Nom pl": "kērmenei",
+        "Gen sg": "kērmenes",
+        "Gen pl": "kērmenin",
+        "Dat sg": "kērmeni",
+        "Dat pl": "kērmenimans",
+        "Akk sg": "kērmenin",
+        "Akk pl": "kērmenins"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "kērmens",
+        "Nom pl": "kērmenes / kērmenjai",
+        "Gen sg": "kērmenes",
+        "Gen pl": "kērmenin",
+        "Dat sg": "kērmeni",
+        "Dat pl": "kērmenimans",
+        "Akk sg": "kērmenin",
+        "Akk pl": "kērmenins"
+      }
+    }
+  },
+  "62_emmens": {
+    "paradigm": "62",
+    "lemma": "emmens",
+    "Tabula": {
+      "m": {
+        "Nom sg": "emmens",
+        "Nom pl": "emnei",
+        "Gen sg": "emnes",
+        "Gen pl": "emnin",
+        "Dat sg": "emni",
+        "Dat pl": "emnimans",
+        "Akk sg": "emnin",
+        "Akk pl": "emnins"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "emmens",
+        "Nom pl": "emnei",
+        "Gen sg": "emnes",
+        "Gen pl": "emnin",
+        "Dat sg": "emni",
+        "Dat pl": "emnimmans",
+        "Akk sg": "emnin",
+        "Akk pl": "emnins"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "emmens",
+        "Nom pl": "emnes / emnjai",
+        "Gen sg": "emnes",
+        "Gen pl": "emnin",
+        "Dat sg": "emni",
+        "Dat pl": "emnimans",
+        "Akk sg": "emnin",
+        "Akk pl": "emnins"
+      }
+    }
+  },
+  "63_sīmen": {
+    "paradigm": "63",
+    "lemma": "sīmen",
+    "Tabula": {
+      "n": {
+        "Nom sg": "sīmen",
+        "Nom pl": "simenēi",
+        "Gen sg": "sīmenes",
+        "Gen pl": "sīmenin",
+        "Dat sg": "sīmeni",
+        "Dat pl": "simenimmans",
+        "Akk sg": "sīmen",
+        "Akk pl": "sīmenins"
+      }
+    },
+    "Prusaspira": {
+      "n": {
+        "Nom sg": "sīmen",
+        "Nom pl": "simenēi",
+        "Gen sg": "sīmenes",
+        "Gen pl": "sīmenin",
+        "Dat sg": "sīmeni",
+        "Dat pl": "simenimmans",
+        "Akk sg": "sīmen",
+        "Akk pl": "sīmenins"
+      }
+    },
+    "Twanksta": {
+      "n": {
+        "Nom sg": "sēmen",
+        "Nom pl": "sēmenes / semenjāi",
+        "Gen sg": "sēmenes",
+        "Gen pl": "sēmenin",
+        "Dat sg": "sēmeni",
+        "Dat pl": "semenimmans",
+        "Akk sg": "sēmen",
+        "Akk pl": "sēmenins"
+      }
+    }
+  },
+  "64_zmūi": {
+    "paradigm": "64",
+    "lemma": "zmūi",
+    "Tabula": {
+      "m": {
+        "Nom sg": "zmūi",
+        "Nom pl": "zmūnei",
+        "Gen sg": "zmūnes",
+        "Gen pl": "zmūnin",
+        "Dat sg": "zmūni",
+        "Dat pl": "zmūnimans",
+        "Akk sg": "zmūnin",
+        "Akk pl": "zmūnins"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "zmūi",
+        "Nom pl": "zmūnei",
+        "Gen sg": "zmūnes",
+        "Gen pl": "zmūnin",
+        "Dat sg": "zmūni",
+        "Dat pl": "zmūnimans",
+        "Akk sg": "zmūnin",
+        "Akk pl": "zmūnins"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "zmōi",
+        "Nom pl": "zmānes / zmōnjai",
+        "Gen sg": "zmānes",
+        "Gen pl": "zmānin",
+        "Dat sg": "zmāni",
+        "Dat pl": "zmānimans",
+        "Akk sg": "zmānin",
+        "Akk pl": "zmānins"
+      }
+    }
+  },
+  "65_brāti": {
+    "paradigm": "65",
+    "lemma": "brāti",
+    "Tabula": {
+      "m": {
+        "Nom sg": "brāti",
+        "Nom pl": "brātei",
+        "Gen sg": "brātis",
+        "Gen pl": "brātin",
+        "Dat sg": "brātri",
+        "Dat pl": "brātrimans",
+        "Akk sg": "brātin",
+        "Akk pl": "brātins"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "brāti",
+        "Nom pl": "brātei",
+        "Gen sg": "brātis",
+        "Gen pl": "brātin",
+        "Dat sg": "brātri",
+        "Dat pl": "brātrimans",
+        "Akk sg": "brātin",
+        "Akk pl": "brātins"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "brāti",
+        "Nom pl": "brātjai / brātres",
+        "Gen sg": "brātis / brātris",
+        "Gen pl": "brātin / brātran",
+        "Dat sg": "brātri",
+        "Dat pl": "brātrimans",
+        "Akk sg": "brātin / brātrin",
+        "Akk pl": "brātins / brātrins"
+      }
+    }
+  },
+  "66_mūti": {
+    "paradigm": "66",
+    "lemma": "mūti",
+    "Tabula": {
+      "f": {
+        "Nom sg": "mūti",
+        "Nom pl": "mūtis",
+        "Gen sg": "mūtis",
+        "Gen pl": "mūtin",
+        "Dat sg": "mūterei",
+        "Dat pl": "mūterimans",
+        "Akk sg": "mūtin",
+        "Akk pl": "mūtins"
+      }
+    },
+    "Prusaspira": {
+      "f": {
+        "Nom sg": "mūti",
+        "Nom pl": "mūtis",
+        "Gen sg": "mūtis",
+        "Gen pl": "mūtin",
+        "Dat sg": "mūterei",
+        "Dat pl": "mūterimans",
+        "Akk sg": "mūtin",
+        "Akk pl": "mūtins"
+      }
+    },
+    "Twanksta": {
+      "f": {
+        "Nom sg": "māti",
+        "Nom pl": "mātes / māteres",
+        "Gen sg": "mātis / māteris",
+        "Gen pl": "mātin / māteran",
+        "Dat sg": "māterei",
+        "Dat pl": "māterimans",
+        "Akk sg": "mātin / māterin",
+        "Akk pl": "mātins / māterins"
+      }
+    }
+  },
+  "67_dukti": {
+    "paradigm": "67",
+    "lemma": "dukti",
+    "Tabula": {
+      "f": {
+        "Nom sg": "dukti",
+        "Nom pl": "duktis",
+        "Gen sg": "duktis",
+        "Gen pl": "duktin",
+        "Dat sg": "dukterei",
+        "Dat pl": "dukterimmans",
+        "Akk sg": "duktin",
+        "Akk pl": "duktins"
+      }
+    },
+    "Prusaspira": {
+      "f": {
+        "Nom sg": "dukti",
+        "Nom pl": "duktis",
+        "Gen sg": "duktis",
+        "Gen pl": "duktin",
+        "Dat sg": "dukterei",
+        "Dat pl": "dukterimmans",
+        "Akk sg": "duktin",
+        "Akk pl": "duktins"
+      }
+    },
+    "Twanksta": {
+      "f": {
+        "Nom sg": "dukti",
+        "Nom pl": "duktes / dukteres",
+        "Gen sg": "duktis / dukteris",
+        "Gen pl": "duktin / dukteran",
+        "Dat sg": "dukterei",
+        "Dat pl": "dukterimmans",
+        "Akk sg": "duktin / dukterin",
+        "Akk pl": "duktins / dukterins"
+      }
+    }
+  },
+  "70_tīrts": {
+    "paradigm": "70",
+    "lemma": "tīrts",
+    "Tabula": {
+      "m": {
+        "Nom sg": "tīrts",
+        "Nom pl": "tirtāi",
+        "Gen sg": "tīrtse",
+        "Gen pl": "tirtēisan",
+        "Dat sg": "tīrtsmu",
+        "Dat pl": "tirtēimans",
+        "Akk sg": "tīrtan",
+        "Akk pl": "tīrtans"
+      },
+      "f": {
+        "Nom sg": "tirtī",
+        "Nom pl": "tīrtes",
+        "Gen sg": "tīrtes",
+        "Gen pl": "tīrtin",
+        "Dat sg": "tīrtei",
+        "Dat pl": "tirtjāmans",
+        "Akk sg": "tīrtin",
+        "Akk pl": "tīrtins"
+      },
+      "n": {
+        "Nom sg": "tīrtan",
+        "Nom pl": "tirtāi",
+        "Gen sg": "tīrtse",
+        "Gen pl": "tirtēisan",
+        "Dat sg": "tīrtsmu",
+        "Dat pl": "tirtēimans",
+        "Akk sg": "tīrtan",
+        "Akk pl": "tīrtans"
+      }
+    },
+    "Prusaspira": {
+      "m": {
+        "Nom sg": "tīrts",
+        "Nom pl": "tirtāi",
+        "Gen sg": "tīrtse",
+        "Gen pl": "tirtēisan",
+        "Dat sg": "tīrtsmu",
+        "Dat pl": "tirtēimans",
+        "Akk sg": "tīrtan",
+        "Akk pl": "tīrtans"
+      },
+      "f": {
+        "Nom sg": "tirtī",
+        "Nom pl": "tīrtes",
+        "Gen sg": "tīrtes",
+        "Gen pl": "tīrtin",
+        "Dat sg": "tīrtei",
+        "Dat pl": "tirtāmans",
+        "Akk sg": "tīrtin",
+        "Akk pl": "tīrtins"
+      },
+      "n": {
+        "Nom sg": "tīrtan",
+        "Nom pl": "tirtāi",
+        "Gen sg": "tīrtse",
+        "Gen pl": "tirtēisan",
+        "Dat sg": "tīrtsmu",
+        "Dat pl": "tirtēimans",
+        "Akk sg": "tīrtan",
+        "Akk pl": "tīrtans"
+      }
+    },
+    "Twanksta": {
+      "m": {
+        "Nom sg": "tīrts",
+        "Nom pl": "tirtāi",
+        "Gen sg": "tīrtse",
+        "Gen pl": "tirtēisan",
+        "Dat sg": "tīrtsmu",
+        "Dat pl": "tirtēimans",
+        "Akk sg": "tīrtan",
+        "Akk pl": "tīrtans"
+      },
+      "f": {
+        "Nom sg": "tīrtī",
+        "Nom pl": "tīrtjas",
+        "Gen sg": "tīrtjas",
+        "Gen pl": "tīrtjan",
+        "Dat sg": "tīrtjai",
+        "Dat pl": "tirtjāmans",
+        "Akk sg": "tīrtjan",
+        "Akk pl": "tīrtjans"
+      },
+      "n": {
+        "Nom sg": "tīrtan",
+        "Nom pl": "tirtāi",
+        "Gen sg": "tīrtse",
+        "Gen pl": "tirtēisan",
+        "Dat sg": "tīrtsmu",
+        "Dat pl": "tirtēimans",
+        "Akk sg": "tīrtan",
+        "Akk pl": "tīrtans"
+      }
+    }
+  }
+}
