@@ -12,6 +12,7 @@ TABULA = Path("tabula.html")
 PRUSASPIRA = Path("prusaspira")
 TWANKSTA = Path("twanksta")
 OUT = Path("vergleich.html")
+JSON_OUT = Path("vergleich.json")
 
 CASES = ["Nom", "Gen", "Dat", "Akk"]
 CASE_PRU = {"Nom": "N\u014dm", "Gen": "G\u0113n", "Dat": "D\u0101t", "Akk": "Akk"}
@@ -439,6 +440,7 @@ def get_variants(val):
     return {norm(p) for p in re.split(r"\s*/\s*", val) if p.strip()}
 
 rows_html = []
+json_data = OrderedDict()
 for num, lemma in sorted(pairs, key=lambda x: (int(x[0].rstrip("abc")), x[0])):
     tab_entries = tab.get(num, [])
     pru_data = parse_prusaspira_multi(num, lemma) or {}
@@ -465,6 +467,27 @@ for num, lemma in sorted(pairs, key=lambda x: (int(x[0].rstrip("abc")), x[0])):
         for g, sources in all_genders.items():
             if "twanksta" not in sources:
                 sources["twanksta"] = empty_twa
+
+    # ── Raw JSON dump: parsed forms per source, no matching/colour annotation ──
+    # Keyed by "<num>_<lemma>" to stay unique when one paradigm number has variant lemmas.
+    j_entry = OrderedDict([("paradigm", num), ("lemma", lemma)])
+    for src_key, src_name in (("tabula", "Tabula"), ("prusaspira", "Prusaspira"), ("twanksta", "Twanksta")):
+        src_obj = OrderedDict()
+        for g, sources in all_genders.items():
+            forms = sources.get(src_key)
+            if not forms:
+                continue
+            cell_obj = OrderedDict()
+            for c in CASES:
+                for n in NUMS:
+                    v = forms.get((c, n))
+                    if v:
+                        cell_obj["%s %s" % (c, n)] = v
+            if cell_obj:
+                src_obj[g if g else ""] = cell_obj
+        if src_obj:
+            j_entry[src_name] = src_obj
+    json_data["%s_%s" % (num, lemma)] = j_entry
 
     r = '<tr class="paradigm-header"><td colspan="7"><b>%s %s</b></td></tr>\n' % (num, lemma)
     for g, sources in all_genders.items():
@@ -559,3 +582,6 @@ Leere Zellen (<span class="empty">-</span>) = Quelle hat f&uuml;r dieses Genus/K
 html = TPL % "\n".join(rows_html)
 OUT.write_text(html, encoding="utf-8")
 print("Written to", OUT, "(%d rows)" % len(rows_html))
+
+JSON_OUT.write_text(json.dumps(json_data, ensure_ascii=False, indent=2), encoding="utf-8")
+print("Written to", JSON_OUT, "(%d paradigms)" % len(json_data))

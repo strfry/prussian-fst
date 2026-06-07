@@ -1,0 +1,27 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Giella reference clones (own .git, read-only)
+lang-lit/
+lang-lav/
+
+# Large input data (obtain externally — see README)
+wordlist.json
+prussian_dictionary.json
+
+# Fetched corpora (regenerate via fetch_prusaspira.py / twanksta_api_check.py)
+prusaspira/
+twanksta/
+
+# Generated FST artefacts
+fst/nominals.*
+fst/ortho.fst
+fst/morphology/
