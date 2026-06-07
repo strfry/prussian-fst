@@ -27,6 +27,50 @@ VOWELS = set("aeiouāēīōūAEIOU")
 
 GENDER_TAG = {"m": "+Msc", "f": "+Fem", "n": "+Neut"}
 
+# Adjective paradigms (P9-P24 pronouns/demonstratives, P25-P31 adjectives)
+ADJ_PARADIGMS = set()
+for i in range(9, 32):
+    ADJ_PARADIGMS.add(str(i))
+ADJ_PARADIGMS |= {"30a"}
+
+
+def _paradigm_base(paradigm: str) -> str:
+    """Strip 'def'/'sup'/'adv' and '_suppl'/'_suppl2' suffixes."""
+    base = paradigm
+    for sfx in ("_suppl2", "_suppl"):
+        if base.endswith(sfx):
+            base = base[:-len(sfx)]
+            break
+    for sfx in ("def", "sup", "adv"):
+        if base.endswith(sfx):
+            base = base[:-len(sfx)]
+            break
+    return base
+
+
+def _paradigm_kind(paradigm: str) -> str:
+    rest = paradigm
+    if paradigm.endswith("_suppl") or paradigm.endswith("_suppl2"):
+        rest = paradigm[:paradigm.rfind("_")]
+    for kind in ("adv", "def", "sup"):
+        if rest.endswith(kind):
+            return kind
+    return ""
+
+
+def _pos(paradigm: str) -> str:
+    return "+A" if _paradigm_base(paradigm) in ADJ_PARADIGMS else "+N"
+
+ADV_CELL_TAG = {
+    "Pos": "+Pos",
+    "Comp": "+Comp",
+    "Superl": "+Superl",
+}
+
+DEF_TAG = "+Def"
+SUPERL_TAG = "+Superl"
+ADV_POS_TAG = "+Adv"
+
 CELL_TAG = {
     "Nom sg": "+Sg+Nom", "Nom pl": "+Pl+Nom",
     "Gen sg": "+Sg+Gen", "Gen pl": "+Pl+Gen",
@@ -89,15 +133,28 @@ def main() -> None:
         lemma = entry["lemma"]
         gender = entry["gender"]
         stamm = entry["stamm"]
-        gtag = GENDER_TAG[gender]
+        gtag = GENDER_TAG.get(gender, "")
 
         for cell, v in entry["suffixe"].items():
             betont = v["betont"]
             pal = v.get("palatize", False)
             std_suffix, variant_full = split_suffix(v["suffix"])
+            prefix = v.get("prefix", "")
 
-            expected = resolve_stem(stamm, betont, pal) + std_suffix
-            tag = f"{lemma}+N{gtag}{CELL_TAG[cell]}"
+            expected = prefix + resolve_stem(stamm, betont, pal) + std_suffix
+
+            is_adv = cell in ADV_CELL_TAG
+            cell_tag = ADV_CELL_TAG[cell] if is_adv else CELL_TAG[cell]
+
+            kind = _paradigm_kind(par)
+            if kind == "adv":
+                tag = f"{lemma}{_pos(par)}{ADV_POS_TAG}{cell_tag}"
+            elif kind == "def":
+                tag = f"{lemma}{_pos(par)}{DEF_TAG}{gtag}{cell_tag}"
+            elif kind == "sup":
+                tag = f"{lemma}{_pos(par)}{SUPERL_TAG}{gtag}{cell_tag}"
+            else:
+                tag = f"{lemma}{_pos(par)}{gtag}{cell_tag}"
             total += 1
 
             results = list(fst.generate(tag))
@@ -161,13 +218,17 @@ def main() -> None:
         ("kūģu", "kūgis+N+Msc+Sg+Dat"),
         ("kūgemans", "kūgis+N+Msc+Pl+Dat"),
         ("spīgsnas", "spigsnā+N+Fem+Pl+Nom"),
-        ("māldaišu", "māldaisis+N+Msc+Sg+Dat"),
-        ("māldaišai", "māldaisis+N+Msc+Pl+Nom"),
+        ("māldaišu", "māldaisis+A+Msc+Sg+Dat"),
+        ("māldaišai", "māldaisis+A+Msc+Pl+Nom"),
         ("wīrs", "wīrs+N+Msc+Sg+Nom"),
         ("rikīs", "rikīs+N+Msc+Sg+Nom"),
         ("rikkijmans", "rikīs+N+Msc+Pl+Dat"),
         ("sūns", "sūns+N+Msc+Sg+Nom"),
         ("sūnuns", "sūns+N+Msc+Pl+Acc"),
+        ("debīks", "debīks+A+Msc+Sg+Nom"),
+        ("debīkai", "debīks+A+Msc+Pl+Nom"),
+        ("labs", "labs+A+Msc+Sg+Nom"),
+        ("labāi", "labs+A+Msc+Pl+Nom"),
     ]
     for form, expected in spot_checks:
         results = list(fst.analyze(form))

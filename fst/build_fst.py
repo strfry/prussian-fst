@@ -68,6 +68,56 @@ CELL_TAG = {
     "Akk sg": "+Sg+Acc", "Akk pl": "+Pl+Acc",
 }
 
+# Adverb cell -> tag mapping
+ADV_CELL_TAG = {
+    "Pos": "+Pos",
+    "Comp": "+Comp",
+    "Superl": "+Superl",
+}
+
+# Degree/definiteness tags
+DEF_TAG = "+Def"
+SUPERL_TAG = "+Superl"
+ADV_POS_TAG = "+Adv"
+
+# Adjective paradigms (P9-P24 pronouns/demonstratives, P25-P31 adjectives)
+ADJ_PARADIGMS = set()
+for i in range(9, 32):
+    ADJ_PARADIGMS.add(str(i))
+ADJ_PARADIGMS |= {"30a"}
+
+
+def _paradigm_base(paradigm: str) -> str:
+    """Strip 'def'/'sup'/'adv' and '_suppl'/'_suppl2' suffixes."""
+    base = paradigm
+    for sfx in ("_suppl2", "_suppl"):
+        if base.endswith(sfx):
+            base = base[:-len(sfx)]
+            break
+    for sfx in ("def", "sup", "adv"):
+        if base.endswith(sfx):
+            base = base[:-len(sfx)]
+            break
+    return base
+
+
+def _paradigm_kind(paradigm: str) -> str:
+    """Return 'adv', 'def', 'sup', or '' depending on paradigm type."""
+    # Check the main suffix after the base number, e.g. '25def', '25def_suppl'
+    rest = paradigm
+    if paradigm.endswith("_suppl") or paradigm.endswith("_suppl2"):
+        rest = paradigm[:paradigm.rfind("_")]
+    for kind in ("adv", "def", "sup"):
+        if rest.endswith(kind):
+            return kind
+    return ""
+
+
+def _pos(paradigm: str) -> str:
+    """Return Giella POS tag (+A or +N) for a paradigm."""
+    return "+A" if _paradigm_base(paradigm) in ADJ_PARADIGMS else "+N"
+
+
 # Paradigms to include from wordlist (P9-P67 + sub-paradigms)
 PAR_RANGE = set()
 for i in range(9, 68):
@@ -77,6 +127,13 @@ PAR_RANGE |= {"35a", "37a", "40a", "40b", "40c", "50a", "51a", "30a"}
 
 # Paradigms with sibilant-palatalizing sub-variants: base -> a-variant
 _PALA_PARADIGMS = {"40": "40a", "50": "50a", "51": "51a"}
+
+# Suppletive adjective map: (lemma, base_paradigm) → [suppletive paradigm names]
+_SUPPL_PARADIGMS: dict[tuple[str, str], list[str]] = {
+    ("debīks", "25"): ["25def_suppl", "25sup_suppl", "25adv_suppl"],
+    ("līkuts", "25"): ["25def_suppl2", "25sup_suppl2", "25adv_suppl2"],
+    ("labs", "26"): ["26def_suppl", "26sup_suppl", "26adv_suppl", "26adv_suppl2"],
+}
 
 # Paradigm 40 sub-variant routing by stem-final consonant
 _PAR40_J_CONS = set("wbpm")   # j-insertion
@@ -240,6 +297,12 @@ def wordlist_to_entries(
     nom_sg_map = _build_nom_sg_suffix_map(gs_entries)
     suffixe_map = _build_paradigm_suffixe_map(gs_entries)
     par_nom_sg = _build_paradigm_nom_sg_map(gs_entries)
+    # Build stamm map for suppletive paradigms
+    stamm_map: dict[tuple[str, str], str] = {}
+    for e in gs_entries:
+        key = (e["paradigm"], e["gender"])
+        if key not in stamm_map:
+            stamm_map[key] = e["stamm"]
 
     entries: list[dict] = []
     seen: set[tuple[str, str, str]] = set()  # (lemma, paradigm, gender)
@@ -310,6 +373,70 @@ def wordlist_to_entries(
                     "suffixe": suffixe,
                 })
 
+                # Expand adjective entries with def/sup/adv variants
+                # if goldstandard templates exist for them.
+                base = routed_par.rstrip("abc") if routed_par[-1] in "abc" else routed_par
+                suppl_key = (word, base)
+                if base in ADJ_PARADIGMS and suppl_key not in _SUPPL_PARADIGMS:
+                    for pfx in ("def", "sup"):
+                        variant_par = f"{base}{pfx}"
+                        vsfx = suffixe_map.get((variant_par, g2))
+                        if vsfx is not None:
+                            vkey = (word, variant_par, g2)
+                            if vkey not in seen:
+                                seen.add(vkey)
+                                entries.append({
+                                    "paradigm": variant_par,
+                                    "lemma": word,
+                                    "gender": g2,
+                                    "stamm": stamm,
+                                    "suffixe": vsfx,
+                                })
+                    adv_par = f"{base}adv"
+                    adv_sfx = suffixe_map.get((adv_par, ""))
+                    if adv_sfx is not None:
+                        akey = (word, adv_par, "")
+                        if akey not in seen:
+                            seen.add(akey)
+                            entries.append({
+                                "paradigm": adv_par,
+                                "lemma": word,
+                                "gender": "",
+                                "stamm": stamm,
+                                "suffixe": adv_sfx,
+                            })
+
+    # Post-pass: suppletive adjective expansion
+    for (lemma, base_par), variant_pars in _SUPPL_PARADIGMS.items():
+        for variant_par in variant_pars:
+            if _paradigm_kind(variant_par) == "adv":
+                vsfx = suffixe_map.get((variant_par, ""))
+                if vsfx is not None:
+                    akey = (lemma, variant_par, "")
+                    if akey not in seen:
+                        seen.add(akey)
+                        entries.append({
+                            "paradigm": variant_par,
+                            "lemma": lemma,
+                            "gender": "",
+                            "stamm": stamm_map.get((variant_par, ""), ""),
+                            "suffixe": vsfx,
+                        })
+            else:
+                for g in ("m", "f", "n"):
+                    vsfx = suffixe_map.get((variant_par, g))
+                    if vsfx is not None:
+                        vkey = (lemma, variant_par, g)
+                        if vkey not in seen:
+                            seen.add(vkey)
+                            entries.append({
+                                "paradigm": variant_par,
+                                "lemma": lemma,
+                                "gender": g,
+                                "stamm": stamm_map.get((variant_par, g), ""),
+                                "suffixe": vsfx,
+                            })
+
     return entries
 
 
@@ -321,11 +448,13 @@ def write_root_lexc() -> None:
     lines = []
     lines.append("Multichar_Symbols")
     lines.append(" %^VowS  %^JPal")
-    lines.append(" +N  +Msc  +Fem  +Neut")
+    lines.append(" +A  +N  +Adv  +Msc  +Fem  +Neut")
     lines.append(" +Sg  +Pl  +Nom  +Gen  +Dat  +Acc")
+    lines.append(" +Def  +Superl  +Comp  +Pos")
     lines.append(" {A}  {E}  {I}  {O}  {U}")
     lines.append("")
     lines.append("LEXICON Root")
+    lines.append(" Adjectives ;")
     lines.append(" Nouns ;")
     lines.append("")
     lines.append("LEXICON K")
@@ -347,11 +476,22 @@ def write_stems_lexc(entries: list[dict]) -> None:
     lines.append("LEXICON Nouns")
 
     for (par, g) in sorted(par_gender_stems.keys(),
-                           key=lambda x: (int(x[0].rstrip("abc")) if x[0].rstrip("abc").isdigit() else 0, x[0], x[1])):
-        gtag = GENDER_TAG[g]
-        cont_class = f"N-P{par}-{gtag.lstrip('+').upper()}"
+                           key=lambda x: (int(_paradigm_base(x[0]).rstrip("abc")) if _paradigm_base(x[0]).rstrip("abc").isdigit() else 0, x[0], x[1])):
+        gtag = GENDER_TAG.get(g, "")
+        pos = _pos(par)
+        prefix = pos.lstrip("+")
+        cont_class = f"{prefix}-P{par}-{gtag.lstrip('+').upper()}"
         for lemma, raw_stamm, arch_stem in sorted(par_gender_stems[(par, g)]):
-            lines.append(f" {lemma}+N{gtag}:{arch_stem} {cont_class} ;")
+            kind = _paradigm_kind(par)
+            if kind == "adv":
+                tag_prefix = f"{pos}{ADV_POS_TAG}"
+            elif kind == "def":
+                tag_prefix = f"{pos}{DEF_TAG}{gtag}"
+            elif kind == "sup":
+                tag_prefix = f"{pos}{SUPERL_TAG}{gtag}"
+            else:
+                tag_prefix = f"{pos}{gtag}"
+            lines.append(f" {lemma}{tag_prefix}:{arch_stem} {cont_class} ;")
     lines.append("")
 
     STEMS_LEXC.write_text("\n".join(lines) + "\n", encoding="utf-8")
@@ -375,12 +515,14 @@ def write_affixes_lexc(entries: list[dict]) -> None:
     lines = []
 
     for (par, g) in sorted(par_gender_cells.keys()):
-        gtag = GENDER_TAG[g]
-        cont_class = f"N-P{par}-{gtag.lstrip('+').upper()}"
+        gtag = GENDER_TAG.get(g, "")
+        pos = _pos(par)
+        prefix = pos.lstrip("+")
+        cont_class = f"{prefix}-P{par}-{gtag.lstrip('+').upper()}"
         lines.append(f"LEXICON {cont_class}")
 
         for cell, suffix, betont, pal in sorted(par_gender_cells[(par, g)]):
-            tag = CELL_TAG[cell]
+            tag = CELL_TAG.get(cell, ADV_CELL_TAG.get(cell, ""))
             parts = []
             if pal:
                 parts.append("%^JPal")
@@ -459,16 +601,23 @@ def build_lexd(entries: list[dict]) -> str:
         for cell, v in e["suffixe"].items():
             betont: bool = v["betont"]
             pal: bool = v.get("palatize", False)
+            prefix = v.get("prefix", "")
             var = _variant_code(betont, pal)
+            if prefix:
+                var = f"p{prefix}_{var}"
             infl_key = (par, g, var)
             known_infls.add(infl_key)
 
             std_suffix, variant_full = split_suffix(v["suffix"])
 
-            stem_surface = resolve_stem(stamm, betont, pal)
+            stem_surface = prefix + resolve_stem(stamm, betont, pal)
             word_var_stems[(lemma, par, g, var)] = stem_surface
 
-            tag = CELL_TAG[cell]
+            is_adv = cell in ADV_CELL_TAG
+            if is_adv:
+                tag = ADV_CELL_TAG[cell]
+            else:
+                tag = CELL_TAG[cell]
             entry = (tag, std_suffix)
             if entry not in infl_data[infl_key]:
                 infl_data[infl_key].append(entry)
@@ -481,15 +630,31 @@ def build_lexd(entries: list[dict]) -> str:
                 variant_full.startswith(resolve_stem(stamm, True, pal))
                 or variant_full.startswith(resolve_stem(stamm, False, pal))
             ):
-                upper = f"{lemma}+N{GENDER_TAG[g]}{tag}"
+                kind = _paradigm_kind(par)
+                if kind == "adv":
+                    upper = f"{lemma}{_pos(par)}{ADV_POS_TAG}{tag}"
+                elif kind == "def":
+                    upper = f"{lemma}{_pos(par)}{DEF_TAG}{GENDER_TAG[g]}{tag}"
+                elif kind == "sup":
+                    upper = f"{lemma}{_pos(par)}{SUPERL_TAG}{GENDER_TAG[g]}{tag}"
+                else:
+                    upper = f"{lemma}{_pos(par)}{GENDER_TAG[g]}{tag}"
                 variant_forms.append((upper, variant_full))
 
     # Group stems by (par, g, var) — one stem lexicon per inflection group.
     # This avoids O(n²) blowup from too many top-level PATTERNS lines.
     stem_lex_entries: dict[tuple[str, str, str], list[tuple[str, str, str]]] = defaultdict(list)
     for (lemma, par, g, var), stem_surface in word_var_stems.items():
-        gtag = GENDER_TAG[g]
-        stem_lex_entries[(par, g, var)].append((lemma, gtag, stem_surface))
+        kind = _paradigm_kind(par)
+        if kind == "adv":
+            tag_prefix = f"{_pos(par)}{ADV_POS_TAG}"
+        elif kind == "def":
+            tag_prefix = f"{_pos(par)}{DEF_TAG}{GENDER_TAG[g]}"
+        elif kind == "sup":
+            tag_prefix = f"{_pos(par)}{SUPERL_TAG}{GENDER_TAG[g]}"
+        else:
+            tag_prefix = f"{_pos(par)}{GENDER_TAG.get(g, '')}"
+        stem_lex_entries[(par, g, var)].append((lemma, tag_prefix, stem_surface))
 
     # Deduplicate
     for key in stem_lex_entries:
@@ -516,8 +681,8 @@ def build_lexd(entries: list[dict]) -> str:
         par, g, var = infl_key
         stem_name = f"Stems_{par}_{g}_{var}"
         lines.append(f"LEXICON {stem_name}")
-        for lemma, gtag, stem_surface in stem_lex_entries[infl_key]:
-            lines.append(f"{lemma}+N{gtag}:{stem_surface}")
+        for lemma, tag_prefix, stem_surface in stem_lex_entries[infl_key]:
+            lines.append(f"{lemma}{tag_prefix}:{stem_surface}")
         lines.append("")
 
     # Write shared Infl lexicons
