@@ -27,11 +27,9 @@ VOWELS = set("aeiouāēīōūAEIOU")
 
 GENDER_TAG = {"m": "+Msc", "f": "+Fem", "n": "+Neut"}
 
-# Adjective paradigms (P9-P24 pronouns/demonstratives, P25-P31 adjectives)
-ADJ_PARADIGMS = set()
-for i in range(9, 32):
-    ADJ_PARADIGMS.add(str(i))
-ADJ_PARADIGMS |= {"30a"}
+# Pronoun paradigms (P9-P24) and adjective paradigms (P25-P31, P30a)
+PRON_PARADIGMS = set(str(i) for i in range(9, 25))
+ADJ_PARADIGMS = set(str(i) for i in range(25, 32)) | {"30a"}
 
 
 def _paradigm_base(paradigm: str) -> str:
@@ -59,7 +57,12 @@ def _paradigm_kind(paradigm: str) -> str:
 
 
 def _pos(paradigm: str) -> str:
-    return "+A" if _paradigm_base(paradigm) in ADJ_PARADIGMS else "+N"
+    base = _paradigm_base(paradigm)
+    if base in PRON_PARADIGMS:
+        return "+Pron"
+    if base in ADJ_PARADIGMS:
+        return "+A"
+    return "+N"
 
 ADV_CELL_TAG = {
     "Pos": "+Pos",

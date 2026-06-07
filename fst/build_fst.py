@@ -80,11 +80,9 @@ DEF_TAG = "+Def"
 SUPERL_TAG = "+Superl"
 ADV_POS_TAG = "+Adv"
 
-# Adjective paradigms (P9-P24 pronouns/demonstratives, P25-P31 adjectives)
-ADJ_PARADIGMS = set()
-for i in range(9, 32):
-    ADJ_PARADIGMS.add(str(i))
-ADJ_PARADIGMS |= {"30a"}
+# Pronoun paradigms (P9-P24) and adjective paradigms (P25-P31, P30a)
+PRON_PARADIGMS = set(str(i) for i in range(9, 25))
+ADJ_PARADIGMS = set(str(i) for i in range(25, 32)) | {"30a"}
 
 
 def _paradigm_base(paradigm: str) -> str:
@@ -114,8 +112,13 @@ def _paradigm_kind(paradigm: str) -> str:
 
 
 def _pos(paradigm: str) -> str:
-    """Return Giella POS tag (+A or +N) for a paradigm."""
-    return "+A" if _paradigm_base(paradigm) in ADJ_PARADIGMS else "+N"
+    """Return Giella POS tag (+Pron, +A, or +N) for a paradigm."""
+    base = _paradigm_base(paradigm)
+    if base in PRON_PARADIGMS:
+        return "+Pron"
+    if base in ADJ_PARADIGMS:
+        return "+A"
+    return "+N"
 
 
 # Paradigms to include from wordlist (P9-P67 + sub-paradigms)
@@ -343,7 +346,7 @@ def wordlist_to_entries(
         for g, nom_sg_suffix in candidates:
             stem_surface = word[:-len(nom_sg_suffix)]
 
-            # For paradigms with multiple genders (adjectives, pronouns),
+            # For paradigms with multiple genders (pronouns, adjectives),
             # generate entries for ALL genders from a single matched form.
             available_genders = {_g for _g, _ in par_nom_sg.get(par, [])}
             if not wl_gender and len(available_genders) > 1:
@@ -448,12 +451,13 @@ def write_root_lexc() -> None:
     lines = []
     lines.append("Multichar_Symbols")
     lines.append(" %^VowS  %^JPal")
-    lines.append(" +A  +N  +Adv  +Msc  +Fem  +Neut")
+    lines.append(" +Pron  +A  +N  +Adv  +Msc  +Fem  +Neut")
     lines.append(" +Sg  +Pl  +Nom  +Gen  +Dat  +Acc")
     lines.append(" +Def  +Superl  +Comp  +Pos")
     lines.append(" {A}  {E}  {I}  {O}  {U}")
     lines.append("")
     lines.append("LEXICON Root")
+    lines.append(" Pronouns ;")
     lines.append(" Adjectives ;")
     lines.append(" Nouns ;")
     lines.append("")

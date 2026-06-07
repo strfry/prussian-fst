@@ -53,16 +53,20 @@ sorted_nums = sorted(paradigms_by_num.keys(), key=lambda x: (int(re.match(r'\d+'
 
 # Classify
 substantive = [n for n in sorted_nums if 32 <= int(re.match(r'\d+', n).group()) <= 67]
-adjektive = [n for n in sorted_nums if 8 <= int(re.match(r'\d+', n).group()) <= 31]
+pronomen = [n for n in sorted_nums if 9 <= int(re.match(r'\d+', n).group()) <= 24]
+adjektive = [n for n in sorted_nums if 25 <= int(re.match(r'\d+', n).group()) <= 31]
 partizip = [n for n in sorted_nums if 68 <= int(re.match(r'\d+', n).group()) <= 70]
-pronomen = [n for n in sorted_nums if 1 <= int(re.match(r'\d+', n).group()) <= 7]
+pers_pronomen = [n for n in sorted_nums if 1 <= int(re.match(r'\d+', n).group()) <= 7]
 verben = [n for n in sorted_nums if int(re.match(r'\d+', n).group()) > 70]
+# P8 (definite article stas) sits between personal pronouns and demonstratives
+# Note: 8 is currently in none of these groups
 
 print(f"\n✓ Extracted paradigms by type:")
+print(f"  Personalpronomen: {len(pers_pronomen)}")
+print(f"  Pronomen/Demonstrativ: {len(pronomen)}")
+print(f"  Adjektiv: {len(adjektive)}")
 print(f"  Substantiv: {len(substantive)}")
-print(f"  Adjektiv/Demonstrativ: {len(adjektive)}")
 print(f"  Partizip: {len(partizip)}")
-print(f"  Pronomen: {len(pronomen)}")
 print(f"  Verb: {len(verben)}")
 print(f"  Total: {len(sorted_nums)}")
 
