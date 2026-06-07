@@ -216,13 +216,13 @@ def detect_archiphoneme(stem_surface: str, nom_sg_suffix: str) -> str:
                 acc_positions.add(i)
 
     if not acc_positions:
-        return norm  # no archiphoneme detectable
+        return stem_surface  # no archiphoneme detectable
 
-    # Build raw stamm: lowercase except at accented positions
+    # Build raw stamm: original surface, uppercase only at macron positions
     result = []
-    for i, ch in enumerate(norm):
+    for i, ch in enumerate(stem_surface):
         if i in acc_positions:
-            result.append(ch.upper())
+            result.append(strip_macron(ch).upper())
         else:
             result.append(ch)
     return "".join(result)
