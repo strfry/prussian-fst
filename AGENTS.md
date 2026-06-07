@@ -7,6 +7,11 @@ Diacritics are optional in search terms.
 **Rate limit:** Maximum **1 request per second** for both APIs. Always delay
 at least 1 s between requests to either service.
 
+## Required data files
+
+`wordlist.json` und `prussian_dictionary.json` werden für das FST-Projekt
+benötigt und sind in <https://github.com/strfry/prussian-mcp> verfügbar.
+
 ## Grammar references
 
 - **Tabula Nova (Paradigmentabelle):** <http://donelaitis.vdu.lt/prussian/tabula.htm>
