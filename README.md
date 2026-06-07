@@ -3,6 +3,8 @@
 Vergleich der altpreußischen Paradigmendaten aus drei Quellen mit
 Finite-State-Transducer-Analyse (experimentell, PyFoma).
 
+> **Herkunft & Vertrauenskette der Daten:** [PROVENANCE.md](PROVENANCE.md)
+
 ## Datenquellen
 
 ### 1. Tabula Nova (tabula.html)
