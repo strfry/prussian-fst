@@ -25,3 +25,4 @@ twanksta/
 fst/nominals.*
 fst/ortho.fst
 fst/morphology/
+.env
