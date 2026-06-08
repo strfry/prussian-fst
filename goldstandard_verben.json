@@ -13,7 +13,7 @@
       "preterite": {
         "1sg": "immi",
         "2sg": "immi",
-        "3sg": "immi/immē",
+        "3sg": "immi",
         "1pl": "immimai",
         "2pl": "immitei"
       }
@@ -27,13 +27,13 @@
         "1sg": "metta",
         "2sg": "metta",
         "3sg": "metta",
-        "1pl": "mettamai",
-        "2pl": "mettatei"
+        "1pl": "mettimai",
+        "2pl": "mettitei"
       },
       "preterite": {
         "1sg": "metti",
         "2sg": "metti",
-        "3sg": "metti/mettē",
+        "3sg": "metti",
         "1pl": "mettimai",
         "2pl": "mettitei"
       }
@@ -47,13 +47,13 @@
         "1sg": "wedda",
         "2sg": "wedda",
         "3sg": "wedda",
-        "1pl": "weddamai",
-        "2pl": "weddatei"
+        "1pl": "weddimai",
+        "2pl": "wedditei"
       },
       "preterite": {
         "1sg": "weddi",
         "2sg": "weddi",
-        "3sg": "weddi/weddē",
+        "3sg": "weddi",
         "1pl": "weddimai",
         "2pl": "wedditei"
       }
@@ -85,7 +85,7 @@
       "preterite": {
         "1sg": "lānki",
         "2sg": "lānki",
-        "3sg": "lānki/lānkē",
+        "3sg": "lānki",
         "1pl": "lānkimai",
         "2pl": "lānkitei"
       }
@@ -105,7 +105,7 @@
       "preterite": {
         "1sg": "gnetti",
         "2sg": "gnetti",
-        "3sg": "gnetti/gnettē",
+        "3sg": "gnetti",
         "1pl": "gnettimai",
         "2pl": "gnettitei"
       }
@@ -125,7 +125,7 @@
       "preterite": {
         "1sg": "krīksti",
         "2sg": "krīksti",
-        "3sg": "krīksti/krīkstē",
+        "3sg": "krīksti",
         "1pl": "krīkstimai",
         "2pl": "krīkstitei"
       }
@@ -139,13 +139,13 @@
         "1sg": "gēide",
         "2sg": "gēide",
         "3sg": "gēide",
-        "1pl": "gēidjamai",
-        "2pl": "gēidjatei"
+        "1pl": "gēidimai",
+        "2pl": "gēiditei"
       },
       "preterite": {
         "1sg": "gēidi",
         "2sg": "gēidi",
-        "3sg": "gēidi/gēidē",
+        "3sg": "gēidi",
         "1pl": "gēidimai",
         "2pl": "gēiditei"
       }
@@ -165,7 +165,7 @@
       "preterite": {
         "1sg": "līzi",
         "2sg": "līzi",
-        "3sg": "līzi/līzē",
+        "3sg": "līzi",
         "1pl": "līzimai",
         "2pl": "līzitei"
       }
@@ -185,7 +185,7 @@
       "preterite": {
         "1sg": "ōsi",
         "2sg": "ōsi",
-        "3sg": "ōsi/ōsē",
+        "3sg": "ōsi",
         "1pl": "ōsimai",
         "2pl": "ōsitei"
       }
@@ -198,14 +198,14 @@
       "present": {
         "1sg": "glabbja",
         "2sg": "glabbja",
-        "3sg": "glabja",
+        "3sg": "glabbja",
         "1pl": "glabbimai",
         "2pl": "glabbitei"
       },
       "preterite": {
         "1sg": "glābi",
         "2sg": "glābi",
-        "3sg": "glābi/glābē",
+        "3sg": "glābi",
         "1pl": "glābimai",
         "2pl": "glābitei"
       }
@@ -215,20 +215,8 @@
     "paradigm": "81",
     "lemma": "wertun",
     "tenses": {
-      "present": {
-        "1sg": "auwerrja",
-        "2sg": "auwerrja",
-        "3sg": "werre",
-        "1pl": "auwerrjamai",
-        "2pl": "auwerrjatei"
-      },
-      "preterite": {
-        "1sg": "auwēri",
-        "2sg": "auwēri",
-        "3sg": "wīri/wīrē",
-        "1pl": "auwīrimai",
-        "2pl": "auwēritei"
-      }
+      "present": {},
+      "preterite": {}
     }
   },
   {
@@ -238,14 +226,14 @@
       "present": {
         "1sg": "wella",
         "2sg": "wella",
-        "3sg": "wela",
+        "3sg": "wella",
         "1pl": "wellimai",
         "2pl": "wellitei"
       },
       "preterite": {
         "1sg": "wīli",
         "2sg": "wīli",
-        "3sg": "wīli/wīlē",
+        "3sg": "wīli",
         "1pl": "wīlimai",
         "2pl": "wīlitei"
       }
@@ -258,14 +246,14 @@
       "present": {
         "1sg": "drebbja",
         "2sg": "drebbja",
-        "3sg": "drebja",
+        "3sg": "drebbja",
         "1pl": "drebbimai",
         "2pl": "drebbitei"
       },
       "preterite": {
         "1sg": "drībi",
         "2sg": "drībi",
-        "3sg": "drībi/drībē",
+        "3sg": "drībi",
         "1pl": "drībimai",
         "2pl": "drībitei"
       }
@@ -285,7 +273,7 @@
       "preterite": {
         "1sg": "dwīsi",
         "2sg": "dwīsi",
-        "3sg": "dwīsi/dwīsē",
+        "3sg": "dwīsi",
         "1pl": "dwīsimai",
         "2pl": "dwīsitei"
       }
@@ -305,7 +293,7 @@
       "preterite": {
         "1sg": "skīti",
         "2sg": "skīti",
-        "3sg": "skīti/skītē",
+        "3sg": "skīti",
         "1pl": "skītimai",
         "2pl": "skītitei"
       }
@@ -316,14 +304,16 @@
     "lemma": "tirtun",
     "tenses": {
       "present": {
-        "3sg": "tire",
+        "1sg": "tirre",
+        "2sg": "tirre",
+        "3sg": "tirre",
         "1pl": "tirrimai",
         "2pl": "tirritei"
       },
       "preterite": {
         "1sg": "tīri",
         "2sg": "tīri",
-        "3sg": "tīri/tīrē",
+        "3sg": "tīri",
         "1pl": "tīrimai",
         "2pl": "tīritei"
       }
@@ -343,7 +333,7 @@
       "preterite": {
         "1sg": "pīli",
         "2sg": "pīli",
-        "3sg": "pīli/pīlē",
+        "3sg": "pīli",
         "1pl": "pīlimai",
         "2pl": "pīlitei"
       }
@@ -354,16 +344,16 @@
     "lemma": "dumtun",
     "tenses": {
       "present": {
-        "1sg": "dumja",
-        "2sg": "dumja",
-        "3sg": "dumja",
-        "1pl": "dumjamai",
-        "2pl": "dumjatei"
+        "1sg": "dummja",
+        "2sg": "dummja",
+        "3sg": "dummja",
+        "1pl": "dummimai",
+        "2pl": "dummitei"
       },
       "preterite": {
         "1sg": "dūmi",
         "2sg": "dūmi",
-        "3sg": "dūmi/dūmē",
+        "3sg": "dūmi",
         "1pl": "dūmimai",
         "2pl": "dūmitei"
       }
@@ -383,7 +373,7 @@
       "preterite": {
         "1sg": "jutta",
         "2sg": "jutta",
-        "3sg": "jutta/juttā",
+        "3sg": "jutta",
         "1pl": "juttamai",
         "2pl": "juttatei"
       }
@@ -403,7 +393,7 @@
       "preterite": {
         "1sg": "treppa",
         "2sg": "treppa",
-        "3sg": "treppa/treppā",
+        "3sg": "treppa",
         "1pl": "treppamai",
         "2pl": "treppatei"
       }
@@ -423,7 +413,7 @@
       "preterite": {
         "1sg": "kīrta",
         "2sg": "kīrta",
-        "3sg": "kīrta/kīrtā",
+        "3sg": "kīrta",
         "1pl": "kīrtamai",
         "2pl": "kīrtatei"
       }
@@ -443,9 +433,9 @@
       "preterite": {
         "1sg": "badda",
         "2sg": "badda",
-        "3sg": "badda/baddā",
-        "1pl": "baddimai",
-        "2pl": "badditei"
+        "3sg": "badda",
+        "1pl": "baddamai",
+        "2pl": "baddatei"
       }
     }
   },
@@ -463,7 +453,7 @@
       "preterite": {
         "1sg": "kāisa",
         "2sg": "kāisa",
-        "3sg": "kāisa/kāisā",
+        "3sg": "kāisa",
         "1pl": "kāisamai",
         "2pl": "kāisatei"
       }
@@ -473,20 +463,8 @@
     "paradigm": "89",
     "lemma": "kaktwei",
     "tenses": {
-      "present": {
-        "1sg": "līmpa",
-        "2sg": "līmpa",
-        "3sg": "kānka",
-        "1pl": "līmpimai",
-        "2pl": "līmpitei"
-      },
-      "preterite": {
-        "1sg": "lippa",
-        "2sg": "lippa",
-        "3sg": "kakka/kakkā",
-        "1pl": "lippamai",
-        "2pl": "lippatei"
-      }
+      "present": {},
+      "preterite": {}
     }
   },
   {
@@ -503,7 +481,7 @@
       "preterite": {
         "1sg": "dussa",
         "2sg": "dussa",
-        "3sg": "dussa/dussā",
+        "3sg": "dussa",
         "1pl": "dussamai",
         "2pl": "dussatei"
       }
@@ -523,7 +501,7 @@
       "preterite": {
         "1sg": "alka",
         "2sg": "alka",
-        "3sg": "alka/alkā",
+        "3sg": "alka",
         "1pl": "alkamai",
         "2pl": "alkatei"
       }
@@ -543,7 +521,7 @@
       "preterite": {
         "1sg": "pretta",
         "2sg": "pretta",
-        "3sg": "pretta/prettā",
+        "3sg": "pretta",
         "1pl": "prettamai",
         "2pl": "prettatei"
       }
@@ -563,7 +541,7 @@
       "preterite": {
         "1sg": "līda",
         "2sg": "līda",
-        "3sg": "līda/līdā",
+        "3sg": "līda",
         "1pl": "līdamai",
         "2pl": "līdatei"
       }
@@ -576,14 +554,14 @@
       "present": {
         "1sg": "āista",
         "2sg": "āista",
-        "3sg": "aista",
+        "3sg": "āista",
         "1pl": "āistimai",
         "2pl": "āistitei"
       },
       "preterite": {
         "1sg": "āisa",
         "2sg": "āisa",
-        "3sg": "aisa/aisā",
+        "3sg": "āisa",
         "1pl": "āisamai",
         "2pl": "āisatei"
       }
@@ -603,7 +581,7 @@
       "preterite": {
         "1sg": "grīmza",
         "2sg": "grīmza",
-        "3sg": "grīmza/grīmzā",
+        "3sg": "grīmza",
         "1pl": "grīmzamai",
         "2pl": "grīmzatei"
       }
@@ -623,7 +601,7 @@
       "preterite": {
         "1sg": "etminna",
         "2sg": "etminna",
-        "3sg": "etminna/etminnā",
+        "3sg": "etminna",
         "1pl": "etminnamai",
         "2pl": "etminnatei"
       }
@@ -643,7 +621,7 @@
       "preterite": {
         "1sg": "grīnda",
         "2sg": "grīnda",
-        "3sg": "grīnda/grīndā",
+        "3sg": "grīnda",
         "1pl": "grīndamai",
         "2pl": "grīndatei"
       }
@@ -663,7 +641,7 @@
       "preterite": {
         "1sg": "swigga",
         "2sg": "swigga",
-        "3sg": "swigga/swiggā",
+        "3sg": "swigga",
         "1pl": "swiggamai",
         "2pl": "swiggatei"
       }
@@ -683,7 +661,7 @@
       "preterite": {
         "1sg": "kwitta",
         "2sg": "kwitta",
-        "3sg": "kwitta/kwittā",
+        "3sg": "kwitta",
         "1pl": "kwittamai",
         "2pl": "kwittatei"
       }
@@ -703,7 +681,7 @@
       "preterite": {
         "1sg": "rissa",
         "2sg": "rissa",
-        "3sg": "rissa/rissā",
+        "3sg": "rissa",
         "1pl": "rissamai",
         "2pl": "rissatei"
       }
@@ -723,7 +701,7 @@
       "preterite": {
         "1sg": "lissa",
         "2sg": "lissa",
-        "3sg": "lissa/lissā",
+        "3sg": "lissa",
         "1pl": "lissamai",
         "2pl": "lissatei"
       }
@@ -733,17 +711,11 @@
     "paradigm": "105",
     "lemma": "wiptwei",
     "tenses": {
-      "present": {
-        "1sg": "weppa",
-        "2sg": "weppa",
-        "3sg": "wēipja",
-        "1pl": "weppimai",
-        "2pl": "weppitei"
-      },
+      "present": {},
       "preterite": {
         "1sg": "wippa",
         "2sg": "wippa",
-        "3sg": "wippa/wippā",
+        "3sg": "wippa",
         "1pl": "wippamai",
         "2pl": "wippatei"
       }
@@ -763,7 +735,7 @@
       "preterite": {
         "1sg": "grejja",
         "2sg": "grejja",
-        "3sg": "grejja/grejjā",
+        "3sg": "grejja",
         "1pl": "grejjamai",
         "2pl": "grejjatei"
       }
@@ -773,20 +745,8 @@
     "paradigm": "106b",
     "lemma": "smeītwei",
     "tenses": {
-      "present": {
-        "1sg": "smeīja si",
-        "2sg": "smeīja si",
-        "3sg": "smeīja",
-        "1pl": "smeīmai si",
-        "2pl": "smeītei si"
-      },
-      "preterite": {
-        "1sg": "smeīja si",
-        "2sg": "smeīja si",
-        "3sg": "smeīja/smeījā",
-        "1pl": "smeījamai si",
-        "2pl": "smeījatei si"
-      }
+      "present": {},
+      "preterite": {}
     }
   },
   {
@@ -803,7 +763,7 @@
       "preterite": {
         "1sg": "sklajja",
         "2sg": "sklajja",
-        "3sg": "sklajja/sklajjā",
+        "3sg": "sklajja",
         "1pl": "sklajjamai",
         "2pl": "sklajjatei"
       }
@@ -823,7 +783,7 @@
       "preterite": {
         "1sg": "laīja",
         "2sg": "laīja",
-        "3sg": "laīja/laījā",
+        "3sg": "laīja",
         "1pl": "laījamai",
         "2pl": "laījatei"
       }
@@ -843,7 +803,7 @@
       "preterite": {
         "1sg": "lijja",
         "2sg": "lijja",
-        "3sg": "lijja/lijjā",
+        "3sg": "lijja",
         "1pl": "lijjamai",
         "2pl": "lijjatei"
       }
@@ -863,7 +823,7 @@
       "preterite": {
         "1sg": "wijja",
         "2sg": "wijja",
-        "3sg": "wijja/wijjā",
+        "3sg": "wijja",
         "1pl": "wijjamai",
         "2pl": "wijjatei"
       }
@@ -883,7 +843,7 @@
       "preterite": {
         "1sg": "wirra",
         "2sg": "wirra",
-        "3sg": "wirra/wirrā",
+        "3sg": "wirra",
         "1pl": "wirramai",
         "2pl": "wirratei"
       }
@@ -897,8 +857,8 @@
         "1sg": "pastāne",
         "2sg": "pastāne",
         "3sg": "pastāne",
-        "1pl": "pastānjimai",
-        "2pl": "pastānjitei"
+        "1pl": "pastānimai",
+        "2pl": "pastānitei"
       },
       "preterite": {
         "1sg": "pastāi",
@@ -983,7 +943,7 @@
       "preterite": {
         "1sg": "wīrta",
         "2sg": "wīrta",
-        "3sg": "wīrta/wīrtā",
+        "3sg": "wīrta",
         "1pl": "wīrtamai",
         "2pl": "wīrtatei"
       }
@@ -1023,7 +983,7 @@
       "preterite": {
         "1sg": "gūbi",
         "2sg": "gūbi",
-        "3sg": "gūbi/gūbē",
+        "3sg": "gūbi",
         "1pl": "gūbimai",
         "2pl": "gūbitei"
       }
@@ -1038,12 +998,12 @@
         "2sg": "īsei",
         "3sg": "īst",
         "1pl": "īmai",
-        "2pl": "īstei"
+        "2pl": "ītei"
       },
       "preterite": {
         "1sg": "īda",
         "2sg": "īda",
-        "3sg": "īda/īdā",
+        "3sg": "īda",
         "1pl": "īdamai",
         "2pl": "īdatei"
       }
@@ -1058,7 +1018,7 @@
         "2sg": "dāsei",
         "3sg": "dāst",
         "1pl": "dāmai",
-        "2pl": "dāstei"
+        "2pl": "dātei"
       },
       "preterite": {
         "1sg": "dāi",
@@ -1105,7 +1065,7 @@
         "2sg": "skīja",
         "3sg": "skīja",
         "1pl": "skījamai",
-        "2pl": "skījātei"
+        "2pl": "skījatei"
       }
     }
   },
@@ -1114,18 +1074,18 @@
     "lemma": "dītun",
     "tenses": {
       "present": {
-        "1sg": "demma",
-        "2sg": "dessei",
-        "3sg": "dest",
-        "1pl": "demmai",
-        "2pl": "destei"
+        "1sg": "dīma",
+        "2sg": "dīsei",
+        "3sg": "dīt",
+        "1pl": "dīmai",
+        "2pl": "dītei"
       },
       "preterite": {
         "1sg": "dīja",
         "2sg": "dīja",
         "3sg": "dīja",
-        "1pl": "dīmai",
-        "2pl": "dītei"
+        "1pl": "dījamai",
+        "2pl": "dījatei"
       }
     }
   },
@@ -1143,7 +1103,7 @@
       "preterite": {
         "1sg": "waīda",
         "2sg": "waīda",
-        "3sg": "waīda/waīdā",
+        "3sg": "waīda",
         "1pl": "waīdamai",
         "2pl": "waīdatei"
       }
@@ -1164,8 +1124,8 @@
         "1sg": "skrijja",
         "2sg": "skrijja",
         "3sg": "skrijja",
-        "1pl": "skrīmai",
-        "2pl": "skrītei"
+        "1pl": "skrijjamai",
+        "2pl": "skrijjatei"
       }
     }
   },
@@ -1183,7 +1143,7 @@
       "preterite": {
         "1sg": "snigga",
         "2sg": "snigga",
-        "3sg": "snigga/sniggā",
+        "3sg": "snigga",
         "1pl": "sniggamai",
         "2pl": "sniggatei"
       }
@@ -1194,16 +1154,16 @@
     "lemma": "migtwei",
     "tenses": {
       "present": {
-        "1sg": "mēigma",
-        "2sg": "mēigsei",
-        "3sg": "mēigt",
-        "1pl": "mēigmai",
-        "2pl": "mēigtei"
+        "1sg": "meīgma",
+        "2sg": "meīgsei",
+        "3sg": "meīgt",
+        "1pl": "meīgmai",
+        "2pl": "meīgtei"
       },
       "preterite": {
         "1sg": "migga",
         "2sg": "migga",
-        "3sg": "migga/miggā",
+        "3sg": "migga",
         "1pl": "miggamai",
         "2pl": "miggatei"
       }
@@ -1214,18 +1174,18 @@
     "lemma": "wiltwei",
     "tenses": {
       "present": {
-        "1sg": "welma",
-        "2sg": "welsei",
-        "3sg": "welt",
-        "1pl": "welmai",
-        "2pl": "weltei"
-      },
-      "preterite": {
         "1sg": "willa",
         "2sg": "willa",
         "3sg": "willa",
         "1pl": "willimai",
         "2pl": "willitei"
+      },
+      "preterite": {
+        "1sg": "willa",
+        "2sg": "willa",
+        "3sg": "willa",
+        "1pl": "willamai",
+        "2pl": "willatei"
       }
     }
   },
@@ -1380,11 +1340,7 @@
         "1pl": "līkimai",
         "2pl": "līkitei"
       },
-      "preterite": {
-        "3sg": "līkei",
-        "1pl": "līkeimai",
-        "2pl": "līkeitei"
-      }
+      "preterite": {}
     }
   },
   {
@@ -1394,9 +1350,9 @@
       "present": {
         "1sg": "klanta",
         "2sg": "klanta",
-        "3sg": "klānta",
-        "1pl": "klāntimai",
-        "2pl": "klāntitei"
+        "3sg": "klanta",
+        "1pl": "klantimai",
+        "2pl": "klantitei"
       },
       "preterite": {
         "1sg": "klantēi",
@@ -1475,15 +1431,15 @@
         "1sg": "krikstijja",
         "2sg": "krikstijja",
         "3sg": "krikstijja",
-        "1pl": "krikstīmai",
-        "2pl": "krikstītei"
+        "1pl": "krikstijjamai",
+        "2pl": "krikstijjatei"
       },
       "preterite": {
         "1sg": "krikstijja",
         "2sg": "krikstijja",
         "3sg": "krikstijja",
-        "1pl": "krikstīmai",
-        "2pl": "krikstītei"
+        "1pl": "krikstijjamai",
+        "2pl": "krikstijjatei"
       }
     }
   },
@@ -1502,8 +1458,8 @@
         "1sg": "madlijja",
         "2sg": "madlijja",
         "3sg": "madlijja",
-        "1pl": "madlīmai",
-        "2pl": "madlītei"
+        "1pl": "madlijjamai",
+        "2pl": "madlijjatei"
       }
     }
   },
@@ -1522,8 +1478,8 @@
         "1sg": "giwīja",
         "2sg": "giwīja",
         "3sg": "giwīja",
-        "1pl": "giwīmai",
-        "2pl": "giwītei"
+        "1pl": "giwījamai",
+        "2pl": "giwījatei"
       }
     }
   },
@@ -1555,8 +1511,8 @@
         "1sg": "dīnkaui",
         "2sg": "dīnkaui",
         "3sg": "dīnkaui",
-        "1pl": "dīnkauimai",
-        "2pl": "dīnkauitei"
+        "1pl": "dīnkawimai",
+        "2pl": "dīnkawitei"
       },
       "preterite": {
         "1sg": "dīnkau",
@@ -1575,15 +1531,15 @@
         "1sg": "rikaūja",
         "2sg": "rikaūja",
         "3sg": "rikaūja",
-        "1pl": "rikaūwimai",
-        "2pl": "rikaūwitei"
+        "1pl": "rikaūjimai",
+        "2pl": "rikaūjitei"
       },
       "preterite": {
         "1sg": "rikaūwa",
         "2sg": "rikaūwa",
         "3sg": "rikaūwa",
-        "1pl": "rikaūmai",
-        "2pl": "rikaūtei"
+        "1pl": "rikaūwamai",
+        "2pl": "rikaūwatei"
       }
     }
   }

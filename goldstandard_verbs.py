@@ -57,8 +57,9 @@ _VERB_SOFT = [
 
 
 def verb_norm(s):
-    """Verb-spezifische Normalisierung: fold + nojot + Endungsvokal."""
+    """Verb-spezifische Normalisierung: fold + nojot + degem + Endungsvokal."""
     s = nojot(fold(s))
+    s = re.sub(r"(.)\1", r"\1", s)  # degeminate
     for rx, rep in _VERB_SOFT:
         s2 = rx.sub(rep, s)
         if s2 != s:
@@ -86,39 +87,55 @@ def pick_best(forms):
     return max(forms.items(), key=lambda kv: (dc(kv[1]), SRC.index(kv[0])))[1]
 
 
-def _tabula_agreement(tab_persons, src_forms):
-    """Wie viele Tabula-Personen stimmen mit source überein (nach Normalisierung)?"""
-    matches = 0
-    for p, tv in tab_persons.items():
-        tvn = get_variants(tv)
-        sv = src_forms.get(p, "")
-        if not sv:
-            continue
-        svn = get_variants(sv)
-        if tvn & svn:
-            matches += 1
-    return matches
+def _sources_agree(s1, s2):
+    """Stimmen zwei Quellen auf mindestens einer gemeinsamen Person überein?"""
+    shared = [p for p in PERSONS if p in s1 and p in s2]
+    for p in shared:
+        if get_variants(s1[p]) & get_variants(s2[p]):
+            return True
+    return False
 
 
-def _best_fill_source(tab, prus, tw):
-    """Welche Quelle füllt Lücken, in denen Tabula fehlt?
-    Die Quelle mit den meisten Übereinstimmungen mit Tabula."""
-    if not tab:
-        return None
-    m_p = _tabula_agreement(tab, prus) if prus else -1
-    m_t = _tabula_agreement(tab, tw) if tw else -1
-    if m_p > m_t:
-        return "Prusaspira"
-    if m_t > m_p:
-        return "Twanksta"
-    if m_p > 0:
-        return "beide"
-    return None
+def _block_winner(tab, prus, tw):
+    """Block-Voting: 3 Quellen = 3 Stimmen. Paarweise vergleichen.
+    
+    Returns (winner, status) where winner is Prusaspira or Twanksta.
+    Tabula stimmt für die Quelle, die mit ihren Formen übereinstimmt.
+    """
+    has_tab = bool(tab)
+    has_prus = bool(prus)
+    has_tw = bool(tw)
+
+    tab_prus = _sources_agree(tab, prus) if has_tab and has_prus else False
+    tab_tw = _sources_agree(tab, tw) if has_tab and has_tw else False
+    prus_tw = _sources_agree(prus, tw) if has_prus and has_tw else False
+
+    # 3/3 – alle einig
+    if has_tab and tab_prus and tab_tw:
+        return "Prusaspira", "EINSTIMMIG"
+
+    # Tabula + Prusaspira → Prusaspira-Block
+    if tab_prus:
+        return "Prusaspira", "VOTUM(T+Ps)"
+
+    # Tabula + Twanksta → Twanksta-Block
+    if tab_tw:
+        return "Twanksta", "VOTUM(T+Tw)"
+
+    # Nur PS+TW, Tabula fehlt oder keine Übereinstimmung
+    if prus_tw:
+        return "Prusaspira", "VOTUM(Ps+Tw)"
+
+    # Nur Tabula (keine anderen Quellen)
+    if has_tab and not has_prus and not has_tw:
+        return "Tabula", "EINZEL"
+
+    # Keine Koalition
+    return None, "KEINE MEHRHEIT"
 
 
 def vote_block(paradigm, lemma, tense, sources):
-    """Block-Voting: Tabula liefert Goldstandard für eigene Personen;
-    Lücken werden von der am besten passenden Quelle gefüllt."""
+    """Block-Voting: Der gesamte Tempus-Block kommt aus einer Quelle."""
     sdata = {}
     for s in SRC:
         sdata[s] = sources.get(s, {}).get(tense, {})
@@ -127,62 +144,34 @@ def vote_block(paradigm, lemma, tense, sources):
     prus = sdata["Prusaspira"]
     tw = sdata["Twanksta"]
 
-    fill_source = _best_fill_source(tab, prus, tw)
+    winner, status = _block_winner(tab, prus, tw)
+
+    # Gewinner-Quelle bestimmen
+    if winner == "Prusaspira":
+        source_block = prus
+    elif winner == "Twanksta":
+        source_block = tw
+    elif winner == "Tabula":
+        source_block = tab
+    else:
+        source_block = {}
 
     results = []
     for person in PERSONS:
-        tab_v = tab.get(person, "")
-        prus_v = prus.get(person, "")
-        tw_v = tw.get(person, "")
-
-        forms_present = [(s, v) for s, v in
-                         [("Tabula", tab_v), ("Prusaspira", prus_v), ("Twanksta", tw_v)] if v]
-
-        if not forms_present:
+        gold = source_block.get(person, "")
+        if not gold and person in tab:
+            gold = tab[person]
+        if not gold:
+            for _, v in [("Prusaspira", prus.get(person, "")),
+                         ("Twanksta", tw.get(person, "")),
+                         ("Tabula", tab.get(person, ""))]:
+                if v:
+                    gold = v
+                    break
+        if not gold:
             results.append((person, "", "LÜCKE", ""))
-            continue
-
-        # Tabula hat die Form → übernehmen
-        if tab_v:
-            results.append((person, tab_v, "TABULA", ""))
-            continue
-
-        # Nur 1 Quelle für diese Person
-        if len(forms_present) == 1:
-            results.append((person, forms_present[0][1], "EINZEL", ""))
-            continue
-
-        # 2+ Quellen (beide online), Tabula fehlt → Block-Entscheidung
-        src_vars = {s: get_variants(v) for s, v in forms_present}
-        all_vars = set()
-        for vv in src_vars.values():
-            all_vars.update(vv)
-
-        cnt = Counter()
-        for v in all_vars:
-            cnt[v] = sum(1 for vv in src_vars.values() if v in vv)
-
-        top_val, top_n = cnt.most_common(1)[0]
-
-        if top_n >= len(forms_present):
-            winners = {s for s in src_vars if top_val in src_vars[s]}
-            gold = pick_best({s: forms_present[[x[0] for x in forms_present].index(s)][1] for s in winners})
-            results.append((person, gold, "EINSTIMMIG", ""))
-        elif top_n >= 2:
-            winners = {s for s in src_vars if top_val in src_vars[s]}
-            gold = pick_best({s: forms_present[[x[0] for x in forms_present].index(s)][1] for s in winners})
-            results.append((person, gold, "VOTUM", " / ".join("%s=%s" % (s, v) for s, v in forms_present)))
         else:
-            # Uneinig: Fill-Source-Entscheidung
-            if fill_source in ("Prusaspira", "beide") and prus_v:
-                results.append((person, prus_v, "BLOCK(T→Ps)", " / ".join("%s=%s" % (s, v) for s, v in forms_present)))
-            elif fill_source == "Twanksta" and tw_v:
-                results.append((person, tw_v, "BLOCK(T→Tw)", " / ".join("%s=%s" % (s, v) for s, v in forms_present)))
-            elif fill_source == "beide" and tw_v and not prus_v:
-                results.append((person, tw_v, "BLOCK(both→Tw)", ""))
-            else:
-                results.append((person, "?", "KEINE MEHRHEIT",
-                                " / ".join("%s=%s" % (s, v) for s, v in forms_present)))
+            results.append((person, gold, status, ""))
 
     return results
 
@@ -240,12 +229,13 @@ def main():
              "Normalisierung: Makron, Palatal-j, Endungsvokal.\n")
     L.append("| Status | Bedeutung |")
     L.append("|--------|-----------|")
-    L.append("| EINSTIMMIG | alle Quellen identisch (nach Normalisierung) |")
-    L.append("| VOTUM | 2/3 Mehrheit |")
-    L.append("| BLOCK(Tabula→Ps/Tw) | Tabula entscheidet für Quelle → deren Block übernommen |")
-    L.append("| EINZEL | nur 1 Quelle vorhanden |")
+    L.append("| EINSTIMMIG | alle 3 Quellen einig (3/3) |")
+    L.append("| VOTUM(T+Ps) | Tabula + Prusaspira → Prusaspira-Block (2/3) |")
+    L.append("| VOTUM(T+Tw) | Tabula + Twanksta → Twanksta-Block (2/3) |")
+    L.append("| VOTUM(Ps+Tw) | Prusaspira + Twanksta (Tabula fehlt) |")
+    L.append("| EINZEL | nur Tabula vorhanden |")
     L.append("| LÜCKE | keine Quelle für diese Person |")
-    L.append("| KEINE MEHRHEIT | keine Einigung – manuell entscheiden |")
+    L.append("| KEINE MEHRHEIT | keine Koalition – manuell entscheiden |")
     L.append("")
 
     for be in all_blocks:
