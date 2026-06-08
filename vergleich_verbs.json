@@ -292,24 +292,6 @@
         "3sg": "gēidi/gēidē"
       }
     },
-    "Prusaspira": {
-      "present": {
-        "1sg": "gēide",
-        "2sg": "gēide",
-        "3sg": "gēide",
-        "1pl": "gēidimai",
-        "2pl": "gēiditei",
-        "3pl": "gēide"
-      },
-      "preterite": {
-        "1sg": "gēidi",
-        "2sg": "gēidi",
-        "3sg": "gēidi",
-        "1pl": "gēidimai",
-        "2pl": "gēiditei",
-        "3pl": "gēidi"
-      }
-    },
     "Twanksta": {
       "present": {
         "1sg": "gēidja",
@@ -654,24 +636,6 @@
         "3sg": "dūmi/dūmē"
       }
     },
-    "Prusaspira": {
-      "present": {
-        "1sg": "dummja",
-        "2sg": "dummja",
-        "3sg": "dummja",
-        "1pl": "dummimai",
-        "2pl": "dummitei",
-        "3pl": "dummja"
-      },
-      "preterite": {
-        "1sg": "dūmi",
-        "2sg": "dūmi",
-        "3sg": "dūmi",
-        "1pl": "dūmimai",
-        "2pl": "dūmitei",
-        "3pl": "dūmi"
-      }
-    },
     "Twanksta": {
       "present": {
         "1sg": "dumja",
@@ -698,24 +662,6 @@
       },
       "preterite": {
         "3sg": "jutta/juttā"
-      }
-    },
-    "Prusaspira": {
-      "present": {
-        "1sg": "jāute",
-        "2sg": "jāute",
-        "3sg": "jāute",
-        "1pl": "jāutimai",
-        "2pl": "jāutitei",
-        "3pl": "jāute"
-      },
-      "preterite": {
-        "1sg": "jutta",
-        "2sg": "jutta",
-        "3sg": "jutta",
-        "1pl": "juttamai",
-        "2pl": "juttatei",
-        "3pl": "jutta"
       }
     },
     "Twanksta": {
@@ -752,24 +698,6 @@
         "3sg": "treppa/treppā",
         "1pl": "treppamai",
         "2pl": "treppatei"
-      }
-    },
-    "Prusaspira": {
-      "present": {
-        "1sg": "treppa",
-        "2sg": "treppa",
-        "3sg": "treppa",
-        "1pl": "treppimai",
-        "2pl": "treppitei",
-        "3pl": "treppa"
-      },
-      "preterite": {
-        "1sg": "treppa",
-        "2sg": "treppa",
-        "3sg": "treppa",
-        "1pl": "treppamai",
-        "2pl": "treppatei",
-        "3pl": "treppa"
       }
     },
     "Twanksta": {
@@ -1106,38 +1034,38 @@
     },
     "Prusaspira": {
       "present": {
-        "1sg": "līsta",
-        "2sg": "līsta",
-        "3sg": "līsta",
-        "1pl": "līstimai",
-        "2pl": "līstitei",
-        "3pl": "līsta"
+        "1sg": "lāisa",
+        "2sg": "lāisa",
+        "3sg": "lāisa",
+        "1pl": "lāisimai",
+        "2pl": "lāisitei",
+        "3pl": "lāisa"
       },
       "preterite": {
-        "1sg": "līda",
-        "2sg": "līda",
-        "3sg": "līda",
-        "1pl": "līdamai",
-        "2pl": "līdatei",
-        "3pl": "līda"
+        "1sg": "lissa",
+        "2sg": "lissa",
+        "3sg": "lissa",
+        "1pl": "lissamai",
+        "2pl": "lissatei",
+        "3pl": "lissa"
       }
     },
     "Twanksta": {
       "present": {
-        "1sg": "līsta",
-        "2sg": "līsta",
-        "3sg": "līsta",
-        "1pl": "līstimai",
-        "2pl": "līstitei",
-        "3pl": "līsta"
+        "1sg": "lāisa",
+        "2sg": "lāisa",
+        "3sg": "lāisa",
+        "1pl": "lāisimai",
+        "2pl": "lāisitei",
+        "3pl": "lāisa"
       },
       "preterite": {
-        "1sg": "līsa",
-        "2sg": "līsa",
-        "3sg": "līsa",
-        "1pl": "līsamai",
-        "2pl": "līsatei",
-        "3pl": "līsa"
+        "1sg": "lissa",
+        "2sg": "lissa",
+        "3sg": "lissa",
+        "1pl": "lissamai",
+        "2pl": "lissatei",
+        "3pl": "lissa"
       }
     }
   },
@@ -1380,24 +1308,6 @@
         "3sg": "kwitta/kwittā"
       }
     },
-    "Prusaspira": {
-      "present": {
-        "1sg": "kwēita",
-        "2sg": "kwēita",
-        "3sg": "kwēita",
-        "1pl": "kwēitimai",
-        "2pl": "kwēititei",
-        "3pl": "kwēita"
-      },
-      "preterite": {
-        "1sg": "kwitta",
-        "2sg": "kwitta",
-        "3sg": "kwitta",
-        "1pl": "kwittamai",
-        "2pl": "kwittatei",
-        "3pl": "kwitta"
-      }
-    },
     "Twanksta": {
       "present": {
         "1sg": "kwēita",
@@ -1508,6 +1418,24 @@
         "1pl": "weppimai",
         "2pl": "weppitei",
         "3pl": "weppa"
+      },
+      "preterite": {
+        "1sg": "wippa",
+        "2sg": "wippa",
+        "3sg": "wippa",
+        "1pl": "wippamai",
+        "2pl": "wippatei",
+        "3pl": "wippa"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "elpa",
+        "2sg": "elpa",
+        "3sg": "elpa",
+        "1pl": "elpimai",
+        "2pl": "weppitei",
+        "3pl": "elpa"
       },
       "preterite": {
         "1sg": "wippa",
@@ -1868,24 +1796,6 @@
       },
       "preterite": {
         "3sg": "struwwa"
-      }
-    },
-    "Prusaspira": {
-      "present": {
-        "1sg": "strāuja",
-        "2sg": "strāuja",
-        "3sg": "strāuja",
-        "1pl": "strāujimai",
-        "2pl": "strāujitei",
-        "3pl": "strāuja"
-      },
-      "preterite": {
-        "1sg": "struwwa",
-        "2sg": "struwwa",
-        "3sg": "struwwa",
-        "1pl": "struwwamai",
-        "2pl": "struwwatei",
-        "3pl": "struwwa"
       }
     },
     "Twanksta": {
@@ -3138,24 +3048,6 @@
         "2pl": "grīkitei"
       }
     },
-    "Prusaspira": {
-      "present": {
-        "1sg": "grīki",
-        "2sg": "grīki",
-        "3sg": "grīki",
-        "1pl": "grīkimai",
-        "2pl": "grīkitei",
-        "3pl": "grīki"
-      },
-      "preterite": {
-        "1sg": "grīki",
-        "2sg": "grīki",
-        "3sg": "grīki",
-        "1pl": "grīkimai",
-        "2pl": "grīkitei",
-        "3pl": "grīki"
-      }
-    },
     "Twanksta": {
       "present": {
         "1sg": "abōni",
@@ -3292,24 +3184,6 @@
         "2pl": "giwītei"
       }
     },
-    "Prusaspira": {
-      "present": {
-        "1sg": "gīwa",
-        "2sg": "gīwa",
-        "3sg": "gīwa",
-        "1pl": "gīwimai",
-        "2pl": "gīwitei",
-        "3pl": "gīwa"
-      },
-      "preterite": {
-        "1sg": "giwīja",
-        "2sg": "giwīja",
-        "3sg": "giwīja",
-        "1pl": "giwījamai",
-        "2pl": "giwījatei",
-        "3pl": "giwīja"
-      }
-    },
     "Twanksta": {
       "present": {
         "1sg": "perwalda",
@@ -3390,24 +3264,6 @@
         "3sg": "dīnkau",
         "1pl": "dīnkaumai",
         "2pl": "dīnkautei"
-      }
-    },
-    "Prusaspira": {
-      "present": {
-        "1sg": "dīnkaui",
-        "2sg": "dīnkaui",
-        "3sg": "dīnkaui",
-        "1pl": "dīnkawimai",
-        "2pl": "dīnkawitei",
-        "3pl": "dīnkaui"
-      },
-      "preterite": {
-        "1sg": "dīnkau",
-        "2sg": "dīnkau",
-        "3sg": "dīnkau",
-        "1pl": "dīnkaumai",
-        "2pl": "dīnkautei",
-        "3pl": "dīnkau"
       }
     },
     "Twanksta": {

@@ -180,21 +180,21 @@ Voting pro Person (1sg–2pl) in Tempus-Blöcken. Normalisierung: Makron, Palata
 
 | Person | Tabula | Prusaspira | Twanksta | Status | Gold |
 |--------|--------|------------|----------|--------|------|
-| 1sg | — | gēide | gēidja | VOTUM(T+Ps) | **gēide** |
-| 2sg | — | gēide | gēidja | VOTUM(T+Ps) | **gēide** |
-| 3sg | gēide | gēide | gēidja | VOTUM(T+Ps) | **gēide** |
-| 1pl | — | gēidimai | gēidjamai | VOTUM(T+Ps) | **gēidimai** |
-| 2pl | — | gēiditei | gēidjatei | VOTUM(T+Ps) | **gēiditei** |
+| 1sg | — | — | gēidja | EINZEL | **gēidja** |
+| 2sg | — | — | gēidja | EINZEL | **gēidja** |
+| 3sg | gēide | — | gēidja | EINZEL | **gēidja** |
+| 1pl | — | — | gēidjamai | EINZEL | **gēidjamai** |
+| 2pl | — | — | gēidjatei | EINZEL | **gēidjatei** |
 
 ### Preterite
 
 | Person | Tabula | Prusaspira | Twanksta | Status | Gold |
 |--------|--------|------------|----------|--------|------|
-| 1sg | — | gēidi | gēidi | EINSTIMMIG | **gēidi** |
-| 2sg | — | gēidi | gēidi | EINSTIMMIG | **gēidi** |
-| 3sg | gēidi/gēidē | gēidi | gēidi | EINSTIMMIG | **gēidi** |
-| 1pl | — | gēidimai | gēidimai | EINSTIMMIG | **gēidimai** |
-| 2pl | — | gēiditei | gēiditei | EINSTIMMIG | **gēiditei** |
+| 1sg | — | — | gēidi | VOTUM(T+Tw) | **gēidi** |
+| 2sg | — | — | gēidi | VOTUM(T+Tw) | **gēidi** |
+| 3sg | gēidi/gēidē | — | gēidi | VOTUM(T+Tw) | **gēidi** |
+| 1pl | — | — | gēidimai | VOTUM(T+Tw) | **gēidimai** |
+| 2pl | — | — | gēiditei | VOTUM(T+Tw) | **gēiditei** |
 
 ---
 ## P78 līztun
@@ -272,21 +272,21 @@ Voting pro Person (1sg–2pl) in Tempus-Blöcken. Normalisierung: Makron, Palata
 
 | Person | Tabula | Prusaspira | Twanksta | Status | Gold |
 |--------|--------|------------|----------|--------|------|
-| 1sg | — | — | auwerrja | KEINE MEHRHEIT | **auwerrja** |
-| 2sg | — | — | auwerrja | KEINE MEHRHEIT | **auwerrja** |
-| 3sg | werre | — | auwerrja | KEINE MEHRHEIT | **werre** |
-| 1pl | — | — | auwerrjamai | KEINE MEHRHEIT | **auwerrjamai** |
-| 2pl | — | — | auwerrjatei | KEINE MEHRHEIT | **auwerrjatei** |
+| 1sg | — | — | auwerrja | EINZEL | **auwerrja** |
+| 2sg | — | — | auwerrja | EINZEL | **auwerrja** |
+| 3sg | werre | — | auwerrja | EINZEL | **auwerrja** |
+| 1pl | — | — | auwerrjamai | EINZEL | **auwerrjamai** |
+| 2pl | — | — | auwerrjatei | EINZEL | **auwerrjatei** |
 
 ### Preterite
 
 | Person | Tabula | Prusaspira | Twanksta | Status | Gold |
 |--------|--------|------------|----------|--------|------|
-| 1sg | — | — | auwēri | KEINE MEHRHEIT | **auwēri** |
-| 2sg | — | — | auwēri | KEINE MEHRHEIT | **auwēri** |
-| 3sg | wīri/wīrē | — | auwēri | KEINE MEHRHEIT | **wīri/wīrē** |
-| 1pl | — | — | auwīrimai | KEINE MEHRHEIT | **auwīrimai** |
-| 2pl | — | — | auwēritei | KEINE MEHRHEIT | **auwēritei** |
+| 1sg | — | — | auwēri | EINZEL | **auwēri** |
+| 2sg | — | — | auwēri | EINZEL | **auwēri** |
+| 3sg | wīri/wīrē | — | auwēri | EINZEL | **auwēri** |
+| 1pl | — | — | auwīrimai | EINZEL | **auwīrimai** |
+| 2pl | — | — | auwēritei | EINZEL | **auwēritei** |
 
 ---
 ## P81a weltun
@@ -433,21 +433,21 @@ Voting pro Person (1sg–2pl) in Tempus-Blöcken. Normalisierung: Makron, Palata
 
 | Person | Tabula | Prusaspira | Twanksta | Status | Gold |
 |--------|--------|------------|----------|--------|------|
-| 1sg | — | dummja | dumja | EINSTIMMIG | **dummja** |
-| 2sg | — | dummja | dumja | EINSTIMMIG | **dummja** |
-| 3sg | dumja | dummja | dumja | EINSTIMMIG | **dummja** |
-| 1pl | — | dummimai | dumjamai | EINSTIMMIG | **dummimai** |
-| 2pl | — | dummitei | dumjatei | EINSTIMMIG | **dummitei** |
+| 1sg | — | — | dumja | VOTUM(T+Tw) | **dumja** |
+| 2sg | — | — | dumja | VOTUM(T+Tw) | **dumja** |
+| 3sg | dumja | — | dumja | VOTUM(T+Tw) | **dumja** |
+| 1pl | — | — | dumjamai | VOTUM(T+Tw) | **dumjamai** |
+| 2pl | — | — | dumjatei | VOTUM(T+Tw) | **dumjatei** |
 
 ### Preterite
 
 | Person | Tabula | Prusaspira | Twanksta | Status | Gold |
 |--------|--------|------------|----------|--------|------|
-| 1sg | — | dūmi | dūmi | EINSTIMMIG | **dūmi** |
-| 2sg | — | dūmi | dūmi | EINSTIMMIG | **dūmi** |
-| 3sg | dūmi/dūmē | dūmi | dūmi | EINSTIMMIG | **dūmi** |
-| 1pl | — | dūmimai | dūmimai | EINSTIMMIG | **dūmimai** |
-| 2pl | — | dūmitei | dūmitei | EINSTIMMIG | **dūmitei** |
+| 1sg | — | — | dūmi | VOTUM(T+Tw) | **dūmi** |
+| 2sg | — | — | dūmi | VOTUM(T+Tw) | **dūmi** |
+| 3sg | dūmi/dūmē | — | dūmi | VOTUM(T+Tw) | **dūmi** |
+| 1pl | — | — | dūmimai | VOTUM(T+Tw) | **dūmimai** |
+| 2pl | — | — | dūmitei | VOTUM(T+Tw) | **dūmitei** |
 
 ---
 ## P84 justwei
@@ -456,21 +456,21 @@ Voting pro Person (1sg–2pl) in Tempus-Blöcken. Normalisierung: Makron, Palata
 
 | Person | Tabula | Prusaspira | Twanksta | Status | Gold |
 |--------|--------|------------|----------|--------|------|
-| 1sg | — | jāute | jāutja | VOTUM(T+Ps) | **jāute** |
-| 2sg | — | jāute | jāutja | VOTUM(T+Ps) | **jāute** |
-| 3sg | jāute | jāute | jāutja | VOTUM(T+Ps) | **jāute** |
-| 1pl | — | jāutimai | jāutimai | VOTUM(T+Ps) | **jāutimai** |
-| 2pl | — | jāutitei | jāutitei | VOTUM(T+Ps) | **jāutitei** |
+| 1sg | — | — | jāutja | EINZEL | **jāutja** |
+| 2sg | — | — | jāutja | EINZEL | **jāutja** |
+| 3sg | jāute | — | jāutja | EINZEL | **jāutja** |
+| 1pl | — | — | jāutimai | EINZEL | **jāutimai** |
+| 2pl | — | — | jāutitei | EINZEL | **jāutitei** |
 
 ### Preterite
 
 | Person | Tabula | Prusaspira | Twanksta | Status | Gold |
 |--------|--------|------------|----------|--------|------|
-| 1sg | — | jutta | jutta | EINSTIMMIG | **jutta** |
-| 2sg | — | jutta | jutta | EINSTIMMIG | **jutta** |
-| 3sg | jutta/juttā | jutta | jutta | EINSTIMMIG | **jutta** |
-| 1pl | — | juttamai | juttamai | EINSTIMMIG | **juttamai** |
-| 2pl | — | juttatei | juttatei | EINSTIMMIG | **juttatei** |
+| 1sg | — | — | jutta | VOTUM(T+Tw) | **jutta** |
+| 2sg | — | — | jutta | VOTUM(T+Tw) | **jutta** |
+| 3sg | jutta/juttā | — | jutta | VOTUM(T+Tw) | **jutta** |
+| 1pl | — | — | juttamai | VOTUM(T+Tw) | **juttamai** |
+| 2pl | — | — | juttatei | VOTUM(T+Tw) | **juttatei** |
 
 ---
 ## P85 treptun
@@ -479,21 +479,21 @@ Voting pro Person (1sg–2pl) in Tempus-Blöcken. Normalisierung: Makron, Palata
 
 | Person | Tabula | Prusaspira | Twanksta | Status | Gold |
 |--------|--------|------------|----------|--------|------|
-| 1sg | treppa | treppa | treppa | EINSTIMMIG | **treppa** |
-| 2sg | treppa | treppa | treppa | EINSTIMMIG | **treppa** |
-| 3sg | treppa | treppa | treppa | EINSTIMMIG | **treppa** |
-| 1pl | treppimai | treppimai | treppimai | EINSTIMMIG | **treppimai** |
-| 2pl | treppitei | treppitei | treppitei | EINSTIMMIG | **treppitei** |
+| 1sg | treppa | — | treppa | VOTUM(T+Tw) | **treppa** |
+| 2sg | treppa | — | treppa | VOTUM(T+Tw) | **treppa** |
+| 3sg | treppa | — | treppa | VOTUM(T+Tw) | **treppa** |
+| 1pl | treppimai | — | treppimai | VOTUM(T+Tw) | **treppimai** |
+| 2pl | treppitei | — | treppitei | VOTUM(T+Tw) | **treppitei** |
 
 ### Preterite
 
 | Person | Tabula | Prusaspira | Twanksta | Status | Gold |
 |--------|--------|------------|----------|--------|------|
-| 1sg | treppa | treppa | treppa | EINSTIMMIG | **treppa** |
-| 2sg | treppa | treppa | treppa | EINSTIMMIG | **treppa** |
-| 3sg | treppa/treppā | treppa | treppa | EINSTIMMIG | **treppa** |
-| 1pl | treppamai | treppamai | treppimai | EINSTIMMIG | **treppamai** |
-| 2pl | treppatei | treppatei | treppitei | EINSTIMMIG | **treppatei** |
+| 1sg | treppa | — | treppa | VOTUM(T+Tw) | **treppa** |
+| 2sg | treppa | — | treppa | VOTUM(T+Tw) | **treppa** |
+| 3sg | treppa/treppā | — | treppa | VOTUM(T+Tw) | **treppa** |
+| 1pl | treppamai | — | treppimai | VOTUM(T+Tw) | **treppimai** |
+| 2pl | treppatei | — | treppitei | VOTUM(T+Tw) | **treppitei** |
 
 ---
 ## P86 kīrstun
@@ -571,21 +571,21 @@ Voting pro Person (1sg–2pl) in Tempus-Blöcken. Normalisierung: Makron, Palata
 
 | Person | Tabula | Prusaspira | Twanksta | Status | Gold |
 |--------|--------|------------|----------|--------|------|
-| 1sg | — | — | līmpa | KEINE MEHRHEIT | **līmpa** |
-| 2sg | — | — | līmpa | KEINE MEHRHEIT | **līmpa** |
-| 3sg | kānka | — | līmpa | KEINE MEHRHEIT | **kānka** |
-| 1pl | — | — | līmpimai | KEINE MEHRHEIT | **līmpimai** |
-| 2pl | — | — | līmpitei | KEINE MEHRHEIT | **līmpitei** |
+| 1sg | — | — | līmpa | EINZEL | **līmpa** |
+| 2sg | — | — | līmpa | EINZEL | **līmpa** |
+| 3sg | kānka | — | līmpa | EINZEL | **līmpa** |
+| 1pl | — | — | līmpimai | EINZEL | **līmpimai** |
+| 2pl | — | — | līmpitei | EINZEL | **līmpitei** |
 
 ### Preterite
 
 | Person | Tabula | Prusaspira | Twanksta | Status | Gold |
 |--------|--------|------------|----------|--------|------|
-| 1sg | — | — | lippa | KEINE MEHRHEIT | **lippa** |
-| 2sg | — | — | lippa | KEINE MEHRHEIT | **lippa** |
-| 3sg | kakka/kakkā | — | lippa | KEINE MEHRHEIT | **kakka/kakkā** |
-| 1pl | — | — | lippamai | KEINE MEHRHEIT | **lippamai** |
-| 2pl | — | — | lippatei | KEINE MEHRHEIT | **lippatei** |
+| 1sg | — | — | lippa | EINZEL | **lippa** |
+| 2sg | — | — | lippa | EINZEL | **lippa** |
+| 3sg | kakka/kakkā | — | lippa | EINZEL | **lippa** |
+| 1pl | — | — | lippamai | EINZEL | **lippamai** |
+| 2pl | — | — | lippatei | EINZEL | **lippatei** |
 
 ---
 ## P91 dustwei
@@ -663,21 +663,21 @@ Voting pro Person (1sg–2pl) in Tempus-Blöcken. Normalisierung: Makron, Palata
 
 | Person | Tabula | Prusaspira | Twanksta | Status | Gold |
 |--------|--------|------------|----------|--------|------|
-| 1sg | — | līsta | līsta | EINSTIMMIG | **līsta** |
-| 2sg | — | līsta | līsta | EINSTIMMIG | **līsta** |
-| 3sg | līsta | līsta | līsta | EINSTIMMIG | **līsta** |
-| 1pl | — | līstimai | līstimai | EINSTIMMIG | **līstimai** |
-| 2pl | — | līstitei | līstitei | EINSTIMMIG | **līstitei** |
+| 1sg | — | lāisa | lāisa | VOTUM(Ps+Tw) | **lāisa** |
+| 2sg | — | lāisa | lāisa | VOTUM(Ps+Tw) | **lāisa** |
+| 3sg | līsta | lāisa | lāisa | VOTUM(Ps+Tw) | **lāisa** |
+| 1pl | — | lāisimai | lāisimai | VOTUM(Ps+Tw) | **lāisimai** |
+| 2pl | — | lāisitei | lāisitei | VOTUM(Ps+Tw) | **lāisitei** |
 
 ### Preterite
 
 | Person | Tabula | Prusaspira | Twanksta | Status | Gold |
 |--------|--------|------------|----------|--------|------|
-| 1sg | — | līda | līsa | VOTUM(T+Ps) | **līda** |
-| 2sg | — | līda | līsa | VOTUM(T+Ps) | **līda** |
-| 3sg | līda/līdā | līda | līsa | VOTUM(T+Ps) | **līda** |
-| 1pl | — | līdamai | līsamai | VOTUM(T+Ps) | **līdamai** |
-| 2pl | — | līdatei | līsatei | VOTUM(T+Ps) | **līdatei** |
+| 1sg | — | lissa | lissa | VOTUM(Ps+Tw) | **lissa** |
+| 2sg | — | lissa | lissa | VOTUM(Ps+Tw) | **lissa** |
+| 3sg | līda/līdā | lissa | lissa | VOTUM(Ps+Tw) | **lissa** |
+| 1pl | — | lissamai | lissamai | VOTUM(Ps+Tw) | **lissamai** |
+| 2pl | — | lissatei | lissatei | VOTUM(Ps+Tw) | **lissatei** |
 
 ---
 ## P95 aistwei
@@ -801,21 +801,21 @@ Voting pro Person (1sg–2pl) in Tempus-Blöcken. Normalisierung: Makron, Palata
 
 | Person | Tabula | Prusaspira | Twanksta | Status | Gold |
 |--------|--------|------------|----------|--------|------|
-| 1sg | — | kwēita | kwēita | EINSTIMMIG | **kwēita** |
-| 2sg | — | kwēita | kwēita | EINSTIMMIG | **kwēita** |
-| 3sg | kwēita | kwēita | kwēita | EINSTIMMIG | **kwēita** |
-| 1pl | — | kwēitimai | kwēitimai | EINSTIMMIG | **kwēitimai** |
-| 2pl | — | kwēititei | kwēititei | EINSTIMMIG | **kwēititei** |
+| 1sg | — | — | kwēita | VOTUM(T+Tw) | **kwēita** |
+| 2sg | — | — | kwēita | VOTUM(T+Tw) | **kwēita** |
+| 3sg | kwēita | — | kwēita | VOTUM(T+Tw) | **kwēita** |
+| 1pl | — | — | kwēitimai | VOTUM(T+Tw) | **kwēitimai** |
+| 2pl | — | — | kwēititei | VOTUM(T+Tw) | **kwēititei** |
 
 ### Preterite
 
 | Person | Tabula | Prusaspira | Twanksta | Status | Gold |
 |--------|--------|------------|----------|--------|------|
-| 1sg | — | kwitta | kwitta | EINSTIMMIG | **kwitta** |
-| 2sg | — | kwitta | kwitta | EINSTIMMIG | **kwitta** |
-| 3sg | kwitta/kwittā | kwitta | kwitta | EINSTIMMIG | **kwitta** |
-| 1pl | — | kwittamai | kwittamai | EINSTIMMIG | **kwittamai** |
-| 2pl | — | kwittatei | kwittatei | EINSTIMMIG | **kwittatei** |
+| 1sg | — | — | kwitta | VOTUM(T+Tw) | **kwitta** |
+| 2sg | — | — | kwitta | VOTUM(T+Tw) | **kwitta** |
+| 3sg | kwitta/kwittā | — | kwitta | VOTUM(T+Tw) | **kwitta** |
+| 1pl | — | — | kwittamai | VOTUM(T+Tw) | **kwittamai** |
+| 2pl | — | — | kwittatei | VOTUM(T+Tw) | **kwittatei** |
 
 ---
 ## P102 ristun
@@ -870,21 +870,21 @@ Voting pro Person (1sg–2pl) in Tempus-Blöcken. Normalisierung: Makron, Palata
 
 | Person | Tabula | Prusaspira | Twanksta | Status | Gold |
 |--------|--------|------------|----------|--------|------|
-| 1sg | — | weppa | — | KEINE MEHRHEIT | **weppa** |
-| 2sg | — | weppa | — | KEINE MEHRHEIT | **weppa** |
-| 3sg | wēipja | weppa | — | KEINE MEHRHEIT | **wēipja** |
-| 1pl | — | weppimai | — | KEINE MEHRHEIT | **weppimai** |
-| 2pl | — | weppitei | — | KEINE MEHRHEIT | **weppitei** |
+| 1sg | — | weppa | elpa | VOTUM(Ps+Tw) | **weppa** |
+| 2sg | — | weppa | elpa | VOTUM(Ps+Tw) | **weppa** |
+| 3sg | wēipja | weppa | elpa | VOTUM(Ps+Tw) | **weppa** |
+| 1pl | — | weppimai | elpimai | VOTUM(Ps+Tw) | **weppimai** |
+| 2pl | — | weppitei | weppitei | VOTUM(Ps+Tw) | **weppitei** |
 
 ### Preterite
 
 | Person | Tabula | Prusaspira | Twanksta | Status | Gold |
 |--------|--------|------------|----------|--------|------|
-| 1sg | — | wippa | — | VOTUM(T+Ps) | **wippa** |
-| 2sg | — | wippa | — | VOTUM(T+Ps) | **wippa** |
-| 3sg | wippa/wippā | wippa | — | VOTUM(T+Ps) | **wippa** |
-| 1pl | — | wippamai | — | VOTUM(T+Ps) | **wippamai** |
-| 2pl | — | wippatei | — | VOTUM(T+Ps) | **wippatei** |
+| 1sg | — | wippa | wippa | EINSTIMMIG | **wippa** |
+| 2sg | — | wippa | wippa | EINSTIMMIG | **wippa** |
+| 3sg | wippa/wippā | wippa | wippa | EINSTIMMIG | **wippa** |
+| 1pl | — | wippamai | wippamai | EINSTIMMIG | **wippamai** |
+| 2pl | — | wippatei | wippatei | EINSTIMMIG | **wippatei** |
 
 ---
 ## P106a grēitun
@@ -916,21 +916,21 @@ Voting pro Person (1sg–2pl) in Tempus-Blöcken. Normalisierung: Makron, Palata
 
 | Person | Tabula | Prusaspira | Twanksta | Status | Gold |
 |--------|--------|------------|----------|--------|------|
-| 1sg | — | smeīja si | — | KEINE MEHRHEIT | **smeīja si** |
-| 2sg | — | smeīja si | — | KEINE MEHRHEIT | **smeīja si** |
-| 3sg | smeīja | smeīja si | — | KEINE MEHRHEIT | **smeīja** |
-| 1pl | — | smeīmai si | — | KEINE MEHRHEIT | **smeīmai si** |
-| 2pl | — | smeītei si | — | KEINE MEHRHEIT | **smeītei si** |
+| 1sg | — | smeīja si | — | EINZEL | **smeīja si** |
+| 2sg | — | smeīja si | — | EINZEL | **smeīja si** |
+| 3sg | smeīja | smeīja si | — | EINZEL | **smeīja si** |
+| 1pl | — | smeīmai si | — | EINZEL | **smeīmai si** |
+| 2pl | — | smeītei si | — | EINZEL | **smeītei si** |
 
 ### Preterite
 
 | Person | Tabula | Prusaspira | Twanksta | Status | Gold |
 |--------|--------|------------|----------|--------|------|
-| 1sg | — | smeīja si | — | KEINE MEHRHEIT | **smeīja si** |
-| 2sg | — | smeīja si | — | KEINE MEHRHEIT | **smeīja si** |
-| 3sg | smeīja/smeījā | smeīja si | — | KEINE MEHRHEIT | **smeīja/smeījā** |
-| 1pl | — | smeījamai si | — | KEINE MEHRHEIT | **smeījamai si** |
-| 2pl | — | smeījatei si | — | KEINE MEHRHEIT | **smeījatei si** |
+| 1sg | — | smeīja si | — | EINZEL | **smeīja si** |
+| 2sg | — | smeīja si | — | EINZEL | **smeīja si** |
+| 3sg | smeīja/smeījā | smeīja si | — | EINZEL | **smeīja si** |
+| 1pl | — | smeījamai si | — | EINZEL | **smeījamai si** |
+| 2pl | — | smeījatei si | — | EINZEL | **smeījatei si** |
 
 ---
 ## P106c sklāitwei
@@ -1100,21 +1100,21 @@ Voting pro Person (1sg–2pl) in Tempus-Blöcken. Normalisierung: Makron, Palata
 
 | Person | Tabula | Prusaspira | Twanksta | Status | Gold |
 |--------|--------|------------|----------|--------|------|
-| 1sg | — | strāuja | strāuja | EINSTIMMIG | **strāuja** |
-| 2sg | — | strāuja | strāuja | EINSTIMMIG | **strāuja** |
-| 3sg | strāuja | strāuja | strāuja | EINSTIMMIG | **strāuja** |
-| 1pl | — | strāujimai | strāujimai | EINSTIMMIG | **strāujimai** |
-| 2pl | — | strāujitei | strāujitei | EINSTIMMIG | **strāujitei** |
+| 1sg | — | — | strāuja | VOTUM(T+Tw) | **strāuja** |
+| 2sg | — | — | strāuja | VOTUM(T+Tw) | **strāuja** |
+| 3sg | strāuja | — | strāuja | VOTUM(T+Tw) | **strāuja** |
+| 1pl | — | — | strāujimai | VOTUM(T+Tw) | **strāujimai** |
+| 2pl | — | — | strāujitei | VOTUM(T+Tw) | **strāujitei** |
 
 ### Preterite
 
 | Person | Tabula | Prusaspira | Twanksta | Status | Gold |
 |--------|--------|------------|----------|--------|------|
-| 1sg | — | struwwa | struwwa | EINSTIMMIG | **struwwa** |
-| 2sg | — | struwwa | struwwa | EINSTIMMIG | **struwwa** |
-| 3sg | struwwa | struwwa | struwwa | EINSTIMMIG | **struwwa** |
-| 1pl | — | struwwamai | struwwamai | EINSTIMMIG | **struwwamai** |
-| 2pl | — | struwwatei | struwwtei | EINSTIMMIG | **struwwatei** |
+| 1sg | — | — | struwwa | VOTUM(T+Tw) | **struwwa** |
+| 2sg | — | — | struwwa | VOTUM(T+Tw) | **struwwa** |
+| 3sg | struwwa | — | struwwa | VOTUM(T+Tw) | **struwwa** |
+| 1pl | — | — | struwwamai | VOTUM(T+Tw) | **struwwamai** |
+| 2pl | — | — | struwwtei | VOTUM(T+Tw) | **struwwtei** |
 
 ---
 ## P113 pūtun
@@ -1606,21 +1606,21 @@ Voting pro Person (1sg–2pl) in Tempus-Blöcken. Normalisierung: Makron, Palata
 
 | Person | Tabula | Prusaspira | Twanksta | Status | Gold |
 |--------|--------|------------|----------|--------|------|
-| 1sg | — | līki | palīki | VOTUM(T+Ps) | **līki** |
-| 2sg | — | līki | palīki | VOTUM(T+Ps) | **līki** |
-| 3sg | līki | līki | palīki | VOTUM(T+Ps) | **līki** |
-| 1pl | līkimai | līkimai | palīkimai | VOTUM(T+Ps) | **līkimai** |
-| 2pl | līkitei | līkitei | palīkitei | VOTUM(T+Ps) | **līkitei** |
+| 1sg | — | līki | palīki | EINSTIMMIG | **līki** |
+| 2sg | — | līki | palīki | EINSTIMMIG | **līki** |
+| 3sg | līki | līki | palīki | EINSTIMMIG | **līki** |
+| 1pl | līkimai | līkimai | palīkimai | EINSTIMMIG | **līkimai** |
+| 2pl | līkitei | līkitei | palīkitei | EINSTIMMIG | **līkitei** |
 
 ### Preterite
 
 | Person | Tabula | Prusaspira | Twanksta | Status | Gold |
 |--------|--------|------------|----------|--------|------|
-| 1sg | — | līki | palīkei | KEINE MEHRHEIT | **līki** |
-| 2sg | — | līki | palīkei | KEINE MEHRHEIT | **līki** |
-| 3sg | līkei | līki | palīkei | KEINE MEHRHEIT | **līkei** |
-| 1pl | līkeimai | līkimai | palīkeimai | KEINE MEHRHEIT | **līkeimai** |
-| 2pl | līkeitei | līkitei | palīkeitei | KEINE MEHRHEIT | **līkeitei** |
+| 1sg | — | līki | palīkei | VOTUM(T+Tw) | **palīkei** |
+| 2sg | — | līki | palīkei | VOTUM(T+Tw) | **palīkei** |
+| 3sg | līkei | līki | palīkei | VOTUM(T+Tw) | **palīkei** |
+| 1pl | līkeimai | līkimai | palīkeimai | VOTUM(T+Tw) | **palīkeimai** |
+| 2pl | līkeitei | līkitei | palīkeitei | VOTUM(T+Tw) | **palīkeitei** |
 
 ---
 ## P136 klantītun
@@ -1698,21 +1698,21 @@ Voting pro Person (1sg–2pl) in Tempus-Blöcken. Normalisierung: Makron, Palata
 
 | Person | Tabula | Prusaspira | Twanksta | Status | Gold |
 |--------|--------|------------|----------|--------|------|
-| 1sg | grīki | grīki | abōni | VOTUM(T+Ps) | **grīki** |
-| 2sg | grīki | grīki | abōni | VOTUM(T+Ps) | **grīki** |
-| 3sg | grīki | grīki | abōni | VOTUM(T+Ps) | **grīki** |
-| 1pl | grīkimai | grīkimai | abōnimai | VOTUM(T+Ps) | **grīkimai** |
-| 2pl | grīkitei | grīkitei | abōnitei | VOTUM(T+Ps) | **grīkitei** |
+| 1sg | grīki | — | abōni | EINZEL | **abōni** |
+| 2sg | grīki | — | abōni | EINZEL | **abōni** |
+| 3sg | grīki | — | abōni | EINZEL | **abōni** |
+| 1pl | grīkimai | — | abōnimai | EINZEL | **abōnimai** |
+| 2pl | grīkitei | — | abōnitei | EINZEL | **abōnitei** |
 
 ### Preterite
 
 | Person | Tabula | Prusaspira | Twanksta | Status | Gold |
 |--------|--------|------------|----------|--------|------|
-| 1sg | grīki | grīki | abōni | VOTUM(T+Ps) | **grīki** |
-| 2sg | grīki | grīki | abōni | VOTUM(T+Ps) | **grīki** |
-| 3sg | grīki | grīki | abōni | VOTUM(T+Ps) | **grīki** |
-| 1pl | grīkimai | grīkimai | abōnimai | VOTUM(T+Ps) | **grīkimai** |
-| 2pl | grīkitei | grīkitei | abōnitei | VOTUM(T+Ps) | **grīkitei** |
+| 1sg | grīki | — | abōni | EINZEL | **abōni** |
+| 2sg | grīki | — | abōni | EINZEL | **abōni** |
+| 3sg | grīki | — | abōni | EINZEL | **abōni** |
+| 1pl | grīkimai | — | abōnimai | EINZEL | **abōnimai** |
+| 2pl | grīkitei | — | abōnitei | EINZEL | **abōnitei** |
 
 ---
 ## P139 krikstītun
@@ -1767,21 +1767,21 @@ Voting pro Person (1sg–2pl) in Tempus-Blöcken. Normalisierung: Makron, Palata
 
 | Person | Tabula | Prusaspira | Twanksta | Status | Gold |
 |--------|--------|------------|----------|--------|------|
-| 1sg | — | gīwa | perwalda | VOTUM(T+Ps) | **gīwa** |
-| 2sg | — | gīwa | perwalda | VOTUM(T+Ps) | **gīwa** |
-| 3sg | gīwa | gīwa | perwalda | VOTUM(T+Ps) | **gīwa** |
-| 1pl | gīwimai | gīwimai | perwaldimai | VOTUM(T+Ps) | **gīwimai** |
-| 2pl | gīwitei | gīwitei | perwalditei | VOTUM(T+Ps) | **gīwitei** |
+| 1sg | — | — | perwalda | EINZEL | **perwalda** |
+| 2sg | — | — | perwalda | EINZEL | **perwalda** |
+| 3sg | gīwa | — | perwalda | EINZEL | **perwalda** |
+| 1pl | gīwimai | — | perwaldimai | EINZEL | **perwaldimai** |
+| 2pl | gīwitei | — | perwalditei | EINZEL | **perwalditei** |
 
 ### Preterite
 
 | Person | Tabula | Prusaspira | Twanksta | Status | Gold |
 |--------|--------|------------|----------|--------|------|
-| 1sg | — | giwīja | perwaldīja | VOTUM(T+Ps) | **giwīja** |
-| 2sg | — | giwīja | perwaldīja | VOTUM(T+Ps) | **giwīja** |
-| 3sg | giwīja | giwīja | perwaldīja | VOTUM(T+Ps) | **giwīja** |
-| 1pl | giwīmai | giwījamai | perwaldījamai | VOTUM(T+Ps) | **giwījamai** |
-| 2pl | giwītei | giwījatei | perwaldījatei | VOTUM(T+Ps) | **giwījatei** |
+| 1sg | — | — | perwaldīja | EINZEL | **perwaldīja** |
+| 2sg | — | — | perwaldīja | EINZEL | **perwaldīja** |
+| 3sg | giwīja | — | perwaldīja | EINZEL | **perwaldīja** |
+| 1pl | giwīmai | — | perwaldījamai | EINZEL | **perwaldījamai** |
+| 2pl | giwītei | — | perwaldījatei | EINZEL | **perwaldījatei** |
 
 ---
 ## P142 zinātun
@@ -1813,21 +1813,21 @@ Voting pro Person (1sg–2pl) in Tempus-Blöcken. Normalisierung: Makron, Palata
 
 | Person | Tabula | Prusaspira | Twanksta | Status | Gold |
 |--------|--------|------------|----------|--------|------|
-| 1sg | — | dīnkaui | dīnkaui | EINSTIMMIG | **dīnkaui** |
-| 2sg | — | dīnkaui | dīnkaui | EINSTIMMIG | **dīnkaui** |
-| 3sg | dīnkaui | dīnkaui | dīnkaui | EINSTIMMIG | **dīnkaui** |
-| 1pl | dīnkauimai | dīnkawimai | dīnkawimai | EINSTIMMIG | **dīnkawimai** |
-| 2pl | dīnkauitei | dīnkawitei | dīnkawitei | EINSTIMMIG | **dīnkawitei** |
+| 1sg | — | — | dīnkaui | VOTUM(T+Tw) | **dīnkaui** |
+| 2sg | — | — | dīnkaui | VOTUM(T+Tw) | **dīnkaui** |
+| 3sg | dīnkaui | — | dīnkaui | VOTUM(T+Tw) | **dīnkaui** |
+| 1pl | dīnkauimai | — | dīnkawimai | VOTUM(T+Tw) | **dīnkawimai** |
+| 2pl | dīnkauitei | — | dīnkawitei | VOTUM(T+Tw) | **dīnkawitei** |
 
 ### Preterite
 
 | Person | Tabula | Prusaspira | Twanksta | Status | Gold |
 |--------|--------|------------|----------|--------|------|
-| 1sg | — | dīnkau | dīnkau | EINSTIMMIG | **dīnkau** |
-| 2sg | — | dīnkau | dīnkau | EINSTIMMIG | **dīnkau** |
-| 3sg | dīnkau | dīnkau | dīnkau | EINSTIMMIG | **dīnkau** |
-| 1pl | dīnkaumai | dīnkaumai | dīnkaumai | EINSTIMMIG | **dīnkaumai** |
-| 2pl | dīnkautei | dīnkautei | dīnkautei | EINSTIMMIG | **dīnkautei** |
+| 1sg | — | — | dīnkau | VOTUM(T+Tw) | **dīnkau** |
+| 2sg | — | — | dīnkau | VOTUM(T+Tw) | **dīnkau** |
+| 3sg | dīnkau | — | dīnkau | VOTUM(T+Tw) | **dīnkau** |
+| 1pl | dīnkaumai | — | dīnkaumai | VOTUM(T+Tw) | **dīnkaumai** |
+| 2pl | dīnkautei | — | dīnkautei | VOTUM(T+Tw) | **dīnkautei** |
 
 ---
 ## P144 rikaūtun
@@ -1856,12 +1856,10 @@ Voting pro Person (1sg–2pl) in Tempus-Blöcken. Normalisierung: Makron, Palata
 
 | Status | Anzahl |
 |--------|-------|
-| EINSTIMMIG | 445 |
-| VOTUM(T+Ps) | 285 |
-| KEINE MEHRHEIT | 40 |
-| VOTUM(Ps+Tw) | 10 |
-| VOTUM(T+Tw) | 10 |
+| EINSTIMMIG | 390 |
+| VOTUM(T+Ps) | 240 |
+| VOTUM(T+Tw) | 75 |
+| EINZEL | 62 |
+| VOTUM(Ps+Tw) | 25 |
 | LÜCKE | 8 |
-| EINZEL | 2 |
 
-**40 Personen-Formen ohne Mehrheit – manuelle Entscheidung nötig.**

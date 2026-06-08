@@ -67,11 +67,21 @@ def verb_norm(s):
     return s
 
 
+PREFIXES = ["ap", "at", "au", "eb", "en", "et", "iz", "ka", "pa", "po",
+            "pra", "prei", "sen", "skre", "sur", "tra", "us", "wal"]
+
 def get_variants(val):
-    """Form in /-getrennte Varianten splitten und normalisieren."""
+    """Form in /-getrennte Varianten splitten und normalisieren. Inkl. prefix-freie Varianten."""
     if not val:
         return set()
-    return {verb_norm(p) for p in re.split(r"\s*/\s*", val) if p.strip()}
+    raw_forms = [p for p in re.split(r"\s*/\s*", val) if p.strip()]
+    variants = set()
+    for raw in raw_forms:
+        variants.add(verb_norm(raw))
+        for pfx in PREFIXES:
+            if raw.startswith(pfx):
+                variants.add(verb_norm(raw[len(pfx):]))
+    return variants
 
 
 def pick_best(forms):
@@ -129,6 +139,15 @@ def _block_winner(tab, prus, tw):
     # Nur Tabula (keine anderen Quellen)
     if has_tab and not has_prus and not has_tw:
         return "Tabula", "EINZEL"
+
+    # Nur eine Quelle hat einen vollständigen Block → akzeptieren
+    complete = []
+    if has_prus and all(p in prus for p in PERSONS):
+        complete.append(("Prusaspira", prus))
+    if has_tw and all(p in tw for p in PERSONS):
+        complete.append(("Twanksta", tw))
+    if len(complete) == 1:
+        return complete[0][0], "EINZEL"
 
     # Keine Koalition
     return None, "KEINE MEHRHEIT"

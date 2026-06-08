@@ -63,10 +63,20 @@ def clean(val):
     return re.sub(r"\s+", " ", val).strip()
 
 
+PREFIXES = ["ap", "at", "au", "eb", "en", "et", "iz", "ka", "pa", "po",
+            "pra", "prei", "sen", "skre", "sur", "tra", "us", "wal"]
+
 def get_variants(val):
     if not val:
         return set()
-    return {norm(p) for p in re.split(r"\s*/\s*", val) if p.strip()}
+    raw_forms = [p for p in re.split(r"\s*/\s*", val) if p.strip()]
+    variants = set()
+    for raw in raw_forms:
+        variants.add(norm(raw))
+        for pfx in PREFIXES:
+            if raw.startswith(pfx):
+                variants.add(norm(raw[len(pfx):]))
+    return variants
 
 
 def cell(val, cls):

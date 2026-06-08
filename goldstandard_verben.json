@@ -136,11 +136,11 @@
     "lemma": "gēistun",
     "tenses": {
       "present": {
-        "1sg": "gēide",
-        "2sg": "gēide",
-        "3sg": "gēide",
-        "1pl": "gēidimai",
-        "2pl": "gēiditei"
+        "1sg": "gēidja",
+        "2sg": "gēidja",
+        "3sg": "gēidja",
+        "1pl": "gēidjamai",
+        "2pl": "gēidjatei"
       },
       "preterite": {
         "1sg": "gēidi",
@@ -215,8 +215,20 @@
     "paradigm": "81",
     "lemma": "wertun",
     "tenses": {
-      "present": {},
-      "preterite": {}
+      "present": {
+        "1sg": "auwerrja",
+        "2sg": "auwerrja",
+        "3sg": "auwerrja",
+        "1pl": "auwerrjamai",
+        "2pl": "auwerrjatei"
+      },
+      "preterite": {
+        "1sg": "auwēri",
+        "2sg": "auwēri",
+        "3sg": "auwēri",
+        "1pl": "auwīrimai",
+        "2pl": "auwēritei"
+      }
     }
   },
   {
@@ -344,11 +356,11 @@
     "lemma": "dumtun",
     "tenses": {
       "present": {
-        "1sg": "dummja",
-        "2sg": "dummja",
-        "3sg": "dummja",
-        "1pl": "dummimai",
-        "2pl": "dummitei"
+        "1sg": "dumja",
+        "2sg": "dumja",
+        "3sg": "dumja",
+        "1pl": "dumjamai",
+        "2pl": "dumjatei"
       },
       "preterite": {
         "1sg": "dūmi",
@@ -364,9 +376,9 @@
     "lemma": "justwei",
     "tenses": {
       "present": {
-        "1sg": "jāute",
-        "2sg": "jāute",
-        "3sg": "jāute",
+        "1sg": "jāutja",
+        "2sg": "jāutja",
+        "3sg": "jāutja",
         "1pl": "jāutimai",
         "2pl": "jāutitei"
       },
@@ -394,8 +406,8 @@
         "1sg": "treppa",
         "2sg": "treppa",
         "3sg": "treppa",
-        "1pl": "treppamai",
-        "2pl": "treppatei"
+        "1pl": "treppimai",
+        "2pl": "treppitei"
       }
     }
   },
@@ -463,8 +475,20 @@
     "paradigm": "89",
     "lemma": "kaktwei",
     "tenses": {
-      "present": {},
-      "preterite": {}
+      "present": {
+        "1sg": "līmpa",
+        "2sg": "līmpa",
+        "3sg": "līmpa",
+        "1pl": "līmpimai",
+        "2pl": "līmpitei"
+      },
+      "preterite": {
+        "1sg": "lippa",
+        "2sg": "lippa",
+        "3sg": "lippa",
+        "1pl": "lippamai",
+        "2pl": "lippatei"
+      }
     }
   },
   {
@@ -532,18 +556,18 @@
     "lemma": "līstun",
     "tenses": {
       "present": {
-        "1sg": "līsta",
-        "2sg": "līsta",
-        "3sg": "līsta",
-        "1pl": "līstimai",
-        "2pl": "līstitei"
+        "1sg": "lāisa",
+        "2sg": "lāisa",
+        "3sg": "lāisa",
+        "1pl": "lāisimai",
+        "2pl": "lāisitei"
       },
       "preterite": {
-        "1sg": "līda",
-        "2sg": "līda",
-        "3sg": "līda",
-        "1pl": "līdamai",
-        "2pl": "līdatei"
+        "1sg": "lissa",
+        "2sg": "lissa",
+        "3sg": "lissa",
+        "1pl": "lissamai",
+        "2pl": "lissatei"
       }
     }
   },
@@ -711,7 +735,13 @@
     "paradigm": "105",
     "lemma": "wiptwei",
     "tenses": {
-      "present": {},
+      "present": {
+        "1sg": "weppa",
+        "2sg": "weppa",
+        "3sg": "weppa",
+        "1pl": "weppimai",
+        "2pl": "weppitei"
+      },
       "preterite": {
         "1sg": "wippa",
         "2sg": "wippa",
@@ -745,8 +775,20 @@
     "paradigm": "106b",
     "lemma": "smeītwei",
     "tenses": {
-      "present": {},
-      "preterite": {}
+      "present": {
+        "1sg": "smeīja si",
+        "2sg": "smeīja si",
+        "3sg": "smeīja si",
+        "1pl": "smeīmai si",
+        "2pl": "smeītei si"
+      },
+      "preterite": {
+        "1sg": "smeīja si",
+        "2sg": "smeīja si",
+        "3sg": "smeīja si",
+        "1pl": "smeījamai si",
+        "2pl": "smeījatei si"
+      }
     }
   },
   {
@@ -905,7 +947,7 @@
         "2sg": "struwwa",
         "3sg": "struwwa",
         "1pl": "struwwamai",
-        "2pl": "struwwatei"
+        "2pl": "struwwtei"
       }
     }
   },
@@ -1340,7 +1382,13 @@
         "1pl": "līkimai",
         "2pl": "līkitei"
       },
-      "preterite": {}
+      "preterite": {
+        "1sg": "palīkei",
+        "2sg": "palīkei",
+        "3sg": "palīkei",
+        "1pl": "palīkeimai",
+        "2pl": "palīkeitei"
+      }
     }
   },
   {
@@ -1408,18 +1456,18 @@
     "lemma": "grīkitun",
     "tenses": {
       "present": {
-        "1sg": "grīki",
-        "2sg": "grīki",
-        "3sg": "grīki",
-        "1pl": "grīkimai",
-        "2pl": "grīkitei"
+        "1sg": "abōni",
+        "2sg": "abōni",
+        "3sg": "abōni",
+        "1pl": "abōnimai",
+        "2pl": "abōnitei"
       },
       "preterite": {
-        "1sg": "grīki",
-        "2sg": "grīki",
-        "3sg": "grīki",
-        "1pl": "grīkimai",
-        "2pl": "grīkitei"
+        "1sg": "abōni",
+        "2sg": "abōni",
+        "3sg": "abōni",
+        "1pl": "abōnimai",
+        "2pl": "abōnitei"
       }
     }
   },
@@ -1468,18 +1516,18 @@
     "lemma": "giwītun",
     "tenses": {
       "present": {
-        "1sg": "gīwa",
-        "2sg": "gīwa",
-        "3sg": "gīwa",
-        "1pl": "gīwimai",
-        "2pl": "gīwitei"
+        "1sg": "perwalda",
+        "2sg": "perwalda",
+        "3sg": "perwalda",
+        "1pl": "perwaldimai",
+        "2pl": "perwalditei"
       },
       "preterite": {
-        "1sg": "giwīja",
-        "2sg": "giwīja",
-        "3sg": "giwīja",
-        "1pl": "giwījamai",
-        "2pl": "giwījatei"
+        "1sg": "perwaldīja",
+        "2sg": "perwaldīja",
+        "3sg": "perwaldīja",
+        "1pl": "perwaldījamai",
+        "2pl": "perwaldījatei"
       }
     }
   },

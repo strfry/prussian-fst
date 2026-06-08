@@ -155,7 +155,6 @@ def main():
         wl_entries = wl_by_pn.get(num, [])
         if not wl_entries:
             no_wl += 1
-            continue
 
         need_prus = args.force or not prus_html_file.exists()
         need_twank = args.force or not twank_forms.exists()
