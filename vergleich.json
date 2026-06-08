@@ -3902,5 +3902,77 @@
         "Akk pl": "tīrtans"
       }
     }
+  },
+  "115_būtwei": {
+    "paradigm": "115",
+    "lemma": "būtwei",
+    "Tabula": {
+      "": {
+        "Nom sg": "pc",
+        "Nom pl": "pc",
+        "Gen sg": "pt",
+        "Gen pl": "pt",
+        "Dat sg": "ac",
+        "Dat pl": "ac",
+        "Akk sg": "m",
+        "Akk pl": "m"
+      },
+      "f": {
+        "Nom sg": "būwusi",
+        "Nom pl": "būwušas",
+        "Gen sg": "būwušas",
+        "Gen pl": "būwusin",
+        "Dat sg": "būwušai",
+        "Dat pl": "būwusimans",
+        "Akk sg": "būwusin",
+        "Akk pl": "būwusins"
+      },
+      "n": {
+        "Nom sg": "būwus",
+        "Nom pl": "būwus",
+        "Gen sg": "būwušas",
+        "Gen pl": "būwusin",
+        "Dat sg": "būwušasmu",
+        "Dat pl": "būwusimans",
+        "Akk sg": "būwus",
+        "Akk pl": "būwus"
+      }
+    }
+  },
+  "118_dātun": {
+    "paradigm": "118",
+    "lemma": "dātun",
+    "Tabula": {
+      "": {
+        "Nom sg": "pc",
+        "Nom pl": "pc",
+        "Gen sg": "pt",
+        "Gen pl": "pt",
+        "Dat sg": "ac",
+        "Dat pl": "ac",
+        "Akk sg": "m:",
+        "Akk pl": "m:"
+      },
+      "f": {
+        "Nom sg": "dāwusi",
+        "Nom pl": "dāwušas",
+        "Gen sg": "dāwušas",
+        "Gen pl": "dāwusin",
+        "Dat sg": "dāwušai",
+        "Dat pl": "dāwusimans",
+        "Akk sg": "dāwusin",
+        "Akk pl": "dāwusins"
+      },
+      "n": {
+        "Nom sg": "dāwus",
+        "Nom pl": "dāwus",
+        "Gen sg": "dāwušas",
+        "Gen pl": "dāwusin",
+        "Dat sg": "dāwušasmu",
+        "Dat pl": "dāwusimans",
+        "Akk sg": "dāwus",
+        "Akk pl": "dāwus"
+      }
+    }
   }
 }

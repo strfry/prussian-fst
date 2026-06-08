@@ -27,8 +27,10 @@ VOWELS = set("aeiouāēīōūAEIOU")
 
 GENDER_TAG = {"m": "+Msc", "f": "+Fem", "n": "+Neut"}
 
-# Pronoun paradigms (P9-P24) and adjective paradigms (P25-P31, P30a)
-PRON_PARADIGMS = set(str(i) for i in range(9, 25))
+# Pronoun paradigms (P9-P20), numeral paradigms (P21-P24),
+# and adjective paradigms (P25-P31, P30a)
+PRON_PARADIGMS = set(str(i) for i in range(9, 21))
+NUM_PARADIGMS = set(str(i) for i in range(21, 25))
 ADJ_PARADIGMS = set(str(i) for i in range(25, 32)) | {"30a"}
 
 
@@ -60,6 +62,8 @@ def _pos(paradigm: str) -> str:
     base = _paradigm_base(paradigm)
     if base in PRON_PARADIGMS:
         return "+Pron"
+    if base in NUM_PARADIGMS:
+        return "+Num"
     if base in ADJ_PARADIGMS:
         return "+A"
     return "+N"

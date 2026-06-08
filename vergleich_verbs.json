@@ -1,0 +1,3482 @@
+{
+  "71_īmtun": {
+    "Tabula": {
+      "present": {
+        "1sg": "imma",
+        "2sg": "imma",
+        "3sg": "imma",
+        "1pl": "immimai",
+        "2pl": "immitei"
+      },
+      "preterite": {
+        "1sg": "immi",
+        "2sg": "immi",
+        "3sg": "immi/immē",
+        "1pl": "immimai",
+        "2pl": "immitei"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "imma",
+        "2sg": "imma",
+        "3sg": "imma",
+        "1pl": "immimai",
+        "2pl": "immitei",
+        "3pl": "imma"
+      },
+      "preterite": {
+        "1sg": "immi",
+        "2sg": "immi",
+        "3sg": "immi",
+        "1pl": "immimai",
+        "2pl": "immitei",
+        "3pl": "immi"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "imma",
+        "2sg": "imma",
+        "3sg": "imma",
+        "1pl": "immamai",
+        "2pl": "immatei",
+        "3pl": "imma"
+      },
+      "preterite": {
+        "1sg": "immi",
+        "2sg": "immi",
+        "3sg": "immi",
+        "1pl": "immimai",
+        "2pl": "immitei",
+        "3pl": "immi"
+      }
+    }
+  },
+  "72_mestun": {
+    "Tabula": {
+      "present": {
+        "3sg": "metta"
+      },
+      "preterite": {
+        "3sg": "metti/mettē"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "metta",
+        "2sg": "metta",
+        "3sg": "metta",
+        "1pl": "mettimai",
+        "2pl": "mettitei",
+        "3pl": "metta"
+      },
+      "preterite": {
+        "1sg": "metti",
+        "2sg": "metti",
+        "3sg": "metti",
+        "1pl": "mettimai",
+        "2pl": "mettitei",
+        "3pl": "metti"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "metta",
+        "2sg": "metta",
+        "3sg": "metta",
+        "1pl": "mettamai",
+        "2pl": "mettatei",
+        "3pl": "metta"
+      },
+      "preterite": {
+        "1sg": "metti",
+        "2sg": "metti",
+        "3sg": "metti",
+        "1pl": "mettimai",
+        "2pl": "mettitei",
+        "3pl": "metti"
+      }
+    }
+  },
+  "73_westun": {
+    "Tabula": {
+      "present": {
+        "3sg": "wedda"
+      },
+      "preterite": {
+        "3sg": "weddi/weddē"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "wedda",
+        "2sg": "wedda",
+        "3sg": "wedda",
+        "1pl": "weddimai",
+        "2pl": "wedditei",
+        "3pl": "wedda"
+      },
+      "preterite": {
+        "1sg": "weddi",
+        "2sg": "weddi",
+        "3sg": "weddi",
+        "1pl": "weddimai",
+        "2pl": "wedditei",
+        "3pl": "weddi"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "wedda",
+        "2sg": "wedda",
+        "3sg": "wedda",
+        "1pl": "weddamai",
+        "2pl": "weddatei",
+        "3pl": "wedda"
+      },
+      "preterite": {
+        "1sg": "weddi",
+        "2sg": "weddi",
+        "3sg": "weddi",
+        "1pl": "weddimai",
+        "2pl": "wedditei",
+        "3pl": "weddi"
+      }
+    }
+  },
+  "74_lastun": {
+    "Tabula": {
+      "present": {
+        "3sg": "lassa"
+      },
+      "preterite": {
+        "3sg": "lassi/lassē"
+      }
+    }
+  },
+  "75_lānktun": {
+    "Tabula": {
+      "present": {
+        "1sg": "lānke",
+        "2sg": "lānke",
+        "3sg": "lānke",
+        "1pl": "lānkimai",
+        "2pl": "lānkitei"
+      },
+      "preterite": {
+        "1sg": "lānki",
+        "2sg": "lānki",
+        "3sg": "lānki/lānkē",
+        "1pl": "lānkimai",
+        "2pl": "lānkitei"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "lānke",
+        "2sg": "lānke",
+        "3sg": "lānke",
+        "1pl": "lānkimai",
+        "2pl": "lānkitei",
+        "3pl": "lānke"
+      },
+      "preterite": {
+        "1sg": "lānki",
+        "2sg": "lānki",
+        "3sg": "lānki",
+        "1pl": "lānkimai",
+        "2pl": "lānkitei",
+        "3pl": "lānki"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "lānkja",
+        "2sg": "lānkja",
+        "3sg": "lānkja",
+        "1pl": "lānkjamai",
+        "2pl": "lānkjatei",
+        "3pl": "lānkja"
+      },
+      "preterite": {
+        "1sg": "lānki",
+        "2sg": "lānki",
+        "3sg": "lānki",
+        "1pl": "lānkimai",
+        "2pl": "lānkitei",
+        "3pl": "lānki"
+      }
+    }
+  },
+  "76_gnestun": {
+    "Tabula": {
+      "present": {
+        "3sg": "gnette"
+      },
+      "preterite": {
+        "3sg": "gnetti/gnettē"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "gnette",
+        "2sg": "gnette",
+        "3sg": "gnette",
+        "1pl": "gnettimai",
+        "2pl": "gnettitei",
+        "3pl": "gnette"
+      },
+      "preterite": {
+        "1sg": "gnetti",
+        "2sg": "gnetti",
+        "3sg": "gnetti",
+        "1pl": "gnettimai",
+        "2pl": "gnettitei",
+        "3pl": "gnetti"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "gnettja",
+        "2sg": "gnettja",
+        "3sg": "gnettja",
+        "1pl": "gnettimai",
+        "2pl": "gnettitei",
+        "3pl": "gnettja"
+      },
+      "preterite": {
+        "1sg": "gnetti",
+        "2sg": "gnetti",
+        "3sg": "gnetti",
+        "1pl": "gnettimai",
+        "2pl": "gnettitei",
+        "3pl": "gnetti"
+      }
+    }
+  },
+  "76s_krīkstwei": {
+    "Tabula": {
+      "present": {
+        "3sg": "krīkste"
+      },
+      "preterite": {
+        "3sg": "krīksti/krīkstē"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "krīkste",
+        "2sg": "krīkste",
+        "3sg": "krīkste",
+        "1pl": "krīkstimai",
+        "2pl": "krīkstitei",
+        "3pl": "krīkste"
+      },
+      "preterite": {
+        "1sg": "krīksti",
+        "2sg": "krīksti",
+        "3sg": "krīksti",
+        "1pl": "krīkstimai",
+        "2pl": "krīkstitei",
+        "3pl": "krīksti"
+      }
+    }
+  },
+  "77_gēistun": {
+    "Tabula": {
+      "present": {
+        "3sg": "gēide"
+      },
+      "preterite": {
+        "3sg": "gēidi/gēidē"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "gēide",
+        "2sg": "gēide",
+        "3sg": "gēide",
+        "1pl": "gēidimai",
+        "2pl": "gēiditei",
+        "3pl": "gēide"
+      },
+      "preterite": {
+        "1sg": "gēidi",
+        "2sg": "gēidi",
+        "3sg": "gēidi",
+        "1pl": "gēidimai",
+        "2pl": "gēiditei",
+        "3pl": "gēidi"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "gēidja",
+        "2sg": "gēidja",
+        "3sg": "gēidja",
+        "1pl": "gēidjamai",
+        "2pl": "gēidjatei",
+        "3pl": "gēidja"
+      },
+      "preterite": {
+        "1sg": "gēidi",
+        "2sg": "gēidi",
+        "3sg": "gēidi",
+        "1pl": "gēidimai",
+        "2pl": "gēiditei",
+        "3pl": "gēidi"
+      }
+    }
+  },
+  "78_līztun": {
+    "Tabula": {
+      "present": {
+        "3sg": "līža"
+      },
+      "preterite": {
+        "3sg": "līzi/līzē"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "līža",
+        "2sg": "līža",
+        "3sg": "līža",
+        "1pl": "līzimai",
+        "2pl": "līzitei",
+        "3pl": "līža"
+      },
+      "preterite": {
+        "1sg": "līzi",
+        "2sg": "līzi",
+        "3sg": "līzi",
+        "1pl": "līzimai",
+        "2pl": "līzitei",
+        "3pl": "līzi"
+      }
+    }
+  },
+  "79_ōstun": {
+    "Tabula": {
+      "present": {
+        "3sg": "ōša"
+      },
+      "preterite": {
+        "3sg": "ōsi/ōsē"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "ōša",
+        "2sg": "ōša",
+        "3sg": "ōša",
+        "1pl": "ōsimai",
+        "2pl": "ōsitei",
+        "3pl": "ōša"
+      },
+      "preterite": {
+        "1sg": "ōsi",
+        "2sg": "ōsi",
+        "3sg": "ōsi",
+        "1pl": "ōsimai",
+        "2pl": "ōsitei",
+        "3pl": "ōsi"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "autēnsja",
+        "2sg": "autēnsja",
+        "3sg": "autēnsja",
+        "1pl": "autēnsjamai",
+        "2pl": "autēnsjatei",
+        "3pl": "autēnsja"
+      },
+      "preterite": {
+        "1sg": "autēnsi",
+        "2sg": "autēnsi",
+        "3sg": "autēnsi",
+        "1pl": "autēnsimai",
+        "2pl": "autēnsitei",
+        "3pl": "autēnsi"
+      }
+    }
+  },
+  "80b_glabtun": {
+    "Tabula": {
+      "present": {
+        "3sg": "glabja"
+      },
+      "preterite": {
+        "3sg": "glābi/glābē"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "glabbja",
+        "2sg": "glabbja",
+        "3sg": "glabbja",
+        "1pl": "glabbimai",
+        "2pl": "glabbitei",
+        "3pl": "glabbja"
+      },
+      "preterite": {
+        "1sg": "glābi",
+        "2sg": "glābi",
+        "3sg": "glābi",
+        "1pl": "glābimai",
+        "2pl": "glābitei",
+        "3pl": "glābi"
+      }
+    }
+  },
+  "81_wertun": {
+    "Tabula": {
+      "present": {
+        "3sg": "werre"
+      },
+      "preterite": {
+        "3sg": "wīri/wīrē"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "auwerrja",
+        "2sg": "auwerrja",
+        "3sg": "auwerrja",
+        "1pl": "auwerrjamai",
+        "2pl": "auwerrjatei",
+        "3pl": "auwerrja"
+      },
+      "preterite": {
+        "1sg": "auwēri",
+        "2sg": "auwēri",
+        "3sg": "auwēri",
+        "1pl": "auwīrimai",
+        "2pl": "auwēritei",
+        "3pl": "auwēri"
+      }
+    }
+  },
+  "81a_weltun": {
+    "Tabula": {
+      "present": {
+        "3sg": "wela"
+      },
+      "preterite": {
+        "3sg": "wīli/wīlē"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "wella",
+        "2sg": "wella",
+        "3sg": "wella",
+        "1pl": "wellimai",
+        "2pl": "wellitei",
+        "3pl": "wella"
+      },
+      "preterite": {
+        "1sg": "wīli",
+        "2sg": "wīli",
+        "3sg": "wīli",
+        "1pl": "wīlimai",
+        "2pl": "wīlitei",
+        "3pl": "wīli"
+      }
+    }
+  },
+  "81b_drebtun": {
+    "Tabula": {
+      "present": {
+        "3sg": "drebja"
+      },
+      "preterite": {
+        "3sg": "drībi/drībē"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "drebbja",
+        "2sg": "drebbja",
+        "3sg": "drebbja",
+        "1pl": "drebbimai",
+        "2pl": "drebbitei",
+        "3pl": "drebbja"
+      },
+      "preterite": {
+        "1sg": "drībi",
+        "2sg": "drībi",
+        "3sg": "drībi",
+        "1pl": "drībimai",
+        "2pl": "drībitei",
+        "3pl": "drībi"
+      }
+    }
+  },
+  "81c_dwestun": {
+    "Tabula": {
+      "present": {
+        "3sg": "dwešša"
+      },
+      "preterite": {
+        "3sg": "dwīsi/dwīsē"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "dwešša",
+        "2sg": "dwešša",
+        "3sg": "dwešša",
+        "1pl": "dwessimai",
+        "2pl": "dwessitei",
+        "3pl": "dwešša"
+      },
+      "preterite": {
+        "1sg": "dwīsi",
+        "2sg": "dwīsi",
+        "3sg": "dwīsi",
+        "1pl": "dwīsimai",
+        "2pl": "dwīsitei",
+        "3pl": "dwīsi"
+      }
+    }
+  },
+  "81d_skestun": {
+    "Tabula": {
+      "present": {
+        "3sg": "skette"
+      },
+      "preterite": {
+        "3sg": "skīti/skītē"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "skette",
+        "2sg": "skette",
+        "3sg": "skette",
+        "1pl": "skettimai",
+        "2pl": "skettitei",
+        "3pl": "skette"
+      },
+      "preterite": {
+        "1sg": "skīti",
+        "2sg": "skīti",
+        "3sg": "skīti",
+        "1pl": "skītimai",
+        "2pl": "skītitei",
+        "3pl": "skīti"
+      }
+    }
+  },
+  "82_tirtun": {
+    "Tabula": {
+      "present": {
+        "3sg": "tire"
+      },
+      "preterite": {
+        "3sg": "tīri/tīrē"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "tirre",
+        "2sg": "tirre",
+        "3sg": "tirre",
+        "1pl": "tirrimai",
+        "2pl": "tirritei",
+        "3pl": "tirre"
+      },
+      "preterite": {
+        "1sg": "tīri",
+        "2sg": "tīri",
+        "3sg": "tīri",
+        "1pl": "tīrimai",
+        "2pl": "tīritei",
+        "3pl": "tīri"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "tirrja",
+        "2sg": "tirrja",
+        "3sg": "tirrja",
+        "1pl": "tirrimai",
+        "2pl": "tirritei",
+        "3pl": "tirrja"
+      },
+      "preterite": {
+        "1sg": "tīri",
+        "2sg": "tīri",
+        "3sg": "tīri",
+        "1pl": "tīrimai",
+        "2pl": "tīritei",
+        "3pl": "tīri"
+      }
+    }
+  },
+  "82a_piltun": {
+    "Tabula": {
+      "present": {
+        "3sg": "pilla"
+      },
+      "preterite": {
+        "3sg": "pīli/pīlē"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "pilla",
+        "2sg": "pilla",
+        "3sg": "pilla",
+        "1pl": "pillimai",
+        "2pl": "pillitei",
+        "3pl": "pilla"
+      },
+      "preterite": {
+        "1sg": "pīli",
+        "2sg": "pīli",
+        "3sg": "pīli",
+        "1pl": "pīlimai",
+        "2pl": "pīlitei",
+        "3pl": "pīli"
+      }
+    }
+  },
+  "83_dumtun": {
+    "Tabula": {
+      "present": {
+        "3sg": "dumja"
+      },
+      "preterite": {
+        "3sg": "dūmi/dūmē"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "dummja",
+        "2sg": "dummja",
+        "3sg": "dummja",
+        "1pl": "dummimai",
+        "2pl": "dummitei",
+        "3pl": "dummja"
+      },
+      "preterite": {
+        "1sg": "dūmi",
+        "2sg": "dūmi",
+        "3sg": "dūmi",
+        "1pl": "dūmimai",
+        "2pl": "dūmitei",
+        "3pl": "dūmi"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "dumja",
+        "2sg": "dumja",
+        "3sg": "dumja",
+        "1pl": "dumjamai",
+        "2pl": "dumjatei",
+        "3pl": "dumja"
+      },
+      "preterite": {
+        "1sg": "dūmi",
+        "2sg": "dūmi",
+        "3sg": "dūmi",
+        "1pl": "dūmimai",
+        "2pl": "dūmitei",
+        "3pl": "dūmi"
+      }
+    }
+  },
+  "84_justwei": {
+    "Tabula": {
+      "present": {
+        "3sg": "jāute"
+      },
+      "preterite": {
+        "3sg": "jutta/juttā"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "jāute",
+        "2sg": "jāute",
+        "3sg": "jāute",
+        "1pl": "jāutimai",
+        "2pl": "jāutitei",
+        "3pl": "jāute"
+      },
+      "preterite": {
+        "1sg": "jutta",
+        "2sg": "jutta",
+        "3sg": "jutta",
+        "1pl": "juttamai",
+        "2pl": "juttatei",
+        "3pl": "jutta"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "jāutja",
+        "2sg": "jāutja",
+        "3sg": "jāutja",
+        "1pl": "jāutimai",
+        "2pl": "jāutitei",
+        "3pl": "jāutja"
+      },
+      "preterite": {
+        "1sg": "jutta",
+        "2sg": "jutta",
+        "3sg": "jutta",
+        "1pl": "juttamai",
+        "2pl": "juttatei",
+        "3pl": "jutta"
+      }
+    }
+  },
+  "85_treptun": {
+    "Tabula": {
+      "present": {
+        "1sg": "treppa",
+        "2sg": "treppa",
+        "3sg": "treppa",
+        "1pl": "treppimai",
+        "2pl": "treppitei"
+      },
+      "preterite": {
+        "1sg": "treppa",
+        "2sg": "treppa",
+        "3sg": "treppa/treppā",
+        "1pl": "treppamai",
+        "2pl": "treppatei"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "treppa",
+        "2sg": "treppa",
+        "3sg": "treppa",
+        "1pl": "treppimai",
+        "2pl": "treppitei",
+        "3pl": "treppa"
+      },
+      "preterite": {
+        "1sg": "treppa",
+        "2sg": "treppa",
+        "3sg": "treppa",
+        "1pl": "treppamai",
+        "2pl": "treppatei",
+        "3pl": "treppa"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "treppa",
+        "2sg": "treppa",
+        "3sg": "treppa",
+        "1pl": "treppimai",
+        "2pl": "treppitei",
+        "3pl": "treppa"
+      },
+      "preterite": {
+        "1sg": "treppa",
+        "2sg": "treppa",
+        "3sg": "treppa",
+        "1pl": "treppimai",
+        "2pl": "treppitei",
+        "3pl": "treppa"
+      }
+    }
+  },
+  "86_kīrstun": {
+    "Tabula": {
+      "present": {
+        "3sg": "kīrta"
+      },
+      "preterite": {
+        "3sg": "kīrta/kīrtā"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "kīrta",
+        "2sg": "kīrta",
+        "3sg": "kīrta",
+        "1pl": "kīrtimai",
+        "2pl": "kīrtitei",
+        "3pl": "kīrta"
+      },
+      "preterite": {
+        "1sg": "kīrta",
+        "2sg": "kīrta",
+        "3sg": "kīrta",
+        "1pl": "kīrtamai",
+        "2pl": "kīrtatei",
+        "3pl": "kīrta"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "kīrta",
+        "2sg": "kīrta",
+        "3sg": "kīrta",
+        "1pl": "kīrtimai",
+        "2pl": "kīrtitei",
+        "3pl": "kīrta"
+      },
+      "preterite": {
+        "1sg": "kīrta",
+        "2sg": "kīrta",
+        "3sg": "kīrta",
+        "1pl": "kīrtamai",
+        "2pl": "kīratei",
+        "3pl": "kīrta"
+      }
+    }
+  },
+  "87_bastun": {
+    "Tabula": {
+      "present": {
+        "3sg": "badda"
+      },
+      "preterite": {
+        "3sg": "badda/baddā"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "badda",
+        "2sg": "badda",
+        "3sg": "badda",
+        "1pl": "baddimai",
+        "2pl": "badditei",
+        "3pl": "badda"
+      },
+      "preterite": {
+        "1sg": "badda",
+        "2sg": "badda",
+        "3sg": "badda",
+        "1pl": "baddamai",
+        "2pl": "baddatei",
+        "3pl": "badda"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "badda",
+        "2sg": "badda",
+        "3sg": "badda",
+        "1pl": "baddimai",
+        "2pl": "badditei",
+        "3pl": "badda"
+      },
+      "preterite": {
+        "1sg": "badda",
+        "2sg": "badda",
+        "3sg": "badda",
+        "1pl": "baddimai",
+        "2pl": "badditei",
+        "3pl": "badda"
+      }
+    }
+  },
+  "88_kāistun": {
+    "Tabula": {
+      "present": {
+        "3sg": "kāisa"
+      },
+      "preterite": {
+        "3sg": "kāisa/kāisā"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "kāisa",
+        "2sg": "kāisa",
+        "3sg": "kāisa",
+        "1pl": "kāisimai",
+        "2pl": "kāisitei",
+        "3pl": "kāisa"
+      },
+      "preterite": {
+        "1sg": "kāisa",
+        "2sg": "kāisa",
+        "3sg": "kāisa",
+        "1pl": "kāisamai",
+        "2pl": "kāisatei",
+        "3pl": "kāisa"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "kāisa",
+        "2sg": "kāisa",
+        "3sg": "kāisa",
+        "1pl": "kāisimai",
+        "2pl": "kāisitei",
+        "3pl": "kāisa"
+      },
+      "preterite": {
+        "1sg": "kāisa",
+        "2sg": "kāisa",
+        "3sg": "kāisa",
+        "1pl": "kāisamai",
+        "2pl": "kāisatei",
+        "3pl": "kāisa"
+      }
+    }
+  },
+  "89_kaktwei": {
+    "Tabula": {
+      "present": {
+        "3sg": "kānka"
+      },
+      "preterite": {
+        "3sg": "kakka/kakkā"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "līmpa",
+        "2sg": "līmpa",
+        "3sg": "līmpa",
+        "1pl": "līmpimai",
+        "2pl": "līmpitei",
+        "3pl": "līmpa"
+      },
+      "preterite": {
+        "1sg": "lippa",
+        "2sg": "lippa",
+        "3sg": "lippa",
+        "1pl": "lippamai",
+        "2pl": "lippatei",
+        "3pl": "lippa"
+      }
+    }
+  },
+  "91_dustwei": {
+    "Tabula": {
+      "present": {
+        "3sg": "dūnsa"
+      },
+      "preterite": {
+        "3sg": "dussa/dussā"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "dūnsa",
+        "2sg": "dūnsa",
+        "3sg": "dūnsa",
+        "1pl": "dūnsimai",
+        "2pl": "dūnsitei",
+        "3pl": "dūnsa"
+      },
+      "preterite": {
+        "1sg": "dussa",
+        "2sg": "dussa",
+        "3sg": "dussa",
+        "1pl": "dussamai",
+        "2pl": "dussatei",
+        "3pl": "dussa"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "dūnsa",
+        "2sg": "dūnsa",
+        "3sg": "dūnsa",
+        "1pl": "dūnsimai",
+        "2pl": "dūnsitei",
+        "3pl": "dūnsa"
+      },
+      "preterite": {
+        "1sg": "dussa",
+        "2sg": "dussa",
+        "3sg": "dussa",
+        "1pl": "dussamai",
+        "2pl": "dussatei",
+        "3pl": "dussa"
+      }
+    }
+  },
+  "92_alktwei": {
+    "Tabula": {
+      "present": {
+        "3sg": "alksta"
+      },
+      "preterite": {
+        "3sg": "alka/alkā"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "alksta",
+        "2sg": "alksta",
+        "3sg": "alksta",
+        "1pl": "alkstimai",
+        "2pl": "alkstitei",
+        "3pl": "alksta"
+      },
+      "preterite": {
+        "1sg": "alka",
+        "2sg": "alka",
+        "3sg": "alka",
+        "1pl": "alkamai",
+        "2pl": "alkatei",
+        "3pl": "alka"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "alksta",
+        "2sg": "alksta",
+        "3sg": "alksta",
+        "1pl": "alkstimai",
+        "2pl": "alkstitei",
+        "3pl": "alksta"
+      },
+      "preterite": {
+        "1sg": "alka",
+        "2sg": "alka",
+        "3sg": "alka",
+        "1pl": "alkamai",
+        "2pl": "alkatei",
+        "3pl": "alka"
+      }
+    }
+  },
+  "93_prestun": {
+    "Tabula": {
+      "present": {
+        "3sg": "presta"
+      },
+      "preterite": {
+        "3sg": "pretta/prettā"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "presta",
+        "2sg": "presta",
+        "3sg": "presta",
+        "1pl": "prestimai",
+        "2pl": "prestitei",
+        "3pl": "presta"
+      },
+      "preterite": {
+        "1sg": "pretta",
+        "2sg": "pretta",
+        "3sg": "pretta",
+        "1pl": "prettamai",
+        "2pl": "prettatei",
+        "3pl": "pretta"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "presta",
+        "2sg": "presta",
+        "3sg": "presta",
+        "1pl": "prestimai",
+        "2pl": "prestitei",
+        "3pl": "presta"
+      },
+      "preterite": {
+        "1sg": "pretta",
+        "2sg": "pretta",
+        "3sg": "pretta",
+        "1pl": "prettamai",
+        "2pl": "prettatei",
+        "3pl": "pretta"
+      }
+    }
+  },
+  "94_līstun": {
+    "Tabula": {
+      "present": {
+        "3sg": "līsta"
+      },
+      "preterite": {
+        "3sg": "līda/līdā"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "līsta",
+        "2sg": "līsta",
+        "3sg": "līsta",
+        "1pl": "līstimai",
+        "2pl": "līstitei",
+        "3pl": "līsta"
+      },
+      "preterite": {
+        "1sg": "līda",
+        "2sg": "līda",
+        "3sg": "līda",
+        "1pl": "līdamai",
+        "2pl": "līdatei",
+        "3pl": "līda"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "līsta",
+        "2sg": "līsta",
+        "3sg": "līsta",
+        "1pl": "līstimai",
+        "2pl": "līstitei",
+        "3pl": "līsta"
+      },
+      "preterite": {
+        "1sg": "līsa",
+        "2sg": "līsa",
+        "3sg": "līsa",
+        "1pl": "līsamai",
+        "2pl": "līsatei",
+        "3pl": "līsa"
+      }
+    }
+  },
+  "95_aistwei": {
+    "Tabula": {
+      "present": {
+        "3sg": "aista"
+      },
+      "preterite": {
+        "3sg": "aisa/aisā"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "āista",
+        "2sg": "āista",
+        "3sg": "āista",
+        "1pl": "āistimai",
+        "2pl": "āistitei",
+        "3pl": "āista"
+      },
+      "preterite": {
+        "1sg": "āisa",
+        "2sg": "āisa",
+        "3sg": "āisa",
+        "1pl": "āisamai",
+        "2pl": "āisatei",
+        "3pl": "āisa"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "āista",
+        "2sg": "āista",
+        "3sg": "āista",
+        "1pl": "āistimai",
+        "2pl": "āistitei",
+        "3pl": "āista"
+      },
+      "preterite": {
+        "1sg": "āisa",
+        "2sg": "āisa",
+        "3sg": "āisa",
+        "1pl": "āisamai",
+        "2pl": "āisatei",
+        "3pl": "āisa"
+      }
+    }
+  },
+  "96_grīmztwei": {
+    "Tabula": {
+      "present": {
+        "3sg": "grīmzda"
+      },
+      "preterite": {
+        "3sg": "grīmza/grīmzā"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "grīmzda",
+        "2sg": "grīmzda",
+        "3sg": "grīmzda",
+        "1pl": "grīmzdimai",
+        "2pl": "grīmzditei",
+        "3pl": "grīmzda"
+      },
+      "preterite": {
+        "1sg": "grīmza",
+        "2sg": "grīmza",
+        "3sg": "grīmza",
+        "1pl": "grīmzamai",
+        "2pl": "grīmzatei",
+        "3pl": "grīmza"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "grīmzda",
+        "2sg": "grīmzda",
+        "3sg": "grīmzda",
+        "1pl": "grīmzdimai",
+        "2pl": "grīmzditei",
+        "3pl": "grīmzda"
+      },
+      "preterite": {
+        "1sg": "grīmza",
+        "2sg": "grīmza",
+        "3sg": "grīmza",
+        "1pl": "grīmzamai",
+        "2pl": "grīmzatei",
+        "3pl": "grīmza"
+      }
+    }
+  },
+  "97_etmīntun": {
+    "Tabula": {
+      "present": {
+        "3sg": "etmenna"
+      },
+      "preterite": {
+        "3sg": "etminna/etminnā"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "etmenna",
+        "2sg": "etmenna",
+        "3sg": "etmenna",
+        "1pl": "etmennimai",
+        "2pl": "etmennitei",
+        "3pl": "etmenna"
+      },
+      "preterite": {
+        "1sg": "etminna",
+        "2sg": "etminna",
+        "3sg": "etminna",
+        "1pl": "etminnamai",
+        "2pl": "etminnatei",
+        "3pl": "etminna"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "etmenna",
+        "2sg": "etmenna",
+        "3sg": "etmenna",
+        "1pl": "etmennimai",
+        "2pl": "etmennitei",
+        "3pl": "etmenna"
+      },
+      "preterite": {
+        "1sg": "etminna",
+        "2sg": "etminna",
+        "3sg": "etminna",
+        "1pl": "etminnamai",
+        "2pl": "etminnatei",
+        "3pl": "etminna"
+      }
+    }
+  },
+  "98_grīnstun": {
+    "Tabula": {
+      "present": {
+        "3sg": "grēnda"
+      },
+      "preterite": {
+        "3sg": "grīnda/grīndā"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "grēnda",
+        "2sg": "grēnda",
+        "3sg": "grēnda",
+        "1pl": "grēndimai",
+        "2pl": "grēnditei",
+        "3pl": "grēnda"
+      },
+      "preterite": {
+        "1sg": "grīnda",
+        "2sg": "grīnda",
+        "3sg": "grīnda",
+        "1pl": "grīndamai",
+        "2pl": "grīndatei",
+        "3pl": "grīnda"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "grēnda",
+        "2sg": "grēnda",
+        "3sg": "grēnda",
+        "1pl": "grēndimai",
+        "2pl": "grēnditei",
+        "3pl": "grēnda"
+      },
+      "preterite": {
+        "1sg": "grīnda",
+        "2sg": "grīnda",
+        "3sg": "grīnda",
+        "1pl": "grīndamai",
+        "2pl": "grīndatei",
+        "3pl": "grīnda"
+      }
+    }
+  },
+  "99_swigtwei": {
+    "Tabula": {
+      "present": {
+        "3sg": "swēiga"
+      },
+      "preterite": {
+        "3sg": "swigga/swiggā"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "swēiga",
+        "2sg": "swēiga",
+        "3sg": "swēiga",
+        "1pl": "swēigimai",
+        "2pl": "swēigitei",
+        "3pl": "swēiga"
+      },
+      "preterite": {
+        "1sg": "swigga",
+        "2sg": "swigga",
+        "3sg": "swigga",
+        "1pl": "swiggamai",
+        "2pl": "swiggatei",
+        "3pl": "swigga"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "swēiga",
+        "2sg": "swēiga",
+        "3sg": "swēiga",
+        "1pl": "swēigimai",
+        "2pl": "swēigitei",
+        "3pl": "swēiga"
+      },
+      "preterite": {
+        "1sg": "swigga",
+        "2sg": "swigga",
+        "3sg": "swigga",
+        "1pl": "swiggamai",
+        "2pl": "swiggatei",
+        "3pl": "swigga"
+      }
+    }
+  },
+  "100_kwistun": {
+    "Tabula": {
+      "present": {
+        "3sg": "kwēita"
+      },
+      "preterite": {
+        "3sg": "kwitta/kwittā"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "kwēita",
+        "2sg": "kwēita",
+        "3sg": "kwēita",
+        "1pl": "kwēitimai",
+        "2pl": "kwēititei",
+        "3pl": "kwēita"
+      },
+      "preterite": {
+        "1sg": "kwitta",
+        "2sg": "kwitta",
+        "3sg": "kwitta",
+        "1pl": "kwittamai",
+        "2pl": "kwittatei",
+        "3pl": "kwitta"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "kwēita",
+        "2sg": "kwēita",
+        "3sg": "kwēita",
+        "1pl": "kwēitimai",
+        "2pl": "kwēititei",
+        "3pl": "kwēita"
+      },
+      "preterite": {
+        "1sg": "kwitta",
+        "2sg": "kwitta",
+        "3sg": "kwitta",
+        "1pl": "kwittamai",
+        "2pl": "kwittatei",
+        "3pl": "kwitta"
+      }
+    }
+  },
+  "102_ristun": {
+    "Tabula": {
+      "present": {
+        "3sg": "rēisa"
+      },
+      "preterite": {
+        "3sg": "rissa/rissā"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "rēisa",
+        "2sg": "rēisa",
+        "3sg": "rēisa",
+        "1pl": "rēisimai",
+        "2pl": "rēisitei",
+        "3pl": "rēisa"
+      },
+      "preterite": {
+        "1sg": "rissa",
+        "2sg": "rissa",
+        "3sg": "rissa",
+        "1pl": "rissamai",
+        "2pl": "rissatei",
+        "3pl": "rissa"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "rēisa",
+        "2sg": "rēisa",
+        "3sg": "rēisa",
+        "1pl": "rēisimai",
+        "2pl": "rēisitei",
+        "3pl": "rēisa"
+      },
+      "preterite": {
+        "1sg": "rissa",
+        "2sg": "rissa",
+        "3sg": "rissa",
+        "1pl": "rissamai",
+        "2pl": "rissatei",
+        "3pl": "rissa"
+      }
+    }
+  },
+  "102a_listun": {
+    "Tabula": {
+      "present": {
+        "3sg": "lāisa"
+      },
+      "preterite": {
+        "3sg": "lissa/lissā"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "lāisa",
+        "2sg": "lāisa",
+        "3sg": "lāisa",
+        "1pl": "lāisimai",
+        "2pl": "lāisitei",
+        "3pl": "lāisa"
+      },
+      "preterite": {
+        "1sg": "lissa",
+        "2sg": "lissa",
+        "3sg": "lissa",
+        "1pl": "lissamai",
+        "2pl": "lissatei",
+        "3pl": "lissa"
+      }
+    }
+  },
+  "105_wiptwei": {
+    "Tabula": {
+      "present": {
+        "3sg": "wēipja"
+      },
+      "preterite": {
+        "3sg": "wippa/wippā"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "weppa",
+        "2sg": "weppa",
+        "3sg": "weppa",
+        "1pl": "weppimai",
+        "2pl": "weppitei",
+        "3pl": "weppa"
+      },
+      "preterite": {
+        "1sg": "wippa",
+        "2sg": "wippa",
+        "3sg": "wippa",
+        "1pl": "wippamai",
+        "2pl": "wippatei",
+        "3pl": "wippa"
+      }
+    }
+  },
+  "106a_grēitun": {
+    "Tabula": {
+      "present": {
+        "3sg": "grejja"
+      },
+      "preterite": {
+        "3sg": "grejja/grejjā"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "grejja",
+        "2sg": "grejja",
+        "3sg": "grejja",
+        "1pl": "grejjimai",
+        "2pl": "grejjitei",
+        "3pl": "grejja"
+      },
+      "preterite": {
+        "1sg": "grejja",
+        "2sg": "grejja",
+        "3sg": "grejja",
+        "1pl": "grejjamai",
+        "2pl": "grejjatei",
+        "3pl": "grejja"
+      }
+    }
+  },
+  "106b_smeītwei": {
+    "Tabula": {
+      "present": {
+        "3sg": "smeīja"
+      },
+      "preterite": {
+        "3sg": "smeīja/smeījā"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "smeīja si",
+        "2sg": "smeīja si",
+        "3sg": "smeīja si",
+        "1pl": "smeīmai si",
+        "2pl": "smeītei si",
+        "3pl": "smeīja si"
+      },
+      "preterite": {
+        "1sg": "smeīja si",
+        "2sg": "smeīja si",
+        "3sg": "smeīja si",
+        "1pl": "smeījamai si",
+        "2pl": "smeījatei si",
+        "3pl": "smeīja si"
+      }
+    }
+  },
+  "106c_sklāitwei": {
+    "Tabula": {
+      "present": {
+        "3sg": "sklajja"
+      },
+      "preterite": {
+        "3sg": "sklajja/sklajjā"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "sklajja",
+        "2sg": "sklajja",
+        "3sg": "sklajja",
+        "1pl": "sklajjimai",
+        "2pl": "sklajjitei",
+        "3pl": "sklajja"
+      },
+      "preterite": {
+        "1sg": "sklajja",
+        "2sg": "sklajja",
+        "3sg": "sklajja",
+        "1pl": "sklajjamai",
+        "2pl": "sklajjatei",
+        "3pl": "sklajja"
+      }
+    }
+  },
+  "106d_laītun": {
+    "Tabula": {
+      "present": {
+        "3sg": "laīja"
+      },
+      "preterite": {
+        "3sg": "laīja/laījā"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "laīja",
+        "2sg": "laīja",
+        "3sg": "laīja",
+        "1pl": "laīmai",
+        "2pl": "laītei",
+        "3pl": "laīja"
+      },
+      "preterite": {
+        "1sg": "laīja",
+        "2sg": "laīja",
+        "3sg": "laīja",
+        "1pl": "laījamai",
+        "2pl": "laījatei",
+        "3pl": "laīja"
+      }
+    }
+  },
+  "107_lītwei": {
+    "Tabula": {
+      "present": {
+        "3sg": "lijja"
+      },
+      "preterite": {
+        "3sg": "lijja/lijjā"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "lijja",
+        "2sg": "lijja",
+        "3sg": "lijja",
+        "1pl": "līmai",
+        "2pl": "lītei",
+        "3pl": "lijja"
+      },
+      "preterite": {
+        "1sg": "lijja",
+        "2sg": "lijja",
+        "3sg": "lijja",
+        "1pl": "lijjamai",
+        "2pl": "lijjatei",
+        "3pl": "lijja"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "līma",
+        "2sg": "līsei",
+        "3sg": "līt",
+        "1pl": "līmai",
+        "2pl": "lītei",
+        "3pl": "līt"
+      },
+      "preterite": {
+        "1sg": "līja",
+        "2sg": "līja",
+        "3sg": "līja",
+        "1pl": "līmai",
+        "2pl": "lītei",
+        "3pl": "līja"
+      }
+    }
+  },
+  "108_wītun": {
+    "Tabula": {
+      "present": {
+        "3sg": "weīja"
+      },
+      "preterite": {
+        "3sg": "wijja/wijjā"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "weīja",
+        "2sg": "weīja",
+        "3sg": "weīja",
+        "1pl": "weīmai",
+        "2pl": "weītei",
+        "3pl": "weīja"
+      },
+      "preterite": {
+        "1sg": "wijja",
+        "2sg": "wijja",
+        "3sg": "wijja",
+        "1pl": "wijjamai",
+        "2pl": "wijjatei",
+        "3pl": "wijja"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "wejja",
+        "2sg": "wejja",
+        "3sg": "wejja",
+        "1pl": "wejjimai",
+        "2pl": "wejjitei",
+        "3pl": "wejja"
+      },
+      "preterite": {
+        "1sg": "wijja",
+        "2sg": "wijja",
+        "3sg": "wijja",
+        "1pl": "wijjamai",
+        "2pl": "wijjatei",
+        "3pl": "wijja"
+      }
+    }
+  },
+  "109_wirtwei": {
+    "Tabula": {
+      "present": {
+        "3sg": "werda"
+      },
+      "preterite": {
+        "3sg": "wirra/wirrā"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "werda",
+        "2sg": "werda",
+        "3sg": "werda",
+        "1pl": "werdimai",
+        "2pl": "werditei",
+        "3pl": "werda"
+      },
+      "preterite": {
+        "1sg": "wirra",
+        "2sg": "wirra",
+        "3sg": "wirra",
+        "1pl": "wirramai",
+        "2pl": "wirratei",
+        "3pl": "wirra"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "werda",
+        "2sg": "werda",
+        "3sg": "werda",
+        "1pl": "werdimai",
+        "2pl": "werditei",
+        "3pl": "werda"
+      },
+      "preterite": {
+        "1sg": "wirra",
+        "2sg": "wirra",
+        "3sg": "wirra",
+        "1pl": "wirramai",
+        "2pl": "wirratei",
+        "3pl": "wirra"
+      }
+    }
+  },
+  "110_pastātwei": {
+    "Tabula": {
+      "present": {
+        "3sg": "pastāne"
+      },
+      "preterite": {
+        "3sg": "pastāi"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "pastāne",
+        "2sg": "pastāne",
+        "3sg": "pastāne",
+        "1pl": "pastānimai",
+        "2pl": "pastānitei",
+        "3pl": "pastāne"
+      },
+      "preterite": {
+        "1sg": "pastāi",
+        "2sg": "pastāi",
+        "3sg": "pastāi",
+        "1pl": "pastāimai",
+        "2pl": "pastāitei",
+        "3pl": "pastāi"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "pastānja",
+        "2sg": "pastānja",
+        "3sg": "pastānja",
+        "1pl": "pastānjimai",
+        "2pl": "pastānjitei",
+        "3pl": "pastānja"
+      },
+      "preterite": {
+        "1sg": "pastāi",
+        "2sg": "pastāi",
+        "3sg": "pastāi",
+        "1pl": "pastāimai",
+        "2pl": "pastāitei",
+        "3pl": "pastāi"
+      }
+    }
+  },
+  "111_gaūtun": {
+    "Tabula": {
+      "present": {
+        "3sg": "gaūne"
+      },
+      "preterite": {
+        "3sg": "gaūwa"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "gaūne",
+        "2sg": "gaūne",
+        "3sg": "gaūne",
+        "1pl": "gaūnimai",
+        "2pl": "gaūnitei",
+        "3pl": "gaūne"
+      },
+      "preterite": {
+        "1sg": "gaūwa",
+        "2sg": "gaūwa",
+        "3sg": "gaūwa",
+        "1pl": "gaūwamai",
+        "2pl": "gaūwatei",
+        "3pl": "gaūwa"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "gaūnja",
+        "2sg": "gaūnja",
+        "3sg": "gaūnja",
+        "1pl": "gaūnimai",
+        "2pl": "gaūnitei",
+        "3pl": "gaūnja"
+      },
+      "preterite": {
+        "1sg": "gaūwa",
+        "2sg": "gaūwa",
+        "3sg": "gaūwa",
+        "1pl": "gaūwamai",
+        "2pl": "gaūwatei",
+        "3pl": "gaūwa"
+      }
+    }
+  },
+  "112_strūtun": {
+    "Tabula": {
+      "present": {
+        "3sg": "strāuja"
+      },
+      "preterite": {
+        "3sg": "struwwa"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "strāuja",
+        "2sg": "strāuja",
+        "3sg": "strāuja",
+        "1pl": "strāujimai",
+        "2pl": "strāujitei",
+        "3pl": "strāuja"
+      },
+      "preterite": {
+        "1sg": "struwwa",
+        "2sg": "struwwa",
+        "3sg": "struwwa",
+        "1pl": "struwwamai",
+        "2pl": "struwwatei",
+        "3pl": "struwwa"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "strāuja",
+        "2sg": "strāuja",
+        "3sg": "strāuja",
+        "1pl": "strāujimai",
+        "2pl": "strāujitei",
+        "3pl": "strāuja"
+      },
+      "preterite": {
+        "1sg": "struwwa",
+        "2sg": "struwwa",
+        "3sg": "struwwa",
+        "1pl": "struwwamai",
+        "2pl": "struwwtei",
+        "3pl": "struwwa"
+      }
+    }
+  },
+  "113_pūtun": {
+    "Tabula": {
+      "present": {
+        "3sg": "pūja"
+      },
+      "preterite": {
+        "3sg": "pūwa"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "pūja",
+        "2sg": "pūja",
+        "3sg": "pūja",
+        "1pl": "pūjimai",
+        "2pl": "pūjitei",
+        "3pl": "pūja"
+      },
+      "preterite": {
+        "1sg": "pūwa",
+        "2sg": "pūwa",
+        "3sg": "pūwa",
+        "1pl": "pūwamai",
+        "2pl": "pūwatei",
+        "3pl": "pūwa"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "pāuja",
+        "2sg": "pāuja",
+        "3sg": "pāuja",
+        "1pl": "pāujimai",
+        "2pl": "pāujitei",
+        "3pl": "pāuja"
+      },
+      "preterite": {
+        "1sg": "puwwa",
+        "2sg": "puwwa",
+        "3sg": "puwwa",
+        "1pl": "puwwamai",
+        "2pl": "puwwtei",
+        "3pl": "puwwa"
+      }
+    }
+  },
+  "114_wīrstwei": {
+    "Tabula": {
+      "present": {
+        "1sg": "wīrst",
+        "2sg": "wīrst",
+        "3sg": "wīrst",
+        "1pl": "wīrstmai",
+        "2pl": "wīrstei"
+      },
+      "preterite": {
+        "3sg": "wīrta/wīrtā"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "wīrst",
+        "2sg": "wīrst",
+        "3sg": "wīrst",
+        "1pl": "wīrstmai",
+        "2pl": "wīrstei",
+        "3pl": "wīrst"
+      },
+      "preterite": {
+        "1sg": "wīrta",
+        "2sg": "wīrta",
+        "3sg": "wīrta",
+        "1pl": "wīrtamai",
+        "2pl": "wīrtatei",
+        "3pl": "wīrta"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "wīrst",
+        "2sg": "wīrst",
+        "3sg": "wīrst",
+        "1pl": "wīrstmai",
+        "2pl": "wīrstei",
+        "3pl": "wīrst"
+      },
+      "preterite": {
+        "1sg": "wīrta",
+        "2sg": "wīrta",
+        "3sg": "wīrta",
+        "1pl": "wīrtamai",
+        "2pl": "wīrtatei",
+        "3pl": "wīrta"
+      }
+    }
+  },
+  "115_būtwei": {
+    "Tabula": {
+      "present": {
+        "1sg": "asma",
+        "2sg": "assei",
+        "3sg": "ast",
+        "1pl": "asmai",
+        "2pl": "astei"
+      },
+      "preterite": {
+        "1sg": "bēi",
+        "2sg": "bēi",
+        "3sg": "bēi",
+        "1pl": "bēimai",
+        "2pl": "bēitei"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "asma",
+        "2sg": "assei",
+        "3sg": "ast",
+        "1pl": "asmai",
+        "2pl": "astei",
+        "3pl": "ast"
+      },
+      "preterite": {
+        "1sg": "bēi",
+        "2sg": "bēi",
+        "3sg": "bēi",
+        "1pl": "bēimai",
+        "2pl": "bēitei",
+        "3pl": "bēi"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "asma",
+        "2sg": "assei",
+        "3sg": "ast",
+        "1pl": "asmai",
+        "2pl": "astei",
+        "3pl": "ast"
+      },
+      "preterite": {
+        "1sg": "bēi",
+        "2sg": "bēi",
+        "3sg": "bēi",
+        "1pl": "bēimai",
+        "2pl": "bēitei",
+        "3pl": "bēi"
+      }
+    }
+  },
+  "116_ēitwei": {
+    "Tabula": {
+      "present": {
+        "1sg": "ēima",
+        "2sg": "ēisei",
+        "3sg": "ēit",
+        "1pl": "ēimai",
+        "2pl": "ēitei"
+      },
+      "preterite": {
+        "3sg": "gūbi/gūbē"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "ēima",
+        "2sg": "ēisei",
+        "3sg": "ēit",
+        "1pl": "ēimai",
+        "2pl": "ēitei",
+        "3pl": "ēit"
+      },
+      "preterite": {
+        "1sg": "gūbi",
+        "2sg": "gūbi",
+        "3sg": "gūbi",
+        "1pl": "gūbimai",
+        "2pl": "gūbitei",
+        "3pl": "gūbi"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "ēima",
+        "2sg": "ēisei",
+        "3sg": "ēit",
+        "1pl": "ēimai",
+        "2pl": "ēitei",
+        "3pl": "ēit"
+      },
+      "preterite": {
+        "1sg": "gūbi",
+        "2sg": "gūbi",
+        "3sg": "gūbi",
+        "1pl": "gūbimai",
+        "2pl": "gūbitei",
+        "3pl": "gūbi"
+      }
+    }
+  },
+  "117_īstun": {
+    "Tabula": {
+      "present": {
+        "1sg": "īma",
+        "2sg": "īsei",
+        "3sg": "īst",
+        "1pl": "īmai",
+        "2pl": "īstei"
+      },
+      "preterite": {
+        "3sg": "īda/īdā"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "īma",
+        "2sg": "īsei",
+        "3sg": "īst",
+        "1pl": "īmai",
+        "2pl": "ītei",
+        "3pl": "īst"
+      },
+      "preterite": {
+        "1sg": "īda",
+        "2sg": "īda",
+        "3sg": "īda",
+        "1pl": "īdamai",
+        "2pl": "īdatei",
+        "3pl": "īda"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "ēma",
+        "2sg": "ēsei",
+        "3sg": "ēst",
+        "1pl": "ēmai",
+        "2pl": "ēstei",
+        "3pl": "ēst"
+      },
+      "preterite": {
+        "1sg": "ēda",
+        "2sg": "ēda",
+        "3sg": "ēda",
+        "1pl": "ēdamai",
+        "2pl": "ēdatei",
+        "3pl": "ēda"
+      }
+    }
+  },
+  "118_dātun": {
+    "Tabula": {
+      "present": {
+        "1sg": "dāma",
+        "2sg": "dāsei",
+        "3sg": "dāst",
+        "1pl": "dāmai",
+        "2pl": "dāstei"
+      },
+      "preterite": {
+        "1sg": "dāi",
+        "2sg": "dāi",
+        "3sg": "dāi",
+        "1pl": "dāimai",
+        "2pl": "dāitei"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "dāma",
+        "2sg": "dāsei",
+        "3sg": "dāst",
+        "1pl": "dāmai",
+        "2pl": "dātei",
+        "3pl": "dāst"
+      },
+      "preterite": {
+        "1sg": "dāi",
+        "2sg": "dāi",
+        "3sg": "dāi",
+        "1pl": "dāimai",
+        "2pl": "dāitei",
+        "3pl": "dāi"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "dāma",
+        "2sg": "dāsei",
+        "3sg": "dāst",
+        "1pl": "dāmai",
+        "2pl": "dāstei",
+        "3pl": "dāst"
+      },
+      "preterite": {
+        "1sg": "dāi",
+        "2sg": "dāi",
+        "3sg": "dāi",
+        "1pl": "dāimai",
+        "2pl": "dāitei",
+        "3pl": "dāi"
+      }
+    }
+  },
+  "119_jātwei": {
+    "Tabula": {
+      "present": {
+        "1sg": "jāma",
+        "2sg": "jāsei",
+        "3sg": "jāt",
+        "1pl": "jāmai",
+        "2pl": "jātei"
+      },
+      "preterite": {
+        "1sg": "jāja",
+        "2sg": "jāja",
+        "3sg": "jāja",
+        "1pl": "jājamai",
+        "2pl": "jājatei"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "jāma",
+        "2sg": "jāsei",
+        "3sg": "jāt",
+        "1pl": "jāmai",
+        "2pl": "jātei",
+        "3pl": "jāt"
+      },
+      "preterite": {
+        "1sg": "jāja",
+        "2sg": "jāja",
+        "3sg": "jāja",
+        "1pl": "jājamai",
+        "2pl": "jājatei",
+        "3pl": "jāja"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "jāma",
+        "2sg": "jāsei",
+        "3sg": "jāt",
+        "1pl": "jāmai",
+        "2pl": "jātei",
+        "3pl": "jāt"
+      },
+      "preterite": {
+        "1sg": "jāja",
+        "2sg": "jāja",
+        "3sg": "jāja",
+        "1pl": "jājamai",
+        "2pl": "jājatei",
+        "3pl": "jāja"
+      }
+    }
+  },
+  "120_skītwei": {
+    "Tabula": {
+      "present": {
+        "1sg": "skīma",
+        "2sg": "skīsei",
+        "3sg": "skīt",
+        "1pl": "skīmai",
+        "2pl": "skītei"
+      },
+      "preterite": {
+        "1sg": "skīja",
+        "2sg": "skīja",
+        "3sg": "skīja",
+        "1pl": "skījamai",
+        "2pl": "skījātei"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "skīma",
+        "2sg": "skīsei",
+        "3sg": "skīt",
+        "1pl": "skīmai",
+        "2pl": "skītei",
+        "3pl": "skīt"
+      },
+      "preterite": {
+        "1sg": "skīja",
+        "2sg": "skīja",
+        "3sg": "skīja",
+        "1pl": "skījamai",
+        "2pl": "skījatei",
+        "3pl": "skīja"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "skīma",
+        "2sg": "skīsei",
+        "3sg": "skīt",
+        "1pl": "skīmai",
+        "2pl": "skītei",
+        "3pl": "skīt"
+      },
+      "preterite": {
+        "1sg": "skīja",
+        "2sg": "skīja",
+        "3sg": "skīja",
+        "1pl": "skīmai",
+        "2pl": "skītei",
+        "3pl": "skīja"
+      }
+    }
+  },
+  "121_dītun": {
+    "Tabula": {
+      "present": {
+        "1sg": "demma",
+        "2sg": "dessei",
+        "3sg": "dest",
+        "1pl": "demmai",
+        "2pl": "destei"
+      },
+      "preterite": {
+        "1sg": "dīja",
+        "2sg": "dīja",
+        "3sg": "dīja",
+        "1pl": "dīmai",
+        "2pl": "dītei"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "dīma",
+        "2sg": "dīsei",
+        "3sg": "dīt",
+        "1pl": "dīmai",
+        "2pl": "dītei",
+        "3pl": "dīt"
+      },
+      "preterite": {
+        "1sg": "dīja",
+        "2sg": "dīja",
+        "3sg": "dīja",
+        "1pl": "dījamai",
+        "2pl": "dījatei",
+        "3pl": "dīja"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "dīma",
+        "2sg": "dīsei",
+        "3sg": "dīt",
+        "1pl": "dīmai",
+        "2pl": "dītei",
+        "3pl": "dīt"
+      },
+      "preterite": {
+        "1sg": "dīja",
+        "2sg": "dīja",
+        "3sg": "dīja",
+        "1pl": "dīmai",
+        "2pl": "dītei",
+        "3pl": "dīja"
+      }
+    }
+  },
+  "122_waīstun": {
+    "Tabula": {
+      "present": {
+        "1sg": "waīda",
+        "2sg": "waīda",
+        "3sg": "waīda",
+        "1pl": "waīdimai",
+        "2pl": "waīditei"
+      },
+      "preterite": {
+        "1sg": "waīda",
+        "2sg": "waīda",
+        "3sg": "waīda/waīdā",
+        "1pl": "waīdamai",
+        "2pl": "waīdatei"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "waīda",
+        "2sg": "waīda",
+        "3sg": "waīda",
+        "1pl": "waīdimai",
+        "2pl": "waīditei",
+        "3pl": "waīda"
+      },
+      "preterite": {
+        "1sg": "waīda",
+        "2sg": "waīda",
+        "3sg": "waīda",
+        "1pl": "waīdamai",
+        "2pl": "waīdatei",
+        "3pl": "waīda"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "waīda",
+        "2sg": "waīda",
+        "3sg": "waīda",
+        "1pl": "waīdimai",
+        "2pl": "waīditei",
+        "3pl": "waīda"
+      },
+      "preterite": {
+        "1sg": "waīda",
+        "2sg": "waīda",
+        "3sg": "waīda",
+        "1pl": "waīdamai",
+        "2pl": "waīdatei",
+        "3pl": "waīda"
+      }
+    }
+  },
+  "123_skrītwei": {
+    "Tabula": {
+      "present": {
+        "1sg": "skreīma",
+        "2sg": "skreīsei",
+        "3sg": "skreīt",
+        "1pl": "skreīmai",
+        "2pl": "skreītei"
+      },
+      "preterite": {
+        "1sg": "skrijja",
+        "2sg": "skrijja",
+        "3sg": "skrijja",
+        "1pl": "skrīmai",
+        "2pl": "skrītei"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "skreīma",
+        "2sg": "skreīsei",
+        "3sg": "skreīt",
+        "1pl": "skreīmai",
+        "2pl": "skreītei",
+        "3pl": "skreīt"
+      },
+      "preterite": {
+        "1sg": "skrijja",
+        "2sg": "skrijja",
+        "3sg": "skrijja",
+        "1pl": "skrijjamai",
+        "2pl": "skrijjatei",
+        "3pl": "skrijja"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "skrēima",
+        "2sg": "skrēisei",
+        "3sg": "skrēit",
+        "1pl": "skrēimai",
+        "2pl": "skrēitei",
+        "3pl": "skrēit"
+      },
+      "preterite": {
+        "1sg": "skrijja",
+        "2sg": "skrijja",
+        "3sg": "skrijja",
+        "1pl": "skrīmai",
+        "2pl": "skrītei",
+        "3pl": "skrijja"
+      }
+    }
+  },
+  "124_snigtwei": {
+    "Tabula": {
+      "present": {
+        "3sg": "snēigt"
+      },
+      "preterite": {
+        "3sg": "snigga/sniggā"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "snēigt",
+        "2sg": "snēigt",
+        "3sg": "snēigt",
+        "1pl": "snēigmai",
+        "2pl": "snēigtei",
+        "3pl": "snēigt"
+      },
+      "preterite": {
+        "1sg": "snigga",
+        "2sg": "snigga",
+        "3sg": "snigga",
+        "1pl": "sniggamai",
+        "2pl": "sniggatei",
+        "3pl": "snigga"
+      }
+    }
+  },
+  "125_migtwei": {
+    "Tabula": {
+      "present": {
+        "1sg": "mēigma",
+        "2sg": "mēigsei",
+        "3sg": "mēigt",
+        "1pl": "mēigmai",
+        "2pl": "mēigtei"
+      },
+      "preterite": {
+        "1sg": "migga",
+        "2sg": "migga",
+        "3sg": "migga/miggā",
+        "1pl": "miggamai",
+        "2pl": "miggatei"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "meīgma",
+        "2sg": "meīgsei",
+        "3sg": "meīgt",
+        "1pl": "meīgmai",
+        "2pl": "meīgtei",
+        "3pl": "meīgt"
+      },
+      "preterite": {
+        "1sg": "migga",
+        "2sg": "migga",
+        "3sg": "migga",
+        "1pl": "miggamai",
+        "2pl": "miggatei",
+        "3pl": "migga"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "mēigma",
+        "2sg": "mēigt",
+        "3sg": "mēigt",
+        "1pl": "mēigmai",
+        "2pl": "mēigtei",
+        "3pl": "mēigt"
+      },
+      "preterite": {
+        "1sg": "migga",
+        "2sg": "migga",
+        "3sg": "migga",
+        "1pl": "miggamai",
+        "2pl": "miggatei",
+        "3pl": "migga"
+      }
+    }
+  },
+  "126_wiltwei": {
+    "Tabula": {
+      "present": {
+        "1sg": "welma",
+        "2sg": "welsei",
+        "3sg": "welt",
+        "1pl": "welmai",
+        "2pl": "weltei"
+      },
+      "preterite": {
+        "3sg": "willa"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "willa",
+        "2sg": "willa",
+        "3sg": "willa",
+        "1pl": "willimai",
+        "2pl": "willitei",
+        "3pl": "willa"
+      },
+      "preterite": {
+        "1sg": "willa",
+        "2sg": "willa",
+        "3sg": "willa",
+        "1pl": "willamai",
+        "2pl": "willatei",
+        "3pl": "willa"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "willa",
+        "2sg": "willa",
+        "3sg": "willa",
+        "1pl": "willimai",
+        "2pl": "willitei",
+        "3pl": "willa"
+      },
+      "preterite": {
+        "1sg": "willa",
+        "2sg": "willa",
+        "3sg": "willa",
+        "1pl": "willimai",
+        "2pl": "willitei",
+        "3pl": "willa"
+      }
+    }
+  },
+  "127_jāstun": {
+    "Tabula": {
+      "present": {
+        "1sg": "jāsma",
+        "2sg": "jāsei",
+        "3sg": "jāst",
+        "1pl": "jāsmai",
+        "2pl": "jāstei"
+      },
+      "preterite": {
+        "1sg": "jāsa",
+        "2sg": "jāsa",
+        "3sg": "jāsa",
+        "1pl": "jāsamai",
+        "2pl": "jāsatei"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "jāsma",
+        "2sg": "jāsei",
+        "3sg": "jāst",
+        "1pl": "jāsmai",
+        "2pl": "jāstei",
+        "3pl": "jāst"
+      },
+      "preterite": {
+        "1sg": "jāsa",
+        "2sg": "jāsa",
+        "3sg": "jāsa",
+        "1pl": "jāsamai",
+        "2pl": "jāsatei",
+        "3pl": "jāsa"
+      }
+    }
+  },
+  "128_sīstwei": {
+    "Tabula": {
+      "present": {
+        "3sg": "sīnda"
+      },
+      "preterite": {
+        "3sg": "sīda"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "sīnda",
+        "2sg": "sīnda",
+        "3sg": "sīnda",
+        "1pl": "sīndimai",
+        "2pl": "sīnditei",
+        "3pl": "sīnda"
+      },
+      "preterite": {
+        "1sg": "sīda",
+        "2sg": "sīda",
+        "3sg": "sīda",
+        "1pl": "sīdamai",
+        "2pl": "sīdatei",
+        "3pl": "sīda"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "sēnda",
+        "2sg": "sēnda",
+        "3sg": "sēnda",
+        "1pl": "sēndimai",
+        "2pl": "sēnditei",
+        "3pl": "sēnda"
+      },
+      "preterite": {
+        "1sg": "sēda",
+        "2sg": "sēda",
+        "3sg": "sēda",
+        "1pl": "sēdamai",
+        "2pl": "sēdatei",
+        "3pl": "sēda"
+      }
+    }
+  },
+  "131_pūdatun": {
+    "Tabula": {
+      "present": {
+        "1sg": "pūdai",
+        "2sg": "pūdai",
+        "3sg": "pūdai",
+        "1pl": "pūdaimai",
+        "2pl": "pūdaitei"
+      },
+      "preterite": {
+        "1sg": "pūdai",
+        "2sg": "pūdai",
+        "3sg": "pūdai",
+        "1pl": "pūdaimai",
+        "2pl": "pūdaitei"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "pūdai",
+        "2sg": "pūdai",
+        "3sg": "pūdai",
+        "1pl": "pūdaimai",
+        "2pl": "pūdaitei",
+        "3pl": "pūdai"
+      },
+      "preterite": {
+        "1sg": "pūdai",
+        "2sg": "pūdai",
+        "3sg": "pūdai",
+        "1pl": "pūdaimai",
+        "2pl": "pūdaitei",
+        "3pl": "pūdai"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "auskīpai",
+        "2sg": "auskīpai",
+        "3sg": "auskīpai",
+        "1pl": "auskīpaimai",
+        "2pl": "auskīpaitei",
+        "3pl": "auskīpai"
+      },
+      "preterite": {
+        "1sg": "auskīpai",
+        "2sg": "auskīpai",
+        "3sg": "auskīpai",
+        "1pl": "auskīpaimai",
+        "2pl": "auskīpaitei",
+        "3pl": "auskīpai"
+      }
+    }
+  },
+  "132_maitātun": {
+    "Tabula": {
+      "present": {
+        "1sg": "maitāi",
+        "2sg": "maitāi",
+        "3sg": "maitāi",
+        "1pl": "maitāimai",
+        "2pl": "maitāitei"
+      },
+      "preterite": {
+        "1sg": "maitāi",
+        "2sg": "maitāi",
+        "3sg": "maitāi",
+        "1pl": "maitāimai",
+        "2pl": "maitāitei"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "maitāi",
+        "2sg": "maitāi",
+        "3sg": "maitāi",
+        "1pl": "maitāimai",
+        "2pl": "maitāitei",
+        "3pl": "maitāi"
+      },
+      "preterite": {
+        "1sg": "maitāi",
+        "2sg": "maitāi",
+        "3sg": "maitāi",
+        "1pl": "maitāimai",
+        "2pl": "maitāitei",
+        "3pl": "maitāi"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "maitāi",
+        "2sg": "maitāi",
+        "3sg": "maitāi",
+        "1pl": "maitāimai",
+        "2pl": "maitāitei",
+        "3pl": "maitāi"
+      },
+      "preterite": {
+        "1sg": "maitāi",
+        "2sg": "maitāi",
+        "3sg": "maitāi",
+        "1pl": "maitāimai",
+        "2pl": "maitāitei",
+        "3pl": "maitāi"
+      }
+    }
+  },
+  "133_kāimalukitun": {
+    "Tabula": {
+      "present": {
+        "1sg": "kāimalukei",
+        "2sg": "kāimalukei",
+        "3sg": "kāimalukei",
+        "1pl": "kāimalukeimai",
+        "2pl": "kāimalukeitei"
+      },
+      "preterite": {
+        "1sg": "kāimalukei",
+        "2sg": "kāimalukei",
+        "3sg": "kāimalukei",
+        "1pl": "kāimalukeimai",
+        "2pl": "kāimalukeitei"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "kāimalukei",
+        "2sg": "kāimalukei",
+        "3sg": "kāimalukei",
+        "1pl": "kāimalukeimai",
+        "2pl": "kāimalukeitei",
+        "3pl": "kāimalukei"
+      },
+      "preterite": {
+        "1sg": "kāimalukei",
+        "2sg": "kāimalukei",
+        "3sg": "kāimalukei",
+        "1pl": "kāimalukeimai",
+        "2pl": "kāimalukeitei",
+        "3pl": "kāimalukei"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "kāimalukjai",
+        "2sg": "kāimalukjai",
+        "3sg": "kāimalukjai",
+        "1pl": "kāimalukjaimai",
+        "2pl": "kāimalukjaitei",
+        "3pl": "kāimalukjai"
+      },
+      "preterite": {
+        "1sg": "kāimaluki",
+        "2sg": "kāimaluki",
+        "3sg": "kāimaluki",
+        "1pl": "kāimalukimai",
+        "2pl": "kāimalukitei",
+        "3pl": "kāimaluki"
+      }
+    }
+  },
+  "134_segītun": {
+    "Tabula": {
+      "present": {
+        "1sg": "segēi",
+        "2sg": "segēi",
+        "3sg": "segēi",
+        "1pl": "segēimai",
+        "2pl": "segēitei"
+      },
+      "preterite": {
+        "1sg": "segēi",
+        "2sg": "segēi",
+        "3sg": "segēi",
+        "1pl": "segēimai",
+        "2pl": "segēitei"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "segēi",
+        "2sg": "segēi",
+        "3sg": "segēi",
+        "1pl": "segēimai",
+        "2pl": "segēitei",
+        "3pl": "segēi"
+      },
+      "preterite": {
+        "1sg": "segēi",
+        "2sg": "segēi",
+        "3sg": "segēi",
+        "1pl": "segēimai",
+        "2pl": "segēitei",
+        "3pl": "segēi"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "segēi",
+        "2sg": "segēi",
+        "3sg": "segēi",
+        "1pl": "segēimai",
+        "2pl": "segēitei",
+        "3pl": "segēi"
+      },
+      "preterite": {
+        "1sg": "segēi",
+        "2sg": "segēi",
+        "3sg": "segēi",
+        "1pl": "segēimai",
+        "2pl": "segēitei",
+        "3pl": "segēi"
+      }
+    }
+  },
+  "134a_bilītun": {
+    "Tabula": {
+      "present": {
+        "3sg": "bilāi"
+      },
+      "preterite": {
+        "3sg": "bilāi"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "bilāi",
+        "2sg": "bilāi",
+        "3sg": "bilāi",
+        "1pl": "bilāimai",
+        "2pl": "bilāitei",
+        "3pl": "bilāi"
+      },
+      "preterite": {
+        "1sg": "bilāi",
+        "2sg": "bilāi",
+        "3sg": "bilāi",
+        "1pl": "bilāimai",
+        "2pl": "bilāitei",
+        "3pl": "bilāi"
+      }
+    }
+  },
+  "135_līkitun": {
+    "Tabula": {
+      "present": {
+        "3sg": "līki",
+        "1pl": "līkimai",
+        "2pl": "līkitei"
+      },
+      "preterite": {
+        "3sg": "līkei",
+        "1pl": "līkeimai",
+        "2pl": "līkeitei"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "līki",
+        "2sg": "līki",
+        "3sg": "līki",
+        "1pl": "līkimai",
+        "2pl": "līkitei",
+        "3pl": "līki"
+      },
+      "preterite": {
+        "1sg": "līki",
+        "2sg": "līki",
+        "3sg": "līki",
+        "1pl": "līkimai",
+        "2pl": "līkitei",
+        "3pl": "līki"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "palīki",
+        "2sg": "palīki",
+        "3sg": "palīki",
+        "1pl": "palīkimai",
+        "2pl": "palīkitei",
+        "3pl": "palīki"
+      },
+      "preterite": {
+        "1sg": "palīkei",
+        "2sg": "palīkei",
+        "3sg": "palīkei",
+        "1pl": "palīkeimai",
+        "2pl": "palīkeitei",
+        "3pl": "palīkei"
+      }
+    }
+  },
+  "136_klantītun": {
+    "Tabula": {
+      "present": {
+        "3sg": "klānta",
+        "1pl": "klāntimai",
+        "2pl": "klāntitei"
+      },
+      "preterite": {
+        "3sg": "klantēi",
+        "1pl": "klantēimai",
+        "2pl": "klantēitei"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "klanta",
+        "2sg": "klanta",
+        "3sg": "klanta",
+        "1pl": "klantimai",
+        "2pl": "klantitei",
+        "3pl": "klanta"
+      },
+      "preterite": {
+        "1sg": "klantēi",
+        "2sg": "klantēi",
+        "3sg": "klantēi",
+        "1pl": "klantēimai",
+        "2pl": "klantēitei",
+        "3pl": "klantēi"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "klanta",
+        "2sg": "klanta",
+        "3sg": "klanta",
+        "1pl": "klantimai",
+        "2pl": "klantitei",
+        "3pl": "klanta"
+      },
+      "preterite": {
+        "1sg": "klantēi",
+        "2sg": "klantēi",
+        "3sg": "klantēi",
+        "1pl": "klantēimai",
+        "2pl": "klantēitei",
+        "3pl": "klantēi"
+      }
+    }
+  },
+  "137_turītun": {
+    "Tabula": {
+      "present": {
+        "3sg": "turri",
+        "1pl": "turrimai",
+        "2pl": "turritei"
+      },
+      "preterite": {
+        "3sg": "turēi",
+        "1pl": "turēimai",
+        "2pl": "turēitei"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "turri",
+        "2sg": "turri",
+        "3sg": "turri",
+        "1pl": "turrimai",
+        "2pl": "turritei",
+        "3pl": "turri"
+      },
+      "preterite": {
+        "1sg": "turēi",
+        "2sg": "turēi",
+        "3sg": "turēi",
+        "1pl": "turēimai",
+        "2pl": "turēitei",
+        "3pl": "turēi"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "turri",
+        "2sg": "turri",
+        "3sg": "turri",
+        "1pl": "turrimai",
+        "2pl": "turritei",
+        "3pl": "turri"
+      },
+      "preterite": {
+        "1sg": "turēi",
+        "2sg": "turēi",
+        "3sg": "turēi",
+        "1pl": "turēimai",
+        "2pl": "turēitei",
+        "3pl": "turēi"
+      }
+    }
+  },
+  "137a_milītun": {
+    "Tabula": {
+      "present": {
+        "3sg": "mīli",
+        "1pl": "mīlimai",
+        "2pl": "mīlitei"
+      },
+      "preterite": {
+        "3sg": "milāi",
+        "1pl": "milāimai",
+        "2pl": "milāitei"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "mīli",
+        "2sg": "mīli",
+        "3sg": "mīli",
+        "1pl": "mīlimai",
+        "2pl": "mīlitei",
+        "3pl": "mīli"
+      },
+      "preterite": {
+        "1sg": "milāi",
+        "2sg": "milāi",
+        "3sg": "milāi",
+        "1pl": "milāimai",
+        "2pl": "milāitei",
+        "3pl": "milāi"
+      }
+    }
+  },
+  "138_grīkitun": {
+    "Tabula": {
+      "present": {
+        "1sg": "grīki",
+        "2sg": "grīki",
+        "3sg": "grīki",
+        "1pl": "grīkimai",
+        "2pl": "grīkitei"
+      },
+      "preterite": {
+        "1sg": "grīki",
+        "2sg": "grīki",
+        "3sg": "grīki",
+        "1pl": "grīkimai",
+        "2pl": "grīkitei"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "grīki",
+        "2sg": "grīki",
+        "3sg": "grīki",
+        "1pl": "grīkimai",
+        "2pl": "grīkitei",
+        "3pl": "grīki"
+      },
+      "preterite": {
+        "1sg": "grīki",
+        "2sg": "grīki",
+        "3sg": "grīki",
+        "1pl": "grīkimai",
+        "2pl": "grīkitei",
+        "3pl": "grīki"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "abōni",
+        "2sg": "abōni",
+        "3sg": "abōni",
+        "1pl": "abōnimai",
+        "2pl": "abōnitei",
+        "3pl": "abōni"
+      },
+      "preterite": {
+        "1sg": "abōni",
+        "2sg": "abōni",
+        "3sg": "abōni",
+        "1pl": "abōnimai",
+        "2pl": "abōnitei",
+        "3pl": "abōni"
+      }
+    }
+  },
+  "139_krikstītun": {
+    "Tabula": {
+      "present": {
+        "1sg": "krikstijja",
+        "2sg": "krikstijja",
+        "3sg": "krikstijja",
+        "1pl": "krikstīmai",
+        "2pl": "krikstītei"
+      },
+      "preterite": {
+        "1sg": "krikstijja",
+        "2sg": "krikstijja",
+        "3sg": "krikstijja",
+        "1pl": "krikstīmai",
+        "2pl": "krikstītei"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "krikstijja",
+        "2sg": "krikstijja",
+        "3sg": "krikstijja",
+        "1pl": "krikstijjamai",
+        "2pl": "krikstijjatei",
+        "3pl": "krikstijja"
+      },
+      "preterite": {
+        "1sg": "krikstijja",
+        "2sg": "krikstijja",
+        "3sg": "krikstijja",
+        "1pl": "krikstijjamai",
+        "2pl": "krikstijjatei",
+        "3pl": "krikstijja"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "krikstijja",
+        "2sg": "krikstijja",
+        "3sg": "krikstijja",
+        "1pl": "krikstijjimai",
+        "2pl": "krikstijjitei",
+        "3pl": "krikstijja"
+      },
+      "preterite": {
+        "1sg": "krikstijja",
+        "2sg": "krikstijja",
+        "3sg": "krikstijja",
+        "1pl": "krikstijjimai",
+        "2pl": "krikstijjitei",
+        "3pl": "krikstijja"
+      }
+    }
+  },
+  "140_madlītun": {
+    "Tabula": {
+      "present": {
+        "3sg": "madli",
+        "1pl": "madlimai",
+        "2pl": "madlitei"
+      },
+      "preterite": {
+        "3sg": "madlijja",
+        "1pl": "madlīmai",
+        "2pl": "madlītei"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "madli",
+        "2sg": "madli",
+        "3sg": "madli",
+        "1pl": "madlimai",
+        "2pl": "madlitei",
+        "3pl": "madli"
+      },
+      "preterite": {
+        "1sg": "madlijja",
+        "2sg": "madlijja",
+        "3sg": "madlijja",
+        "1pl": "madlijjamai",
+        "2pl": "madlijjatei",
+        "3pl": "madlijja"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "madli",
+        "2sg": "madli",
+        "3sg": "madli",
+        "1pl": "madlimai",
+        "2pl": "madlitei",
+        "3pl": "madli"
+      },
+      "preterite": {
+        "1sg": "madlijja",
+        "2sg": "madlijja",
+        "3sg": "madlijja",
+        "1pl": "madlīmai",
+        "2pl": "madlītei",
+        "3pl": "madlijja"
+      }
+    }
+  },
+  "141_giwītun": {
+    "Tabula": {
+      "present": {
+        "3sg": "gīwa",
+        "1pl": "gīwimai",
+        "2pl": "gīwitei"
+      },
+      "preterite": {
+        "3sg": "giwīja",
+        "1pl": "giwīmai",
+        "2pl": "giwītei"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "gīwa",
+        "2sg": "gīwa",
+        "3sg": "gīwa",
+        "1pl": "gīwimai",
+        "2pl": "gīwitei",
+        "3pl": "gīwa"
+      },
+      "preterite": {
+        "1sg": "giwīja",
+        "2sg": "giwīja",
+        "3sg": "giwīja",
+        "1pl": "giwījamai",
+        "2pl": "giwījatei",
+        "3pl": "giwīja"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "perwalda",
+        "2sg": "perwalda",
+        "3sg": "perwalda",
+        "1pl": "perwaldimai",
+        "2pl": "perwalditei",
+        "3pl": "perwalda"
+      },
+      "preterite": {
+        "1sg": "perwaldīja",
+        "2sg": "perwaldīja",
+        "3sg": "perwaldīja",
+        "1pl": "perwaldījamai",
+        "2pl": "perwaldījatei",
+        "3pl": "perwaldīja"
+      }
+    }
+  },
+  "142_zinātun": {
+    "Tabula": {
+      "present": {
+        "3sg": "zinna",
+        "1pl": "zinnimai",
+        "2pl": "zinnitei"
+      },
+      "preterite": {
+        "3sg": "zināi",
+        "1pl": "zināimai",
+        "2pl": "zināitei"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "zinna",
+        "2sg": "zinna",
+        "3sg": "zinna",
+        "1pl": "zinnimai",
+        "2pl": "zinnitei",
+        "3pl": "zinna"
+      },
+      "preterite": {
+        "1sg": "zināi",
+        "2sg": "zināi",
+        "3sg": "zināi",
+        "1pl": "zināimai",
+        "2pl": "zināitei",
+        "3pl": "zināi"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "zinna",
+        "2sg": "zinna",
+        "3sg": "zinna",
+        "1pl": "zinnimai",
+        "2pl": "zinnitei",
+        "3pl": "zinna"
+      },
+      "preterite": {
+        "1sg": "zināi",
+        "2sg": "zināi",
+        "3sg": "zināi",
+        "1pl": "zināimai",
+        "2pl": "zināitei",
+        "3pl": "zināi"
+      }
+    }
+  },
+  "143_dīnkautun": {
+    "Tabula": {
+      "present": {
+        "3sg": "dīnkaui",
+        "1pl": "dīnkauimai",
+        "2pl": "dīnkauitei"
+      },
+      "preterite": {
+        "3sg": "dīnkau",
+        "1pl": "dīnkaumai",
+        "2pl": "dīnkautei"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "dīnkaui",
+        "2sg": "dīnkaui",
+        "3sg": "dīnkaui",
+        "1pl": "dīnkawimai",
+        "2pl": "dīnkawitei",
+        "3pl": "dīnkaui"
+      },
+      "preterite": {
+        "1sg": "dīnkau",
+        "2sg": "dīnkau",
+        "3sg": "dīnkau",
+        "1pl": "dīnkaumai",
+        "2pl": "dīnkautei",
+        "3pl": "dīnkau"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "dīnkaui",
+        "2sg": "dīnkaui",
+        "3sg": "dīnkaui",
+        "1pl": "dīnkawimai",
+        "2pl": "dīnkawitei",
+        "3pl": "dīnkaui"
+      },
+      "preterite": {
+        "1sg": "dīnkau",
+        "2sg": "dīnkau",
+        "3sg": "dīnkau",
+        "1pl": "dīnkaumai",
+        "2pl": "dīnkautei",
+        "3pl": "dīnkau"
+      }
+    }
+  },
+  "144_rikaūtun": {
+    "Tabula": {
+      "present": {
+        "3sg": "rikaūja",
+        "1pl": "rikaūwimai",
+        "2pl": "rikaūwitei"
+      },
+      "preterite": {
+        "3sg": "rikaūwa",
+        "1pl": "rikaūmai",
+        "2pl": "rikaūtei"
+      }
+    },
+    "Prusaspira": {
+      "present": {
+        "1sg": "rikaūja",
+        "2sg": "rikaūja",
+        "3sg": "rikaūja",
+        "1pl": "rikaūjimai",
+        "2pl": "rikaūjitei",
+        "3pl": "rikaūja"
+      },
+      "preterite": {
+        "1sg": "rikaūwa",
+        "2sg": "rikaūwa",
+        "3sg": "rikaūwa",
+        "1pl": "rikaūwamai",
+        "2pl": "rikaūwatei",
+        "3pl": "rikaūwa"
+      }
+    },
+    "Twanksta": {
+      "present": {
+        "1sg": "rikaūja",
+        "2sg": "rikaūja",
+        "3sg": "rikaūja",
+        "1pl": "rikaūjimai",
+        "2pl": "rikaūjitei",
+        "3pl": "rikaūja"
+      },
+      "preterite": {
+        "1sg": "rikaūwa",
+        "2sg": "rikaūwa",
+        "3sg": "rikaūwa",
+        "1pl": "rikaūwamai",
+        "2pl": "rikaūwatei",
+        "3pl": "rikaūwa"
+      }
+    }
+  }
+}

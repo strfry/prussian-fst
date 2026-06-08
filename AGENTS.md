@@ -15,7 +15,7 @@ benötigt und sind in <https://github.com/strfry/prussian-mcp> verfügbar.
 ## Grammar references
 
 - **Tabula Nova (Paradigmentabelle):** <http://donelaitis.vdu.lt/prussian/tabula.htm>
-- **English grammar:** <http://donelaitis.vdu.lt/prussian/grammar.htm>
+- **English grammar:** <http://donelaitis.vdu.lt/prussian/gramm.htm>
 - **Polish grammar:** <http://prusaspira.org/gram_pol.html>
 
 ---

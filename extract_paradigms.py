@@ -53,7 +53,8 @@ sorted_nums = sorted(paradigms_by_num.keys(), key=lambda x: (int(re.match(r'\d+'
 
 # Classify
 substantive = [n for n in sorted_nums if 32 <= int(re.match(r'\d+', n).group()) <= 67]
-pronomen = [n for n in sorted_nums if 9 <= int(re.match(r'\d+', n).group()) <= 24]
+pronomen = [n for n in sorted_nums if 9 <= int(re.match(r'\d+', n).group()) <= 20]
+numerālin = [n for n in sorted_nums if 21 <= int(re.match(r'\d+', n).group()) <= 24]
 adjektive = [n for n in sorted_nums if 25 <= int(re.match(r'\d+', n).group()) <= 31]
 partizip = [n for n in sorted_nums if 68 <= int(re.match(r'\d+', n).group()) <= 70]
 pers_pronomen = [n for n in sorted_nums if 1 <= int(re.match(r'\d+', n).group()) <= 7]
@@ -64,6 +65,7 @@ verben = [n for n in sorted_nums if int(re.match(r'\d+', n).group()) > 70]
 print(f"\n✓ Extracted paradigms by type:")
 print(f"  Personalpronomen: {len(pers_pronomen)}")
 print(f"  Pronomen/Demonstrativ: {len(pronomen)}")
+print(f"  Numerālin: {len(numerālin)}")
 print(f"  Adjektiv: {len(adjektive)}")
 print(f"  Substantiv: {len(substantive)}")
 print(f"  Partizip: {len(partizip)}")

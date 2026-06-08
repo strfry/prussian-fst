@@ -80,8 +80,10 @@ DEF_TAG = "+Def"
 SUPERL_TAG = "+Superl"
 ADV_POS_TAG = "+Adv"
 
-# Pronoun paradigms (P9-P24) and adjective paradigms (P25-P31, P30a)
-PRON_PARADIGMS = set(str(i) for i in range(9, 25))
+# Pronoun paradigms (P9-P20), numeral paradigms (P21-P24),
+# and adjective paradigms (P25-P31, P30a)
+PRON_PARADIGMS = set(str(i) for i in range(9, 21))
+NUM_PARADIGMS = set(str(i) for i in range(21, 25))
 ADJ_PARADIGMS = set(str(i) for i in range(25, 32)) | {"30a"}
 
 
@@ -112,10 +114,12 @@ def _paradigm_kind(paradigm: str) -> str:
 
 
 def _pos(paradigm: str) -> str:
-    """Return Giella POS tag (+Pron, +A, or +N) for a paradigm."""
+    """Return Giella POS tag (+Pron, +Num, +A, or +N) for a paradigm."""
     base = _paradigm_base(paradigm)
     if base in PRON_PARADIGMS:
         return "+Pron"
+    if base in NUM_PARADIGMS:
+        return "+Num"
     if base in ADJ_PARADIGMS:
         return "+A"
     return "+N"
@@ -451,13 +455,14 @@ def write_root_lexc() -> None:
     lines = []
     lines.append("Multichar_Symbols")
     lines.append(" %^VowS  %^JPal")
-    lines.append(" +Pron  +A  +N  +Adv  +Msc  +Fem  +Neut")
+    lines.append(" +Pron  +Num  +A  +N  +Adv  +Msc  +Fem  +Neut")
     lines.append(" +Sg  +Pl  +Nom  +Gen  +Dat  +Acc")
     lines.append(" +Def  +Superl  +Comp  +Pos")
     lines.append(" {A}  {E}  {I}  {O}  {U}")
     lines.append("")
     lines.append("LEXICON Root")
     lines.append(" Pronouns ;")
+    lines.append(" Numerals ;")
     lines.append(" Adjectives ;")
     lines.append(" Nouns ;")
     lines.append("")
