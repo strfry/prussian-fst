@@ -142,6 +142,7 @@ def main():
 
     skipped = prus_ok = twank_ok = no_wl = 0
     total = len(items)
+    lemma_map: dict[str, dict[str, str | None]] = {}
 
     for i, (num, entry) in enumerate(items, 1):
         lemma = entry["lemma"]
@@ -151,6 +152,7 @@ def main():
         twank_search   = twank_dir / "search.html"
         twank_forms    = twank_dir / "forms.html"
         twank_txt      = twank_dir / "forms.txt"
+        lemma_map[f"{num}_{lemma}"] = {"prusaspira": None, "twanksta": None}
 
         wl_entries = wl_by_pn.get(num, [])
         if not wl_entries:
@@ -174,6 +176,7 @@ def main():
                     prus_html_file.write_text(raw, encoding="utf-8")
                     prus_txt_file.write_text(strip_html(raw), encoding="utf-8")
                     done = True
+                    lemma_map[f"{num}_{lemma}"]["prusaspira"] = cand if cand != lemma else None
                     prus_ok += 1
                     label = "P✓" if cand == lemma else f"P✓({cand})"
                     print(f" {label}", end="")
@@ -214,6 +217,7 @@ def main():
                     twank_forms.write_text(forms_raw, encoding="utf-8")
                     twank_txt.write_text(strip_html(forms_raw), encoding="utf-8")
                     done = True
+                    lemma_map[f"{num}_{lemma}"]["twanksta"] = cand if cand != lemma else None
                     twank_ok += 1
                     label = "T✓" if cand == lemma else f"T✓({cand})"
                     print(f" {label}", end="")
@@ -228,9 +232,25 @@ def main():
 
         print()
 
+    # Für gecachte Einträge: None → Lemma (wenn Datei existiert)
+    for key, m in lemma_map.items():
+        num, lemma = key.split("_", 1)
+        if m["prusaspira"] is None:
+            prus_f = PRUSASPIRA_OUT / f"{key}.html"
+            if prus_f.exists():
+                m["prusaspira"] = lemma
+        if m["twanksta"] is None:
+            twank_f = TWANKSTA_OUT / key / "forms.html"
+            if twank_f.exists():
+                m["twanksta"] = lemma
+
+    Path("_lemma_map.json").write_text(
+        json.dumps(lemma_map, ensure_ascii=False, indent=2), encoding="utf-8")
+
     print(f"\nDone: {total} total, {no_wl} no-wordlist, {skipped} cached")
     print(f"  Prusaspira: {prus_ok} OK")
     print(f"  Twanksta:   {twank_ok} OK")
+    print("  Lemma-map saved to _lemma_map.json")
 
 
 if __name__ == "__main__":
