@@ -17,6 +17,7 @@ from collections import Counter, OrderedDict
 from pathlib import Path
 
 VERB_IN = Path("vergleich_verbs.json")
+VERB_GS = Path("goldstandard_verben.json")
 OUT_MD  = Path("GOLDSTANDARD_VERBEN.md")
 OUT_JSON = Path("goldstandard_verben.json")
 
@@ -195,6 +196,145 @@ def vote_block(paradigm, lemma, tense, sources):
     return results
 
 
+# ── Verb-spezifische Stamm/Suffix-Extraktion (analog goldstandard.py:build_gold) ──
+
+FST_OUT = Path("goldstandard_verben_fst.json")
+
+PERSONS_ORDER = ["1sg", "2sg", "3sg", "1pl", "2pl"]
+
+
+def verb_stem_len(forms):
+    """Längste gemeinsame Präfixlänge, makron- UND diakritika-insensitiv (fold).
+    Entspricht goldstandard.py:stem_len()."""
+    sk = [fold(f) for f in forms if f]
+    if not sk:
+        return 0
+    n = min(len(x) for x in sk)
+    i = 0
+    while i < n and len({x[i] for x in sk}) == 1:
+        i += 1
+    return i
+
+
+def _first_variant(s):
+    """Schrägstrich-Varianten auflösen: 'lassi/lassē' → 'lassi'."""
+    return s.split("/", 1)[0].strip() if s else s
+
+
+def verb_build_entry(forms_dict, lemma=None):
+    """Stamm + Suffixe aus einem Tempusblock extrahieren.
+
+    forms_dict: {"1sg": gold_form, "2sg": gold_form, …}
+    lemma:      Infinitiv (nur für present). NICHT im LCP für den Stamm,
+                sondern nur für die Inf-Suffix-Ableitung verwendet.
+
+    Returns {"stamm": …, "suffixe": {person: {suffix, betont, …}}}
+    """
+    # Varianten auflösen: nur erste Form vor '/'
+    fd = {p: _first_variant(forms_dict[p]) for p in forms_dict}
+    persons = [p for p in PERSONS_ORDER if p in fd and fd[p]]
+    golds = [fd[p] for p in persons]
+    if lemma:
+        lemma = _first_variant(lemma)
+    if not golds:
+        return {"stamm": "", "suffixe": {}}
+
+    L = verb_stem_len(golds)
+    if L == 0:
+        base = ""
+        stamm = ""
+        regions = {}
+        acc = set()
+    else:
+        # Repräsentant für die Vokal-Trimmung: immer die erste Goldform,
+        # da sie garantiert ≥ L ist (L = LCP aller Goldformen)
+        rep = golds[0]
+        Lp = L
+        while Lp > 0 and strip_macron(rep[Lp - 1]).lower() in "aeiou":
+            Lp -= 1
+        if Lp == 0 and L > 0:
+            Lp = L
+
+        base = strip_macron(rep[:Lp]).lower()
+        regions = {}
+        for p in persons:
+            regions[p] = golds[persons.index(p)][:Lp]
+        acc = set()
+        for pos in range(Lp):
+            if base[pos] in "aeiou":
+                for r in regions.values():
+                    if len(r) > pos and r[pos] != strip_macron(r[pos]):
+                        acc.add(pos)
+                        break
+
+        stamm = "".join(ch.upper() if p in acc else ch for p, ch in enumerate(base))
+
+    suffixe = {}
+    if lemma:
+        inf_suff = lemma[Lp:] if Lp > 0 else lemma
+        suffixe["Inf"] = {"suffix": inf_suff}
+        if Lp > 0:
+            region_lemma = lemma[:Lp]
+            suffixe["Inf"]["betont"] = any(
+                len(region_lemma) > p and region_lemma[p] != strip_macron(region_lemma[p])
+                for p in acc
+            )
+            region_lc = strip_macron(region_lemma).lower()
+            if region_lc != base:
+                suffixe["Inf"]["palatize"] = True
+
+    for p in persons:
+        g = golds[persons.index(p)]
+        entry = {"suffix": g[Lp:]}
+        if Lp > 0:
+            region = regions[p]
+            entry["betont"] = any(
+                len(region) > pos and region[pos] != strip_macron(region[pos])
+                for pos in acc
+            )
+            if strip_macron(region).lower() != base:
+                entry["palatize"] = True
+        suffixe[p] = entry
+
+    return {"stamm": stamm, "suffixe": suffixe}
+
+
+def build_verb_fst_entries():
+    """Liest goldstandard_verben.json → pro Paradigma+Tempus Stamm+Suffixe → schreibt JSON."""
+    data = json.loads(VERB_GS.read_text(encoding="utf-8"))
+    entries = []
+
+    def sort_key(e):
+        num = e["paradigm"]
+        m = re.match(r"(\d+)([a-z]*)", num)
+        return (int(m.group(1)), m.group(2) or "")
+
+    for e in sorted(data, key=sort_key):
+        par = e["paradigm"]
+        lemma = e["lemma"]
+        tenses = e.get("tenses", {})
+
+        for tense in ("present", "preterite"):
+            td = tenses.get(tense)
+            if not td:
+                continue
+            L_lemma = lemma if tense == "present" else None
+            res = verb_build_entry(td, lemma=L_lemma)
+            if not res["suffixe"]:
+                continue
+            entries.append(OrderedDict([
+                ("paradigm", par),
+                ("lemma", lemma),
+                ("tense", tense),
+                ("stamm", res["stamm"]),
+                ("suffixe", res["suffixe"]),
+            ]))
+
+    FST_OUT.write_text(json.dumps(entries, ensure_ascii=False, indent=2), encoding="utf-8")
+    print("Written to", FST_OUT, "(%d Einträge)" % len(entries))
+    return entries
+
+
 def main():
     data = json.loads(VERB_IN.read_text(encoding="utf-8"))
 
@@ -311,6 +451,8 @@ def main():
     print("Written", OUT_MD)
     print("  Blöcke:", len(all_blocks))
     print("  Votes:", dict(votes))
+
+    build_verb_fst_entries()
 
 
 if __name__ == "__main__":

@@ -6,7 +6,7 @@ Generiert von `goldstandard.py` aus `vergleich.json`. Das Mehrheitsvotum (2/3) l
 
 | Kategorie | Anzahl |
 |---|---|
-| Paradigmen gesamt | 69 |
+| Paradigmen gesamt | 71 |
 | **Gender-Mismatch** (Paradigmen) | 4 |
 | **Variation** (Zellen, echte Entscheidung) | 129 |
 | &nbsp;&nbsp;– davon VOTUM (Mehrheit klar) | 95 |

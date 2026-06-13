@@ -36,6 +36,13 @@ STEMS_LEXC = STEMS_DIR / "nouns.lexc"
 AFFIXES_LEXC = AFFIXES_DIR / "nouns.lexc"
 PHON_TWOLC = MORPH_DIR / "phonology.twolc"
 
+# Verb input
+VERB_GOLD = ROOT / "goldstandard_verben_fst.json"
+
+# Verb Giella output paths
+VERB_STEMS_LEXC = STEMS_DIR / "verbs.lexc"
+VERB_AFFIXES_LEXC = AFFIXES_DIR / "verbs.lexc"
+
 # PyFoma output paths
 LEXDOUT = HERE / "nominals.lexd"
 FSTOUT = HERE / "nominals.fst"
@@ -74,6 +81,11 @@ ADV_CELL_TAG = {
     "Comp": "+Comp",
     "Superl": "+Superl",
 }
+
+# Verb tense and person tag mappings
+TENSE_TAG = {"present": "+Prs", "preterite": "+Prt"}
+PERSON_TAG = {"1sg": "+1Sg", "2sg": "+2Sg", "3sg": "+3", "1pl": "+1Pl", "2pl": "+2Pl"}
+INF_TAG = "+Inf"
 
 # Degree/definiteness tags
 DEF_TAG = "+Def"
@@ -455,9 +467,10 @@ def write_root_lexc() -> None:
     lines = []
     lines.append("Multichar_Symbols")
     lines.append(" %^VowS  %^JPal")
-    lines.append(" +Pron  +Num  +A  +N  +Adv  +Msc  +Fem  +Neut")
+    lines.append(" +Pron  +Num  +A  +N  +V  +Adv  +Msc  +Fem  +Neut")
     lines.append(" +Sg  +Pl  +Nom  +Gen  +Dat  +Acc")
     lines.append(" +Def  +Superl  +Comp  +Pos")
+    lines.append(" +Inf  +Prs  +Prt  +1Sg  +2Sg  +3  +1Pl  +2Pl")
     lines.append(" {A}  {E}  {I}  {O}  {U}")
     lines.append("")
     lines.append("LEXICON Root")
@@ -465,6 +478,7 @@ def write_root_lexc() -> None:
     lines.append(" Numerals ;")
     lines.append(" Adjectives ;")
     lines.append(" Nouns ;")
+    lines.append(" Verbs ;")
     lines.append("")
     lines.append("LEXICON K")
     lines.append(" # ;")
@@ -546,6 +560,69 @@ def write_affixes_lexc(entries: list[dict]) -> None:
     print(f"Written {AFFIXES_LEXC}")
 
 
+def write_verb_stems_lexc(verb_entries: list[dict]) -> None:
+    par_tense_stems: dict[tuple[str, str], list[tuple[str, str]]] = defaultdict(list)
+
+    for e in verb_entries:
+        par, tense = e["paradigm"], e["tense"]
+        arch_stem = _stem_to_archiphoneme(e["stamm"])
+        par_tense_stems[(par, tense)].append((e["lemma"], arch_stem))
+
+    lines = []
+    lines.append("LEXICON Verbs")
+
+    for (par, tense) in sorted(par_tense_stems.keys()):
+        ttag = TENSE_TAG[tense]
+        cont_class = f"V-P{par}-{ttag.lstrip('+').upper()}"
+        seen_stems: set[tuple[str, str]] = set()
+        for lemma, arch_stem in sorted(par_tense_stems[(par, tense)]):
+            key = (lemma, arch_stem)
+            if key not in seen_stems:
+                seen_stems.add(key)
+                lines.append(f" {lemma}+V:{arch_stem} {cont_class} ;")
+    lines.append("")
+
+    VERB_STEMS_LEXC.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    print(f"Written {VERB_STEMS_LEXC}")
+
+
+def write_verb_affixes_lexc(verb_entries: list[dict]) -> None:
+    par_tense_cells: dict[tuple[str, str], set[tuple[str, str, bool, bool]]] = defaultdict(set)
+
+    for e in verb_entries:
+        par, tense = e["paradigm"], e["tense"]
+        for cell, v in e["suffixe"].items():
+            betont = v["betont"]
+            pal = v.get("palatize", False)
+            std_suffix, _variant = split_suffix(v["suffix"])
+            par_tense_cells[(par, tense)].add((cell, std_suffix, betont, pal))
+
+    lines = []
+
+    for (par, tense) in sorted(par_tense_cells.keys()):
+        ttag = TENSE_TAG[tense]
+        cont_class = f"V-P{par}-{ttag.lstrip('+').upper()}"
+        lines.append(f"LEXICON {cont_class}")
+
+        for cell, suffix, betont, pal in sorted(par_tense_cells[(par, tense)]):
+            if cell == "Inf":
+                tag = INF_TAG
+            else:
+                tag = f"{ttag}{PERSON_TAG.get(cell, '')}"
+            parts = []
+            if pal:
+                parts.append("%^JPal")
+            if not betont:
+                parts.append("%^VowS")
+            parts.append(suffix)
+            lower = "".join(parts)
+            lines.append(f" {tag}:{lower} K ;")
+        lines.append("")
+
+    VERB_AFFIXES_LEXC.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    print(f"Written {VERB_AFFIXES_LEXC}")
+
+
 def write_phonology_twolc() -> None:
     lines = []
     lines.append("Alphabet")
@@ -586,12 +663,14 @@ def write_phonology_twolc() -> None:
 # PyFoma pre-resolved .lexd generation (+Tag format)
 # ═══════════════════════════════════════════════════════════════════════════
 
-def build_lexd(entries: list[dict]) -> str:
+def build_lexd(entries: list[dict], verb_entries: list[dict] | None = None) -> str:
     """Generate pre-resolved nominals.lexd with Giella +Tag format.
 
     Each word gets per-variant stem forms.  Words sharing the same stem
     surface share a stem lexicon.  Inflection lexicons are shared per
     (paradigm, gender, variant).
+
+    If verb_entries is provided, verb patterns and lexicons are appended.
     """
     # Shared inflection entries:  (par, g, var) -> [(tag, suffix), ...]
     infl_data: dict[tuple[str, str, str], list[tuple[str, str]]] = defaultdict(list)
@@ -669,6 +748,60 @@ def build_lexd(entries: list[dict]) -> str:
     for key in stem_lex_entries:
         stem_lex_entries[key] = sorted(set(stem_lex_entries[key]))
 
+    # --- Verb entries (pre-resolved via resolve_stem) ---
+    v_infl_data: dict[tuple[str, str, str], list[tuple[str, str]]] = defaultdict(list)
+    v_word_var_stems: dict[tuple[str, str, str, str], str] = {}
+    v_stem_lex_entries: dict[tuple[str, str, str], list[tuple[str, str, str]]] = defaultdict(list)
+    v_pattern_lines: list[str] = []
+
+    if verb_entries:
+        for e in verb_entries:
+            par, tense = e["paradigm"], e["tense"]
+            stamm = e["stamm"]
+            lemma = e["lemma"]
+
+            for cell, v in e["suffixe"].items():
+                betont: bool = v["betont"]
+                pal: bool = v.get("palatize", False)
+                prefix = v.get("prefix", "")
+                var = _variant_code(betont, pal)
+                if prefix:
+                    var = f"p{prefix}_{var}"
+                infl_key = (par, tense, var)
+
+                std_suffix, variant_full = split_suffix(v["suffix"])
+
+                stem_surface = prefix + resolve_stem(stamm, betont, pal)
+                v_word_var_stems[(lemma, par, tense, var)] = stem_surface
+
+                if cell == "Inf":
+                    tag = INF_TAG
+                else:
+                    tag = f"{TENSE_TAG[tense]}{PERSON_TAG.get(cell, '')}"
+                entry = (tag, std_suffix)
+                if entry not in v_infl_data[infl_key]:
+                    v_infl_data[infl_key].append(entry)
+
+                if variant_full is not None and (
+                    variant_full.startswith(resolve_stem(stamm, True, pal))
+                    or variant_full.startswith(resolve_stem(stamm, False, pal))
+                ):
+                    upper = f"{lemma}+V{tag}"
+                    variant_forms.append((upper, variant_full))
+
+        for (lemma, par, tense, var), stem_surface in v_word_var_stems.items():
+            tag_prefix = "+V"
+            v_stem_lex_entries[(par, tense, var)].append((lemma, tag_prefix, stem_surface))
+
+        for key in v_stem_lex_entries:
+            v_stem_lex_entries[key] = sorted(set(v_stem_lex_entries[key]))
+
+        for infl_key in sorted(v_infl_data.keys()):
+            par, tense, var = infl_key
+            stem_name = f"Stems_V_{par}_{tense}_{var}"
+            infl_name = f"Infl_V_{par}_{tense}_{var}"
+            v_pattern_lines.append(f"{stem_name} {infl_name}")
+
     lines: list[str] = []
     lines.append("PATTERNS")
 
@@ -682,6 +815,9 @@ def build_lexd(entries: list[dict]) -> str:
     # Doubletten-Vollformen als zusaetzliches Single-Lexikon-Pattern
     if variant_forms:
         lines.append("Variants")
+
+    # Verb patterns within the PATTERNS section
+    lines.extend(v_pattern_lines)
 
     lines.append("")
 
@@ -708,6 +844,24 @@ def build_lexd(entries: list[dict]) -> str:
         lines.append("LEXICON Variants")
         for upper, surface in sorted(set(variant_forms)):
             lines.append(f"{upper}:{surface}")
+        lines.append("")
+
+    # Write Verb stem lexicons
+    for infl_key in sorted(v_stem_lex_entries.keys()):
+        par, tense, var = infl_key
+        stem_name = f"Stems_V_{par}_{tense}_{var}"
+        lines.append(f"LEXICON {stem_name}")
+        for lemma, tag_prefix, stem_surface in v_stem_lex_entries[infl_key]:
+            lines.append(f"{lemma}{tag_prefix}:{stem_surface}")
+        lines.append("")
+
+    # Write Verb infl lexicons
+    for infl_key in sorted(v_infl_data.keys()):
+        par, tense, var = infl_key
+        infl_name = f"Infl_V_{par}_{tense}_{var}"
+        lines.append(f"LEXICON {infl_name}")
+        for tag, suffix in sorted(v_infl_data[infl_key]):
+            lines.append(f"{tag}:{suffix}")
         lines.append("")
 
     return "\n".join(lines)
@@ -740,16 +894,22 @@ def main() -> None:
             combined.append(e)
     print(f"Combined unique entries: {len(combined)}")
 
+    # Load verb entries
+    verb_data = json.loads(VERB_GOLD.read_text(encoding="utf-8"))
+    print(f"Loaded {len(verb_data)} verb entries from {VERB_GOLD}")
+
     # 1. Write canonical Giella files
     STEMS_DIR.mkdir(parents=True, exist_ok=True)
     AFFIXES_DIR.mkdir(parents=True, exist_ok=True)
     write_root_lexc()
     write_stems_lexc(combined)
     write_affixes_lexc(combined)
+    write_verb_stems_lexc(verb_data)
+    write_verb_affixes_lexc(verb_data)
     write_phonology_twolc()
 
     # 2. Build pre-resolved lexd and compile
-    lexd_text = build_lexd(combined)
+    lexd_text = build_lexd(combined, verb_data)
     LEXDOUT.write_text(lexd_text, encoding="utf-8")
     print(f"\nWritten lexd to {LEXDOUT} ({len(lexd_text.splitlines())} lines)")
 
