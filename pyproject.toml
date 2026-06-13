@@ -13,13 +13,18 @@ dependencies = [
 ]
 
 [project.urls]
-Repository = "https://github.com/your-username/prussian-foma"
+Repository = "https://github.com/strfry/prussian-fst"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
 
 [tool.setuptools.packages]
 find = {where = ["src"]}
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.3",
+]
 
 [project.scripts]
 prussian-fst-build = "prussian.fst.build:main"

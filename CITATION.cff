@@ -1,0 +1,42 @@
+cff-version: 1.2.0
+message: >-
+  Wenn Sie diese Ressource verwenden, zitieren Sie sie bitte wie unten
+  angegeben. Beachten Sie auch die Primärquellen (TABVLA NOVA von
+  Palmaitis/Klusis, Prusaspira, Twanksta) und die Sekundärliteratur
+  in docs/references.md.
+title: "prussian-foma: Morphologischer Analysator und Generator für das (Neu-)Preußische"
+type: software
+authors:
+  - name: "Jonathan (strfry)"
+abstract: >-
+  Finite-State-Morphologie des rekonstruierten Preußischen auf Basis
+  der TABVLA NOVA, mit quellenvergleichendem Goldstandard
+  (Tabula/Prusaspira/Twanksta), Akzentmodell nach Rinkevičius (2009)
+  und lexd/pyfoma-Implementierung.
+keywords:
+  - Old Prussian
+  - Baltic languages
+  - finite-state morphology
+  - lexd
+  - language revival
+repository-code: "https://github.com/strfry/prussian-fst"
+references:
+  - type: thesis
+    title: "Prūsų kalbos kirčiavimo sistema (Das altpreußische Akzentsystem)"
+    authors:
+      - family-names: Rinkevičius
+        given-names: Vytautas
+    year: 2009
+    institution:
+      name: "Universität Vilnius"
+  - type: article
+    title: "On the orthography of the Old Prussian texts"
+    authors:
+      - family-names: Kortlandt
+        given-names: Frederik
+    journal: Baltistica
+    volume: 46
+    issue: 2
+    start: 225
+    end: 232
+    year: 2011

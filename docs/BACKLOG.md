@@ -1,9 +1,20 @@
 # Backlog
 
+## Datenmodell
+
+- [ ] **Großbuchstaben ↔ Archiphonem-Kollision** Eigennamen wie
+      `Ewangēlijan` liefern Stämme mit initialem Großbuchstaben
+      (`EwangElij`), der von der Archiphonem-Notation (Großbuchstabe =
+      alternierender Vokal) nicht unterscheidbar ist — das Initial wird
+      mitgedehnt/gekürzt. Schon im alten `resolve_stem` so (Bug-Parität).
+      Fix: Stämme casefolden + Großschreibung als Lemma-Eigenschaft
+      separat führen, oder Archiphoneme auf eigene Symbole umstellen.
+
 ## Orthographische Normalisierung
 
-- [ ] **elektr-/elaktr-** Twanksta `elektrō-` vs Prusaspira `elaktrō-`
-      → Ortho-FST-Regel für `elaktr`-Präfix
+- [x] **elektr-/elaktr-** Twanksta `elektrō-` vs Prusaspira `elaktrō-`
+      → erledigt 2026-06-13: V-Stammvariante in `lexd_gen.py`,
+      akzeptiert von `build/lenient.fst` (Test: `tests/test_ortho.py`)
 
 - [ ] **Nom sg -as/-us vs -s** Paradigmen P25/P32 haben Nom-sg-Suffix
       wahlweise `-as`/`-us` statt `-s`.  Stamm-Extraktion in

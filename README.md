@@ -70,33 +70,35 @@ tabula.html               prusaspira.org            wirdeins.twanksta.org
     └───────────┬───────────────┴───────────────────────────┘
                 │
                 ▼
-       compare_sources.py
+   src/prussian/compare/compare_sources.py
                 │
         ┌───────┴────────┐
         ▼                ▼
+  data/derived/     data/derived/
   vergleich.html    vergleich.json   (roh, ohne Matching-Annotation)
                          │
                          ▼
-                  goldstandard.py
+           src/prussian/gold/goldstandard.py
                          │
                  ┌───────┴────────┐
                  ▼                ▼
-           GOLDSTANDARD.md   goldstandard.json
-           (Review/Tabelle)  (FST-Eingabe: Stamm + Suffixe)
+        data/gold/          data/gold/
+        GOLDSTANDARD.md     goldstandard.json
+        (Review/Tabelle)    (FST-Eingabe: Stamm + Suffixe + betont-Flags)
                                  │
-                                 ▼
-                         fst/build_fst.py
-                                 │
-                     ┌───────────┼───────────┐
-                     ▼           ▼           ▼
-              Giella-Dateien  nominals.lexd  nominals.fst
-              (fst/morphology/ (PyFoma lexd) (kompilierter
-               root.lexc,                    FST)
-               stems/nouns.lexc,
-               affixes/nouns.lexc,           │
-               phonology.twolc)              ▼
-                                        fst/gen_check.py
-                                        (919/919 Zellen ✓)
+                ┌────────────────┤
+                ▼                ▼
+  src/prussian/gold/accent.py   src/prussian/fst/build.py
+  (Akzentmodell, docs/AKZENT.md) (= entries + lexd_gen ∘ rules)
+                │                        │
+                ▼                ┌───────┴────────────┐
+  data/gold/accent_model.json    ▼                    ▼
+                        build/morphotactics.lexd  build/analyser.fst
+                        (Stämme 1×, Marker M/S/J/V) build/lenient.fst
+                                                       │
+                                                       ▼
+                                          src/prussian/fst/gen_check.py
+                                          (967/967 Zellen + 18 Doubletten ✓)
 ```
 
 ## Entscheidungen für die Vergleichstabelle
@@ -232,57 +234,72 @@ Bei echten 3-Wege-Konflikten, die das Votum nicht auflöst, werden Entscheidunge
 | 29 | sēnts | **swints** (Prusaspira, swint-Stamm) für alle m/f/n-Zellen | swint- ist im Korpus am weitesten verbreitet; Tabula `sēnt-` und Twanksta `swent-` verworfen. |
 | 54 | pekūri | **maskulines Prusaspira-Paradigma** (`pekūr-`) | Mažiulis widerlegt die Tabula-Formen: die weiche Endung `-jas` (Twanksta) entspricht regelhaft `-es` (Prusaspira), nicht Tabulas `-is`. Daher Prusaspira-Maskulinum (ū-Stamm; Twanksta-`pekār-` mit ā verworfen). Nur maskulin — die femininen Formen in Prusaspira/Twanksta sind Parsing-Zufallsfunde, die nicht zu Klasse 54 gehören, und werden verworfen. Dat sg = `pekūrei` (zellenspezifisch; `-ei` wie bei allen anderen Lemmata der Klasse 54, statt Prusaspiras `pekūŗu`). |
 
-## Skripte
+## Module (`src/prussian/`)
 
-| Skript | Aufgabe |
+| Modul | Aufgabe |
 |--------|---------|
-| `fetch_prusaspira.py` | Lädt Flexionstabellen von prusaspira.org |
-| `lookup_prusaspira.py` | Schlägt Lemmata in `prussian_dictionary.json` nach |
-| `lookup_prusaspira_fuzzy.py` | Zweiter Durchlauf mit Fuzzy- und manuellem Matching |
-| `twanksta_api_check.py` | Validierung der twanksta-Treffer per API |
-| `compare_paradigms.py` | Vergleich tabula vs. prusaspira (ABGLEICH.md) |
-| `compare_sources.py` | 3-Wege-Vergleich → `vergleich.html` + `vergleich.json` |
-| `goldstandard.py` | Auswertung/Formauswahl aus `vergleich.json` → `GOLDSTANDARD.md` + `goldstandard.json` |
-| `extract_paradigms.py` | Extrahiert Paradigmen aus `tabula.html` |
-| `fst/build_fst.py` | Erzeugt Giella-`.lexc`-Dateien + `phonology.twolc` + `nominals.lexd`, kompiliert FST |
-| `fst/gen_check.py` | Validiert FST-Generierung gegen alle 919 Gold-Zellen + 18 Parallelformen (100 % Match, `+Tag`-Format) |
+| `fetch/fetch_prusaspira.py` | Lädt Flexionstabellen von prusaspira.org |
+| `fetch/fetch_verb_data.py` | Lädt Verbformen (beide Quellen) |
+| `fetch/lookup_prusaspira*.py` | Lemma-Lookup in `prussian_dictionary.json` (+ Fuzzy) |
+| `compare/compare_paradigms.py` | Vergleich tabula vs. prusaspira |
+| `compare/compare_sources.py` | 3-Wege-Vergleich → `data/derived/vergleich.{html,json}` |
+| `compare/compare_verbs.py` | dito für Verben |
+| `compare/extract_paradigms.py` | Extrahiert Paradigmen aus `tabula.html` |
+| `compare/extract_participles.py` | Extrahiert Partizipien/Modi aus den Rohabzügen |
+| `gold/goldstandard.py` | Formauswahl aus `vergleich.json` → `data/gold/` |
+| `gold/goldstandard_verbs.py` | dito für Verben |
+| `gold/accent.py` | Leitet das Akzentmodell ab → `accent_model.json` (s. `docs/AKZENT.md`) |
+| `gold/{analyze,validate}_participles.py` | Partizip-Auswertung (Vorarbeit nächster Schritt) |
+| `fst/entries.py` | Goldstandard + Wortliste → FST-Einträge (Routing, Archiphonem-Detektion) |
+| `fst/lexd_gen.py` | Einträge → `build/morphotactics.lexd` (Marker M/S/J/V) |
+| `fst/rules.py` | Akzent-/Palatalisierungs-/Varianten-Regeln (pyfoma-Rewrite) |
+| `fst/build.py` | Komposition → `build/analyser.fst` + `build/lenient.fst` |
+| `fst/gen_check.py` | Validiert Generierung gegen alle 967 Gold-Zellen + 18 Parallelformen |
+| `fst/match_forms.py` | Korpus-Coverage gegen `prussian_dictionary.json` |
+| `fst/analyze.py` | CLI: Wörter analysieren (Standard + nachsichtig) |
 
 ## FST-Modell
 
-`fst/build_fst.py` erzeugt einen bidirektionalen FST fuer die Nominalparadigmen
-(Substantive, Paradigmen 9–70). Die Ausgabe folgt **Giella-Konventionen**
-(vgl. `lang-lav/src/fst/morphology/`) fuer einen spaeteren hfst-lexc/twolc-Port —
-die Verzeichnisstruktur unter `fst/` spiegelt diese bewusst.
+`python -m prussian.fst.build` erzeugt bidirektionale FSTs für Nominal-
+(P9–P70) und Verbalparadigmen (P71–P144, Präs/Prät/Inf). Architektur:
 
-**Zwei-Ausgabe-Strategie:**
+```
+build/morphotactics.lexd   Morphotaktik (lexd): Stämme genau 1×, Endungen 1×
+        ∘  rules.py        Akzent- + Palatalisierungsregeln (pyfoma-Rewrite)
+        =  analyser.fst    Standard-Orthographie ↔ +Tags
+        ∘  V-Zeilen+Regeln Twanksta-j-Schreibung, elektr-/elaktr-
+        =  lenient.fst     akzeptiert Quellvarianten → Standardanalyse
+```
 
-1. **Kanonische Giella-Dateien** (fuer hfst-Port, unter `fst/morphology/`):
-   - `root.lexc` — `Multichar_Symbols`, `LEXICON Root` → Nouns
-   - `stems/nouns.lexc` — Lemma+Paradigma mit Archiphonem-Notation `{A}`
-   - `affixes/nouns.lexc` — Flexionsendungen mit `%^JPal` / `%^VowS`-Markern
-   - `phonology.twolc` — 4 twolc-Regelgruppen (Default-Laengung, Kuerzung vor
-     `%^VowS`, Palatalisierung vor `%^JPal`, Marker-Tilgung)
+Die Morphotaktik trägt auf der Unterseite **Marker**, die die Regelschicht
+auflöst und tilgt:
 
-2. **PyFoma-kompilierter FST** (prae-aufgeloeste Phonologie, unter `fst/`):
-   - `nominals.lexd` — Lexd-Grammatik mit aufgeloesten Vokalen/Palatalen
-   - `nominals.fst` — Bidirektionaler FST (849 Zustaende)
+| Marker | Position | Bedeutung |
+|--------|----------|-----------|
+| `M` | vor dem Stamm | Lexem ist Mobile (Akzentklasse) |
+| `S` | vor der Endung | Endung ist stark (zieht den Akzent) |
+| `J` | vor der Endung | Endung palatalisiert den Stammauslaut (`g→ģ` …) |
+| `V` | vor der Endung | Twanksta-Orthographievariante (nur in `lenient.fst`) |
+| `A E I O U` | im Stamm | Archiphonem: Vokal alterniert lang/kurz |
+
+**Akzentmodell (Rinkevičius 2009, hergeleitet in `docs/AKZENT.md`):**
+Akzent = erstes starkes Morphem. Barytona (starker Stamm) tragen das
+Makron in allen Zellen; Mobilia (`M`) kürzen das Stamm-Archiphonem vor
+starken Endungen (`S`): `MmIstan → mīstan`, aber `MmIstSāi → mistāi`.
+Das Modell deckt 100 % der 967 Goldstandard-Zellen ab
+(`data/gold/accent_model.json`, 0 Exceptions).
 
 **Tagset (Giella flat-plus Format):**
 ```
-+N +Msc +Fem +Neut  +Sg +Pl  +Nom +Gen +Dat +Acc
++N +A +Pron +Num +V  +Msc +Fem +Neut  +Sg +Pl  +Nom +Gen +Dat +Acc
++Inf +Prs +Prt +1Sg +2Sg +3 +1Pl +2Pl  +Def +Superl +Adv +Comp +Pos
 ```
-Beispiel: `wāiks+N+Msc+Sg+Nom` → `wāiks`
+Beispiel: `wāiks+N+Msc+Sg+Nom` → `wāiks`; `analyse("kūgjan")` über
+`lenient.fst` → `kūgis+N+Msc+Sg+Acc`.
 
-**Marker (Giella-konform):**
-| Marker | Bedeutung | Regel |
-|--------|-----------|-------|
-| `%^JPal` | J-Palatalisierung | `g:ģ <=> _ %^JPal: ;` |
-| `%^VowS` | Vokalkuerzung | `{A}:a <=> _ ?* %^VowS: ;` |
-
-**Akzentmodell (unser, nicht in Giella):**
-- Archiphonem `{A}` `{E}` `{I}` `{O}` `{U}` im Stamm
-- Default: Langvokal (betont=True, kein `%^VowS`-Marker)
-- `%^VowS`-Marker im Affix → Kurzvokal (betont=False)
+Ein späterer HFST-Port bleibt möglich: lexd ist Apertium-kompatibel,
+die twolc-Äquivalente der Regeln sind in `docs/ORTHO_RULES.md` §4
+dokumentiert.
 
 **Doublettenformen / Parallelformen (Pronomina):**
 Einige pronominale Neutrum-Zellen (P11 stas, P16 subs, P18 kits, P21 aīns —
@@ -296,58 +313,52 @@ generate(stas+N+Neut+Sg+Nom) → ['sta', 'stan']
 analyze('sta')  → … stas+N+Neut+Sg+Nom
 analyze('stan') → … stas+N+Neut+Sg+Nom
 ```
-Umsetzung in `fst/build_fst.py`: `split_suffix()` trennt die Zelle; der Standard
-laeuft durch die normale Stamm+Suffix-Mechanik, die Variante wird als literale
-`upper:lower`-Vollform in ein eigenes `LEXICON Variants` emittiert. Ein Guard
+Umsetzung in `src/prussian/fst/lexd_gen.py`: `split_suffix()` trennt die
+Zelle; der Standard laeuft durch die normale Stamm+Suffix-Mechanik, die
+Variante wird als literale `upper:lower`-Vollform in ein eigenes
+`LEXICON Variants` emittiert. Ein Guard
 (`variant.startswith(resolve_stem(stamm, …))`) verhindert, dass die
 lemma-spezifische Variante faelschlich auf Geschwister-Lemmata derselben Klasse
-(z. B. eraīns, jūss) vererbt wird. Das Goldformat behaelt `/` als Quellnotation;
-das kanonische `affixes/nouns.lexc` enthaelt nur den Standardteil (die Vollform
-ist als reines Affix nicht darstellbar — sie lebt nur im kompilierten FST).
+(z. B. eraīns, jūss) vererbt wird. Das Goldformat behaelt `/` als Quellnotation.
 
-**Validierung:** `fst/gen_check.py` generiert alle 919 Zellen aus dem FST und
-vergleicht sie mit den erwarteten Formen aus `goldstandard.json`.
-Ergebnis: **919/919 Standard-Zellen exakt** (100 %) **+ 18/18 Parallelformen**.
+**Validierung:** `src/prussian/fst/gen_check.py` generiert alle 967 Zellen aus
+dem FST und vergleicht sie mit den erwarteten Formen aus `goldstandard.json`.
+Ergebnis: **967/967 Standard-Zellen exakt** (100 %) **+ 18/18 Parallelformen**;
+dazu 872/872 Verbzellen (`tests/`).
 
 ## Setup / externe Daten
 
-Aus Platzgruenden **nicht** im Repo (per `.gitignore`); separat beziehen und ins
-Wurzelverzeichnis legen:
+Aus Platzgruenden **nicht** im Repo (per `.gitignore`); separat beziehen und
+unter `data/external/` ablegen:
 
 | Datei | Quelle / Zweck |
 |-------|----------------|
-| `wordlist.json` (2,2 MB) | Twanksta-Wortliste mit Paradigmen-Nummern; **noetig** fuer `fst/build_fst.py` (Stamm-Extraktion P32–67). |
-| `prussian_dictionary.json` (35 MB) | Twanksta-Woerterbuch-Export; nur fuer `lookup_prusaspira*.py` / `twanksta_api_check.py`. |
+| `data/external/wordlist.json` (2,2 MB) | Twanksta-Wortliste mit Paradigmen-Nummern; **noetig** fuer den Vollbau (Stamm-Extraktion P32–67). |
+| `data/external/prussian_dictionary.json` (35 MB) | Twanksta-Woerterbuch-Export; fuer `lookup_prusaspira*.py` und `match_forms.py`. |
 
 Ebenfalls ignoriert (regenerierbar bzw. read-only Referenz):
-- `prusaspira/`, `twanksta/` — gefetchte Korpora (1 req/s, via `fetch_prusaspira.py`
-  bzw. `twanksta_api_check.py` neu erzeugbar).
-- `fst/nominals.*`, `fst/morphology/` — vollstaendig aus `goldstandard.json` +
-  `wordlist.json` generiert (`uv run python fst/build_fst.py`).
-- `lang-lit/`, `lang-lav/` — optionale Giella-Referenzklone (eigenes `.git`).
+- `prusaspira/`, `twanksta/`, `corpus/` — gefetchte Korpora (1 req/s, via
+  `prussian.fetch` neu erzeugbar).
+- `build/` — vollstaendig aus `data/gold/` + `data/external/` generiert.
+- `lang-lit/`, `lang-lav/`, `lang-fao/` — optionale Giella-Referenzklone.
 
 Aufbau (nach `uv sync`):
 ```
-uv run python fst/build_fst.py    # erzeugt fst/morphology/* + fst/nominals.*
-uv run python fst/gen_check.py    # validiert: 919/919 Zellen
+uv run python -m prussian.fst.build              # → build/analyser.fst, build/lenient.fst
+uv run python -m prussian.fst.build --gold-only  # schneller Testbau ohne Wortliste
+uv run python src/prussian/fst/gen_check.py      # validiert: 967/967 Zellen
+uv run python src/prussian/gold/accent.py        # Akzentmodell neu ableiten
 ```
 
 ## Struktur
 
 ```
-vergleich.html                   3-Wege-Vergleichstabelle
-vergleich.json                   Rohe geparste Formen pro Quelle (FST-Eingabe)
-GOLDSTANDARD.md                  Goldstandard-Auswahl je Inflektionszelle
-goldstandard.json                FST-Eingabe: Liste, Eintrag pro (Paradigma, Genus)
-fst/build_fst.py                 Generator (Giella-Dateien + lexd + kompilierter FST)
-fst/gen_check.py                 Validierung gegen alle 919 Gold-Zellen
-fst/morphology/root.lexc         Giella Root-Lexicon (Multichar_Symbols + Root)   [generiert]
-fst/morphology/stems/nouns.lexc  Giella Noun-Stem-Lexicon ({A}-Archiphoneme)      [generiert]
-fst/morphology/affixes/nouns.lexc Giella Noun-Affix-Lexicon (%^JPal/%^VowS)        [generiert]
-fst/morphology/phonology.twolc   Giella Twolc-Phonologie (4 Regelgruppen)         [generiert]
-fst/nominals.lexd                PyFoma Lexd-Grammatik (prae-aufgeloest)          [generiert]
-fst/nominals.fst                 Kompilierter FST (PyFoma)                        [generiert]
-fst/nominals.att                 FST im AT&T-Textformat                           [generiert]
-prusaspira/{n}_{lemma}.{txt,html} Gefetchte Prusaspira-Tabellen                   [ignoriert]
-twanksta/{n}_{lemma}/lemma.json  Woerterbuch-Treffer                             [ignoriert]
+data/sources/      tabula.html, gramm.htm           Rohquellen (committed)
+data/external/     wordlist.json, prussian_dictionary.json   [ignoriert]
+data/derived/      vergleich*.{json,html}           3-Wege-Vergleich
+data/gold/         goldstandard*.json, GOLDSTANDARD*.md, accent_model.json
+src/prussian/      fetch/ compare/ gold/ fst/       Pipeline-Module (s. o.)
+docs/              AKZENT.md, ORTHO_RULES.md, PROVENANCE.md, references.md, …
+build/             morphotactics.lexd, analyser.fst, lenient.fst   [generiert]
+tests/             pytest-Suite
 ```

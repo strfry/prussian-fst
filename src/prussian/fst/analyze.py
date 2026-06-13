@@ -1,51 +1,40 @@
 #!/usr/bin/env python3
-"""Alle flektierten Twanksta-Formen aus prussian_dictionary.json gegen den
-Haupt-FST + Ortho-Normalisierungs-FST matchen.
+"""CLI-Analysator: Wörter/Sätze gegen analyser.fst + lenient.fst analysieren.
 
-Nur Paradigmen im FST-Bereich (P9–P67) werden geprueft.
+Aufruf:  python -m prussian.fst.analyze "kūgjan mestāi wīrs"
+
+Standard-Analysen kommen aus build/analyser.fst; Formen in
+Quellvarianten-Orthographie (Twanksta-j, elaktr-) fängt build/lenient.fst
+auf und werden mit '~' markiert.
 """
 
-import json
 import sys
-from collections import defaultdict
 from pathlib import Path
 
 from pyfoma import FST
 
-HERE = Path(__file__).resolve().parent
-ROOT = HERE.parent.parent.parent
-MAIN_FST = HERE / "nominals.fst"
-ORTHO_FST = HERE / "ortho.fst"
-DICT = ROOT / "prussian_dictionary.json"
-GOLD = ROOT / "data/gold/goldstandard.json"
-WORDLIST = ROOT / "data/external/wordlist.json"
-
-CASE_MAP = {"Nominative": "Nom", "Genitive": "Gen", "Dative": "Dat", "Accusative": "Acc"}
-NUM_MAP = {"singular": "sg", "plural": "pl"}
-GENDER_MAP = {"masc": "m", "fem": "f", "neut": "n"}
+ROOT = Path(__file__).resolve().parent.parent.parent.parent
+MAIN_FST = ROOT / "build/analyser.fst"
+LENIENT_FST = ROOT / "build/lenient.fst"
 
 
 def main() -> None:
     main_fst = FST.load(str(MAIN_FST))
-    ortho_fst = FST.load(str(ORTHO_FST))
-    print(f"Main FST: {len(main_fst.states)} states")
-    print(f"Ortho FST: {len(ortho_fst.states)} states")
+    lenient_fst = FST.load(str(LENIENT_FST))
 
-    sentence = sys.argv[1]
+    for word in " ".join(sys.argv[1:]).split():
+        w = word.lower()
+        results = sorted(set(main_fst.analyze(w)))
+        marker = ""
+        if not results:
+            results = sorted(set(lenient_fst.analyze(w)))
+            marker = "~"  # nur über Variantenorthographie erkannt
+        if results:
+            for r in results:
+                print(f"{word}\t{marker}{r}")
+        else:
+            print(f"{word}\t?")
 
-    def analyze(form: str) -> list[str]:
-        f = form.lower()
-        results = list(main_fst.analyze(f))
-        for norm in ortho_fst.analyze(f):
-            for r in main_fst.analyze(norm):
-                if r not in results:
-                    results.append(r)
-        return results
-
-    for word in sentence.split(' '):
-        word = word.lower()
-        result = list(main_fst.analyze(word))
-        print(result)
 
 if __name__ == "__main__":
     main()

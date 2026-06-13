@@ -14,9 +14,10 @@ from pyfoma import FST
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent.parent.parent
-MAIN_FST = HERE / "nominals.fst"
-ORTHO_FST = HERE / "ortho.fst"
-DICT = ROOT / "prussian_dictionary.json"
+# Überschreibbar per CLI: match_forms.py [main_fst] [lenient_fst]
+MAIN_FST = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "build/analyser.fst"
+LENIENT_FST = Path(sys.argv[2]) if len(sys.argv) > 2 else ROOT / "build/lenient.fst"
+DICT = ROOT / "data/external/prussian_dictionary.json"
 GOLD = ROOT / "data/gold/goldstandard.json"
 WORDLIST = ROOT / "data/external/wordlist.json"
 
@@ -49,17 +50,15 @@ def count_total() -> int:
 
 def main() -> None:
     main_fst = FST.load(str(MAIN_FST))
-    ortho_fst = FST.load(str(ORTHO_FST))
+    lenient_fst = FST.load(str(LENIENT_FST))
     print(f"Main FST: {len(main_fst.states)} states")
-    print(f"Ortho FST: {len(ortho_fst.states)} states")
+    print(f"Lenient FST: {len(lenient_fst.states)} states")
 
     def analyze(form: str) -> list[str]:
         f = form.lower()
         results = list(main_fst.analyze(f))
-        for norm in ortho_fst.analyze(f):
-            for r in main_fst.analyze(norm):
-                if r not in results:
-                    results.append(r)
+        if not results:
+            results = list(lenient_fst.analyze(f))
         return results
 
     with open(DICT, encoding="utf-8") as f:
@@ -167,7 +166,7 @@ def main() -> None:
         )
 
     print(f"\n--- Ortho-only match samples ---")
-    ortho_samples = _gather_ortho_samples(words, main_fst, ortho_fst, max_samples=20)
+    ortho_samples = _gather_ortho_samples(words, main_fst, lenient_fst, max_samples=20)
     for form, lemma, par, norm in ortho_samples:
         print(f"  {form:30s} → {norm:25s} ← {lemma} P{par}")
 
@@ -198,11 +197,9 @@ def _gather_ortho_samples(
                     direct = list(main_fst.analyze(f_lower))
                     if direct:
                         continue
-                    norms = list(ortho_fst.analyze(f_lower))
-                    if norms and any(
-                        list(main_fst.analyze(n)) for n in norms
-                    ):
-                        samples.append((form, lemma, par, norms[0]))
+                    analyses = list(ortho_fst.analyze(f_lower))
+                    if analyses:
+                        samples.append((form, lemma, par, analyses[0]))
                         if len(samples) >= max_samples:
                             return samples
     return samples

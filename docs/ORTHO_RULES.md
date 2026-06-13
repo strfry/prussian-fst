@@ -1,10 +1,19 @@
 # Orthographische Regeln für den prūsischen FST-Analysator
 
-Stand: 2026-06-12. Basierend auf 78 Paradigmen Partizip-Daten + existierendem FST.
+Stand: 2026-06-13. Basierend auf 78 Paradigmen Partizip-Daten + existierendem FST.
+
+> **Implementierungsstand (2026-06-13):** Die lebende Implementierung ist
+> `src/prussian/fst/rules.py` (pyfoma-Rewrite-Regeln) komponiert mit der
+> Morphotaktik aus `src/prussian/fst/lexd_gen.py`; das Akzentmodell
+> dahinter ist in [AKZENT.md](AKZENT.md) hergeleitet (die `%^VowS`-Marker
+> von §1.2 sind durch die Akzentmarker M/S ersetzt). Die twolc-Notation
+> in §1/§4 beschreibt die Regeln äquivalent für einen späteren HFST-Port —
+> sie wird nicht kompiliert. §2 (Partizipien, Modi) ist die Spezifikation
+> für den nächsten Ausbauschritt.
 
 ---
 
-## 1. Existierende Regeln (in `fst/morphology/phonology.twolc`)
+## 1. Existierende Regeln (Implementierung: `src/prussian/fst/rules.py`)
 
 ### 1.1 Archiphonem-Auflösung (`@DEFAULT_LONG@`)
 
@@ -43,9 +52,12 @@ Wenn ein Suffix den Marker `%^JPal` trägt (beginnt mit `j`), wird der stammausl
 - Nominal: Dat.Sg (kūg-u → kūģu)
 - Verbal: -ja-Klasse Präsens (glab-ja → glabja — `b` wird nicht palatalisiert, weil `b` nicht in der Palatalisierungsliste ist)
 
-### 1.4 Orthographie-Normalisierer (`ortho.fst`)
+### 1.4 Orthographie-Normalisierer (`build/lenient.fst`)
 
-Separater FST, der Twanksta-Varianten auf Standardformen abbildet. Regeln aus `ortho_rules.py`:
+Früher ein separater, aufzählender `ortho.fst`; jetzt entstehen die
+Twanksta-j-Varianten **pro Endung** in der Morphotaktik
+(`lexd_gen.jan_variant`, V-Marker) — `lenient.fst` akzeptiert sie und
+liefert direkt die Standardanalyse. Die Variantenregeln:
 
 | Twanksta | Standard | Kontext |
 |----------|----------|---------|

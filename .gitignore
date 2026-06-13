@@ -23,9 +23,6 @@ prusaspira/
 twanksta/
 
 # Generated FST artefacts
-fst/nominals.*
-fst/ortho.fst
-fst/morphology/
 
 # Corpora (external, regenerate if needed)
 corpus/
