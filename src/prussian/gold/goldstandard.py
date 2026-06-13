@@ -22,7 +22,7 @@ from collections import Counter, OrderedDict
 from pathlib import Path
 
 IN = Path("data/derived/vergleich.json")
-OUT = Path("GOLDSTANDARD.md")
+OUT = Path("data/gold/GOLDSTANDARD.md")
 JSON_OUT = Path("data/gold/goldstandard.json")
 
 SRC = ["Tabula", "Prusaspira", "Twanksta"]

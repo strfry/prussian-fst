@@ -17,9 +17,9 @@ from collections import Counter, OrderedDict
 from pathlib import Path
 
 VERB_IN = Path("data/derived/vergleich_verbs.json")
-VERB_GS = Path("goldstandard_verben.json")
-OUT_MD  = Path("GOLDSTANDARD_VERBEN.md")
-OUT_JSON = Path("goldstandard_verben.json")
+VERB_GS = Path("data/gold/goldstandard_verben.json")
+OUT_MD  = Path("data/gold/GOLDSTANDARD_VERBEN.md")
+OUT_JSON = Path("data/gold/goldstandard_verben.json")
 
 SRC = ["Tabula", "Prusaspira", "Twanksta"]
 TENSES = ["present", "preterite"]
