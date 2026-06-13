@@ -14,9 +14,9 @@ lang-lit/
 lang-lav/
 lang-fao/
 
-# Large input data (obtain externally — see README)
-wordlist.json
-prussian_dictionary.json
+# External data (obtain externally — see README)
+data/external/wordlist.json
+data/external/prussian_dictionary.json
 
 # Fetched corpora (regenerate via fetch_prusaspira.py / twanksta_api_check.py)
 prusaspira/

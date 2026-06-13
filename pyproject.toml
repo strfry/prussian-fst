@@ -1,9 +1,25 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "prussian-foma"
-version = "0.1.0"
-description = "Add your description here"
+version = "0.2.0"
+description = "Old Prussian morphological analyzer and generator using pyfoma"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "pyfoma>=1.1.0",
 ]
+
+[project.urls]
+Repository = "https://github.com/your-username/prussian-foma"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages]
+find = {where = ["src"]}
+
+[project.scripts]
+prussian-fst-build = "prussian.fst.build:main"
