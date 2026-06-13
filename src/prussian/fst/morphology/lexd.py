@@ -1,17 +1,10 @@
-"""Erzeugt die morphotaktische lexd-Grammatik (markierte Unterseite).
+"""Morphotaktische lexd-Grammatik zusammenbauen (≈ root.lexc + stems/affixes).
 
-Im Gegensatz zum früheren build_fst.py wird **kein** Varianten-Kreuzprodukt
-mehr ausgelöst: jeder Stamm steht genau einmal pro (Paradigma, Genus),
-Archiphoneme (A E I O U) und Akzentklasse (Marker M) bleiben sichtbar,
-die Endungslexika tragen Stärke- (S) und Palatalisierungsmarker (J).
-Die Auflösung zur Oberfläche übernimmt rules.py.
-
-Twanksta-Orthographievarianten (explizites Palatalisierungs-j statt
-palatalisiertem Konsonanten + weicher Endung, Mažiulis §§21–25, §122
-Fn54) werden als zusätzliche Endungszeilen mit V-Marker emittiert
-(`+Sg+Gen:Vjas` neben `+Sg+Gen:Jas`). Der Standard-Analysator filtert
-V-Pfade aus, der nachsichtige Analysator (lenient.fst) akzeptiert sie —
-ersetzt den früheren aufzählenden ortho.fst.
+POS-agnostischer Emissions-Kern: aus den (Gruppenschlüssel, Tag-Präfix,
+Art, Eintrag)-Strömen von morphology.nominals und morphology.verbs entsteht
+der lexd-Quelltext mit markierter Unterseite. Jeder Stamm steht genau einmal
+pro Gruppe; Archiphoneme (A E I O U) und Marker (M/S/J) bleiben sichtbar, die
+Auflösung zur Oberfläche übernimmt phonology.py.
 
 Akzentklassen (vgl. docs/AKZENT.md):
   bar  Stamm immer lang   → Stamm literal mit Makron, keine Marker
@@ -21,44 +14,21 @@ Akzentklassen (vgl. docs/AKZENT.md):
                             detektiertem Makron werden lang gehalten
                             (Baryton-Default — das frühere Kürzen in
                             allen Zellen widersprach der Nom-sg-Evidenz)
+
+Twanksta-j- und elaktr-Quellvarianten werden als V-markierte Zeilen
+emittiert (spellrelax.py); der Standard-Analysator filtert V-Pfade aus,
+der nachsichtige (lenient.fst) akzeptiert sie.
 """
 
 from collections import defaultdict
+from itertools import chain
 
-from prussian.fst.entries import (
-    LONG,
-    cell_tag, resolve_stem, split_reflexive, split_suffix,
-    tag_prefix, verb_cell_tag,
+from prussian.fst.oracle import LONG, resolve_stem
+from prussian.fst.spellrelax import elaktr_variant, jan_variant
+from prussian.fst.tags import (
+    cell_tag, split_reflexive, split_suffix, verb_cell_tag,
 )
-
-
-# ── Twanksta j-Variante einer Endung (aus dem früheren ortho_rules.py) ──
-
-#: Vokale, die den weichen Endungsvokal-Shift auslösen (→ ja).
-_SOFT_VOWELS = set("ieīē")
-#: Vokale, die reinen j-Einschub bekommen (→ jV).
-_HARD_VOWELS = set("aāuū")
-#: Endungen ohne j-Variante (reine Vokale außer 'u', Nom-sg-Endungen).
-_NO_J_VARIANT = frozenset({"is", "īs", "i", "ī", "a", "ā", "e", "ē", "ū"})
-
-
-def jan_variant(suffix: str) -> str | None:
-    """Standard-Endung → Twanksta-j-Variante (in→jan, es→jas, u→ju, …).
-
-    Überspringt Endungen, die bereits j enthalten (echte j-Stämme),
-    sowie reine Vokalendungen.
-    """
-    if not suffix or "j" in suffix or suffix in _NO_J_VARIANT:
-        return None
-    for i, ch in enumerate(suffix):
-        if ch in _SOFT_VOWELS | _HARD_VOWELS:
-            prefix, rest = suffix[:i], suffix[i:]
-            if rest[0] in _SOFT_VOWELS:
-                return prefix + "ja" + rest[1:]
-            if rest[0] in _HARD_VOWELS:
-                return prefix + "j" + rest
-            return None
-    return None
+from prussian.fst.morphology import nominals, verbs
 
 
 def entry_class(suffixe: dict) -> str:
@@ -100,6 +70,16 @@ def _lexname(kind: str, par: str, sub: str) -> str:
     return f"{kind}_P{par}_{sub or 'x'}"
 
 
+def _cell_tag(lexkind: str, e: dict, cell: str, v: dict) -> tuple[str, dict]:
+    """Zellen-Tag + (bei Verben reflexiv-bereinigter) Endungswert."""
+    if lexkind == "verb":
+        bare, refl = split_reflexive(v["suffix"])
+        if refl:
+            v = {**v, "suffix": bare}
+        return verb_cell_tag(e["tense"], cell, refl), v
+    return cell_tag(cell), v
+
+
 def build_lexd(entries: list[dict], verb_entries: list[dict]) -> str:
     """Nominale + verbale Einträge → lexd-Quelltext."""
     # Gruppen: (paradigm, gender) bzw. (paradigm, tense) teilen Endungslexikon
@@ -107,18 +87,12 @@ def build_lexd(entries: list[dict], verb_entries: list[dict]) -> str:
     infls: dict[tuple, dict[str, list[str]]] = {}
     variants: set[tuple[str, str]] = set()
 
-    def add_group(key, lexkind, e, upper_prefix):
+    def add_group(key, upper_prefix, lexkind, e):
         cls = entry_class(e["suffixe"])
         if key not in infls:
             infl = {}
             for cell, v in e["suffixe"].items():
-                if lexkind == "verb":
-                    bare, refl = split_reflexive(v["suffix"])
-                    if refl:
-                        v = {**v, "suffix": bare}
-                    tag = verb_cell_tag(e["tense"], cell, refl)
-                else:
-                    tag = cell_tag(cell)
+                tag, v = _cell_tag(lexkind, e, cell, v)
                 infl[tag] = render_suffix(v, cls)
             infls[key] = infl
         stem = render_stem(e["stamm"], cls)
@@ -126,9 +100,9 @@ def build_lexd(entries: list[dict], verb_entries: list[dict]) -> str:
         # Stammvariante elektr- ↔ elaktr- (Prusaspira-Schreibung,
         # docs/BACKLOG.md) — über denselben V-Mechanismus wie die
         # Endungsvarianten, nur im nachsichtigen Analysator.
-        if "elektr" in stem:
-            lines.append(
-                f"{e['lemma']}{upper_prefix}:V{stem.replace('elektr', 'elaktr')}")
+        ev = elaktr_variant(stem)
+        if ev is not None:
+            lines.append(f"{e['lemma']}{upper_prefix}:V{ev}")
         for line in lines:
             if line not in stems[key]:
                 stems[key].append(line)
@@ -141,20 +115,12 @@ def build_lexd(entries: list[dict], verb_entries: list[dict]) -> str:
             pal = v.get("palatize", False)
             if (variant_full.startswith(resolve_stem(e["stamm"], True, pal))
                     or variant_full.startswith(resolve_stem(e["stamm"], False, pal))):
-                if lexkind == "verb":
-                    _bare, refl = split_reflexive(v["suffix"])
-                    tag = verb_cell_tag(e["tense"], cell, refl)
-                else:
-                    tag = cell_tag(cell)
+                tag, _v = _cell_tag(lexkind, e, cell, v)
                 variants.add((f"{e['lemma']}{upper_prefix}{tag}", variant_full))
 
-    for e in entries:
-        key = ("N", e["paradigm"], e["gender"])
-        add_group(key, "nominal", e, tag_prefix(e["paradigm"], e["gender"]))
-
-    for e in verb_entries:
-        key = ("V", e["paradigm"], e["tense"])
-        add_group(key, "verb", e, "+V")
+    for key, upper_prefix, lexkind, e in chain(
+            nominals.groups(entries), verbs.groups(verb_entries)):
+        add_group(key, upper_prefix, lexkind, e)
 
     # ── lexd-Text ──
     lines = ["PATTERNS"]

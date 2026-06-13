@@ -20,9 +20,9 @@ from pathlib import Path
 
 from pyfoma import lexd
 
-from prussian.fst.entries import combine_entries, wordlist_to_entries
-from prussian.fst.lexd_gen import build_lexd
-from prussian.fst.rules import rule_chain
+from prussian.fst.morphology.lexd import build_lexd
+from prussian.fst.morphology.nominals import combine_entries, wordlist_to_entries
+from prussian.fst.phonology import rule_chain
 
 ROOT = Path(__file__).resolve().parent.parent.parent.parent
 GOLD = ROOT / "data/gold/goldstandard.json"

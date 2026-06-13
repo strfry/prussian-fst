@@ -1,7 +1,7 @@
-"""Morphophonologische Regelschicht (pyfoma-Rewrite-Regeln).
+"""Morphophonologische Regelschicht (pyfoma-Rewrite-Regeln) [≈ phonology.twolc].
 
 Ersetzt die frühere (nie kompilierte) phonology.twolc. Die Morphotaktik
-(lexd_gen.py) emittiert auf der Unterseite markierte Formen:
+(morphology/lexd.py) emittiert auf der Unterseite markierte Formen:
 
     Marker  Position           Bedeutung
     ------  -----------------  -------------------------------------------
@@ -47,13 +47,13 @@ R_JPAL = FST.re(
 )
 
 #: Marker-Tilgung (nach allen kontextsensitiven Regeln). V markiert
-#: orthographische Quellvarianten (lexd_gen: Twanksta-j-Endungen,
+#: orthographische Quellvarianten (spellrelax.py: Twanksta-j-Endungen,
 #: elaktr-Stämme) und kommt nur im nachsichtigen Analysator vor — der
 #: Standard-Build streicht die V-Zeilen bereits im lexd-Quelltext.
 #: Weitere Variantenphänomene gehören ebenfalls als V-Zeilen in die
 #: Morphotaktik, nicht als nachkomponierte Kleinst-Regeln (pyfomas
 #: Wildcard-Arcs verhalten sich in verschachtelter Komposition nicht
-#: verlässlich, wenn die Alphabete stark differieren).
+#: verlässlich, wenn die Alphabete stark differieren; vgl. docs/HFST_SPIKE.md).
 R_CLEANUP = FST.re("$^rewrite(('M'|'S'|'J'|'V'):'')")
 
 

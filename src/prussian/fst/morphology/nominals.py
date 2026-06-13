@@ -1,69 +1,18 @@
-"""Eintrags-Aufbereitung für den FST-Bau.
+"""Nominale Morphologie (Nomen, Adjektiv, Pronomen, Numerale).
 
-Lädt goldstandard.json und wordlist.json und liefert vereinheitlichte
-Einträge {paradigm, lemma, gender, stamm, suffixe}. Übernommen aus dem
-früheren fst/build_fst.py (Wortlisten-Routing, Archiphonem-Detektion);
-die Stamm-Auflösung (resolve_stem) bleibt hier nur als **Orakel** für
-die Validierung — der FST selbst löst Akzent/Palatalisierung über die
-Regelschicht (rules.py) auf.
+Diese Wortarten teilen die Kasus-/Numerus-/Genus-Maschinerie und bleiben
+darum zusammen (anders als in GiellaLT, wo jede lexc handgeschrieben ist).
+Hier: Paradigma-Routing, Archiphonem-Detektion, Wortlisten-Aufbereitung und
+Suppletiv-/Steigerungs-Varianten — die Stamm-/Endungs-Emission selbst liegt
+in lexd.py.
 """
 
-import unicodedata
 from collections import defaultdict
 
-# Vokal-Auflösung (nur noch fürs Orakel resolve_stem)
-LONG = {"A": "ā", "E": "ē", "I": "ī", "O": "ō", "U": "ū"}
-SHORT = {"A": "a", "E": "e", "I": "i", "O": "o", "U": "u"}
+from prussian.fst.oracle import LONG_VOWELS, fold, strip_macron
+from prussian.fst.tags import ADJ_PARADIGMS, _paradigm_kind, tag_prefix
 
-# Palatalisierung (Mažiulis §§21–25)
-PALATAL = {"g": "ģ", "k": "ķ", "n": "ņ", "s": "š", "t": "ţ", "z": "ž"}
-
-VOWELS = set("aeiouāēīōūAEIOU")
-LONG_VOWELS = set("āēīōū")
-
-GENDER_TAG = {"m": "+Msc", "f": "+Fem", "n": "+Neut"}
 WL_GENDER = {"masc": "m", "fem": "f", "neut": "n"}
-
-CELL_TAG = {
-    "Nom sg": "+Sg+Nom", "Nom pl": "+Pl+Nom",
-    "Gen sg": "+Sg+Gen", "Gen pl": "+Pl+Gen",
-    "Dat sg": "+Sg+Dat", "Dat pl": "+Pl+Dat",
-    "Akk sg": "+Sg+Acc", "Akk pl": "+Pl+Acc",
-}
-ADV_CELL_TAG = {"Pos": "+Pos", "Comp": "+Comp", "Superl": "+Superl"}
-
-TENSE_TAG = {"present": "+Prs", "preterite": "+Prt"}
-PERSON_TAG = {"1sg": "+1Sg", "2sg": "+2Sg", "3sg": "+3",
-              "1pl": "+1Pl", "2pl": "+2Pl"}
-INF_TAG = "+Inf"
-
-#: Enklitische Reflexivpartikel (Klitik/Syntax, kein Flexionssuffix): nur
-#: P106b smeītwei trägt sie in den finiten Zellen (Gold-Suffix '… si'). Der
-#: FST generiert die bare finite Form, das Lexem erhält stattdessen +Refl;
-#: die Partikel 'si' gehört außerhalb der Verbmorphologie (function_words).
-REFL_TAG = "+Refl"
-_REFL_CLITIC = " si"
-
-
-def split_reflexive(suffix: str) -> tuple[str, bool]:
-    """'eīja si' → ('eīja', True); 'eītwei' → ('eītwei', False)."""
-    if suffix.endswith(_REFL_CLITIC):
-        return suffix[:-len(_REFL_CLITIC)], True
-    return suffix, False
-
-
-def verb_cell_tag(tense: str, cell: str, reflexive: bool = False) -> str:
-    """Verbale Zellen-Tagfolge: +Inf bzw. +Prs/+Prt+Person (+Refl bei Klitik)."""
-    base = INF_TAG if cell == "Inf" else f"{TENSE_TAG[tense]}{PERSON_TAG.get(cell, '')}"
-    return base + (REFL_TAG if reflexive else "")
-
-DEF_TAG = "+Def"
-SUPERL_TAG = "+Superl"
-ADV_POS_TAG = "+Adv"
-
-PRON_PARADIGMS = set(str(i) for i in range(9, 21))
-NUM_PARADIGMS = set(str(i) for i in range(21, 25))
-ADJ_PARADIGMS = set(str(i) for i in range(25, 32)) | {"30a"}
 
 # Wortlisten-Paradigmen P9–P67 + Unterparadigmen
 PAR_RANGE = set(str(i) for i in range(9, 68))
@@ -82,94 +31,6 @@ _SUPPL_PARADIGMS: dict[tuple[str, str], list[str]] = {
 # Paradigma-40-Routing nach Stammauslaut
 _PAR40_J_CONS = set("wbpm")    # j-Einschub
 _PAR40_PLAIN_CONS = set("lc")  # einfache Endungen
-
-
-def _paradigm_base(paradigm: str) -> str:
-    base = paradigm
-    for sfx in ("_suppl2", "_suppl"):
-        if base.endswith(sfx):
-            base = base[:-len(sfx)]
-            break
-    for sfx in ("def", "sup", "adv"):
-        if base.endswith(sfx):
-            base = base[:-len(sfx)]
-            break
-    return base
-
-
-def _paradigm_kind(paradigm: str) -> str:
-    rest = paradigm
-    if paradigm.endswith("_suppl") or paradigm.endswith("_suppl2"):
-        rest = paradigm[:paradigm.rfind("_")]
-    for kind in ("adv", "def", "sup"):
-        if rest.endswith(kind):
-            return kind
-    return ""
-
-
-def _pos(paradigm: str) -> str:
-    base = _paradigm_base(paradigm)
-    if base in PRON_PARADIGMS:
-        return "+Pron"
-    if base in NUM_PARADIGMS:
-        return "+Num"
-    if base in ADJ_PARADIGMS:
-        return "+A"
-    return "+N"
-
-
-def tag_prefix(paradigm: str, gender: str) -> str:
-    """POS- und Genus-Tagfolge zwischen Lemma und Zellen-Tag."""
-    kind = _paradigm_kind(paradigm)
-    gtag = GENDER_TAG.get(gender, "")
-    pos = _pos(paradigm)
-    if kind == "adv":
-        return f"{pos}{ADV_POS_TAG}"
-    if kind == "def":
-        return f"{pos}{DEF_TAG}{gtag}"
-    if kind == "sup":
-        return f"{pos}{SUPERL_TAG}{gtag}"
-    return f"{pos}{gtag}"
-
-
-def cell_tag(cell: str) -> str:
-    return ADV_CELL_TAG[cell] if cell in ADV_CELL_TAG else CELL_TAG[cell]
-
-
-def _last_consonant_idx(s: str) -> int | None:
-    for i in range(len(s) - 1, -1, -1):
-        if s[i] not in VOWELS:
-            return i
-    return None
-
-
-def resolve_stem(stamm: str, betont: bool, palatize: bool) -> str:
-    """ORAKEL (frühere Bake-Logik): Archiphonem + Palatalisierung auflösen."""
-    vmap = LONG if betont else SHORT
-    stem = "".join(vmap.get(c, c.lower()) for c in stamm)
-    if palatize and stem:
-        idx = _last_consonant_idx(stem)
-        if idx is not None and stem[idx] in PALATAL:
-            stem = stem[:idx] + PALATAL[stem[idx]] + stem[idx + 1:]
-    return stem
-
-
-def split_suffix(suffix: str) -> tuple[str, str | None]:
-    """Doublette 'a/stan' → ('a', 'stan'); 'as' → ('as', None)."""
-    if "/" in suffix:
-        std, var = suffix.split("/", 1)
-        return std, var
-    return suffix, None
-
-
-def strip_macron(s: str) -> str:
-    return s.translate(str.maketrans("āēīōūĀĒĪŌŪ", "aeiouAEIOU"))
-
-
-def fold(s: str) -> str:
-    s = strip_macron(s)
-    s = unicodedata.normalize("NFD", s)
-    return "".join(c for c in s if not unicodedata.combining(c)).lower()
 
 
 def detect_archiphoneme(stem_surface: str, nom_sg_suffix: str) -> str:
@@ -364,3 +225,10 @@ def combine_entries(gs_entries: list[dict], wl_entries: list[dict]) -> list[dict
             seen.add(key)
             combined.append(e)
     return combined
+
+
+def groups(entries: list[dict]):
+    """(Gruppenschlüssel, Tag-Präfix, 'nominal', Eintrag) je Nominaleintrag."""
+    for e in entries:
+        key = ("N", e["paradigm"], e["gender"])
+        yield key, tag_prefix(e["paradigm"], e["gender"]), "nominal", e

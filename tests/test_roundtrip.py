@@ -4,9 +4,9 @@ Orakel ist resolve_stem (die frühere Bake-Logik) — der FST muss über
 lexd + Regelschicht dieselben Oberflächen liefern.
 """
 
-from prussian.fst.entries import (
-    cell_tag, resolve_stem, split_reflexive, split_suffix,
-    tag_prefix, verb_cell_tag,
+from prussian.fst.oracle import resolve_stem
+from prussian.fst.tags import (
+    cell_tag, split_reflexive, split_suffix, tag_prefix, verb_cell_tag,
 )
 
 

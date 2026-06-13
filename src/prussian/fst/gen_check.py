@@ -13,110 +13,16 @@ from pathlib import Path
 
 from pyfoma import FST
 
+from prussian.fst.oracle import case_normalize, resolve_stem
+from prussian.fst.tags import (
+    ADV_CELL_TAG, ADV_POS_TAG, CELL_TAG, DEF_TAG, GENDER_TAG, SUPERL_TAG,
+    _paradigm_kind, _pos, split_suffix,
+)
+
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent.parent.parent
 FST_PATH = ROOT / "build/analyser.fst"
 GOLD_PATH = ROOT / "data/gold/goldstandard.json"
-
-# --- Copied from build_fst.py ---
-
-LONG = {"A": "ā", "E": "ē", "I": "ī", "O": "ō", "U": "ū"}
-SHORT = {"A": "a", "E": "e", "I": "i", "O": "o", "U": "u"}
-PALATAL = {"g": "ģ", "k": "ķ", "n": "ņ", "s": "š", "t": "ţ", "z": "ž"}
-VOWELS = set("aeiouāēīōūAEIOU")
-
-GENDER_TAG = {"m": "+Msc", "f": "+Fem", "n": "+Neut"}
-
-# Pronoun paradigms (P9-P20), numeral paradigms (P21-P24),
-# and adjective paradigms (P25-P31, P30a)
-PRON_PARADIGMS = set(str(i) for i in range(9, 21))
-NUM_PARADIGMS = set(str(i) for i in range(21, 25))
-ADJ_PARADIGMS = set(str(i) for i in range(25, 32)) | {"30a"}
-
-
-def _paradigm_base(paradigm: str) -> str:
-    """Strip 'def'/'sup'/'adv' and '_suppl'/'_suppl2' suffixes."""
-    base = paradigm
-    for sfx in ("_suppl2", "_suppl"):
-        if base.endswith(sfx):
-            base = base[:-len(sfx)]
-            break
-    for sfx in ("def", "sup", "adv"):
-        if base.endswith(sfx):
-            base = base[:-len(sfx)]
-            break
-    return base
-
-
-def _paradigm_kind(paradigm: str) -> str:
-    rest = paradigm
-    if paradigm.endswith("_suppl") or paradigm.endswith("_suppl2"):
-        rest = paradigm[:paradigm.rfind("_")]
-    for kind in ("adv", "def", "sup"):
-        if rest.endswith(kind):
-            return kind
-    return ""
-
-
-def _pos(paradigm: str) -> str:
-    base = _paradigm_base(paradigm)
-    if base in PRON_PARADIGMS:
-        return "+Pron"
-    if base in NUM_PARADIGMS:
-        return "+Num"
-    if base in ADJ_PARADIGMS:
-        return "+A"
-    return "+N"
-
-ADV_CELL_TAG = {
-    "Pos": "+Pos",
-    "Comp": "+Comp",
-    "Superl": "+Superl",
-}
-
-DEF_TAG = "+Def"
-SUPERL_TAG = "+Superl"
-ADV_POS_TAG = "+Adv"
-
-CELL_TAG = {
-    "Nom sg": "+Sg+Nom", "Nom pl": "+Pl+Nom",
-    "Gen sg": "+Sg+Gen", "Gen pl": "+Pl+Gen",
-    "Dat sg": "+Sg+Dat", "Dat pl": "+Pl+Dat",
-    "Akk sg": "+Sg+Acc", "Akk pl": "+Pl+Acc",
-}
-
-
-def _last_consonant_idx(s: str) -> int | None:
-    for i in range(len(s) - 1, -1, -1):
-        if s[i] not in VOWELS:
-            return i
-    return None
-
-
-def resolve_stem(stamm: str, betont: bool, palatize: bool) -> str:
-    vmap = LONG if betont else SHORT
-    stem = "".join(vmap.get(c, c.lower()) for c in stamm)
-    if palatize and stem:
-        idx = _last_consonant_idx(stem)
-        if idx is not None and stem[idx] in PALATAL:
-            stem = stem[:idx] + PALATAL[stem[idx]] + stem[idx + 1 :]
-    return stem
-
-
-def split_suffix(suffix: str) -> tuple[str, str | None]:
-    """Doublette 'a/stan' -> ('a', 'stan'); 'as' -> ('as', None)."""
-    if "/" in suffix:
-        std, var = suffix.split("/", 1)
-        return std, var
-    return suffix, None
-
-
-def strip_macron(s):
-    return s.translate(str.maketrans("āēīōūĀĒĪŌŪ", "aeiouAEIOU"))
-
-
-def case_normalize(s):
-    return strip_macron(s).lower()
 
 
 def main() -> None:
