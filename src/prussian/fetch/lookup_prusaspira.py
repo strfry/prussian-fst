@@ -6,7 +6,7 @@ import re
 from pathlib import Path
 
 PRUSASPIRA = Path("prusaspira")
-DICT = Path("prussian_dictionary.json")
+DICT = Path("data/external/prussian_dictionary.json")
 OUT = Path("prusaspira_lookup")
 
 OUT.mkdir(exist_ok=True)

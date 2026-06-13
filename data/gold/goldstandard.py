@@ -21,9 +21,9 @@ import unicodedata
 from collections import Counter, OrderedDict
 from pathlib import Path
 
-IN = Path("vergleich.json")
+IN = Path("data/derived/vergleich.json")
 OUT = Path("GOLDSTANDARD.md")
-JSON_OUT = Path("goldstandard.json")
+JSON_OUT = Path("data/gold/goldstandard.json")
 
 SRC = ["Tabula", "Prusaspira", "Twanksta"]
 CASES = ["Nom", "Gen", "Dat", "Akk"]

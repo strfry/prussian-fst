@@ -8,11 +8,11 @@ GENDER_MAP = {"masc": "m", "fem": "f", "neut": "n", "": "", "m/f": "m", "m/f/n":
 def norm_gender(g):
     return GENDER_MAP.get(g.strip().lower(), g.strip())
 
-TABULA = Path("tabula.html")
+TABULA = Path("data/sources/tabula.html")
 PRUSASPIRA = Path("prusaspira")
 TWANKSTA = Path("twanksta")
-OUT = Path("vergleich.html")
-JSON_OUT = Path("vergleich.json")
+OUT = Path("data/derived/vergleich.html")
+JSON_OUT = Path("data/derived/vergleich.json")
 
 CASES = ["Nom", "Gen", "Dat", "Akk"]
 CASE_PRU = {"Nom": "N\u014dm", "Gen": "G\u0113n", "Dat": "D\u0101t", "Akk": "Akk"}

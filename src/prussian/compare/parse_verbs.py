@@ -15,8 +15,8 @@ import json
 import re
 from pathlib import Path
 
-TABULA = Path("tabula.html")
-OUT = Path("verb_paradigms.json")
+TABULA = Path("data/sources/tabula.html")
+OUT = Path("data/gold/verb_paradigms.json")
 
 # Person number → label map
 # In the tabula: unmarked = 3sg, "1." = 1sg, "2." = 2sg, "6." = 1pl, "7." = 2pl

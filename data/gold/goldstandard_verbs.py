@@ -16,7 +16,7 @@ import unicodedata
 from collections import Counter, OrderedDict
 from pathlib import Path
 
-VERB_IN = Path("vergleich_verbs.json")
+VERB_IN = Path("data/derived/vergleich_verbs.json")
 VERB_GS = Path("goldstandard_verben.json")
 OUT_MD  = Path("GOLDSTANDARD_VERBEN.md")
 OUT_JSON = Path("goldstandard_verben.json")
@@ -198,7 +198,7 @@ def vote_block(paradigm, lemma, tense, sources):
 
 # ── Verb-spezifische Stamm/Suffix-Extraktion (analog goldstandard.py:build_gold) ──
 
-FST_OUT = Path("goldstandard_verben_fst.json")
+FST_OUT = Path("data/gold/goldstandard_verben_fst.json")
 
 PERSONS_ORDER = ["1sg", "2sg", "3sg", "1pl", "2pl"]
 

@@ -11,7 +11,7 @@ import json
 from pathlib import Path
 
 TWANKSTA_DIR = Path("twanksta")
-VERB_PARADIGMS = Path("verb_paradigms.json")
+VERB_PARADIGMS = Path("data/gold/verb_paradigms.json")
 
 
 def main():

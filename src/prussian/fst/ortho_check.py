@@ -16,10 +16,10 @@ from pathlib import Path
 from pyfoma import FST
 
 HERE = Path(__file__).resolve().parent
-ROOT = HERE.parent
+ROOT = HERE.parent.parent.parent
 MAIN_FST = HERE / "nominals.fst"
 ORTHO_FST = HERE / "ortho.fst"
-GOLD = ROOT / "goldstandard.json"
+GOLD = ROOT / "data/gold/goldstandard.json"
 VERGLEICH = ROOT / "vergleich.json"
 
 from fst.ortho_rules import variant_suffix

@@ -14,9 +14,9 @@ from pathlib import Path
 from pyfoma import FST
 
 HERE = Path(__file__).resolve().parent
-ROOT = HERE.parent
-FST_PATH = HERE / "nominals.fst"
-GOLD_PATH = ROOT / "goldstandard.json"
+ROOT = HERE.parent.parent.parent
+FST_PATH = ROOT / "fst/nominals.fst"
+GOLD_PATH = ROOT / "data/gold/goldstandard.json"
 
 # --- Copied from build_fst.py ---
 

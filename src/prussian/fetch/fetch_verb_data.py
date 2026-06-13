@@ -34,8 +34,8 @@ TWANKSTA_FORMS  = "https://wirdeins.twanksta.org/more/"
 
 PRUSASPIRA_OUT = Path("prusaspira")
 TWANKSTA_OUT   = Path("twanksta")
-VERB_PARADIGMS = Path("verb_paradigms.json")
-WORDLIST       = Path("wordlist.json")
+VERB_PARADIGMS = Path("data/gold/verb_paradigms.json")
+WORDLIST       = Path("data/external/wordlist.json")
 
 UA = "Mozilla/5.0"
 
@@ -244,7 +244,7 @@ def main():
             if twank_f.exists():
                 m["twanksta"] = lemma
 
-    Path("_lemma_map.json").write_text(
+    Path("data/gold/_lemma_map.json").write_text(
         json.dumps(lemma_map, ensure_ascii=False, indent=2), encoding="utf-8")
 
     print(f"\nDone: {total} total, {no_wl} no-wordlist, {skipped} cached")

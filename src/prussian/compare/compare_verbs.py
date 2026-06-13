@@ -10,11 +10,11 @@ from pathlib import Path
 
 from bs4 import BeautifulSoup
 
-VERB_PARADIGMS = Path("verb_paradigms.json")
+VERB_PARADIGMS = Path("data/gold/verb_paradigms.json")
 PRUSASPIRA_DIR = Path("prusaspira")
 TWANKSTA_DIR   = Path("twanksta")
-OUT_HTML = Path("vergleich_verbs.html")
-OUT_JSON  = Path("vergleich_verbs.json")
+OUT_HTML = Path("data/derived/vergleich_verbs.html")
+OUT_JSON  = Path("data/derived/vergleich_verbs.json")
 
 PERSON_ORDER = ["1sg", "2sg", "3sg", "1pl", "2pl"]
 

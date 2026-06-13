@@ -13,12 +13,12 @@ from pathlib import Path
 from pyfoma import FST
 
 HERE = Path(__file__).resolve().parent
-ROOT = HERE.parent
+ROOT = HERE.parent.parent.parent
 MAIN_FST = HERE / "nominals.fst"
 ORTHO_FST = HERE / "ortho.fst"
 DICT = ROOT / "prussian_dictionary.json"
-GOLD = ROOT / "goldstandard.json"
-WORDLIST = ROOT / "wordlist.json"
+GOLD = ROOT / "data/gold/goldstandard.json"
+WORDLIST = ROOT / "data/external/wordlist.json"
 
 CASE_MAP = {"Nominative": "Nom", "Genitive": "Gen", "Dative": "Dat", "Accusative": "Acc"}
 NUM_MAP = {"singular": "sg", "plural": "pl"}
