@@ -83,3 +83,50 @@ Keine — alle 800 Formen sind automatisch aufgelöst.
 3. **Infinitive**: sollen die mit ins FST? (`tun`/`twei`-Endungen)
 4. **Integration**: separater Verb-FST (`verbals.fst`) oder kombinierter Lexikon-FST?
 5. **pyfoma/hfst**: build_fst.py setzt pyfoma voraus (nicht installiert) — Giella-lexc-Output würde auch reichen
+
+---
+
+## Antwort (Linguistik-Lehrer): Drei-Stamm-Modell
+
+> Korrigiert Frage 2 ("Archiphoneme kaum relevant") und Frage 3 (Infinitive).
+
+Die `ī/i`-Alternation (P71 `īmtun`) ist **keine Lautregel**, sondern die Grenze
+zwischen **gespeicherten Stämmen** — das baltische **Drei-Stamm-Modell**
+(lit. `im̃ti / ìma / ė̃mė` = Infinitiv / Präsens / Präteritum). `īmtun→imma` ist
+Ablaut (ī~i) **plus** die Jotierung, die den Präsensstamm baute — beides
+lexikalisch, **nicht** aus dem Infinitiv ableitbar. Dieselbe Lehre wie beim
+nominalen Unterstamm ([`HANDOFF_allomorphie.md`](HANDOFF_allomorphie.md)):
+**Prinzipalformen speichern, nicht generieren.**
+
+**Regelhaft** (für ganz Klasse 71 gleich) ist die **Kategorie → Stamm**-Zuordnung:
+
+| Stamm | Form | Realisierung | Kategorien |
+|-------|------|--------------|------------|
+| **Infinitivstamm** `īm-` (lang) | — | — | Infinitiv `-tun/-twei`, Optativ `-sei`, Konjunktiv `-lai/-limai/-litei`, Passivpartizip `-ts` |
+| **Präsens-/Prät.-Stamm** `imm-` (kurz, jotiert) | — | — | Präsens `-a/-imai/-itei`, Präteritum `-i/-imai/-itei`, Imperativ `-is/-iti`, akt. Prät.-Partizip `-uns` (+ Perfekt/Futur-Umschreibung) |
+| **Präsenspartizip** | `imānts` | kurzer Stamm, vor schwerem `-ānts` **entgeminiert** (imm→im) | Präsenspartizip `-ānts` |
+
+**Korrektur der früheren Intuition:** Konjunktiv/Optativ/Passivpartizip behalten
+die Langwurzel; **Imperativ und aktive Partizipien sitzen auf dem kurzen
+Präsensstamm**, nicht auf `īm-`. „Wurzel bleibt" gilt also nur für die
+infinitivbasierten Formen, nicht pauschal für „alles außer Präs/Prät".
+
+**Regelmäßigkeit:** Gegeben die Stämme sind alle Formen vollständig regelhaft
+(Endungen + Kategorie→Stamm-Zuordnung). Unregelmäßig (= nicht herleitbar) ist
+**nur die Stammform selbst**.
+
+**Konsequenz fürs FST — dieselbe Architektur wie die Nomina:**
+1. Pro Verb die Stämme als **Prinzipalformen** speichern (Infinitiv-, Präsens-,
+   ggf. eigener Präteritalstamm). Inf-Stamm aus dem Lemma (`īmtun→īm-`),
+   Präs/Prät-Stamm aus 3sg (`imma→imm-`) — `wordlist_to_verb_entries` gewinnt 2
+   davon bereits; der **Infinitivstamm fehlt** (wird derzeit fälschlich vom
+   Präsensstamm abgeleitet → `*immun` statt `īmtun`).
+2. Deterministische **Kategorie→Stamm-Tabelle** als lexd-Pattern (wählt pro
+   Tempus/Modus den richtigen Stamm) + reguläres Endungsset je Kategorie.
+3. **Keine neue Lautregel:** Jotierung + Schwer-Endungs-Schwächung sind die
+   nominalen Regeln. `īmts→imtāi/imtammans` = nominale **R2**;
+   `imma→imānts` = R2 + Jotierungsumkehr (`phonology.py`,
+   [`ORTHO_RULES.md`](ORTHO_RULES.md)).
+
+Verbspezifisch ist also **nur** die Stammliste + Kategorie→Stamm-Zuordnung; die
+Phonologie wird mit der Nominalflexion geteilt.

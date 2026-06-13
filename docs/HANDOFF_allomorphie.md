@@ -4,6 +4,8 @@
 
 Ich (der Programmierer) habe nur flüchtige Linguistik-Kenntnisse und brauche von dir die **sprachwissenschaftlich korrekte Modellierung**, damit das Programm sie richtig umsetzt. Es geht **nur** um die unten beschriebene Kernfrage.
 
+> **Schwesterdokument:** [`HANDOFF_allomorphie_steigerung.md`](HANDOFF_allomorphie_steigerung.md) behandelt die Allomorphie der **Adjektiv-Steigerung** (Komparativ/Definit, Superlativ, Adverb).
+
 ---
 
 ## Das Ziel

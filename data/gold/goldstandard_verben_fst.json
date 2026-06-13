@@ -5,11 +5,6 @@
     "tense": "present",
     "stamm": "imm",
     "suffixe": {
-      "Inf": {
-        "suffix": "un",
-        "betont": false,
-        "palatize": true
-      },
       "1sg": {
         "suffix": "a",
         "betont": false
@@ -56,6 +51,110 @@
       },
       "2pl": {
         "suffix": "itei",
+        "betont": false
+      }
+    }
+  },
+  {
+    "paradigm": "71",
+    "lemma": "īmtun",
+    "tense": "infinitive",
+    "stamm": "Im",
+    "suffixe": {
+      "Inf": {
+        "suffix": "tun",
+        "betont": true
+      }
+    }
+  },
+  {
+    "paradigm": "71",
+    "lemma": "īmtun",
+    "tense": "optative",
+    "stamm": "Im",
+    "suffixe": {
+      "Opt": {
+        "suffix": "sei",
+        "betont": true
+      }
+    }
+  },
+  {
+    "paradigm": "71",
+    "lemma": "īmtun",
+    "tense": "subjunctive",
+    "stamm": "Im",
+    "suffixe": {
+      "1sg": {
+        "suffix": "lai",
+        "betont": true
+      },
+      "2sg": {
+        "suffix": "lai",
+        "betont": true
+      },
+      "3sg": {
+        "suffix": "lai",
+        "betont": true
+      },
+      "1pl": {
+        "suffix": "limai",
+        "betont": true
+      },
+      "2pl": {
+        "suffix": "litei",
+        "betont": true
+      }
+    }
+  },
+  {
+    "paradigm": "71",
+    "lemma": "īmtun",
+    "tense": "passive_ptcp",
+    "stamm": "Im",
+    "suffixe": {
+      "PssPrc": {
+        "suffix": "ts",
+        "betont": true
+      }
+    }
+  },
+  {
+    "paradigm": "71",
+    "lemma": "īmtun",
+    "tense": "imperative",
+    "stamm": "imm",
+    "suffixe": {
+      "2sg": {
+        "suffix": "ais",
+        "betont": false
+      },
+      "2pl": {
+        "suffix": "aiti",
+        "betont": false
+      }
+    }
+  },
+  {
+    "paradigm": "71",
+    "lemma": "īmtun",
+    "tense": "active_ptcp",
+    "stamm": "imm",
+    "suffixe": {
+      "PstPrc": {
+        "suffix": "uns",
+        "betont": false
+      }
+    }
+  },
+  {
+    "paradigm": "71",
+    "lemma": "īmtun",
+    "tense": "present_ptcp",
+    "stamm": "im",
+    "suffixe": {
+      "PrsPrc": {
+        "suffix": "ānts",
         "betont": false
       }
     }

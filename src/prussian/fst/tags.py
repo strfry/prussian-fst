@@ -20,6 +20,17 @@ PERSON_TAG = {"1sg": "+1Sg", "2sg": "+2Sg", "3sg": "+3",
               "1pl": "+1Pl", "2pl": "+2Pl"}
 INF_TAG = "+Inf"
 
+# Modi und Partizipien (Drei-Stamm-Modell, docs/FST_VERB_HANDOFF.md):
+#   Optativ (-sei) und Konjunktiv (-lai) sitzen auf dem Infinitivstamm,
+#   Imperativ (-is/-iti) und das aktive Prät.-Partizip auf dem Präsensstamm,
+#   das Präsenspartizip auf dem (entgeminierten) Präsensstamm.
+OPT_TAG = "+Opt"
+SUBJ_TAG = "+Subj"
+IMP_TAG = "+Imp"
+PTCP_TAG = {"present_ptcp": "+PrsPrc",   # imānts
+            "active_ptcp": "+PstPrc",    # immuns (aktiv, Prät.)
+            "passive_ptcp": "+PssPrc"}   # īmts
+
 DEF_TAG = "+Def"
 SUPERL_TAG = "+Superl"
 ADV_POS_TAG = "+Adv"
@@ -89,9 +100,23 @@ def cell_tag(cell: str) -> str:
     return ADV_CELL_TAG[cell] if cell in ADV_CELL_TAG else CELL_TAG[cell]
 
 
-def verb_cell_tag(tense: str, cell: str, reflexive: bool = False) -> str:
-    """Verbale Zellen-Tagfolge: +Inf bzw. +Prs/+Prt+Person (+Refl bei Klitik)."""
-    base = INF_TAG if cell == "Inf" else f"{TENSE_TAG[tense]}{PERSON_TAG.get(cell, '')}"
+def verb_cell_tag(category: str, cell: str, reflexive: bool = False) -> str:
+    """Verbale Zellen-Tagfolge. ``category`` ist der Tempus-/Modus-Schlüssel des
+    Eintrags (``present``/``preterite``/``infinitive``/``optative``/
+    ``subjunctive``/``imperative``/``*_ptcp``); ``cell`` die Person bzw. eine
+    formspezifische Zelle. (+Refl bei enklitischer Reflexivpartikel.)"""
+    if category in PTCP_TAG:
+        base = PTCP_TAG[category]
+    elif category == "infinitive":
+        base = INF_TAG
+    elif category == "optative":
+        base = OPT_TAG
+    elif category == "subjunctive":
+        base = f"{SUBJ_TAG}{PERSON_TAG.get(cell, '')}"
+    elif category == "imperative":
+        base = f"{IMP_TAG}{PERSON_TAG.get(cell, '')}"
+    else:  # present / preterite (Indikativ); Legacy-Inf-Zelle im Präsensblock
+        base = INF_TAG if cell == "Inf" else f"{TENSE_TAG[category]}{PERSON_TAG.get(cell, '')}"
     return base + (REFL_TAG if reflexive else "")
 
 

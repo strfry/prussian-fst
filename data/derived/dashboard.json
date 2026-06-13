@@ -1,12 +1,12 @@
 {
   "meta": {
     "schema_version": "2.0",
-    "generated": "2026-06-13T15:12:01Z",
+    "generated": "2026-06-13T19:41:13Z",
     "fst": {
       "engine": "pyfoma",
-      "build_commit": "6e11906",
-      "analyser_states": 14784,
-      "lenient_states": 15505,
+      "build_commit": "fcc5003",
+      "analyser_states": 14827,
+      "lenient_states": 15567,
       "tagset": "giella-flat-plus"
     }
   },
@@ -26,8 +26,8 @@
     },
     "corpus_coverage": {
       "label": "Korpus-Token analysierbar",
-      "pct": 62.5,
-      "num": 43805,
+      "pct": 62.6,
+      "num": 43841,
       "den": 70047
     }
   },
@@ -43,8 +43,8 @@
         "variants_total": 18
       },
       "verbal": {
-        "cells": 872,
-        "matched": 872,
+        "cells": 883,
+        "matched": 883,
         "no_gen": 0,
         "mismatch": 0,
         "case_only": 0
@@ -1152,10 +1152,10 @@
       "pos": "+V",
       "label": "P71",
       "genders": [],
-      "gold_cells": 11,
-      "gold_matched": 11,
+      "gold_cells": 22,
+      "gold_matched": 22,
       "dict_total": 533,
-      "dict_matched": 415,
+      "dict_matched": 412,
       "status": "done"
     },
     {
@@ -2102,7 +2102,7 @@
   ],
   "corpus": {
     "total_tokens": 70047,
-    "coverage_pct": 62.5,
+    "coverage_pct": 62.6,
     "sources": [
       {
         "id": "tatoeba",
@@ -2116,7 +2116,7 @@
         "id": "prusaspira_wiki",
         "name": "Prusaspira-Wiki",
         "tokens": 39737,
-        "coverage_pct": 57.8,
+        "coverage_pct": 57.9,
         "dropped_docs": 12,
         "dropped_words": 2548
       }
@@ -2125,7 +2125,7 @@
       {
         "reason": "oov",
         "label": "Unbekannte Lemmata",
-        "pct": 50.1
+        "pct": 50.2
       },
       {
         "reason": "propn",
@@ -2135,7 +2135,7 @@
       {
         "reason": "variant",
         "label": "Form-/Flexionslücke",
-        "pct": 38.9
+        "pct": 38.8
       }
     ]
   },
@@ -2167,8 +2167,8 @@
   },
   "verbs_dict": {
     "total": 22129,
-    "matched": 14620,
+    "matched": 14617,
     "ortho": 98,
-    "no_match": 7509
+    "no_match": 7512
   }
 }

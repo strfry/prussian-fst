@@ -199,8 +199,94 @@ def vote_block(paradigm, lemma, tense, sources):
 # ── Verb-spezifische Stamm/Suffix-Extraktion (analog goldstandard.py:build_gold) ──
 
 FST_OUT = Path("data/gold/goldstandard_verben_fst.json")
+FULL_PARADIGM_IN = Path("data/gold/verb_full_paradigm.json")
 
 PERSONS_ORDER = ["1sg", "2sg", "3sg", "1pl", "2pl"]
+
+# Drei-Stamm-Modell (docs/FST_VERB_HANDOFF.md): welche Kategorie sitzt auf
+# welchem gespeicherten Stamm. Infinitiv-/Präsensstamm werden aus den jeweils
+# attestierten Formen GEMEINSAM abgeleitet (LCP), das Präsenspartizip auf dem
+# entgeminierten Präsensstamm.
+INF_STEM_CATS = ("infinitive", "optative", "subjunctive", "passive_ptcp")
+PRES_STEM_CATS = ("imperative", "active_ptcp")  # + present/preterite (gevotet)
+
+
+def degeminate(s):
+    return re.sub(r"(.)\1", r"\1", s)
+
+
+def _derive_stem(forms):
+    """Aus einer Formgruppe MIT GEMEINSAMEM Stamm → (stamm_markiert, Lp, betont).
+
+    Analog ``verb_build_entry``/``goldstandard.py:build_gold``, aber für eine
+    ad-hoc Gruppe: makron-/diakritika-insensitiver LCP, Trimmen auf konsonant-
+    endenden Stamm, Archiphonem-Markierung der akzentfähigen Vokalpositionen.
+    ``betont`` ist für den geteilten Stamm einheitlich (Makron in der Stammregion).
+    """
+    forms = [_first_variant(f) for f in forms if f]
+    if not forms:
+        return "", 0, False
+    L = verb_stem_len(forms)
+    if L == 0:
+        return "", 0, False
+    rep = forms[0]
+    Lp = L
+    while Lp > 0 and strip_macron(rep[Lp - 1]).lower() in "aeiou":
+        Lp -= 1
+    if Lp == 0:
+        Lp = L
+    base = strip_macron(rep[:Lp]).lower()
+    acc = set()
+    for pos in range(Lp):
+        if base[pos] in "aeiou":
+            for f in forms:
+                if len(f) > pos and f[pos] != strip_macron(f[pos]):
+                    acc.add(pos)
+                    break
+    stamm = "".join(ch.upper() if p in acc else ch for p, ch in enumerate(base))
+    return stamm, Lp, len(acc) > 0
+
+
+def _cat_entries(par, lemma, fp, pres_block, pret_block):
+    """Drei-Stamm-Kategorien (Inf/Opt/Konj/Imp/Partizipien) eines Vollparadigma-
+    Verbs in FST-Einträge ({paradigm, lemma, tense, stamm, suffixe}) übersetzen."""
+    # Infinitivstamm: gemeinsam aus allen attestierten Inf-Stamm-Kategorien
+    inf_forms = [f for cat in INF_STEM_CATS for f in fp.get(cat, {}).values()]
+    stamm_inf, Lp_inf, betont_inf = _derive_stem(inf_forms)
+
+    # Präsensstamm: aus den gevoteten present/preterite-Blöcken + Imp/akt. Partizip
+    pres_forms = list((pres_block or {}).values()) + list((pret_block or {}).values())
+    pres_forms += [f for cat in PRES_STEM_CATS for f in fp.get(cat, {}).values()]
+    stamm_pres, Lp_pres, betont_pres = _derive_stem(pres_forms)
+
+    # Präsenspartizip: entgeminierter Präsensstamm (imm→im vor schwerem -ānts)
+    degem_base = degeminate(strip_macron(stamm_pres).lower())
+    stamm_degem = degeminate(stamm_pres)
+    Lp_degem = len(degem_base)
+
+    plan = {
+        "infinitive": (stamm_inf, Lp_inf, betont_inf),
+        "optative": (stamm_inf, Lp_inf, betont_inf),
+        "subjunctive": (stamm_inf, Lp_inf, betont_inf),
+        "passive_ptcp": (stamm_inf, Lp_inf, betont_inf),
+        "imperative": (stamm_pres, Lp_pres, betont_pres),
+        "active_ptcp": (stamm_pres, Lp_pres, betont_pres),
+        "present_ptcp": (stamm_degem, Lp_degem, betont_pres and False),
+    }
+
+    out = []
+    for cat, (stamm, Lp, betont) in plan.items():
+        cells = fp.get(cat)
+        if not cells or not stamm:
+            continue
+        suffixe = OrderedDict()
+        for cell, form in cells.items():
+            suffixe[cell] = {"suffix": _first_variant(form)[Lp:], "betont": betont}
+        out.append(OrderedDict([
+            ("paradigm", par), ("lemma", lemma), ("tense", cat),
+            ("stamm", stamm), ("suffixe", suffixe),
+        ]))
+    return out
 
 
 def verb_stem_len(forms):
@@ -300,8 +386,17 @@ def verb_build_entry(forms_dict, lemma=None):
 
 
 def build_verb_fst_entries():
-    """Liest goldstandard_verben.json → pro Paradigma+Tempus Stamm+Suffixe → schreibt JSON."""
+    """Liest goldstandard_verben.json → pro Paradigma+Tempus Stamm+Suffixe → schreibt JSON.
+
+    Verben mit Eintrag in ``verb_full_paradigm.json`` bekommen zusätzlich die
+    Modi/Partizipien nach dem Drei-Stamm-Modell; bei ihnen wird die (frühere,
+    fehlerhaft vom Präsensstamm abgeleitete) Inf-Zelle im Präsensblock durch
+    einen eigenen Infinitiv-Eintrag auf dem Infinitivstamm ersetzt.
+    """
     data = json.loads(VERB_GS.read_text(encoding="utf-8"))
+    full = {}
+    if FULL_PARADIGM_IN.exists():
+        full = json.loads(FULL_PARADIGM_IN.read_text(encoding="utf-8")).get("paradigms", {})
     entries = []
 
     def sort_key(e):
@@ -313,12 +408,15 @@ def build_verb_fst_entries():
         par = e["paradigm"]
         lemma = e["lemma"]
         tenses = e.get("tenses", {})
+        is_full = par in full
 
         for tense in ("present", "preterite"):
             td = tenses.get(tense)
             if not td:
                 continue
-            L_lemma = lemma if tense == "present" else None
+            # Vollparadigma: Infinitiv kommt als eigener Eintrag (Drei-Stamm) →
+            # nicht aus dem Präsensblock via Lemma ableiten.
+            L_lemma = lemma if (tense == "present" and not is_full) else None
             res = verb_build_entry(td, lemma=L_lemma)
             if not res["suffixe"]:
                 continue
@@ -329,6 +427,11 @@ def build_verb_fst_entries():
                 ("stamm", res["stamm"]),
                 ("suffixe", res["suffixe"]),
             ]))
+
+        if is_full:
+            entries.extend(_cat_entries(
+                par, lemma, full[par],
+                tenses.get("present"), tenses.get("preterite")))
 
     FST_OUT.write_text(json.dumps(entries, ensure_ascii=False, indent=2), encoding="utf-8")
     print("Written to", FST_OUT, "(%d Einträge)" % len(entries))
