@@ -12,6 +12,7 @@ wheels/
 # Giella reference clones (own .git, read-only)
 lang-lit/
 lang-lav/
+lang-fao/
 
 # Large input data (obtain externally — see README)
 wordlist.json
@@ -25,4 +26,8 @@ twanksta/
 fst/nominals.*
 fst/ortho.fst
 fst/morphology/
+
+# Corpora (external, regenerate if needed)
+corpus/
+
 .env
