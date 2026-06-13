@@ -1,0 +1,18 @@
+{
+  "prepositions": [
+    "en", "per", "prei", "ezze", "sen", "iz", "pēr", "au",
+    "tēr", "eb", "ep", "et", "no", "pa", "po", "pra", "pre",
+    "sēn", "pir"
+  ],
+  "conjunctions": [
+    "be", "adder", "kai", "kaddan", "kāigi", "tikrō"
+  ],
+  "particles": [
+    "ni", "na", "ik", "kwēi", "bītai", "bītan", "jāu",
+    "stwi", "teinu", "teinū", "tin", "tīt", "ti", "te"
+  ],
+  "interrogatives": [
+    "kāi", "kawīdan", "kawīdsmu", "kawīdse", "kawīdsen",
+    "kwēigi", "kwijāi"
+  ]
+}

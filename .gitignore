@@ -24,7 +24,8 @@ twanksta/
 
 # Generated FST artefacts
 
-# Corpora (external, regenerate if needed)
-corpus/
+# Corpora (external, regenerate if needed) — nur das Top-Level-Verzeichnis,
+# nicht data/corpus/ (enthält das eingecheckte manifest.json)
+/corpus/
 
 .env

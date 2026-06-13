@@ -80,8 +80,27 @@ def _cell_tag(lexkind: str, e: dict, cell: str, v: dict) -> tuple[str, dict]:
     return cell_tag(cell), v
 
 
-def build_lexd(entries: list[dict], verb_entries: list[dict]) -> str:
-    """Nominale + verbale Einträge → lexd-Quelltext."""
+def build_lexd(
+    entries: list[dict],
+    verb_entries: list[dict],
+    verb_wl_entries: list[dict] | None = None,
+    closed_entries: list[dict] | None = None,
+    function_words: list[tuple[str, str]] | None = None,
+) -> str:
+    """Nominale + verbale Einträge → lexd-Quelltext.
+
+    ``verb_wl_entries`` werden mit eigenem Gruppenschlüssel (Vw statt V)
+    eingefügt, damit sie separate Infl-Lexika erhalten (erforderlich,
+    weil Wortlisten-Verben eine abweichende Infinitiv-Endung ``tun``/``twei``
+    anstelle von ``un``/``wei`` im Goldstandard verwenden).
+
+    ``closed_entries``: handkuratierte Einträge (Personalpronomen) im
+    Goldstandard-Format — durchlaufen denselben Stem+Infl-Mechanismus.
+
+    ``function_words``: (Wort, POS-Tag)-Paare für uninflected closed-class
+    words — werden als einzelne lexd-Einträge ``Wort+Tag:Wort`` emittiert
+    (POS-Tag auf der Analyse-Oberseite, Wort als Surface-Unterseite).
+    """
     # Gruppen: (paradigm, gender) bzw. (paradigm, tense) teilen Endungslexikon
     stems: dict[tuple, list[str]] = defaultdict(list)
     infls: dict[tuple, dict[str, list[str]]] = {}
@@ -118,8 +137,13 @@ def build_lexd(entries: list[dict], verb_entries: list[dict]) -> str:
                 tag, _v = _cell_tag(lexkind, e, cell, v)
                 variants.add((f"{e['lemma']}{upper_prefix}{tag}", variant_full))
 
-    for key, upper_prefix, lexkind, e in chain(
-            nominals.groups(entries), verbs.groups(verb_entries)):
+    sources = [nominals.groups(entries), verbs.groups(verb_entries)]
+    if verb_wl_entries:
+        sources.append(verbs.wl_groups(verb_wl_entries))
+    if closed_entries:
+        sources.append(nominals.groups(closed_entries))
+
+    for key, upper_prefix, lexkind, e in chain(*sources):
         add_group(key, upper_prefix, lexkind, e)
 
     # ── lexd-Text ──
@@ -128,6 +152,8 @@ def build_lexd(entries: list[dict], verb_entries: list[dict]) -> str:
         kind, par, sub = key
         lines.append(f"{_lexname(f'Stems{kind}', par, sub)} "
                      f"{_lexname(f'Infl{kind}', par, sub)}")
+    if function_words:
+        lines.append("FuncWords")
     if variants:
         lines.append("Variants")
     lines.append("")
@@ -141,6 +167,12 @@ def build_lexd(entries: list[dict], verb_entries: list[dict]) -> str:
         for tag, lowers in sorted(infls[key].items()):
             for lower in lowers:
                 lines.append(f"{tag}:{lower}")
+        lines.append("")
+
+    if function_words:
+        lines.append("LEXICON FuncWords")
+        for w, tag in sorted(function_words):
+            lines.append(f"{w}{tag}:{w}")
         lines.append("")
 
     if variants:

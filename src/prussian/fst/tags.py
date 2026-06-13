@@ -32,7 +32,7 @@ REFL_TAG = "+Refl"
 _REFL_CLITIC = " si"
 
 # POS-Klassifikation nach Paradigma-Nummer
-PRON_PARADIGMS = set(str(i) for i in range(9, 21))
+PRON_PARADIGMS = set(str(i) for i in range(1, 21)) | {"30a"}
 NUM_PARADIGMS = set(str(i) for i in range(21, 25))
 ADJ_PARADIGMS = set(str(i) for i in range(25, 32)) | {"30a"}
 

@@ -20,6 +20,8 @@ from pathlib import Path
 
 from pyfoma import lexd
 
+from prussian.fst.morphology import function_words as fw_mod
+from prussian.fst.morphology import verbs as verb_morph
 from prussian.fst.morphology.lexd import build_lexd
 from prussian.fst.morphology.nominals import combine_entries, wordlist_to_entries
 from prussian.fst.phonology import rule_chain
@@ -28,6 +30,9 @@ ROOT = Path(__file__).resolve().parent.parent.parent.parent
 GOLD = ROOT / "data/gold/goldstandard.json"
 VERB_GOLD = ROOT / "data/gold/goldstandard_verben_fst.json"
 WORDLIST = ROOT / "data/external/wordlist.json"
+DICT = ROOT / "data/external/prussian_dictionary.json"
+CLOSED_FW = ROOT / "data/closed/function_words.json"
+CLOSED_PRONOUNS = ROOT / "data/closed/personal_pronouns.json"
 BUILD_DIR = ROOT / "build"
 LEXD_OUT = BUILD_DIR / "morphotactics.lexd"
 FST_OUT = BUILD_DIR / "analyser.fst"
@@ -55,14 +60,41 @@ def main() -> None:
 
     if args.gold_only:
         combined = gs_data
+        verb_wl_entries = None
+        wl_entries = []
     else:
         wl_data = json.loads(WORDLIST.read_text(encoding="utf-8"))
         wl_entries = wordlist_to_entries(wl_data, gs_data)
         print(f"Wortliste: {len(wl_entries)} Einträge (P9–P67)")
         combined = combine_entries(gs_data, wl_entries)
-    print(f"Kombiniert: {len(combined)} Einträge")
 
-    lexd_text = build_lexd(combined, verb_data)
+        # Verb-Einträge aus prussian_dictionary.json (inkl. Twanksta-Formen)
+        dict_data = json.loads(DICT.read_text(encoding="utf-8"))
+        verb_wl_entries = verb_morph.wordlist_to_verb_entries(
+            dict_data, verb_data
+        )
+        print(f"Verb-Wortliste: {len(verb_wl_entries)} Einträge "
+              f"({len(verb_wl_entries) // 2} Verben)")
+
+    # Closed-class: Personalpronomen
+    closed_entries: list[dict] | None = None
+    if not args.gold_only:
+        closed_entries = json.loads(CLOSED_PRONOUNS.read_text(encoding="utf-8"))
+        print(f"Personalpronomen: {len(closed_entries)} Einträge")
+
+    # Unflektierte Funktionswörter
+    fw_words = None if args.gold_only else fw_mod.load(CLOSED_FW)
+
+    nominal_total = len(gs_data) + len(wl_entries)
+    verb_total = len(verb_data) + (len(verb_wl_entries) if verb_wl_entries else 0)
+    print(f"Kombiniert: {nominal_total} nominal, {verb_total} verbal")
+    if fw_words:
+        print(f"Funktionswörter: {len(fw_words)} Types")
+
+    lexd_text = build_lexd(
+        combined, verb_data, verb_wl_entries,
+        closed_entries=closed_entries, function_words=fw_words,
+    )
     BUILD_DIR.mkdir(exist_ok=True)
     LEXD_OUT.write_text(lexd_text, encoding="utf-8")
     print(f"lexd → {LEXD_OUT} ({len(lexd_text.splitlines())} Zeilen)")

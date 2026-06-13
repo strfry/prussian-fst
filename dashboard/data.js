@@ -1,0 +1,2174 @@
+window.DASHBOARD_DATA = {
+  "meta": {
+    "schema_version": "2.0",
+    "generated": "2026-06-13T15:12:01Z",
+    "fst": {
+      "engine": "pyfoma",
+      "build_commit": "6e11906",
+      "analyser_states": 14784,
+      "lenient_states": 15505,
+      "tagset": "giella-flat-plus"
+    }
+  },
+  "kpis": {
+    "paradigm_completeness": {
+      "label": "Lemmata mit vollständigem Paradigma",
+      "pct": 100.0,
+      "num": 8123,
+      "den": 8123
+    },
+    "form_coverage": {
+      "label": "Formen generierbar vs. Wörterbuch",
+      "pct": 51.5,
+      "num": 65163,
+      "den": 126548,
+      "ortho_pct": 6.7
+    },
+    "corpus_coverage": {
+      "label": "Korpus-Token analysierbar",
+      "pct": 62.5,
+      "num": 43805,
+      "den": 70047
+    }
+  },
+  "health": {
+    "generation": {
+      "nominal": {
+        "cells": 967,
+        "matched": 967,
+        "no_gen": 0,
+        "mismatch": 0,
+        "case_only": 0,
+        "variants_matched": 18,
+        "variants_total": 18
+      },
+      "verbal": {
+        "cells": 872,
+        "matched": 872,
+        "no_gen": 0,
+        "mismatch": 0,
+        "case_only": 0
+      }
+    }
+  },
+  "pos": [
+    {
+      "tag": "+N",
+      "name": "Substantive",
+      "example": "wīrs",
+      "lemmata": 5774,
+      "paradigms_done": 46,
+      "paradigms_total": 46,
+      "gen_integrity_pct": 100.0,
+      "form_coverage_pct": 87.5,
+      "status": "done"
+    },
+    {
+      "tag": "+A",
+      "name": "Adjektive",
+      "example": "debīks",
+      "lemmata": 1092,
+      "paradigms_done": 7,
+      "paradigms_total": 7,
+      "gen_integrity_pct": 100.0,
+      "form_coverage_pct": 29.8,
+      "status": "done"
+    },
+    {
+      "tag": "+Pron",
+      "name": "Pronomina",
+      "example": "as",
+      "lemmata": 25,
+      "paradigms_done": 13,
+      "paradigms_total": 15,
+      "gen_integrity_pct": 100.0,
+      "form_coverage_pct": 77.2,
+      "status": "done"
+    },
+    {
+      "tag": "+Num",
+      "name": "Numeralia",
+      "example": "aīns",
+      "lemmata": 6,
+      "paradigms_done": 4,
+      "paradigms_total": 4,
+      "gen_integrity_pct": 100.0,
+      "form_coverage_pct": 82.0,
+      "status": "done"
+    },
+    {
+      "tag": "+Adv",
+      "name": "Adverbien",
+      "example": "labbai",
+      "lemmata": 0,
+      "paradigms_done": 0,
+      "paradigms_total": 0,
+      "gen_integrity_pct": null,
+      "form_coverage_pct": 0.0,
+      "status": "planned"
+    },
+    {
+      "tag": "+V",
+      "name": "Verben",
+      "example": "bēi",
+      "lemmata": 1248,
+      "paradigms_done": 78,
+      "paradigms_total": 90,
+      "gen_integrity_pct": 100.0,
+      "form_coverage_pct": 62.7,
+      "status": "done"
+    },
+    {
+      "tag": "+Func",
+      "name": "Funktionswörter",
+      "example": "ni",
+      "lemmata": 46,
+      "paradigms_done": 0,
+      "paradigms_total": 0,
+      "gen_integrity_pct": null,
+      "form_coverage_pct": 100.0,
+      "status": "done"
+    }
+  ],
+  "paradigms": [
+    {
+      "id": "0n",
+      "pos": "+V",
+      "label": "P0n",
+      "genders": [],
+      "gold_cells": 0,
+      "gold_matched": 0,
+      "dict_total": 16,
+      "dict_matched": 0,
+      "status": "open"
+    },
+    {
+      "id": "1",
+      "pos": "+Pron",
+      "label": "P1",
+      "genders": [],
+      "gold_cells": 0,
+      "gold_matched": 0,
+      "dict_total": 8,
+      "dict_matched": 8,
+      "status": "open"
+    },
+    {
+      "id": "2",
+      "pos": "+Pron",
+      "label": "P2",
+      "genders": [],
+      "gold_cells": 0,
+      "gold_matched": 0,
+      "dict_total": 8,
+      "dict_matched": 8,
+      "status": "open"
+    },
+    {
+      "id": "6",
+      "pos": "+V",
+      "label": "P6",
+      "genders": [],
+      "gold_cells": 0,
+      "gold_matched": 0,
+      "dict_total": 8,
+      "dict_matched": 8,
+      "status": "open"
+    },
+    {
+      "id": "7",
+      "pos": "+V",
+      "label": "P7",
+      "genders": [],
+      "gold_cells": 0,
+      "gold_matched": 0,
+      "dict_total": 8,
+      "dict_matched": 8,
+      "status": "open"
+    },
+    {
+      "id": "9",
+      "pos": "+Pron",
+      "label": "P9",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 96,
+      "dict_matched": 48,
+      "status": "done"
+    },
+    {
+      "id": "10",
+      "pos": "+Pron",
+      "label": "P10",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 48,
+      "dict_matched": 48,
+      "status": "done"
+    },
+    {
+      "id": "11",
+      "pos": "+Pron",
+      "label": "P11",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 24,
+      "dict_matched": 18,
+      "status": "done"
+    },
+    {
+      "id": "12",
+      "pos": "+Pron",
+      "label": "P12",
+      "genders": [
+        "m"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 8,
+      "dict_matched": 8,
+      "status": "done"
+    },
+    {
+      "id": "13",
+      "pos": "+Pron",
+      "label": "P13",
+      "genders": [
+        "f"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 8,
+      "dict_matched": 8,
+      "status": "done"
+    },
+    {
+      "id": "14",
+      "pos": "+Pron",
+      "label": "P14",
+      "genders": [
+        "n"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 0,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "15",
+      "pos": "+Pron",
+      "label": "P15",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 24,
+      "dict_matched": 22,
+      "status": "done"
+    },
+    {
+      "id": "16",
+      "pos": "+Pron",
+      "label": "P16",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 24,
+      "dict_matched": 20,
+      "status": "done"
+    },
+    {
+      "id": "17",
+      "pos": "+Pron",
+      "label": "P17",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 36,
+      "dict_matched": 33,
+      "status": "done"
+    },
+    {
+      "id": "18",
+      "pos": "+Pron",
+      "label": "P18",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 72,
+      "dict_matched": 26,
+      "status": "done"
+    },
+    {
+      "id": "19",
+      "pos": "+Pron",
+      "label": "P19",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 168,
+      "dict_matched": 144,
+      "status": "done"
+    },
+    {
+      "id": "20",
+      "pos": "+Pron",
+      "label": "P20",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 72,
+      "dict_matched": 69,
+      "status": "done"
+    },
+    {
+      "id": "21",
+      "pos": "+Num",
+      "label": "P21",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 72,
+      "dict_matched": 54,
+      "status": "done"
+    },
+    {
+      "id": "22",
+      "pos": "+Num",
+      "label": "P22",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 4,
+      "dict_matched": 4,
+      "status": "done"
+    },
+    {
+      "id": "23",
+      "pos": "+Num",
+      "label": "P23",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 12,
+      "dict_matched": 12,
+      "status": "done"
+    },
+    {
+      "id": "24",
+      "pos": "+Num",
+      "label": "P24",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 12,
+      "dict_matched": 12,
+      "status": "done"
+    },
+    {
+      "id": "25",
+      "pos": "+A",
+      "label": "P25",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 48732,
+      "dict_matched": 15864,
+      "status": "done"
+    },
+    {
+      "id": "26",
+      "pos": "+A",
+      "label": "P26",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 6888,
+      "dict_matched": 1013,
+      "status": "done"
+    },
+    {
+      "id": "27",
+      "pos": "+A",
+      "label": "P27",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 48,
+      "gold_matched": 48,
+      "dict_total": 16728,
+      "dict_matched": 4619,
+      "status": "done"
+    },
+    {
+      "id": "28",
+      "pos": "+A",
+      "label": "P28",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 96,
+      "dict_matched": 96,
+      "status": "done"
+    },
+    {
+      "id": "29",
+      "pos": "+A",
+      "label": "P29",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 768,
+      "dict_matched": 279,
+      "status": "done"
+    },
+    {
+      "id": "30",
+      "pos": "+A",
+      "label": "P30",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 504,
+      "dict_matched": 120,
+      "status": "done"
+    },
+    {
+      "id": "30a",
+      "pos": "+Pron",
+      "label": "P30a",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 0,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "31",
+      "pos": "+A",
+      "label": "P31",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 1872,
+      "dict_matched": 544,
+      "status": "done"
+    },
+    {
+      "id": "32",
+      "pos": "+N",
+      "label": "P32",
+      "genders": [
+        "m"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 11832,
+      "dict_matched": 10614,
+      "status": "done"
+    },
+    {
+      "id": "33",
+      "pos": "+N",
+      "label": "P33",
+      "genders": [
+        "m"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 8,
+      "dict_matched": 7,
+      "status": "done"
+    },
+    {
+      "id": "34",
+      "pos": "+N",
+      "label": "P34",
+      "genders": [
+        "m"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 8,
+      "dict_matched": 8,
+      "status": "done"
+    },
+    {
+      "id": "35",
+      "pos": "+N",
+      "label": "P35",
+      "genders": [
+        "n"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 5260,
+      "dict_matched": 4871,
+      "status": "done"
+    },
+    {
+      "id": "35a",
+      "pos": "+N",
+      "label": "P35a",
+      "genders": [
+        "n"
+      ],
+      "gold_cells": 7,
+      "gold_matched": 7,
+      "dict_total": 904,
+      "dict_matched": 94,
+      "status": "done"
+    },
+    {
+      "id": "36",
+      "pos": "+N",
+      "label": "P36",
+      "genders": [
+        "m"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 940,
+      "dict_matched": 748,
+      "status": "done"
+    },
+    {
+      "id": "37",
+      "pos": "+N",
+      "label": "P37",
+      "genders": [
+        "n"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 332,
+      "dict_matched": 45,
+      "status": "done"
+    },
+    {
+      "id": "37a",
+      "pos": "+N",
+      "label": "P37a",
+      "genders": [
+        "n"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 0,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "38",
+      "pos": "+N",
+      "label": "P38",
+      "genders": [
+        "m"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 152,
+      "dict_matched": 144,
+      "status": "done"
+    },
+    {
+      "id": "39",
+      "pos": "+N",
+      "label": "P39",
+      "genders": [
+        "m"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 96,
+      "dict_matched": 72,
+      "status": "done"
+    },
+    {
+      "id": "40",
+      "pos": "+N",
+      "label": "P40",
+      "genders": [
+        "m"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 5156,
+      "dict_matched": 4944,
+      "status": "done"
+    },
+    {
+      "id": "40a",
+      "pos": "+N",
+      "label": "P40a",
+      "genders": [
+        "m"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 80,
+      "dict_matched": 72,
+      "status": "done"
+    },
+    {
+      "id": "40b",
+      "pos": "+N",
+      "label": "P40b",
+      "genders": [
+        "m"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 0,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "40c",
+      "pos": "+N",
+      "label": "P40c",
+      "genders": [
+        "m"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 0,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "41",
+      "pos": "+N",
+      "label": "P41",
+      "genders": [
+        "m"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 296,
+      "dict_matched": 246,
+      "status": "done"
+    },
+    {
+      "id": "42",
+      "pos": "+N",
+      "label": "P42",
+      "genders": [
+        "m"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 204,
+      "dict_matched": 65,
+      "status": "done"
+    },
+    {
+      "id": "43",
+      "pos": "+N",
+      "label": "P43",
+      "genders": [
+        "m"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 88,
+      "dict_matched": 84,
+      "status": "done"
+    },
+    {
+      "id": "44",
+      "pos": "+N",
+      "label": "P44",
+      "genders": [
+        "n"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 248,
+      "dict_matched": 224,
+      "status": "done"
+    },
+    {
+      "id": "45",
+      "pos": "+N",
+      "label": "P45",
+      "genders": [
+        "f"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 7940,
+      "dict_matched": 7404,
+      "status": "done"
+    },
+    {
+      "id": "46",
+      "pos": "+N",
+      "label": "P46",
+      "genders": [
+        "f"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 3516,
+      "dict_matched": 3182,
+      "status": "done"
+    },
+    {
+      "id": "46,00",
+      "pos": "+V",
+      "label": "P46,00",
+      "genders": [],
+      "gold_cells": 0,
+      "gold_matched": 0,
+      "dict_total": 8,
+      "dict_matched": 0,
+      "status": "open"
+    },
+    {
+      "id": "47",
+      "pos": "+N",
+      "label": "P47",
+      "genders": [
+        "m"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 48,
+      "dict_matched": 48,
+      "status": "done"
+    },
+    {
+      "id": "48",
+      "pos": "+N",
+      "label": "P48",
+      "genders": [
+        "f"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 8,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "49",
+      "pos": "+N",
+      "label": "P49",
+      "genders": [
+        "f"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 48,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "50",
+      "pos": "+N",
+      "label": "P50",
+      "genders": [
+        "f"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 1124,
+      "dict_matched": 1091,
+      "status": "done"
+    },
+    {
+      "id": "50a",
+      "pos": "+N",
+      "label": "P50a",
+      "genders": [
+        "f"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 0,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "51",
+      "pos": "+N",
+      "label": "P51",
+      "genders": [
+        "f"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 172,
+      "dict_matched": 114,
+      "status": "done"
+    },
+    {
+      "id": "51a",
+      "pos": "+N",
+      "label": "P51a",
+      "genders": [
+        "f"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 0,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "52",
+      "pos": "+N",
+      "label": "P52",
+      "genders": [
+        "f"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 6852,
+      "dict_matched": 6473,
+      "status": "done"
+    },
+    {
+      "id": "53",
+      "pos": "+N",
+      "label": "P53",
+      "genders": [
+        "f"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 496,
+      "dict_matched": 92,
+      "status": "done"
+    },
+    {
+      "id": "54",
+      "pos": "+N",
+      "label": "P54",
+      "genders": [
+        "m"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 104,
+      "dict_matched": 8,
+      "status": "done"
+    },
+    {
+      "id": "55",
+      "pos": "+N",
+      "label": "P55",
+      "genders": [
+        "m"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 8,
+      "dict_matched": 8,
+      "status": "done"
+    },
+    {
+      "id": "56",
+      "pos": "+N",
+      "label": "P56",
+      "genders": [
+        "m"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 352,
+      "dict_matched": 319,
+      "status": "done"
+    },
+    {
+      "id": "57",
+      "pos": "+N",
+      "label": "P57",
+      "genders": [
+        "m"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 256,
+      "dict_matched": 180,
+      "status": "done"
+    },
+    {
+      "id": "58",
+      "pos": "+N",
+      "label": "P58",
+      "genders": [
+        "f"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 528,
+      "dict_matched": 417,
+      "status": "done"
+    },
+    {
+      "id": "59",
+      "pos": "+N",
+      "label": "P59",
+      "genders": [
+        "n"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 0,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "60",
+      "pos": "+N",
+      "label": "P60",
+      "genders": [
+        "f"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 412,
+      "dict_matched": 121,
+      "status": "done"
+    },
+    {
+      "id": "61",
+      "pos": "+N",
+      "label": "P61",
+      "genders": [
+        "m"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 124,
+      "dict_matched": 99,
+      "status": "done"
+    },
+    {
+      "id": "62",
+      "pos": "+N",
+      "label": "P62",
+      "genders": [
+        "m"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 16,
+      "dict_matched": 8,
+      "status": "done"
+    },
+    {
+      "id": "63",
+      "pos": "+N",
+      "label": "P63",
+      "genders": [
+        "n"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 48,
+      "dict_matched": 3,
+      "status": "done"
+    },
+    {
+      "id": "64",
+      "pos": "+N",
+      "label": "P64",
+      "genders": [
+        "m"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 16,
+      "dict_matched": 8,
+      "status": "done"
+    },
+    {
+      "id": "65",
+      "pos": "+N",
+      "label": "P65",
+      "genders": [
+        "m"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 16,
+      "dict_matched": 6,
+      "status": "done"
+    },
+    {
+      "id": "66",
+      "pos": "+N",
+      "label": "P66",
+      "genders": [
+        "f"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 8,
+      "dict_matched": 3,
+      "status": "done"
+    },
+    {
+      "id": "67",
+      "pos": "+N",
+      "label": "P67",
+      "genders": [
+        "f"
+      ],
+      "gold_cells": 8,
+      "gold_matched": 8,
+      "dict_total": 8,
+      "dict_matched": 3,
+      "status": "done"
+    },
+    {
+      "id": "68",
+      "pos": "+V",
+      "label": "P68",
+      "genders": [],
+      "gold_cells": 0,
+      "gold_matched": 0,
+      "dict_total": 504,
+      "dict_matched": 24,
+      "status": "open"
+    },
+    {
+      "id": "69",
+      "pos": "+V",
+      "label": "P69",
+      "genders": [],
+      "gold_cells": 0,
+      "gold_matched": 0,
+      "dict_total": 840,
+      "dict_matched": 34,
+      "status": "open"
+    },
+    {
+      "id": "70",
+      "pos": "+N",
+      "label": "P70",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 24,
+      "dict_matched": 23,
+      "status": "done"
+    },
+    {
+      "id": "71",
+      "pos": "+V",
+      "label": "P71",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 533,
+      "dict_matched": 415,
+      "status": "done"
+    },
+    {
+      "id": "72",
+      "pos": "+V",
+      "label": "P72",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 78,
+      "dict_matched": 60,
+      "status": "done"
+    },
+    {
+      "id": "73",
+      "pos": "+V",
+      "label": "P73",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 91,
+      "dict_matched": 70,
+      "status": "done"
+    },
+    {
+      "id": "74",
+      "pos": "+V",
+      "label": "P74",
+      "genders": [],
+      "gold_cells": 3,
+      "gold_matched": 3,
+      "dict_total": 0,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "75",
+      "pos": "+V",
+      "label": "P75",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 572,
+      "dict_matched": 353,
+      "status": "done"
+    },
+    {
+      "id": "75a",
+      "pos": "+V",
+      "label": "P75a",
+      "genders": [],
+      "gold_cells": 0,
+      "gold_matched": 0,
+      "dict_total": 13,
+      "dict_matched": 0,
+      "status": "open"
+    },
+    {
+      "id": "75b",
+      "pos": "+V",
+      "label": "P75b",
+      "genders": [],
+      "gold_cells": 0,
+      "gold_matched": 0,
+      "dict_total": 499,
+      "dict_matched": 14,
+      "status": "open"
+    },
+    {
+      "id": "76",
+      "pos": "+V",
+      "label": "P76",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 182,
+      "dict_matched": 112,
+      "status": "done"
+    },
+    {
+      "id": "76s",
+      "pos": "+V",
+      "label": "P76s",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 52,
+      "dict_matched": 33,
+      "status": "done"
+    },
+    {
+      "id": "77",
+      "pos": "+V",
+      "label": "P77",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 156,
+      "dict_matched": 12,
+      "status": "done"
+    },
+    {
+      "id": "78",
+      "pos": "+V",
+      "label": "P78",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 0,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "79",
+      "pos": "+V",
+      "label": "P79",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 78,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "80b",
+      "pos": "+V",
+      "label": "P80b",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 130,
+      "dict_matched": 10,
+      "status": "done"
+    },
+    {
+      "id": "81",
+      "pos": "+V",
+      "label": "P81",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 247,
+      "dict_matched": 12,
+      "status": "done"
+    },
+    {
+      "id": "81a",
+      "pos": "+V",
+      "label": "P81a",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 26,
+      "dict_matched": 6,
+      "status": "done"
+    },
+    {
+      "id": "81b",
+      "pos": "+V",
+      "label": "P81b",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 104,
+      "dict_matched": 2,
+      "status": "done"
+    },
+    {
+      "id": "81c",
+      "pos": "+V",
+      "label": "P81c",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 52,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "81d",
+      "pos": "+V",
+      "label": "P81d",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 0,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "82",
+      "pos": "+V",
+      "label": "P82",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 39,
+      "dict_matched": 8,
+      "status": "done"
+    },
+    {
+      "id": "82a",
+      "pos": "+V",
+      "label": "P82a",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 13,
+      "dict_matched": 12,
+      "status": "done"
+    },
+    {
+      "id": "83",
+      "pos": "+V",
+      "label": "P83",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 52,
+      "dict_matched": 12,
+      "status": "done"
+    },
+    {
+      "id": "84",
+      "pos": "+V",
+      "label": "P84",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 39,
+      "dict_matched": 12,
+      "status": "done"
+    },
+    {
+      "id": "85",
+      "pos": "+V",
+      "label": "P85",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 6513,
+      "dict_matched": 6268,
+      "status": "done"
+    },
+    {
+      "id": "86",
+      "pos": "+V",
+      "label": "P86",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 104,
+      "dict_matched": 88,
+      "status": "done"
+    },
+    {
+      "id": "87",
+      "pos": "+V",
+      "label": "P87",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 325,
+      "dict_matched": 288,
+      "status": "done"
+    },
+    {
+      "id": "88",
+      "pos": "+V",
+      "label": "P88",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 26,
+      "dict_matched": 25,
+      "status": "done"
+    },
+    {
+      "id": "89",
+      "pos": "+V",
+      "label": "P89",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 390,
+      "dict_matched": 18,
+      "status": "done"
+    },
+    {
+      "id": "90",
+      "pos": "+V",
+      "label": "P90",
+      "genders": [],
+      "gold_cells": 0,
+      "gold_matched": 0,
+      "dict_total": 65,
+      "dict_matched": 0,
+      "status": "open"
+    },
+    {
+      "id": "91",
+      "pos": "+V",
+      "label": "P91",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 26,
+      "dict_matched": 12,
+      "status": "done"
+    },
+    {
+      "id": "92",
+      "pos": "+V",
+      "label": "P92",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 403,
+      "dict_matched": 13,
+      "status": "done"
+    },
+    {
+      "id": "93",
+      "pos": "+V",
+      "label": "P93",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 130,
+      "dict_matched": 14,
+      "status": "done"
+    },
+    {
+      "id": "94",
+      "pos": "+V",
+      "label": "P94",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 78,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "95",
+      "pos": "+V",
+      "label": "P95",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 78,
+      "dict_matched": 12,
+      "status": "done"
+    },
+    {
+      "id": "96",
+      "pos": "+V",
+      "label": "P96",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 13,
+      "dict_matched": 12,
+      "status": "done"
+    },
+    {
+      "id": "97",
+      "pos": "+V",
+      "label": "P97",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 533,
+      "dict_matched": 20,
+      "status": "done"
+    },
+    {
+      "id": "97a",
+      "pos": "+V",
+      "label": "P97a",
+      "genders": [],
+      "gold_cells": 0,
+      "gold_matched": 0,
+      "dict_total": 26,
+      "dict_matched": 0,
+      "status": "open"
+    },
+    {
+      "id": "98",
+      "pos": "+V",
+      "label": "P98",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 13,
+      "dict_matched": 12,
+      "status": "done"
+    },
+    {
+      "id": "99",
+      "pos": "+V",
+      "label": "P99",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 26,
+      "dict_matched": 12,
+      "status": "done"
+    },
+    {
+      "id": "100",
+      "pos": "+V",
+      "label": "P100",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 13,
+      "dict_matched": 12,
+      "status": "done"
+    },
+    {
+      "id": "102",
+      "pos": "+V",
+      "label": "P102",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 91,
+      "dict_matched": 12,
+      "status": "done"
+    },
+    {
+      "id": "102a",
+      "pos": "+V",
+      "label": "P102a",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 13,
+      "dict_matched": 12,
+      "status": "done"
+    },
+    {
+      "id": "104",
+      "pos": "+V",
+      "label": "P104",
+      "genders": [],
+      "gold_cells": 0,
+      "gold_matched": 0,
+      "dict_total": 26,
+      "dict_matched": 0,
+      "status": "open"
+    },
+    {
+      "id": "105",
+      "pos": "+V",
+      "label": "P105",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 0,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "106",
+      "pos": "+V",
+      "label": "P106",
+      "genders": [],
+      "gold_cells": 0,
+      "gold_matched": 0,
+      "dict_total": 117,
+      "dict_matched": 6,
+      "status": "open"
+    },
+    {
+      "id": "106a",
+      "pos": "+V",
+      "label": "P106a",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 0,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "106b",
+      "pos": "+V",
+      "label": "P106b",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 13,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "106c",
+      "pos": "+V",
+      "label": "P106c",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 0,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "106d",
+      "pos": "+V",
+      "label": "P106d",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 0,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "107",
+      "pos": "+V",
+      "label": "P107",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 26,
+      "dict_matched": 12,
+      "status": "done"
+    },
+    {
+      "id": "108",
+      "pos": "+V",
+      "label": "P108",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 52,
+      "dict_matched": 7,
+      "status": "done"
+    },
+    {
+      "id": "109",
+      "pos": "+V",
+      "label": "P109",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 26,
+      "dict_matched": 12,
+      "status": "done"
+    },
+    {
+      "id": "110",
+      "pos": "+V",
+      "label": "P110",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 13,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "111",
+      "pos": "+V",
+      "label": "P111",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 273,
+      "dict_matched": 8,
+      "status": "done"
+    },
+    {
+      "id": "112",
+      "pos": "+V",
+      "label": "P112",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 104,
+      "dict_matched": 12,
+      "status": "done"
+    },
+    {
+      "id": "113",
+      "pos": "+V",
+      "label": "P113",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 221,
+      "dict_matched": 12,
+      "status": "done"
+    },
+    {
+      "id": "114",
+      "pos": "+V",
+      "label": "P114",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 26,
+      "dict_matched": 26,
+      "status": "done"
+    },
+    {
+      "id": "115",
+      "pos": "+N",
+      "label": "P115",
+      "genders": [
+        "f",
+        "n"
+      ],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 13,
+      "dict_matched": 12,
+      "status": "done"
+    },
+    {
+      "id": "116",
+      "pos": "+V",
+      "label": "P116",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 104,
+      "dict_matched": 15,
+      "status": "done"
+    },
+    {
+      "id": "117",
+      "pos": "+V",
+      "label": "P117",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 13,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "118",
+      "pos": "+N",
+      "label": "P118",
+      "genders": [
+        "f",
+        "n"
+      ],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 130,
+      "dict_matched": 35,
+      "status": "done"
+    },
+    {
+      "id": "119",
+      "pos": "+V",
+      "label": "P119",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 91,
+      "dict_matched": 13,
+      "status": "done"
+    },
+    {
+      "id": "120",
+      "pos": "+V",
+      "label": "P120",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 234,
+      "dict_matched": 31,
+      "status": "done"
+    },
+    {
+      "id": "121",
+      "pos": "+V",
+      "label": "P121",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 78,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "122",
+      "pos": "+V",
+      "label": "P122",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 13,
+      "dict_matched": 12,
+      "status": "done"
+    },
+    {
+      "id": "123",
+      "pos": "+V",
+      "label": "P123",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 13,
+      "dict_matched": 5,
+      "status": "done"
+    },
+    {
+      "id": "124",
+      "pos": "+V",
+      "label": "P124",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 13,
+      "dict_matched": 12,
+      "status": "done"
+    },
+    {
+      "id": "125",
+      "pos": "+V",
+      "label": "P125",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 52,
+      "dict_matched": 19,
+      "status": "done"
+    },
+    {
+      "id": "126",
+      "pos": "+V",
+      "label": "P126",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 26,
+      "dict_matched": 12,
+      "status": "done"
+    },
+    {
+      "id": "127",
+      "pos": "+V",
+      "label": "P127",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 0,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "128",
+      "pos": "+V",
+      "label": "P128",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 13,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "131",
+      "pos": "+V",
+      "label": "P131",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 234,
+      "dict_matched": 168,
+      "status": "done"
+    },
+    {
+      "id": "132",
+      "pos": "+V",
+      "label": "P132",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 1131,
+      "dict_matched": 1033,
+      "status": "done"
+    },
+    {
+      "id": "133",
+      "pos": "+V",
+      "label": "P133",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 195,
+      "dict_matched": 9,
+      "status": "done"
+    },
+    {
+      "id": "134",
+      "pos": "+V",
+      "label": "P134",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 1066,
+      "dict_matched": 973,
+      "status": "done"
+    },
+    {
+      "id": "134a",
+      "pos": "+V",
+      "label": "P134a",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 312,
+      "dict_matched": 291,
+      "status": "done"
+    },
+    {
+      "id": "135",
+      "pos": "+V",
+      "label": "P135",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 39,
+      "dict_matched": 6,
+      "status": "done"
+    },
+    {
+      "id": "136",
+      "pos": "+V",
+      "label": "P136",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 442,
+      "dict_matched": 409,
+      "status": "done"
+    },
+    {
+      "id": "137",
+      "pos": "+V",
+      "label": "P137",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 168,
+      "dict_matched": 24,
+      "status": "done"
+    },
+    {
+      "id": "137a",
+      "pos": "+V",
+      "label": "P137a",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 13,
+      "dict_matched": 12,
+      "status": "done"
+    },
+    {
+      "id": "138",
+      "pos": "+V",
+      "label": "P138",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 1105,
+      "dict_matched": 1008,
+      "status": "done"
+    },
+    {
+      "id": "139",
+      "pos": "+V",
+      "label": "P139",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 1391,
+      "dict_matched": 856,
+      "status": "done"
+    },
+    {
+      "id": "140",
+      "pos": "+V",
+      "label": "P140",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 39,
+      "dict_matched": 11,
+      "status": "done"
+    },
+    {
+      "id": "141",
+      "pos": "+V",
+      "label": "P141",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 91,
+      "dict_matched": 12,
+      "status": "done"
+    },
+    {
+      "id": "142",
+      "pos": "+V",
+      "label": "P142",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 260,
+      "dict_matched": 26,
+      "status": "done"
+    },
+    {
+      "id": "143",
+      "pos": "+V",
+      "label": "P143",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 1664,
+      "dict_matched": 1524,
+      "status": "done"
+    },
+    {
+      "id": "144",
+      "pos": "+V",
+      "label": "P144",
+      "genders": [],
+      "gold_cells": 11,
+      "gold_matched": 11,
+      "dict_total": 467,
+      "dict_matched": 24,
+      "status": "done"
+    }
+  ],
+  "corpus": {
+    "total_tokens": 70047,
+    "coverage_pct": 62.5,
+    "sources": [
+      {
+        "id": "tatoeba",
+        "name": "Tatoeba (prg)",
+        "tokens": 30310,
+        "coverage_pct": 68.7,
+        "dropped_docs": 0,
+        "dropped_words": 0
+      },
+      {
+        "id": "prusaspira_wiki",
+        "name": "Prusaspira-Wiki",
+        "tokens": 39737,
+        "coverage_pct": 57.8,
+        "dropped_docs": 12,
+        "dropped_words": 2548
+      }
+    ],
+    "unanalyzable": [
+      {
+        "reason": "oov",
+        "label": "Unbekannte Lemmata",
+        "pct": 50.1
+      },
+      {
+        "reason": "propn",
+        "label": "Eigennamen",
+        "pct": 11.1
+      },
+      {
+        "reason": "variant",
+        "label": "Form-/Flexionslücke",
+        "pct": 38.9
+      }
+    ]
+  },
+  "closed_class": {
+    "total": 46,
+    "recognized": 46,
+    "per_pos": [
+      {
+        "tag": "+Cjn",
+        "recognized": 6,
+        "total": 6
+      },
+      {
+        "tag": "+Pcl",
+        "recognized": 14,
+        "total": 14
+      },
+      {
+        "tag": "+Pr",
+        "recognized": 19,
+        "total": 19
+      },
+      {
+        "tag": "+Pron",
+        "recognized": 7,
+        "total": 7
+      }
+    ]
+  },
+  "verbs_dict": {
+    "total": 22129,
+    "matched": 14620,
+    "ortho": 98,
+    "no_match": 7509
+  }
+};

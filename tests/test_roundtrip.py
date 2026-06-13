@@ -4,56 +4,32 @@ Orakel ist resolve_stem (die frühere Bake-Logik) — der FST muss über
 lexd + Regelschicht dieselben Oberflächen liefern.
 """
 
-from prussian.fst.oracle import resolve_stem
-from prussian.fst.tags import (
-    cell_tag, split_reflexive, split_suffix, tag_prefix, verb_cell_tag,
-)
-
-
-def _nominal_cases(entries):
-    for e in entries:
-        prefix = tag_prefix(e["paradigm"], e["gender"])
-        for cell, v in e["suffixe"].items():
-            std, variant = split_suffix(v["suffix"])
-            expected = resolve_stem(
-                e["stamm"], v["betont"], v.get("palatize", False)) + std
-            yield f"{e['lemma']}{prefix}{cell_tag(cell)}", expected, variant
-
-
-def _verbal_cases(entries):
-    for e in entries:
-        for cell, v in e["suffixe"].items():
-            bare, refl = split_reflexive(v["suffix"])
-            tcell = verb_cell_tag(e["tense"], cell, refl)
-            std, variant = split_suffix(bare)
-            expected = resolve_stem(
-                e["stamm"], v["betont"], v.get("palatize", False)) + std
-            yield f"{e['lemma']}+V{tcell}", expected, variant
+from prussian.report.cases import nominal_cases, verbal_cases
 
 
 def _check(analyser, cases):
     gen_fail, ana_fail, var_fail = [], [], []
     n = 0
-    for tag, expected, variant in cases:
+    for c in cases:
         n += 1
-        results = list(analyser.generate(tag))
-        if expected not in results:
-            gen_fail.append((tag, expected, results))
-        elif tag not in analyser.analyze(expected):
-            ana_fail.append((expected, tag))
-        if variant is not None and variant not in results:
-            var_fail.append((tag, variant, results))
+        results = list(analyser.generate(c.tag))
+        if c.expected not in results:
+            gen_fail.append((c.tag, c.expected, results))
+        elif c.tag not in analyser.analyze(c.expected):
+            ana_fail.append((c.expected, c.tag))
+        if c.variant is not None and c.variant not in results:
+            var_fail.append((c.tag, c.variant, results))
     assert not gen_fail, f"{len(gen_fail)}/{n} Generierungsfehler: {gen_fail[:5]}"
     assert not ana_fail, f"{len(ana_fail)}/{n} Analysefehler: {ana_fail[:5]}"
     assert not var_fail, f"{len(var_fail)} Doubletten fehlen: {var_fail[:5]}"
 
 
 def test_nominal_roundtrip(analyser, gold_nominal):
-    _check(analyser, _nominal_cases(gold_nominal))
+    _check(analyser, nominal_cases(gold_nominal))
 
 
 def test_verbal_roundtrip(analyser, gold_verbal):
-    _check(analyser, _verbal_cases(gold_verbal))
+    _check(analyser, verbal_cases(gold_verbal))
 
 
 def test_akzent_alternation(analyser):

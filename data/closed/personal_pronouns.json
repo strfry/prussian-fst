@@ -1,0 +1,34 @@
+[
+  {
+    "paradigm": "1",
+    "lemma": "as",
+    "gender": "",
+    "stamm": "",
+    "suffixe": {
+      "Nom sg": {"suffix": "as", "betont": false},
+      "Gen sg": {"suffix": "māise", "betont": false},
+      "Dat sg": {"suffix": "mennei", "betont": false},
+      "Akk sg": {"suffix": "men", "betont": false},
+      "Nom pl": {"suffix": "mes", "betont": false},
+      "Gen pl": {"suffix": "nūse", "betont": false},
+      "Dat pl": {"suffix": "nūmans", "betont": false},
+      "Akk pl": {"suffix": "mans", "betont": false}
+    }
+  },
+  {
+    "paradigm": "2",
+    "lemma": "tū",
+    "gender": "",
+    "stamm": "",
+    "suffixe": {
+      "Nom sg": {"suffix": "tū", "betont": false},
+      "Gen sg": {"suffix": "twāise", "betont": false},
+      "Dat sg": {"suffix": "tebbei", "betont": false},
+      "Akk sg": {"suffix": "ten", "betont": false},
+      "Nom pl": {"suffix": "jūs", "betont": false},
+      "Gen pl": {"suffix": "jūse", "betont": false},
+      "Dat pl": {"suffix": "jūmans", "betont": false},
+      "Akk pl": {"suffix": "wans", "betont": false}
+    }
+  }
+]
