@@ -26,8 +26,9 @@ Akzentklassen (vgl. docs/AKZENT.md):
 from collections import defaultdict
 
 from prussian.fst.entries import (
-    LONG, INF_TAG, PERSON_TAG, TENSE_TAG,
-    cell_tag, resolve_stem, split_suffix, tag_prefix,
+    LONG,
+    cell_tag, resolve_stem, split_reflexive, split_suffix,
+    tag_prefix, verb_cell_tag,
 )
 
 
@@ -112,8 +113,10 @@ def build_lexd(entries: list[dict], verb_entries: list[dict]) -> str:
             infl = {}
             for cell, v in e["suffixe"].items():
                 if lexkind == "verb":
-                    tag = INF_TAG if cell == "Inf" else \
-                        f"{TENSE_TAG[e['tense']]}{PERSON_TAG.get(cell, '')}"
+                    bare, refl = split_reflexive(v["suffix"])
+                    if refl:
+                        v = {**v, "suffix": bare}
+                    tag = verb_cell_tag(e["tense"], cell, refl)
                 else:
                     tag = cell_tag(cell)
                 infl[tag] = render_suffix(v, cls)
@@ -139,8 +142,8 @@ def build_lexd(entries: list[dict], verb_entries: list[dict]) -> str:
             if (variant_full.startswith(resolve_stem(e["stamm"], True, pal))
                     or variant_full.startswith(resolve_stem(e["stamm"], False, pal))):
                 if lexkind == "verb":
-                    tag = INF_TAG if cell == "Inf" else \
-                        f"{TENSE_TAG[e['tense']]}{PERSON_TAG.get(cell, '')}"
+                    _bare, refl = split_reflexive(v["suffix"])
+                    tag = verb_cell_tag(e["tense"], cell, refl)
                 else:
                     tag = cell_tag(cell)
                 variants.add((f"{e['lemma']}{upper_prefix}{tag}", variant_full))

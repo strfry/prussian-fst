@@ -5,8 +5,8 @@ lexd + Regelschicht dieselben Oberflächen liefern.
 """
 
 from prussian.fst.entries import (
-    INF_TAG, PERSON_TAG, TENSE_TAG,
-    cell_tag, resolve_stem, split_suffix, tag_prefix,
+    cell_tag, resolve_stem, split_reflexive, split_suffix,
+    tag_prefix, verb_cell_tag,
 )
 
 
@@ -23,9 +23,9 @@ def _nominal_cases(entries):
 def _verbal_cases(entries):
     for e in entries:
         for cell, v in e["suffixe"].items():
-            tcell = INF_TAG if cell == "Inf" else \
-                f"{TENSE_TAG[e['tense']]}{PERSON_TAG.get(cell, '')}"
-            std, variant = split_suffix(v["suffix"])
+            bare, refl = split_reflexive(v["suffix"])
+            tcell = verb_cell_tag(e["tense"], cell, refl)
+            std, variant = split_suffix(bare)
             expected = resolve_stem(
                 e["stamm"], v["betont"], v.get("palatize", False)) + std
             yield f"{e['lemma']}+V{tcell}", expected, variant

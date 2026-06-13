@@ -37,6 +37,26 @@ PERSON_TAG = {"1sg": "+1Sg", "2sg": "+2Sg", "3sg": "+3",
               "1pl": "+1Pl", "2pl": "+2Pl"}
 INF_TAG = "+Inf"
 
+#: Enklitische Reflexivpartikel (Klitik/Syntax, kein Flexionssuffix): nur
+#: P106b smeītwei trägt sie in den finiten Zellen (Gold-Suffix '… si'). Der
+#: FST generiert die bare finite Form, das Lexem erhält stattdessen +Refl;
+#: die Partikel 'si' gehört außerhalb der Verbmorphologie (function_words).
+REFL_TAG = "+Refl"
+_REFL_CLITIC = " si"
+
+
+def split_reflexive(suffix: str) -> tuple[str, bool]:
+    """'eīja si' → ('eīja', True); 'eītwei' → ('eītwei', False)."""
+    if suffix.endswith(_REFL_CLITIC):
+        return suffix[:-len(_REFL_CLITIC)], True
+    return suffix, False
+
+
+def verb_cell_tag(tense: str, cell: str, reflexive: bool = False) -> str:
+    """Verbale Zellen-Tagfolge: +Inf bzw. +Prs/+Prt+Person (+Refl bei Klitik)."""
+    base = INF_TAG if cell == "Inf" else f"{TENSE_TAG[tense]}{PERSON_TAG.get(cell, '')}"
+    return base + (REFL_TAG if reflexive else "")
+
 DEF_TAG = "+Def"
 SUPERL_TAG = "+Superl"
 ADV_POS_TAG = "+Adv"
