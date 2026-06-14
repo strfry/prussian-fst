@@ -22,18 +22,52 @@ from prussian.fst.tags import split_reflexive
 
 VERB_POS = "+V"
 
-# Universelles Modus-Suffixset (Rollout Stufe 1, Inf-Stamm-Kategorien:
-# Optativ/Konjunktiv/Passivpartizip). Die Suffixe sind über ALLE Paradigmen
-# identisch; der lemmaspezifische Inf-Stamm wird gewonnen, indem das universelle
-# Suffix von der jeweils attestierten Form abgestreift wird. So absorbiert der
-# Stamm das Grenz-Sandhi (z. B. -st-Wurzeln: bredlai→bred-, bresei→bre-) und
-# stem+suffix == attestierte Form gilt per Konstruktion — keine Extraregel nötig.
-MOOD_SUFFIXE: dict[str, "OrderedDict[str, str]"] = {
-    "optative":     OrderedDict([("Opt", "sei")]),
-    "subjunctive":  OrderedDict([("1sg", "lai"), ("2sg", "lai"), ("3sg", "lai"),
-                                 ("1pl", "limai"), ("2pl", "litei")]),
-    "passive_ptcp": OrderedDict([("PssPrc", "ts")]),
+# Universelle Modus-Kategorien (Rollout Stufe 1+2). Die Suffixe sind über ALLE
+# Paradigmen identisch; der lemmaspezifische Stamm wird gewonnen, indem das
+# universelle (Leit-)Suffix von der jeweils attestierten Leitform abgestreift
+# wird. So absorbiert der Stamm Grenz-Sandhi, Themavokal UND Hiatus-w, und
+# stem+suffix == attestierte Form gilt per Konstruktion — keine Extraregel nötig
+# (-st-Wurzel: bredlai→bred-; i-Klasse: abōnints→abōni-, abōniwuns→abōniw-).
+#
+# Stamm-tragende Prinzipalform je Kategorie (Drei-Stamm-Modell, Lehrer-Antwort
+# docs/HANDOFF_verb_modi_konditionierung.md): Inf-Stamm für Opt/Konj/Pass.-Ptz,
+# Präsensstamm fürs Präs.-Ptz, PRÄTERITALSTAMM fürs Akt.-Ptz (nicht aus dem
+# Präsens ableitbar — Ablaut/Nasalinfix/ja-Schwund; daher attestiert abstreifen).
+#: tense → (Leitform-Schlüssel, abzustreifendes Leitsuffix, Zellen→Suffix)
+_UNIV_MOODS: dict[str, tuple] = {
+    "optative":     ("optative",  "sei", OrderedDict([("Opt", "sei")])),
+    "subjunctive":  ("subj_as",   "lai", OrderedDict([("1sg", "lai"), ("2sg", "lai"),
+                                          ("3sg", "lai"), ("1pl", "limai"), ("2pl", "litei")])),
+    "passive_ptcp": ("passive",   "ts",  OrderedDict([("PssPrc", "ts")])),
+    "active_ptcp":  ("past_p",    "uns", OrderedDict([("PstPrc", "uns")])),
+    "present_ptcp": ("present_p",  "nts", OrderedDict([("PrsPrc", "nts")])),
 }
+
+# Imperativ: eine Kategorie, zwei Zellen (2sg/2pl), die EINEN Stamm teilen, aber
+# klassenabhängige Suffixe haben → Klasse am 2sg-Auslaut erkennen, Stamm = 2sg
+# minus 2sg-Suffix, Gruppierung nach Klasse (geteiltes Infl bleibt uniform).
+# Reihenfolge: spezifisch vor generisch (jais/āis/ais vor is; s = au-Klasse).
+_IMP_CLASSES: list[tuple[str, tuple[str, str]]] = [
+    ("jais", ("jais", "jaiti")),
+    ("āis",  ("āis",  "āiti")),
+    ("ais",  ("ais",  "aiti")),
+    ("is",   ("is",   "iti")),
+    ("s",    ("s",    "iti")),   # au-Klasse (āustabaus)
+]
+
+
+def _leitform(forms: dict, key: str) -> str | None:
+    """Attestierte Leitform einer Modus-Kategorie aus dem Wörterbuch-Eintrag."""
+    if key == "optative":
+        return _first(forms.get("optative"))
+    if key == "subj_as":
+        return next((_first(p.get("form")) for p in forms.get("subjunctive", [])
+                     if p.get("pronoun") == "as"), None)
+    ptype = {"passive": "Passive", "past_p": "Past", "present_p": "Present"}.get(key)
+    if ptype:
+        return next((_first(p.get("form")) for p in forms.get("participles", [])
+                     if p.get("type") == ptype), None)
+    return None
 
 # Paradigmen, deren GS-Präsensstamm != Präteritumstamm (suppletiv)
 _SUPPL_PARADIGMS: set[str] = set()
@@ -51,9 +85,12 @@ def groups(verb_entries: list[dict]):
 
 def wl_groups(wl_entries: list[dict]):
     """Wie groups, aber mit separatem Schlüssel ('Vw', …) für Wortlisten-
-    Verben, damit sie eigene Infl-Lexika bekommen (abweichende Inf-Endung)."""
+    Verben, damit sie eigene Infl-Lexika bekommen (abweichende Inf-Endung).
+
+    ``group`` überschreibt den Paradigma-Teil des Schlüssels (Imperativ wird nach
+    Präsensklasse statt Paradigma gruppiert, damit das geteilte Infl uniform ist)."""
     for e in wl_entries:
-        key = ("Vw", e["paradigm"], e["tense"])
+        key = ("Vw", e.get("group", e["paradigm"]), e["tense"])
         yield key, VERB_POS, "verb", e
 
 
@@ -142,29 +179,20 @@ def _mood_stem(form: str, suffix: str) -> str | None:
 
 
 def _mood_entries(word: str, par: str, forms: dict) -> list[dict]:
-    """Optativ-/Konjunktiv-/Passivpartizip-Einträge eines Verbs (Stufe 1).
+    """Modus-/Partizip-Einträge eines Verbs (Rollout Stufe 1+2).
 
-    Der Stamm wird je Kategorie aus deren attestierter Leitform abgeleitet
-    (Optativ-Form, Konjunktiv-``as``-Form, Passivpartizip); die Suffixe stammen
-    aus MOOD_SUFFIXE (universell). ``betont`` (= Stamm trägt ein Archiphonem)
-    steuert nur Akzentklasse/Längung; palatize bleibt aus (Inf-Stamm-Kategorien
-    palatalisieren nicht).
+    Universelle Kategorien (Opt/Konj/Pass.-Ptz/Akt.-Ptz/Präs.-Ptz): Stamm =
+    attestierte Leitform minus universelles Suffix → stem+suffix==Form. Imperativ:
+    klassenkonditioniert (2sg/2pl), Stamm aus der 2sg-Form, Gruppierung (``group``)
+    nach Klasse, damit das geteilte Infl uniform bleibt. ``betont`` (= Stamm trägt
+    ein Archiphonem) steuert Akzentklasse/Längung.
     """
-    leitform = {
-        "optative": _first(forms.get("optative")),
-        "subjunctive": next((_first(p.get("form")) for p in forms.get("subjunctive", [])
-                             if p.get("pronoun") == "as"), None),
-        "passive_ptcp": next((_first(p.get("form")) for p in forms.get("participles", [])
-                              if p.get("type") == "Passive"), None),
-    }
     out: list[dict] = []
-    for tense, suffixe in MOOD_SUFFIXE.items():
-        form = leitform[tense]
+
+    for tense, (lkey, lead, suffixe) in _UNIV_MOODS.items():
+        form = _leitform(forms, lkey)
         if not form:
             continue
-        # Leitsuffix (Optativ 'sei', Konjunktiv-as 'lai', Passiv 'ts') abstreifen
-        lead = suffixe["Opt"] if tense == "optative" else (
-            suffixe["PssPrc"] if tense == "passive_ptcp" else suffixe["1sg"])
         stamm = _mood_stem(form, lead)
         if stamm is None:
             continue
@@ -175,6 +203,23 @@ def _mood_entries(word: str, par: str, forms: dict) -> list[dict]:
                 (cell, {"suffix": sfx, "betont": betont})
                 for cell, sfx in suffixe.items()),
         })
+
+    im = next((_first(p.get("form")) for p in forms.get("imperative", [])
+               if "t" in p.get("pronoun", "")), None)
+    if im:
+        for marker, (s2sg, s2pl) in _IMP_CLASSES:
+            if im.endswith(marker) and len(im) > len(marker) + 1:
+                stamm = _detect_archiphoneme(im[: -len(marker)])
+                if len(stamm) >= 2:
+                    betont = any(c in "AEIOU" for c in stamm)
+                    out.append({
+                        "paradigm": par, "lemma": word, "tense": "imperative",
+                        "stamm": stamm, "group": f"imp_{marker}",
+                        "suffixe": OrderedDict([
+                            ("2sg", {"suffix": s2sg, "betont": betont}),
+                            ("2pl", {"suffix": s2pl, "betont": betont})]),
+                    })
+                break
     return out
 
 

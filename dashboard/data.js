@@ -1,12 +1,12 @@
 window.DASHBOARD_DATA = {
   "meta": {
     "schema_version": "2.0",
-    "generated": "2026-06-14T14:32:45Z",
+    "generated": "2026-06-14T17:46:03Z",
     "fst": {
       "engine": "pyfoma",
-      "build_commit": "53c5bd6",
-      "analyser_states": 15814,
-      "lenient_states": 16615,
+      "build_commit": "a3e8815",
+      "analyser_states": 16122,
+      "lenient_states": 16948,
       "tagset": "giella-flat-plus"
     }
   },
@@ -20,14 +20,14 @@ window.DASHBOARD_DATA = {
     "form_coverage": {
       "label": "Formen generierbar vs. Wörterbuch",
       "pct": 60.1,
-      "num": 76027,
+      "num": 76033,
       "den": 126548,
       "ortho_pct": 8.6
     },
     "corpus_coverage": {
       "label": "Korpus-Token analysierbar",
-      "pct": 64.8,
-      "num": 45392,
+      "pct": 65.9,
+      "num": 46132,
       "den": 70047
     }
   },
@@ -60,7 +60,7 @@ window.DASHBOARD_DATA = {
       "paradigms_done": 46,
       "paradigms_total": 46,
       "gen_integrity_pct": 100.0,
-      "form_coverage_pct": 87.4,
+      "form_coverage_pct": 87.3,
       "status": "done"
     },
     {
@@ -104,7 +104,7 @@ window.DASHBOARD_DATA = {
       "paradigms_done": 78,
       "paradigms_total": 90,
       "gen_integrity_pct": 100.0,
-      "form_coverage_pct": 67.8,
+      "form_coverage_pct": 68.9,
       "status": "done"
     },
     {
@@ -1060,7 +1060,7 @@ window.DASHBOARD_DATA = {
       "gold_cells": 8,
       "gold_matched": 8,
       "dict_total": 204,
-      "dict_matched": 65,
+      "dict_matched": 66,
       "status": "done"
     },
     {
@@ -1433,7 +1433,7 @@ window.DASHBOARD_DATA = {
       "gold_cells": 0,
       "gold_matched": 0,
       "dict_total": 504,
-      "dict_matched": 24,
+      "dict_matched": 29,
       "status": "open"
     },
     {
@@ -1469,8 +1469,8 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 22,
       "gold_matched": 22,
-      "dict_total": 861,
-      "dict_matched": 740,
+      "dict_total": 1025,
+      "dict_matched": 904,
       "status": "done"
     },
     {
@@ -1480,8 +1480,8 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 126,
-      "dict_matched": 108,
+      "dict_total": 150,
+      "dict_matched": 132,
       "status": "done"
     },
     {
@@ -1491,8 +1491,8 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 147,
-      "dict_matched": 123,
+      "dict_total": 175,
+      "dict_matched": 145,
       "status": "done"
     },
     {
@@ -1513,8 +1513,8 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 924,
-      "dict_matched": 705,
+      "dict_total": 1100,
+      "dict_matched": 881,
       "status": "done"
     },
     {
@@ -1524,8 +1524,8 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 0,
       "gold_matched": 0,
-      "dict_total": 21,
-      "dict_matched": 10,
+      "dict_total": 25,
+      "dict_matched": 14,
       "status": "open"
     },
     {
@@ -1535,8 +1535,8 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 0,
       "gold_matched": 0,
-      "dict_total": 803,
-      "dict_matched": 318,
+      "dict_total": 955,
+      "dict_matched": 470,
       "status": "open"
     },
     {
@@ -1546,8 +1546,8 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 294,
-      "dict_matched": 224,
+      "dict_total": 350,
+      "dict_matched": 280,
       "status": "done"
     },
     {
@@ -1557,8 +1557,8 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 84,
-      "dict_matched": 65,
+      "dict_total": 100,
+      "dict_matched": 81,
       "status": "done"
     },
     {
@@ -1568,7 +1568,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 252,
+      "dict_total": 300,
       "dict_matched": 12,
       "status": "done"
     },
@@ -1590,7 +1590,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 126,
+      "dict_total": 150,
       "dict_matched": 0,
       "status": "done"
     },
@@ -1601,8 +1601,8 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 210,
-      "dict_matched": 18,
+      "dict_total": 250,
+      "dict_matched": 21,
       "status": "done"
     },
     {
@@ -1612,7 +1612,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 399,
+      "dict_total": 475,
       "dict_matched": 12,
       "status": "done"
     },
@@ -1623,8 +1623,8 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 42,
-      "dict_matched": 8,
+      "dict_total": 50,
+      "dict_matched": 10,
       "status": "done"
     },
     {
@@ -1634,7 +1634,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 168,
+      "dict_total": 200,
       "dict_matched": 2,
       "status": "done"
     },
@@ -1645,7 +1645,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 84,
+      "dict_total": 100,
       "dict_matched": 0,
       "status": "done"
     },
@@ -1667,7 +1667,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 63,
+      "dict_total": 75,
       "dict_matched": 9,
       "status": "done"
     },
@@ -1678,7 +1678,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 21,
+      "dict_total": 25,
       "dict_matched": 14,
       "status": "done"
     },
@@ -1689,7 +1689,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 84,
+      "dict_total": 100,
       "dict_matched": 12,
       "status": "done"
     },
@@ -1700,7 +1700,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 63,
+      "dict_total": 75,
       "dict_matched": 12,
       "status": "done"
     },
@@ -1711,8 +1711,8 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 10521,
-      "dict_matched": 10276,
+      "dict_total": 12525,
+      "dict_matched": 12280,
       "status": "done"
     },
     {
@@ -1722,8 +1722,8 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 168,
-      "dict_matched": 152,
+      "dict_total": 200,
+      "dict_matched": 184,
       "status": "done"
     },
     {
@@ -1733,8 +1733,8 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 525,
-      "dict_matched": 488,
+      "dict_total": 625,
+      "dict_matched": 588,
       "status": "done"
     },
     {
@@ -1744,8 +1744,8 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 42,
-      "dict_matched": 41,
+      "dict_total": 50,
+      "dict_matched": 49,
       "status": "done"
     },
     {
@@ -1755,8 +1755,8 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 630,
-      "dict_matched": 18,
+      "dict_total": 750,
+      "dict_matched": 22,
       "status": "done"
     },
     {
@@ -1766,8 +1766,8 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 0,
       "gold_matched": 0,
-      "dict_total": 105,
-      "dict_matched": 40,
+      "dict_total": 125,
+      "dict_matched": 60,
       "status": "open"
     },
     {
@@ -1777,7 +1777,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 42,
+      "dict_total": 50,
       "dict_matched": 12,
       "status": "done"
     },
@@ -1788,7 +1788,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 651,
+      "dict_total": 775,
       "dict_matched": 13,
       "status": "done"
     },
@@ -1799,7 +1799,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 210,
+      "dict_total": 250,
       "dict_matched": 15,
       "status": "done"
     },
@@ -1810,7 +1810,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 126,
+      "dict_total": 150,
       "dict_matched": 0,
       "status": "done"
     },
@@ -1821,7 +1821,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 126,
+      "dict_total": 150,
       "dict_matched": 12,
       "status": "done"
     },
@@ -1832,7 +1832,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 21,
+      "dict_total": 25,
       "dict_matched": 12,
       "status": "done"
     },
@@ -1843,7 +1843,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 861,
+      "dict_total": 1025,
       "dict_matched": 20,
       "status": "done"
     },
@@ -1854,8 +1854,8 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 0,
       "gold_matched": 0,
-      "dict_total": 42,
-      "dict_matched": 16,
+      "dict_total": 50,
+      "dict_matched": 24,
       "status": "open"
     },
     {
@@ -1865,7 +1865,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 21,
+      "dict_total": 25,
       "dict_matched": 12,
       "status": "done"
     },
@@ -1876,7 +1876,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 42,
+      "dict_total": 50,
       "dict_matched": 12,
       "status": "done"
     },
@@ -1887,7 +1887,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 21,
+      "dict_total": 25,
       "dict_matched": 12,
       "status": "done"
     },
@@ -1898,7 +1898,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 147,
+      "dict_total": 175,
       "dict_matched": 12,
       "status": "done"
     },
@@ -1909,7 +1909,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 21,
+      "dict_total": 25,
       "dict_matched": 12,
       "status": "done"
     },
@@ -1920,8 +1920,8 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 0,
       "gold_matched": 0,
-      "dict_total": 42,
-      "dict_matched": 16,
+      "dict_total": 50,
+      "dict_matched": 24,
       "status": "open"
     },
     {
@@ -1942,8 +1942,8 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 0,
       "gold_matched": 0,
-      "dict_total": 189,
-      "dict_matched": 78,
+      "dict_total": 225,
+      "dict_matched": 114,
       "status": "open"
     },
     {
@@ -1964,7 +1964,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 21,
+      "dict_total": 25,
       "dict_matched": 0,
       "status": "done"
     },
@@ -1997,7 +1997,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 42,
+      "dict_total": 50,
       "dict_matched": 12,
       "status": "done"
     },
@@ -2008,8 +2008,8 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 84,
-      "dict_matched": 9,
+      "dict_total": 100,
+      "dict_matched": 15,
       "status": "done"
     },
     {
@@ -2019,7 +2019,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 42,
+      "dict_total": 50,
       "dict_matched": 12,
       "status": "done"
     },
@@ -2030,7 +2030,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 21,
+      "dict_total": 25,
       "dict_matched": 0,
       "status": "done"
     },
@@ -2041,7 +2041,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 441,
+      "dict_total": 525,
       "dict_matched": 8,
       "status": "done"
     },
@@ -2052,7 +2052,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 168,
+      "dict_total": 200,
       "dict_matched": 14,
       "status": "done"
     },
@@ -2063,7 +2063,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 357,
+      "dict_total": 425,
       "dict_matched": 13,
       "status": "done"
     },
@@ -2074,7 +2074,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 42,
+      "dict_total": 50,
       "dict_matched": 26,
       "status": "done"
     },
@@ -2088,7 +2088,7 @@ window.DASHBOARD_DATA = {
       ],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 21,
+      "dict_total": 25,
       "dict_matched": 12,
       "status": "done"
     },
@@ -2099,7 +2099,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 168,
+      "dict_total": 200,
       "dict_matched": 16,
       "status": "done"
     },
@@ -2110,7 +2110,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 21,
+      "dict_total": 25,
       "dict_matched": 0,
       "status": "done"
     },
@@ -2124,7 +2124,7 @@ window.DASHBOARD_DATA = {
       ],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 210,
+      "dict_total": 250,
       "dict_matched": 38,
       "status": "done"
     },
@@ -2135,7 +2135,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 147,
+      "dict_total": 175,
       "dict_matched": 14,
       "status": "done"
     },
@@ -2146,8 +2146,8 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 378,
-      "dict_matched": 33,
+      "dict_total": 450,
+      "dict_matched": 35,
       "status": "done"
     },
     {
@@ -2157,7 +2157,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 126,
+      "dict_total": 150,
       "dict_matched": 4,
       "status": "done"
     },
@@ -2168,8 +2168,8 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 21,
-      "dict_matched": 20,
+      "dict_total": 25,
+      "dict_matched": 24,
       "status": "done"
     },
     {
@@ -2179,7 +2179,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 21,
+      "dict_total": 25,
       "dict_matched": 5,
       "status": "done"
     },
@@ -2190,7 +2190,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 21,
+      "dict_total": 25,
       "dict_matched": 12,
       "status": "done"
     },
@@ -2201,7 +2201,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 84,
+      "dict_total": 100,
       "dict_matched": 19,
       "status": "done"
     },
@@ -2212,8 +2212,8 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 42,
-      "dict_matched": 28,
+      "dict_total": 50,
+      "dict_matched": 36,
       "status": "done"
     },
     {
@@ -2234,7 +2234,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 21,
+      "dict_total": 25,
       "dict_matched": 0,
       "status": "done"
     },
@@ -2245,8 +2245,8 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 378,
-      "dict_matched": 312,
+      "dict_total": 450,
+      "dict_matched": 384,
       "status": "done"
     },
     {
@@ -2256,8 +2256,8 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 1827,
-      "dict_matched": 1729,
+      "dict_total": 2175,
+      "dict_matched": 2077,
       "status": "done"
     },
     {
@@ -2267,8 +2267,8 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 315,
-      "dict_matched": 129,
+      "dict_total": 375,
+      "dict_matched": 189,
       "status": "done"
     },
     {
@@ -2278,8 +2278,8 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 1722,
-      "dict_matched": 1629,
+      "dict_total": 2050,
+      "dict_matched": 1957,
       "status": "done"
     },
     {
@@ -2289,8 +2289,8 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 504,
-      "dict_matched": 483,
+      "dict_total": 600,
+      "dict_matched": 579,
       "status": "done"
     },
     {
@@ -2300,7 +2300,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 63,
+      "dict_total": 75,
       "dict_matched": 6,
       "status": "done"
     },
@@ -2311,8 +2311,8 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 714,
-      "dict_matched": 681,
+      "dict_total": 850,
+      "dict_matched": 817,
       "status": "done"
     },
     {
@@ -2322,7 +2322,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 271,
+      "dict_total": 323,
       "dict_matched": 24,
       "status": "done"
     },
@@ -2333,7 +2333,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 21,
+      "dict_total": 25,
       "dict_matched": 12,
       "status": "done"
     },
@@ -2344,8 +2344,8 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 1785,
-      "dict_matched": 1688,
+      "dict_total": 2125,
+      "dict_matched": 2027,
       "status": "done"
     },
     {
@@ -2355,8 +2355,8 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 2247,
-      "dict_matched": 1712,
+      "dict_total": 2675,
+      "dict_matched": 2035,
       "status": "done"
     },
     {
@@ -2366,7 +2366,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 63,
+      "dict_total": 75,
       "dict_matched": 11,
       "status": "done"
     },
@@ -2377,7 +2377,7 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 147,
+      "dict_total": 175,
       "dict_matched": 12,
       "status": "done"
     },
@@ -2388,8 +2388,8 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 420,
-      "dict_matched": 26,
+      "dict_total": 500,
+      "dict_matched": 30,
       "status": "done"
     },
     {
@@ -2399,8 +2399,8 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 2688,
-      "dict_matched": 2548,
+      "dict_total": 3200,
+      "dict_matched": 3060,
       "status": "done"
     },
     {
@@ -2410,20 +2410,20 @@ window.DASHBOARD_DATA = {
       "genders": [],
       "gold_cells": 11,
       "gold_matched": 11,
-      "dict_total": 754,
+      "dict_total": 898,
       "dict_matched": 24,
       "status": "done"
     }
   ],
   "corpus": {
     "total_tokens": 70047,
-    "coverage_pct": 64.8,
+    "coverage_pct": 65.9,
     "sources": [
       {
         "id": "tatoeba",
         "name": "Tatoeba (prg)",
         "tokens": 30310,
-        "coverage_pct": 71.6,
+        "coverage_pct": 73.5,
         "dropped_docs": 0,
         "dropped_words": 0
       },
@@ -2431,7 +2431,7 @@ window.DASHBOARD_DATA = {
         "id": "prusaspira_wiki",
         "name": "Prusaspira-Wiki",
         "tokens": 39737,
-        "coverage_pct": 59.6,
+        "coverage_pct": 60.1,
         "dropped_docs": 12,
         "dropped_words": 2548
       }
@@ -2440,17 +2440,17 @@ window.DASHBOARD_DATA = {
       {
         "reason": "oov",
         "label": "Unbekannte Lemmata",
-        "pct": 52.7
+        "pct": 53.6
       },
       {
         "reason": "propn",
         "label": "Eigennamen",
-        "pct": 11.8
+        "pct": 12.1
       },
       {
         "reason": "variant",
         "label": "Form-/Flexionslücke",
-        "pct": 35.6
+        "pct": 34.3
       }
     ]
   },
@@ -2485,9 +2485,9 @@ window.DASHBOARD_DATA = {
     "recognized": 238
   },
   "verbs_dict": {
-    "total": 35743,
-    "matched": 24982,
+    "total": 42551,
+    "matched": 30059,
     "ortho": 98,
-    "no_match": 10761
+    "no_match": 12492
   }
 };
