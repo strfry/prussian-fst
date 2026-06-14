@@ -120,3 +120,88 @@ Frage 1, (b) den **vollständigen** Kasus-Endungssatz der Komparativ/Definit- un
 Superlativ-Deklination (alle 8 Zellen × 3 Genera), (c) Klärung Komparativ vs.
 Definit (Tag `+Comp`/`+Def`) und (d) die Liste echter Suppletiva. Daraus erzeugen
 wir je Adjektiv automatisch die gesteigerten/definiten Formen.
+
+---
+
+## Antwort (Linguistik-Lehrer, 2026-06-14)
+
+**Die Architektur (ein Formant-Morphem + eine Lautregel) ist richtig.** Zwei
+Korrekturen, dann zwei konkrete Code-Pflichten.
+
+**Q1 — Formant binär, aber Palatalisierung an der Grenze.** Es gibt **keinen
+dritten Formantvokal**. Das scheinbare `-eis-` ist `-ais-` **mit Palatalisierung**,
+in Palmaitis-Orthografie gerendert (§2 `ge/re/ke/de/te` = Cʲa). Beweis, derselbe
+i-Stamm zweimal geschrieben:
+
+| Quelle | Form | = |
+|--------|------|---|
+| Palmaitis | aīning**eis**is | /aīningʲ + ais + is/ |
+| Twanksta (MCP) | aīning**jais**is | /aīningʲ + ais + is/ |
+
+→ Der Formant-Archiphonem **bleibt binär** (u-Stamm → `u`, sonst `a`). Aber an der
+Stamm+Formant-Grenze muss die **bestehende Palatalisierung** feuern: für palatale
+Stämme (i-/jo-/weiche) wird `-ais-` zu `-eis-` (nach Velar/Dental/r), `-jais-`
+(nach Labial: `arwjaisis`, `wūrmjaisis`), Sibilant → `š/ž`. **Kein** neues Morphem,
+**keine** neue Regel — dieselbe Jotierung wie nominal (`kūges/kūgjas`). Der
+nachsichtige Analysator akzeptiert `-ais-/-eis-/-jais-`.
+
+**Q9/Q8 — P27 hängt genau daran:** `weselīngis` ist regelhaft, nicht defektiv (die
+fehlenden Twanksta-Blöcke sind eine Datenlücke — als Adverb katalogisiert). Mit
+einem Template korrekt **nur wenn** die Palatalisierung greift:
+`weselīngʲ+ais+is` → `weselīngeisis` (Palm.) / `weselīngjaisis` (Twa.). Feuert sie
+nicht → `*weselīngaisis`. Die Stamm/Formant-Grenze ist durchgängig der **blanke
+Positivstamm** (wie im Positiv); die Palatalisierung dort ist der **Normalfall**
+für palatale Stämme, kein Sonderfall.
+
+**Q3 — `+Comp` ≠ `+Def`.** Die Blöcke [3–5] (`stāwaisis`-Typ, synthetisch) sind der
+**Komparativ**, nicht das Definitum. Unser `+Def` darauf ist ein Fehletikett
+(„mehr X", nicht „das X"). → `+Comp` und `+Def` **trennen**. Das echte (Artikel-)
+Definitum ist die pronominale Positivform mit teils analytischem Artikel `stas`
+(`debīkasis · stesmu debīkan …`) — ein anderes, komplexeres Paradigma,
+sinnvollerweise **eigenes späteres Thema**. In-Scope ist der synthetische
+Komparativ/Superlativ.
+
+**(b) Vollständiger Endungssatz P28** (Komparativ; Superlativ = `uka-` + identisch).
+`š` = palatalisierter `s` vor a-anlautender Endung (= Sibilantenregel; Twa. `-sj-`):
+
+| Kasus | m Sg | m Pl | f Sg | f Pl | n Sg | n Pl |
+|-------|------|------|------|------|------|------|
+| Nom | -aisis | -aišai | -aisi | -aisis | -aisi | -aišai |
+| Gen | -aišas | -aisin | -aišas | -aisin/-aišan | -aišas | -aisin |
+| Dat | -aišasmu | -aisimans | -aišai | -aisimans | -aišasmu | -aisimans |
+| Akk | -aisin | -aisins | -aisin | -aisins | -aisi | -aisins |
+
+(weiche `-s`-Stamm-Adjektivdeklination — Maschinerie ist vorhanden.)
+
+**Übrige Punkte:**
+- **Q2 `stāws`:** o-Stamm (keine Palatalisierung) → `-ais-` → `stāwaisis`;
+  `stāwuisis` ist Fehllesung (MCP-bestätigt).
+- **Q4 Doppelformen:** lange `-sis`-Form (`līguisis`, `ukalīguisis`) = kanonische
+  adjektivische Zitierform; kurze (`ukalīgus` = `uka-`+Positiv) = prädikativ/
+  adverbial → über `+Adv`, **keine** dritte Deklination.
+- **Q5 Suppletion** (MCP-bestätigt): `labs→waln-`, `debīks→māises-`, `līkuts→maz-`
+  (nicht defektiv, nur suppletiv → übersehen), dazu `tūls / mūises-` („viel/mehr").
+  Wichtig: Suppletiv-Komparative **deklinieren wie normale Positiv-Adjektive**
+  (`māisess/māisesas…` = **P26**, nicht P28) → gelisteter Adjektivstamm +
+  Normaldeklination + Tag; `uka-` davor für den Superlativ.
+- **Q6 `uka-`:** invariantes Präfix, **keine** Kontraktion vor Vokal (Hiat bleibt:
+  `ukaaīningjaisis`, `ukamāisess`); hängt am Komparativstamm, ändert dessen Akzent
+  nicht.
+- **Q7 Adverb:** regulär/produktiv. Positiv-Adverb `-ai/-i/-u` (eigenes kleines
+  Set, gleiche o/i/u-Konditionierung); Komp-/Superl-Adverb = der **kurze**
+  Komparativ (Formant ohne pronominales `-is`): `wūrais`, `ukawūrais`
+  (`wūraisis` Adj. vs. `wūrais` Adv. nur durchs `-is`).
+- **Q10 Akzent/Länge:** Positivstamm behält seine Stufe (`stāwaisis` hält `ā`,
+  `līguisis` hält `ī` — keine Schwer-Endungs-Schwächung); Formant `-ais-/-uis-` =
+  fester Block, `uka-` unbetont. Keine neue Akzentklasse.
+
+### Daraus für die Umsetzung (gegenüber dem ursprünglichen Plan)
+1. **Palatalisierung an der Stamm+Formant-Grenze** sicherstellen (bestehende
+   `R_JPAL`/J-Marker; sonst brechen i-/jo-/weiche Stämme inkl. P27). ← kritisch.
+2. **`+Def` → `+Comp`** umetikettieren (Tagset); echtes Artikel-Definitum bleibt
+   out of scope.
+3. Suppletive als **P26-deklinierende** gelistete Stämme modellieren (nicht P28).
+4. Komp-/Superl-**Adverb** = kurzer Komparativ; `a`/`u`/Palatalisierung wie oben.
+
+Offen vom Lehrer angeboten: ein **PyFoma-Fragment** der Palatalisierungsregel
+exakt für diese Grenze.

@@ -1,12 +1,12 @@
 window.DASHBOARD_DATA = {
   "meta": {
     "schema_version": "2.0",
-    "generated": "2026-06-13T19:41:13Z",
+    "generated": "2026-06-14T08:31:58Z",
     "fst": {
       "engine": "pyfoma",
-      "build_commit": "fcc5003",
-      "analyser_states": 14827,
-      "lenient_states": 15567,
+      "build_commit": "4a52120",
+      "analyser_states": 15045,
+      "lenient_states": 15841,
       "tagset": "giella-flat-plus"
     }
   },
@@ -19,23 +19,23 @@ window.DASHBOARD_DATA = {
     },
     "form_coverage": {
       "label": "Formen generierbar vs. Wörterbuch",
-      "pct": 51.5,
-      "num": 65163,
+      "pct": 53.7,
+      "num": 68001,
       "den": 126548,
-      "ortho_pct": 6.7
+      "ortho_pct": 8.6
     },
     "corpus_coverage": {
       "label": "Korpus-Token analysierbar",
       "pct": 62.6,
-      "num": 43841,
+      "num": 43849,
       "den": 70047
     }
   },
   "health": {
     "generation": {
       "nominal": {
-        "cells": 967,
-        "matched": 967,
+        "cells": 1111,
+        "matched": 1111,
         "no_gen": 0,
         "mismatch": 0,
         "case_only": 0,
@@ -68,10 +68,10 @@ window.DASHBOARD_DATA = {
       "name": "Adjektive",
       "example": "debīks",
       "lemmata": 1092,
-      "paradigms_done": 7,
-      "paradigms_total": 7,
+      "paradigms_done": 13,
+      "paradigms_total": 13,
       "gen_integrity_pct": 100.0,
-      "form_coverage_pct": 29.8,
+      "form_coverage_pct": 33.6,
       "status": "done"
     },
     {
@@ -462,7 +462,37 @@ window.DASHBOARD_DATA = {
       "gold_cells": 48,
       "gold_matched": 48,
       "dict_total": 16728,
-      "dict_matched": 4619,
+      "dict_matched": 7094,
+      "status": "done"
+    },
+    {
+      "id": "27comp",
+      "pos": "+A",
+      "label": "P27comp",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 0,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "27sup",
+      "pos": "+A",
+      "label": "P27sup",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 0,
+      "dict_matched": 0,
       "status": "done"
     },
     {
@@ -507,13 +537,43 @@ window.DASHBOARD_DATA = {
       "gold_cells": 24,
       "gold_matched": 24,
       "dict_total": 504,
-      "dict_matched": 120,
+      "dict_matched": 186,
       "status": "done"
     },
     {
       "id": "30a",
       "pos": "+Pron",
       "label": "P30a",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 0,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "30comp",
+      "pos": "+A",
+      "label": "P30comp",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 0,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "30sup",
+      "pos": "+A",
+      "label": "P30sup",
       "genders": [
         "f",
         "m",
@@ -537,7 +597,37 @@ window.DASHBOARD_DATA = {
       "gold_cells": 24,
       "gold_matched": 24,
       "dict_total": 1872,
-      "dict_matched": 544,
+      "dict_matched": 841,
+      "status": "done"
+    },
+    {
+      "id": "31comp",
+      "pos": "+A",
+      "label": "P31comp",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 0,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "31sup",
+      "pos": "+A",
+      "label": "P31sup",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 0,
+      "dict_matched": 0,
       "status": "done"
     },
     {
@@ -2108,7 +2198,7 @@ window.DASHBOARD_DATA = {
         "id": "tatoeba",
         "name": "Tatoeba (prg)",
         "tokens": 30310,
-        "coverage_pct": 68.7,
+        "coverage_pct": 68.8,
         "dropped_docs": 0,
         "dropped_words": 0
       },

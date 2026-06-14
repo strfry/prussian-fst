@@ -21,11 +21,15 @@ PAR_RANGE |= {"35a", "37a", "40a", "40b", "40c", "50a", "51a", "30a"}
 # Paradigmen mit sibilanten-palatalisierender Untervariante
 _PALA_PARADIGMS = {"40": "40a", "50": "50a", "51": "51a"}
 
-# Suppletive Adjektive: (lemma, basis) → suppletive Paradigmen
+# Suppletive Adjektive: (lemma, basis) → suppletive Paradigmen.
+# NB: Laut Lehrer (HANDOFF_allomorphie_steigerung.md) deklinieren die Suppletiv-
+# Komparative wie normale P26-Positive (māisess/waln-/maz-/mūises-), nicht wie der
+# māldaisis-Typ — die endgültige Modellierung steht noch aus; Schlüssel hier nur
+# auf die comp-Benennung gezogen.
 _SUPPL_PARADIGMS: dict[tuple[str, str], list[str]] = {
-    ("debīks", "25"): ["25def_suppl", "25sup_suppl", "25adv_suppl"],
-    ("līkuts", "25"): ["25def_suppl2", "25sup_suppl2", "25adv_suppl2"],
-    ("labs", "26"): ["26def_suppl", "26sup_suppl", "26adv_suppl", "26adv_suppl2"],
+    ("debīks", "25"): ["25comp_suppl", "25sup_suppl", "25adv_suppl"],
+    ("līkuts", "25"): ["25comp_suppl2", "25sup_suppl2", "25adv_suppl2"],
+    ("labs", "26"): ["26comp_suppl", "26sup_suppl", "26adv_suppl", "26adv_suppl2"],
 }
 
 # Paradigma-40-Routing nach Stammauslaut
@@ -168,10 +172,10 @@ def wordlist_to_entries(wl: list[dict], gs_entries: list[dict]) -> list[dict]:
                     "stamm": stamm, "suffixe": suffixe,
                 })
 
-                # Adjektive: def/sup/adv-Varianten ergänzen
+                # Adjektive: comp/sup/adv-Varianten ergänzen
                 base = routed_par.rstrip("abc") if routed_par[-1] in "abc" else routed_par
                 if base in ADJ_PARADIGMS and (word, base) not in _SUPPL_PARADIGMS:
-                    for pfx in ("def", "sup"):
+                    for pfx in ("comp", "sup"):
                         variant_par = f"{base}{pfx}"
                         vsfx = suffixe_map.get((variant_par, g2))
                         if vsfx is not None:

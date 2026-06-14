@@ -31,7 +31,12 @@ PTCP_TAG = {"present_ptcp": "+PrsPrc",   # imānts
             "active_ptcp": "+PstPrc",    # immuns (aktiv, Prät.)
             "passive_ptcp": "+PssPrc"}   # īmts
 
-DEF_TAG = "+Def"
+# Die Paradigma-Unterseite `comp` ist die *synthetische* Komparativ-Deklination
+# (māldaisis-Typ, Blöcke [3–5] der Quellen) → Tag +Comp. NICHT zu verwechseln mit
+# dem echten (Artikel-)Definitum (pronominale Positivform + stas) — das ist ein
+# eigenes späteres Paradigma; +Def bleibt dafür reserviert. (HANDOFF_allomorphie_steigerung.md)
+COMP_TAG = "+Comp"
+DEF_TAG = "+Def"      # reserviert: Artikel-Definitum (noch nicht modelliert)
 SUPERL_TAG = "+Superl"
 ADV_POS_TAG = "+Adv"
 
@@ -54,7 +59,7 @@ def _paradigm_base(paradigm: str) -> str:
         if base.endswith(sfx):
             base = base[:-len(sfx)]
             break
-    for sfx in ("def", "sup", "adv"):
+    for sfx in ("comp", "sup", "adv"):
         if base.endswith(sfx):
             base = base[:-len(sfx)]
             break
@@ -65,7 +70,7 @@ def _paradigm_kind(paradigm: str) -> str:
     rest = paradigm
     if paradigm.endswith("_suppl") or paradigm.endswith("_suppl2"):
         rest = paradigm[:paradigm.rfind("_")]
-    for kind in ("adv", "def", "sup"):
+    for kind in ("adv", "comp", "sup"):
         if rest.endswith(kind):
             return kind
     return ""
@@ -89,8 +94,8 @@ def tag_prefix(paradigm: str, gender: str) -> str:
     pos = _pos(paradigm)
     if kind == "adv":
         return f"{pos}{ADV_POS_TAG}"
-    if kind == "def":
-        return f"{pos}{DEF_TAG}{gtag}"
+    if kind == "comp":
+        return f"{pos}{COMP_TAG}{gtag}"
     if kind == "sup":
         return f"{pos}{SUPERL_TAG}{gtag}"
     return f"{pos}{gtag}"
