@@ -1,7 +1,8 @@
 """Geschlossene Wortklassen (Präpositionen, Konjunktionen, Partikeln).
 
-Adverbien werden produktiv aus Adjektiven abgeleitet (s. nominals.py
-wordlist_to_entries → adv-Varianten) und daher nicht hier aufgelistet.
+Adverbien sind eine eigene geschlossene Klasse (s. adverbs.py): sie werden aus
+den `av`-Lemmata des Wörterbuchs als invariante +Adv-Lexeme geführt, nicht aus
+dem Adjektivsystem abgeleitet.
 """
 
 import json

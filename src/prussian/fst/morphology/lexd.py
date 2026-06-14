@@ -86,6 +86,7 @@ def build_lexd(
     verb_wl_entries: list[dict] | None = None,
     closed_entries: list[dict] | None = None,
     function_words: list[tuple[str, str]] | None = None,
+    adverbs: list[tuple[str, str]] | None = None,
 ) -> str:
     """Nominale + verbale Einträge → lexd-Quelltext.
 
@@ -100,6 +101,10 @@ def build_lexd(
     ``function_words``: (Wort, POS-Tag)-Paare für uninflected closed-class
     words — werden als einzelne lexd-Einträge ``Wort+Tag:Wort`` emittiert
     (POS-Tag auf der Analyse-Oberseite, Wort als Surface-Unterseite).
+
+    ``adverbs``: ebensolche (Wort, +Adv)-Paare; eigene geschlossene Klasse
+    (eigenes Lexikon ``Adverbs``), da altpreußische Adverbien überwiegend
+    lexikalisiert sind und nicht aus dem Adjektivsystem abgeleitet werden.
     """
     # Gruppen: (paradigm, gender) bzw. (paradigm, tense) teilen Endungslexikon
     stems: dict[tuple, list[str]] = defaultdict(list)
@@ -154,6 +159,8 @@ def build_lexd(
                      f"{_lexname(f'Infl{kind}', par, sub)}")
     if function_words:
         lines.append("FuncWords")
+    if adverbs:
+        lines.append("Adverbs")
     if variants:
         lines.append("Variants")
     lines.append("")
@@ -172,6 +179,12 @@ def build_lexd(
     if function_words:
         lines.append("LEXICON FuncWords")
         for w, tag in sorted(function_words):
+            lines.append(f"{w}{tag}:{w}")
+        lines.append("")
+
+    if adverbs:
+        lines.append("LEXICON Adverbs")
+        for w, tag in sorted(set(adverbs)):
             lines.append(f"{w}{tag}:{w}")
         lines.append("")
 

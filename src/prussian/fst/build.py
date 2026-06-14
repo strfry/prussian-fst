@@ -20,6 +20,7 @@ from pathlib import Path
 
 from pyfoma import lexd
 
+from prussian.fst.morphology import adverbs as adv_mod
 from prussian.fst.morphology import function_words as fw_mod
 from prussian.fst.morphology import verbs as verb_morph
 from prussian.fst.morphology.lexd import build_lexd
@@ -82,18 +83,22 @@ def main() -> None:
         closed_entries = json.loads(CLOSED_PRONOUNS.read_text(encoding="utf-8"))
         print(f"Personalpronomen: {len(closed_entries)} Einträge")
 
-    # Unflektierte Funktionswörter
+    # Unflektierte Funktionswörter + Adverbien (geschlossene Klassen)
     fw_words = None if args.gold_only else fw_mod.load(CLOSED_FW)
+    adv_words = None if args.gold_only else adv_mod.load(DICT)
 
     nominal_total = len(gs_data) + len(wl_entries)
     verb_total = len(verb_data) + (len(verb_wl_entries) if verb_wl_entries else 0)
     print(f"Kombiniert: {nominal_total} nominal, {verb_total} verbal")
     if fw_words:
         print(f"Funktionswörter: {len(fw_words)} Types")
+    if adv_words:
+        print(f"Adverbien: {len(adv_words)} Types")
 
     lexd_text = build_lexd(
         combined, verb_data, verb_wl_entries,
         closed_entries=closed_entries, function_words=fw_words,
+        adverbs=adv_words,
     )
     BUILD_DIR.mkdir(exist_ok=True)
     LEXD_OUT.write_text(lexd_text, encoding="utf-8")

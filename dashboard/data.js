@@ -1,12 +1,12 @@
 window.DASHBOARD_DATA = {
   "meta": {
     "schema_version": "2.0",
-    "generated": "2026-06-14T12:39:43Z",
+    "generated": "2026-06-14T13:10:14Z",
     "fst": {
       "engine": "pyfoma",
-      "build_commit": "fc75924",
-      "analyser_states": 15182,
-      "lenient_states": 15973,
+      "build_commit": "86373e3",
+      "analyser_states": 15459,
+      "lenient_states": 16250,
       "tagset": "giella-flat-plus"
     }
   },
@@ -19,15 +19,15 @@ window.DASHBOARD_DATA = {
     },
     "form_coverage": {
       "label": "Formen generierbar vs. Wörterbuch",
-      "pct": 60.0,
-      "num": 75979,
+      "pct": 60.1,
+      "num": 76018,
       "den": 126548,
       "ortho_pct": 8.6
     },
     "corpus_coverage": {
       "label": "Korpus-Token analysierbar",
-      "pct": 62.7,
-      "num": 43910,
+      "pct": 64.5,
+      "num": 45165,
       "den": 70047
     }
   },
@@ -71,7 +71,7 @@ window.DASHBOARD_DATA = {
       "paradigms_done": 28,
       "paradigms_total": 28,
       "gen_integrity_pct": 100.0,
-      "form_coverage_pct": 44.1,
+      "form_coverage_pct": 44.2,
       "status": "done"
     },
     {
@@ -97,17 +97,6 @@ window.DASHBOARD_DATA = {
       "status": "done"
     },
     {
-      "tag": "+Adv",
-      "name": "Adverbien",
-      "example": "labbai",
-      "lemmata": 0,
-      "paradigms_done": 0,
-      "paradigms_total": 0,
-      "gen_integrity_pct": null,
-      "form_coverage_pct": 0.0,
-      "status": "planned"
-    },
-    {
       "tag": "+V",
       "name": "Verben",
       "example": "bēi",
@@ -116,6 +105,17 @@ window.DASHBOARD_DATA = {
       "paradigms_total": 90,
       "gen_integrity_pct": 100.0,
       "form_coverage_pct": 62.7,
+      "status": "done"
+    },
+    {
+      "tag": "+Adv",
+      "name": "Adverbien",
+      "example": "labbai",
+      "lemmata": 238,
+      "paradigms_done": 0,
+      "paradigms_total": 0,
+      "gen_integrity_pct": null,
+      "form_coverage_pct": 100.0,
       "status": "done"
     },
     {
@@ -432,7 +432,7 @@ window.DASHBOARD_DATA = {
       "gold_cells": 24,
       "gold_matched": 24,
       "dict_total": 48732,
-      "dict_matched": 23092,
+      "dict_matched": 23099,
       "status": "done"
     },
     {
@@ -537,7 +537,7 @@ window.DASHBOARD_DATA = {
       "gold_cells": 24,
       "gold_matched": 24,
       "dict_total": 6888,
-      "dict_matched": 1763,
+      "dict_matched": 1792,
       "status": "done"
     },
     {
@@ -687,7 +687,7 @@ window.DASHBOARD_DATA = {
       "gold_cells": 24,
       "gold_matched": 24,
       "dict_total": 768,
-      "dict_matched": 279,
+      "dict_matched": 281,
       "status": "done"
     },
     {
@@ -930,7 +930,7 @@ window.DASHBOARD_DATA = {
       "gold_cells": 8,
       "gold_matched": 8,
       "dict_total": 940,
-      "dict_matched": 748,
+      "dict_matched": 749,
       "status": "done"
     },
     {
@@ -2417,13 +2417,13 @@ window.DASHBOARD_DATA = {
   ],
   "corpus": {
     "total_tokens": 70047,
-    "coverage_pct": 62.7,
+    "coverage_pct": 64.5,
     "sources": [
       {
         "id": "tatoeba",
         "name": "Tatoeba (prg)",
         "tokens": 30310,
-        "coverage_pct": 68.8,
+        "coverage_pct": 71.2,
         "dropped_docs": 0,
         "dropped_words": 0
       },
@@ -2431,7 +2431,7 @@ window.DASHBOARD_DATA = {
         "id": "prusaspira_wiki",
         "name": "Prusaspira-Wiki",
         "tokens": 39737,
-        "coverage_pct": 58.0,
+        "coverage_pct": 59.3,
         "dropped_docs": 12,
         "dropped_words": 2548
       }
@@ -2440,17 +2440,17 @@ window.DASHBOARD_DATA = {
       {
         "reason": "oov",
         "label": "Unbekannte Lemmata",
-        "pct": 50.3
+        "pct": 52.8
       },
       {
         "reason": "propn",
         "label": "Eigennamen",
-        "pct": 11.1
+        "pct": 11.7
       },
       {
         "reason": "variant",
         "label": "Form-/Flexionslücke",
-        "pct": 38.6
+        "pct": 35.5
       }
     ]
   },
@@ -2479,6 +2479,10 @@ window.DASHBOARD_DATA = {
         "total": 7
       }
     ]
+  },
+  "adverbs": {
+    "total": 238,
+    "recognized": 238
   },
   "verbs_dict": {
     "total": 22129,

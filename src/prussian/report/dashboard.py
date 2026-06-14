@@ -11,6 +11,7 @@ from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
+from prussian.fst.morphology import adverbs as adv_mod
 from prussian.fst.morphology import function_words as fw_mod
 from prussian.fst.morphology import nominals, verbs
 from prussian.report import corpus_coverage, dict_coverage, generation
@@ -68,10 +69,11 @@ def _load_entries():
     combined = nominals.combine_entries(gs, wl_entries)
     verb_wl = verbs.wordlist_to_verb_entries(dict_data, verb_gold)
     fwords = fw_mod.load(CLOSED_FW)
+    adverbs = adv_mod.load(DICT)
     return {
         "gold_nom": gs, "gold_verb": verb_gold,
         "combined_nom": combined + closed, "verb_all": verb_gold + verb_wl,
-        "dict": dict_data, "function_words": fwords,
+        "dict": dict_data, "function_words": fwords, "adverbs": adverbs,
     }
 
 
@@ -113,6 +115,7 @@ def build(analyser, lenient) -> dict:
     dc_nom = dict_coverage.run_nominal(analyser, lenient, e["dict"])
     dc_verb = dict_coverage.run_verbal(analyser, lenient, e["dict"])
     dc_closed = dict_coverage.run_closed(analyser, e["function_words"])
+    dc_adv = dict_coverage.run_closed(analyser, e["adverbs"])
     corpus = corpus_coverage.run(analyser, lenient, e["dict"])
     completeness = _paradigm_completeness(
         analyser, e["combined_nom"], e["verb_all"])
@@ -162,6 +165,8 @@ def build(analyser, lenient) -> dict:
 
     pos_rows = []
     for tag, (name, example) in POS_META.items():
+        if tag == "+Adv":
+            continue  # geschlossene Klasse, eigene Zeile unten (nicht paradigmenbasiert)
         gen_pos = (gen["nominal"]["per_pos"].get(tag)
                    or gen["verbal"]["per_pos"].get(tag) or {})
         # Form-Coverage je POS aus den Paradigmen dieser POS aggregieren
@@ -180,6 +185,18 @@ def build(analyser, lenient) -> dict:
             "status": "done" if gold_cells and gen_pos.get("matched") == gold_cells
                       else ("in_progress" if len(pars) else "planned"),
         })
+
+    # Adverbien als geschlossene Klasse (av-Lemmata, invariante +Adv-Lexeme)
+    adv_name, adv_example = POS_META["+Adv"]
+    pos_rows.append({
+        "tag": "+Adv", "name": adv_name, "example": adv_example,
+        "lemmata": dc_adv["total"],
+        "paradigms_done": 0, "paradigms_total": 0,
+        "gen_integrity_pct": None,
+        "form_coverage_pct": _pct(dc_adv["recognized"], dc_adv["total"]),
+        "status": "done" if dc_adv["recognized"] == dc_adv["total"]
+                  else "in_progress",
+    })
 
     # Funktionswörter als eigene POS-Zeile (real, nicht planned)
     pos_rows.append({
@@ -266,6 +283,9 @@ def build(analyser, lenient) -> dict:
             "per_pos": [{"tag": k, **v} for k, v in
                         sorted(dc_closed["per_pos"].items())],
         },
+        "adverbs": {
+            "total": dc_adv["total"], "recognized": dc_adv["recognized"],
+        },
         "verbs_dict": {
             "total": dc_verb["total"],
             "matched": dc_verb["direct"] + dc_verb["ortho"],
@@ -297,6 +317,8 @@ def main() -> None:
           f"  verbal: {g['verbal']['matched']}/{g['verbal']['cells']}")
     print(f"Funktionswörter: {report['closed_class']['recognized']}/"
           f"{report['closed_class']['total']}")
+    print(f"Adverbien: {report['adverbs']['recognized']}/"
+          f"{report['adverbs']['total']}")
     print(f"→ {OUT}")
 
 
