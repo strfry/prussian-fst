@@ -15,11 +15,25 @@ Künftiger Ausbau (Partizipien/Modi, docs/ORTHO_RULES.md §2) gehört hierher.
 """
 
 import re
+from collections import OrderedDict
 
 from prussian.fst.oracle import LONG_VOWELS, fold, strip_macron
 from prussian.fst.tags import split_reflexive
 
 VERB_POS = "+V"
+
+# Universelles Modus-Suffixset (Rollout Stufe 1, Inf-Stamm-Kategorien:
+# Optativ/Konjunktiv/Passivpartizip). Die Suffixe sind über ALLE Paradigmen
+# identisch; der lemmaspezifische Inf-Stamm wird gewonnen, indem das universelle
+# Suffix von der jeweils attestierten Form abgestreift wird. So absorbiert der
+# Stamm das Grenz-Sandhi (z. B. -st-Wurzeln: bredlai→bred-, bresei→bre-) und
+# stem+suffix == attestierte Form gilt per Konstruktion — keine Extraregel nötig.
+MOOD_SUFFIXE: dict[str, "OrderedDict[str, str]"] = {
+    "optative":     OrderedDict([("Opt", "sei")]),
+    "subjunctive":  OrderedDict([("1sg", "lai"), ("2sg", "lai"), ("3sg", "lai"),
+                                 ("1pl", "limai"), ("2pl", "litei")]),
+    "passive_ptcp": OrderedDict([("PssPrc", "ts")]),
+}
 
 # Paradigmen, deren GS-Präsensstamm != Präteritumstamm (suppletiv)
 _SUPPL_PARADIGMS: set[str] = set()
@@ -107,6 +121,63 @@ def _build_gs_maps(gsv_entries: list[dict]):
     return suffixe_map, suppletiv, stumm
 
 
+def _first(form: str | None) -> str | None:
+    """Erste Variante (vor '/'); Mehrwort-/Reflexivformen verwerfen."""
+    if not isinstance(form, str):
+        return None
+    f = form.split("/", 1)[0].strip()
+    if not f or " " in f or f == "—":
+        return None
+    return f
+
+
+def _mood_stem(form: str, suffix: str) -> str | None:
+    """Inf-Stamm = attestierte Form minus universelles Suffix, archiphonem-
+    markiert. ``None``, wenn die Form nicht auf das Suffix endet (Irregularität)
+    oder der Reststamm zu kurz ist."""
+    if not form.endswith(suffix) or len(form) <= len(suffix) + 1:
+        return None
+    stem = _detect_archiphoneme(form[: -len(suffix)])
+    return stem if len(stem) >= 2 else None
+
+
+def _mood_entries(word: str, par: str, forms: dict) -> list[dict]:
+    """Optativ-/Konjunktiv-/Passivpartizip-Einträge eines Verbs (Stufe 1).
+
+    Der Stamm wird je Kategorie aus deren attestierter Leitform abgeleitet
+    (Optativ-Form, Konjunktiv-``as``-Form, Passivpartizip); die Suffixe stammen
+    aus MOOD_SUFFIXE (universell). ``betont`` (= Stamm trägt ein Archiphonem)
+    steuert nur Akzentklasse/Längung; palatize bleibt aus (Inf-Stamm-Kategorien
+    palatalisieren nicht).
+    """
+    leitform = {
+        "optative": _first(forms.get("optative")),
+        "subjunctive": next((_first(p.get("form")) for p in forms.get("subjunctive", [])
+                             if p.get("pronoun") == "as"), None),
+        "passive_ptcp": next((_first(p.get("form")) for p in forms.get("participles", [])
+                              if p.get("type") == "Passive"), None),
+    }
+    out: list[dict] = []
+    for tense, suffixe in MOOD_SUFFIXE.items():
+        form = leitform[tense]
+        if not form:
+            continue
+        # Leitsuffix (Optativ 'sei', Konjunktiv-as 'lai', Passiv 'ts') abstreifen
+        lead = suffixe["Opt"] if tense == "optative" else (
+            suffixe["PssPrc"] if tense == "passive_ptcp" else suffixe["1sg"])
+        stamm = _mood_stem(form, lead)
+        if stamm is None:
+            continue
+        betont = any(c in "AEIOU" for c in stamm)
+        out.append({
+            "paradigm": par, "lemma": word, "tense": tense, "stamm": stamm,
+            "suffixe": OrderedDict(
+                (cell, {"suffix": sfx, "betont": betont})
+                for cell, sfx in suffixe.items()),
+        })
+    return out
+
+
 def wordlist_to_verb_entries(
     dict_data: list[dict],
     gsv_entries: list[dict],
@@ -147,6 +218,16 @@ def wordlist_to_verb_entries(
             continue
 
         forms = w.get("forms", {})
+
+        # Modi/Partizipien (Rollout Stufe 1: Optativ/Konjunktiv/Passivpartizip).
+        # Unabhängig vom Präsens-3sg — sitzen auf dem Inf-Stamm.
+        if isinstance(forms, dict):
+            for me in _mood_entries(word, par, forms):
+                mkey = (word, par, me["tense"])
+                if mkey not in seen:
+                    seen.add(mkey)
+                    entries.append(me)
+
         indicative = forms.get("indicative", [])
         pres_3sg = _get_3sg(indicative, "Present")
         pret_3sg = _get_3sg(indicative, "Past")

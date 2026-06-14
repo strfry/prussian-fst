@@ -126,6 +126,19 @@ def run_verbal(main_fst, lenient_fst, words: list[dict] | None = None) -> dict:
                 f = slot.get("form", "").strip()
                 if f and f != "—" and " " not in f:
                     candidates.append(f)
+        # Modi/Partizipien (Rollout Stufe 1: Optativ/Konjunktiv/Passivpartizip)
+        opt = forms.get("optative")
+        if isinstance(opt, str) and opt.strip() and " " not in opt:
+            candidates.append(opt.strip())
+        for slot in forms.get("subjunctive", []):
+            f = (slot.get("form") or "").strip()
+            if f and f != "—" and " " not in f:
+                candidates.append(f)
+        for p in forms.get("participles", []):
+            if p.get("type") == "Passive":
+                f = (p.get("form") or "").strip()
+                if f and f != "—" and " " not in f:
+                    candidates.append(f)
 
         for form in candidates:
             total += 1
