@@ -205,3 +205,107 @@ Komparativ/Superlativ.
 
 Offen vom Lehrer angeboten: ein **PyFoma-Fragment** der Palatalisierungsregel
 exakt für diese Grenze.
+
+---
+
+## Antwort 2 — Rollout-Klassifikation (Linguistik-Lehrer)
+
+Zentrale Erkenntnis: **außer P27 ist keines dieser Paradigmen an der Grenze
+palatal.** Was in Genitiven wie Palatalisierung aussieht (`swentaisjas`,
+`stāwaisjas`, `māldaisjas`), ist die **Formant-s→š/sj-Regel vor a-Endung** (R3) —
+sie läuft bei *jedem* Komparativ, palataler Stamm oder nicht, und ist ins
+Endungstemplate eingebacken (`aišas`). Die **Grenz-Palatalisierung** (R1/R2, das
+`-eis-`/`-jais-`) feuert nur bei lexikalisch palatalen i-/jo-/weichen Stämmen.
+
+### 1. Klassifikation je Paradigma
+
+| Par | Lemma | Klasse | Formant | Grenz-Palatal? | Nachweis |
+|-----|-------|--------|---------|----------------|----------|
+| 25 | debīks | o-Stamm, suppletiv | — | — | Komp = `māises-`, kein Formant |
+| 26 | labs | o-Stamm, suppletiv | — | — | Komp = `waln-`, kein Formant |
+| 28 | māldaisis | = Komparativ von `mālds` (P26) | — | — | ist bereits Komparativ |
+| 29 | sēnts/swents | o-Stamm (hart) | `-ais-` | nein | `swentaisis` |
+| 30a | stāws | o-Stamm (hart) | `-ais-` | nein | `stāwaisis` |
+
+Bestätigt: P27 `-ais-` palatal **ja** (`weselīnģaisis`), P30/P31 `-uis-` (hart,
+palatal nein). Also: **palatal = ja nur bei P27**; alle o- und u-Stämme hier
+nicht-palatal.
+
+Drei Rollout-relevante Punkte:
+- **P25/P26 nehmen keinen Formant** (suppletiv → gelisteter Stamm `māises-`/`waln-`
+  in P26-Deklination).
+- **P28 `māldaisis` ist der Komparativ von `mālds`** ('jung'→'jünger'), kein
+  Positiv. P28 ist die Komparativ-Deklinationsklasse selbst → KEINE
+  Komparativbildung darauf anwenden; nur Deklination + Superlativ (`ukamāldaisis`).
+  Zugehöriger Positiv = `mālds` (P26, `-ais-`, hart).
+- **P29 `swents`** ist trotz t-Auslaut ein **harter o-Stamm** (Positiv `swentas`,
+  Gen `-as`), kein palataler Stamm → `swentaisis`, nicht `*swenteisis`. Das `t`
+  ist zwar in der Palatalisierungsmenge, aber die Grenz-Palatalisierung feuert nur
+  mit lexikalischem j-Marker, den `swents` nicht trägt.
+
+### 2. „Blanker" Komparativstamm — klassenabhängig
+
+Nicht durchgängig „Nom-Sg minus `-s`". Der Formant hängt am Positiv-Konsonanten-
+stamm = Nom-Sg minus der vollen Nominativendung:
+- **o-Stamm:** minus `-s` → `stāws`→`stāw-`, `wūrs`→`wūr-`, `mālds`→`māld-`
+- **u-Stamm:** minus `-us` → `āngus`→`āng-`, `līgus`→`līg-` (nicht minus `-s`!)
+- **i-Stamm:** minus `-is` → `weselīngis`→`weselīng-`
+
+= genau der Stamm, den die Positivflexion schon isoliert → wiederverwenden.
+
+**`stāws`-Fehlsegmentierung:** Das Positiv-Gold segmentiert `st-` + `-āws` (das `ā`
+liegt fälschlich in der Endung). Korrekt ist Stamm `stāw-`, Endung `-s` (MCP-Positiv
+`stāwas/stāwan`). Mit `st-` erzeugt der Komparativ `*staisis`. → `stāws` (und etwaige
+andere `-āws/-āus`-Fälle) im Positiv-Gold auf Stamm `stāw-` korrigieren.
+
+### 3. Adverb (produktiv-regelhaft)
+
+- **Positiv-Adverb nach Klasse:** o-Stamm `-ai` (`wūrai`, `swentai`, `stāwai`,
+  `māldai`, `wārgai`; teils Variante `-an`), i-Stamm `-i` (Palmaitis `aīningi`;
+  Twanksta `-jai`), u-Stamm `-u` (`āngu`, `līgu`).
+- **Komp/Superl-Adverb = kurzer Komparativ** (Formant ohne pronominales `-is`):
+  `-ais/-eis/-uis`, Superlativ mit `uka-`: `wūrais`/`ukawūrais`, `ānguis`/`ukaānguis`,
+  `aīningeis`/`ukaaīningeis`.
+- Das Positiv-Adverb `-ai` ist **nicht** der Formant `-ais` (Unterschied: das `-s`)
+  — gleiche o/i/u-Konditionierung, aber eigenes Endungsset.
+- Suppletive haben **eigene, gelistete Adverbien** (`labs→walnai`, `līkuts→mazzais`,
+  viel→`tūls`) — pro Lemma listen.
+
+### 4. Suppletive
+
+Alle vier per MCP bestätigt, deklinieren wie **P26-Positiv**, Superlativ mit `uka-`:
+
+| Positiv | Komp.-Stamm | Superlativ | Adverb (Pos/Komp/Superl) |
+|---------|-------------|------------|--------------------------|
+| labs | `waln-` | `ukawalns` | `labbai` / `walnai` / `ukawalnai` |
+| debīks | `māises-` | `ukamāisess` | — / `tūls` / `ukatūls` |
+| līkuts | `maz-` | `ukamazs` | — / `mazzais` / `ukamazzais` |
+| viel/sehr | `tūls`, `mūises-` | `ukatūls` | `mūisesan` / — / — |
+
+Gegenprobe `wārgs` ('schlecht', in anderen Sprachen oft suppletiv): **regulär**
+(`wārgaisis`), nicht suppletiv → die vier sind vermutlich vollständig. Sicher nur
+datengetrieben: **Mismatch-Detektor** über das Wörterbuch — jedes Adjektiv flaggen,
+dessen Komparativ-Stamm ≠ Positiv-Stamm + `ais/uis` ist. Fängt Suppletiva (und
+Tippfehler) automatisch ab.
+
+### 5. māldaisis-Homonymie (Komparativ UND Substantiv)
+
+`māldaisis` ist zugleich der Komparativ 'jünger' von `mālds` **und** ein
+substantiviertes Nomen 'Jünger/Schüler' mit eigenem Lemma (schon als P40-Nomen in
+der Wortliste). Etymologisch sauber, parallel zu deutsch „jung → (der) Jünger".
+
+Der Analyzer gibt **beide** Lesarten aus (Auswahl eine Ebene höher, Syntax/LLM):
+
+```
+māldaisis →  mālds      +A +Comp +Msc +Nom +Sg     (regulär aus mālds erzeugt)
+             māldaisis  +N        +Msc +Nom +Sg     (gelistetes Substantiv 'Jünger')
+```
+
+Die Homonymie ist **total über das ganze P28-Paradigma** (das Nomen dekliniert als
+P28), kein Nom-Sg-Sonderfall: `māldaišas` = 'des Jüngeren' und 'des Jüngers' usw.
+→ als **Lemma-Level-Homonymie** modellieren (zwei Lemmata, ein Oberflächen-
+paradigma, beide Lesarten markiert ausgeben). Systematischer Typ: substantivierte
+Komparative sind produktiv; die lexikalisierten mit eigener Bedeutung als N-Lemma
+listen, die `+A+Comp`-Lesart kommt gratis aus dem Positiv. Der Mismatch-Detektor
+(Punkt 4) lässt sich erweitern: zusätzlich flaggen, wo eine Komparativ-Oberfläche
+zugleich ein eigenes N-Lemma ist — fängt die `māldaisis`-Klasse automatisch ein.

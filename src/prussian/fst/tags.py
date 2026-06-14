@@ -78,6 +78,12 @@ def _paradigm_kind(paradigm: str) -> str:
 
 def _pos(paradigm: str) -> str:
     base = _paradigm_base(paradigm)
+    # Steigerung ist ein Adjektiv-Merkmal: Komparativ/Superlativ/Adverb eines
+    # Paradigmas, das (auch) Adjektiv ist, immer als +A taggen — selbst wenn die
+    # Basis zusätzlich pronominal klassifiziert ist (z. B. 30a stāws: Positiv
+    # +Pron, aber stāwaisis = +A+Comp).
+    if _paradigm_kind(paradigm) in ("comp", "sup", "adv") and base in ADJ_PARADIGMS:
+        return "+A"
     if base in PRON_PARADIGMS:
         return "+Pron"
     if base in NUM_PARADIGMS:

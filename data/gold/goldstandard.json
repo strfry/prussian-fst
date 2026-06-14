@@ -2532,38 +2532,38 @@
     "paradigm": "30a",
     "lemma": "stāws",
     "gender": "m",
-    "stamm": "st",
+    "stamm": "stāw",
     "suffixe": {
       "Nom sg": {
-        "suffix": "āws",
+        "suffix": "s",
         "betont": false
       },
       "Nom pl": {
-        "suffix": "aūwai",
+        "suffix": "ai",
         "betont": false
       },
       "Gen sg": {
-        "suffix": "aūwas",
+        "suffix": "as",
         "betont": false
       },
       "Gen pl": {
-        "suffix": "āwun",
+        "suffix": "un",
         "betont": false
       },
       "Dat sg": {
-        "suffix": "āwusmu",
+        "suffix": "usmu",
         "betont": false
       },
       "Dat pl": {
-        "suffix": "āwumans",
+        "suffix": "umans",
         "betont": false
       },
       "Akk sg": {
-        "suffix": "āwun",
+        "suffix": "un",
         "betont": false
       },
       "Akk pl": {
-        "suffix": "āwuns",
+        "suffix": "uns",
         "betont": false
       }
     }
@@ -2572,38 +2572,38 @@
     "paradigm": "30a",
     "lemma": "stāws",
     "gender": "f",
-    "stamm": "st",
+    "stamm": "stāw",
     "suffixe": {
       "Nom sg": {
-        "suffix": "āwi",
+        "suffix": "i",
         "betont": false
       },
       "Nom pl": {
-        "suffix": "āwjas",
+        "suffix": "jas",
         "betont": false
       },
       "Gen sg": {
-        "suffix": "āwjas",
+        "suffix": "jas",
         "betont": false
       },
       "Gen pl": {
-        "suffix": "āwin",
+        "suffix": "in",
         "betont": false
       },
       "Dat sg": {
-        "suffix": "āwjai",
+        "suffix": "jai",
         "betont": false
       },
       "Dat pl": {
-        "suffix": "āwjamans",
+        "suffix": "jamans",
         "betont": false
       },
       "Akk sg": {
-        "suffix": "āwin",
+        "suffix": "in",
         "betont": false
       },
       "Akk pl": {
-        "suffix": "āwins",
+        "suffix": "ins",
         "betont": false
       }
     }
@@ -2612,38 +2612,38 @@
     "paradigm": "30a",
     "lemma": "stāws",
     "gender": "n",
-    "stamm": "st",
+    "stamm": "stāw",
     "suffixe": {
       "Nom sg": {
-        "suffix": "āwu",
+        "suffix": "u",
         "betont": false
       },
       "Nom pl": {
-        "suffix": "aūwai",
+        "suffix": "ai",
         "betont": false
       },
       "Gen sg": {
-        "suffix": "aūwas",
+        "suffix": "as",
         "betont": false
       },
       "Gen pl": {
-        "suffix": "āwun",
+        "suffix": "un",
         "betont": false
       },
       "Dat sg": {
-        "suffix": "āwusmu",
+        "suffix": "usmu",
         "betont": false
       },
       "Dat pl": {
-        "suffix": "āwumans",
+        "suffix": "umans",
         "betont": false
       },
       "Akk sg": {
-        "suffix": "āwu",
+        "suffix": "u",
         "betont": false
       },
       "Akk pl": {
-        "suffix": "āwuns",
+        "suffix": "uns",
         "betont": false
       }
     }
@@ -4866,589 +4866,1213 @@
     }
   },
   {
-    "paradigm": "30comp",
-    "lemma": "āngus",
+    "paradigm": "25comp_suppl",
+    "lemma": "debīks",
     "gender": "m",
-    "stamm": "Ang",
+    "stamm": "māises",
     "suffixe": {
       "Nom sg": {
-        "suffix": "uisis",
-        "betont": true,
-        "palatize": false
+        "suffix": "s",
+        "betont": false
       },
       "Nom pl": {
-        "suffix": "uišai",
-        "betont": true,
-        "palatize": false
+        "suffix": "ai",
+        "betont": false
       },
       "Gen sg": {
-        "suffix": "uišas",
-        "betont": true,
-        "palatize": false
+        "suffix": "as",
+        "betont": false
       },
       "Gen pl": {
-        "suffix": "uisin",
-        "betont": true,
-        "palatize": false
+        "suffix": "un",
+        "betont": false
       },
       "Dat sg": {
-        "suffix": "uišasmu",
-        "betont": true,
-        "palatize": false
+        "suffix": "u",
+        "betont": false
       },
       "Dat pl": {
-        "suffix": "uisimans",
-        "betont": true,
-        "palatize": false
+        "suffix": "umans",
+        "betont": false
       },
       "Akk sg": {
-        "suffix": "uisin",
-        "betont": true,
-        "palatize": false
+        "suffix": "an",
+        "betont": false
       },
       "Akk pl": {
-        "suffix": "uisins",
-        "betont": true,
-        "palatize": false
+        "suffix": "uns",
+        "betont": false
       }
-    },
-    "provisional": true
+    }
   },
   {
-    "paradigm": "30sup",
-    "lemma": "āngus",
+    "paradigm": "25sup_suppl",
+    "lemma": "debīks",
     "gender": "m",
-    "stamm": "ukaAng",
+    "stamm": "ukamāises",
     "suffixe": {
       "Nom sg": {
-        "suffix": "uisis",
-        "betont": true,
-        "palatize": false
+        "suffix": "s",
+        "betont": false
       },
       "Nom pl": {
-        "suffix": "uišai",
-        "betont": true,
-        "palatize": false
+        "suffix": "ai",
+        "betont": false
       },
       "Gen sg": {
-        "suffix": "uišas",
-        "betont": true,
-        "palatize": false
+        "suffix": "as",
+        "betont": false
       },
       "Gen pl": {
-        "suffix": "uisin",
-        "betont": true,
-        "palatize": false
+        "suffix": "un",
+        "betont": false
       },
       "Dat sg": {
-        "suffix": "uišasmu",
-        "betont": true,
-        "palatize": false
+        "suffix": "u",
+        "betont": false
       },
       "Dat pl": {
-        "suffix": "uisimans",
-        "betont": true,
-        "palatize": false
+        "suffix": "umans",
+        "betont": false
       },
       "Akk sg": {
-        "suffix": "uisin",
-        "betont": true,
-        "palatize": false
+        "suffix": "an",
+        "betont": false
       },
       "Akk pl": {
-        "suffix": "uisins",
-        "betont": true,
-        "palatize": false
+        "suffix": "uns",
+        "betont": false
       }
-    },
-    "provisional": true
+    }
   },
   {
-    "paradigm": "30comp",
-    "lemma": "āngus",
+    "paradigm": "25comp_suppl",
+    "lemma": "debīks",
     "gender": "f",
-    "stamm": "Ang",
+    "stamm": "māises",
     "suffixe": {
       "Nom sg": {
-        "suffix": "uisi",
-        "betont": true,
-        "palatize": false
+        "suffix": "a",
+        "betont": false
       },
       "Nom pl": {
-        "suffix": "uisis",
-        "betont": true,
-        "palatize": false
+        "suffix": "as",
+        "betont": false
       },
       "Gen sg": {
-        "suffix": "uišas",
-        "betont": true,
-        "palatize": false
+        "suffix": "as",
+        "betont": false
       },
       "Gen pl": {
-        "suffix": "uisin",
-        "betont": true,
-        "palatize": false
+        "suffix": "un",
+        "betont": false
       },
       "Dat sg": {
-        "suffix": "uišai",
-        "betont": true,
-        "palatize": false
+        "suffix": "ai",
+        "betont": false
       },
       "Dat pl": {
-        "suffix": "uisimans",
-        "betont": true,
-        "palatize": false
+        "suffix": "umans",
+        "betont": false
       },
       "Akk sg": {
-        "suffix": "uisin",
-        "betont": true,
-        "palatize": false
+        "suffix": "an",
+        "betont": false
       },
       "Akk pl": {
-        "suffix": "uisins",
-        "betont": true,
-        "palatize": false
+        "suffix": "uns",
+        "betont": false
       }
-    },
-    "provisional": true
+    }
   },
   {
-    "paradigm": "30sup",
-    "lemma": "āngus",
+    "paradigm": "25sup_suppl",
+    "lemma": "debīks",
     "gender": "f",
-    "stamm": "ukaAng",
+    "stamm": "ukamāises",
     "suffixe": {
       "Nom sg": {
-        "suffix": "uisi",
-        "betont": true,
-        "palatize": false
+        "suffix": "a",
+        "betont": false
       },
       "Nom pl": {
-        "suffix": "uisis",
-        "betont": true,
-        "palatize": false
+        "suffix": "as",
+        "betont": false
       },
       "Gen sg": {
-        "suffix": "uišas",
-        "betont": true,
-        "palatize": false
+        "suffix": "as",
+        "betont": false
       },
       "Gen pl": {
-        "suffix": "uisin",
-        "betont": true,
-        "palatize": false
+        "suffix": "un",
+        "betont": false
       },
       "Dat sg": {
-        "suffix": "uišai",
-        "betont": true,
-        "palatize": false
+        "suffix": "ai",
+        "betont": false
       },
       "Dat pl": {
-        "suffix": "uisimans",
-        "betont": true,
-        "palatize": false
+        "suffix": "umans",
+        "betont": false
       },
       "Akk sg": {
-        "suffix": "uisin",
-        "betont": true,
-        "palatize": false
+        "suffix": "an",
+        "betont": false
       },
       "Akk pl": {
-        "suffix": "uisins",
-        "betont": true,
-        "palatize": false
+        "suffix": "uns",
+        "betont": false
       }
-    },
-    "provisional": true
+    }
   },
   {
-    "paradigm": "30comp",
-    "lemma": "āngus",
+    "paradigm": "25comp_suppl",
+    "lemma": "debīks",
     "gender": "n",
-    "stamm": "Ang",
+    "stamm": "māises",
     "suffixe": {
       "Nom sg": {
-        "suffix": "uisi",
-        "betont": true,
-        "palatize": false
+        "suffix": "an",
+        "betont": false
       },
       "Nom pl": {
-        "suffix": "uišai",
-        "betont": true,
-        "palatize": false
+        "suffix": "ai",
+        "betont": false
       },
       "Gen sg": {
-        "suffix": "uišas",
-        "betont": true,
-        "palatize": false
+        "suffix": "as",
+        "betont": false
       },
       "Gen pl": {
-        "suffix": "uisin",
-        "betont": true,
-        "palatize": false
+        "suffix": "un",
+        "betont": false
       },
       "Dat sg": {
-        "suffix": "uišasmu",
-        "betont": true,
-        "palatize": false
+        "suffix": "u",
+        "betont": false
       },
       "Dat pl": {
-        "suffix": "uisimans",
-        "betont": true,
-        "palatize": false
+        "suffix": "umans",
+        "betont": false
       },
       "Akk sg": {
-        "suffix": "uisi",
-        "betont": true,
-        "palatize": false
+        "suffix": "an",
+        "betont": false
       },
       "Akk pl": {
-        "suffix": "uisins",
-        "betont": true,
-        "palatize": false
+        "suffix": "uns",
+        "betont": false
       }
-    },
-    "provisional": true
+    }
   },
   {
-    "paradigm": "30sup",
-    "lemma": "āngus",
+    "paradigm": "25sup_suppl",
+    "lemma": "debīks",
     "gender": "n",
-    "stamm": "ukaAng",
+    "stamm": "ukamāises",
     "suffixe": {
       "Nom sg": {
-        "suffix": "uisi",
-        "betont": true,
-        "palatize": false
+        "suffix": "an",
+        "betont": false
       },
       "Nom pl": {
-        "suffix": "uišai",
-        "betont": true,
-        "palatize": false
+        "suffix": "ai",
+        "betont": false
       },
       "Gen sg": {
-        "suffix": "uišas",
-        "betont": true,
-        "palatize": false
+        "suffix": "as",
+        "betont": false
       },
       "Gen pl": {
-        "suffix": "uisin",
-        "betont": true,
-        "palatize": false
+        "suffix": "un",
+        "betont": false
       },
       "Dat sg": {
-        "suffix": "uišasmu",
-        "betont": true,
-        "palatize": false
+        "suffix": "u",
+        "betont": false
       },
       "Dat pl": {
-        "suffix": "uisimans",
-        "betont": true,
-        "palatize": false
+        "suffix": "umans",
+        "betont": false
       },
       "Akk sg": {
-        "suffix": "uisi",
-        "betont": true,
-        "palatize": false
+        "suffix": "an",
+        "betont": false
       },
       "Akk pl": {
-        "suffix": "uisins",
-        "betont": true,
-        "palatize": false
+        "suffix": "uns",
+        "betont": false
       }
-    },
-    "provisional": true
+    }
   },
   {
-    "paradigm": "31comp",
-    "lemma": "līgus",
+    "paradigm": "25comp_suppl2",
+    "lemma": "līkuts",
     "gender": "m",
-    "stamm": "lIg",
+    "stamm": "maz",
     "suffixe": {
       "Nom sg": {
-        "suffix": "uisis",
-        "betont": true,
-        "palatize": false
+        "suffix": "s",
+        "betont": false
       },
       "Nom pl": {
-        "suffix": "uišai",
-        "betont": true,
-        "palatize": false
+        "suffix": "ai",
+        "betont": false
       },
       "Gen sg": {
-        "suffix": "uišas",
-        "betont": true,
-        "palatize": false
+        "suffix": "as",
+        "betont": false
       },
       "Gen pl": {
-        "suffix": "uisin",
-        "betont": true,
-        "palatize": false
+        "suffix": "un",
+        "betont": false
       },
       "Dat sg": {
-        "suffix": "uišasmu",
-        "betont": true,
-        "palatize": false
+        "suffix": "u",
+        "betont": false
       },
       "Dat pl": {
-        "suffix": "uisimans",
-        "betont": true,
-        "palatize": false
+        "suffix": "umans",
+        "betont": false
       },
       "Akk sg": {
-        "suffix": "uisin",
-        "betont": true,
-        "palatize": false
+        "suffix": "an",
+        "betont": false
       },
       "Akk pl": {
-        "suffix": "uisins",
-        "betont": true,
-        "palatize": false
+        "suffix": "uns",
+        "betont": false
       }
-    },
-    "provisional": true
+    }
   },
   {
-    "paradigm": "31sup",
-    "lemma": "līgus",
+    "paradigm": "25sup_suppl2",
+    "lemma": "līkuts",
     "gender": "m",
-    "stamm": "ukalIg",
+    "stamm": "ukamaz",
     "suffixe": {
       "Nom sg": {
-        "suffix": "uisis",
-        "betont": true,
-        "palatize": false
+        "suffix": "s",
+        "betont": false
       },
       "Nom pl": {
-        "suffix": "uišai",
-        "betont": true,
-        "palatize": false
+        "suffix": "ai",
+        "betont": false
       },
       "Gen sg": {
-        "suffix": "uišas",
-        "betont": true,
-        "palatize": false
+        "suffix": "as",
+        "betont": false
       },
       "Gen pl": {
-        "suffix": "uisin",
-        "betont": true,
-        "palatize": false
+        "suffix": "un",
+        "betont": false
       },
       "Dat sg": {
-        "suffix": "uišasmu",
-        "betont": true,
-        "palatize": false
+        "suffix": "u",
+        "betont": false
       },
       "Dat pl": {
-        "suffix": "uisimans",
-        "betont": true,
-        "palatize": false
+        "suffix": "umans",
+        "betont": false
       },
       "Akk sg": {
-        "suffix": "uisin",
-        "betont": true,
-        "palatize": false
+        "suffix": "an",
+        "betont": false
       },
       "Akk pl": {
-        "suffix": "uisins",
-        "betont": true,
-        "palatize": false
+        "suffix": "uns",
+        "betont": false
       }
-    },
-    "provisional": true
+    }
   },
   {
-    "paradigm": "31comp",
-    "lemma": "līgus",
+    "paradigm": "25comp_suppl2",
+    "lemma": "līkuts",
     "gender": "f",
-    "stamm": "lIg",
+    "stamm": "maz",
     "suffixe": {
       "Nom sg": {
-        "suffix": "uisi",
-        "betont": true,
-        "palatize": false
+        "suffix": "a",
+        "betont": false
       },
       "Nom pl": {
-        "suffix": "uisis",
-        "betont": true,
-        "palatize": false
+        "suffix": "as",
+        "betont": false
       },
       "Gen sg": {
-        "suffix": "uišas",
-        "betont": true,
-        "palatize": false
+        "suffix": "as",
+        "betont": false
       },
       "Gen pl": {
-        "suffix": "uisin",
-        "betont": true,
-        "palatize": false
+        "suffix": "un",
+        "betont": false
       },
       "Dat sg": {
-        "suffix": "uišai",
-        "betont": true,
-        "palatize": false
+        "suffix": "ai",
+        "betont": false
       },
       "Dat pl": {
-        "suffix": "uisimans",
-        "betont": true,
-        "palatize": false
+        "suffix": "umans",
+        "betont": false
       },
       "Akk sg": {
-        "suffix": "uisin",
-        "betont": true,
-        "palatize": false
+        "suffix": "an",
+        "betont": false
       },
       "Akk pl": {
-        "suffix": "uisins",
-        "betont": true,
-        "palatize": false
+        "suffix": "uns",
+        "betont": false
       }
-    },
-    "provisional": true
+    }
   },
   {
-    "paradigm": "31sup",
-    "lemma": "līgus",
+    "paradigm": "25sup_suppl2",
+    "lemma": "līkuts",
     "gender": "f",
-    "stamm": "ukalIg",
+    "stamm": "ukamaz",
     "suffixe": {
       "Nom sg": {
-        "suffix": "uisi",
-        "betont": true,
-        "palatize": false
+        "suffix": "a",
+        "betont": false
       },
       "Nom pl": {
-        "suffix": "uisis",
-        "betont": true,
-        "palatize": false
+        "suffix": "as",
+        "betont": false
       },
       "Gen sg": {
-        "suffix": "uišas",
-        "betont": true,
-        "palatize": false
+        "suffix": "as",
+        "betont": false
       },
       "Gen pl": {
-        "suffix": "uisin",
-        "betont": true,
-        "palatize": false
+        "suffix": "un",
+        "betont": false
       },
       "Dat sg": {
-        "suffix": "uišai",
-        "betont": true,
-        "palatize": false
+        "suffix": "ai",
+        "betont": false
       },
       "Dat pl": {
-        "suffix": "uisimans",
-        "betont": true,
-        "palatize": false
+        "suffix": "umans",
+        "betont": false
       },
       "Akk sg": {
-        "suffix": "uisin",
-        "betont": true,
-        "palatize": false
+        "suffix": "an",
+        "betont": false
       },
       "Akk pl": {
-        "suffix": "uisins",
-        "betont": true,
-        "palatize": false
+        "suffix": "uns",
+        "betont": false
+      }
+    }
+  },
+  {
+    "paradigm": "25comp_suppl2",
+    "lemma": "līkuts",
+    "gender": "n",
+    "stamm": "maz",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "an",
+        "betont": false
+      },
+      "Nom pl": {
+        "suffix": "ai",
+        "betont": false
+      },
+      "Gen sg": {
+        "suffix": "as",
+        "betont": false
+      },
+      "Gen pl": {
+        "suffix": "un",
+        "betont": false
+      },
+      "Dat sg": {
+        "suffix": "u",
+        "betont": false
+      },
+      "Dat pl": {
+        "suffix": "umans",
+        "betont": false
+      },
+      "Akk sg": {
+        "suffix": "an",
+        "betont": false
+      },
+      "Akk pl": {
+        "suffix": "uns",
+        "betont": false
+      }
+    }
+  },
+  {
+    "paradigm": "25sup_suppl2",
+    "lemma": "līkuts",
+    "gender": "n",
+    "stamm": "ukamaz",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "an",
+        "betont": false
+      },
+      "Nom pl": {
+        "suffix": "ai",
+        "betont": false
+      },
+      "Gen sg": {
+        "suffix": "as",
+        "betont": false
+      },
+      "Gen pl": {
+        "suffix": "un",
+        "betont": false
+      },
+      "Dat sg": {
+        "suffix": "u",
+        "betont": false
+      },
+      "Dat pl": {
+        "suffix": "umans",
+        "betont": false
+      },
+      "Akk sg": {
+        "suffix": "an",
+        "betont": false
+      },
+      "Akk pl": {
+        "suffix": "uns",
+        "betont": false
+      }
+    }
+  },
+  {
+    "paradigm": "26comp_suppl",
+    "lemma": "labs",
+    "gender": "m",
+    "stamm": "waln",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "s",
+        "betont": false
+      },
+      "Nom pl": {
+        "suffix": "ai",
+        "betont": false
+      },
+      "Gen sg": {
+        "suffix": "as",
+        "betont": false
+      },
+      "Gen pl": {
+        "suffix": "un",
+        "betont": false
+      },
+      "Dat sg": {
+        "suffix": "u",
+        "betont": false
+      },
+      "Dat pl": {
+        "suffix": "umans",
+        "betont": false
+      },
+      "Akk sg": {
+        "suffix": "an",
+        "betont": false
+      },
+      "Akk pl": {
+        "suffix": "uns",
+        "betont": false
+      }
+    }
+  },
+  {
+    "paradigm": "26sup_suppl",
+    "lemma": "labs",
+    "gender": "m",
+    "stamm": "ukawaln",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "s",
+        "betont": false
+      },
+      "Nom pl": {
+        "suffix": "ai",
+        "betont": false
+      },
+      "Gen sg": {
+        "suffix": "as",
+        "betont": false
+      },
+      "Gen pl": {
+        "suffix": "un",
+        "betont": false
+      },
+      "Dat sg": {
+        "suffix": "u",
+        "betont": false
+      },
+      "Dat pl": {
+        "suffix": "umans",
+        "betont": false
+      },
+      "Akk sg": {
+        "suffix": "an",
+        "betont": false
+      },
+      "Akk pl": {
+        "suffix": "uns",
+        "betont": false
+      }
+    }
+  },
+  {
+    "paradigm": "26comp_suppl",
+    "lemma": "labs",
+    "gender": "f",
+    "stamm": "waln",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "a",
+        "betont": false
+      },
+      "Nom pl": {
+        "suffix": "as",
+        "betont": false
+      },
+      "Gen sg": {
+        "suffix": "as",
+        "betont": false
+      },
+      "Gen pl": {
+        "suffix": "un",
+        "betont": false
+      },
+      "Dat sg": {
+        "suffix": "ai",
+        "betont": false
+      },
+      "Dat pl": {
+        "suffix": "umans",
+        "betont": false
+      },
+      "Akk sg": {
+        "suffix": "an",
+        "betont": false
+      },
+      "Akk pl": {
+        "suffix": "uns",
+        "betont": false
+      }
+    }
+  },
+  {
+    "paradigm": "26sup_suppl",
+    "lemma": "labs",
+    "gender": "f",
+    "stamm": "ukawaln",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "a",
+        "betont": false
+      },
+      "Nom pl": {
+        "suffix": "as",
+        "betont": false
+      },
+      "Gen sg": {
+        "suffix": "as",
+        "betont": false
+      },
+      "Gen pl": {
+        "suffix": "un",
+        "betont": false
+      },
+      "Dat sg": {
+        "suffix": "ai",
+        "betont": false
+      },
+      "Dat pl": {
+        "suffix": "umans",
+        "betont": false
+      },
+      "Akk sg": {
+        "suffix": "an",
+        "betont": false
+      },
+      "Akk pl": {
+        "suffix": "uns",
+        "betont": false
+      }
+    }
+  },
+  {
+    "paradigm": "26comp_suppl",
+    "lemma": "labs",
+    "gender": "n",
+    "stamm": "waln",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "an",
+        "betont": false
+      },
+      "Nom pl": {
+        "suffix": "ai",
+        "betont": false
+      },
+      "Gen sg": {
+        "suffix": "as",
+        "betont": false
+      },
+      "Gen pl": {
+        "suffix": "un",
+        "betont": false
+      },
+      "Dat sg": {
+        "suffix": "u",
+        "betont": false
+      },
+      "Dat pl": {
+        "suffix": "umans",
+        "betont": false
+      },
+      "Akk sg": {
+        "suffix": "an",
+        "betont": false
+      },
+      "Akk pl": {
+        "suffix": "uns",
+        "betont": false
+      }
+    }
+  },
+  {
+    "paradigm": "26sup_suppl",
+    "lemma": "labs",
+    "gender": "n",
+    "stamm": "ukawaln",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "an",
+        "betont": false
+      },
+      "Nom pl": {
+        "suffix": "ai",
+        "betont": false
+      },
+      "Gen sg": {
+        "suffix": "as",
+        "betont": false
+      },
+      "Gen pl": {
+        "suffix": "un",
+        "betont": false
+      },
+      "Dat sg": {
+        "suffix": "u",
+        "betont": false
+      },
+      "Dat pl": {
+        "suffix": "umans",
+        "betont": false
+      },
+      "Akk sg": {
+        "suffix": "an",
+        "betont": false
+      },
+      "Akk pl": {
+        "suffix": "uns",
+        "betont": false
+      }
+    }
+  },
+  {
+    "paradigm": "25comp",
+    "lemma": "tūlins",
+    "gender": "m",
+    "stamm": "tUlin",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "aisis",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "aišai",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "aišas",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "aisin",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "aišasmu",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "aisimans",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "aisin",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "aisins",
+        "betont": true
       }
     },
     "provisional": true
   },
   {
-    "paradigm": "31comp",
-    "lemma": "līgus",
-    "gender": "n",
-    "stamm": "lIg",
+    "paradigm": "25sup",
+    "lemma": "tūlins",
+    "gender": "m",
+    "stamm": "ukatUlin",
     "suffixe": {
       "Nom sg": {
-        "suffix": "uisi",
-        "betont": true,
-        "palatize": false
+        "suffix": "aisis",
+        "betont": true
       },
       "Nom pl": {
-        "suffix": "uišai",
-        "betont": true,
-        "palatize": false
+        "suffix": "aišai",
+        "betont": true
       },
       "Gen sg": {
-        "suffix": "uišas",
-        "betont": true,
-        "palatize": false
+        "suffix": "aišas",
+        "betont": true
       },
       "Gen pl": {
-        "suffix": "uisin",
-        "betont": true,
-        "palatize": false
+        "suffix": "aisin",
+        "betont": true
       },
       "Dat sg": {
-        "suffix": "uišasmu",
-        "betont": true,
-        "palatize": false
+        "suffix": "aišasmu",
+        "betont": true
       },
       "Dat pl": {
-        "suffix": "uisimans",
-        "betont": true,
-        "palatize": false
+        "suffix": "aisimans",
+        "betont": true
       },
       "Akk sg": {
-        "suffix": "uisi",
-        "betont": true,
-        "palatize": false
+        "suffix": "aisin",
+        "betont": true
       },
       "Akk pl": {
-        "suffix": "uisins",
-        "betont": true,
-        "palatize": false
+        "suffix": "aisins",
+        "betont": true
       }
     },
     "provisional": true
   },
   {
-    "paradigm": "31sup",
-    "lemma": "līgus",
-    "gender": "n",
-    "stamm": "ukalIg",
+    "paradigm": "25comp",
+    "lemma": "tūlins",
+    "gender": "f",
+    "stamm": "tUlin",
     "suffixe": {
       "Nom sg": {
-        "suffix": "uisi",
-        "betont": true,
-        "palatize": false
+        "suffix": "aisi",
+        "betont": true
       },
       "Nom pl": {
-        "suffix": "uišai",
-        "betont": true,
-        "palatize": false
+        "suffix": "aisis",
+        "betont": true
       },
       "Gen sg": {
-        "suffix": "uišas",
-        "betont": true,
-        "palatize": false
+        "suffix": "aišas",
+        "betont": true
       },
       "Gen pl": {
-        "suffix": "uisin",
-        "betont": true,
-        "palatize": false
+        "suffix": "aisin",
+        "betont": true
       },
       "Dat sg": {
-        "suffix": "uišasmu",
-        "betont": true,
-        "palatize": false
+        "suffix": "aišai",
+        "betont": true
       },
       "Dat pl": {
-        "suffix": "uisimans",
-        "betont": true,
-        "palatize": false
+        "suffix": "aisimans",
+        "betont": true
       },
       "Akk sg": {
-        "suffix": "uisi",
-        "betont": true,
-        "palatize": false
+        "suffix": "aisin",
+        "betont": true
       },
       "Akk pl": {
-        "suffix": "uisins",
-        "betont": true,
-        "palatize": false
+        "suffix": "aisins",
+        "betont": true
+      }
+    },
+    "provisional": true
+  },
+  {
+    "paradigm": "25sup",
+    "lemma": "tūlins",
+    "gender": "f",
+    "stamm": "ukatUlin",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "aisi",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "aisis",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "aišas",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "aisin",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "aišai",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "aisimans",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "aisin",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "aisins",
+        "betont": true
+      }
+    },
+    "provisional": true
+  },
+  {
+    "paradigm": "25comp",
+    "lemma": "tūlins",
+    "gender": "n",
+    "stamm": "tUlin",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "aisi",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "aišai",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "aišas",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "aisin",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "aišasmu",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "aisimans",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "aisi",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "aisins",
+        "betont": true
+      }
+    },
+    "provisional": true
+  },
+  {
+    "paradigm": "25sup",
+    "lemma": "tūlins",
+    "gender": "n",
+    "stamm": "ukatUlin",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "aisi",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "aišai",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "aišas",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "aisin",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "aišasmu",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "aisimans",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "aisi",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "aisins",
+        "betont": true
+      }
+    },
+    "provisional": true
+  },
+  {
+    "paradigm": "26comp",
+    "lemma": "mālds",
+    "gender": "m",
+    "stamm": "mAld",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "aisis",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "aišai",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "aišas",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "aisin",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "aišasmu",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "aisimans",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "aisin",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "aisins",
+        "betont": true
+      }
+    },
+    "provisional": true
+  },
+  {
+    "paradigm": "26sup",
+    "lemma": "mālds",
+    "gender": "m",
+    "stamm": "ukamAld",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "aisis",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "aišai",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "aišas",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "aisin",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "aišasmu",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "aisimans",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "aisin",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "aisins",
+        "betont": true
+      }
+    },
+    "provisional": true
+  },
+  {
+    "paradigm": "26comp",
+    "lemma": "mālds",
+    "gender": "f",
+    "stamm": "mAld",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "aisi",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "aisis",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "aišas",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "aisin",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "aišai",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "aisimans",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "aisin",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "aisins",
+        "betont": true
+      }
+    },
+    "provisional": true
+  },
+  {
+    "paradigm": "26sup",
+    "lemma": "mālds",
+    "gender": "f",
+    "stamm": "ukamAld",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "aisi",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "aisis",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "aišas",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "aisin",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "aišai",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "aisimans",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "aisin",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "aisins",
+        "betont": true
+      }
+    },
+    "provisional": true
+  },
+  {
+    "paradigm": "26comp",
+    "lemma": "mālds",
+    "gender": "n",
+    "stamm": "mAld",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "aisi",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "aišai",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "aišas",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "aisin",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "aišasmu",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "aisimans",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "aisi",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "aisins",
+        "betont": true
+      }
+    },
+    "provisional": true
+  },
+  {
+    "paradigm": "26sup",
+    "lemma": "mālds",
+    "gender": "n",
+    "stamm": "ukamAld",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "aisi",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "aišai",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "aišas",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "aisin",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "aišasmu",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "aisimans",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "aisi",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "aisins",
+        "betont": true
       }
     },
     "provisional": true
@@ -5743,6 +6367,1122 @@
         "suffix": "aisins",
         "betont": true,
         "palatize": true
+      }
+    },
+    "provisional": true
+  },
+  {
+    "paradigm": "29comp",
+    "lemma": "sēnts",
+    "gender": "m",
+    "stamm": "swint",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "aisis",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "aišai",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "aišas",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "aisin",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "aišasmu",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "aisimans",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "aisin",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "aisins",
+        "betont": true
+      }
+    },
+    "provisional": true
+  },
+  {
+    "paradigm": "29sup",
+    "lemma": "sēnts",
+    "gender": "m",
+    "stamm": "ukaswint",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "aisis",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "aišai",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "aišas",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "aisin",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "aišasmu",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "aisimans",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "aisin",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "aisins",
+        "betont": true
+      }
+    },
+    "provisional": true
+  },
+  {
+    "paradigm": "29comp",
+    "lemma": "sēnts",
+    "gender": "f",
+    "stamm": "swint",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "aisi",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "aisis",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "aišas",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "aisin",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "aišai",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "aisimans",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "aisin",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "aisins",
+        "betont": true
+      }
+    },
+    "provisional": true
+  },
+  {
+    "paradigm": "29sup",
+    "lemma": "sēnts",
+    "gender": "f",
+    "stamm": "ukaswint",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "aisi",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "aisis",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "aišas",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "aisin",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "aišai",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "aisimans",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "aisin",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "aisins",
+        "betont": true
+      }
+    },
+    "provisional": true
+  },
+  {
+    "paradigm": "29comp",
+    "lemma": "sēnts",
+    "gender": "n",
+    "stamm": "swint",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "aisi",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "aišai",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "aišas",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "aisin",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "aišasmu",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "aisimans",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "aisi",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "aisins",
+        "betont": true
+      }
+    },
+    "provisional": true
+  },
+  {
+    "paradigm": "29sup",
+    "lemma": "sēnts",
+    "gender": "n",
+    "stamm": "ukaswint",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "aisi",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "aišai",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "aišas",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "aisin",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "aišasmu",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "aisimans",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "aisi",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "aisins",
+        "betont": true
+      }
+    },
+    "provisional": true
+  },
+  {
+    "paradigm": "30comp",
+    "lemma": "āngus",
+    "gender": "m",
+    "stamm": "Ang",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "uisis",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "uišai",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "uišas",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "uisin",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "uišasmu",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "uisimans",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "uisin",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "uisins",
+        "betont": true
+      }
+    },
+    "provisional": true
+  },
+  {
+    "paradigm": "30sup",
+    "lemma": "āngus",
+    "gender": "m",
+    "stamm": "ukaAng",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "uisis",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "uišai",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "uišas",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "uisin",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "uišasmu",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "uisimans",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "uisin",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "uisins",
+        "betont": true
+      }
+    },
+    "provisional": true
+  },
+  {
+    "paradigm": "30comp",
+    "lemma": "āngus",
+    "gender": "f",
+    "stamm": "Ang",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "uisi",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "uisis",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "uišas",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "uisin",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "uišai",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "uisimans",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "uisin",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "uisins",
+        "betont": true
+      }
+    },
+    "provisional": true
+  },
+  {
+    "paradigm": "30sup",
+    "lemma": "āngus",
+    "gender": "f",
+    "stamm": "ukaAng",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "uisi",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "uisis",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "uišas",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "uisin",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "uišai",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "uisimans",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "uisin",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "uisins",
+        "betont": true
+      }
+    },
+    "provisional": true
+  },
+  {
+    "paradigm": "30comp",
+    "lemma": "āngus",
+    "gender": "n",
+    "stamm": "Ang",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "uisi",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "uišai",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "uišas",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "uisin",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "uišasmu",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "uisimans",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "uisi",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "uisins",
+        "betont": true
+      }
+    },
+    "provisional": true
+  },
+  {
+    "paradigm": "30sup",
+    "lemma": "āngus",
+    "gender": "n",
+    "stamm": "ukaAng",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "uisi",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "uišai",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "uišas",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "uisin",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "uišasmu",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "uisimans",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "uisi",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "uisins",
+        "betont": true
+      }
+    },
+    "provisional": true
+  },
+  {
+    "paradigm": "30acomp",
+    "lemma": "stāws",
+    "gender": "m",
+    "stamm": "stāw",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "aisis",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "aišai",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "aišas",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "aisin",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "aišasmu",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "aisimans",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "aisin",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "aisins",
+        "betont": true
+      }
+    },
+    "provisional": true
+  },
+  {
+    "paradigm": "30asup",
+    "lemma": "stāws",
+    "gender": "m",
+    "stamm": "ukastāw",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "aisis",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "aišai",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "aišas",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "aisin",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "aišasmu",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "aisimans",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "aisin",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "aisins",
+        "betont": true
+      }
+    },
+    "provisional": true
+  },
+  {
+    "paradigm": "30acomp",
+    "lemma": "stāws",
+    "gender": "f",
+    "stamm": "stāw",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "aisi",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "aisis",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "aišas",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "aisin",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "aišai",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "aisimans",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "aisin",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "aisins",
+        "betont": true
+      }
+    },
+    "provisional": true
+  },
+  {
+    "paradigm": "30asup",
+    "lemma": "stāws",
+    "gender": "f",
+    "stamm": "ukastāw",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "aisi",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "aisis",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "aišas",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "aisin",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "aišai",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "aisimans",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "aisin",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "aisins",
+        "betont": true
+      }
+    },
+    "provisional": true
+  },
+  {
+    "paradigm": "30acomp",
+    "lemma": "stāws",
+    "gender": "n",
+    "stamm": "stāw",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "aisi",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "aišai",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "aišas",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "aisin",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "aišasmu",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "aisimans",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "aisi",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "aisins",
+        "betont": true
+      }
+    },
+    "provisional": true
+  },
+  {
+    "paradigm": "30asup",
+    "lemma": "stāws",
+    "gender": "n",
+    "stamm": "ukastāw",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "aisi",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "aišai",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "aišas",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "aisin",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "aišasmu",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "aisimans",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "aisi",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "aisins",
+        "betont": true
+      }
+    },
+    "provisional": true
+  },
+  {
+    "paradigm": "31comp",
+    "lemma": "līgus",
+    "gender": "m",
+    "stamm": "lIg",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "uisis",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "uišai",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "uišas",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "uisin",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "uišasmu",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "uisimans",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "uisin",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "uisins",
+        "betont": true
+      }
+    },
+    "provisional": true
+  },
+  {
+    "paradigm": "31sup",
+    "lemma": "līgus",
+    "gender": "m",
+    "stamm": "ukalIg",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "uisis",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "uišai",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "uišas",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "uisin",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "uišasmu",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "uisimans",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "uisin",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "uisins",
+        "betont": true
+      }
+    },
+    "provisional": true
+  },
+  {
+    "paradigm": "31comp",
+    "lemma": "līgus",
+    "gender": "f",
+    "stamm": "lIg",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "uisi",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "uisis",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "uišas",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "uisin",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "uišai",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "uisimans",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "uisin",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "uisins",
+        "betont": true
+      }
+    },
+    "provisional": true
+  },
+  {
+    "paradigm": "31sup",
+    "lemma": "līgus",
+    "gender": "f",
+    "stamm": "ukalIg",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "uisi",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "uisis",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "uišas",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "uisin",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "uišai",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "uisimans",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "uisin",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "uisins",
+        "betont": true
+      }
+    },
+    "provisional": true
+  },
+  {
+    "paradigm": "31comp",
+    "lemma": "līgus",
+    "gender": "n",
+    "stamm": "lIg",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "uisi",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "uišai",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "uišas",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "uisin",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "uišasmu",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "uisimans",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "uisi",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "uisins",
+        "betont": true
+      }
+    },
+    "provisional": true
+  },
+  {
+    "paradigm": "31sup",
+    "lemma": "līgus",
+    "gender": "n",
+    "stamm": "ukalIg",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "uisi",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "uišai",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "uišas",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "uisin",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "uišasmu",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "uisimans",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "uisi",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "uisins",
+        "betont": true
+      }
+    },
+    "provisional": true
+  },
+  {
+    "paradigm": "28sup",
+    "lemma": "māldaisis",
+    "gender": "m",
+    "stamm": "ukamAldais",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "is",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "ai",
+        "betont": true,
+        "palatize": true
+      },
+      "Gen sg": {
+        "suffix": "as",
+        "betont": true,
+        "palatize": true
+      },
+      "Gen pl": {
+        "suffix": "in",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "u",
+        "betont": true,
+        "palatize": true
+      },
+      "Dat pl": {
+        "suffix": "amans",
+        "betont": true,
+        "palatize": true
+      },
+      "Akk sg": {
+        "suffix": "in",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "ins",
+        "betont": true
+      }
+    },
+    "provisional": true
+  },
+  {
+    "paradigm": "28sup",
+    "lemma": "māldaisis",
+    "gender": "f",
+    "stamm": "ukamAldais",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "i",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "is",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "as",
+        "betont": true,
+        "palatize": true
+      },
+      "Gen pl": {
+        "suffix": "in",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "ai",
+        "betont": true,
+        "palatize": true
+      },
+      "Dat pl": {
+        "suffix": "imans",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "in",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "ins",
+        "betont": true
+      }
+    },
+    "provisional": true
+  },
+  {
+    "paradigm": "28sup",
+    "lemma": "māldaisis",
+    "gender": "n",
+    "stamm": "ukamAldais",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "i",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "ai",
+        "betont": true,
+        "palatize": true
+      },
+      "Gen sg": {
+        "suffix": "as",
+        "betont": true,
+        "palatize": true
+      },
+      "Gen pl": {
+        "suffix": "in",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "asmu",
+        "betont": true,
+        "palatize": true
+      },
+      "Dat pl": {
+        "suffix": "imans",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "i",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "ins",
+        "betont": true
       }
     },
     "provisional": true

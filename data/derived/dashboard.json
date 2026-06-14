@@ -1,12 +1,12 @@
 {
   "meta": {
     "schema_version": "2.0",
-    "generated": "2026-06-14T08:31:58Z",
+    "generated": "2026-06-14T12:39:43Z",
     "fst": {
       "engine": "pyfoma",
-      "build_commit": "4a52120",
-      "analyser_states": 15045,
-      "lenient_states": 15841,
+      "build_commit": "fc75924",
+      "analyser_states": 15182,
+      "lenient_states": 15973,
       "tagset": "giella-flat-plus"
     }
   },
@@ -19,23 +19,23 @@
     },
     "form_coverage": {
       "label": "Formen generierbar vs. Wörterbuch",
-      "pct": 53.7,
-      "num": 68001,
+      "pct": 60.0,
+      "num": 75979,
       "den": 126548,
       "ortho_pct": 8.6
     },
     "corpus_coverage": {
       "label": "Korpus-Token analysierbar",
-      "pct": 62.6,
-      "num": 43849,
+      "pct": 62.7,
+      "num": 43910,
       "den": 70047
     }
   },
   "health": {
     "generation": {
       "nominal": {
-        "cells": 1111,
-        "matched": 1111,
+        "cells": 1471,
+        "matched": 1471,
         "no_gen": 0,
         "mismatch": 0,
         "case_only": 0,
@@ -68,10 +68,10 @@
       "name": "Adjektive",
       "example": "debīks",
       "lemmata": 1092,
-      "paradigms_done": 13,
-      "paradigms_total": 13,
+      "paradigms_done": 28,
+      "paradigms_total": 28,
       "gen_integrity_pct": 100.0,
-      "form_coverage_pct": 33.6,
+      "form_coverage_pct": 44.1,
       "status": "done"
     },
     {
@@ -432,7 +432,97 @@
       "gold_cells": 24,
       "gold_matched": 24,
       "dict_total": 48732,
-      "dict_matched": 15864,
+      "dict_matched": 23092,
+      "status": "done"
+    },
+    {
+      "id": "25comp",
+      "pos": "+A",
+      "label": "P25comp",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 0,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "25comp_suppl",
+      "pos": "+A",
+      "label": "P25comp_suppl",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 0,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "25comp_suppl2",
+      "pos": "+A",
+      "label": "P25comp_suppl2",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 0,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "25sup",
+      "pos": "+A",
+      "label": "P25sup",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 0,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "25sup_suppl",
+      "pos": "+A",
+      "label": "P25sup_suppl",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 0,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "25sup_suppl2",
+      "pos": "+A",
+      "label": "P25sup_suppl2",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 0,
+      "dict_matched": 0,
       "status": "done"
     },
     {
@@ -447,7 +537,67 @@
       "gold_cells": 24,
       "gold_matched": 24,
       "dict_total": 6888,
-      "dict_matched": 1013,
+      "dict_matched": 1763,
+      "status": "done"
+    },
+    {
+      "id": "26comp",
+      "pos": "+A",
+      "label": "P26comp",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 0,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "26comp_suppl",
+      "pos": "+A",
+      "label": "P26comp_suppl",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 0,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "26sup",
+      "pos": "+A",
+      "label": "P26sup",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 0,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "26sup_suppl",
+      "pos": "+A",
+      "label": "P26sup_suppl",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 0,
+      "dict_matched": 0,
       "status": "done"
     },
     {
@@ -511,6 +661,21 @@
       "status": "done"
     },
     {
+      "id": "28sup",
+      "pos": "+A",
+      "label": "P28sup",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 0,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
       "id": "29",
       "pos": "+A",
       "label": "P29",
@@ -523,6 +688,36 @@
       "gold_matched": 24,
       "dict_total": 768,
       "dict_matched": 279,
+      "status": "done"
+    },
+    {
+      "id": "29comp",
+      "pos": "+A",
+      "label": "P29comp",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 0,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "29sup",
+      "pos": "+A",
+      "label": "P29sup",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 0,
+      "dict_matched": 0,
       "status": "done"
     },
     {
@@ -544,6 +739,36 @@
       "id": "30a",
       "pos": "+Pron",
       "label": "P30a",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 0,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "30acomp",
+      "pos": "+A",
+      "label": "P30acomp",
+      "genders": [
+        "f",
+        "m",
+        "n"
+      ],
+      "gold_cells": 24,
+      "gold_matched": 24,
+      "dict_total": 0,
+      "dict_matched": 0,
+      "status": "done"
+    },
+    {
+      "id": "30asup",
+      "pos": "+A",
+      "label": "P30asup",
       "genders": [
         "f",
         "m",
@@ -2192,7 +2417,7 @@
   ],
   "corpus": {
     "total_tokens": 70047,
-    "coverage_pct": 62.6,
+    "coverage_pct": 62.7,
     "sources": [
       {
         "id": "tatoeba",
@@ -2206,7 +2431,7 @@
         "id": "prusaspira_wiki",
         "name": "Prusaspira-Wiki",
         "tokens": 39737,
-        "coverage_pct": 57.9,
+        "coverage_pct": 58.0,
         "dropped_docs": 12,
         "dropped_words": 2548
       }
@@ -2215,7 +2440,7 @@
       {
         "reason": "oov",
         "label": "Unbekannte Lemmata",
-        "pct": 50.2
+        "pct": 50.3
       },
       {
         "reason": "propn",
@@ -2225,7 +2450,7 @@
       {
         "reason": "variant",
         "label": "Form-/Flexionslücke",
-        "pct": 38.8
+        "pct": 38.6
       }
     ]
   },
