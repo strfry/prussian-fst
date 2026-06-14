@@ -18,6 +18,7 @@ import csv
 import json
 import re
 import sys
+from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent.parent.parent
@@ -111,6 +112,8 @@ def run(main_fst, lenient_fst, words: list[dict] | None = None,
     sources = json.loads(MANIFEST.read_text(encoding="utf-8"))["sources"]
 
     fst_cache: dict[str, str] = {}
+    oov_counter: Counter = Counter()
+    variant_counter: Counter = Counter()
 
     def fst_bucket(lower: str) -> str:
         hit = fst_cache.get(lower)
@@ -134,19 +137,22 @@ def run(main_fst, lenient_fst, words: list[dict] | None = None,
                                "variant": 0, "propn": 0, "oov": 0}}
             for tok, is_initial in iter_tokens(text):
                 doc["tokens"] += 1
-                bucket = fst_bucket(tok.lower())
+                lower = tok.lower()
+                bucket = fst_bucket(lower)
                 if bucket == "analyzed":
                     doc["buckets"]["analyzed"] += 1
                     doc["recognized"] += 1
                 elif bucket == "ortho":
                     doc["buckets"]["ortho"] += 1
                     doc["recognized"] += 1
-                elif tok.lower() in surfaces:
+                elif lower in surfaces:
                     doc["buckets"]["variant"] += 1
+                    doc["_variant_tokens"] = doc.get("_variant_tokens", []) + [lower]
                 elif tok[:1].isupper() and not is_initial:
                     doc["buckets"]["propn"] += 1
                 else:
                     doc["buckets"]["oov"] += 1
+                    doc["_oov_tokens"] = doc.get("_oov_tokens", []) + [lower]
 
             share = doc["recognized"] / doc["tokens"] if doc["tokens"] else 0.0
             is_spam = (not clean and doc["tokens"] >= SPAM_MIN_TOKENS
@@ -158,6 +164,8 @@ def run(main_fst, lenient_fst, words: list[dict] | None = None,
             s["tokens"] += doc["tokens"]
             for k, v in doc["buckets"].items():
                 s[k] += v
+            variant_counter.update(doc.get("_variant_tokens", []))
+            oov_counter.update(doc.get("_oov_tokens", []))
             if progress and (di + 1) % 200 == 0:
                 sys.stderr.write(f"\r  {source['id']}: {di+1} docs")
                 sys.stderr.flush()
@@ -168,7 +176,12 @@ def run(main_fst, lenient_fst, words: list[dict] | None = None,
     totals = {k: sum(s[k] for s in per_source)
               for k in ("tokens", "analyzed", "ortho", "variant", "propn", "oov",
                         "dropped_docs", "dropped_words")}
-    return {"totals": totals, "per_source": per_source}
+    return {
+        "totals": totals,
+        "per_source": per_source,
+        "top_oov": oov_counter.most_common(200),
+        "top_variant": variant_counter.most_common(200),
+    }
 
 
 def _coverage(d: dict) -> float:
@@ -190,6 +203,14 @@ def main() -> None:
         print(f"  {s['name']:20s} {s['tokens']:7d} Token  "
               f"{_coverage(s):5.1f}%{extra}")
     print(f"→ {OUT}")
+
+    for label, key in [("OOV (unbekannte Lemmata)", "top_oov"),
+                       ("Flexionslücken (variant)", "top_variant")]:
+        entries = result.get(key, [])[:30]
+        print(f"\n  {label} — Top {len(entries)}:")
+        print(f"  {'Freq':>5}  Wort")
+        for w, n in entries:
+            print(f"  {n:5d}  {w}")
 
 
 if __name__ == "__main__":

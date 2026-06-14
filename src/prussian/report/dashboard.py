@@ -277,6 +277,8 @@ def build(analyser, lenient) -> dict:
             "coverage_pct": _pct(corpus_num, ct["tokens"]),
             "sources": corpus_sources,
             "unanalyzable": unanalyzable,
+            "top_oov": corpus.get("top_oov", [])[:100],
+            "top_variant": corpus.get("top_variant", [])[:100],
         },
         "closed_class": {
             "total": dc_closed["total"], "recognized": dc_closed["recognized"],
