@@ -111,6 +111,17 @@ def cell_tag(cell: str) -> str:
     return ADV_CELL_TAG[cell] if cell in ADV_CELL_TAG else CELL_TAG[cell]
 
 
+def ptcp_cell_tag(category: str, gender: str, cell: str) -> str:
+    """Deklinierte Partizip-Zelle: Partizip-Typ + Genus + nominaler Kasus/Numerus.
+
+    z. B. (``active_ptcp``, ``m``, ``Nom sg``) → ``+PstPrc+Msc+Sg+Nom``. Die
+    Partizipien flektieren nominal (Präs.-Ptz wie P29, Akt.-Ptz wie P68,
+    Pass.-Ptz wie P69, docs/gramatiki.md §§2.2/2.7/2.11), behalten aber die
+    Verb-POS (+V) und den Partizip-Tag.
+    """
+    return PTCP_TAG[category] + GENDER_TAG.get(gender, "") + CELL_TAG[cell]
+
+
 def verb_cell_tag(category: str, cell: str, reflexive: bool = False) -> str:
     """Verbale Zellen-Tagfolge. ``category`` ist der Tempus-/Modus-Schlüssel des
     Eintrags (``present``/``preterite``/``infinitive``/``optative``/

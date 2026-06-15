@@ -110,18 +110,6 @@
   {
     "paradigm": "71",
     "lemma": "īmtun",
-    "tense": "passive_ptcp",
-    "stamm": "Im",
-    "suffixe": {
-      "PssPrc": {
-        "suffix": "ts",
-        "betont": true
-      }
-    }
-  },
-  {
-    "paradigm": "71",
-    "lemma": "īmtun",
     "tense": "imperative",
     "stamm": "imm",
     "suffixe": {
@@ -138,12 +126,41 @@
   {
     "paradigm": "71",
     "lemma": "īmtun",
-    "tense": "active_ptcp",
-    "stamm": "imm",
+    "tense": "present_ptcp",
+    "gender": "m",
+    "stamm": "imAnt",
     "suffixe": {
-      "PstPrc": {
-        "suffix": "uns",
+      "Nom sg": {
+        "suffix": "s",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "is",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "ismu",
         "betont": false
+      },
+      "Akk sg": {
+        "suffix": "in",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "ei",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "in",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "immans",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "ins",
+        "betont": true
       }
     }
   },
@@ -151,11 +168,327 @@
     "paradigm": "71",
     "lemma": "īmtun",
     "tense": "present_ptcp",
-    "stamm": "im",
+    "gender": "f",
+    "stamm": "imAnt",
     "suffixe": {
-      "PrsPrc": {
-        "suffix": "ānts",
+      "Nom sg": {
+        "suffix": "ī",
         "betont": false
+      },
+      "Gen sg": {
+        "suffix": "es",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "ei",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "in",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "es",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "in",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "jāmans",
+        "betont": false
+      },
+      "Akk pl": {
+        "suffix": "ins",
+        "betont": true
+      }
+    }
+  },
+  {
+    "paradigm": "71",
+    "lemma": "īmtun",
+    "tense": "present_ptcp",
+    "gender": "n",
+    "stamm": "imAnt",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "i",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "is",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "ismu",
+        "betont": false
+      },
+      "Akk sg": {
+        "suffix": "i",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "ei",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "in",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "immans",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "ins",
+        "betont": true
+      }
+    }
+  },
+  {
+    "paradigm": "71",
+    "lemma": "īmtun",
+    "tense": "active_ptcp",
+    "gender": "m",
+    "stamm": "imm",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "uns",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "ušas",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "ušasmu",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "usin",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "usis",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "usin",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "usimans",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "usins",
+        "betont": true
+      }
+    }
+  },
+  {
+    "paradigm": "71",
+    "lemma": "īmtun",
+    "tense": "active_ptcp",
+    "gender": "f",
+    "stamm": "imm",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "usi",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "ušas",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "ušai",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "usin",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "ušas",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "usin",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "usimans",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "usins",
+        "betont": true
+      }
+    }
+  },
+  {
+    "paradigm": "71",
+    "lemma": "īmtun",
+    "tense": "active_ptcp",
+    "gender": "n",
+    "stamm": "imm",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "us",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "ušas",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "ušasmu",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "us",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "us",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "usin",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "usimans",
+        "betont": true
+      },
+      "Akk pl": {
+        "suffix": "us",
+        "betont": true
+      }
+    }
+  },
+  {
+    "paradigm": "71",
+    "lemma": "īmtun",
+    "tense": "passive_ptcp",
+    "gender": "m",
+    "stamm": "Imt",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "s",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "as",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "asmu",
+        "betont": false
+      },
+      "Akk sg": {
+        "suffix": "an",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "āi",
+        "betont": false
+      },
+      "Gen pl": {
+        "suffix": "an",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "ammans",
+        "betont": false
+      },
+      "Akk pl": {
+        "suffix": "ans",
+        "betont": true
+      }
+    }
+  },
+  {
+    "paradigm": "71",
+    "lemma": "īmtun",
+    "tense": "passive_ptcp",
+    "gender": "f",
+    "stamm": "Imt",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "ā",
+        "betont": false
+      },
+      "Gen sg": {
+        "suffix": "as",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "ai",
+        "betont": true
+      },
+      "Akk sg": {
+        "suffix": "an",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "as",
+        "betont": true
+      },
+      "Gen pl": {
+        "suffix": "an",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "āmans",
+        "betont": false
+      },
+      "Akk pl": {
+        "suffix": "ans",
+        "betont": true
+      }
+    }
+  },
+  {
+    "paradigm": "71",
+    "lemma": "īmtun",
+    "tense": "passive_ptcp",
+    "gender": "n",
+    "stamm": "Imt",
+    "suffixe": {
+      "Nom sg": {
+        "suffix": "an",
+        "betont": true
+      },
+      "Gen sg": {
+        "suffix": "as",
+        "betont": true
+      },
+      "Dat sg": {
+        "suffix": "asmu",
+        "betont": false
+      },
+      "Akk sg": {
+        "suffix": "an",
+        "betont": true
+      },
+      "Nom pl": {
+        "suffix": "āi",
+        "betont": false
+      },
+      "Gen pl": {
+        "suffix": "an",
+        "betont": true
+      },
+      "Dat pl": {
+        "suffix": "ammans",
+        "betont": false
+      },
+      "Akk pl": {
+        "suffix": "ans",
+        "betont": true
       }
     }
   },

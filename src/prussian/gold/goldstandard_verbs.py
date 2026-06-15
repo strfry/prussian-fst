@@ -16,6 +16,8 @@ import unicodedata
 from collections import Counter, OrderedDict
 from pathlib import Path
 
+from prussian.fst.morphology import verbs as verb_morph
+
 VERB_IN = Path("data/derived/vergleich_verbs.json")
 VERB_GS = Path("data/gold/goldstandard_verben.json")
 OUT_MD  = Path("data/gold/GOLDSTANDARD_VERBEN.md")
@@ -211,10 +213,6 @@ INF_STEM_CATS = ("infinitive", "optative", "subjunctive", "passive_ptcp")
 PRES_STEM_CATS = ("imperative", "active_ptcp")  # + present/preterite (gevotet)
 
 
-def degeminate(s):
-    return re.sub(r"(.)\1", r"\1", s)
-
-
 def _derive_stem(forms):
     """Aus einer Formgruppe MIT GEMEINSAMEM Stamm → (stamm_markiert, Lp, betont).
 
@@ -259,19 +257,13 @@ def _cat_entries(par, lemma, fp, pres_block, pret_block):
     pres_forms += [f for cat in PRES_STEM_CATS for f in fp.get(cat, {}).values()]
     stamm_pres, Lp_pres, betont_pres = _derive_stem(pres_forms)
 
-    # Präsenspartizip: entgeminierter Präsensstamm (imm→im vor schwerem -ānts)
-    degem_base = degeminate(strip_macron(stamm_pres).lower())
-    stamm_degem = degeminate(stamm_pres)
-    Lp_degem = len(degem_base)
-
+    # Finite Modi (Inf/Opt/Konj/Imp) auf dem jeweiligen Stamm; die drei
+    # Partizipien DEKLINIEREN separat (verb_morph.ptcp_decline, Stufe 3).
     plan = {
         "infinitive": (stamm_inf, Lp_inf, betont_inf),
         "optative": (stamm_inf, Lp_inf, betont_inf),
         "subjunctive": (stamm_inf, Lp_inf, betont_inf),
-        "passive_ptcp": (stamm_inf, Lp_inf, betont_inf),
         "imperative": (stamm_pres, Lp_pres, betont_pres),
-        "active_ptcp": (stamm_pres, Lp_pres, betont_pres),
-        "present_ptcp": (stamm_degem, Lp_degem, betont_pres and False),
     }
 
     out = []
@@ -286,6 +278,15 @@ def _cat_entries(par, lemma, fp, pres_block, pret_block):
             ("paradigm", par), ("lemma", lemma), ("tense", cat),
             ("stamm", stamm), ("suffixe", suffixe),
         ]))
+
+    # Deklinierte Partizipien (Präs. <29>, Akt. <68>, Pass. <69>): Stamm aus der
+    # attestierten Mask-Nom-Sg-Form, universelle Endungen je Genus.
+    for cat in ("present_ptcp", "active_ptcp", "passive_ptcp"):
+        cells = fp.get(cat)
+        if not cells:
+            continue
+        form = next(iter(cells.values()), None)
+        out.extend(verb_morph.ptcp_decline(par, lemma, cat, form))
     return out
 
 

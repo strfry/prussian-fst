@@ -10,9 +10,10 @@ from dataclasses import dataclass
 
 from prussian.fst.oracle import resolve_stem
 from prussian.fst.tags import (
-    _paradigm_kind, _pos, ADV_POS_TAG, cell_tag, split_reflexive, split_suffix,
-    tag_prefix, verb_cell_tag,
+    _paradigm_kind, _pos, ADV_POS_TAG, cell_tag, ptcp_cell_tag, split_reflexive,
+    split_suffix, tag_prefix, verb_cell_tag,
 )
+from prussian.fst.morphology.verbs import _PTCP_DECL
 
 
 @dataclass(frozen=True)
@@ -44,10 +45,15 @@ def nominal_cases(entries: list[dict]):
 
 def verbal_cases(entries: list[dict]):
     for e in entries:
+        is_ptcp = bool(e.get("gender")) and e["tense"] in _PTCP_DECL
         for cell, v in e["suffixe"].items():
-            bare, refl = split_reflexive(v["suffix"])
-            tcell = verb_cell_tag(e["tense"], cell, refl)
-            std, variant = split_suffix(bare)
+            if is_ptcp:
+                tcell = ptcp_cell_tag(e["tense"], e["gender"], cell)
+                std, variant = split_suffix(v["suffix"])
+            else:
+                bare, refl = split_reflexive(v["suffix"])
+                tcell = verb_cell_tag(e["tense"], cell, refl)
+                std, variant = split_suffix(bare)
             expected = resolve_stem(
                 e["stamm"], v["betont"], v.get("palatize", False)) + std
             yield Case("+V", e["paradigm"], e["lemma"],

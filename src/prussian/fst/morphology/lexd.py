@@ -26,7 +26,7 @@ from itertools import chain
 from prussian.fst.oracle import LONG, resolve_stem
 from prussian.fst.spellrelax import elaktr_variant, jan_variant
 from prussian.fst.tags import (
-    cell_tag, split_reflexive, split_suffix, verb_cell_tag,
+    cell_tag, ptcp_cell_tag, split_reflexive, split_suffix, verb_cell_tag,
 )
 from prussian.fst.morphology import nominals, verbs
 
@@ -72,6 +72,8 @@ def _lexname(kind: str, par: str, sub: str) -> str:
 
 def _cell_tag(lexkind: str, e: dict, cell: str, v: dict) -> tuple[str, dict]:
     """Zellen-Tag + (bei Verben reflexiv-bereinigter) Endungswert."""
+    if lexkind == "ptcp":
+        return ptcp_cell_tag(e["tense"], e["gender"], cell), v
     if lexkind == "verb":
         bare, refl = split_reflexive(v["suffix"])
         if refl:

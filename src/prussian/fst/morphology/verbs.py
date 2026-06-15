@@ -30,17 +30,78 @@ VERB_POS = "+V"
 # (-st-Wurzel: bredlai→bred-; i-Klasse: abōnints→abōni-, abōniwuns→abōniw-).
 #
 # Stamm-tragende Prinzipalform je Kategorie (Drei-Stamm-Modell, Lehrer-Antwort
-# docs/HANDOFF_verb_modi_konditionierung.md): Inf-Stamm für Opt/Konj/Pass.-Ptz,
-# Präsensstamm fürs Präs.-Ptz, PRÄTERITALSTAMM fürs Akt.-Ptz (nicht aus dem
-# Präsens ableitbar — Ablaut/Nasalinfix/ja-Schwund; daher attestiert abstreifen).
+# docs/HANDOFF_verb_modi_konditionierung.md): Inf-Stamm für Opt/Konj, Präsens-
+# stamm fürs Präs.-Ptz, PRÄTERITALSTAMM fürs Akt.-Ptz. Die drei Partizipien
+# DEKLINIEREN (s. _PTCP_DECL) und werden separat behandelt.
 #: tense → (Leitform-Schlüssel, abzustreifendes Leitsuffix, Zellen→Suffix)
 _UNIV_MOODS: dict[str, tuple] = {
     "optative":     ("optative",  "sei", OrderedDict([("Opt", "sei")])),
     "subjunctive":  ("subj_as",   "lai", OrderedDict([("1sg", "lai"), ("2sg", "lai"),
                                           ("3sg", "lai"), ("1pl", "limai"), ("2pl", "litei")])),
-    "passive_ptcp": ("passive",   "ts",  OrderedDict([("PssPrc", "ts")])),
-    "active_ptcp":  ("past_p",    "uns", OrderedDict([("PstPrc", "uns")])),
-    "present_ptcp": ("present_p",  "nts", OrderedDict([("PrsPrc", "nts")])),
+}
+
+# ── Partizip-Deklination (Rollout Stufe 3) ────────────────────────────────
+# Die drei Partizipien sind flektierte Adjektive (docs/gramatiki.md §§2.2/2.7/
+# 2.11): Präs.-Ptz wie <29> (sēnts), Akt.-Ptz wie <68> (immuns), Pass.-Ptz wie
+# <69> (īmts). Die Deklinationsendungen sind — wie bei Nomina — UNIVERSELL: ein
+# Set je (Partizip, Genus); der lemmaspezifische Partizipstamm entsteht durch
+# Abstreifen der Mask-Nom-Sg-Endung (_PTCP_LEAD) von der attestierten Form. Die
+# Endungstabellen sind aus tabula.html (P29/P68/P69) abgeleitet; betont = der
+# Stamm trägt in dieser Zelle die Langstufe (steuert M/S-Marker, phonology.py).
+# Die pronominalen "pnl"-Spalten (Artikel-Definitum mit stas) sind +Def und hier
+# bewusst ausgenommen. tabula = Strukturquelle → Ergebnis provisional.
+#: Mask-Nom-Sg-Endung je Partizip (Strip → Stamm)
+_PTCP_LEAD = {"present_ptcp": "s", "active_ptcp": "uns", "passive_ptcp": "s"}
+#: Leitform-Schlüssel (für _leitform) je Partizip
+_PTCP_LEITKEY = {"present_ptcp": "present_p", "active_ptcp": "past_p",
+                 "passive_ptcp": "passive"}
+#: tabula-Deklinationsparadigma je Partizip (Schlüssel fürs geteilte Infl)
+_PTCP_DECL_PAR = {"present_ptcp": "29", "active_ptcp": "68", "passive_ptcp": "69"}
+
+#: tense → genus → OrderedDict[zelle → (endung, betont)]
+_PTCP_DECL: dict[str, dict[str, "OrderedDict[str, tuple[str, bool]]"]] = {
+    "present_ptcp": {  # <29> sēnts ~ sent (Mobile)
+        "m": OrderedDict([("Nom sg", ("s", True)), ("Gen sg", ("is", True)),
+                          ("Dat sg", ("ismu", False)), ("Akk sg", ("in", True)),
+                          ("Nom pl", ("ei", True)), ("Gen pl", ("in", True)),
+                          ("Dat pl", ("immans", True)), ("Akk pl", ("ins", True))]),
+        "f": OrderedDict([("Nom sg", ("ī", False)), ("Gen sg", ("es", True)),
+                          ("Dat sg", ("ei", True)), ("Akk sg", ("in", True)),
+                          ("Nom pl", ("es", True)), ("Gen pl", ("in", True)),
+                          ("Dat pl", ("jāmans", False)), ("Akk pl", ("ins", True))]),
+        "n": OrderedDict([("Nom sg", ("i", True)), ("Gen sg", ("is", True)),
+                          ("Dat sg", ("ismu", False)), ("Akk sg", ("i", True)),
+                          ("Nom pl", ("ei", True)), ("Gen pl", ("in", True)),
+                          ("Dat pl", ("immans", True)), ("Akk pl", ("ins", True))]),
+    },
+    "active_ptcp": {  # <68> immuns — konstanter Stamm (Baryton, keine Alternation)
+        "m": OrderedDict([("Nom sg", ("uns", True)), ("Gen sg", ("ušas", True)),
+                          ("Dat sg", ("ušasmu", True)), ("Akk sg", ("usin", True)),
+                          ("Nom pl", ("usis", True)), ("Gen pl", ("usin", True)),
+                          ("Dat pl", ("usimans", True)), ("Akk pl", ("usins", True))]),
+        "f": OrderedDict([("Nom sg", ("usi", True)), ("Gen sg", ("ušas", True)),
+                          ("Dat sg", ("ušai", True)), ("Akk sg", ("usin", True)),
+                          ("Nom pl", ("ušas", True)), ("Gen pl", ("usin", True)),
+                          ("Dat pl", ("usimans", True)), ("Akk pl", ("usins", True))]),
+        "n": OrderedDict([("Nom sg", ("us", True)), ("Gen sg", ("ušas", True)),
+                          ("Dat sg", ("ušasmu", True)), ("Akk sg", ("us", True)),
+                          ("Nom pl", ("us", True)), ("Gen pl", ("usin", True)),
+                          ("Dat pl", ("usimans", True)), ("Akk pl", ("us", True))]),
+    },
+    "passive_ptcp": {  # <69> īmts ~ imt (Mobile; = Adjektiv-Deklination P26-Typ)
+        "m": OrderedDict([("Nom sg", ("s", True)), ("Gen sg", ("as", True)),
+                          ("Dat sg", ("asmu", False)), ("Akk sg", ("an", True)),
+                          ("Nom pl", ("āi", False)), ("Gen pl", ("an", True)),
+                          ("Dat pl", ("ammans", False)), ("Akk pl", ("ans", True))]),
+        "f": OrderedDict([("Nom sg", ("ā", False)), ("Gen sg", ("as", True)),
+                          ("Dat sg", ("ai", True)), ("Akk sg", ("an", True)),
+                          ("Nom pl", ("as", True)), ("Gen pl", ("an", True)),
+                          ("Dat pl", ("āmans", False)), ("Akk pl", ("ans", True))]),
+        "n": OrderedDict([("Nom sg", ("an", True)), ("Gen sg", ("as", True)),
+                          ("Dat sg", ("asmu", False)), ("Akk sg", ("an", True)),
+                          ("Nom pl", ("āi", False)), ("Gen pl", ("an", True)),
+                          ("Dat pl", ("ammans", False)), ("Akk pl", ("ans", True))]),
+    },
 }
 
 # Imperativ: eine Kategorie, zwei Zellen (2sg/2pl), die EINEN Stamm teilen, aber
@@ -76,11 +137,23 @@ _SUPPL_PARADIGMS: set[str] = set()
 _STUMME_PARADIGMS: set[str] = set()
 
 
+def _ptcp_route(e: dict):
+    """Gruppenschlüssel für ein dekliniertes Partizip (geteiltes Infl pro
+    Deklination+Genus) oder ``None`` für gewöhnliche Verbeinträge."""
+    if e.get("gender") and e["tense"] in _PTCP_DECL:
+        return ("Vp", _PTCP_DECL_PAR[e["tense"]], e["gender"])
+    return None
+
+
 def groups(verb_entries: list[dict]):
-    """(Gruppenschlüssel, Tag-Präfix, 'verb', Eintrag) je Verbeintrag."""
+    """(Gruppenschlüssel, Tag-Präfix, Art, Eintrag) je Verbeintrag. Partizipien
+    bekommen Art 'ptcp' und teilen ihr Infl-Lexikon pro (Deklination, Genus)."""
     for e in verb_entries:
-        key = ("V", e["paradigm"], e["tense"])
-        yield key, VERB_POS, "verb", e
+        pkey = _ptcp_route(e)
+        if pkey:
+            yield pkey, VERB_POS, "ptcp", e
+        else:
+            yield ("V", e["paradigm"], e["tense"]), VERB_POS, "verb", e
 
 
 def wl_groups(wl_entries: list[dict]):
@@ -88,10 +161,15 @@ def wl_groups(wl_entries: list[dict]):
     Verben, damit sie eigene Infl-Lexika bekommen (abweichende Inf-Endung).
 
     ``group`` überschreibt den Paradigma-Teil des Schlüssels (Imperativ wird nach
-    Präsensklasse statt Paradigma gruppiert, damit das geteilte Infl uniform ist)."""
+    Präsensklasse statt Paradigma gruppiert, damit das geteilte Infl uniform ist).
+    Partizipien teilen — wie bei groups — ihr Infl pro (Deklination, Genus)."""
     for e in wl_entries:
-        key = ("Vw", e.get("group", e["paradigm"]), e["tense"])
-        yield key, VERB_POS, "verb", e
+        pkey = _ptcp_route(e)
+        if pkey:
+            yield pkey, VERB_POS, "ptcp", e
+        else:
+            key = ("Vw", e.get("group", e["paradigm"]), e["tense"])
+            yield key, VERB_POS, "verb", e
 
 
 def _is_verb_paradigm(par: str) -> bool:
@@ -178,6 +256,39 @@ def _mood_stem(form: str, suffix: str) -> str | None:
     return stem if len(stem) >= 2 else None
 
 
+def ptcp_decline(par: str, lemma: str, tense: str, form: str | None) -> list[dict]:
+    """Eine attestierte Mask-Nom-Sg-Partizipform → deklinierte Genus-Einträge.
+
+    Stamm = Form minus Mask-Nom-Sg-Endung (_PTCP_LEAD), archiphonem-markiert;
+    daran die universellen <29>/<68>/<69>-Endungen je Genus (_PTCP_DECL). Liste
+    leer, wenn die Form fehlt oder nicht auf die erwartete Endung endet (z. B.
+    Mehrwort-/Irregularform). Genutzt vom Wortlisten- UND Gold-Pfad."""
+    form = _first(form)
+    if not form:
+        return []
+    stamm = _mood_stem(form, _PTCP_LEAD[tense])
+    if stamm is None:
+        return []
+    out: list[dict] = []
+    for gender, table in _PTCP_DECL[tense].items():
+        suffixe = OrderedDict(
+            (cell, {"suffix": sfx, "betont": bet})
+            for cell, (sfx, bet) in table.items())
+        out.append({
+            "paradigm": par, "lemma": lemma, "tense": tense,
+            "gender": gender, "stamm": stamm, "suffixe": suffixe,
+        })
+    return out
+
+
+def _ptcp_entries(word: str, par: str, forms: dict) -> list[dict]:
+    """Deklinierte Partizip-Einträge (Präs./Akt./Pass.) eines Wortlisten-Verbs."""
+    out: list[dict] = []
+    for tense, lkey in _PTCP_LEITKEY.items():
+        out.extend(ptcp_decline(par, word, tense, _leitform(forms, lkey)))
+    return out
+
+
 def _mood_entries(word: str, par: str, forms: dict) -> list[dict]:
     """Modus-/Partizip-Einträge eines Verbs (Rollout Stufe 1+2).
 
@@ -248,7 +359,7 @@ def wordlist_to_verb_entries(
         par = w.get("paradigm", "")
         if not par or not _is_verb_paradigm(par):
             continue
-        if par in suppletiv or par in stumm:
+        if par in stumm:
             continue
 
         word = w["word"]
@@ -272,6 +383,12 @@ def wordlist_to_verb_entries(
                 if mkey not in seen:
                     seen.add(mkey)
                     entries.append(me)
+            # Deklinierte Partizipien (Stufe 3): Genus im Dedup-Schlüssel.
+            for pe in _ptcp_entries(word, par, forms):
+                pk = (word, par, pe["tense"], pe["gender"])
+                if pk not in seen:
+                    seen.add(pk)
+                    entries.append(pe)
 
         indicative = forms.get("indicative", [])
         pres_3sg = _get_3sg(indicative, "Present")
