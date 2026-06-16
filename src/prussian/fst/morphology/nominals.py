@@ -7,7 +7,9 @@ Suppletiv-/Steigerungs-Varianten — die Stamm-/Endungs-Emission selbst liegt
 in lexd.py.
 """
 
+import json
 from collections import defaultdict
+from pathlib import Path
 
 from prussian.fst.oracle import LONG_VOWELS, fold, strip_macron
 from prussian.fst.tags import ADJ_PARADIGMS, _paradigm_kind, tag_prefix
@@ -18,23 +20,22 @@ WL_GENDER = {"masc": "m", "fem": "f", "neut": "n"}
 PAR_RANGE = set(str(i) for i in range(9, 68))
 PAR_RANGE |= {"35a", "37a", "40a", "40b", "40c", "50a", "51a", "30a"}
 
-# Paradigmen mit sibilanten-palatalisierender Untervariante
-_PALA_PARADIGMS = {"40": "40a", "50": "50a", "51": "51a"}
+# Paradigma-Routing und Suppletiva liegen ausgelagert in
+# data/spec/nominal_routing.json (inkl. Begründung, Quelle, Status im _meta).
+_SPEC_DATA = json.loads(
+    Path("data/spec/nominal_routing.json").read_text(encoding="utf-8"))
 
-# Suppletive Adjektive: (lemma, basis) → suppletive Paradigmen.
-# NB: Laut Lehrer (HANDOFF_allomorphie_steigerung.md) deklinieren die Suppletiv-
-# Komparative wie normale P26-Positive (māisess/waln-/maz-/mūises-), nicht wie der
-# māldaisis-Typ — die endgültige Modellierung steht noch aus; Schlüssel hier nur
-# auf die comp-Benennung gezogen.
+# Paradigmen mit sibilanten-palatalisierender Untervariante
+_PALA_PARADIGMS = _SPEC_DATA["pala_paradigms"]
+
+# Suppletive Adjektive: (lemma, basis) → suppletive Paradigmen (comp/sup/adv).
 _SUPPL_PARADIGMS: dict[tuple[str, str], list[str]] = {
-    ("debīks", "25"): ["25comp_suppl", "25sup_suppl", "25adv_suppl"],
-    ("līkuts", "25"): ["25comp_suppl2", "25sup_suppl2", "25adv_suppl2"],
-    ("labs", "26"): ["26comp_suppl", "26sup_suppl", "26adv_suppl", "26adv_suppl2"],
+    (e["lemma"], e["base"]): e["variants"] for e in _SPEC_DATA["suppletives"]
 }
 
 # Paradigma-40-Routing nach Stammauslaut
-_PAR40_J_CONS = set("wbpm")    # j-Einschub
-_PAR40_PLAIN_CONS = set("lc")  # einfache Endungen
+_PAR40_J_CONS = set(_SPEC_DATA["par40_routing"]["j_cons"])      # j-Einschub
+_PAR40_PLAIN_CONS = set(_SPEC_DATA["par40_routing"]["plain_cons"])  # einfache Endungen
 
 
 def detect_archiphoneme(stem_surface: str, nom_sg_suffix: str) -> str:

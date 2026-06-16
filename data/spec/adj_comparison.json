@@ -1,0 +1,65 @@
+{
+  "_meta": {
+    "title": "Adjektiv-Steigerung: Formant + weiche -s-Deklination",
+    "status": "provisional",
+    "source": "docs/HANDOFF_allomorphie_steigerung.md (Lehrer-Antworten 2026-06-14)",
+    "model": [
+      "Komparativstamm = Positivstamm + Formant (-ais-/-uis-, binär nach Stammklasse);",
+      "danach die weiche -s-Stamm-Deklination (templates.AIS, P28 māldaisis-Typ).",
+      "Superlativ = uka- + identische Deklination.",
+      "Grenz-Palatalisierung (-ais-→-eis-/-jais-) feuert nur bei lexikalisch palatalen",
+      "Stämmen (nur P27) über den J-Marker (palatize); das š in aišas etc. ist die",
+      "Formant-s→š-Regel vor a-Endung und steckt literal im Template.",
+      "Formant je Paradigma: P25/P26/P29/P30a o-Stamm → -ais-; P27 i-Stamm → -ais- + palatal;",
+      "P30/P31 u-Stamm → -uis-; P28 ist bereits Komparativ → nur Superlativ.",
+      "Suppletive (labs→waln-, debīks→māises-, līkuts→maz-) deklinieren wie P26-Positiv",
+      "(kein Formant) und werden lemma-spezifisch über die *_suppl-Paradigmen eingetragen.",
+      "(tūls/mūises- 'viel/sehr' ist datenseitig unklar — zurückgestellt.)"
+    ],
+    "consumer": "src/prussian/gold/adj_comparison.py",
+    "notes_format": "Suffix-Strings je (template, genus, zelle). TEMPLATE_UIS wird im Code aus AIS abgeleitet (führender Formant ai→ui)."
+  },
+  "cells": ["Nom sg", "Nom pl", "Gen sg", "Gen pl", "Dat sg", "Dat pl", "Akk sg", "Akk pl"],
+  "templates": {
+    "AIS": {
+      "_note": "Weiche -s-Stamm-Deklination, -ais--Formant (Lehrer-Tabelle P28, HANDOFF §b). š = Formant-s palatalisiert vor a-anlautender Endung — hier literal eingebacken.",
+      "m": {"Nom sg": "aisis", "Nom pl": "aišai", "Gen sg": "aišas", "Gen pl": "aisin",
+            "Dat sg": "aišasmu", "Dat pl": "aisimans", "Akk sg": "aisin", "Akk pl": "aisins"},
+      "f": {"Nom sg": "aisi", "Nom pl": "aisis", "Gen sg": "aišas", "Gen pl": "aisin",
+            "Dat sg": "aišai", "Dat pl": "aisimans", "Akk sg": "aisin", "Akk pl": "aisins"},
+      "n": {"Nom sg": "aisi", "Nom pl": "aišai", "Gen sg": "aišas", "Gen pl": "aisin",
+            "Dat sg": "aišasmu", "Dat pl": "aisimans", "Akk sg": "aisi", "Akk pl": "aisins"}
+    },
+    "P26": {
+      "_note": "P26-Positiv-Endungen (o-Stamm, hart) für die Suppletiva (Handoff: 'deklinieren wie P26'). Aus dem labs-Positiv-Eintrag.",
+      "m": {"Nom sg": "s", "Nom pl": "ai", "Gen sg": "as", "Gen pl": "un",
+            "Dat sg": "u", "Dat pl": "umans", "Akk sg": "an", "Akk pl": "uns"},
+      "f": {"Nom sg": "a", "Nom pl": "as", "Gen sg": "as", "Gen pl": "un",
+            "Dat sg": "ai", "Dat pl": "umans", "Akk sg": "an", "Akk pl": "uns"},
+      "n": {"Nom sg": "an", "Nom pl": "ai", "Gen sg": "as", "Gen pl": "un",
+            "Dat sg": "u", "Dat pl": "umans", "Akk sg": "an", "Akk pl": "uns"}
+    }
+  },
+  "spec": {
+    "25":  {"template": "AIS", "palatal": false, "note": "o-Stamm regulär (debīks selbst ist suppletiv)"},
+    "26":  {"template": "AIS", "palatal": false, "note": "o-Stamm regulär (labs selbst ist suppletiv)"},
+    "27":  {"template": "AIS", "palatal": true,  "note": "i-Stamm palatal (weselīngis → weselīnģaisis)"},
+    "29":  {"template": "AIS", "palatal": false, "note": "o-Stamm hart (sēnts → swintaisis)"},
+    "30":  {"template": "UIS", "palatal": false, "note": "u-Stamm (āngus → ānguisis)"},
+    "30a": {"template": "AIS", "palatal": false, "note": "o-Stamm w-Ausl. (stāws → stāwaisis)"},
+    "31":  {"template": "UIS", "palatal": false, "note": "u-Stamm (līgus → līguisis)"}
+  },
+  "representatives": {
+    "_note": "Paradigmen, deren einziges Positiv-Gold-Lemma suppletiv ist → Repräsentant (lemma, archiphonem-markierter Stamm) aus einem nicht-suppletiven Wortlisten-Lemma, damit suffixe_map das reguläre -ais--Template trägt.",
+    "25": ["tūlins", "tUlin"],
+    "26": ["mālds", "mAld"]
+  },
+  "suppletives": {
+    "_note": "Suppletiva (lemma, basis-paradigm, _SUPPL-Suffix) → (komp-stamm, sup-stamm). suffix matcht nominals._SUPPL_PARADIGMS (25comp_suppl, …), damit sie die reguläre 25comp/26comp-suffixe_map NICHT kapern. Deklination = P26.",
+    "entries": [
+      {"lemma": "debīks", "base": "25", "suffix": "suppl",  "comp": "māises", "sup": "ukamāises"},
+      {"lemma": "līkuts", "base": "25", "suffix": "suppl2", "comp": "maz",    "sup": "ukamaz"},
+      {"lemma": "labs",   "base": "26", "suffix": "suppl",  "comp": "waln",   "sup": "ukawaln"}
+    ]
+  }
+}

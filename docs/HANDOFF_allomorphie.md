@@ -1,5 +1,9 @@
 # Handoff: Stamm-Allomorphie in der altpreußischen Nominalflexion
 
+> **Status:** 🔶 OFFEN — nominale Stamm-Allomorphie noch nicht modelliert
+> (3 Optionen zur Diskussion). Keine SPEC ausgelagert.
+> Klassifikation siehe [docs/README.md](README.md).
+
 **Kontext für dich (Linguistik-Experte):** Wir bauen einen computerlinguistischen Morphologie-Analysator/-Generator für das (neu-rekonstruierte) Altpreußisch — ein endlicher Transduktor (FST) mit der Bibliothek PyFoma. Datengrundlage sind die Flexionsparadigmen aus der **„TABVLA NOVA MMVII"** (`tabula.fixed.htm`). Jedes Substantiv-Paradigma (Nr. 32–67) liefert 8 Formen: Sg und Pl je **Nom · Gen · Dat · Acc**.
 
 Ich (der Programmierer) habe nur flüchtige Linguistik-Kenntnisse und brauche von dir die **sprachwissenschaftlich korrekte Modellierung**, damit das Programm sie richtig umsetzt. Es geht **nur** um die unten beschriebene Kernfrage.

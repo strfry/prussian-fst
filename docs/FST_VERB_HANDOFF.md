@@ -1,5 +1,10 @@
 # Handoff: Verb-FST (Package 5)
 
+> **Status:** ✅ Entschieden & umgesetzt — Verbmodell in
+> [`data/gold/goldstandard_verben_fst.json`](../data/gold/goldstandard_verben_fst.json);
+> Modi/Partizipien/Imperativ in [`data/spec/verb_inflection.json`](../data/spec/verb_inflection.json).
+> Klassifikation siehe [docs/README.md](README.md).
+
 ## Datenbasis
 
 `goldstandard_verben.json` enthält **60 Paradigmen** (P71–144, exkl. 18 ohne Wortlisten-Treffer) mit je 5 Personen × 2 Tempora = **10 Formen pro Lemma**:

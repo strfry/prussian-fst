@@ -1,5 +1,9 @@
 # Paradigma 40: Phonologische Subtypen und Auto-Routing
 
+> **Status:** ✅ Entschieden & umgesetzt — Routing-SPEC ausgelagert nach
+> [`data/spec/nominal_routing.json`](../data/spec/nominal_routing.json) (`par40_routing`).
+> Klassifikation siehe [docs/README.md](README.md).
+
 **Stand:** 2026-06-07 — Untersuchung der Prusaspira-Livedaten für alle 646 Wörter
 mit Paradigma 40/40a in `wordlist.json`.
 

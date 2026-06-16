@@ -1,5 +1,9 @@
 # Handoff: Steigerung & Definitheit in der altpreußischen Adjektivflexion
 
+> **Status:** ✅ Entschieden & umgesetzt — SPEC ausgelagert nach
+> [`data/spec/adj_comparison.json`](../data/spec/adj_comparison.json).
+> Klassifikation siehe [docs/README.md](README.md).
+
 **Kontext für dich (Linguistik-Experte):** Wir bauen einen computerlinguistischen
 Morphologie-Analysator/-Generator für das (neu-rekonstruierte) Altpreußisch — ein
 endlicher Transduktor (FST, Bibliothek PyFoma). Die **Grundflexion** der Adjektive

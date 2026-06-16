@@ -1,5 +1,9 @@
 # Handoff: Konditionierung der Präsens-Stamm-Modi (Verb-Rollout Stufe 2)
 
+> **Status:** ✅ Entschieden & umgesetzt — SPEC ausgelagert nach
+> [`data/spec/verb_inflection.json`](../data/spec/verb_inflection.json).
+> Klassifikation siehe [docs/README.md](README.md).
+
 ## Kontext
 
 Der FST modelliert Verben nach dem baltischen **Drei-Stamm-Modell** (Inf-/Präs-/

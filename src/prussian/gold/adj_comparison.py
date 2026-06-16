@@ -1,23 +1,10 @@
 #!/usr/bin/env python3
 """Synthetische Komparativ-/Superlativ-Deklination der Adjektive erzeugen.
 
-Modell (docs/HANDOFF_allomorphie_steigerung.md, Lehrer-Antworten 2026-06-14):
-Komparativstamm = Positivstamm + Formant (`-ais-`/`-uis-`, binär nach Stammklasse);
-danach die weiche `-s`-Stamm-Deklination (Endungssatz unten, P28 māldaisis-Typ).
-Superlativ = `uka-` + identische Deklination. Die Grenz-Palatalisierung
-(`-ais-`→`-eis-`/`-jais-`) feuert nur bei lexikalisch palatalen Stämmen (nur P27)
-über die vorhandene Jotierung (J-Marker `palatize`); das `š` in `aišas` etc. ist
-die Formant-s→š-Regel vor a-Endung und steckt literal im Template.
-
-Formant je Paradigma (aus dem Positiv-Paradigma vorhersagbar):
-  P25/P26/P29/P30a o-Stamm → `-ais-`      P27 i-Stamm → `-ais-` + palatal
-  P30/P31 u-Stamm  → `-uis-`              P28 ist bereits Komparativ → nur Superlativ
-
-Suppletive (labs→waln-, debīks→māises-, līkuts→maz-) deklinieren wie P26-Positiv
-(kein Formant) und werden lemma-spezifisch über die `*_suppl`-Paradigmen
-(nominals._SUPPL_PARADIGMS) eingetragen — NICHT als `25comp`/`26comp`, weil das die
-Paradigma-suffixe_map kapern und alle regulären P25/P26-Komparative zerstören würde.
-(„viel/sehr"→tūls/mūises- ist datenseitig unklar — zurückgestellt.)
+Linguistische SPEC (Templates, Formant-Routing, Repräsentanten, Suppletiva) liegt
+ausgelagert in data/spec/adj_comparison.json — inklusive Modell-Begründung, Quelle
+und Status (_meta). Hier nur die Mechanik: SPEC laden und die comp-/sup-Einträge
+erzeugen.
 
 Liest data/gold/goldstandard.json (Positiv-Stämme), hängt comp-/sup-Einträge an
 und schreibt es zurück. Idempotent (Dedup über Paradigma-Mengen in main()).
@@ -27,20 +14,11 @@ from collections import OrderedDict
 from pathlib import Path
 
 GS = Path("data/gold/goldstandard.json")
+SPEC_FILE = Path("data/spec/adj_comparison.json")
 
-CELLS = ["Nom sg", "Nom pl", "Gen sg", "Gen pl",
-         "Dat sg", "Dat pl", "Akk sg", "Akk pl"]
+_SPEC_DATA = json.loads(SPEC_FILE.read_text(encoding="utf-8"))
 
-# Weiche -s-Stamm-Deklination, -ais--Formant (Lehrer-Tabelle P28, HANDOFF §b).
-# š = Formant-s palatalisiert vor a-anlautender Endung — hier literal eingebacken.
-TEMPLATE_AIS = {
-    "m": {"Nom sg": "aisis", "Nom pl": "aišai", "Gen sg": "aišas", "Gen pl": "aisin",
-          "Dat sg": "aišasmu", "Dat pl": "aisimans", "Akk sg": "aisin", "Akk pl": "aisins"},
-    "f": {"Nom sg": "aisi", "Nom pl": "aisis", "Gen sg": "aišas", "Gen pl": "aisin",
-          "Dat sg": "aišai", "Dat pl": "aisimans", "Akk sg": "aisin", "Akk pl": "aisins"},
-    "n": {"Nom sg": "aisi", "Nom pl": "aišai", "Gen sg": "aišas", "Gen pl": "aisin",
-          "Dat sg": "aišasmu", "Dat pl": "aisimans", "Akk sg": "aisi", "Akk pl": "aisins"},
-}
+CELLS = _SPEC_DATA["cells"]
 
 
 def _uis(tpl):
@@ -51,47 +29,30 @@ def _uis(tpl):
             for g, cells in tpl.items()}
 
 
-TEMPLATE_UIS = _uis(TEMPLATE_AIS)
+def _template(name):
+    """Genus→Zelle→Suffix-Template aus der SPEC (UIS wird aus AIS abgeleitet)."""
+    if name == "UIS":
+        return _uis(_template("AIS"))
+    raw = _SPEC_DATA["templates"][name]
+    return {g: cells for g, cells in raw.items() if g in ("m", "f", "n")}
 
-# P26-Positiv-Endungen (o-Stamm, hart) für die Suppletiva (Handoff: „deklinieren
-# wie P26"). Aus dem labs-Positiv-Eintrag.
-TEMPLATE_P26 = {
-    "m": {"Nom sg": "s", "Nom pl": "ai", "Gen sg": "as", "Gen pl": "un",
-          "Dat sg": "u",  "Dat pl": "umans", "Akk sg": "an", "Akk pl": "uns"},
-    "f": {"Nom sg": "a", "Nom pl": "as", "Gen sg": "as", "Gen pl": "un",
-          "Dat sg": "ai", "Dat pl": "umans", "Akk sg": "an", "Akk pl": "uns"},
-    "n": {"Nom sg": "an", "Nom pl": "ai", "Gen sg": "as", "Gen pl": "un",
-          "Dat sg": "u",  "Dat pl": "umans", "Akk sg": "an", "Akk pl": "uns"},
-}
+
+TEMPLATE_AIS = _template("AIS")
+TEMPLATE_UIS = _template("UIS")
+TEMPLATE_P26 = _template("P26")
 
 # Paradigma → (Formant-Template, palatal-Stamm?). palatal=True setzt den J-Marker.
-SPEC = {
-    "25":  (TEMPLATE_AIS, False),   # o-Stamm regulär (debīks selbst ist suppletiv)
-    "26":  (TEMPLATE_AIS, False),   # o-Stamm regulär (labs selbst ist suppletiv)
-    "27":  (TEMPLATE_AIS, True),    # i-Stamm palatal (weselīngis → weselīnģaisis)
-    "29":  (TEMPLATE_AIS, False),   # o-Stamm hart (sēnts → swintaisis)
-    "30":  (TEMPLATE_UIS, False),   # u-Stamm (āngus → ānguisis)
-    "30a": (TEMPLATE_AIS, False),   # o-Stamm w-Ausl. (stāws → stāwaisis)
-    "31":  (TEMPLATE_UIS, False),   # u-Stamm (līgus → līguisis)
-}
+SPEC = {par: (_template(s["template"]), s["palatal"])
+        for par, s in _SPEC_DATA["spec"].items()}
 
-# Paradigmen, deren einziges Positiv-Gold-Lemma suppletiv ist → Repräsentant aus
-# einem nicht-suppletiven Wortlisten-Lemma (Lemma, archiphonem-markierter Stamm),
-# damit suffixe_map[("25comp",g)]/("26comp",g) das reguläre -ais--Template trägt
-# und die emittierte Repräsentantenform korrekt ist.
-REPRESENTATIVES = {
-    "25": ("tūlins", "tUlin"),
-    "26": ("mālds", "mAld"),
-}
+# Paradigmen mit suppletivem Positiv-Gold-Lemma → Repräsentant (lemma, stamm).
+REPRESENTATIVES = {par: tuple(v)
+                   for par, v in _SPEC_DATA["representatives"].items()
+                   if par != "_note"}
 
 # Suppletiva (lemma, basis-paradigm, _SUPPL-Suffix) → (komp-stamm, sup-stamm).
-# Paradigma-Keys matchen nominals._SUPPL_PARADIGMS (25comp_suppl, …), damit sie
-# die reguläre 25comp/26comp-suffixe_map NICHT kapern.
-SUPPLE = {
-    ("debīks", "25", "suppl"):  ("māises", "ukamāises"),
-    ("līkuts", "25", "suppl2"): ("maz", "ukamaz"),
-    ("labs", "26", "suppl"):    ("waln", "ukawaln"),
-}
+SUPPLE = {(e["lemma"], e["base"], e["suffix"]): (e["comp"], e["sup"])
+          for e in _SPEC_DATA["suppletives"]["entries"]}
 
 
 def _positive(entries):
