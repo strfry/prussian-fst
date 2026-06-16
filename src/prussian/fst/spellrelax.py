@@ -37,6 +37,20 @@ def jan_variant(suffix: str) -> str | None:
     return None
 
 
+def sj_variant(suffix: str) -> str | None:
+    """Standard-Steigerungsendung → Twanksta-sj-Schreibung (aišas→aisjas).
+
+    Der Komparativ-/Superlativformant palatalisiert das Formant-s vor
+    a-anlautender weicher Endung; der Goldstandard backt das als ``š``
+    literal ein (data/spec/adj_comparison.json, Template AIS/UIS), Twanksta
+    schreibt dieselbe Zelle als ``sj`` (z. B. spārtaisjas, māldaisjas). Diese
+    Quellvariante akzeptiert nur der nachsichtige Analysator (lenient.fst).
+    """
+    if "š" not in suffix:
+        return None
+    return suffix.replace("š", "sj")
+
+
 def elaktr_variant(stem: str) -> str | None:
     """Stammvariante elektr- → elaktr- (Prusaspira-Schreibung) oder None."""
     if "elektr" in stem:

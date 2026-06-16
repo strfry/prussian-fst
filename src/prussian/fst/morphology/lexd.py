@@ -24,7 +24,7 @@ from collections import defaultdict
 from itertools import chain
 
 from prussian.fst.oracle import LONG, resolve_stem
-from prussian.fst.spellrelax import elaktr_variant, jan_variant
+from prussian.fst.spellrelax import elaktr_variant, jan_variant, sj_variant
 from prussian.fst.tags import (
     cell_tag, ptcp_cell_tag, split_reflexive, split_suffix, verb_cell_tag,
 )
@@ -68,6 +68,9 @@ def render_suffix(v: dict, cls: str) -> list[str]:
     jvar = jan_variant(std)
     if jvar is not None:
         lowers.append(f"V{s_marker}{jvar}")
+    sjvar = sj_variant(std)
+    if sjvar is not None:
+        lowers.append(f"V{s_marker}{sjvar}")
     return lowers
 
 
