@@ -1,0 +1,92 @@
+{
+  "_meta": {
+    "title": "Verbale Modi, Partizip-Deklination und Imperativ-Klassen",
+    "status": "provisional",
+    "source": "docs/HANDOFF_verb_modi_konditionierung.md (Lehrer-Antwort); docs/gramatiki.md §§2.2/2.7/2.11; docs/ORTHO_RULES.md §2; tabula.html (P29/P68/P69) als Strukturquelle",
+    "model": [
+      "universal_moods: Suffixe über ALLE Paradigmen identisch; lemmaspezifischer Stamm =",
+      "attestierte Leitform minus universelles (Leit-)Suffix → stem+suffix==Form per Konstruktion.",
+      "Drei-Stamm-Modell (Inf-Stamm für Opt/Konj, Präsensstamm fürs Präs.-Ptz, Präteritalstamm fürs Akt.-Ptz).",
+      "participles: drei Partizipien sind flektierte Adjektive — Präs.-Ptz wie <29> (sēnts),",
+      "Akt.-Ptz wie <68> (immuns), Pass.-Ptz wie <69> (īmts). Deklinationsendungen universell je",
+      "(Partizip, Genus); Stamm = attestierte Form minus Mask-Nom-Sg-Endung (lead). betont = Stamm",
+      "trägt in dieser Zelle die Langstufe (steuert M/S-Marker, phonology.py). Pronominale 'pnl'-Spalten",
+      "(+Def mit stas) sind hier bewusst ausgenommen.",
+      "imperative_classes: eine Kategorie, zwei Zellen (2sg/2pl), die EINEN Stamm teilen, aber",
+      "klassenabhängige Suffixe haben → Klasse am 2sg-Auslaut erkennen, Stamm = 2sg minus 2sg-Suffix.",
+      "Reihenfolge SIGNIFIKANT: spezifisch vor generisch (jais/āis/ais vor is; s = au-Klasse)."
+    ],
+    "consumer": "src/prussian/fst/morphology/verbs.py",
+    "notes_format": "Zellen-Reihenfolge in participles.<typ>.decl ist SIGNIFIKANT (sg-Kasus dann pl-Kasus). decl-Werte: {suffix, betont}."
+  },
+  "universal_moods": {
+    "optative":    {"leitkey": "optative", "lead": "sei",
+                    "cells": {"Opt": "sei"}},
+    "subjunctive": {"leitkey": "subj_as", "lead": "lai",
+                    "cells": {"1sg": "lai", "2sg": "lai", "3sg": "lai",
+                              "1pl": "limai", "2pl": "litei"}}
+  },
+  "participles": {
+    "present_ptcp": {
+      "_note": "<29> sēnts ~ sent (Mobile)",
+      "lead": "s", "leitkey": "present_p", "decl_par": "29",
+      "decl": {
+        "m": {"Nom sg": {"suffix": "s", "betont": true}, "Gen sg": {"suffix": "is", "betont": true},
+              "Dat sg": {"suffix": "ismu", "betont": false}, "Akk sg": {"suffix": "in", "betont": true},
+              "Nom pl": {"suffix": "ei", "betont": true}, "Gen pl": {"suffix": "in", "betont": true},
+              "Dat pl": {"suffix": "immans", "betont": true}, "Akk pl": {"suffix": "ins", "betont": true}},
+        "f": {"Nom sg": {"suffix": "ī", "betont": false}, "Gen sg": {"suffix": "es", "betont": true},
+              "Dat sg": {"suffix": "ei", "betont": true}, "Akk sg": {"suffix": "in", "betont": true},
+              "Nom pl": {"suffix": "es", "betont": true}, "Gen pl": {"suffix": "in", "betont": true},
+              "Dat pl": {"suffix": "jāmans", "betont": false}, "Akk pl": {"suffix": "ins", "betont": true}},
+        "n": {"Nom sg": {"suffix": "i", "betont": true}, "Gen sg": {"suffix": "is", "betont": true},
+              "Dat sg": {"suffix": "ismu", "betont": false}, "Akk sg": {"suffix": "i", "betont": true},
+              "Nom pl": {"suffix": "ei", "betont": true}, "Gen pl": {"suffix": "in", "betont": true},
+              "Dat pl": {"suffix": "immans", "betont": true}, "Akk pl": {"suffix": "ins", "betont": true}}
+      }
+    },
+    "active_ptcp": {
+      "_note": "<68> immuns — konstanter Stamm (Baryton, keine Alternation)",
+      "lead": "uns", "leitkey": "past_p", "decl_par": "68",
+      "decl": {
+        "m": {"Nom sg": {"suffix": "uns", "betont": true}, "Gen sg": {"suffix": "ušas", "betont": true},
+              "Dat sg": {"suffix": "ušasmu", "betont": true}, "Akk sg": {"suffix": "usin", "betont": true},
+              "Nom pl": {"suffix": "usis", "betont": true}, "Gen pl": {"suffix": "usin", "betont": true},
+              "Dat pl": {"suffix": "usimans", "betont": true}, "Akk pl": {"suffix": "usins", "betont": true}},
+        "f": {"Nom sg": {"suffix": "usi", "betont": true}, "Gen sg": {"suffix": "ušas", "betont": true},
+              "Dat sg": {"suffix": "ušai", "betont": true}, "Akk sg": {"suffix": "usin", "betont": true},
+              "Nom pl": {"suffix": "ušas", "betont": true}, "Gen pl": {"suffix": "usin", "betont": true},
+              "Dat pl": {"suffix": "usimans", "betont": true}, "Akk pl": {"suffix": "usins", "betont": true}},
+        "n": {"Nom sg": {"suffix": "us", "betont": true}, "Gen sg": {"suffix": "ušas", "betont": true},
+              "Dat sg": {"suffix": "ušasmu", "betont": true}, "Akk sg": {"suffix": "us", "betont": true},
+              "Nom pl": {"suffix": "us", "betont": true}, "Gen pl": {"suffix": "usin", "betont": true},
+              "Dat pl": {"suffix": "usimans", "betont": true}, "Akk pl": {"suffix": "us", "betont": true}}
+      }
+    },
+    "passive_ptcp": {
+      "_note": "<69> īmts ~ imt (Mobile; = Adjektiv-Deklination P26-Typ)",
+      "lead": "s", "leitkey": "passive", "decl_par": "69",
+      "decl": {
+        "m": {"Nom sg": {"suffix": "s", "betont": true}, "Gen sg": {"suffix": "as", "betont": true},
+              "Dat sg": {"suffix": "asmu", "betont": false}, "Akk sg": {"suffix": "an", "betont": true},
+              "Nom pl": {"suffix": "āi", "betont": false}, "Gen pl": {"suffix": "an", "betont": true},
+              "Dat pl": {"suffix": "ammans", "betont": false}, "Akk pl": {"suffix": "ans", "betont": true}},
+        "f": {"Nom sg": {"suffix": "ā", "betont": false}, "Gen sg": {"suffix": "as", "betont": true},
+              "Dat sg": {"suffix": "ai", "betont": true}, "Akk sg": {"suffix": "an", "betont": true},
+              "Nom pl": {"suffix": "as", "betont": true}, "Gen pl": {"suffix": "an", "betont": true},
+              "Dat pl": {"suffix": "āmans", "betont": false}, "Akk pl": {"suffix": "ans", "betont": true}},
+        "n": {"Nom sg": {"suffix": "an", "betont": true}, "Gen sg": {"suffix": "as", "betont": true},
+              "Dat sg": {"suffix": "asmu", "betont": false}, "Akk sg": {"suffix": "an", "betont": true},
+              "Nom pl": {"suffix": "āi", "betont": false}, "Gen pl": {"suffix": "an", "betont": true},
+              "Dat pl": {"suffix": "ammans", "betont": false}, "Akk pl": {"suffix": "an", "betont": true}}
+      }
+    }
+  },
+  "imperative_classes": [
+    {"marker": "jais", "2sg": "jais", "2pl": "jaiti"},
+    {"marker": "āis",  "2sg": "āis",  "2pl": "āiti"},
+    {"marker": "ais",  "2sg": "ais",  "2pl": "aiti"},
+    {"marker": "is",   "2sg": "is",   "2pl": "iti"},
+    {"marker": "s",    "2sg": "s",    "2pl": "iti", "_note": "au-Klasse (āustabaus)"}
+  ]
+}

@@ -31,6 +31,11 @@ from prussian.fst.tags import (
 from prussian.fst.morphology import nominals, verbs
 
 
+# Verb-Sub-Schlüssel, deren Gruppen Endungen mehrerer Einträge bündeln (s.
+# verbs._verb_sub): Inf-Stamm-Modi und nicht-suppletives Präsens+Präteritum.
+_MERGED_SUBS = frozenset({"inf_stem", "pres_stem"})
+
+
 def entry_class(suffixe: dict) -> str:
     """bar / mob / na aus dem betont-Muster (mechanisch; vgl. accent.py)."""
     vals = [v["betont"] for v in suffixe.values()]
@@ -115,12 +120,20 @@ def build_lexd(
 
     def add_group(key, upper_prefix, lexkind, e):
         cls = entry_class(e["suffixe"])
+        # Infl-Lexikon: nicht-kollabierte Gruppen wie bisher EINMAL aus dem ersten
+        # Eintrag bauen (alle Lexeme der Gruppe teilen paradigmenuniforme Endungen;
+        # spätere Einträge nicht erneut schreiben → keine Übergenerierung). Nur die
+        # bewusst kollabierten Verbgruppen (Inf-Stamm-Modi, Präsens+Präteritum,
+        # s. verbs._verb_sub) akkumulieren Tags mehrerer Einträge; setdefault hält
+        # dabei "erster Schreiber gewinnt" (Gold vor Wortliste) je Tag.
+        merged = key[-1] in _MERGED_SUBS
         if key not in infls:
-            infl = {}
+            infls[key] = {}
+        infl = infls[key]
+        if merged or not infl:
             for cell, v in e["suffixe"].items():
                 tag, v = _cell_tag(lexkind, e, cell, v)
-                infl[tag] = render_suffix(v, cls)
-            infls[key] = infl
+                infl.setdefault(tag, render_suffix(v, cls))
         stem = render_stem(e["stamm"], cls)
         lines = [f"{e['lemma']}{upper_prefix}:{stem}"]
         # Stammvariante elektr- ↔ elaktr- (Prusaspira-Schreibung,
