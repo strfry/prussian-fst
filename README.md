@@ -3,7 +3,14 @@
 Vergleich der altpreußischen Paradigmendaten aus drei Quellen mit
 Finite-State-Transducer-Analyse (experimentell, PyFoma).
 
-> **Herkunft & Vertrauenskette der Daten:** [PROVENANCE.md](PROVENANCE.md)
+> **Umfang:** Dieses Projekt reproduziert die **normalisierte Oberfläche der
+> TABVLA NOVA** (rekonstruiertes/wiederbelebtes „Neupreußisch", Palmaitis/Klusis)
+> und drei darauf aufbauende moderne Lexika. Es modelliert **nicht** das
+> historisch belegte altpreußische Korpus. Geeignet für
+> Sprachwiederbelebung/Lehre, **nicht** für diachrone bzw. attestations­kritische
+> Korpusanalyse. Begründung: [docs/AKZENT.md](docs/AKZENT.md) §1.
+
+> **Herkunft & Vertrauenskette der Daten:** [docs/PROVENANCE.md](docs/PROVENANCE.md)
 
 ## Datenquellen
 
@@ -325,6 +332,13 @@ lemma-spezifische Variante faelschlich auf Geschwister-Lemmata derselben Klasse
 dem FST und vergleicht sie mit den erwarteten Formen aus `goldstandard.json`.
 Ergebnis: **967/967 Standard-Zellen exakt** (100 %) **+ 18/18 Parallelformen**;
 dazu 872/872 Verbzellen (`tests/`).
+
+> **Hinweis zur Aussagekraft:** `gen_check` misst die **interne Konsistenz** —
+> der FST wird gegen denselben Goldstandard geprüft, aus dem er gebaut wurde;
+> 100 % bedeutet hier *implementatorische Korrektheit*, **keine** unabhängige
+> linguistische Validierung. Die externen Maße sind die Wortlisten- und
+> Korpus-Coverage (`report/dict_coverage.py`, `report/corpus_coverage.py`,
+> Tests `test_wordlist_coverage.py` / `test_tatoeba_coverage.py`).
 
 ## Setup / externe Daten
 

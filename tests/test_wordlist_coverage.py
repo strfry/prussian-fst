@@ -37,6 +37,8 @@ def analyser():
 
 @pytest.fixture(scope="session")
 def wordlist():
+    if not WORDLIST.exists():
+        pytest.skip(f"{WORDLIST} fehlt — externe Daten beziehen (s. README)")
     return json.loads(WORDLIST.read_text(encoding="utf-8"))
 
 
