@@ -1,0 +1,77 @@
+name: Build Dashboard
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+
+    steps:
+      - name: Checkout prussian-fst
+        uses: actions/checkout@v4
+
+      - name: Checkout prussian-mcp (Git LFS)
+        uses: actions/checkout@v4
+        with:
+          repository: strfry/prussian-mcp
+          lfs: true
+          path: prussian-mcp
+
+      - name: Copy external data files
+        run: |
+          mkdir -p data/external
+          cp prussian-mcp/data/wordlist.json data/external/wordlist.json
+          cp prussian-mcp/data/prussian_dictionary.json data/external/prussian_dictionary.json
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install dependencies
+        run: uv sync --group dev
+
+      - name: Cache FST build artifacts
+        uses: actions/cache@v4
+        id: fst-cache
+        with:
+          path: build/
+          key: fst-${{ hashFiles('src/**/*.py', 'data/gold/**', 'data/closed/**') }}
+
+      - name: Build FST
+        if: steps.fst-cache.outputs.cache-hit != 'true'
+        run: uv run python -m prussian.fst.build
+
+      - name: Run tests
+        run: uv run pytest tests/ -v
+
+      - name: Generate dashboard.json
+        run: uv run python -m prussian.report.dashboard
+
+      - name: Commit dashboard.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/derived/dashboard.json dashboard/data.js
+          git diff --staged --quiet || git commit -m "ci: regenerate dashboard.json [skip ci]"
+          git push
+
+      - name: Upload dashboard to GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dashboard/
+
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4
