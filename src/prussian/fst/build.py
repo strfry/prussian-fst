@@ -11,11 +11,17 @@ Pipeline (vgl. docs/AKZENT.md §4, docs/ORTHO_RULES.md):
        lenient.fst   = lexd mit V-Zeilen  ∘ rule_chain     (akzeptiert
                        Quellvarianten; ersetzt den alten ortho.fst)
 
-Aufruf:  python -m prussian.fst.build [--gold-only]
+Aufruf:  python -m prussian.fst.build [--gold-only | --sample N [--seed S]]
+
+  --gold-only   nur die ~184 Goldstandard-Lexeme (schnellster Bau, ~30 s)
+  --sample N    Goldstandard + N zufällige Wörterbuch-Lexeme je Klasse
+                (nominal/verbal); reproduzierbar über --seed. Testläufe auf
+                einer Teilmenge, ohne den vollen Wörterbuch-Bau abzuwarten.
 """
 
 import argparse
 import json
+import random
 from pathlib import Path
 
 from pyfoma import lexd
@@ -41,6 +47,16 @@ ATT_OUT = BUILD_DIR / "analyser.att"
 LENIENT_OUT = BUILD_DIR / "lenient.fst"
 
 
+def sample_by_lemma(entries: list[dict], n: int, rng: random.Random) -> list[dict]:
+    """N zufällige Lexeme behalten – ganze Lemma-Gruppen (alle Formen eines
+    Verbs / alle Paradigma-Kandidaten eines Nomens bleiben zusammen)."""
+    lemmas = list(dict.fromkeys(e["lemma"] for e in entries))
+    if n >= len(lemmas):
+        return entries
+    keep = set(rng.sample(lemmas, n))
+    return [e for e in entries if e["lemma"] in keep]
+
+
 def strip_variant_lines(lexd_text: str) -> str:
     """V-Zeilen (Twanksta-Varianten) für den Standard-Build entfernen."""
     return "\n".join(
@@ -53,6 +69,12 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--gold-only", action="store_true",
                     help="nur Goldstandard-Lexeme (schneller Testbau)")
+    ap.add_argument("--sample", type=int, metavar="N",
+                    help="nur N zufällige Wörterbuch-Lexeme je Klasse "
+                         "(nominal/verbal) zusätzlich zum Goldstandard – "
+                         "Testbau auf Teilmenge")
+    ap.add_argument("--seed", type=int, default=0,
+                    help="Seed für --sample (reproduzierbar, Default 0)")
     args = ap.parse_args()
 
     gs_data = json.loads(GOLD.read_text(encoding="utf-8"))
@@ -64,8 +86,13 @@ def main() -> None:
         verb_wl_entries = None
         wl_entries = []
     else:
+        rng = random.Random(args.seed) if args.sample else None
+
         wl_data = json.loads(WORDLIST.read_text(encoding="utf-8"))
         wl_entries = wordlist_to_entries(wl_data, gs_data)
+        if rng is not None:
+            wl_entries = sample_by_lemma(wl_entries, args.sample, rng)
+            print(f"Sample: {args.sample} nominale Lexeme (seed={args.seed})")
         print(f"Wortliste: {len(wl_entries)} Einträge (P9–P67)")
         combined = combine_entries(gs_data, wl_entries)
 
@@ -74,8 +101,12 @@ def main() -> None:
         verb_wl_entries = verb_morph.wordlist_to_verb_entries(
             dict_data, verb_data
         )
+        if rng is not None:
+            verb_wl_entries = sample_by_lemma(verb_wl_entries, args.sample, rng)
+            print(f"Sample: {args.sample} verbale Lexeme (seed={args.seed})")
+        n_verbs = len({e["lemma"] for e in verb_wl_entries})
         print(f"Verb-Wortliste: {len(verb_wl_entries)} Einträge "
-              f"({len(verb_wl_entries) // 2} Verben)")
+              f"({n_verbs} Verben)")
 
     # Closed-class: Personalpronomen
     closed_entries: list[dict] | None = None
