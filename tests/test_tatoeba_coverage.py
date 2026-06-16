@@ -53,6 +53,8 @@ def analyser():
 @pytest.fixture(scope="session")
 def sentences():
     """Alle prg-Sätze aus der Tatoeba-Datei."""
+    if not CORPUS.exists():
+        pytest.skip(f"{CORPUS} fehlt — Korpus beziehen (s. data/corpus/manifest.json)")
     rows = []
     with open(CORPUS, encoding="utf-8") as f:
         for row in csv.reader(f, delimiter="\t"):
