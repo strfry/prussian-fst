@@ -34,6 +34,12 @@ jobs:
           cp prussian-mcp/data/wordlist.json data/external/wordlist.json
           cp prussian-mcp/data/prussian_dictionary.json data/external/prussian_dictionary.json
 
+      - name: Download Tatoeba corpus
+        run: |
+          mkdir -p corpus
+          curl -fsSL https://downloads.tatoeba.org/exports/per_language/prg/prg_sentences.tsv.bz2 \
+            | bunzip2 > corpus/prg_sentences.tsv
+
       - uses: actions/setup-python@v5
         with:
           python-version: 'pypy-3.10'
