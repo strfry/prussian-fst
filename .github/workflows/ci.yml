@@ -17,6 +17,12 @@ jobs:
           curl -fsSL https://downloads.tatoeba.org/exports/per_language/prg/prg_sentences.tsv.bz2 \
             | bunzip2 > corpus/prg_sentences.tsv
 
+      - name: Download wordlist.json
+        run: |
+          mkdir -p data/external
+          curl -fsSL https://raw.githubusercontent.com/strfry/prussian-mcp/main/data/wordlist.json \
+            -o data/external/wordlist.json
+
       - uses: actions/setup-python@v5
         with:
           python-version: 'pypy-3.10'
