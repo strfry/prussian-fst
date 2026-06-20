@@ -13,7 +13,7 @@ import pytest
 
 ROOT = Path(__file__).resolve().parent.parent
 ANALYSER = ROOT / "build/analyser.fst"
-CORPUS = ROOT / "corpus/prg_sentences_detailed.tsv"
+CORPUS = ROOT / "corpus/prg_sentences.tsv"
 
 # Punktuation, die wir am Wortende abschneiden
 PUNCT = re.compile(r"[.!?;,:\"„“”'‘’()\[\]{}…—–\-]+$")
