@@ -34,13 +34,12 @@ jobs:
           cp prussian-mcp/data/wordlist.json data/external/wordlist.json
           cp prussian-mcp/data/prussian_dictionary.json data/external/prussian_dictionary.json
 
-      - name: Install uv
-        uses: astral-sh/setup-uv@v5
+      - uses: actions/setup-python@v5
         with:
-          python-version: "3.13"
+          python-version: 'pypy-3.10'
 
       - name: Install dependencies
-        run: uv sync --group dev
+        run: pypy3 -m pip install pyfoma pytest
 
       - name: Cache FST build artifacts
         uses: actions/cache@v4
@@ -51,13 +50,13 @@ jobs:
 
       - name: Build FST
         if: steps.fst-cache.outputs.cache-hit != 'true'
-        run: uv run python -m prussian.fst.build
+        run: PYTHONPATH=src pypy3 -m prussian.fst.build
 
       - name: Run tests
-        run: uv run pytest tests/ -v
+        run: PYTHONPATH=src pypy3 -m pytest tests/ -v
 
       - name: Generate dashboard.json
-        run: uv run python -m prussian.report.dashboard
+        run: PYTHONPATH=src pypy3 -m prussian.report.dashboard
 
       - name: Commit dashboard.json
         run: |
