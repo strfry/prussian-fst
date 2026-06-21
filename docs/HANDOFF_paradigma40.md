@@ -5,12 +5,12 @@
 > Klassifikation siehe [docs/README.md](README.md).
 
 **Stand:** 2026-06-07 — Untersuchung der Prusaspira-Livedaten für alle 646 Wörter
-mit Paradigma 40/40a in `wordlist.json`.
+mit Paradigma 40/40a in `twanksta_entries.json`.
 
 ## Fragestellung
 
 Paradigma 40 hat in der Tabula vier Varianten (40, 40a, 40b, 40c), aber die
-Twanksta-Wortliste (`wordlist.json`) kennt nur `"40"` (637 unique words) und
+Twanksta-Wortliste (`twanksta_entries.json`) kennt nur `"40"` (637 unique words) und
 `"40a"` (10 words, alle auf -zis). Wie werden die restlichen Wörter korrekt
 auf die Subtypen verteilt? Und wie generiert Prusaspira die Formen?
 

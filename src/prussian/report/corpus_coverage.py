@@ -23,7 +23,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent.parent.parent
 MANIFEST = ROOT / "data/corpus/manifest.json"
-DICT = ROOT / "data/external/prussian_dictionary.json"
+DICT = ROOT / "data/external/twanksta_entries.json"
 OUT = ROOT / "data/derived/corpus_coverage.json"
 
 SPAM_THRESHOLD = 0.12       # Doc gilt als Spam, wenn recognized_share darunter

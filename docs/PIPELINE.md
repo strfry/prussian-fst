@@ -34,8 +34,8 @@ gold/adj_comparison.py  (hängt comp/sup-Einträge an goldstandard.json an)
 gold/accent.py  → accent_model.json   (Akzentklassen, Rinkevičius)
    │
    ▼
-fst/build.py    goldstandard.json + goldstandard_verben_fst.json + wordlist.json
-                + prussian_dictionary.json + data/closed/*.json
+fst/build.py    goldstandard.json + goldstandard_verben_fst.json + twanksta_entries.json
+                 + data/closed/*.json
                 → build/morphotactics.lexd → (pyfoma) → build/analyser.fst, lenient.fst
 ```
 
@@ -61,7 +61,7 @@ aufgerufen; sie sind **nicht** in den Build importiert.
 | Modul(e) | Zweck |
 |---|---|
 | `fetch/fetch_prusaspira.py`, `fetch/fetch_verb_data.py` | Rohdaten von prusaspira.org / Twanksta crawlen (rate-limited) |
-| `fetch/lookup_prusaspira.py`, `lookup_prusaspira_fuzzy.py` | Manueller Lemma-Lookup in `prussian_dictionary.json`. **Wird nirgends importiert** — reine Hilfs-CLIs; Kandidat zum Entfernen, falls nicht mehr gebraucht. |
+| `fetch/lookup_prusaspira.py`, `lookup_prusaspira_fuzzy.py` | Manueller Lemma-Lookup in `twanksta_entries.json`. **Wird nirgends importiert** — reine Hilfs-CLIs; Kandidat zum Entfernen, falls nicht mehr gebraucht. |
 | `compare/compare_sources.py`, `compare_verbs.py`, `compare_paradigms.py` | Quellen-Vergleich → `data/derived/vergleich*.json/html` (Validierung, **kein** Build-Input) |
 | `compare/extract_paradigms.py`, `extract_participles.py`, `parse_verbs.py` | Extraktion/Parsing aus Quellen-HTML (Analyse-Werkzeuge) |
 | `report/dashboard.py`, `corpus_coverage.py`, `dict_coverage.py`, … | Metriken/Reports → `data/derived/` und Dashboard |

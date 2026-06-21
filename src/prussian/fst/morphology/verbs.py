@@ -8,7 +8,7 @@ getaggt — Klitik = Syntax, außerhalb der Verbmorphologie.
 
 Die Funktion `wordlist_to_verb_entries` inferiert Stämme aus Twanksta-3sg-
 Formen: -tun/-twei vom Infinitiv abstreifen, finite Stämme über 3sg aus
-prussian_dictionary.json gewinnen, Archiphoneme erkennen.  Suppletive und
+twanksta_entries.json gewinnen, Archiphoneme erkennen.  Suppletive und
 "stumme" Paradigmen (Stamm < 2 Buchstaben) werden übersprungen.
 
 Künftiger Ausbau (Partizipien/Modi, docs/ORTHO_RULES.md §2) gehört hierher.
@@ -84,10 +84,17 @@ _STUMME_PARADIGMS: set[str] = set()
 
 
 def _ptcp_route(e: dict):
-    """Gruppenschlüssel für ein dekliniertes Partizip (geteiltes Infl pro
-    Deklination+Genus) oder ``None`` für gewöhnliche Verbeinträge."""
+    """Gruppenschlüssel für ein dekliniertes Partizip oder ``None`` für
+    gewöhnliche Verbeinträge.
+
+    Genus ist Kongruenz (das Partizip flektiert für alle drei Genera mit
+    identischem Stamm), nicht lexikalisch — daher KEINE Genus-Achse im
+    Gruppenschlüssel: alle Genera teilen ein Stems+Infl je Deklination, der
+    Genus sitzt allein im Zellen-Tag (ptcp_cell_tag). Fester Sub-Key 'decl'
+    erhält die von build_lexd erwartete 3-Tupel-Struktur. Das Infl wird über
+    die Genus-Einträge akkumuliert (lexd.add_group, lexkind=='ptcp')."""
     if e.get("gender") and e["tense"] in _PTCP_DECL:
-        return ("Vp", _PTCP_DECL_PAR[e["tense"]], e["gender"])
+        return ("Vp", _PTCP_DECL_PAR[e["tense"]], "decl")
     return None
 
 
@@ -336,7 +343,7 @@ def wordlist_to_verb_entries(
     dict_data: list[dict],
     gsv_entries: list[dict],
 ) -> list[dict]:
-    """Inferiert finite Stämme aus Twanksta-3sg-Formen (prussian_dictionary.json).
+    """Inferiert finite Stämme aus Twanksta-3sg-Formen (twanksta_entries.json).
 
     Für jeden Wortlisten-Verbeintrag mit Paradigma im GS-Bereich:
       1. -tun/-twei-Endung bestimmen (aus dem Wort)

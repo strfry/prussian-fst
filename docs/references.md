@@ -9,8 +9,8 @@
 - **Prusaspira** — <http://prusaspira.org/wirdeins> (Flexionsgenerator).
   Abzüge unter `prusaspira/` (gitignored, via `prussian.fetch`).
 - **Twanksta** — <https://wirdeins.twanksta.org> (Wörterbuch + Formen,
-  Dialekt Semba). Abzüge unter `twanksta/`; `data/external/wordlist.json`
-  und `data/external/prussian_dictionary.json`.
+  Dialekt Semba). Abzüge unter `twanksta/`; geparste Einträge in
+  `data/external/twanksta_entries.json`.
 
 Quellenverlässlichkeit und Abwägungen: [PROVENANCE.md](PROVENANCE.md),
 GOLDSTANDARD-Methodik in `data/gold/GOLDSTANDARD.md`.

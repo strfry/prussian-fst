@@ -1,5 +1,5 @@
 {
-  "_provenance": "Attestierte Vollparadigma-Formen (Modi/Partizipien) je Verb-Paradigma, ergaenzend zu den 3-Quellen-gevoteten present/preterite-Bloecken in goldstandard_verben.json. Quelle bisher Twanksta (prussian_dictionary.json); Tabula/Prusaspira tragen diese Kategorien meist nicht -> single-source, provisorisch (siehe docs/HANDOFF_allomorphie_steigerung.md sinngemaess fuer Verben, docs/FST_VERB_HANDOFF.md). Kategorie->Stamm folgt dem baltischen Drei-Stamm-Modell: infinitive/optative/subjunctive/passive_ptcp = Infinitivstamm; imperative/active_ptcp = Praesensstamm; present_ptcp = entgeminierter Praesensstamm.",
+  "_provenance": "Attestierte Vollparadigma-Formen (Modi/Partizipien) je Verb-Paradigma, ergaenzend zu den 3-Quellen-gevoteten present/preterite-Bloecken in goldstandard_verben.json. Quelle bisher Twanksta (twanksta_entries.json); Tabula/Prusaspira tragen diese Kategorien meist nicht -> single-source, provisorisch (siehe docs/HANDOFF_allomorphie_steigerung.md sinngemaess fuer Verben, docs/FST_VERB_HANDOFF.md). Kategorie->Stamm folgt dem baltischen Drei-Stamm-Modell: infinitive/optative/subjunctive/passive_ptcp = Infinitivstamm; imperative/active_ptcp = Praesensstamm; present_ptcp = entgeminierter Praesensstamm.",
   "paradigms": {
     "71": {
       "lemma": "īmtun",

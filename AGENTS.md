@@ -9,8 +9,31 @@ at least 1 s between requests to either service.
 
 ## Required data files
 
-`wordlist.json` und `prussian_dictionary.json` werden für das FST-Projekt
-benötigt und sind in <https://github.com/strfry/prussian-mcp> verfügbar.
+Das FST-Projekt benötigt Daten aus dem
+[`strfry/prussian-corpus`](https://github.com/strfry/prussian-corpus)-Release.
+Der Download erfolgt direkt via `curl`:
+
+```bash
+RELEASE="https://github.com/strfry/prussian-corpus/releases/download/v2026-06-21"
+curl -fsSL "$RELEASE/twanksta_entries.json"  -o data/external/twanksta_entries.json
+curl -fsSL "$RELEASE/prusaspira_entries.json" -o data/external/prusaspira_entries.json
+curl -fsSL "$RELEASE/prussian_corpus_v2026-06-21.tar.zst" \
+  -o data/external/prussian_corpus_v2026-06-21.tar.zst
+```
+
+Release-Tags folgen dem Schema `v{YYYY-MM-DD}`.
+
+**Assets im Release:**
+| Asset | Zweck |
+|---|---|
+| `twanksta_entries.json` | Stichwortliste, Übersetzungen (6 Sprachen), Deklinationstabellen |
+| `prusaspira_entries.json` | Stichwortliste, Übersetzungen, Deklinationstabellen |
+| `prussian_corpus_v{tag}.tar.zst` | Textkorpus (extrahiert nach `corpus/`) |
+
+**Skript-interne Pfade:**
+- `TWANKSTA_WORDLIST` → `data/external/twanksta_entries.json` (nur Stichwörter + engl. Übersetzung)
+- `TWANKSTA_DICT` → `data/external/twanksta_entries.json` (volle Daten mit Formen)
+- `PRUSASPIRA_ENTRIES` → `data/external/prusaspira_entries.json`
 
 ## Grammar references
 

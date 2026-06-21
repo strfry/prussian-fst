@@ -11,17 +11,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Checkout prussian-mcp (Git LFS)
-        uses: actions/checkout@v4
-        with:
-          repository: strfry/prussian-mcp
-          lfs: true
-          path: prussian-mcp
-
-      - name: Copy wordlist.json
+      - name: Download Twanksta entries
         run: |
           mkdir -p data/external
-          cp prussian-mcp/data/wordlist.json data/external/wordlist.json
+          curl -fsSL https://github.com/strfry/prussian-corpus/releases/download/v2026-06-21/twanksta_entries.json \
+            -o data/external/twanksta_entries.json
 
       - name: Download Tatoeba corpus
         run: |

@@ -13,7 +13,7 @@ import pytest
 
 ROOT = Path(__file__).resolve().parent.parent
 ANALYSER = ROOT / "build/analyser.fst"
-WORDLIST = ROOT / "data/external/wordlist.json"
+WORDLIST = ROOT / "data/external/twanksta_entries.json"
 GOLD_NOM = ROOT / "data/gold/goldstandard.json"
 GOLD_VERB = ROOT / "data/gold/goldstandard_verben_fst.json"
 

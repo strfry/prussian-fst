@@ -21,18 +21,12 @@ jobs:
       - name: Checkout prussian-fst
         uses: actions/checkout@v4
 
-      - name: Checkout prussian-mcp (Git LFS)
-        uses: actions/checkout@v4
-        with:
-          repository: strfry/prussian-mcp
-          lfs: true
-          path: prussian-mcp
-
-      - name: Copy external data files
+      - name: Download external data files
         run: |
+          RELEASE="https://github.com/strfry/prussian-corpus/releases/download/v2026-06-21"
           mkdir -p data/external
-          cp prussian-mcp/data/wordlist.json data/external/wordlist.json
-          cp prussian-mcp/data/prussian_dictionary.json data/external/prussian_dictionary.json
+          curl -fsSL "$RELEASE/twanksta_entries.json"  -o data/external/twanksta_entries.json
+          curl -fsSL "$RELEASE/prusaspira_entries.json" -o data/external/prusaspira_entries.json
 
       - name: Download Tatoeba corpus
         run: |

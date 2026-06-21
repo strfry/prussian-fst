@@ -73,7 +73,7 @@ print(f"  Verb: {len(verben)}")
 print(f"  Total: {len(sorted_nums)}")
 
 # Coverage
-with open('wordlist.json') as f:
+with open('data/external/twanksta_entries.json') as f:
     wordlist = json.load(f)
 
 wl_paradigms = set()

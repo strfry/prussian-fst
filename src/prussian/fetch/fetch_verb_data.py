@@ -35,7 +35,7 @@ TWANKSTA_FORMS  = "https://wirdeins.twanksta.org/more/"
 PRUSASPIRA_OUT = Path("prusaspira")
 TWANKSTA_OUT   = Path("twanksta")
 VERB_PARADIGMS = Path("data/gold/verb_paradigms.json")
-WORDLIST       = Path("data/external/wordlist.json")
+WORDLIST       = Path("data/external/twanksta_entries.json")
 
 UA = "Mozilla/5.0"
 

@@ -5,7 +5,7 @@ from pathlib import Path
 from difflib import SequenceMatcher
 
 PRUSASPIRA = Path("prusaspira")
-DICT = Path("data/external/prussian_dictionary.json")
+DICT = Path("data/external/twanksta_entries.json")
 OUT = Path("prusaspira_lookup")
 
 dict_entries = json.loads(DICT.read_bytes())

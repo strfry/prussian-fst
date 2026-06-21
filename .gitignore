@@ -15,8 +15,9 @@ lang-lav/
 lang-fao/
 
 # External data (obtain externally — see README)
-data/external/wordlist.json
-data/external/prussian_dictionary.json
+data/external/twanksta_entries.json
+data/external/prusaspira_entries.json
+data/external/prussian_corpus_*.tar.zst
 
 # Fetched corpora (regenerate via fetch_prusaspira.py / twanksta_api_check.py)
 prusaspira/

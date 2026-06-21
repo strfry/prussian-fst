@@ -1,4 +1,4 @@
-"""Wörterbuch-Coverage: flektierte Twanksta-Formen aus prussian_dictionary.json
+"""Wörterbuch-Coverage: flektierte Twanksta-Formen aus twanksta_entries.json
 gegen Haupt-FST (Fallback lenient.fst) matchen.
 
 Drei Schichten:
@@ -13,9 +13,9 @@ from collections import defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent.parent.parent
-DICT = ROOT / "data/external/prussian_dictionary.json"
+DICT = ROOT / "data/external/twanksta_entries.json"
 GOLD = ROOT / "data/gold/goldstandard.json"
-WORDLIST = ROOT / "data/external/wordlist.json"
+WORDLIST = ROOT / "data/external/twanksta_entries.json"
 
 CASE_MAP = {"Nominative": "Nom", "Genitive": "Gen",
             "Dative": "Dat", "Accusative": "Acc"}

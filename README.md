@@ -50,7 +50,7 @@ die vier Kasuszeilen (Nōm, Gēn, Dāt, Akk), wobei die n-Formen
 **URL:** `https://wirdeins.twanksta.org/search/?dia=semba&s=<lemma>&language=engl`
 
 Ein API-gestütztes Wörterbuch, das zu jedem Lemma die
-Wörterbuch- und Flexionsdaten aus `prussian_dictionary.json`
+Wörterbuch- und Flexionsdaten aus `twanksta_entries.json`
 referenziert. Die Daten werden über `twanksta_api_check.py` validiert
 und in `twanksta/{num}_{lemma}/lemma.json` abgelegt.
 
@@ -247,7 +247,7 @@ Bei echten 3-Wege-Konflikten, die das Votum nicht auflöst, werden Entscheidunge
 |--------|---------|
 | `fetch/fetch_prusaspira.py` | Lädt Flexionstabellen von prusaspira.org |
 | `fetch/fetch_verb_data.py` | Lädt Verbformen (beide Quellen) |
-| `fetch/lookup_prusaspira*.py` | Lemma-Lookup in `prussian_dictionary.json` (+ Fuzzy) |
+| `fetch/lookup_prusaspira*.py` | Lemma-Lookup in `twanksta_entries.json` (+ Fuzzy) |
 | `compare/compare_paradigms.py` | Vergleich tabula vs. prusaspira |
 | `compare/compare_sources.py` | 3-Wege-Vergleich → `data/derived/vergleich.{html,json}` |
 | `compare/compare_verbs.py` | dito für Verben |
@@ -262,7 +262,7 @@ Bei echten 3-Wege-Konflikten, die das Votum nicht auflöst, werden Entscheidunge
 | `fst/rules.py` | Akzent-/Palatalisierungs-/Varianten-Regeln (pyfoma-Rewrite) |
 | `fst/build.py` | Komposition → `build/analyser.fst` + `build/lenient.fst` |
 | `fst/gen_check.py` | Validiert Generierung gegen alle 967 Gold-Zellen + 18 Parallelformen |
-| `fst/match_forms.py` | Korpus-Coverage gegen `prussian_dictionary.json` |
+| `fst/match_forms.py` | Korpus-Coverage gegen `twanksta_entries.json` |
 | `fst/analyze.py` | CLI: Wörter analysieren (Standard + nachsichtig) |
 
 ## FST-Modell
@@ -347,8 +347,8 @@ unter `data/external/` ablegen:
 
 | Datei | Quelle / Zweck |
 |-------|----------------|
-| `data/external/wordlist.json` (2,2 MB) | Twanksta-Wortliste mit Paradigmen-Nummern; **noetig** fuer den Vollbau (Stamm-Extraktion P32–67). |
-| `data/external/prussian_dictionary.json` (35 MB) | Twanksta-Woerterbuch-Export; fuer `lookup_prusaspira*.py` und `match_forms.py`. |
+| `data/external/twanksta_entries.json` (24 MB) | Twanksta-Einträge mit Stichwortliste, Übersetzungen (6 Sprachen), Deklinationstabellen. |
+| `data/external/prusaspira_entries.json` (17 MB) | Prusaspira-Einträge mit Stichwortliste, Übersetzungen, Deklinationstabellen. |
 
 Ebenfalls ignoriert (regenerierbar bzw. read-only Referenz):
 - `prusaspira/`, `twanksta/`, `corpus/` — gefetchte Korpora (1 req/s, via
@@ -368,7 +368,7 @@ uv run python src/prussian/gold/accent.py        # Akzentmodell neu ableiten
 
 ```
 data/sources/      tabula.html, gramm.htm           Rohquellen (committed)
-data/external/     wordlist.json, prussian_dictionary.json   [ignoriert]
+data/external/     twanksta_entries.json, prusaspira_entries.json   [ignoriert]
 data/derived/      vergleich*.{json,html}           3-Wege-Vergleich
 data/gold/         goldstandard*.json, GOLDSTANDARD*.md, accent_model.json
 src/prussian/      fetch/ compare/ gold/ fst/       Pipeline-Module (s. o.)

@@ -2,7 +2,7 @@
 """Baut Analysatoren: morphotactics.lexd ∘ Regelschicht → analyser/lenient.
 
 Pipeline (vgl. docs/AKZENT.md §4, docs/ORTHO_RULES.md):
-  1. entries.py:   goldstandard.json + wordlist.json → Einträge
+  1. entries.py:   goldstandard.json + twanksta_entries.json → Einträge
   2. lexd_gen.py:  Einträge → build/morphotactics.lexd (markierte Unterseite,
                    inkl. V-Zeilen für Twanksta-j-Varianten)
   3. rules.py:     Akzent- und Palatalisierungsregeln
@@ -36,8 +36,8 @@ from prussian.fst.phonology import rule_chain
 ROOT = Path(__file__).resolve().parent.parent.parent.parent
 GOLD = ROOT / "data/gold/goldstandard.json"
 VERB_GOLD = ROOT / "data/gold/goldstandard_verben_fst.json"
-WORDLIST = ROOT / "data/external/wordlist.json"
-DICT = ROOT / "data/external/prussian_dictionary.json"
+TWANKSTA_WORDLIST = ROOT / "data/external/twanksta_entries.json"
+TWANKSTA_DICT = ROOT / "data/external/twanksta_entries.json"
 CLOSED_FW = ROOT / "data/closed/function_words.json"
 CLOSED_PRONOUNS = ROOT / "data/closed/personal_pronouns.json"
 BUILD_DIR = ROOT / "build"
@@ -88,7 +88,7 @@ def main() -> None:
     else:
         rng = random.Random(args.seed) if args.sample else None
 
-        wl_data = json.loads(WORDLIST.read_text(encoding="utf-8"))
+        wl_data = json.loads(TWANKSTA_WORDLIST.read_text(encoding="utf-8"))
         wl_entries = wordlist_to_entries(wl_data, gs_data)
         if rng is not None:
             wl_entries = sample_by_lemma(wl_entries, args.sample, rng)
@@ -96,8 +96,8 @@ def main() -> None:
         print(f"Wortliste: {len(wl_entries)} Einträge (P9–P67)")
         combined = combine_entries(gs_data, wl_entries)
 
-        # Verb-Einträge aus prussian_dictionary.json (inkl. Twanksta-Formen)
-        dict_data = json.loads(DICT.read_text(encoding="utf-8"))
+        # Verb-Einträge aus twanksta_entries.json (inkl. Twanksta-Formen)
+        dict_data = json.loads(TWANKSTA_DICT.read_text(encoding="utf-8"))
         verb_wl_entries = verb_morph.wordlist_to_verb_entries(
             dict_data, verb_data
         )
@@ -116,7 +116,7 @@ def main() -> None:
 
     # Unflektierte Funktionswörter + Adverbien (geschlossene Klassen)
     fw_words = None if args.gold_only else fw_mod.load(CLOSED_FW)
-    adv_words = None if args.gold_only else adv_mod.load(DICT)
+    adv_words = None if args.gold_only else adv_mod.load(TWANKSTA_DICT)
 
     nominal_total = len(gs_data) + len(wl_entries)
     verb_total = len(verb_data) + (len(verb_wl_entries) if verb_wl_entries else 0)

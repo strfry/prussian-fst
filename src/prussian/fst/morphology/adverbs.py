@@ -6,7 +6,7 @@ Primäradverbien ohne zugehöriges Adjektiv (Untersuchung 2026-06-14). Wir führ
 daher ALLE Adverb-Lemmata aus dem Wörterbuch (POS `av`) als invariante +Adv-Lexeme
 — die produktive Ableitung aus dem Adjektivsystem wird bewusst NICHT modelliert.
 
-Quelle: data/external/prussian_dictionary.json, Einträge mit führendem `av`/`AV`
+Quelle: data/external/twanksta_entries.json, Einträge mit führendem `av`/`AV`
 im `desc`-Feld. Gefiltert auf standardorthografische Einwort-Lemmata; verworfen
 werden Mehrwort-Adverbien (Leerzeichen), Rausch (»!«) und nicht-standardkonforme
 Schreibvarianten (Gravis ì, ń).

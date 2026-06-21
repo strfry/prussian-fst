@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Look up prusaspira lemmata (from filenames) in prussian_dictionary.json
+"""Look up prusaspira lemmata (from filenames) in twanksta_entries.json
 and save matching entries to prusaspira_lookup/."""
 import json
 import re
 from pathlib import Path
 
 PRUSASPIRA = Path("prusaspira")
-DICT = Path("data/external/prussian_dictionary.json")
+DICT = Path("data/external/twanksta_entries.json")
 OUT = Path("prusaspira_lookup")
 
 OUT.mkdir(exist_ok=True)

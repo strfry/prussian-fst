@@ -24,7 +24,7 @@ from bs4 import BeautifulSoup
 PRUSASPIRA_DIR = Path("prusaspira")
 TWANKSTA_DIR = Path("twanksta")
 VERB_PARADIGMS = Path("data/gold/verb_paradigms.json")
-WORDLIST = Path("data/external/wordlist.json")
+WORDLIST = Path("data/external/twanksta_entries.json")
 
 PRUSASPIRA_BASE = "https://www.prusaspira.org/wirdeins"
 TWANKSTA_SEARCH = "https://wirdeins.twanksta.org/search/"

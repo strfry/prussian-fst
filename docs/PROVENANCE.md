@@ -9,7 +9,7 @@ flowchart TD
   TR[tabula.htm<br/>roh · kaputtes HTML] --> T[tabula.html<br/>halb-manuell korrigiert]
   T --> X
   P[Prusaspira<br/>Online-Wörterbuch · HTTP-Fetch 1 req/s] --> X
-  W[Twanksta<br/>API-Wörterbuch · prussian_dictionary.json-Export] --> X
+  W[Twanksta<br/>API-Wörterbuch · twanksta_entries.json-Export] --> X
   X[Übertragung in den Vergleich<br/>iterativ · LLM-assistiert · Helfer-Skripte] --> V
   V[vergleich.html / vergleich.json<br/>3-Wege-Merge je Inflektionszelle<br/>✔ manuell verifiziert] --> G
   G[goldstandard.json / GOLDSTANDARD.md<br/>1 Variante je Zelle gewählt<br/>Mehrheitsvotum 2/3 + manuelle Entscheide] --> F
@@ -22,7 +22,7 @@ flowchart TD
 |--------|-----|-----------------|------------|
 | **Tabula Nova** | `donelaitis.vdu.lt/prussian/tabula.htm` (Spiegel `prusaspira.org`) | Manuell gepflegte HTML-Referenztabelle aller Paradigmen (Nr. 1–144). Das kaputte Roh-HTML (`tabula.htm`) wurde **halb-manuell korrigiert** → `tabula.html`. | `tabula.htm` → `tabula.html` |
 | **Prusaspira** | `prusaspira.org/wirdeins?…&bila=1&wirds=‹lemma›` | Online-Wörterbuch mit voller Flexionstabelle je Lemma; **HTTP-Fetch** pro Lemma, 1 req/s, englische Oberfläche. | `prusaspira/{n}_{lemma}.{html,txt}` |
-| **Twanksta** | `wirdeins.twanksta.org/search/?dia=semba&s=‹lemma›` | API-gestütztes Wörterbuch; **API-Abfrage** gegen den `prussian_dictionary.json`-Export. | `twanksta/{n}_{lemma}/lemma.json` |
+| **Twanksta** | `wirdeins.twanksta.org/search/?dia=semba&s=‹lemma›` | API-gestütztes Wörterbuch; **API-Abfrage** gegen `twanksta_entries.json` (siehe `strfry/prussian-corpus`). | `twanksta/{n}_{lemma}/lemma.json` |
 
 ## Schritte
 
