@@ -456,6 +456,168 @@
    ]
   },
   {
+   "paradigm": "25comp",
+   "gender": "f",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "tūlins"
+   ]
+  },
+  {
+   "paradigm": "25comp",
+   "gender": "m",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "tūlins"
+   ]
+  },
+  {
+   "paradigm": "25comp",
+   "gender": "n",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "tūlins"
+   ]
+  },
+  {
+   "paradigm": "25comp_suppl",
+   "gender": "f",
+   "class": "na",
+   "strong_cells": [],
+   "lemmas": [
+    "debīks"
+   ]
+  },
+  {
+   "paradigm": "25comp_suppl",
+   "gender": "m",
+   "class": "na",
+   "strong_cells": [],
+   "lemmas": [
+    "debīks"
+   ]
+  },
+  {
+   "paradigm": "25comp_suppl",
+   "gender": "n",
+   "class": "na",
+   "strong_cells": [],
+   "lemmas": [
+    "debīks"
+   ]
+  },
+  {
+   "paradigm": "25comp_suppl2",
+   "gender": "f",
+   "class": "na",
+   "strong_cells": [],
+   "lemmas": [
+    "līkuts"
+   ]
+  },
+  {
+   "paradigm": "25comp_suppl2",
+   "gender": "m",
+   "class": "na",
+   "strong_cells": [],
+   "lemmas": [
+    "līkuts"
+   ]
+  },
+  {
+   "paradigm": "25comp_suppl2",
+   "gender": "n",
+   "class": "na",
+   "strong_cells": [],
+   "lemmas": [
+    "līkuts"
+   ]
+  },
+  {
+   "paradigm": "25sup",
+   "gender": "f",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "tūlins"
+   ]
+  },
+  {
+   "paradigm": "25sup",
+   "gender": "m",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "tūlins"
+   ]
+  },
+  {
+   "paradigm": "25sup",
+   "gender": "n",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "tūlins"
+   ]
+  },
+  {
+   "paradigm": "25sup_suppl",
+   "gender": "f",
+   "class": "na",
+   "strong_cells": [],
+   "lemmas": [
+    "debīks"
+   ]
+  },
+  {
+   "paradigm": "25sup_suppl",
+   "gender": "m",
+   "class": "na",
+   "strong_cells": [],
+   "lemmas": [
+    "debīks"
+   ]
+  },
+  {
+   "paradigm": "25sup_suppl",
+   "gender": "n",
+   "class": "na",
+   "strong_cells": [],
+   "lemmas": [
+    "debīks"
+   ]
+  },
+  {
+   "paradigm": "25sup_suppl2",
+   "gender": "f",
+   "class": "na",
+   "strong_cells": [],
+   "lemmas": [
+    "līkuts"
+   ]
+  },
+  {
+   "paradigm": "25sup_suppl2",
+   "gender": "m",
+   "class": "na",
+   "strong_cells": [],
+   "lemmas": [
+    "līkuts"
+   ]
+  },
+  {
+   "paradigm": "25sup_suppl2",
+   "gender": "n",
+   "class": "na",
+   "strong_cells": [],
+   "lemmas": [
+    "līkuts"
+   ]
+  },
+  {
    "paradigm": "26",
    "gender": "f",
    "class": "na",
@@ -475,6 +637,114 @@
   },
   {
    "paradigm": "26",
+   "gender": "n",
+   "class": "na",
+   "strong_cells": [],
+   "lemmas": [
+    "labs"
+   ]
+  },
+  {
+   "paradigm": "26comp",
+   "gender": "f",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "mālds"
+   ]
+  },
+  {
+   "paradigm": "26comp",
+   "gender": "m",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "mālds"
+   ]
+  },
+  {
+   "paradigm": "26comp",
+   "gender": "n",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "mālds"
+   ]
+  },
+  {
+   "paradigm": "26comp_suppl",
+   "gender": "f",
+   "class": "na",
+   "strong_cells": [],
+   "lemmas": [
+    "labs"
+   ]
+  },
+  {
+   "paradigm": "26comp_suppl",
+   "gender": "m",
+   "class": "na",
+   "strong_cells": [],
+   "lemmas": [
+    "labs"
+   ]
+  },
+  {
+   "paradigm": "26comp_suppl",
+   "gender": "n",
+   "class": "na",
+   "strong_cells": [],
+   "lemmas": [
+    "labs"
+   ]
+  },
+  {
+   "paradigm": "26sup",
+   "gender": "f",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "mālds"
+   ]
+  },
+  {
+   "paradigm": "26sup",
+   "gender": "m",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "mālds"
+   ]
+  },
+  {
+   "paradigm": "26sup",
+   "gender": "n",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "mālds"
+   ]
+  },
+  {
+   "paradigm": "26sup_suppl",
+   "gender": "f",
+   "class": "na",
+   "strong_cells": [],
+   "lemmas": [
+    "labs"
+   ]
+  },
+  {
+   "paradigm": "26sup_suppl",
+   "gender": "m",
+   "class": "na",
+   "strong_cells": [],
+   "lemmas": [
+    "labs"
+   ]
+  },
+  {
+   "paradigm": "26sup_suppl",
    "gender": "n",
    "class": "na",
    "strong_cells": [],
@@ -510,6 +780,60 @@
    "lemmas": [
     "weselīngis",
     "wesselingi"
+   ]
+  },
+  {
+   "paradigm": "27comp",
+   "gender": "f",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "weselīngis"
+   ]
+  },
+  {
+   "paradigm": "27comp",
+   "gender": "m",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "weselīngis"
+   ]
+  },
+  {
+   "paradigm": "27comp",
+   "gender": "n",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "weselīngis"
+   ]
+  },
+  {
+   "paradigm": "27sup",
+   "gender": "f",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "weselīngis"
+   ]
+  },
+  {
+   "paradigm": "27sup",
+   "gender": "m",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "weselīngis"
+   ]
+  },
+  {
+   "paradigm": "27sup",
+   "gender": "n",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "weselīngis"
    ]
   },
   {
@@ -534,6 +858,33 @@
    "paradigm": "28",
    "gender": "n",
    "class": "bar",
+   "strong_cells": [],
+   "lemmas": [
+    "māldaisis"
+   ]
+  },
+  {
+   "paradigm": "28sup",
+   "gender": "f",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "māldaisis"
+   ]
+  },
+  {
+   "paradigm": "28sup",
+   "gender": "m",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "māldaisis"
+   ]
+  },
+  {
+   "paradigm": "28sup",
+   "gender": "n",
+   "class": "steig",
    "strong_cells": [],
    "lemmas": [
     "māldaisis"
@@ -561,6 +912,60 @@
    "paradigm": "29",
    "gender": "n",
    "class": "na",
+   "strong_cells": [],
+   "lemmas": [
+    "sēnts"
+   ]
+  },
+  {
+   "paradigm": "29comp",
+   "gender": "f",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "sēnts"
+   ]
+  },
+  {
+   "paradigm": "29comp",
+   "gender": "m",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "sēnts"
+   ]
+  },
+  {
+   "paradigm": "29comp",
+   "gender": "n",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "sēnts"
+   ]
+  },
+  {
+   "paradigm": "29sup",
+   "gender": "f",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "sēnts"
+   ]
+  },
+  {
+   "paradigm": "29sup",
+   "gender": "m",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "sēnts"
+   ]
+  },
+  {
+   "paradigm": "29sup",
+   "gender": "n",
+   "class": "steig",
    "strong_cells": [],
    "lemmas": [
     "sēnts"
@@ -618,6 +1023,114 @@
    "strong_cells": [],
    "lemmas": [
     "stāws"
+   ]
+  },
+  {
+   "paradigm": "30acomp",
+   "gender": "f",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "stāws"
+   ]
+  },
+  {
+   "paradigm": "30acomp",
+   "gender": "m",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "stāws"
+   ]
+  },
+  {
+   "paradigm": "30acomp",
+   "gender": "n",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "stāws"
+   ]
+  },
+  {
+   "paradigm": "30asup",
+   "gender": "f",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "stāws"
+   ]
+  },
+  {
+   "paradigm": "30asup",
+   "gender": "m",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "stāws"
+   ]
+  },
+  {
+   "paradigm": "30asup",
+   "gender": "n",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "stāws"
+   ]
+  },
+  {
+   "paradigm": "30comp",
+   "gender": "f",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "āngus"
+   ]
+  },
+  {
+   "paradigm": "30comp",
+   "gender": "m",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "āngus"
+   ]
+  },
+  {
+   "paradigm": "30comp",
+   "gender": "n",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "āngus"
+   ]
+  },
+  {
+   "paradigm": "30sup",
+   "gender": "f",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "āngus"
+   ]
+  },
+  {
+   "paradigm": "30sup",
+   "gender": "m",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "āngus"
+   ]
+  },
+  {
+   "paradigm": "30sup",
+   "gender": "n",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "āngus"
    ]
   },
   {
@@ -652,6 +1165,60 @@
     "Dat pl",
     "Nom pl"
    ],
+   "lemmas": [
+    "līgus"
+   ]
+  },
+  {
+   "paradigm": "31comp",
+   "gender": "f",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "līgus"
+   ]
+  },
+  {
+   "paradigm": "31comp",
+   "gender": "m",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "līgus"
+   ]
+  },
+  {
+   "paradigm": "31comp",
+   "gender": "n",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "līgus"
+   ]
+  },
+  {
+   "paradigm": "31sup",
+   "gender": "f",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "līgus"
+   ]
+  },
+  {
+   "paradigm": "31sup",
+   "gender": "m",
+   "class": "steig",
+   "strong_cells": [],
+   "lemmas": [
+    "līgus"
+   ]
+  },
+  {
+   "paradigm": "31sup",
+   "gender": "n",
+   "class": "steig",
+   "strong_cells": [],
    "lemmas": [
     "līgus"
    ]
@@ -1689,6 +2256,108 @@
    "class": "na"
   },
   {
+   "paradigm": "71",
+   "tense": "infinitive",
+   "lemma": "īmtun",
+   "class": "bar"
+  },
+  {
+   "paradigm": "71",
+   "tense": "optative",
+   "lemma": "īmtun",
+   "class": "bar"
+  },
+  {
+   "paradigm": "71",
+   "tense": "subjunctive",
+   "lemma": "īmtun",
+   "class": "bar"
+  },
+  {
+   "paradigm": "71",
+   "tense": "imperative",
+   "lemma": "īmtun",
+   "class": "na"
+  },
+  {
+   "paradigm": "71",
+   "tense": "present_ptcp",
+   "lemma": "īmtun",
+   "class": "mob",
+   "unbetonte_zellen": [
+    "Dat sg"
+   ]
+  },
+  {
+   "paradigm": "71",
+   "tense": "present_ptcp",
+   "lemma": "īmtun",
+   "class": "mob",
+   "unbetonte_zellen": [
+    "Dat pl",
+    "Nom sg"
+   ]
+  },
+  {
+   "paradigm": "71",
+   "tense": "present_ptcp",
+   "lemma": "īmtun",
+   "class": "mob",
+   "unbetonte_zellen": [
+    "Dat sg"
+   ]
+  },
+  {
+   "paradigm": "71",
+   "tense": "active_ptcp",
+   "lemma": "īmtun",
+   "class": "na"
+  },
+  {
+   "paradigm": "71",
+   "tense": "active_ptcp",
+   "lemma": "īmtun",
+   "class": "na"
+  },
+  {
+   "paradigm": "71",
+   "tense": "active_ptcp",
+   "lemma": "īmtun",
+   "class": "na"
+  },
+  {
+   "paradigm": "71",
+   "tense": "passive_ptcp",
+   "lemma": "īmtun",
+   "class": "mob",
+   "unbetonte_zellen": [
+    "Dat pl",
+    "Dat sg",
+    "Nom pl"
+   ]
+  },
+  {
+   "paradigm": "71",
+   "tense": "passive_ptcp",
+   "lemma": "īmtun",
+   "class": "mob",
+   "unbetonte_zellen": [
+    "Dat pl",
+    "Nom sg"
+   ]
+  },
+  {
+   "paradigm": "71",
+   "tense": "passive_ptcp",
+   "lemma": "īmtun",
+   "class": "mob",
+   "unbetonte_zellen": [
+    "Dat pl",
+    "Dat sg",
+    "Nom pl"
+   ]
+  },
+  {
    "paradigm": "72",
    "tense": "present",
    "lemma": "mestun",
@@ -2671,8 +3340,8 @@
   }
  ],
  "coverage": {
-  "zellen": 967,
-  "korrekt": 967,
+  "zellen": 1471,
+  "korrekt": 1471,
   "quote": 1.0
  }
 }
