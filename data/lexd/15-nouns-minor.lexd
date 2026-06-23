@@ -1,0 +1,468 @@
+# Kleine Nomen-Paradigmen (Sonderfälle/Konsonantstämme, <100 Wortlisten-
+# Lemmata) — handgeschriebene lexd-Tabellen (PATTERNS + Infl). Die Stämme
+# kommen generiert (build_lexd skip_infl-Override); die großen regelmäßigen
+# Paradigmen (P32/35/36/40/45/46/50/52 …) bleiben generiert.
+#
+# Bootstrapped aus data/gold/goldstandard.json (gender-gemergt); danach von
+# Hand kuratierbar. Paradigmen: P115, P118, P33, P34, P37, P37a, P38, P39, P40a, P40b, P40c, P41, P42, P43, P44, P47, P48, P49, P50a, P51, P51a, P53, P54, P55, P56, P57, P58, P59, P60, P61, P62, P63, P64, P65, P66, P67, P70.
+
+PATTERNS
+StemsN_P115_x[gFem] InflN_P115_x[gFem]
+StemsN_P115_x[gNeut] InflN_P115_x[gNeut]
+StemsN_P118_x[gFem] InflN_P118_x[gFem]
+StemsN_P118_x[gNeut] InflN_P118_x[gNeut]
+StemsN_P33_x[gMsc] InflN_P33_x[gMsc]
+StemsN_P34_x[gMsc] InflN_P34_x[gMsc]
+StemsN_P37_x[gNeut] InflN_P37_x[gNeut]
+StemsN_P37a_x[gNeut] InflN_P37a_x[gNeut]
+StemsN_P38_x[gMsc] InflN_P38_x[gMsc]
+StemsN_P39_x[gMsc] InflN_P39_x[gMsc]
+StemsN_P40a_x[gMsc] InflN_P40a_x[gMsc]
+StemsN_P40b_x[gMsc] InflN_P40b_x[gMsc]
+StemsN_P40c_x[gMsc] InflN_P40c_x[gMsc]
+StemsN_P41_x[gMsc] InflN_P41_x[gMsc]
+StemsN_P42_x[gMsc] InflN_P42_x[gMsc]
+StemsN_P43_x[gMsc] InflN_P43_x[gMsc]
+StemsN_P44_x[gNeut] InflN_P44_x[gNeut]
+StemsN_P47_x[gMsc] InflN_P47_x[gMsc]
+StemsN_P48_x[gFem] InflN_P48_x[gFem]
+StemsN_P49_x[gFem] InflN_P49_x[gFem]
+StemsN_P50a_x[gFem] InflN_P50a_x[gFem]
+StemsN_P51_x[gFem] InflN_P51_x[gFem]
+StemsN_P51a_x[gFem] InflN_P51a_x[gFem]
+StemsN_P53_x[gFem] InflN_P53_x[gFem]
+StemsN_P54_x[gMsc] InflN_P54_x[gMsc]
+StemsN_P55_x[gMsc] InflN_P55_x[gMsc]
+StemsN_P56_x[gMsc] InflN_P56_x[gMsc]
+StemsN_P57_x[gMsc] InflN_P57_x[gMsc]
+StemsN_P58_x[gFem] InflN_P58_x[gFem]
+StemsN_P59_x[gNeut] InflN_P59_x[gNeut]
+StemsN_P60_x[gFem] InflN_P60_x[gFem]
+StemsN_P61_x[gMsc] InflN_P61_x[gMsc]
+StemsN_P62_x[gMsc] InflN_P62_x[gMsc]
+StemsN_P63_x[gNeut] InflN_P63_x[gNeut]
+StemsN_P64_x[gMsc] InflN_P64_x[gMsc]
+StemsN_P65_x[gMsc] InflN_P65_x[gMsc]
+StemsN_P66_x[gFem] InflN_P66_x[gFem]
+StemsN_P67_x[gFem] InflN_P67_x[gFem]
+StemsN_P70_x[gFem] InflN_P70_x[gFem]
+StemsN_P70_x[gMsc] InflN_P70_x[gMsc]
+StemsN_P70_x[gNeut] InflN_P70_x[gNeut]
+StemsN_P115_x InflN_P115_x
+StemsN_P118_x InflN_P118_x
+
+LEXICON InflN_P115_x
+<Pl><Acc>:·būwusins[gFem]
+<Pl><Acc>:·būwus[gNeut]
+<Pl><Dat>:·būwusimans[gFem,gNeut]
+<Pl><Gen>:·būwusin[gFem,gNeut]
+<Pl><Nom>:·būwušas[gFem]
+<Pl><Nom>:·būwus[gNeut]
+<Sg><Acc>:·būwusin[gFem]
+<Sg><Acc>:·būwus[gNeut]
+<Sg><Dat>:·būwušai[gFem]
+<Sg><Dat>:·būwušasmu[gNeut]
+<Sg><Gen>:·būwušas[gFem,gNeut]
+<Sg><Nom>:·būwusi[gFem]
+<Sg><Nom>:·būwus[gNeut]
+
+LEXICON InflN_P118_x
+<Pl><Acc>:·dāwusins[gFem]
+<Pl><Acc>:·dāwus[gNeut]
+<Pl><Dat>:·dāwusimans[gFem,gNeut]
+<Pl><Gen>:·dāwusin[gFem,gNeut]
+<Pl><Nom>:·dāwušas[gFem]
+<Pl><Nom>:·dāwus[gNeut]
+<Sg><Acc>:·dāwusin[gFem]
+<Sg><Acc>:·dāwus[gNeut]
+<Sg><Dat>:·dāwušai[gFem]
+<Sg><Dat>:·dāwušasmu[gNeut]
+<Sg><Gen>:·dāwušas[gFem,gNeut]
+<Sg><Nom>:·dāwusi[gFem]
+<Sg><Nom>:·dāwus[gNeut]
+
+LEXICON InflN_P33_x
+<Pl><Acc>:·āuwans[gMsc]
+<Pl><Dat>:·āumans[gMsc]
+<Pl><Gen>:·āuwan[gMsc]
+<Pl><Nom>:·āuwai[gMsc]
+<Sg><Acc>:·āuwan[gMsc]
+<Sg><Dat>:·āuwu[gMsc]
+<Sg><Gen>:·āuwas[gMsc]
+<Sg><Nom>:·aws[gMsc]
+
+LEXICON InflN_P34_x
+<Pl><Acc>:·nans[gMsc]
+<Pl><Dat>:·namans[gMsc]
+<Pl><Gen>:·nan[gMsc]
+<Pl><Nom>:·nai[gMsc]
+<Sg><Acc>:·nan[gMsc]
+<Sg><Dat>:·nu[gMsc]
+<Sg><Gen>:·nas[gMsc]
+<Sg><Nom>:·ans[gMsc]
+
+LEXICON InflN_P37_x
+<Pl><Acc>:·nins[gNeut]
+<Pl><Dat>:·emmans[gNeut]
+<Pl><Gen>:·nin[gNeut]
+<Pl><Nom>:·ēi[gNeut]
+<Sg><Acc>:·nin[gNeut]
+<Sg><Dat>:Jņu[gNeut]
+<Sg><Gen>:·nes[gNeut]
+<Sg><Nom>:·nin[gNeut]
+
+LEXICON InflN_P37a_x
+<Pl><Acc>:·ins[gNeut]
+<Pl><Dat>:Jammans[gNeut]
+<Pl><Gen>:·in[gNeut]
+<Pl><Nom>:Jāi[gNeut]
+<Sg><Acc>:·in[gNeut]
+<Sg><Dat>:Ju[gNeut]
+<Sg><Gen>:Jas[gNeut]
+<Sg><Nom>:·in[gNeut]
+
+LEXICON InflN_P38_x
+<Pl><Acc>:ījans[gMsc]
+<Pl><Dat>:·īmans[gMsc]
+<Pl><Gen>:ījan[gMsc]
+<Pl><Nom>:ījai[gMsc]
+<Sg><Acc>:ījan[gMsc]
+<Sg><Dat>:īju[gMsc]
+<Sg><Gen>:ījas[gMsc]
+<Sg><Nom>:īs[gMsc]
+
+LEXICON InflN_P39_x
+<Pl><Acc>:ijjans[gMsc]
+<Pl><Dat>:kijmans[gMsc]
+<Pl><Gen>:ijjan[gMsc]
+<Pl><Nom>:ijjai[gMsc]
+<Sg><Acc>:ijjan[gMsc]
+<Sg><Dat>:ijju[gMsc]
+<Sg><Gen>:ijjas[gMsc]
+<Sg><Nom>:īs[gMsc]
+
+LEXICON InflN_P40a_x
+<Pl><Acc>:·ins[gMsc]
+<Pl><Dat>:Jamans[gMsc]
+<Pl><Gen>:·in[gMsc]
+<Pl><Nom>:Jai[gMsc]
+<Sg><Acc>:·in[gMsc]
+<Sg><Dat>:Ju[gMsc]
+<Sg><Gen>:Jas[gMsc]
+<Sg><Nom>:is[gMsc]
+
+LEXICON InflN_P40b_x
+<Pl><Acc>:·ins[gMsc]
+<Pl><Dat>:jamans[gMsc]
+<Pl><Gen>:·in[gMsc]
+<Pl><Nom>:jai[gMsc]
+<Sg><Acc>:·in[gMsc]
+<Sg><Dat>:ju[gMsc]
+<Sg><Gen>:jas[gMsc]
+<Sg><Nom>:is[gMsc]
+
+LEXICON InflN_P40c_x
+<Pl><Acc>:·ins[gMsc]
+<Pl><Dat>:·amans[gMsc]
+<Pl><Gen>:·in[gMsc]
+<Pl><Nom>:·ai[gMsc]
+<Sg><Acc>:·in[gMsc]
+<Sg><Dat>:·u[gMsc]
+<Sg><Gen>:·as[gMsc]
+<Sg><Nom>:is[gMsc]
+
+LEXICON InflN_P41_x
+<Pl><Acc>:·ins[gMsc]
+<Pl><Dat>:S·emmans[gMsc]
+<Pl><Gen>:·in[gMsc]
+<Pl><Nom>:S·ēi[gMsc]
+<Sg><Acc>:·in[gMsc]
+<Sg><Dat>:Ju[gMsc]
+<Sg><Gen>:·es[gMsc]
+<Sg><Nom>:is[gMsc]
+
+LEXICON InflN_P42_x
+<Pl><Acc>:·luns[gMsc]
+<Pl><Dat>:·lumans[gMsc]
+<Pl><Gen>:·lun[gMsc]
+<Pl><Nom>:·lus[gMsc]
+<Sg><Acc>:·lun[gMsc]
+<Sg><Dat>:·lu[gMsc]
+<Sg><Gen>:·lus[gMsc]
+<Sg><Nom>:s[gMsc]
+
+LEXICON InflN_P43_x
+<Pl><Acc>:·uns[gMsc]
+<Pl><Dat>:S·ummans[gMsc]
+<Pl><Gen>:·un[gMsc]
+<Pl><Nom>:·us[gMsc]
+<Sg><Acc>:·un[gMsc]
+<Sg><Dat>:·u[gMsc]
+<Sg><Gen>:·us[gMsc]
+<Sg><Nom>:s[gMsc]
+
+LEXICON InflN_P44_x
+<Pl><Acc>:·u[gNeut]
+<Pl><Dat>:·u[gNeut]
+<Pl><Gen>:·us[gNeut]
+<Pl><Nom>:·u[gNeut]
+<Sg><Acc>:·u[gNeut]
+<Sg><Dat>:·u[gNeut]
+<Sg><Gen>:·us[gNeut]
+<Sg><Nom>:·u[gNeut]
+
+LEXICON InflN_P47_x
+<Pl><Acc>:·ans[gMsc]
+<Pl><Dat>:·amans[gMsc]
+<Pl><Gen>:·an[gMsc]
+<Pl><Nom>:·as[gMsc]
+<Sg><Acc>:·an[gMsc]
+<Sg><Dat>:·ai[gMsc]
+<Sg><Gen>:·as[gMsc]
+<Sg><Nom>:a[gMsc]
+
+LEXICON InflN_P48_x
+<Pl><Acc>:·ans[gFem]
+<Pl><Dat>:·āmans[gFem]
+<Pl><Gen>:·an[gFem]
+<Pl><Nom>:·as[gFem]
+<Sg><Acc>:·an[gFem]
+<Sg><Dat>:·ai[gFem]
+<Sg><Gen>:·as[gFem]
+<Sg><Nom>:ā[gFem]
+
+LEXICON InflN_P49_x
+<Pl><Acc>:·wans[gFem]
+<Pl><Dat>:·wamans[gFem]
+<Pl><Gen>:·wan[gFem]
+<Pl><Nom>:·was[gFem]
+<Sg><Acc>:·wan[gFem]
+<Sg><Dat>:·wai[gFem]
+<Sg><Gen>:·was[gFem]
+<Sg><Nom>:·u[gFem]
+
+LEXICON InflN_P50a_x
+<Pl><Acc>:·ins[gFem]
+<Pl><Dat>:Jamans[gFem]
+<Pl><Gen>:·in[gFem]
+<Pl><Nom>:Jas[gFem]
+<Sg><Acc>:·in[gFem]
+<Sg><Dat>:Jai[gFem]
+<Sg><Gen>:Jas[gFem]
+<Sg><Nom>:i[gFem]
+
+LEXICON InflN_P51_x
+<Pl><Acc>:·ins[gFem]
+<Pl><Dat>:JSāmans[gFem]
+<Pl><Gen>:·in[gFem]
+<Pl><Nom>:·es[gFem]
+<Sg><Acc>:·in[gFem]
+<Sg><Dat>:·ei[gFem]
+<Sg><Gen>:·es[gFem]
+<Sg><Nom>:Sī[gFem]
+
+LEXICON InflN_P51a_x
+<Pl><Acc>:·ins[gFem]
+<Pl><Dat>:JSāmans[gFem]
+<Pl><Gen>:·in[gFem]
+<Pl><Nom>:Jas[gFem]
+<Sg><Acc>:·in[gFem]
+<Sg><Dat>:Jai[gFem]
+<Sg><Gen>:Jas[gFem]
+<Sg><Nom>:Sī[gFem]
+
+LEXICON InflN_P53_x
+<Pl><Acc>:·mins[gFem]
+<Pl><Dat>:·īmans[gFem]
+<Pl><Gen>:·min[gFem]
+<Pl><Nom>:·mis[gFem]
+<Sg><Acc>:·min[gFem]
+<Sg><Dat>:·mei[gFem]
+<Sg><Gen>:·mis[gFem]
+<Sg><Nom>:ē[gFem]
+
+LEXICON InflN_P54_x
+<Pl><Acc>:·ins[gMsc]
+<Pl><Dat>:·emans[gMsc]
+<Pl><Gen>:·in[gMsc]
+<Pl><Nom>:·ei[gMsc]
+<Sg><Acc>:·in[gMsc]
+<Sg><Dat>:·ei[gMsc]
+<Sg><Gen>:·es[gMsc]
+<Sg><Nom>:is[gMsc]
+
+LEXICON InflN_P55_x
+<Pl><Acc>:·ens[gMsc]
+<Pl><Dat>:·emans[gMsc]
+<Pl><Gen>:·en[gMsc]
+<Pl><Nom>:·es[gMsc]
+<Sg><Acc>:·en[gMsc]
+<Sg><Dat>:·ei[gMsc]
+<Sg><Gen>:·es[gMsc]
+<Sg><Nom>:e[gMsc]
+
+LEXICON InflN_P56_x
+<Pl><Acc>:·ins[gMsc]
+<Pl><Dat>:·imans[gMsc]
+<Pl><Gen>:·in[gMsc]
+<Pl><Nom>:·ei[gMsc]
+<Sg><Acc>:·in[gMsc]
+<Sg><Dat>:i[gMsc]
+<Sg><Gen>:is[gMsc]
+<Sg><Nom>:s[gMsc]
+
+LEXICON InflN_P57_x
+<Pl><Acc>:·ins[gMsc]
+<Pl><Dat>:S·immans[gMsc]
+<Pl><Gen>:·in[gMsc]
+<Pl><Nom>:·ei[gMsc]
+<Sg><Acc>:·in[gMsc]
+<Sg><Dat>:i[gMsc]
+<Sg><Gen>:is[gMsc]
+<Sg><Nom>:s[gMsc]
+
+LEXICON InflN_P58_x
+<Pl><Acc>:·ins[gFem]
+<Pl><Dat>:·imans[gFem]
+<Pl><Gen>:·in[gFem]
+<Pl><Nom>:is[gFem]
+<Sg><Acc>:·in[gFem]
+<Sg><Dat>:·ei[gFem]
+<Sg><Gen>:is[gFem]
+<Sg><Nom>:s[gFem]
+
+LEXICON InflN_P59_x
+<Pl><Acc>:i[gNeut]
+<Pl><Dat>:i[gNeut]
+<Pl><Gen>:is[gNeut]
+<Pl><Nom>:i[gNeut]
+<Sg><Acc>:i[gNeut]
+<Sg><Dat>:i[gNeut]
+<Sg><Gen>:is[gNeut]
+<Sg><Nom>:i[gNeut]
+
+LEXICON InflN_P60_x
+<Pl><Acc>:·kins[gFem]
+<Pl><Dat>:·immans[gFem]
+<Pl><Gen>:·kin[gFem]
+<Pl><Nom>:·kis[gFem]
+<Sg><Acc>:·kin[gFem]
+<Sg><Dat>:·kei[gFem]
+<Sg><Gen>:·kis[gFem]
+<Sg><Nom>:s[gFem]
+
+LEXICON InflN_P61_x
+<Pl><Acc>:·ins[gMsc]
+<Pl><Dat>:·imans[gMsc]
+<Pl><Gen>:·in[gMsc]
+<Pl><Nom>:·ei[gMsc]
+<Sg><Acc>:·in[gMsc]
+<Sg><Dat>:i[gMsc]
+<Sg><Gen>:·es[gMsc]
+<Sg><Nom>:s[gMsc]
+
+LEXICON InflN_P62_x
+<Pl><Acc>:·nins[gMsc]
+<Pl><Dat>:·nimans[gMsc]
+<Pl><Gen>:·nin[gMsc]
+<Pl><Nom>:·nei[gMsc]
+<Sg><Acc>:·nin[gMsc]
+<Sg><Dat>:·ni[gMsc]
+<Sg><Gen>:·nes[gMsc]
+<Sg><Nom>:·mens[gMsc]
+
+LEXICON InflN_P63_x
+<Pl><Acc>:·ins[gNeut]
+<Pl><Dat>:S·immans[gNeut]
+<Pl><Gen>:·in[gNeut]
+<Pl><Nom>:S·ēi[gNeut]
+<Sg><Acc>:[gNeut]
+<Sg><Dat>:i[gNeut]
+<Sg><Gen>:·es[gNeut]
+<Sg><Nom>:[gNeut]
+
+LEXICON InflN_P64_x
+<Pl><Acc>:·ūnins[gMsc]
+<Pl><Dat>:·ūnimans[gMsc]
+<Pl><Gen>:·ūnin[gMsc]
+<Pl><Nom>:·ūnei[gMsc]
+<Sg><Acc>:·ūnin[gMsc]
+<Sg><Dat>:·ūni[gMsc]
+<Sg><Gen>:·ūnes[gMsc]
+<Sg><Nom>:·ūi[gMsc]
+
+LEXICON InflN_P65_x
+<Pl><Acc>:·ins[gMsc]
+<Pl><Dat>:·rimans[gMsc]
+<Pl><Gen>:·in[gMsc]
+<Pl><Nom>:·ei[gMsc]
+<Sg><Acc>:·in[gMsc]
+<Sg><Dat>:·ri[gMsc]
+<Sg><Gen>:is[gMsc]
+<Sg><Nom>:i[gMsc]
+
+LEXICON InflN_P66_x
+<Pl><Acc>:·ins[gFem]
+<Pl><Dat>:·erimans[gFem]
+<Pl><Gen>:·in[gFem]
+<Pl><Nom>:is[gFem]
+<Sg><Acc>:·in[gFem]
+<Sg><Dat>:·erei[gFem]
+<Sg><Gen>:is[gFem]
+<Sg><Nom>:i[gFem]
+
+LEXICON InflN_P67_x
+<Pl><Acc>:·ins[gFem]
+<Pl><Dat>:·erimmans[gFem]
+<Pl><Gen>:·in[gFem]
+<Pl><Nom>:is[gFem]
+<Sg><Acc>:·in[gFem]
+<Sg><Dat>:·erei[gFem]
+<Sg><Gen>:is[gFem]
+<Sg><Nom>:i[gFem]
+
+LEXICON InflN_P70_x
+<Pl><Acc>:·ins[gFem]
+<Pl><Acc>:·ans[gMsc]
+<Pl><Acc>:·ans[gNeut]
+<Pl><Dat>:Sjāmans[gFem]
+<Pl><Dat>:S·ēimans[gMsc]
+<Pl><Dat>:S·ēimans[gNeut]
+<Pl><Gen>:·in[gFem]
+<Pl><Gen>:S·ēisan[gMsc]
+<Pl><Gen>:S·ēisan[gNeut]
+<Pl><Nom>:·es[gFem]
+<Pl><Nom>:S·āi[gMsc]
+<Pl><Nom>:S·āi[gNeut]
+<Sg><Acc>:·in[gFem]
+<Sg><Acc>:·an[gMsc]
+<Sg><Acc>:·an[gNeut]
+<Sg><Dat>:·ei[gFem]
+<Sg><Dat>:·smu[gMsc]
+<Sg><Dat>:·smu[gNeut]
+<Sg><Gen>:·es[gFem]
+<Sg><Gen>:·se[gMsc]
+<Sg><Gen>:·se[gNeut]
+<Sg><Nom>:Sī[gFem]
+<Sg><Nom>:s[gMsc]
+<Sg><Nom>:·an[gNeut]
+
+LEXICON InflN_P115_x
+<Pl><Acc>:m
+<Pl><Dat>:·ac
+<Pl><Gen>:pt
+<Pl><Nom>:pc
+<Sg><Acc>:m
+<Sg><Dat>:·ac
+<Sg><Gen>:pt
+<Sg><Nom>:pc
+
+LEXICON InflN_P118_x
+<Pl><Acc>:m\:
+<Pl><Dat>:·ac
+<Pl><Gen>:pt
+<Pl><Nom>:pc
+<Sg><Acc>:m\:
+<Sg><Dat>:·ac
+<Sg><Gen>:pt
+<Sg><Nom>:pc

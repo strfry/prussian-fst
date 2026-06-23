@@ -51,7 +51,7 @@ Unterseite und identischer Regelschicht:
   | Teil | Quelle |
   |------|--------|
   | geschlossene Klassen — Pronomen, Suppletive, Numeralia, Funktionswörter, Adverbien | **handgeschrieben** in `data/lexd/{30-pronouns,35-suppletives,70-numerals,50-function-words,60-adverbs}.lexd` (literale Vollformen) |
-  | kuratierte Paradigmentabellen (PATTERNS + Infl) | **handgeschrieben** in `data/lexd/{10-nouns,20-adjectives,40-verbs,41-participles}.lexd` |
+  | kuratierte Paradigmentabellen (PATTERNS + Infl) | **handgeschrieben** in `data/lexd/{10-nouns,15-nouns-minor,20-adjectives,22-adjectives-minor,40-verbs,41-participles}.lexd` |
   | übrige Paradigmentabellen (PATTERNS + Infl) | **lean generiert** (gender-gemergt) für alle Paradigmen, die *nicht* handgeschrieben sind |
   | große Wortliste (Lemma → Stamm + Paradigma) | **automatisch generiert** (Stem-Lexika) |
 
