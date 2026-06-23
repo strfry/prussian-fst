@@ -4,12 +4,13 @@
 
 - **TABVLA NOVA** — Palmaitis, M. L. / Klusis, M.: normalisierte
   Paradigmentafeln des rekonstruierten (Neu-)Preußischen.
-  Lokal: `data/sources/tabula.html` (handkorrigiert, siehe
-  [PROVENANCE.md](PROVENANCE.md)), Grammatiktafeln `data/sources/gramm.htm`.
+  `data/external/tabula.html` (handkorrigiert; gepflegt in prussian-corpus,
+  siehe [PROVENANCE.md](PROVENANCE.md)).
 - **Prusaspira** — <http://prusaspira.org/wirdeins> (Flexionsgenerator).
-  Abzüge unter `prusaspira/` (gitignored, via `prussian.fetch`).
+  Gescrapt/geparst in [prussian-corpus](https://github.com/strfry/prussian-corpus);
+  Einträge in `data/external/prusaspira_entries.json`.
 - **Twanksta** — <https://wirdeins.twanksta.org> (Wörterbuch + Formen,
-  Dialekt Semba). Abzüge unter `twanksta/`; geparste Einträge in
+  Dialekt Semba). Gescrapt/geparst in prussian-corpus; geparste Einträge in
   `data/external/twanksta_entries.json`.
 
 Quellenverlässlichkeit und Abwägungen: [PROVENANCE.md](PROVENANCE.md),

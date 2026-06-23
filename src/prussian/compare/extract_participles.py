@@ -14,22 +14,15 @@ Usage:
 import argparse
 import json
 import re
-import time
-import urllib.parse
-import urllib.request
 from pathlib import Path
 
 from bs4 import BeautifulSoup
 
+# Raw per-lemma abzüge, sourced from the prussian-corpus release (legacy layout).
 PRUSASPIRA_DIR = Path("prusaspira")
 TWANKSTA_DIR = Path("twanksta")
 VERB_PARADIGMS = Path("data/gold/verb_paradigms.json")
 WORDLIST = Path("data/external/twanksta_entries.json")
-
-PRUSASPIRA_BASE = "https://www.prusaspira.org/wirdeins"
-TWANKSTA_SEARCH = "https://wirdeins.twanksta.org/search/"
-TWANKSTA_FORMS = "https://wirdeins.twanksta.org/more/"
-UA = "Mozilla/5.0"
 
 
 # ── helpers ──────────────────────────────────────────────────────────────
@@ -38,29 +31,6 @@ def strip_diacritics(word):
     import unicodedata
     return "".join(c for c in unicodedata.normalize("NFKD", word)
                    if not unicodedata.combining(c))
-
-
-def alternate_inf(word):
-    if word.endswith("tun"):
-        return word[:-3] + "twei"
-    if word.endswith("twei"):
-        return word[:-4] + "tun"
-    return None
-
-
-def get(url):
-    req = urllib.request.Request(url, headers={"User-Agent": UA})
-    return urllib.request.urlopen(req, timeout=30).read().decode("utf-8", "replace")
-
-
-def post(url, data):
-    body = urllib.parse.urlencode(data).encode()
-    req = urllib.request.Request(url, data=body, headers={
-        "User-Agent": UA,
-        "Content-Type": "application/x-www-form-urlencoded",
-        "X-Requested-With": "XMLHttpRequest",
-    })
-    return urllib.request.urlopen(req, timeout=30).read().decode("utf-8", "replace")
 
 
 # ── Prusaspira parser ───────────────────────────────────────────────────
@@ -275,73 +245,9 @@ def _parse_declension_tables(body_elem):
     return out if out else None
 
 
-# ── Missing data fetch ──────────────────────────────────────────────────
-
-def fetch_paradigm(num, lemma):
-    """Fetch missing raw data for a paradigm.  Returns (prus_ok, twank_ok)."""
-    prus_ok = _fetch_prusaspira(num, lemma)
-    time.sleep(1.2)
-    twank_ok = _fetch_twanksta(num, lemma)
-    return prus_ok, twank_ok
-
-
-def _fetch_prusaspira(num, lemma):
-    html_file = PRUSASPIRA_DIR / f"{num}_{lemma}.html"
-    if html_file.exists() and 'prūsiskai' in html_file.read_text():
-        return True
-    # Try lemma first, then alternate infinitive
-    candidates = [lemma]
-    alt = alternate_inf(lemma)
-    if alt:
-        candidates.append(alt)
-    for cand in candidates:
-        url = f"{PRUSASPIRA_BASE}?{urllib.parse.urlencode({'wirds': cand, 'akc': 'Iz', 'bila': '1'})}"
-        try:
-            raw = get(url)
-            if 'prūsiskai' in raw and 'boldtable' in raw:
-                PRUSASPIRA_DIR.mkdir(exist_ok=True)
-                html_file.write_text(raw, encoding="utf-8")
-                return True
-        except Exception:
-            pass
-        time.sleep(1.2)
-    return False
-
-
-def _fetch_twanksta(num, lemma):
-    tw_dir = TWANKSTA_DIR / f"{num}_{lemma}"
-    forms_file = tw_dir / "forms.html"
-    if forms_file.exists():
-        return True
-
-    # 1) Search
-    search_url = f"{TWANKSTA_SEARCH}?dia=semba&s={urllib.parse.quote(lemma)}&language=engl"
-    try:
-        search_raw = get(search_url)
-    except Exception:
-        return False
-    time.sleep(1.2)
-
-    # Extract desc and numb
-    m_desc = re.search(r"<span class='desc'>([^<]+)</span>", search_raw)
-    desc = m_desc.group(1) if m_desc else f"[{lemma}]"
-    m_numb = re.search(r"<span class='numb'>([^<]+)</span>", search_raw)
-    numb = m_numb.group(1) if m_numb else num
-
-    # 2) POST forms
-    try:
-        forms_raw = post(TWANKSTA_FORMS, {
-            "word": lemma, "numb": numb, "desc": desc, "dia": "semba",
-        })
-    except Exception:
-        return False
-
-    tw_dir.mkdir(parents=True, exist_ok=True)
-    forms_file.write_text(forms_raw, encoding="utf-8")
-    # Save search.html too
-    search_file = tw_dir / "search.html"
-    search_file.write_text(search_raw, encoding="utf-8")
-    return True
+# NOTE: Live fetching was removed — scraping/collecting now lives in
+# prussian-corpus. This tool reads pre-fetched raw abzüge (obtained from the
+# corpus release) under prusaspira/ and twanksta/.
 
 
 # ── Main ─────────────────────────────────────────────────────────────────
@@ -349,8 +255,13 @@ def _fetch_twanksta(num, lemma):
 def main():
     ap = argparse.ArgumentParser(description="Extract participle forms from raw API data")
     ap.add_argument("--paradigm", "-p", type=str, help="Only process this paradigm number")
-    ap.add_argument("--fetch", "-f", action="store_true", help="Fetch missing raw data first")
+    ap.add_argument("--fetch", "-f", action="store_true",
+                    help="(removed) raw data is collected in prussian-corpus")
     args = ap.parse_args()
+
+    if args.fetch:
+        ap.error("--fetch was removed: collect raw data via prussian-corpus and "
+                 "place the per-lemma abzüge under prusaspira/ and twanksta/.")
 
     vp = json.loads(VERB_PARADIGMS.read_text(encoding="utf-8"))
     paradigms = vp["paradigms"]
@@ -370,12 +281,9 @@ def main():
         lemma = entry["lemma"]
         print(f"[P{num}] {lemma} ", end="")
 
-        # ── Fetch if needed ──
-        if args.fetch:
-            pok, tok = fetch_paradigm(num, lemma)
-        else:
-            pok = (PRUSASPIRA_DIR / f"{num}_{lemma}.html").exists()
-            tok = (TWANKSTA_DIR / f"{num}_{lemma}" / "forms.html").exists()
+        # ── Read pre-fetched raw abzüge (collected in prussian-corpus) ──
+        pok = (PRUSASPIRA_DIR / f"{num}_{lemma}.html").exists()
+        tok = (TWANKSTA_DIR / f"{num}_{lemma}" / "forms.html").exists()
 
         # ── Parse Prusaspira ──
         prus_data = None

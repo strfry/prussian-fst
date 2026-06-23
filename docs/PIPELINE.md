@@ -20,7 +20,7 @@ Reihenfolge der Erzeugung. Schneller Build via PyPy (s. Memory): `PYTHONPATH=src
 pypy3 -m <modul>`.
 
 ```
-                data/sources/tabula.html, gramm.htm   (handgepflegte Quellen)
+                data/external/tabula.html   (aus prussian-corpus)
                             │
    ┌────────────────────────┼─────────────────────────┐
    ▼                        ▼                          ▼
@@ -58,10 +58,13 @@ Kein Duplikat, sondern zwei Stufen:
 Diese Module haben `if __name__ == "__main__"` und werden bei Bedarf direkt
 aufgerufen; sie sind **nicht** in den Build importiert.
 
+> Das frühere `fetch/`-Paket (Crawlen von prusaspira.org / Twanksta) wurde
+> entfernt; Quellbeschaffung **und Parsing** liegen jetzt in
+> [prussian-corpus](https://github.com/strfry/prussian-corpus). Die Artefakte
+> kommen über `data/external/`.
+
 | Modul(e) | Zweck |
 |---|---|
-| `fetch/fetch_prusaspira.py`, `fetch/fetch_verb_data.py` | Rohdaten von prusaspira.org / Twanksta crawlen (rate-limited) |
-| `fetch/lookup_prusaspira.py`, `lookup_prusaspira_fuzzy.py` | Manueller Lemma-Lookup in `twanksta_entries.json`. **Wird nirgends importiert** — reine Hilfs-CLIs; Kandidat zum Entfernen, falls nicht mehr gebraucht. |
 | `compare/compare_sources.py`, `compare_verbs.py`, `compare_paradigms.py` | Quellen-Vergleich → `data/derived/vergleich*.json/html` (Validierung, **kein** Build-Input) |
 | `compare/extract_paradigms.py`, `extract_participles.py`, `parse_verbs.py` | Extraktion/Parsing aus Quellen-HTML (Analyse-Werkzeuge) |
 | `report/dashboard.py`, `corpus_coverage.py`, `dict_coverage.py`, … | Metriken/Reports → `data/derived/` und Dashboard |

@@ -14,10 +14,21 @@ Finite-State-Transducer-Analyse (experimentell, PyFoma).
 
 ## Datenquellen
 
-### 1. Tabula Nova (tabula.html)
+> **Quellbeschaffung zentralisiert:** Das Scrapen/Sammeln **und Parsen** der
+> drei Quellen findet ausschließlich in
+> **[strfry/prussian-corpus](https://github.com/strfry/prussian-corpus)** statt.
+> Dieses Repo fetcht nicht mehr selbst; die benötigten Artefakte
+> (`tabula.html`, `prusaspira_entries.json`, `twanksta_entries.json`) werden aus
+> dessen Release unter `data/external/` abgelegt. Die folgenden Abschnitte
+> beschreiben Herkunft und Format dieser Artefakte.
+
+### 1. Tabula Nova (data/external/tabula.html)
 
 **URL:** [http://donelaitis.vdu.lt/prussian/tabula.htm](http://donelaitis.vdu.lt/prussian/tabula.htm)
-(Spiegel von `prusaspira.org/tabula.html`, derzeit erreichbar).
+(Spiegel von `prusaspira.org/tabula.html`, derzeit erreichbar). Das kaputte
+Roh-HTML wurde halb-manuell zu `tabula.html` korrigiert; diese korrigierte Datei
+wird in prussian-corpus (`data/sources/tabula.html`) gepflegt und von dort
+bezogen.
 
 Eine manuell gepflegte HTML-Referenztabelle aller altpreußischen
 Flexionsparadigmen (Nr. 1–144). Jedes `<p>`-Element enthält Nummer,
@@ -34,10 +45,11 @@ Schrägstrich-Genusangaben (z.B. `m/f` → `m` + `f`).
 **URL:** `https://www.prusaspira.org/wirdeins?akc=Iz&tap=W&bila=1&wirds=<lemma>`
 
 Ein Online-Wörterbuch, das zu jedem Lemma eine vollständige
-Flexionstabelle anzeigt. Die Daten werden von `fetch_prusaspira.py`
-abgerufen (1 req/s, `bila=1` für englische Oberfläche) und als
-`prusaspira/{num}_{lemma}.html` (rohes HTML) sowie
-`prusaspira/{num}_{lemma}.txt` (Nur-Text-Extrakt) gespeichert.
+Flexionstabelle anzeigt. Diese Daten werden von prussian-corpus gescrapt und
+geparst und stehen als `data/external/prusaspira_entries.json` zur Verfügung.
+Die legacy per-Lemma-Caches (`prusaspira/{num}_{lemma}.{html,txt}`), die einige
+historische `compare/`-Skripte noch erwarten, lassen sich aus diesem Artefakt
+bzw. dem corpus-Release ableiten.
 
 Das `.txt`-Format hat eine `prūsiskai:`-Zeile mit Lemma,
 Bedeutung, Wortart, Referenzbeleg und einer darauffolgenden
@@ -50,9 +62,9 @@ die vier Kasuszeilen (Nōm, Gēn, Dāt, Akk), wobei die n-Formen
 **URL:** `https://wirdeins.twanksta.org/search/?dia=semba&s=<lemma>&language=engl`
 
 Ein API-gestütztes Wörterbuch, das zu jedem Lemma die
-Wörterbuch- und Flexionsdaten aus `twanksta_entries.json`
-referenziert. Die Daten werden über `twanksta_api_check.py` validiert
-und in `twanksta/{num}_{lemma}/lemma.json` abgelegt.
+Wörterbuch- und Flexionsdaten liefert. Die Daten werden von prussian-corpus
+gescrapt und geparst und stehen als `data/external/twanksta_entries.json` zur
+Verfügung.
 
 Das `lemma.json`-Format enthält entweder direkt ein Array von
 Einträgen (bei exakten Treffern) oder ein Objekt mit `query/match/score/`
@@ -65,16 +77,10 @@ Dictionary-Treffer, 4 wurden per API ergänzt, 1 per Fuzzy-Suche,
 ## Datenfluss
 
 ```
-tabula.html               prusaspira.org            wirdeins.twanksta.org
-    │                           │                           │
-    │                           ▼                           ▼
-    │                   fetch_prusaspira.py         twanksta_api_check.py
-    │                           │                   lookup_prusaspira.py
-    │                           │                   lookup_prusaspira_fuzzy.py
-    │                           ▼                           │
-    │                   prusaspira/{n}_{l}.txt      twanksta/{n}_{l}/lemma.json
-    │                           │                           │
-    └───────────┬───────────────┴───────────────────────────┘
+        prussian-corpus  (Scrape + Parse: tabula / prusaspira / twanksta)
+                │  Release-Artefakte
+                ▼
+   data/external/{tabula.html, prusaspira_entries.json, twanksta_entries.json}
                 │
                 ▼
    src/prussian/compare/compare_sources.py
@@ -243,11 +249,12 @@ Bei echten 3-Wege-Konflikten, die das Votum nicht auflöst, werden Entscheidunge
 
 ## Module (`src/prussian/`)
 
+> Das frühere `fetch/`-Paket (Scrapen von prusaspira.org/twanksta.org) wurde
+> entfernt — Quellbeschaffung und Parsing liegen jetzt vollständig in
+> **prussian-corpus**; die Artefakte kommen über `data/external/`.
+
 | Modul | Aufgabe |
 |--------|---------|
-| `fetch/fetch_prusaspira.py` | Lädt Flexionstabellen von prusaspira.org |
-| `fetch/fetch_verb_data.py` | Lädt Verbformen (beide Quellen) |
-| `fetch/lookup_prusaspira*.py` | Lemma-Lookup in `twanksta_entries.json` (+ Fuzzy) |
 | `compare/compare_paradigms.py` | Vergleich tabula vs. prusaspira |
 | `compare/compare_sources.py` | 3-Wege-Vergleich → `data/derived/vergleich.{html,json}` |
 | `compare/compare_verbs.py` | dito für Verben |
@@ -342,17 +349,26 @@ dazu 872/872 Verbzellen (`tests/`).
 
 ## Setup / externe Daten
 
-Aus Platzgruenden **nicht** im Repo (per `.gitignore`); separat beziehen und
-unter `data/external/` ablegen:
+Aus Platzgruenden **nicht** im Repo (per `.gitignore`); aus dem
+**[prussian-corpus](https://github.com/strfry/prussian-corpus)**-Release beziehen
+und unter `data/external/` ablegen:
 
 | Datei | Quelle / Zweck |
 |-------|----------------|
 | `data/external/twanksta_entries.json` (24 MB) | Twanksta-Einträge mit Stichwortliste, Übersetzungen (6 Sprachen), Deklinationstabellen. |
 | `data/external/prusaspira_entries.json` (17 MB) | Prusaspira-Einträge mit Stichwortliste, Übersetzungen, Deklinationstabellen. |
+| `data/external/tabula.html` | Paradigmentafel 1–144 (halb-manuell korrigiert), in prussian-corpus gepflegt. |
+
+```bash
+gh release download --repo strfry/prussian-corpus --pattern "prussian_corpus_*.tar.zst"
+mkdir -p data/external && tar --zstd -xf prussian_corpus_*.tar.zst -C /tmp
+cp /tmp/parsed/{twanksta_entries.json,prusaspira_entries.json} data/external/
+cp /tmp/data/sources/tabula.html data/external/tabula.html
+```
 
 Ebenfalls ignoriert (regenerierbar bzw. read-only Referenz):
-- `prusaspira/`, `twanksta/`, `corpus/` — gefetchte Korpora (1 req/s, via
-  `prussian.fetch` neu erzeugbar).
+- `prusaspira/`, `twanksta/`, `corpus/` — legacy per-Lemma-Caches; Sammeln liegt
+  jetzt in prussian-corpus.
 - `build/` — vollstaendig aus `data/gold/` + `data/external/` generiert.
 - `lang-lit/`, `lang-lav/`, `lang-fao/` — optionale Giella-Referenzklone.
 
@@ -367,11 +383,10 @@ uv run python src/prussian/gold/accent.py        # Akzentmodell neu ableiten
 ## Struktur
 
 ```
-data/sources/      tabula.html, gramm.htm           Rohquellen (committed)
-data/external/     twanksta_entries.json, prusaspira_entries.json   [ignoriert]
+data/external/     twanksta_entries.json, prusaspira_entries.json, tabula.html  [ignoriert; aus prussian-corpus]
 data/derived/      vergleich*.{json,html}           3-Wege-Vergleich
 data/gold/         goldstandard*.json, GOLDSTANDARD*.md, accent_model.json
-src/prussian/      fetch/ compare/ gold/ fst/       Pipeline-Module (s. o.)
+src/prussian/      compare/ gold/ fst/              Pipeline-Module (s. o.)
 docs/              AKZENT.md, ORTHO_RULES.md, PROVENANCE.md, references.md, …
 build/             morphotactics.lexd, analyser.fst, lenient.fst   [generiert]
 tests/             pytest-Suite

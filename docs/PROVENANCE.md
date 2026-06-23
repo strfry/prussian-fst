@@ -18,11 +18,18 @@ flowchart TD
 
 ## Quellen
 
-| Quelle | URL | Abruf / Methode | Roh-Format |
+> **Quellbeschaffung & Parsing:** Alle drei Quellen werden in
+> **[strfry/prussian-corpus](https://github.com/strfry/prussian-corpus)**
+> gescrapt und geparst. Dieses Repo bezieht nur die Release-Artefakte
+> (`tabula.html`, `prusaspira_entries.json`, `twanksta_entries.json`) unter
+> `data/external/` und führt darauf die deterministische
+> Vergleichs-/Goldstandard-Pipeline aus.
+
+| Quelle | URL | Abruf / Methode | Bezogenes Artefakt |
 |--------|-----|-----------------|------------|
-| **Tabula Nova** | `donelaitis.vdu.lt/prussian/tabula.htm` (Spiegel `prusaspira.org`) | Manuell gepflegte HTML-Referenztabelle aller Paradigmen (Nr. 1–144). Das kaputte Roh-HTML (`tabula.htm`) wurde **halb-manuell korrigiert** → `tabula.html`. | `tabula.htm` → `tabula.html` |
-| **Prusaspira** | `prusaspira.org/wirdeins?…&bila=1&wirds=‹lemma›` | Online-Wörterbuch mit voller Flexionstabelle je Lemma; **HTTP-Fetch** pro Lemma, 1 req/s, englische Oberfläche. | `prusaspira/{n}_{lemma}.{html,txt}` |
-| **Twanksta** | `wirdeins.twanksta.org/search/?dia=semba&s=‹lemma›` | API-gestütztes Wörterbuch; **API-Abfrage** gegen `twanksta_entries.json` (siehe `strfry/prussian-corpus`). | `twanksta/{n}_{lemma}/lemma.json` |
+| **Tabula Nova** | `donelaitis.vdu.lt/prussian/tabula.htm` (Spiegel `prusaspira.org`) | Manuell gepflegte HTML-Referenztabelle aller Paradigmen (Nr. 1–144). Das kaputte Roh-HTML (`tabula.htm`) wurde **halb-manuell korrigiert** → `tabula.html`; gepflegt in prussian-corpus. | `data/external/tabula.html` |
+| **Prusaspira** | `prusaspira.org/wirdeins?…&bila=1&wirds=‹lemma›` | Online-Wörterbuch mit voller Flexionstabelle; in prussian-corpus gescrapt (by-letter) und geparst. | `data/external/prusaspira_entries.json` |
+| **Twanksta** | `wirdeins.twanksta.org/search/?dia=semba&s=‹lemma›` | API-gestütztes Wörterbuch; in prussian-corpus gescrapt und geparst. | `data/external/twanksta_entries.json` |
 
 ## Schritte
 

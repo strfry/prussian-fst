@@ -15,7 +15,7 @@ import json
 import re
 from pathlib import Path
 
-TABULA = Path("data/sources/tabula.html")
+TABULA = Path("data/external/tabula.html")  # from prussian-corpus release
 OUT = Path("data/gold/verb_paradigms.json")
 
 # Person number → label map

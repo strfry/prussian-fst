@@ -8,7 +8,7 @@ GENDER_MAP = {"masc": "m", "fem": "f", "neut": "n", "": "", "m/f": "m", "m/f/n":
 def norm_gender(g):
     return GENDER_MAP.get(g.strip().lower(), g.strip())
 
-TABULA = Path("data/sources/tabula.html")
+TABULA = Path("data/external/tabula.html")  # from prussian-corpus release
 PRUSASPIRA = Path("prusaspira")
 TWANKSTA = Path("twanksta")
 OUT = Path("data/derived/vergleich.html")

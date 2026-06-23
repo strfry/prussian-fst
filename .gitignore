@@ -14,12 +14,13 @@ lang-lit/
 lang-lav/
 lang-fao/
 
-# External data (obtain externally — see README)
+# External data from the prussian-corpus release (obtain externally — see README)
 data/external/twanksta_entries.json
 data/external/prusaspira_entries.json
+data/external/tabula.html
 data/external/prussian_corpus_*.tar.zst
 
-# Fetched corpora (regenerate via fetch_prusaspira.py / twanksta_api_check.py)
+# Legacy per-lemma fetch caches (collection now lives in prussian-corpus)
 prusaspira/
 twanksta/
 

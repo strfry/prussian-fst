@@ -165,4 +165,4 @@ starkes Morphem":
 - Mažiulis, V.: *Historische Grammatik des Altpreußischen* (§§21–25
   Palatalisierung; §§86–138 Quellendivergenzen).
 - Palmaitis, M. L. / Klusis, M.: TABVLA NOVA (normalisierte Paradigmen,
-  `data/sources/tabula.html`).
+  `data/external/tabula.html`, gepflegt in prussian-corpus).
