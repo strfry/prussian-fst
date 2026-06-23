@@ -23,7 +23,7 @@ der nachsichtige (lenient.fst) akzeptiert sie.
 from collections import defaultdict
 from itertools import chain
 
-from prussian.fst.oracle import LONG, resolve_stem
+from prussian.fst.oracle import ARCHI_SET, LONG, resolve_stem
 from prussian.fst.spellrelax import elaktr_variant, jan_variant, sj_variant
 from prussian.fst.tags import (
     cell_tag, ptcp_cell_tag, split_reflexive, split_suffix, verb_cell_tag,
@@ -47,10 +47,15 @@ def entry_class(suffixe: dict) -> str:
 
 
 def render_stem(stamm: str, cls: str) -> str:
-    """Unterseiten-Stamm: archiphonemisch + M (mob) oder literal (bar/na)."""
-    has_arch = any(c in "AEIOU" for c in stamm)
+    """Unterseiten-Stamm: archiphonemisch + M (mob) oder literal (bar/na).
+
+    Archiphoneme sind die distinkten Symbole ``ÂÊÎÔÛ`` (oracle.ARCHI); übrige
+    Zeichen werden casegefaltet (Großschreibung als eigene Eigenschaft: s.
+    docs/BACKLOG.md, eigener Folgeschritt).
+    """
+    has_arch = any(c in ARCHI_SET for c in stamm)
     if cls == "mob" and has_arch:
-        return "M" + "".join(c if c in "AEIOU" else c.lower() for c in stamm)
+        return "M" + "".join(c if c in ARCHI_SET else c.lower() for c in stamm)
     # bar: lang auflösen.  na: ebenfalls lang (Baryton-Default, s. Docstring).
     return "".join(LONG.get(c, c.lower()) for c in stamm)
 

@@ -963,7 +963,7 @@
     "paradigm": "19",
     "lemma": "kawīds",
     "gender": "m",
-    "stamm": "kawId",
+    "stamm": "kawÎd",
     "suffixe": {
       "Nom sg": {
         "suffix": "s",
@@ -1003,7 +1003,7 @@
     "paradigm": "19",
     "lemma": "kawīds",
     "gender": "f",
-    "stamm": "kawId",
+    "stamm": "kawÎd",
     "suffixe": {
       "Nom sg": {
         "suffix": "a",
@@ -1043,7 +1043,7 @@
     "paradigm": "19",
     "lemma": "kawīds",
     "gender": "n",
-    "stamm": "kawId",
+    "stamm": "kawÎd",
     "suffixe": {
       "Nom sg": {
         "suffix": "an",
@@ -1203,7 +1203,7 @@
     "paradigm": "21",
     "lemma": "aīns",
     "gender": "m",
-    "stamm": "aIn",
+    "stamm": "aÎn",
     "suffixe": {
       "Nom sg": {
         "suffix": "s",
@@ -1243,7 +1243,7 @@
     "paradigm": "21",
     "lemma": "aīns",
     "gender": "f",
-    "stamm": "aIn",
+    "stamm": "aÎn",
     "suffixe": {
       "Nom sg": {
         "suffix": "ā",
@@ -1283,7 +1283,7 @@
     "paradigm": "21",
     "lemma": "aīns",
     "gender": "n",
-    "stamm": "aIn",
+    "stamm": "aÎn",
     "suffixe": {
       "Nom sg": {
         "suffix": "an",
@@ -1683,7 +1683,7 @@
     "paradigm": "25",
     "lemma": "debīks",
     "gender": "m",
-    "stamm": "debIk",
+    "stamm": "debÎk",
     "suffixe": {
       "Nom sg": {
         "suffix": "s",
@@ -1723,7 +1723,7 @@
     "paradigm": "25",
     "lemma": "debīks",
     "gender": "f",
-    "stamm": "debIk",
+    "stamm": "debÎk",
     "suffixe": {
       "Nom sg": {
         "suffix": "a",
@@ -1763,7 +1763,7 @@
     "paradigm": "25",
     "lemma": "debīks",
     "gender": "n",
-    "stamm": "debIk",
+    "stamm": "debÎk",
     "suffixe": {
       "Nom sg": {
         "suffix": "an",
@@ -1923,7 +1923,7 @@
     "paradigm": "27",
     "lemma": "weselīngis",
     "gender": "m",
-    "stamm": "weselIng",
+    "stamm": "weselÎng",
     "suffixe": {
       "Nom sg": {
         "suffix": "is",
@@ -1963,7 +1963,7 @@
     "paradigm": "27",
     "lemma": "weselīngis",
     "gender": "f",
-    "stamm": "weselIng",
+    "stamm": "weselÎng",
     "suffixe": {
       "Nom sg": {
         "suffix": "i",
@@ -2003,7 +2003,7 @@
     "paradigm": "27",
     "lemma": "weselīngis",
     "gender": "n",
-    "stamm": "weselIng",
+    "stamm": "weselÎng",
     "suffixe": {
       "Nom sg": {
         "suffix": "i",
@@ -2043,7 +2043,7 @@
     "paradigm": "27",
     "lemma": "wesselingi",
     "gender": "m",
-    "stamm": "weselIng",
+    "stamm": "weselÎng",
     "suffixe": {
       "Nom sg": {
         "suffix": "is",
@@ -2083,7 +2083,7 @@
     "paradigm": "27",
     "lemma": "wesselingi",
     "gender": "f",
-    "stamm": "weselIng",
+    "stamm": "weselÎng",
     "suffixe": {
       "Nom sg": {
         "suffix": "i",
@@ -2123,7 +2123,7 @@
     "paradigm": "27",
     "lemma": "wesselingi",
     "gender": "n",
-    "stamm": "weselIng",
+    "stamm": "weselÎng",
     "suffixe": {
       "Nom sg": {
         "suffix": "i",
@@ -2163,7 +2163,7 @@
     "paradigm": "28",
     "lemma": "māldaisis",
     "gender": "m",
-    "stamm": "mAldais",
+    "stamm": "mÂldais",
     "suffixe": {
       "Nom sg": {
         "suffix": "is",
@@ -2207,7 +2207,7 @@
     "paradigm": "28",
     "lemma": "māldaisis",
     "gender": "f",
-    "stamm": "mAldais",
+    "stamm": "mÂldais",
     "suffixe": {
       "Nom sg": {
         "suffix": "i",
@@ -2249,7 +2249,7 @@
     "paradigm": "28",
     "lemma": "māldaisis",
     "gender": "n",
-    "stamm": "mAldais",
+    "stamm": "mÂldais",
     "suffixe": {
       "Nom sg": {
         "suffix": "i",
@@ -2412,7 +2412,7 @@
     "paradigm": "30",
     "lemma": "āngus",
     "gender": "m",
-    "stamm": "Ang",
+    "stamm": "Âng",
     "suffixe": {
       "Nom sg": {
         "suffix": "us",
@@ -2452,7 +2452,7 @@
     "paradigm": "30",
     "lemma": "āngus",
     "gender": "f",
-    "stamm": "Ang",
+    "stamm": "Âng",
     "suffixe": {
       "Nom sg": {
         "suffix": "i",
@@ -2492,7 +2492,7 @@
     "paradigm": "30",
     "lemma": "āngus",
     "gender": "n",
-    "stamm": "Ang",
+    "stamm": "Âng",
     "suffixe": {
       "Nom sg": {
         "suffix": "u",
@@ -2652,7 +2652,7 @@
     "paradigm": "31",
     "lemma": "līgus",
     "gender": "m",
-    "stamm": "lIg",
+    "stamm": "lÎg",
     "suffixe": {
       "Nom sg": {
         "suffix": "us",
@@ -2692,7 +2692,7 @@
     "paradigm": "31",
     "lemma": "līgus",
     "gender": "f",
-    "stamm": "lIg",
+    "stamm": "lÎg",
     "suffixe": {
       "Nom sg": {
         "suffix": "ī",
@@ -2733,7 +2733,7 @@
     "paradigm": "31",
     "lemma": "līgus",
     "gender": "n",
-    "stamm": "lIg",
+    "stamm": "lÎg",
     "suffixe": {
       "Nom sg": {
         "suffix": "u",
@@ -2773,7 +2773,7 @@
     "paradigm": "32",
     "lemma": "wīrs",
     "gender": "m",
-    "stamm": "wIr",
+    "stamm": "wÎr",
     "suffixe": {
       "Nom sg": {
         "suffix": "s",
@@ -2893,7 +2893,7 @@
     "paradigm": "35",
     "lemma": "mīstan",
     "gender": "n",
-    "stamm": "mIst",
+    "stamm": "mÎst",
     "suffixe": {
       "Nom sg": {
         "suffix": "an",
@@ -2969,7 +2969,7 @@
     "paradigm": "36",
     "lemma": "wāiks",
     "gender": "m",
-    "stamm": "wAik",
+    "stamm": "wÂik",
     "suffixe": {
       "Nom sg": {
         "suffix": "s",
@@ -3174,7 +3174,7 @@
     "paradigm": "40",
     "lemma": "kūgis",
     "gender": "m",
-    "stamm": "kUg",
+    "stamm": "kÛg",
     "suffixe": {
       "Nom sg": {
         "suffix": "is",
@@ -3259,7 +3259,7 @@
     "paradigm": "40b",
     "lemma": "gīrbis",
     "gender": "m",
-    "stamm": "gIrb",
+    "stamm": "gÎrb",
     "suffixe": {
       "Nom sg": {
         "suffix": "is",
@@ -3339,7 +3339,7 @@
     "paradigm": "41",
     "lemma": "klākis",
     "gender": "m",
-    "stamm": "klAk",
+    "stamm": "klÂk",
     "suffixe": {
       "Nom sg": {
         "suffix": "is",
@@ -3420,7 +3420,7 @@
     "paradigm": "43",
     "lemma": "sūns",
     "gender": "m",
-    "stamm": "sUn",
+    "stamm": "sÛn",
     "suffixe": {
       "Nom sg": {
         "suffix": "s",
@@ -3500,7 +3500,7 @@
     "paradigm": "45",
     "lemma": "mūsa",
     "gender": "f",
-    "stamm": "mUs",
+    "stamm": "mÛs",
     "suffixe": {
       "Nom sg": {
         "suffix": "a",
@@ -3540,7 +3540,7 @@
     "paradigm": "46",
     "lemma": "spigsnā",
     "gender": "f",
-    "stamm": "spIgsn",
+    "stamm": "spÎgsn",
     "suffixe": {
       "Nom sg": {
         "suffix": "ā",
@@ -3580,7 +3580,7 @@
     "paradigm": "47",
     "lemma": "āubirga",
     "gender": "m",
-    "stamm": "Aubirg",
+    "stamm": "Âubirg",
     "suffixe": {
       "Nom sg": {
         "suffix": "a",
@@ -3700,7 +3700,7 @@
     "paradigm": "50",
     "lemma": "garkīti",
     "gender": "f",
-    "stamm": "garkIt",
+    "stamm": "garkÎt",
     "suffixe": {
       "Nom sg": {
         "suffix": "i",
@@ -3740,7 +3740,7 @@
     "paradigm": "50a",
     "lemma": "ķāsi",
     "gender": "f",
-    "stamm": "ķAs",
+    "stamm": "ķÂs",
     "suffixe": {
       "Nom sg": {
         "suffix": "i",
@@ -3784,7 +3784,7 @@
     "paradigm": "51",
     "lemma": "martī",
     "gender": "f",
-    "stamm": "mArt",
+    "stamm": "mÂrt",
     "suffixe": {
       "Nom sg": {
         "suffix": "ī",
@@ -3825,7 +3825,7 @@
     "paradigm": "51a",
     "lemma": "zansī",
     "gender": "f",
-    "stamm": "zAns",
+    "stamm": "zÂns",
     "suffixe": {
       "Nom sg": {
         "suffix": "ī",
@@ -3949,7 +3949,7 @@
     "paradigm": "54",
     "lemma": "pekūri",
     "gender": "m",
-    "stamm": "pekUr",
+    "stamm": "pekÛr",
     "suffixe": {
       "Nom sg": {
         "suffix": "is",
@@ -4029,7 +4029,7 @@
     "paradigm": "56",
     "lemma": "gigānts",
     "gender": "m",
-    "stamm": "gigAnt",
+    "stamm": "gigÂnt",
     "suffixe": {
       "Nom sg": {
         "suffix": "s",
@@ -4069,7 +4069,7 @@
     "paradigm": "57",
     "lemma": "dānts",
     "gender": "m",
-    "stamm": "dAnt",
+    "stamm": "dÂnt",
     "suffixe": {
       "Nom sg": {
         "suffix": "s",
@@ -4109,7 +4109,7 @@
     "paradigm": "58",
     "lemma": "klīts",
     "gender": "f",
-    "stamm": "klIt",
+    "stamm": "klÎt",
     "suffixe": {
       "Nom sg": {
         "suffix": "s",
@@ -4229,7 +4229,7 @@
     "paradigm": "61",
     "lemma": "kērmens",
     "gender": "m",
-    "stamm": "kErmen",
+    "stamm": "kÊrmen",
     "suffixe": {
       "Nom sg": {
         "suffix": "s",
@@ -4309,7 +4309,7 @@
     "paradigm": "63",
     "lemma": "sīmen",
     "gender": "n",
-    "stamm": "sImen",
+    "stamm": "sÎmen",
     "suffixe": {
       "Nom sg": {
         "suffix": "",
@@ -4389,7 +4389,7 @@
     "paradigm": "65",
     "lemma": "brāti",
     "gender": "m",
-    "stamm": "brAt",
+    "stamm": "brÂt",
     "suffixe": {
       "Nom sg": {
         "suffix": "i",
@@ -4429,7 +4429,7 @@
     "paradigm": "66",
     "lemma": "mūti",
     "gender": "f",
-    "stamm": "mUt",
+    "stamm": "mÛt",
     "suffixe": {
       "Nom sg": {
         "suffix": "i",
@@ -4509,7 +4509,7 @@
     "paradigm": "70",
     "lemma": "tīrts",
     "gender": "m",
-    "stamm": "tIrt",
+    "stamm": "tÎrt",
     "suffixe": {
       "Nom sg": {
         "suffix": "s",
@@ -4549,7 +4549,7 @@
     "paradigm": "70",
     "lemma": "tīrts",
     "gender": "f",
-    "stamm": "tIrt",
+    "stamm": "tÎrt",
     "suffixe": {
       "Nom sg": {
         "suffix": "ī",
@@ -4589,7 +4589,7 @@
     "paradigm": "70",
     "lemma": "tīrts",
     "gender": "n",
-    "stamm": "tIrt",
+    "stamm": "tÎrt",
     "suffixe": {
       "Nom sg": {
         "suffix": "an",
@@ -5589,7 +5589,7 @@
     "paradigm": "25comp",
     "lemma": "tūlins",
     "gender": "m",
-    "stamm": "tUlin",
+    "stamm": "tÛlin",
     "suffixe": {
       "Nom sg": {
         "suffix": "aisis",
@@ -5630,7 +5630,7 @@
     "paradigm": "25sup",
     "lemma": "tūlins",
     "gender": "m",
-    "stamm": "ukatUlin",
+    "stamm": "ukatÛlin",
     "suffixe": {
       "Nom sg": {
         "suffix": "aisis",
@@ -5671,7 +5671,7 @@
     "paradigm": "25comp",
     "lemma": "tūlins",
     "gender": "f",
-    "stamm": "tUlin",
+    "stamm": "tÛlin",
     "suffixe": {
       "Nom sg": {
         "suffix": "aisi",
@@ -5712,7 +5712,7 @@
     "paradigm": "25sup",
     "lemma": "tūlins",
     "gender": "f",
-    "stamm": "ukatUlin",
+    "stamm": "ukatÛlin",
     "suffixe": {
       "Nom sg": {
         "suffix": "aisi",
@@ -5753,7 +5753,7 @@
     "paradigm": "25comp",
     "lemma": "tūlins",
     "gender": "n",
-    "stamm": "tUlin",
+    "stamm": "tÛlin",
     "suffixe": {
       "Nom sg": {
         "suffix": "aisi",
@@ -5794,7 +5794,7 @@
     "paradigm": "25sup",
     "lemma": "tūlins",
     "gender": "n",
-    "stamm": "ukatUlin",
+    "stamm": "ukatÛlin",
     "suffixe": {
       "Nom sg": {
         "suffix": "aisi",
@@ -5835,7 +5835,7 @@
     "paradigm": "26comp",
     "lemma": "mālds",
     "gender": "m",
-    "stamm": "mAld",
+    "stamm": "mÂld",
     "suffixe": {
       "Nom sg": {
         "suffix": "aisis",
@@ -5876,7 +5876,7 @@
     "paradigm": "26sup",
     "lemma": "mālds",
     "gender": "m",
-    "stamm": "ukamAld",
+    "stamm": "ukamÂld",
     "suffixe": {
       "Nom sg": {
         "suffix": "aisis",
@@ -5917,7 +5917,7 @@
     "paradigm": "26comp",
     "lemma": "mālds",
     "gender": "f",
-    "stamm": "mAld",
+    "stamm": "mÂld",
     "suffixe": {
       "Nom sg": {
         "suffix": "aisi",
@@ -5958,7 +5958,7 @@
     "paradigm": "26sup",
     "lemma": "mālds",
     "gender": "f",
-    "stamm": "ukamAld",
+    "stamm": "ukamÂld",
     "suffixe": {
       "Nom sg": {
         "suffix": "aisi",
@@ -5999,7 +5999,7 @@
     "paradigm": "26comp",
     "lemma": "mālds",
     "gender": "n",
-    "stamm": "mAld",
+    "stamm": "mÂld",
     "suffixe": {
       "Nom sg": {
         "suffix": "aisi",
@@ -6040,7 +6040,7 @@
     "paradigm": "26sup",
     "lemma": "mālds",
     "gender": "n",
-    "stamm": "ukamAld",
+    "stamm": "ukamÂld",
     "suffixe": {
       "Nom sg": {
         "suffix": "aisi",
@@ -6081,7 +6081,7 @@
     "paradigm": "27comp",
     "lemma": "weselīngis",
     "gender": "m",
-    "stamm": "weselIng",
+    "stamm": "weselÎng",
     "suffixe": {
       "Nom sg": {
         "suffix": "aisis",
@@ -6130,7 +6130,7 @@
     "paradigm": "27sup",
     "lemma": "weselīngis",
     "gender": "m",
-    "stamm": "ukaweselIng",
+    "stamm": "ukaweselÎng",
     "suffixe": {
       "Nom sg": {
         "suffix": "aisis",
@@ -6179,7 +6179,7 @@
     "paradigm": "27comp",
     "lemma": "weselīngis",
     "gender": "f",
-    "stamm": "weselIng",
+    "stamm": "weselÎng",
     "suffixe": {
       "Nom sg": {
         "suffix": "aisi",
@@ -6228,7 +6228,7 @@
     "paradigm": "27sup",
     "lemma": "weselīngis",
     "gender": "f",
-    "stamm": "ukaweselIng",
+    "stamm": "ukaweselÎng",
     "suffixe": {
       "Nom sg": {
         "suffix": "aisi",
@@ -6277,7 +6277,7 @@
     "paradigm": "27comp",
     "lemma": "weselīngis",
     "gender": "n",
-    "stamm": "weselIng",
+    "stamm": "weselÎng",
     "suffixe": {
       "Nom sg": {
         "suffix": "aisi",
@@ -6326,7 +6326,7 @@
     "paradigm": "27sup",
     "lemma": "weselīngis",
     "gender": "n",
-    "stamm": "ukaweselIng",
+    "stamm": "ukaweselÎng",
     "suffixe": {
       "Nom sg": {
         "suffix": "aisi",
@@ -6621,7 +6621,7 @@
     "paradigm": "30comp",
     "lemma": "āngus",
     "gender": "m",
-    "stamm": "Ang",
+    "stamm": "Âng",
     "suffixe": {
       "Nom sg": {
         "suffix": "uisis",
@@ -6662,7 +6662,7 @@
     "paradigm": "30sup",
     "lemma": "āngus",
     "gender": "m",
-    "stamm": "ukaAng",
+    "stamm": "ukaÂng",
     "suffixe": {
       "Nom sg": {
         "suffix": "uisis",
@@ -6703,7 +6703,7 @@
     "paradigm": "30comp",
     "lemma": "āngus",
     "gender": "f",
-    "stamm": "Ang",
+    "stamm": "Âng",
     "suffixe": {
       "Nom sg": {
         "suffix": "uisi",
@@ -6744,7 +6744,7 @@
     "paradigm": "30sup",
     "lemma": "āngus",
     "gender": "f",
-    "stamm": "ukaAng",
+    "stamm": "ukaÂng",
     "suffixe": {
       "Nom sg": {
         "suffix": "uisi",
@@ -6785,7 +6785,7 @@
     "paradigm": "30comp",
     "lemma": "āngus",
     "gender": "n",
-    "stamm": "Ang",
+    "stamm": "Âng",
     "suffixe": {
       "Nom sg": {
         "suffix": "uisi",
@@ -6826,7 +6826,7 @@
     "paradigm": "30sup",
     "lemma": "āngus",
     "gender": "n",
-    "stamm": "ukaAng",
+    "stamm": "ukaÂng",
     "suffixe": {
       "Nom sg": {
         "suffix": "uisi",
@@ -7113,7 +7113,7 @@
     "paradigm": "31comp",
     "lemma": "līgus",
     "gender": "m",
-    "stamm": "lIg",
+    "stamm": "lÎg",
     "suffixe": {
       "Nom sg": {
         "suffix": "uisis",
@@ -7154,7 +7154,7 @@
     "paradigm": "31sup",
     "lemma": "līgus",
     "gender": "m",
-    "stamm": "ukalIg",
+    "stamm": "ukalÎg",
     "suffixe": {
       "Nom sg": {
         "suffix": "uisis",
@@ -7195,7 +7195,7 @@
     "paradigm": "31comp",
     "lemma": "līgus",
     "gender": "f",
-    "stamm": "lIg",
+    "stamm": "lÎg",
     "suffixe": {
       "Nom sg": {
         "suffix": "uisi",
@@ -7236,7 +7236,7 @@
     "paradigm": "31sup",
     "lemma": "līgus",
     "gender": "f",
-    "stamm": "ukalIg",
+    "stamm": "ukalÎg",
     "suffixe": {
       "Nom sg": {
         "suffix": "uisi",
@@ -7277,7 +7277,7 @@
     "paradigm": "31comp",
     "lemma": "līgus",
     "gender": "n",
-    "stamm": "lIg",
+    "stamm": "lÎg",
     "suffixe": {
       "Nom sg": {
         "suffix": "uisi",
@@ -7318,7 +7318,7 @@
     "paradigm": "31sup",
     "lemma": "līgus",
     "gender": "n",
-    "stamm": "ukalIg",
+    "stamm": "ukalÎg",
     "suffixe": {
       "Nom sg": {
         "suffix": "uisi",
@@ -7359,7 +7359,7 @@
     "paradigm": "28sup",
     "lemma": "māldaisis",
     "gender": "m",
-    "stamm": "ukamAldais",
+    "stamm": "ukamÂldais",
     "suffixe": {
       "Nom sg": {
         "suffix": "is",
@@ -7404,7 +7404,7 @@
     "paradigm": "28sup",
     "lemma": "māldaisis",
     "gender": "f",
-    "stamm": "ukamAldais",
+    "stamm": "ukamÂldais",
     "suffixe": {
       "Nom sg": {
         "suffix": "i",
@@ -7447,7 +7447,7 @@
     "paradigm": "28sup",
     "lemma": "māldaisis",
     "gender": "n",
-    "stamm": "ukamAldais",
+    "stamm": "ukamÂldais",
     "suffixe": {
       "Nom sg": {
         "suffix": "i",

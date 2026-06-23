@@ -55,6 +55,8 @@ MANUAL_GOLD = {
 }
 
 MACRON = str.maketrans("āēīōūĀĒĪŌŪ", "aeiouAEIOU")
+#: akzentfähiger Kurzvokal → Archiphonem-Symbol (s. oracle.ARCHI).
+_ARCHI = str.maketrans("aeiou", "ÂÊÎÔÛ")
 
 
 def canon(s):
@@ -327,7 +329,12 @@ def build_gold(data):
         regions = [g[:Lp] for cells in by_g.values() for g in cells.values()]
         acc = {p for p in range(Lp)
                if base[p] in "aeiou" and any(r[p] != strip_macron(r[p]) for r in regions)}
-        stamm = "".join(ch.upper() if p in acc else ch for p, ch in enumerate(base))
+        # akzentfähige Vokale → distinktes Archiphonem-Symbol (ÂÊÎÔÛ), nicht
+        # nackter Großbuchstabe (kollidierte mit Eigennamen-Großschreibung).
+        stamm = "".join(
+            ch.translate(_ARCHI) if p in acc else ch
+            for p, ch in enumerate(base)
+        )
         for gkey, cells in by_g.items():
             suffixe = OrderedDict()
             for cell in CELLS:

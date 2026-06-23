@@ -19,7 +19,9 @@ import re
 from collections import OrderedDict, defaultdict
 from pathlib import Path
 
-from prussian.fst.oracle import LONG_VOWELS, fold, strip_macron
+from prussian.fst.oracle import (
+    ARCHI_SET, LONG_VOWELS, MACRON_TO_ARCHI, fold, strip_macron,
+)
 from prussian.fst.tags import split_reflexive
 
 VERB_POS = "+V"
@@ -211,7 +213,7 @@ def _detect_archiphoneme(stem_surface: str) -> str:
     result: list[str] = []
     for i, ch in enumerate(stem_surface):
         if i in acc_positions:
-            result.append(strip_macron(ch).upper())
+            result.append(MACRON_TO_ARCHI[ch])
         else:
             result.append(ch)
     return "".join(result)
@@ -312,7 +314,7 @@ def _mood_entries(word: str, par: str, forms: dict) -> list[dict]:
         stamm = _mood_stem(form, lead)
         if stamm is None:
             continue
-        betont = any(c in "AEIOU" for c in stamm)
+        betont = any(c in ARCHI_SET for c in stamm)
         out.append({
             "paradigm": par, "lemma": word, "tense": tense, "stamm": stamm,
             "suffixe": OrderedDict(
@@ -327,7 +329,7 @@ def _mood_entries(word: str, par: str, forms: dict) -> list[dict]:
             if im.endswith(marker) and len(im) > len(marker) + 1:
                 stamm = _detect_archiphoneme(im[: -len(marker)])
                 if len(stamm) >= 2:
-                    betont = any(c in "AEIOU" for c in stamm)
+                    betont = any(c in ARCHI_SET for c in stamm)
                     out.append({
                         "paradigm": par, "lemma": word, "tense": "imperative",
                         "stamm": stamm, "group": f"imp_{marker}",

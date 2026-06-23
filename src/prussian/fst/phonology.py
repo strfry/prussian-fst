@@ -28,7 +28,7 @@ from pyfoma import FST
 #: Akzent auf der Endung — das Stamm-Archiphonem bleibt kurz.
 #: twolc: {A}:a <=> M: ?* _ ?* S: ;   (analog E I O U)
 R_SHORTEN = FST.re(
-    "$^rewrite((A:a|E:e|I:i|O:o|U:u) / 'M' .* _ .* 'S')"
+    "$^rewrite(('Â':a|'Ê':e|'Î':i|'Ô':o|'Û':u) / 'M' .* _ .* 'S')"
 )
 
 #: Akzentauflösung, Default-Längung. Alle übrigen Archiphoneme stehen in
@@ -36,7 +36,7 @@ R_SHORTEN = FST.re(
 #: und erscheinen lang (Makron = langer betonter Vokal, TABVLA-Norm).
 #: twolc: {A}:ā ;  (Default)
 R_LENGTHEN = FST.re(
-    "$^rewrite(A:'ā'|E:'ē'|I:'ī'|O:'ō'|U:'ū')"
+    "$^rewrite('Â':'ā'|'Ê':'ē'|'Î':'ī'|'Ô':'ō'|'Û':'ū')"
 )
 
 #: J-Palatalisierung des Stammauslauts vor palatalisierender Endung

@@ -59,7 +59,7 @@
     "paradigm": "71",
     "lemma": "īmtun",
     "tense": "infinitive",
-    "stamm": "Im",
+    "stamm": "Îm",
     "suffixe": {
       "Inf": {
         "suffix": "tun",
@@ -71,7 +71,7 @@
     "paradigm": "71",
     "lemma": "īmtun",
     "tense": "optative",
-    "stamm": "Im",
+    "stamm": "Îm",
     "suffixe": {
       "Opt": {
         "suffix": "sei",
@@ -83,7 +83,7 @@
     "paradigm": "71",
     "lemma": "īmtun",
     "tense": "subjunctive",
-    "stamm": "Im",
+    "stamm": "Îm",
     "suffixe": {
       "1sg": {
         "suffix": "lai",
@@ -128,7 +128,7 @@
     "lemma": "īmtun",
     "tense": "present_ptcp",
     "gender": "m",
-    "stamm": "imAnt",
+    "stamm": "imÂnt",
     "suffixe": {
       "Nom sg": {
         "suffix": "s",
@@ -169,7 +169,7 @@
     "lemma": "īmtun",
     "tense": "present_ptcp",
     "gender": "f",
-    "stamm": "imAnt",
+    "stamm": "imÂnt",
     "suffixe": {
       "Nom sg": {
         "suffix": "ī",
@@ -210,7 +210,7 @@
     "lemma": "īmtun",
     "tense": "present_ptcp",
     "gender": "n",
-    "stamm": "imAnt",
+    "stamm": "imÂnt",
     "suffixe": {
       "Nom sg": {
         "suffix": "i",
@@ -374,7 +374,7 @@
     "lemma": "īmtun",
     "tense": "passive_ptcp",
     "gender": "m",
-    "stamm": "Imt",
+    "stamm": "Îmt",
     "suffixe": {
       "Nom sg": {
         "suffix": "s",
@@ -415,7 +415,7 @@
     "lemma": "īmtun",
     "tense": "passive_ptcp",
     "gender": "f",
-    "stamm": "Imt",
+    "stamm": "Îmt",
     "suffixe": {
       "Nom sg": {
         "suffix": "ā",
@@ -456,7 +456,7 @@
     "lemma": "īmtun",
     "tense": "passive_ptcp",
     "gender": "n",
-    "stamm": "Imt",
+    "stamm": "Îmt",
     "suffixe": {
       "Nom sg": {
         "suffix": "an",
@@ -647,7 +647,7 @@
     "paradigm": "75",
     "lemma": "lānktun",
     "tense": "present",
-    "stamm": "lAnk",
+    "stamm": "lÂnk",
     "suffixe": {
       "Inf": {
         "suffix": "tun",
@@ -679,7 +679,7 @@
     "paradigm": "75",
     "lemma": "lānktun",
     "tense": "preterite",
-    "stamm": "lAnk",
+    "stamm": "lÂnk",
     "suffixe": {
       "1sg": {
         "suffix": "i",
@@ -768,7 +768,7 @@
     "paradigm": "76s",
     "lemma": "krīkstwei",
     "tense": "present",
-    "stamm": "krIkst",
+    "stamm": "krÎkst",
     "suffixe": {
       "Inf": {
         "suffix": "wei",
@@ -800,7 +800,7 @@
     "paradigm": "76s",
     "lemma": "krīkstwei",
     "tense": "preterite",
-    "stamm": "krIkst",
+    "stamm": "krÎkst",
     "suffixe": {
       "1sg": {
         "suffix": "i",
@@ -828,7 +828,7 @@
     "paradigm": "77",
     "lemma": "gēistun",
     "tense": "present",
-    "stamm": "gEidj",
+    "stamm": "gÊidj",
     "suffixe": {
       "Inf": {
         "suffix": "un",
@@ -861,7 +861,7 @@
     "paradigm": "77",
     "lemma": "gēistun",
     "tense": "preterite",
-    "stamm": "gEid",
+    "stamm": "gÊid",
     "suffixe": {
       "1sg": {
         "suffix": "i",
@@ -889,7 +889,7 @@
     "paradigm": "78",
     "lemma": "līztun",
     "tense": "present",
-    "stamm": "lIž",
+    "stamm": "lÎž",
     "suffixe": {
       "Inf": {
         "suffix": "tun",
@@ -924,7 +924,7 @@
     "paradigm": "78",
     "lemma": "līztun",
     "tense": "preterite",
-    "stamm": "lIz",
+    "stamm": "lÎz",
     "suffixe": {
       "1sg": {
         "suffix": "i",
@@ -952,7 +952,7 @@
     "paradigm": "79",
     "lemma": "ōstun",
     "tense": "present",
-    "stamm": "Oš",
+    "stamm": "Ôš",
     "suffixe": {
       "Inf": {
         "suffix": "tun",
@@ -987,7 +987,7 @@
     "paradigm": "79",
     "lemma": "ōstun",
     "tense": "preterite",
-    "stamm": "Os",
+    "stamm": "Ôs",
     "suffixe": {
       "1sg": {
         "suffix": "i",
@@ -1048,7 +1048,7 @@
     "paradigm": "80b",
     "lemma": "glabtun",
     "tense": "preterite",
-    "stamm": "glAb",
+    "stamm": "glÂb",
     "suffixe": {
       "1sg": {
         "suffix": "i",
@@ -1170,7 +1170,7 @@
     "paradigm": "81a",
     "lemma": "weltun",
     "tense": "preterite",
-    "stamm": "wIl",
+    "stamm": "wÎl",
     "suffixe": {
       "1sg": {
         "suffix": "i",
@@ -1231,7 +1231,7 @@
     "paradigm": "81b",
     "lemma": "drebtun",
     "tense": "preterite",
-    "stamm": "drIb",
+    "stamm": "drÎb",
     "suffixe": {
       "1sg": {
         "suffix": "i",
@@ -1294,7 +1294,7 @@
     "paradigm": "81c",
     "lemma": "dwestun",
     "tense": "preterite",
-    "stamm": "dwIs",
+    "stamm": "dwÎs",
     "suffixe": {
       "1sg": {
         "suffix": "i",
@@ -1355,7 +1355,7 @@
     "paradigm": "81d",
     "lemma": "skestun",
     "tense": "preterite",
-    "stamm": "skIt",
+    "stamm": "skÎt",
     "suffixe": {
       "1sg": {
         "suffix": "i",
@@ -1416,7 +1416,7 @@
     "paradigm": "82",
     "lemma": "tirtun",
     "tense": "preterite",
-    "stamm": "tIr",
+    "stamm": "tÎr",
     "suffixe": {
       "1sg": {
         "suffix": "i",
@@ -1477,7 +1477,7 @@
     "paradigm": "82a",
     "lemma": "piltun",
     "tense": "preterite",
-    "stamm": "pIl",
+    "stamm": "pÎl",
     "suffixe": {
       "1sg": {
         "suffix": "i",
@@ -1538,7 +1538,7 @@
     "paradigm": "83",
     "lemma": "dumtun",
     "tense": "preterite",
-    "stamm": "dUm",
+    "stamm": "dÛm",
     "suffixe": {
       "1sg": {
         "suffix": "i",
@@ -1566,7 +1566,7 @@
     "paradigm": "84",
     "lemma": "justwei",
     "tense": "present",
-    "stamm": "jAut",
+    "stamm": "jÂut",
     "suffixe": {
       "Inf": {
         "suffix": "wei",
@@ -1688,7 +1688,7 @@
     "paradigm": "86",
     "lemma": "kīrstun",
     "tense": "present",
-    "stamm": "kIrt",
+    "stamm": "kÎrt",
     "suffixe": {
       "Inf": {
         "suffix": "tun",
@@ -1721,7 +1721,7 @@
     "paradigm": "86",
     "lemma": "kīrstun",
     "tense": "preterite",
-    "stamm": "kIrt",
+    "stamm": "kÎrt",
     "suffixe": {
       "1sg": {
         "suffix": "a",
@@ -1810,7 +1810,7 @@
     "paradigm": "88",
     "lemma": "kāistun",
     "tense": "present",
-    "stamm": "kAis",
+    "stamm": "kÂis",
     "suffixe": {
       "Inf": {
         "suffix": "tun",
@@ -1842,7 +1842,7 @@
     "paradigm": "88",
     "lemma": "kāistun",
     "tense": "preterite",
-    "stamm": "kAis",
+    "stamm": "kÂis",
     "suffixe": {
       "1sg": {
         "suffix": "a",
@@ -1870,7 +1870,7 @@
     "paradigm": "89",
     "lemma": "kaktwei",
     "tense": "present",
-    "stamm": "lImp",
+    "stamm": "lÎmp",
     "suffixe": {
       "Inf": {
         "suffix": "wei",
@@ -1931,7 +1931,7 @@
     "paradigm": "91",
     "lemma": "dustwei",
     "tense": "present",
-    "stamm": "dUns",
+    "stamm": "dÛns",
     "suffixe": {
       "Inf": {
         "suffix": "wei",
@@ -2113,7 +2113,7 @@
     "paradigm": "94",
     "lemma": "līstun",
     "tense": "present",
-    "stamm": "lAis",
+    "stamm": "lÂis",
     "suffixe": {
       "Inf": {
         "suffix": "un",
@@ -2174,7 +2174,7 @@
     "paradigm": "95",
     "lemma": "aistwei",
     "tense": "present",
-    "stamm": "Aist",
+    "stamm": "Âist",
     "suffixe": {
       "Inf": {
         "suffix": "wei",
@@ -2206,7 +2206,7 @@
     "paradigm": "95",
     "lemma": "aistwei",
     "tense": "preterite",
-    "stamm": "Ais",
+    "stamm": "Âis",
     "suffixe": {
       "1sg": {
         "suffix": "a",
@@ -2234,7 +2234,7 @@
     "paradigm": "96",
     "lemma": "grīmztwei",
     "tense": "present",
-    "stamm": "grImzd",
+    "stamm": "grÎmzd",
     "suffixe": {
       "Inf": {
         "suffix": "wei",
@@ -2267,7 +2267,7 @@
     "paradigm": "96",
     "lemma": "grīmztwei",
     "tense": "preterite",
-    "stamm": "grImz",
+    "stamm": "grÎmz",
     "suffixe": {
       "1sg": {
         "suffix": "a",
@@ -2356,7 +2356,7 @@
     "paradigm": "98",
     "lemma": "grīnstun",
     "tense": "present",
-    "stamm": "grEnd",
+    "stamm": "grÊnd",
     "suffixe": {
       "Inf": {
         "suffix": "tun",
@@ -2389,7 +2389,7 @@
     "paradigm": "98",
     "lemma": "grīnstun",
     "tense": "preterite",
-    "stamm": "grInd",
+    "stamm": "grÎnd",
     "suffixe": {
       "1sg": {
         "suffix": "a",
@@ -2417,7 +2417,7 @@
     "paradigm": "99",
     "lemma": "swigtwei",
     "tense": "present",
-    "stamm": "swEig",
+    "stamm": "swÊig",
     "suffixe": {
       "Inf": {
         "suffix": "wei",
@@ -2478,7 +2478,7 @@
     "paradigm": "100",
     "lemma": "kwistun",
     "tense": "present",
-    "stamm": "kwEit",
+    "stamm": "kwÊit",
     "suffixe": {
       "Inf": {
         "suffix": "un",
@@ -2539,7 +2539,7 @@
     "paradigm": "102",
     "lemma": "ristun",
     "tense": "present",
-    "stamm": "rEis",
+    "stamm": "rÊis",
     "suffixe": {
       "Inf": {
         "suffix": "un",
@@ -2600,7 +2600,7 @@
     "paradigm": "102a",
     "lemma": "listun",
     "tense": "present",
-    "stamm": "lAis",
+    "stamm": "lÂis",
     "suffixe": {
       "Inf": {
         "suffix": "un",
@@ -2815,7 +2815,7 @@
     "paradigm": "106b",
     "lemma": "smeītwei",
     "tense": "preterite",
-    "stamm": "smeIj",
+    "stamm": "smeÎj",
     "suffixe": {
       "1sg": {
         "suffix": "a si",
@@ -2936,7 +2936,7 @@
     "paradigm": "106d",
     "lemma": "laītun",
     "tense": "preterite",
-    "stamm": "laIj",
+    "stamm": "laÎj",
     "suffixe": {
       "1sg": {
         "suffix": "a",
@@ -3145,7 +3145,7 @@
     "paradigm": "110",
     "lemma": "pastātwei",
     "tense": "present",
-    "stamm": "pastAn",
+    "stamm": "pastÂn",
     "suffixe": {
       "Inf": {
         "suffix": "wei",
@@ -3206,7 +3206,7 @@
     "paradigm": "111",
     "lemma": "gaūtun",
     "tense": "present",
-    "stamm": "gaUn",
+    "stamm": "gaÛn",
     "suffixe": {
       "Inf": {
         "suffix": "un",
@@ -3239,7 +3239,7 @@
     "paradigm": "111",
     "lemma": "gaūtun",
     "tense": "preterite",
-    "stamm": "gaUw",
+    "stamm": "gaÛw",
     "suffixe": {
       "1sg": {
         "suffix": "a",
@@ -3267,7 +3267,7 @@
     "paradigm": "112",
     "lemma": "strūtun",
     "tense": "present",
-    "stamm": "strAuj",
+    "stamm": "strÂuj",
     "suffixe": {
       "Inf": {
         "suffix": "n",
@@ -3328,7 +3328,7 @@
     "paradigm": "113",
     "lemma": "pūtun",
     "tense": "present",
-    "stamm": "pUj",
+    "stamm": "pÛj",
     "suffixe": {
       "Inf": {
         "suffix": "un",
@@ -3361,7 +3361,7 @@
     "paradigm": "113",
     "lemma": "pūtun",
     "tense": "preterite",
-    "stamm": "pUw",
+    "stamm": "pÛw",
     "suffixe": {
       "1sg": {
         "suffix": "a",
@@ -3389,7 +3389,7 @@
     "paradigm": "114",
     "lemma": "wīrstwei",
     "tense": "present",
-    "stamm": "wIrst",
+    "stamm": "wÎrst",
     "suffixe": {
       "Inf": {
         "suffix": "wei",
@@ -3421,7 +3421,7 @@
     "paradigm": "114",
     "lemma": "wīrstwei",
     "tense": "preterite",
-    "stamm": "wIrt",
+    "stamm": "wÎrt",
     "suffixe": {
       "1sg": {
         "suffix": "a",
@@ -3505,7 +3505,7 @@
     "paradigm": "116",
     "lemma": "ēitwei",
     "tense": "present",
-    "stamm": "Ei",
+    "stamm": "Êi",
     "suffixe": {
       "Inf": {
         "suffix": "twei",
@@ -3537,7 +3537,7 @@
     "paradigm": "116",
     "lemma": "ēitwei",
     "tense": "preterite",
-    "stamm": "gUb",
+    "stamm": "gÛb",
     "suffixe": {
       "1sg": {
         "suffix": "i",
@@ -3565,7 +3565,7 @@
     "paradigm": "117",
     "lemma": "īstun",
     "tense": "present",
-    "stamm": "I",
+    "stamm": "Î",
     "suffixe": {
       "Inf": {
         "suffix": "stun",
@@ -3597,7 +3597,7 @@
     "paradigm": "117",
     "lemma": "īstun",
     "tense": "preterite",
-    "stamm": "Id",
+    "stamm": "Îd",
     "suffixe": {
       "1sg": {
         "suffix": "a",
@@ -3717,7 +3717,7 @@
     "paradigm": "119",
     "lemma": "jātwei",
     "tense": "preterite",
-    "stamm": "jAj",
+    "stamm": "jÂj",
     "suffixe": {
       "1sg": {
         "suffix": "a",
@@ -3777,7 +3777,7 @@
     "paradigm": "120",
     "lemma": "skītwei",
     "tense": "preterite",
-    "stamm": "skIj",
+    "stamm": "skÎj",
     "suffixe": {
       "1sg": {
         "suffix": "a",
@@ -3837,7 +3837,7 @@
     "paradigm": "121",
     "lemma": "dītun",
     "tense": "preterite",
-    "stamm": "dIj",
+    "stamm": "dÎj",
     "suffixe": {
       "1sg": {
         "suffix": "a",
@@ -3865,7 +3865,7 @@
     "paradigm": "122",
     "lemma": "waīstun",
     "tense": "present",
-    "stamm": "waId",
+    "stamm": "waÎd",
     "suffixe": {
       "Inf": {
         "suffix": "tun",
@@ -3898,7 +3898,7 @@
     "paradigm": "122",
     "lemma": "waīstun",
     "tense": "preterite",
-    "stamm": "waId",
+    "stamm": "waÎd",
     "suffixe": {
       "1sg": {
         "suffix": "a",
@@ -3986,7 +3986,7 @@
     "paradigm": "124",
     "lemma": "snigtwei",
     "tense": "present",
-    "stamm": "snEig",
+    "stamm": "snÊig",
     "suffixe": {
       "Inf": {
         "suffix": "wei",
@@ -4047,7 +4047,7 @@
     "paradigm": "125",
     "lemma": "migtwei",
     "tense": "present",
-    "stamm": "meIg",
+    "stamm": "meÎg",
     "suffixe": {
       "Inf": {
         "suffix": "wei",
@@ -4169,7 +4169,7 @@
     "paradigm": "127",
     "lemma": "jāstun",
     "tense": "present",
-    "stamm": "jAs",
+    "stamm": "jÂs",
     "suffixe": {
       "Inf": {
         "suffix": "tun",
@@ -4201,7 +4201,7 @@
     "paradigm": "127",
     "lemma": "jāstun",
     "tense": "preterite",
-    "stamm": "jAs",
+    "stamm": "jÂs",
     "suffixe": {
       "1sg": {
         "suffix": "a",
@@ -4229,7 +4229,7 @@
     "paradigm": "128",
     "lemma": "sīstwei",
     "tense": "present",
-    "stamm": "sInd",
+    "stamm": "sÎnd",
     "suffixe": {
       "Inf": {
         "suffix": "wei",
@@ -4262,7 +4262,7 @@
     "paradigm": "128",
     "lemma": "sīstwei",
     "tense": "preterite",
-    "stamm": "sId",
+    "stamm": "sÎd",
     "suffixe": {
       "1sg": {
         "suffix": "a",
@@ -4290,7 +4290,7 @@
     "paradigm": "131",
     "lemma": "pūdatun",
     "tense": "present",
-    "stamm": "pUd",
+    "stamm": "pÛd",
     "suffixe": {
       "Inf": {
         "suffix": "atun",
@@ -4322,7 +4322,7 @@
     "paradigm": "131",
     "lemma": "pūdatun",
     "tense": "preterite",
-    "stamm": "pUd",
+    "stamm": "pÛd",
     "suffixe": {
       "1sg": {
         "suffix": "ai",
@@ -4410,7 +4410,7 @@
     "paradigm": "133",
     "lemma": "kāimalukitun",
     "tense": "present",
-    "stamm": "kAimaluk",
+    "stamm": "kÂimaluk",
     "suffixe": {
       "Inf": {
         "suffix": "itun",
@@ -4442,7 +4442,7 @@
     "paradigm": "133",
     "lemma": "kāimalukitun",
     "tense": "preterite",
-    "stamm": "kAimaluk",
+    "stamm": "kÂimaluk",
     "suffixe": {
       "1sg": {
         "suffix": "ei",
@@ -4590,7 +4590,7 @@
     "paradigm": "135",
     "lemma": "līkitun",
     "tense": "present",
-    "stamm": "lIk",
+    "stamm": "lÎk",
     "suffixe": {
       "Inf": {
         "suffix": "itun",
@@ -4622,7 +4622,7 @@
     "paradigm": "135",
     "lemma": "līkitun",
     "tense": "preterite",
-    "stamm": "palIk",
+    "stamm": "palÎk",
     "suffixe": {
       "1sg": {
         "suffix": "ei",
@@ -4771,7 +4771,7 @@
     "paradigm": "137a",
     "lemma": "milītun",
     "tense": "present",
-    "stamm": "mIl",
+    "stamm": "mÎl",
     "suffixe": {
       "Inf": {
         "suffix": "ītun",
@@ -4831,7 +4831,7 @@
     "paradigm": "138",
     "lemma": "grīkitun",
     "tense": "present",
-    "stamm": "abOn",
+    "stamm": "abÔn",
     "suffixe": {
       "Inf": {
         "suffix": "itun",
@@ -4864,7 +4864,7 @@
     "paradigm": "138",
     "lemma": "grīkitun",
     "tense": "preterite",
-    "stamm": "abOn",
+    "stamm": "abÔn",
     "suffixe": {
       "1sg": {
         "suffix": "i",
@@ -5046,7 +5046,7 @@
     "paradigm": "141",
     "lemma": "giwītun",
     "tense": "preterite",
-    "stamm": "perwaldIj",
+    "stamm": "perwaldÎj",
     "suffixe": {
       "1sg": {
         "suffix": "a",
@@ -5135,7 +5135,7 @@
     "paradigm": "143",
     "lemma": "dīnkautun",
     "tense": "present",
-    "stamm": "dInk",
+    "stamm": "dÎnk",
     "suffixe": {
       "Inf": {
         "suffix": "autun",
@@ -5167,7 +5167,7 @@
     "paradigm": "143",
     "lemma": "dīnkautun",
     "tense": "preterite",
-    "stamm": "dInk",
+    "stamm": "dÎnk",
     "suffixe": {
       "1sg": {
         "suffix": "au",
@@ -5195,7 +5195,7 @@
     "paradigm": "144",
     "lemma": "rikaūtun",
     "tense": "present",
-    "stamm": "rikaUj",
+    "stamm": "rikaÛj",
     "suffixe": {
       "Inf": {
         "suffix": "un",
@@ -5228,7 +5228,7 @@
     "paradigm": "144",
     "lemma": "rikaūtun",
     "tense": "preterite",
-    "stamm": "rikaUw",
+    "stamm": "rikaÛw",
     "suffixe": {
       "1sg": {
         "suffix": "a",

@@ -2,13 +2,20 @@
 
 ## Datenmodell
 
-- [ ] **Großbuchstaben ↔ Archiphonem-Kollision** Eigennamen wie
-      `Ewangēlijan` liefern Stämme mit initialem Großbuchstaben
-      (`EwangElij`), der von der Archiphonem-Notation (Großbuchstabe =
-      alternierender Vokal) nicht unterscheidbar ist — das Initial wird
-      mitgedehnt/gekürzt. Schon im alten `resolve_stem` so (Bug-Parität).
-      Fix: Stämme casefolden + Großschreibung als Lemma-Eigenschaft
-      separat führen, oder Archiphoneme auf eigene Symbole umstellen.
+- [x] **Archiphoneme auf eigene Symbole** (Notation) — erledigt: Archiphoneme
+      sind jetzt die distinkten Symbole `Â Ê Î Ô Û` (oracle.ARCHI) statt nackter
+      Großbuchstaben A/E/I/O/U. Damit kollidieren literale Großbuchstaben nicht
+      mehr mit der Archiphonem-Notation. Umgesetzt in oracle/nominals/verbs/
+      morphology.lexd/phonology/hfst.rules + Gold-Migration (goldstandard.py
+      emittiert die neue Notation). Coverage-neutral, Gold-Parität 1471/1471.
+- [ ] **Großschreibung als Lemma-Eigenschaft** (Folgeschritt) Eigennamen wie
+      `Afrika`/`Ewangēlijan` werden noch casegefaltet (`resolve_stem`/
+      `render_stem`), sodass die Oberfläche kleingeschrieben generiert wird und
+      großgeschriebene Wörterbuchformen (~2.900, ≈5 pp Coverage) nicht direkt
+      analysieren. Naiv-Fix (Case erhalten) regressiert Lexeme mit
+      großgeschriebenem Lemma + kleingeschriebenen Formen; sauber wäre
+      Casefolding + Großschreibung als separate, am Wortanfang reapplizierte
+      Lemma-Eigenschaft (oder case-insensitive Lookup im lenient-Pfad).
 
 ## Orthographische Normalisierung
 

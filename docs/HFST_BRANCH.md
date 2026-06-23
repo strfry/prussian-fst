@@ -19,7 +19,7 @@ Pipeline nativ in HFST:
 
 ```
 data/gold + Wortliste                       (dieselbe Quelle wie pyfoma)
-   │  hfst/lexc_gen.py   (markierte Unterseite: A E I O U, M/S/J, Grenzmarker ·)
+   │  hfst/lexc_gen.py   (markierte Unterseite: Â Ê Î Ô Û, M/S/J, Grenzmarker ·)
    ▼
 build/hfst/morphotactics.lexc
    │  hfst.compile_lexc_file
@@ -95,7 +95,7 @@ ein Grenzmarker:
 
 | Marker | Bedeutung |
 |--------|-----------|
-| `A E I O U` | Archiphonem (lang/kurz alternierend) |
+| `Â Ê Î Ô Û` | Archiphonem (lang/kurz alternierend; distinkte Symbole statt nackter Großbuchstaben — literale Großbuchstaben/Eigennamen kollidieren nicht mehr) |
 | `M` | Mobile-Lexem (Akzentklasse), vor dem Stamm |
 | `S` | starke Endung (zieht den Akzent) |
 | `J` | palatalisierende Endung (`g→ģ` …) |

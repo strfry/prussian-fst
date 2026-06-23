@@ -9,14 +9,25 @@ Makron-/Diakritika-Normalisierung (strip_macron, fold, case_normalize).
 
 import unicodedata
 
+# Archiphoneme: abgeleitete alternierende Vokale (Akzenttyp aus der
+# Deklinationstabelle). Distinkte Symbole (Zirkumflex) statt nackter
+# Großbuchstaben A/E/I/O/U, damit literale Großbuchstaben (Eigennamen wie
+# Afrika) nicht mehr als Archiphonem missverstanden werden.
+ARCHI = "ÂÊÎÔÛ"
+ARCHI_SET = set(ARCHI)
+#: Makron-Langvokal → Archiphonem (für detect_archiphoneme).
+MACRON_TO_ARCHI = {"ā": "Â", "ē": "Ê", "ī": "Î", "ō": "Ô", "ū": "Û"}
+#: alte Konvention (Großbuchstabe) → Archiphonem (Gold-Migration).
+UPPER_TO_ARCHI = str.maketrans("AEIOU", ARCHI)
+
 # Vokal-Auflösung (Archiphonem → lang/kurz)
-LONG = {"A": "ā", "E": "ē", "I": "ī", "O": "ō", "U": "ū"}
-SHORT = {"A": "a", "E": "e", "I": "i", "O": "o", "U": "u"}
+LONG = {"Â": "ā", "Ê": "ē", "Î": "ī", "Ô": "ō", "Û": "ū"}
+SHORT = {"Â": "a", "Ê": "e", "Î": "i", "Ô": "o", "Û": "u"}
 
 # Palatalisierung (Mažiulis §§21–25)
 PALATAL = {"g": "ģ", "k": "ķ", "n": "ņ", "s": "š", "t": "ţ", "z": "ž"}
 
-VOWELS = set("aeiouāēīōūAEIOU")
+VOWELS = set("aeiouāēīōūAEIOU") | ARCHI_SET
 LONG_VOWELS = set("āēīōū")
 
 
@@ -28,7 +39,12 @@ def _last_consonant_idx(s: str) -> int | None:
 
 
 def resolve_stem(stamm: str, betont: bool, palatize: bool) -> str:
-    """ORAKEL (frühere Bake-Logik): Archiphonem + Palatalisierung auflösen."""
+    """ORAKEL (frühere Bake-Logik): Archiphonem + Palatalisierung auflösen.
+
+    Nur Archiphoneme (``ÂÊÎÔÛ``) werden zu lang/kurz aufgelöst; literale Zeichen
+    werden casegefaltet (Großschreibung ist hier keine eigene Eigenschaft —
+    s. docs/BACKLOG.md »Großschreibung«; eigener Folgeschritt).
+    """
     vmap = LONG if betont else SHORT
     stem = "".join(vmap.get(c, c.lower()) for c in stamm)
     if palatize and stem:

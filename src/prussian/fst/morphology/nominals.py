@@ -11,7 +11,7 @@ import json
 from collections import defaultdict
 from pathlib import Path
 
-from prussian.fst.oracle import LONG_VOWELS, fold, strip_macron
+from prussian.fst.oracle import LONG_VOWELS, MACRON_TO_ARCHI, fold, strip_macron
 from prussian.fst.tags import ADJ_PARADIGMS, _paradigm_kind, tag_prefix
 
 WL_GENDER = {"masc": "m", "fem": "f", "neut": "n"}
@@ -51,7 +51,7 @@ def detect_archiphoneme(stem_surface: str, nom_sg_suffix: str) -> str:
     result = []
     for i, ch in enumerate(stem_surface):
         if i in acc_positions:
-            result.append(strip_macron(ch).upper())
+            result.append(MACRON_TO_ARCHI[ch])
         else:
             result.append(ch)
     return "".join(result)

@@ -4,7 +4,7 @@ Keine hfst-Importe beim Laden — die Strings werden in build.py mit
 ``hfst.regex`` kompiliert. Zwei Gruppen:
 
 1. **Phonologie/Akzent** (entspricht pyfomas ``phonology.rule_chain``):
-   löst Archiphoneme (A E I O U) und die Marker M/S/J zur Standard-
+   löst Archiphoneme (Â Ê Î Ô Û) und die Marker M/S/J zur Standard-
    oberfläche auf. Markierte Unterseite → saubere Oberfläche.
    twolc-Äquivalente: docs/ORTHO_RULES.md §4.
 
@@ -13,7 +13,9 @@ Keine hfst-Importe beim Laden — die Strings werden in build.py mit
    sie pro Lexem aufzuzählen. Über-Generierung ist zulässig — der
    Analysator filtert (docs/HFST_SPIKE.md §D).
 
-Konvention: ``A E I O U`` Archiphoneme, ``M`` Mobile-Marker (Stammanfang),
+Konvention: ``Â Ê Î Ô Û`` Archiphoneme (distinkte Symbole statt nackter
+Großbuchstaben, damit literale Großbuchstaben/Eigennamen frei sind),
+``M`` Mobile-Marker (Stammanfang),
 ``S`` starke Endung, ``J`` palatalisierende Endung. ``.#.`` = Wortgrenze.
 """
 
@@ -25,13 +27,13 @@ Konvention: ``A E I O U`` Archiphoneme, ``M`` Mobile-Marker (Stammanfang),
 #: (S) der Akzent auf der Endung — das Stamm-Archiphonem bleibt kurz.
 #: twolc: {A}:a <=> M: ?* _ ?* S: ;   (analog E I O U)
 SHORTEN = (
-    "A -> a, E -> e, I -> i, O -> o, U -> u "
+    "Â -> a, Ê -> e, Î -> i, Ô -> o, Û -> u "
     "|| M ?* _ ?* S ;"
 )
 
 #: Default-Längung: alle übrigen Archiphoneme stehen in akzentuierter Silbe
 #: und erscheinen lang (Makron). twolc: {A}:ā ; (Default)
-LENGTHEN = "A -> ā, E -> ē, I -> ī, O -> ō, U -> ū ;"
+LENGTHEN = "Â -> ā, Ê -> ē, Î -> ī, Ô -> ō, Û -> ū ;"
 
 #: J-Palatalisierung des Stammauslauts vor palatalisierender Endung (J).
 #: twolc: g:ģ <=> _ %^JPal: ;  usw. (Mažiulis §§21–25)
