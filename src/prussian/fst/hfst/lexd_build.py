@@ -44,6 +44,8 @@ VERB_GOLD = ROOT / "data/gold/goldstandard_verben_fst.json"
 TWANKSTA = ROOT / "data/external/twanksta_entries.json"
 CLOSED_FW = ROOT / "data/closed/function_words.json"
 CLOSED_PRONOUNS = ROOT / "data/closed/personal_pronouns.json"
+LEXD_DIR = ROOT / "data/lexd"
+PARADIGMS = ROOT / "data/paradigms.lexd"
 BUILD = ROOT / "build/hfst"
 
 LEXD_OUT = BUILD / "morphotactics.lexd"
@@ -111,17 +113,51 @@ def main():
             f"{len(fw_words)} FW, {len(adv_words)} Adv"
         )
 
-    lexd_text = build_lexd(
-        combined,
-        verb_data,
-        verb_wl,
-        closed_entries=closed,
-        function_words=fw_words,
-        adverbs=adv_words,
-    )
     BUILD.mkdir(parents=True, exist_ok=True)
+
+    if args.gold_only:
+        # gold-only: alles inline generieren (keine lexd/* nötig)
+        lexd_text = build_lexd(
+            combined,
+            verb_data,
+            verb_wl,
+            closed_entries=closed,
+            function_words=fw_words,
+            adverbs=adv_words,
+        )
+    else:
+        # voller Build: lexd/* (handgeschriebene Tabellen) + generierte Stämme
+        stems_text = build_lexd(
+            combined,
+            verb_data,
+            verb_wl,
+            closed_entries=closed,
+            function_words=fw_words,
+            adverbs=adv_words,
+            stems_close_only=True,
+        )
+        lexd_parts = []
+        for f in sorted(LEXD_DIR.glob("*.lexd")):
+            lexd_parts.append(f.read_text(encoding="utf-8"))
+        lexd_parts.append(stems_text)
+        lexd_text = "\n".join(lexd_parts)
+
     LEXD_OUT.write_text(lexd_text, encoding="utf-8")
-    print(f"lexd → {LEXD_OUT} ({len(lexd_text.splitlines())} Zeilen)")
+    total = len(lexd_text.splitlines())
+    if args.gold_only:
+        n_stems = sum(
+            1 for l in lexd_text.splitlines() if l.startswith("LEXICON Stems")
+        )
+        print(f"lexd → {LEXD_OUT} ({total} Zeilen, {n_stems} Stems-Lexika, gold-only)")
+    else:
+        n_pfiles = len(lexd_parts) - 1  # ohne den generierten Stems-Teil
+        n_stems = sum(
+            1 for l in stems_text.splitlines() if l.startswith("LEXICON Stems")
+        )
+        print(
+            f"lexd → {LEXD_OUT} ({total} Zeilen, "
+            f"{n_pfiles} Paradigmen-Dateien, {n_stems} Stems-Lexika)"
+        )
 
     # lexd CLI: Quelltext → ATT
     subprocess.run(

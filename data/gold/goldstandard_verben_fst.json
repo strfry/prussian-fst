@@ -3451,11 +3451,6 @@
     "tense": "present",
     "stamm": "as",
     "suffixe": {
-      "Inf": {
-        "suffix": "twei",
-        "betont": false,
-        "palatize": true
-      },
       "1sg": {
         "suffix": "ma",
         "betont": false
@@ -5254,6 +5249,18 @@
       "2pl": {
         "suffix": "atei",
         "betont": true
+      }
+    }
+  },
+  {
+    "paradigm": "115",
+    "lemma": "būtwei",
+    "tense": "infinitive",
+    "stamm": "bū",
+    "suffixe": {
+      "Inf": {
+        "suffix": "twei",
+        "betont": false
       }
     }
   }

@@ -1,0 +1,55 @@
+LEXICON InflN_P25_x
+<Sg><Nom>:a[gFem]
+<Sg><Nom>:s[gMsc]
+<Sg><Nom>:·an[gNeut]
+<Sg><Gen>:·as[gFem,gMsc,gNeut]
+<Sg><Dat>:·ai[gFem]
+<Sg><Dat>:·asmu[gMsc]
+<Sg><Dat>:·asmu[gNeut]
+<Sg><Acc>:·an[gFem,gMsc,gNeut]
+<Pl><Nom>:·as[gFem]
+<Pl><Nom>:·ai[gMsc]
+<Pl><Nom>:·ai[gNeut]
+<Pl><Gen>:·an[gFem,gMsc,gNeut]
+<Pl><Dat>:·amans[gFem,gMsc,gNeut]
+<Pl><Acc>:·ans[gFem,gMsc,gNeut]
+
+LEXICON InflN_P12_x
+<Sg><Nom>:·āns[gMsc]
+<Sg><Gen>:·enesse[gMsc]
+<Sg><Dat>:·enesmu[gMsc]
+<Sg><Acc>:·ennan[gMsc]
+<Pl><Nom>:·enēi[gMsc]
+<Pl><Gen>:·enēisan[gMsc]
+<Pl><Dat>:·enēimans[gMsc]
+<Pl><Acc>:·ennans[gMsc]
+
+LEXICON InflN_P45_x
+<Sg><Nom>:a[gFem]
+<Sg><Gen>:·as[gFem]
+<Sg><Dat>:·ai[gFem]
+<Sg><Acc>:·an[gFem]
+<Pl><Nom>:·as[gFem]
+<Pl><Gen>:·an[gFem]
+<Pl><Dat>:·amans[gFem]
+<Pl><Acc>:·ans[gFem]
+
+LEXICON InflN_P1_x
+<Sg><Nom>:·as
+<Sg><Gen>:·māise
+<Sg><Dat>:·mennei
+<Sg><Acc>:·men
+<Pl><Nom>:·mes
+<Pl><Gen>:·nūse
+<Pl><Dat>:·nūmans
+<Pl><Acc>:·mans
+
+LEXICON InflN_P2_x
+<Sg><Nom>:·tū
+<Sg><Gen>:·twāise
+<Sg><Dat>:·tebbei
+<Sg><Acc>:·ten
+<Pl><Nom>:jūs
+<Pl><Gen>:jūse
+<Pl><Dat>:jūmans
+<Pl><Acc>:·wans

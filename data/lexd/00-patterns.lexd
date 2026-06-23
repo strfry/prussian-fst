@@ -1,0 +1,28 @@
+PATTERNS
+StemsN_P25_x[gMsc] InflN_P25_x[gMsc]
+StemsN_P25_x[gFem] InflN_P25_x[gFem]
+StemsN_P25_x[gNeut] InflN_P25_x[gNeut]
+StemsN_P25comp_x[gMsc] InflN_P25comp_x[gMsc]
+StemsN_P25comp_x[gFem] InflN_P25comp_x[gFem]
+StemsN_P25comp_x[gNeut] InflN_P25comp_x[gNeut]
+StemsN_P25sup_x[gMsc] InflN_P25sup_x[gMsc]
+StemsN_P25sup_x[gFem] InflN_P25sup_x[gFem]
+StemsN_P25sup_x[gNeut] InflN_P25sup_x[gNeut]
+StemsN_P12_x[gMsc] InflN_P12_x[gMsc]
+StemsN_P45_x[gFem] InflN_P45_x[gFem]
+StemsN_P1_x InflN_P1_x
+StemsN_P2_x InflN_P2_x
+StemsV_P71_pres_stem InflV_P71_pres_stem
+StemsV_P71_inf_stem InflV_P71_inf_stem
+StemsV_P71_imperative InflV_P71_imperative
+StemsV_P100_present InflV_P100_present
+StemsV_P100_preterite InflV_P100_preterite
+StemsV_P115_present InflV_P115_present
+StemsV_P115_preterite InflV_P115_preterite
+StemsVp_P29_decl InflVp_P29_decl
+StemsVp_P68_decl InflVp_P68_decl
+StemsVp_P69_decl InflVp_P69_decl
+FuncWords
+Adverbs
+Numerals
+Variants

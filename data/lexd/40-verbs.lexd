@@ -1,0 +1,54 @@
+LEXICON InflV_P71_pres_stem
+<Prs><1Sg>:a
+<Prs><2Sg>:a
+<Prs><3>:a
+<Prs><1Pl>:·imai
+<Prs><2Pl>:·itei
+<Prt><1Sg>:i
+<Prt><2Sg>:i
+<Prt><3>:i
+<Prt><1Pl>:·imai
+<Prt><2Pl>:·itei
+
+LEXICON InflV_P71_inf_stem
+<Inf>:·tun
+<Opt>:·sei
+<Subj><1Sg>:·lai
+<Subj><2Sg>:·lai
+<Subj><3>:·lai
+<Subj><1Pl>:·limai
+<Subj><2Pl>:·litei
+
+LEXICON InflV_P71_imperative
+<Imp><2Sg>:·ais
+<Imp><2Pl>:·aiti
+
+LEXICON InflV_P100_present
+<Inf>:JSun
+<Prs><1Sg>:a
+<Prs><2Sg>:a
+<Prs><3>:a
+<Prs><1Pl>:·imai
+<Prs><2Pl>:·itei
+
+LEXICON InflV_P100_preterite
+<Prt><1Sg>:a
+<Prt><2Sg>:a
+<Prt><3>:a
+<Prt><1Pl>:·amai
+<Prt><2Pl>:·atei
+
+LEXICON InflV_P115_present
+<Inf>:·twei
+<Prs><1Sg>:·ma
+<Prs><2Sg>:·sei
+<Prs><3>:t
+<Prs><1Pl>:·mai
+<Prs><2Pl>:·tei
+
+LEXICON InflV_P115_preterite
+<Prt><1Sg>:·ēi
+<Prt><2Sg>:·ēi
+<Prt><3>:·ēi
+<Prt><1Pl>:·ēimai
+<Prt><2Pl>:·ēitei

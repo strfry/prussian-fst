@@ -134,8 +134,15 @@ def build_lexd(
     closed_entries: list[dict] | None = None,
     function_words: list[tuple[str, str]] | None = None,
     adverbs: list[tuple[str, str]] | None = None,
+    stems_close_only: bool = False,
 ) -> str:
-    """Eintragsdaten → lexd-Quelltext (``<Tag>``-Format, Gender-Tag-Filterung)."""
+    """Eintragsdaten → lexd-Quelltext (``<Tag>``-Format, Gender-Tag-Filterung).
+
+    Mit ``stems_close_only=True`` werden nur die Stems*, FuncWords, Adverbs
+    und Variants emittiert (nicht PATTERNS oder Infl*).  Das Ergebnis kann
+    mit ``data/paradigms.lexd`` konkateniert werden, das die handgeschriebenen
+    Paradigmentabellen (PATTERNS + Infl*) enthält.
+    """
     stems, infls, variants = collect(
         entries, verb_entries, verb_wl_entries, closed_entries
     )
@@ -163,36 +170,85 @@ def build_lexd(
         else:
             unmerged_keys.append(key)
 
-    lines = ["PATTERNS"]
+    lines: list[str] = []
 
-    # Gender-merged nominal groups
+    if not stems_close_only:
+        lines.append("PATTERNS")
+
+        # Gender-merged nominal groups
+        for gkey in sorted(merged_stems):
+            kind, par = gkey
+            stem_name = _lexname(f"Stems{kind}", par, "")
+            infl_name = _lexname(f"Infl{kind}", par, "")
+            for gtag in sorted(merged_genders.get(gkey, set())):
+                lines.append(f"{stem_name}[{gtag}] {infl_name}[{gtag}]")
+
+        # Non-gender groups (verbs, adverbs, etc.) — own pattern per key
+        for key in sorted(unmerged_keys):
+            kind, par, sub = key
+            lines.append(
+                f"{_lexname(f'Stems{kind}', par, sub)} "
+                f"{_lexname(f'Infl{kind}', par, sub)}"
+            )
+
+        if function_words:
+            lines.append("FuncWords")
+        if adverbs:
+            lines.append("Adverbs")
+        if variants:
+            lines.append("Variants")
+        lines.append("")
+
+        # ── Gender-merged Infl-Lexika ──
+        for gkey in sorted(merged_stems):
+            kind, par = gkey
+            infl_name = _lexname(f"Infl{kind}", par, "")
+            lines.append(f"LEXICON {infl_name}")
+            for tag in sorted(merged_infls[gkey]):
+                by_gender = merged_infls[gkey][tag]
+                unique_values = set(by_gender.values())
+                if len(unique_values) == 1 and len(by_gender) >= 2:
+                    gtags = ",".join(_GENDER_TAG[s] for s in by_gender)
+                    lines.append(
+                        f"{_to_lexd(tag)}:{_esc(list(unique_values)[0])}[{gtags}]"
+                    )
+                else:
+                    for sub, lower in sorted(by_gender.items()):
+                        gtag = _GENDER_TAG.get(sub, sub)
+                        lines.append(f"{_to_lexd(tag)}:{_esc(lower)}[{gtag}]")
+            lines.append("")
+
+        # ── Unveränderte Infl-Lexika (Verben, Adverbien etc.) ──
+        for key in sorted(unmerged_keys):
+            kind, par, sub = key
+            infl_lex = _lexname(f"Infl{kind}", par, sub)
+            lines.append(f"LEXICON {infl_lex}")
+            for tag, lower in sorted(infls[key].items()):
+                lines.append(f"{_to_lexd(tag)}:{_esc(lower)}")
+            lines.append("")
+
+        if function_words:
+            lines.append("LEXICON FuncWords")
+            for w, tag in sorted(function_words):
+                lines.append(f"{_esc(w)}{_to_lexd(tag)}:{_esc(w)}")
+            lines.append("")
+
+        if adverbs:
+            lines.append("LEXICON Adverbs")
+            for w, tag in sorted(set(adverbs)):
+                lines.append(f"{_esc(w)}{_to_lexd(tag)}:{_esc(w)}")
+            lines.append("")
+
+        if variants:
+            lines.append("LEXICON Variants")
+            for upper, surface in sorted(variants):
+                lines.append(f"{_to_lexd(upper)}:{_esc(surface)}")
+            lines.append("")
+
+    # ── Gender-merged Stem-Lexika ──
     for gkey in sorted(merged_stems):
         kind, par = gkey
         stem_name = _lexname(f"Stems{kind}", par, "")
-        infl_name = _lexname(f"Infl{kind}", par, "")
-        for gtag in sorted(merged_genders.get(gkey, set())):
-            lines.append(f"{stem_name}[{gtag}] {infl_name}[{gtag}]")
-
-    # Non-gender groups (verbs, adverbs, etc.) — own pattern per key
-    for key in sorted(unmerged_keys):
-        kind, par, sub = key
-        lines.append(
-            f"{_lexname(f'Stems{kind}', par, sub)} {_lexname(f'Infl{kind}', par, sub)}"
-        )
-
-    if function_words:
-        lines.append("FuncWords")
-    if adverbs:
-        lines.append("Adverbs")
-    if variants:
-        lines.append("Variants")
-    lines.append("")
-
-    # ── Gender-merged Stem+Infl-Lexika ──
-    for gkey in sorted(merged_stems):
-        kind, par = gkey
-        stem_name = _lexname(f"Stems{kind}", par, "")
-        infl_name = _lexname(f"Infl{kind}", par, "")
         lines.append(f"LEXICON {stem_name}")
         seen = set()
         for upper, lower, gtag in sorted(merged_stems[gkey]):
@@ -201,52 +257,14 @@ def build_lexd(
                 seen.add(entry)
                 lines.append(entry)
         lines.append("")
-        lines.append(f"LEXICON {infl_name}")
-        # Zuerst gender-spezifische, dann geteilte Endungen
-        for tag in sorted(merged_infls[gkey]):
-            by_gender = merged_infls[gkey][tag]
-            # Check ob Endung über alle Gender identisch ist
-            unique_values = set(by_gender.values())
-            if len(unique_values) == 1 and len(by_gender) >= 2:
-                # Gleiche Endung in mehreren Genera → ein Eintrag mit allen Tags
-                gtags = ",".join(_GENDER_TAG[s] for s in by_gender)
-                lines.append(f"{_to_lexd(tag)}:{_esc(list(unique_values)[0])}[{gtags}]")
-            else:
-                for sub, lower in sorted(by_gender.items()):
-                    gtag = _GENDER_TAG.get(sub, sub)
-                    lines.append(f"{_to_lexd(tag)}:{_esc(lower)}[{gtag}]")
-        lines.append("")
 
-    # ── Unveränderte Lexika (Verben, Adverbien etc.) ──
+    # ── Unveränderte Stem-Lexika (Verben, Adverbien etc.) ──
     for key in sorted(unmerged_keys):
         kind, par, sub = key
         stem_lex = _lexname(f"Stems{kind}", par, sub)
-        infl_lex = _lexname(f"Infl{kind}", par, sub)
         lines.append(f"LEXICON {stem_lex}")
         for upper, lower in sorted(stems[key]):
             lines.append(f"{_to_lexd(upper)}:{_esc(lower)}")
-        lines.append("")
-        lines.append(f"LEXICON {infl_lex}")
-        for tag, lower in sorted(infls[key].items()):
-            lines.append(f"{_to_lexd(tag)}:{_esc(lower)}")
-        lines.append("")
-
-    if function_words:
-        lines.append("LEXICON FuncWords")
-        for w, tag in sorted(function_words):
-            lines.append(f"{_esc(w)}{_to_lexd(tag)}:{_esc(w)}")
-        lines.append("")
-
-    if adverbs:
-        lines.append("LEXICON Adverbs")
-        for w, tag in sorted(set(adverbs)):
-            lines.append(f"{_esc(w)}{_to_lexd(tag)}:{_esc(w)}")
-        lines.append("")
-
-    if variants:
-        lines.append("LEXICON Variants")
-        for upper, surface in sorted(variants):
-            lines.append(f"{_to_lexd(upper)}:{_esc(surface)}")
         lines.append("")
 
     return "\n".join(lines)

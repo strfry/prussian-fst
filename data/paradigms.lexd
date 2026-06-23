@@ -1,0 +1,3349 @@
+PATTERNS
+StemsN_P10_x[gFem] InflN_P10_x[gFem]
+StemsN_P10_x[gMsc] InflN_P10_x[gMsc]
+StemsN_P10_x[gNeut] InflN_P10_x[gNeut]
+StemsN_P11_x[gFem] InflN_P11_x[gFem]
+StemsN_P11_x[gMsc] InflN_P11_x[gMsc]
+StemsN_P11_x[gNeut] InflN_P11_x[gNeut]
+StemsN_P115_x[gFem] InflN_P115_x[gFem]
+StemsN_P115_x[gNeut] InflN_P115_x[gNeut]
+StemsN_P118_x[gFem] InflN_P118_x[gFem]
+StemsN_P118_x[gNeut] InflN_P118_x[gNeut]
+StemsN_P12_x[gMsc] InflN_P12_x[gMsc]
+StemsN_P13_x[gFem] InflN_P13_x[gFem]
+StemsN_P14_x[gNeut] InflN_P14_x[gNeut]
+StemsN_P15_x[gFem] InflN_P15_x[gFem]
+StemsN_P15_x[gMsc] InflN_P15_x[gMsc]
+StemsN_P15_x[gNeut] InflN_P15_x[gNeut]
+StemsN_P16_x[gFem] InflN_P16_x[gFem]
+StemsN_P16_x[gMsc] InflN_P16_x[gMsc]
+StemsN_P16_x[gNeut] InflN_P16_x[gNeut]
+StemsN_P17_x[gFem] InflN_P17_x[gFem]
+StemsN_P17_x[gMsc] InflN_P17_x[gMsc]
+StemsN_P17_x[gNeut] InflN_P17_x[gNeut]
+StemsN_P18_x[gFem] InflN_P18_x[gFem]
+StemsN_P18_x[gMsc] InflN_P18_x[gMsc]
+StemsN_P18_x[gNeut] InflN_P18_x[gNeut]
+StemsN_P19_x[gFem] InflN_P19_x[gFem]
+StemsN_P19_x[gMsc] InflN_P19_x[gMsc]
+StemsN_P19_x[gNeut] InflN_P19_x[gNeut]
+StemsN_P20_x[gFem] InflN_P20_x[gFem]
+StemsN_P20_x[gMsc] InflN_P20_x[gMsc]
+StemsN_P20_x[gNeut] InflN_P20_x[gNeut]
+StemsN_P21_x[gFem] InflN_P21_x[gFem]
+StemsN_P21_x[gMsc] InflN_P21_x[gMsc]
+StemsN_P21_x[gNeut] InflN_P21_x[gNeut]
+StemsN_P22_x[gFem] InflN_P22_x[gFem]
+StemsN_P22_x[gMsc] InflN_P22_x[gMsc]
+StemsN_P22_x[gNeut] InflN_P22_x[gNeut]
+StemsN_P23_x[gFem] InflN_P23_x[gFem]
+StemsN_P23_x[gMsc] InflN_P23_x[gMsc]
+StemsN_P23_x[gNeut] InflN_P23_x[gNeut]
+StemsN_P24_x[gFem] InflN_P24_x[gFem]
+StemsN_P24_x[gMsc] InflN_P24_x[gMsc]
+StemsN_P24_x[gNeut] InflN_P24_x[gNeut]
+StemsN_P25_x[gFem] InflN_P25_x[gFem]
+StemsN_P25_x[gMsc] InflN_P25_x[gMsc]
+StemsN_P25_x[gNeut] InflN_P25_x[gNeut]
+StemsN_P25comp_x[gFem] InflN_P25comp_x[gFem]
+StemsN_P25comp_x[gMsc] InflN_P25comp_x[gMsc]
+StemsN_P25comp_x[gNeut] InflN_P25comp_x[gNeut]
+StemsN_P25comp_suppl_x[gFem] InflN_P25comp_suppl_x[gFem]
+StemsN_P25comp_suppl_x[gMsc] InflN_P25comp_suppl_x[gMsc]
+StemsN_P25comp_suppl_x[gNeut] InflN_P25comp_suppl_x[gNeut]
+StemsN_P25comp_suppl2_x[gFem] InflN_P25comp_suppl2_x[gFem]
+StemsN_P25comp_suppl2_x[gMsc] InflN_P25comp_suppl2_x[gMsc]
+StemsN_P25comp_suppl2_x[gNeut] InflN_P25comp_suppl2_x[gNeut]
+StemsN_P25sup_x[gFem] InflN_P25sup_x[gFem]
+StemsN_P25sup_x[gMsc] InflN_P25sup_x[gMsc]
+StemsN_P25sup_x[gNeut] InflN_P25sup_x[gNeut]
+StemsN_P25sup_suppl_x[gFem] InflN_P25sup_suppl_x[gFem]
+StemsN_P25sup_suppl_x[gMsc] InflN_P25sup_suppl_x[gMsc]
+StemsN_P25sup_suppl_x[gNeut] InflN_P25sup_suppl_x[gNeut]
+StemsN_P25sup_suppl2_x[gFem] InflN_P25sup_suppl2_x[gFem]
+StemsN_P25sup_suppl2_x[gMsc] InflN_P25sup_suppl2_x[gMsc]
+StemsN_P25sup_suppl2_x[gNeut] InflN_P25sup_suppl2_x[gNeut]
+StemsN_P26_x[gFem] InflN_P26_x[gFem]
+StemsN_P26_x[gMsc] InflN_P26_x[gMsc]
+StemsN_P26_x[gNeut] InflN_P26_x[gNeut]
+StemsN_P26comp_x[gFem] InflN_P26comp_x[gFem]
+StemsN_P26comp_x[gMsc] InflN_P26comp_x[gMsc]
+StemsN_P26comp_x[gNeut] InflN_P26comp_x[gNeut]
+StemsN_P26comp_suppl_x[gFem] InflN_P26comp_suppl_x[gFem]
+StemsN_P26comp_suppl_x[gMsc] InflN_P26comp_suppl_x[gMsc]
+StemsN_P26comp_suppl_x[gNeut] InflN_P26comp_suppl_x[gNeut]
+StemsN_P26sup_x[gFem] InflN_P26sup_x[gFem]
+StemsN_P26sup_x[gMsc] InflN_P26sup_x[gMsc]
+StemsN_P26sup_x[gNeut] InflN_P26sup_x[gNeut]
+StemsN_P26sup_suppl_x[gFem] InflN_P26sup_suppl_x[gFem]
+StemsN_P26sup_suppl_x[gMsc] InflN_P26sup_suppl_x[gMsc]
+StemsN_P26sup_suppl_x[gNeut] InflN_P26sup_suppl_x[gNeut]
+StemsN_P27_x[gFem] InflN_P27_x[gFem]
+StemsN_P27_x[gMsc] InflN_P27_x[gMsc]
+StemsN_P27_x[gNeut] InflN_P27_x[gNeut]
+StemsN_P27comp_x[gFem] InflN_P27comp_x[gFem]
+StemsN_P27comp_x[gMsc] InflN_P27comp_x[gMsc]
+StemsN_P27comp_x[gNeut] InflN_P27comp_x[gNeut]
+StemsN_P27sup_x[gFem] InflN_P27sup_x[gFem]
+StemsN_P27sup_x[gMsc] InflN_P27sup_x[gMsc]
+StemsN_P27sup_x[gNeut] InflN_P27sup_x[gNeut]
+StemsN_P28_x[gFem] InflN_P28_x[gFem]
+StemsN_P28_x[gMsc] InflN_P28_x[gMsc]
+StemsN_P28_x[gNeut] InflN_P28_x[gNeut]
+StemsN_P28sup_x[gFem] InflN_P28sup_x[gFem]
+StemsN_P28sup_x[gMsc] InflN_P28sup_x[gMsc]
+StemsN_P28sup_x[gNeut] InflN_P28sup_x[gNeut]
+StemsN_P29_x[gFem] InflN_P29_x[gFem]
+StemsN_P29_x[gMsc] InflN_P29_x[gMsc]
+StemsN_P29_x[gNeut] InflN_P29_x[gNeut]
+StemsN_P29comp_x[gFem] InflN_P29comp_x[gFem]
+StemsN_P29comp_x[gMsc] InflN_P29comp_x[gMsc]
+StemsN_P29comp_x[gNeut] InflN_P29comp_x[gNeut]
+StemsN_P29sup_x[gFem] InflN_P29sup_x[gFem]
+StemsN_P29sup_x[gMsc] InflN_P29sup_x[gMsc]
+StemsN_P29sup_x[gNeut] InflN_P29sup_x[gNeut]
+StemsN_P30_x[gFem] InflN_P30_x[gFem]
+StemsN_P30_x[gMsc] InflN_P30_x[gMsc]
+StemsN_P30_x[gNeut] InflN_P30_x[gNeut]
+StemsN_P30a_x[gFem] InflN_P30a_x[gFem]
+StemsN_P30a_x[gMsc] InflN_P30a_x[gMsc]
+StemsN_P30a_x[gNeut] InflN_P30a_x[gNeut]
+StemsN_P30acomp_x[gFem] InflN_P30acomp_x[gFem]
+StemsN_P30acomp_x[gMsc] InflN_P30acomp_x[gMsc]
+StemsN_P30acomp_x[gNeut] InflN_P30acomp_x[gNeut]
+StemsN_P30asup_x[gFem] InflN_P30asup_x[gFem]
+StemsN_P30asup_x[gMsc] InflN_P30asup_x[gMsc]
+StemsN_P30asup_x[gNeut] InflN_P30asup_x[gNeut]
+StemsN_P30comp_x[gFem] InflN_P30comp_x[gFem]
+StemsN_P30comp_x[gMsc] InflN_P30comp_x[gMsc]
+StemsN_P30comp_x[gNeut] InflN_P30comp_x[gNeut]
+StemsN_P30sup_x[gFem] InflN_P30sup_x[gFem]
+StemsN_P30sup_x[gMsc] InflN_P30sup_x[gMsc]
+StemsN_P30sup_x[gNeut] InflN_P30sup_x[gNeut]
+StemsN_P31_x[gFem] InflN_P31_x[gFem]
+StemsN_P31_x[gMsc] InflN_P31_x[gMsc]
+StemsN_P31_x[gNeut] InflN_P31_x[gNeut]
+StemsN_P31comp_x[gFem] InflN_P31comp_x[gFem]
+StemsN_P31comp_x[gMsc] InflN_P31comp_x[gMsc]
+StemsN_P31comp_x[gNeut] InflN_P31comp_x[gNeut]
+StemsN_P31sup_x[gFem] InflN_P31sup_x[gFem]
+StemsN_P31sup_x[gMsc] InflN_P31sup_x[gMsc]
+StemsN_P31sup_x[gNeut] InflN_P31sup_x[gNeut]
+StemsN_P32_x[gMsc] InflN_P32_x[gMsc]
+StemsN_P33_x[gMsc] InflN_P33_x[gMsc]
+StemsN_P34_x[gMsc] InflN_P34_x[gMsc]
+StemsN_P35_x[gNeut] InflN_P35_x[gNeut]
+StemsN_P35a_x[gNeut] InflN_P35a_x[gNeut]
+StemsN_P36_x[gMsc] InflN_P36_x[gMsc]
+StemsN_P37_x[gNeut] InflN_P37_x[gNeut]
+StemsN_P37a_x[gNeut] InflN_P37a_x[gNeut]
+StemsN_P38_x[gMsc] InflN_P38_x[gMsc]
+StemsN_P39_x[gMsc] InflN_P39_x[gMsc]
+StemsN_P40_x[gMsc] InflN_P40_x[gMsc]
+StemsN_P40a_x[gMsc] InflN_P40a_x[gMsc]
+StemsN_P40b_x[gMsc] InflN_P40b_x[gMsc]
+StemsN_P40c_x[gMsc] InflN_P40c_x[gMsc]
+StemsN_P41_x[gMsc] InflN_P41_x[gMsc]
+StemsN_P42_x[gMsc] InflN_P42_x[gMsc]
+StemsN_P43_x[gMsc] InflN_P43_x[gMsc]
+StemsN_P44_x[gNeut] InflN_P44_x[gNeut]
+StemsN_P45_x[gFem] InflN_P45_x[gFem]
+StemsN_P46_x[gFem] InflN_P46_x[gFem]
+StemsN_P47_x[gMsc] InflN_P47_x[gMsc]
+StemsN_P48_x[gFem] InflN_P48_x[gFem]
+StemsN_P49_x[gFem] InflN_P49_x[gFem]
+StemsN_P50_x[gFem] InflN_P50_x[gFem]
+StemsN_P50a_x[gFem] InflN_P50a_x[gFem]
+StemsN_P51_x[gFem] InflN_P51_x[gFem]
+StemsN_P51a_x[gFem] InflN_P51a_x[gFem]
+StemsN_P52_x[gFem] InflN_P52_x[gFem]
+StemsN_P53_x[gFem] InflN_P53_x[gFem]
+StemsN_P54_x[gMsc] InflN_P54_x[gMsc]
+StemsN_P55_x[gMsc] InflN_P55_x[gMsc]
+StemsN_P56_x[gMsc] InflN_P56_x[gMsc]
+StemsN_P57_x[gMsc] InflN_P57_x[gMsc]
+StemsN_P58_x[gFem] InflN_P58_x[gFem]
+StemsN_P59_x[gNeut] InflN_P59_x[gNeut]
+StemsN_P60_x[gFem] InflN_P60_x[gFem]
+StemsN_P61_x[gMsc] InflN_P61_x[gMsc]
+StemsN_P62_x[gMsc] InflN_P62_x[gMsc]
+StemsN_P63_x[gNeut] InflN_P63_x[gNeut]
+StemsN_P64_x[gMsc] InflN_P64_x[gMsc]
+StemsN_P65_x[gMsc] InflN_P65_x[gMsc]
+StemsN_P66_x[gFem] InflN_P66_x[gFem]
+StemsN_P67_x[gFem] InflN_P67_x[gFem]
+StemsN_P70_x[gFem] InflN_P70_x[gFem]
+StemsN_P70_x[gMsc] InflN_P70_x[gMsc]
+StemsN_P70_x[gNeut] InflN_P70_x[gNeut]
+StemsN_P9_x[gFem] InflN_P9_x[gFem]
+StemsN_P9_x[gMsc] InflN_P9_x[gMsc]
+StemsN_P9_x[gNeut] InflN_P9_x[gNeut]
+StemsN_P1_x InflN_P1_x
+StemsN_P115_x InflN_P115_x
+StemsN_P118_x InflN_P118_x
+StemsN_P2_x InflN_P2_x
+StemsV_P100_present InflV_P100_present
+StemsV_P100_preterite InflV_P100_preterite
+StemsV_P102_present InflV_P102_present
+StemsV_P102_preterite InflV_P102_preterite
+StemsV_P102a_present InflV_P102a_present
+StemsV_P102a_preterite InflV_P102a_preterite
+StemsV_P105_present InflV_P105_present
+StemsV_P105_preterite InflV_P105_preterite
+StemsV_P106a_pres_stem InflV_P106a_pres_stem
+StemsV_P106b_present InflV_P106b_present
+StemsV_P106b_preterite InflV_P106b_preterite
+StemsV_P106c_pres_stem InflV_P106c_pres_stem
+StemsV_P106d_present InflV_P106d_present
+StemsV_P106d_preterite InflV_P106d_preterite
+StemsV_P107_present InflV_P107_present
+StemsV_P107_preterite InflV_P107_preterite
+StemsV_P108_present InflV_P108_present
+StemsV_P108_preterite InflV_P108_preterite
+StemsV_P109_present InflV_P109_present
+StemsV_P109_preterite InflV_P109_preterite
+StemsV_P110_present InflV_P110_present
+StemsV_P110_preterite InflV_P110_preterite
+StemsV_P111_present InflV_P111_present
+StemsV_P111_preterite InflV_P111_preterite
+StemsV_P112_present InflV_P112_present
+StemsV_P112_preterite InflV_P112_preterite
+StemsV_P113_present InflV_P113_present
+StemsV_P113_preterite InflV_P113_preterite
+StemsV_P114_present InflV_P114_present
+StemsV_P114_preterite InflV_P114_preterite
+StemsV_P115_inf_stem InflV_P115_inf_stem
+StemsV_P115_present InflV_P115_present
+StemsV_P115_preterite InflV_P115_preterite
+StemsV_P116_present InflV_P116_present
+StemsV_P116_preterite InflV_P116_preterite
+StemsV_P117_present InflV_P117_present
+StemsV_P117_preterite InflV_P117_preterite
+StemsV_P118_pres_stem InflV_P118_pres_stem
+StemsV_P119_present InflV_P119_present
+StemsV_P119_preterite InflV_P119_preterite
+StemsV_P120_present InflV_P120_present
+StemsV_P120_preterite InflV_P120_preterite
+StemsV_P121_present InflV_P121_present
+StemsV_P121_preterite InflV_P121_preterite
+StemsV_P122_pres_stem InflV_P122_pres_stem
+StemsV_P123_present InflV_P123_present
+StemsV_P123_preterite InflV_P123_preterite
+StemsV_P124_present InflV_P124_present
+StemsV_P124_preterite InflV_P124_preterite
+StemsV_P125_present InflV_P125_present
+StemsV_P125_preterite InflV_P125_preterite
+StemsV_P126_pres_stem InflV_P126_pres_stem
+StemsV_P127_pres_stem InflV_P127_pres_stem
+StemsV_P128_present InflV_P128_present
+StemsV_P128_preterite InflV_P128_preterite
+StemsV_P131_pres_stem InflV_P131_pres_stem
+StemsV_P132_pres_stem InflV_P132_pres_stem
+StemsV_P133_pres_stem InflV_P133_pres_stem
+StemsV_P134_pres_stem InflV_P134_pres_stem
+StemsV_P134a_pres_stem InflV_P134a_pres_stem
+StemsV_P135_present InflV_P135_present
+StemsV_P135_preterite InflV_P135_preterite
+StemsV_P136_pres_stem InflV_P136_pres_stem
+StemsV_P137_present InflV_P137_present
+StemsV_P137_preterite InflV_P137_preterite
+StemsV_P137a_present InflV_P137a_present
+StemsV_P137a_preterite InflV_P137a_preterite
+StemsV_P138_pres_stem InflV_P138_pres_stem
+StemsV_P139_pres_stem InflV_P139_pres_stem
+StemsV_P140_present InflV_P140_present
+StemsV_P140_preterite InflV_P140_preterite
+StemsV_P141_present InflV_P141_present
+StemsV_P141_preterite InflV_P141_preterite
+StemsV_P142_present InflV_P142_present
+StemsV_P142_preterite InflV_P142_preterite
+StemsV_P143_pres_stem InflV_P143_pres_stem
+StemsV_P144_present InflV_P144_present
+StemsV_P144_preterite InflV_P144_preterite
+StemsV_P71_imperative InflV_P71_imperative
+StemsV_P71_inf_stem InflV_P71_inf_stem
+StemsV_P71_pres_stem InflV_P71_pres_stem
+StemsV_P72_pres_stem InflV_P72_pres_stem
+StemsV_P73_pres_stem InflV_P73_pres_stem
+StemsV_P74_pres_stem InflV_P74_pres_stem
+StemsV_P75_pres_stem InflV_P75_pres_stem
+StemsV_P76_pres_stem InflV_P76_pres_stem
+StemsV_P76s_pres_stem InflV_P76s_pres_stem
+StemsV_P77_present InflV_P77_present
+StemsV_P77_preterite InflV_P77_preterite
+StemsV_P78_present InflV_P78_present
+StemsV_P78_preterite InflV_P78_preterite
+StemsV_P79_present InflV_P79_present
+StemsV_P79_preterite InflV_P79_preterite
+StemsV_P80b_present InflV_P80b_present
+StemsV_P80b_preterite InflV_P80b_preterite
+StemsV_P81_present InflV_P81_present
+StemsV_P81_preterite InflV_P81_preterite
+StemsV_P81a_present InflV_P81a_present
+StemsV_P81a_preterite InflV_P81a_preterite
+StemsV_P81b_present InflV_P81b_present
+StemsV_P81b_preterite InflV_P81b_preterite
+StemsV_P81c_present InflV_P81c_present
+StemsV_P81c_preterite InflV_P81c_preterite
+StemsV_P81d_present InflV_P81d_present
+StemsV_P81d_preterite InflV_P81d_preterite
+StemsV_P82_present InflV_P82_present
+StemsV_P82_preterite InflV_P82_preterite
+StemsV_P82a_present InflV_P82a_present
+StemsV_P82a_preterite InflV_P82a_preterite
+StemsV_P83_present InflV_P83_present
+StemsV_P83_preterite InflV_P83_preterite
+StemsV_P84_present InflV_P84_present
+StemsV_P84_preterite InflV_P84_preterite
+StemsV_P85_pres_stem InflV_P85_pres_stem
+StemsV_P86_pres_stem InflV_P86_pres_stem
+StemsV_P87_pres_stem InflV_P87_pres_stem
+StemsV_P88_pres_stem InflV_P88_pres_stem
+StemsV_P89_present InflV_P89_present
+StemsV_P89_preterite InflV_P89_preterite
+StemsV_P91_present InflV_P91_present
+StemsV_P91_preterite InflV_P91_preterite
+StemsV_P92_present InflV_P92_present
+StemsV_P92_preterite InflV_P92_preterite
+StemsV_P93_present InflV_P93_present
+StemsV_P93_preterite InflV_P93_preterite
+StemsV_P94_present InflV_P94_present
+StemsV_P94_preterite InflV_P94_preterite
+StemsV_P95_present InflV_P95_present
+StemsV_P95_preterite InflV_P95_preterite
+StemsV_P96_present InflV_P96_present
+StemsV_P96_preterite InflV_P96_preterite
+StemsV_P97_present InflV_P97_present
+StemsV_P97_preterite InflV_P97_preterite
+StemsV_P98_present InflV_P98_present
+StemsV_P98_preterite InflV_P98_preterite
+StemsV_P99_present InflV_P99_present
+StemsV_P99_preterite InflV_P99_preterite
+StemsVp_P29_decl InflVp_P29_decl
+StemsVp_P68_decl InflVp_P68_decl
+StemsVp_P69_decl InflVp_P69_decl
+StemsVw_P100_inf_stem InflVw_P100_inf_stem
+StemsVw_P100_present InflVw_P100_present
+StemsVw_P100_preterite InflVw_P100_preterite
+StemsVw_P102_inf_stem InflVw_P102_inf_stem
+StemsVw_P102_present InflVw_P102_present
+StemsVw_P102_preterite InflVw_P102_preterite
+StemsVw_P102a_inf_stem InflVw_P102a_inf_stem
+StemsVw_P102a_present InflVw_P102a_present
+StemsVw_P102a_preterite InflVw_P102a_preterite
+StemsVw_P104_inf_stem InflVw_P104_inf_stem
+StemsVw_P106_inf_stem InflVw_P106_inf_stem
+StemsVw_P106b_inf_stem InflVw_P106b_inf_stem
+StemsVw_P109_inf_stem InflVw_P109_inf_stem
+StemsVw_P109_present InflVw_P109_present
+StemsVw_P109_preterite InflVw_P109_preterite
+StemsVw_P110_inf_stem InflVw_P110_inf_stem
+StemsVw_P110_preterite InflVw_P110_preterite
+StemsVw_P111_inf_stem InflVw_P111_inf_stem
+StemsVw_P111_preterite InflVw_P111_preterite
+StemsVw_P112_inf_stem InflVw_P112_inf_stem
+StemsVw_P112_present InflVw_P112_present
+StemsVw_P112_preterite InflVw_P112_preterite
+StemsVw_P113_inf_stem InflVw_P113_inf_stem
+StemsVw_P113_present InflVw_P113_present
+StemsVw_P113_preterite InflVw_P113_preterite
+StemsVw_P114_inf_stem InflVw_P114_inf_stem
+StemsVw_P114_present InflVw_P114_present
+StemsVw_P114_preterite InflVw_P114_preterite
+StemsVw_P116_inf_stem InflVw_P116_inf_stem
+StemsVw_P116_present InflVw_P116_present
+StemsVw_P116_preterite InflVw_P116_preterite
+StemsVw_P120_inf_stem InflVw_P120_inf_stem
+StemsVw_P120_present InflVw_P120_present
+StemsVw_P120_preterite InflVw_P120_preterite
+StemsVw_P122_inf_stem InflVw_P122_inf_stem
+StemsVw_P122_pres_stem InflVw_P122_pres_stem
+StemsVw_P123_inf_stem InflVw_P123_inf_stem
+StemsVw_P123_preterite InflVw_P123_preterite
+StemsVw_P124_inf_stem InflVw_P124_inf_stem
+StemsVw_P124_present InflVw_P124_present
+StemsVw_P124_preterite InflVw_P124_preterite
+StemsVw_P125_inf_stem InflVw_P125_inf_stem
+StemsVw_P125_present InflVw_P125_present
+StemsVw_P125_preterite InflVw_P125_preterite
+StemsVw_P126_inf_stem InflVw_P126_inf_stem
+StemsVw_P126_preterite InflVw_P126_preterite
+StemsVw_P128_inf_stem InflVw_P128_inf_stem
+StemsVw_P128_present InflVw_P128_present
+StemsVw_P128_preterite InflVw_P128_preterite
+StemsVw_P131_inf_stem InflVw_P131_inf_stem
+StemsVw_P131_pres_stem InflVw_P131_pres_stem
+StemsVw_P132_inf_stem InflVw_P132_inf_stem
+StemsVw_P132_pres_stem InflVw_P132_pres_stem
+StemsVw_P133_inf_stem InflVw_P133_inf_stem
+StemsVw_P134_inf_stem InflVw_P134_inf_stem
+StemsVw_P134_pres_stem InflVw_P134_pres_stem
+StemsVw_P134a_inf_stem InflVw_P134a_inf_stem
+StemsVw_P134a_pres_stem InflVw_P134a_pres_stem
+StemsVw_P135_inf_stem InflVw_P135_inf_stem
+StemsVw_P135_pres_stem InflVw_P135_pres_stem
+StemsVw_P135_present InflVw_P135_present
+StemsVw_P135_preterite InflVw_P135_preterite
+StemsVw_P136_inf_stem InflVw_P136_inf_stem
+StemsVw_P136_pres_stem InflVw_P136_pres_stem
+StemsVw_P136_present InflVw_P136_present
+StemsVw_P136_preterite InflVw_P136_preterite
+StemsVw_P137_inf_stem InflVw_P137_inf_stem
+StemsVw_P137_present InflVw_P137_present
+StemsVw_P137_preterite InflVw_P137_preterite
+StemsVw_P137a_inf_stem InflVw_P137a_inf_stem
+StemsVw_P137a_present InflVw_P137a_present
+StemsVw_P137a_preterite InflVw_P137a_preterite
+StemsVw_P138_inf_stem InflVw_P138_inf_stem
+StemsVw_P138_pres_stem InflVw_P138_pres_stem
+StemsVw_P139_inf_stem InflVw_P139_inf_stem
+StemsVw_P139_pres_stem InflVw_P139_pres_stem
+StemsVw_P140_inf_stem InflVw_P140_inf_stem
+StemsVw_P140_present InflVw_P140_present
+StemsVw_P140_preterite InflVw_P140_preterite
+StemsVw_P141_inf_stem InflVw_P141_inf_stem
+StemsVw_P141_present InflVw_P141_present
+StemsVw_P141_preterite InflVw_P141_preterite
+StemsVw_P142_inf_stem InflVw_P142_inf_stem
+StemsVw_P142_present InflVw_P142_present
+StemsVw_P142_preterite InflVw_P142_preterite
+StemsVw_P143_inf_stem InflVw_P143_inf_stem
+StemsVw_P143_pres_stem InflVw_P143_pres_stem
+StemsVw_P144_inf_stem InflVw_P144_inf_stem
+StemsVw_P144_present InflVw_P144_present
+StemsVw_P144_preterite InflVw_P144_preterite
+StemsVw_P71_inf_stem InflVw_P71_inf_stem
+StemsVw_P71_pres_stem InflVw_P71_pres_stem
+StemsVw_P72_inf_stem InflVw_P72_inf_stem
+StemsVw_P72_pres_stem InflVw_P72_pres_stem
+StemsVw_P73_inf_stem InflVw_P73_inf_stem
+StemsVw_P73_pres_stem InflVw_P73_pres_stem
+StemsVw_P75_inf_stem InflVw_P75_inf_stem
+StemsVw_P75_preterite InflVw_P75_preterite
+StemsVw_P75a_inf_stem InflVw_P75a_inf_stem
+StemsVw_P75b_inf_stem InflVw_P75b_inf_stem
+StemsVw_P76_inf_stem InflVw_P76_inf_stem
+StemsVw_P76_preterite InflVw_P76_preterite
+StemsVw_P76s_inf_stem InflVw_P76s_inf_stem
+StemsVw_P76s_preterite InflVw_P76s_preterite
+StemsVw_P77_inf_stem InflVw_P77_inf_stem
+StemsVw_P77_present InflVw_P77_present
+StemsVw_P77_preterite InflVw_P77_preterite
+StemsVw_P79_inf_stem InflVw_P79_inf_stem
+StemsVw_P79_present InflVw_P79_present
+StemsVw_P79_preterite InflVw_P79_preterite
+StemsVw_P80b_inf_stem InflVw_P80b_inf_stem
+StemsVw_P80b_present InflVw_P80b_present
+StemsVw_P80b_preterite InflVw_P80b_preterite
+StemsVw_P81_inf_stem InflVw_P81_inf_stem
+StemsVw_P81_present InflVw_P81_present
+StemsVw_P81_preterite InflVw_P81_preterite
+StemsVw_P81a_inf_stem InflVw_P81a_inf_stem
+StemsVw_P81a_present InflVw_P81a_present
+StemsVw_P81a_preterite InflVw_P81a_preterite
+StemsVw_P81b_inf_stem InflVw_P81b_inf_stem
+StemsVw_P81b_present InflVw_P81b_present
+StemsVw_P81b_preterite InflVw_P81b_preterite
+StemsVw_P81c_inf_stem InflVw_P81c_inf_stem
+StemsVw_P81c_present InflVw_P81c_present
+StemsVw_P81c_preterite InflVw_P81c_preterite
+StemsVw_P82_inf_stem InflVw_P82_inf_stem
+StemsVw_P82_preterite InflVw_P82_preterite
+StemsVw_P82a_inf_stem InflVw_P82a_inf_stem
+StemsVw_P82a_present InflVw_P82a_present
+StemsVw_P82a_preterite InflVw_P82a_preterite
+StemsVw_P83_inf_stem InflVw_P83_inf_stem
+StemsVw_P83_present InflVw_P83_present
+StemsVw_P83_preterite InflVw_P83_preterite
+StemsVw_P84_inf_stem InflVw_P84_inf_stem
+StemsVw_P84_present InflVw_P84_present
+StemsVw_P84_preterite InflVw_P84_preterite
+StemsVw_P85_inf_stem InflVw_P85_inf_stem
+StemsVw_P85_pres_stem InflVw_P85_pres_stem
+StemsVw_P85_present InflVw_P85_present
+StemsVw_P85_preterite InflVw_P85_preterite
+StemsVw_P86_inf_stem InflVw_P86_inf_stem
+StemsVw_P86_pres_stem InflVw_P86_pres_stem
+StemsVw_P87_inf_stem InflVw_P87_inf_stem
+StemsVw_P87_pres_stem InflVw_P87_pres_stem
+StemsVw_P87_present InflVw_P87_present
+StemsVw_P87_preterite InflVw_P87_preterite
+StemsVw_P88_inf_stem InflVw_P88_inf_stem
+StemsVw_P88_pres_stem InflVw_P88_pres_stem
+StemsVw_P88_present InflVw_P88_present
+StemsVw_P88_preterite InflVw_P88_preterite
+StemsVw_P89_inf_stem InflVw_P89_inf_stem
+StemsVw_P89_present InflVw_P89_present
+StemsVw_P89_preterite InflVw_P89_preterite
+StemsVw_P90_inf_stem InflVw_P90_inf_stem
+StemsVw_P91_inf_stem InflVw_P91_inf_stem
+StemsVw_P91_present InflVw_P91_present
+StemsVw_P91_preterite InflVw_P91_preterite
+StemsVw_P92_inf_stem InflVw_P92_inf_stem
+StemsVw_P92_present InflVw_P92_present
+StemsVw_P92_preterite InflVw_P92_preterite
+StemsVw_P93_inf_stem InflVw_P93_inf_stem
+StemsVw_P93_present InflVw_P93_present
+StemsVw_P93_preterite InflVw_P93_preterite
+StemsVw_P94_inf_stem InflVw_P94_inf_stem
+StemsVw_P94_present InflVw_P94_present
+StemsVw_P94_preterite InflVw_P94_preterite
+StemsVw_P95_inf_stem InflVw_P95_inf_stem
+StemsVw_P95_present InflVw_P95_present
+StemsVw_P95_preterite InflVw_P95_preterite
+StemsVw_P96_inf_stem InflVw_P96_inf_stem
+StemsVw_P96_present InflVw_P96_present
+StemsVw_P96_preterite InflVw_P96_preterite
+StemsVw_P97_inf_stem InflVw_P97_inf_stem
+StemsVw_P97_present InflVw_P97_present
+StemsVw_P97_preterite InflVw_P97_preterite
+StemsVw_P97a_inf_stem InflVw_P97a_inf_stem
+StemsVw_P98_inf_stem InflVw_P98_inf_stem
+StemsVw_P98_present InflVw_P98_present
+StemsVw_P98_preterite InflVw_P98_preterite
+StemsVw_P99_inf_stem InflVw_P99_inf_stem
+StemsVw_P99_present InflVw_P99_present
+StemsVw_P99_preterite InflVw_P99_preterite
+StemsVw_Pimp_ais_imperative InflVw_Pimp_ais_imperative
+StemsVw_Pimp_is_imperative InflVw_Pimp_is_imperative
+StemsVw_Pimp_jais_imperative InflVw_Pimp_jais_imperative
+StemsVw_Pimp_s_imperative InflVw_Pimp_s_imperative
+StemsVw_Pimp_āis_imperative InflVw_Pimp_āis_imperative
+FuncWords
+Adverbs
+Variants
+
+LEXICON InflN_P10_x
+<Pl><Acc>:·ins[gFem]
+<Pl><Acc>:·ins[gMsc]
+<Pl><Acc>:i[gNeut]
+<Pl><Dat>:·ins[gFem]
+<Pl><Dat>:·ins[gMsc]
+<Pl><Dat>:i[gNeut]
+<Pl><Gen>:·ins[gFem]
+<Pl><Gen>:·ins[gMsc]
+<Pl><Gen>:i[gNeut]
+<Pl><Nom>:·ei[gFem]
+<Pl><Nom>:·ei[gMsc]
+<Pl><Nom>:i[gNeut]
+<Sg><Acc>:·in[gFem]
+<Sg><Acc>:·in[gMsc]
+<Sg><Acc>:i[gNeut]
+<Sg><Dat>:·in[gFem]
+<Sg><Dat>:·in[gMsc]
+<Sg><Dat>:i[gNeut]
+<Sg><Gen>:·in[gFem]
+<Sg><Gen>:·in[gMsc]
+<Sg><Gen>:i[gNeut]
+<Sg><Nom>:is[gFem]
+<Sg><Nom>:is[gMsc]
+<Sg><Nom>:i[gNeut]
+
+LEXICON InflN_P11_x
+<Pl><Acc>:·ans[gFem]
+<Pl><Acc>:·ans[gMsc]
+<Pl><Acc>:a[gNeut]
+<Pl><Dat>:·ēimans[gFem]
+<Pl><Dat>:·ēimans[gMsc]
+<Pl><Dat>:·esmu[gNeut]
+<Pl><Gen>:·ēisan[gFem]
+<Pl><Gen>:·ēisan[gMsc]
+<Pl><Gen>:·esse[gNeut]
+<Pl><Nom>:·ās[gFem]
+<Pl><Nom>:·āi[gMsc]
+<Pl><Nom>:a[gNeut]
+<Sg><Acc>:·an[gFem]
+<Sg><Acc>:·an[gMsc]
+<Sg><Acc>:a[gNeut]
+<Sg><Dat>:·essei[gFem]
+<Sg><Dat>:·esmu[gMsc]
+<Sg><Dat>:·esmu[gNeut]
+<Sg><Gen>:·esses[gFem]
+<Sg><Gen>:·esse[gMsc]
+<Sg><Gen>:·esse[gNeut]
+<Sg><Nom>:·āi[gFem]
+<Sg><Nom>:·as[gMsc]
+<Sg><Nom>:a[gNeut]
+
+LEXICON InflN_P115_x
+<Pl><Acc>:·būwusins[gFem]
+<Pl><Acc>:·būwus[gNeut]
+<Pl><Dat>:·būwusimans[gFem,gNeut]
+<Pl><Gen>:·būwusin[gFem,gNeut]
+<Pl><Nom>:·būwušas[gFem]
+<Pl><Nom>:·būwus[gNeut]
+<Sg><Acc>:·būwusin[gFem]
+<Sg><Acc>:·būwus[gNeut]
+<Sg><Dat>:·būwušai[gFem]
+<Sg><Dat>:·būwušasmu[gNeut]
+<Sg><Gen>:·būwušas[gFem,gNeut]
+<Sg><Nom>:·būwusi[gFem]
+<Sg><Nom>:·būwus[gNeut]
+
+LEXICON InflN_P118_x
+<Pl><Acc>:·dāwusins[gFem]
+<Pl><Acc>:·dāwus[gNeut]
+<Pl><Dat>:·dāwusimans[gFem,gNeut]
+<Pl><Gen>:·dāwusin[gFem,gNeut]
+<Pl><Nom>:·dāwušas[gFem]
+<Pl><Nom>:·dāwus[gNeut]
+<Sg><Acc>:·dāwusin[gFem]
+<Sg><Acc>:·dāwus[gNeut]
+<Sg><Dat>:·dāwušai[gFem]
+<Sg><Dat>:·dāwušasmu[gNeut]
+<Sg><Gen>:·dāwušas[gFem,gNeut]
+<Sg><Nom>:·dāwusi[gFem]
+<Sg><Nom>:·dāwus[gNeut]
+
+LEXICON InflN_P12_x
+<Pl><Acc>:·ennans[gMsc]
+<Pl><Dat>:·enēimans[gMsc]
+<Pl><Gen>:·enēisan[gMsc]
+<Pl><Nom>:·enēi[gMsc]
+<Sg><Acc>:·ennan[gMsc]
+<Sg><Dat>:·enesmu[gMsc]
+<Sg><Gen>:·enesse[gMsc]
+<Sg><Nom>:·āns[gMsc]
+
+LEXICON InflN_P13_x
+<Pl><Acc>:·nans[gFem]
+<Pl><Dat>:·ēimans[gFem]
+<Pl><Gen>:·ēisan[gFem]
+<Pl><Nom>:·nas[gFem]
+<Sg><Acc>:·nan[gFem]
+<Sg><Dat>:·essei[gFem]
+<Sg><Gen>:·esses[gFem]
+<Sg><Nom>:ā[gFem]
+
+LEXICON InflN_P14_x
+<Pl><Acc>:·nans[gNeut]
+<Pl><Dat>:·ēimans[gNeut]
+<Pl><Gen>:·ēisan[gNeut]
+<Pl><Nom>:·ēi[gNeut]
+<Sg><Acc>:·nan[gNeut]
+<Sg><Dat>:·esmu[gNeut]
+<Sg><Gen>:·esse[gNeut]
+<Sg><Nom>:·nan[gNeut]
+
+LEXICON InflN_P15_x
+<Pl><Acc>:·ans[gFem,gMsc,gNeut]
+<Pl><Dat>:·ēimans[gFem,gMsc,gNeut]
+<Pl><Gen>:·ēisan[gFem,gMsc,gNeut]
+<Pl><Nom>:·ās[gFem]
+<Pl><Nom>:·āi[gMsc]
+<Pl><Nom>:·āi[gNeut]
+<Sg><Acc>:·an[gFem]
+<Sg><Acc>:·in[gMsc]
+<Sg><Acc>:·in[gNeut]
+<Sg><Dat>:·issei[gFem]
+<Sg><Dat>:·ismu[gMsc]
+<Sg><Dat>:·ismu[gNeut]
+<Sg><Gen>:·isses[gFem]
+<Sg><Gen>:·isse[gMsc]
+<Sg><Gen>:·isse[gNeut]
+<Sg><Nom>:ī[gFem]
+<Sg><Nom>:is[gMsc]
+<Sg><Nom>:·in[gNeut]
+
+LEXICON InflN_P16_x
+<Pl><Acc>:·bans[gFem]
+<Pl><Acc>:·bans[gMsc]
+<Pl><Acc>:·ban[gNeut]
+<Pl><Dat>:·beimans[gFem]
+<Pl><Dat>:·beimans[gMsc]
+<Pl><Dat>:·smu[gNeut]
+<Pl><Gen>:·beisan[gFem]
+<Pl><Gen>:·beisan[gMsc]
+<Pl><Gen>:·se[gNeut]
+<Pl><Nom>:·bas[gFem]
+<Pl><Nom>:·bai[gMsc]
+<Pl><Nom>:·ban[gNeut]
+<Sg><Acc>:·ban[gFem,gMsc,gNeut]
+<Sg><Dat>:·sei[gFem]
+<Sg><Dat>:·smu[gMsc]
+<Sg><Dat>:·smu[gNeut]
+<Sg><Gen>:·ses[gFem]
+<Sg><Gen>:·se[gMsc]
+<Sg><Gen>:·se[gNeut]
+<Sg><Nom>:·ba[gFem]
+<Sg><Nom>:s[gMsc]
+<Sg><Nom>:·ban[gNeut]
+
+LEXICON InflN_P17_x
+<Pl><Acc>:·sans[gFem,gMsc,gNeut]
+<Pl><Dat>:·āmans[gFem]
+<Pl><Dat>:·ēimans[gMsc]
+<Pl><Dat>:·ēimans[gNeut]
+<Pl><Gen>:·san[gFem]
+<Pl><Gen>:·ēisan[gMsc]
+<Pl><Gen>:·ēisan[gNeut]
+<Pl><Nom>:·sas[gFem]
+<Pl><Nom>:·āi[gMsc]
+<Pl><Nom>:·āi[gNeut]
+<Sg><Acc>:·san[gFem,gMsc,gNeut]
+<Sg><Dat>:·sai[gFem]
+<Sg><Dat>:·mu[gMsc]
+<Sg><Dat>:·mu[gNeut]
+<Sg><Gen>:·sas[gFem]
+<Sg><Gen>:·se[gMsc]
+<Sg><Gen>:·se[gNeut]
+<Sg><Nom>:ā[gFem]
+<Sg><Nom>:s[gMsc]
+<Sg><Nom>:·san[gNeut]
+
+LEXICON InflN_P18_x
+<Pl><Acc>:·tans[gFem]
+<Pl><Acc>:·tans[gMsc]
+<Pl><Acc>:·tan[gNeut]
+<Pl><Dat>:·ēimans[gFem]
+<Pl><Dat>:·ēimans[gMsc]
+<Pl><Dat>:·smu[gNeut]
+<Pl><Gen>:·ēisan[gFem]
+<Pl><Gen>:·ēisan[gMsc]
+<Pl><Gen>:·se[gNeut]
+<Pl><Nom>:·tas[gFem]
+<Pl><Nom>:·āi[gMsc]
+<Pl><Nom>:·tan[gNeut]
+<Sg><Acc>:·tan[gFem,gMsc,gNeut]
+<Sg><Dat>:·sei[gFem]
+<Sg><Dat>:·smu[gMsc]
+<Sg><Dat>:·smu[gNeut]
+<Sg><Gen>:·ses[gFem]
+<Sg><Gen>:·se[gMsc]
+<Sg><Gen>:·se[gNeut]
+<Sg><Nom>:ā[gFem]
+<Sg><Nom>:s[gMsc]
+<Sg><Nom>:·tan[gNeut]
+
+LEXICON InflN_P19_x
+<Pl><Acc>:·ans[gFem,gMsc,gNeut]
+<Pl><Dat>:·amans[gFem,gMsc,gNeut]
+<Pl><Gen>:·an[gFem,gMsc,gNeut]
+<Pl><Nom>:·as[gFem]
+<Pl><Nom>:·ai[gMsc]
+<Pl><Nom>:·ai[gNeut]
+<Sg><Acc>:·an[gFem,gMsc,gNeut]
+<Sg><Dat>:·sei[gFem]
+<Sg><Dat>:·smu[gMsc]
+<Sg><Dat>:·smu[gNeut]
+<Sg><Gen>:·ses[gFem]
+<Sg><Gen>:·se[gMsc]
+<Sg><Gen>:·se[gNeut]
+<Sg><Nom>:a[gFem]
+<Sg><Nom>:s[gMsc]
+<Sg><Nom>:·an[gNeut]
+
+LEXICON InflN_P20_x
+<Pl><Acc>:ajjans[gFem,gMsc,gNeut]
+<Pl><Dat>:ajāmans[gFem]
+<Pl><Dat>:·āimans[gMsc]
+<Pl><Dat>:·āimans[gNeut]
+<Pl><Gen>:ajāsan[gFem]
+<Pl><Gen>:·āisan[gMsc]
+<Pl><Gen>:·āisan[gNeut]
+<Pl><Nom>:ajjas[gFem]
+<Pl><Nom>:ajāi[gMsc]
+<Pl><Nom>:ajāi[gNeut]
+<Sg><Acc>:ajjan[gFem,gMsc,gNeut]
+<Sg><Dat>:ajjai[gFem]
+<Sg><Dat>:ajasmu[gMsc]
+<Sg><Dat>:ajasmu[gNeut]
+<Sg><Gen>:ajāses[gFem]
+<Sg><Gen>:·āise[gMsc]
+<Sg><Gen>:·āise[gNeut]
+<Sg><Nom>:ajā[gFem]
+<Sg><Nom>:ajs[gMsc]
+<Sg><Nom>:ajjan[gNeut]
+
+LEXICON InflN_P21_x
+<Pl><Acc>:·ans[gFem]
+<Pl><Acc>:·ans[gMsc]
+<Pl><Acc>:·an[gNeut]
+<Pl><Dat>:S·āmans[gFem]
+<Pl><Dat>:S·ammans[gMsc]
+<Pl><Dat>:S·asmu[gNeut]
+<Pl><Gen>:·an[gFem]
+<Pl><Gen>:·an[gMsc]
+<Pl><Gen>:S·asse[gNeut]
+<Pl><Nom>:·as[gFem]
+<Pl><Nom>:S·āi[gMsc]
+<Pl><Nom>:·an[gNeut]
+<Sg><Acc>:·an[gFem,gMsc,gNeut]
+<Sg><Dat>:S·assei[gFem]
+<Sg><Dat>:S·asmu[gMsc]
+<Sg><Dat>:S·asmu[gNeut]
+<Sg><Gen>:S·asses[gFem]
+<Sg><Gen>:S·asse[gMsc]
+<Sg><Gen>:S·asse[gNeut]
+<Sg><Nom>:Sā[gFem]
+<Sg><Nom>:s[gMsc]
+<Sg><Nom>:·an[gNeut]
+
+LEXICON InflN_P22_x
+<Pl><Acc>:·ans[gFem,gMsc,gNeut]
+<Pl><Dat>:·eimas[gFem,gMsc,gNeut]
+<Pl><Gen>:ejan[gFem,gMsc,gNeut]
+<Pl><Nom>:·ai[gFem,gMsc,gNeut]
+<Sg><Acc>:·ans[gFem,gMsc,gNeut]
+<Sg><Dat>:·eimas[gFem,gMsc,gNeut]
+<Sg><Gen>:ejan[gFem,gMsc,gNeut]
+<Sg><Nom>:·ai[gFem,gMsc,gNeut]
+
+LEXICON InflN_P23_x
+<Pl><Acc>:·āi[gFem,gMsc,gNeut]
+<Pl><Dat>:·ēimas[gFem,gMsc,gNeut]
+<Pl><Gen>:ejjan[gFem,gMsc,gNeut]
+<Pl><Nom>:·āi[gFem,gMsc,gNeut]
+<Sg><Acc>:·āi[gFem,gMsc,gNeut]
+<Sg><Dat>:·ēimas[gFem,gMsc,gNeut]
+<Sg><Gen>:ejjan[gFem,gMsc,gNeut]
+<Sg><Nom>:·āi[gFem,gMsc,gNeut]
+
+LEXICON InflN_P24_x
+<Pl><Acc>:·ins[gFem,gMsc,gNeut]
+<Pl><Dat>:·immans[gFem,gMsc,gNeut]
+<Pl><Gen>:ijjan[gFem,gMsc,gNeut]
+<Pl><Nom>:īs[gFem,gMsc,gNeut]
+<Sg><Acc>:·ins[gFem,gMsc,gNeut]
+<Sg><Dat>:·immans[gFem,gMsc,gNeut]
+<Sg><Gen>:ijjan[gFem,gMsc,gNeut]
+<Sg><Nom>:īs[gFem,gMsc,gNeut]
+
+LEXICON InflN_P25_x
+<Pl><Acc>:·ans[gFem,gMsc,gNeut]
+<Pl><Dat>:·amans[gFem,gMsc,gNeut]
+<Pl><Gen>:·an[gFem,gMsc,gNeut]
+<Pl><Nom>:·as[gFem]
+<Pl><Nom>:·ai[gMsc]
+<Pl><Nom>:·ai[gNeut]
+<Sg><Acc>:·an[gFem,gMsc,gNeut]
+<Sg><Dat>:·ai[gFem]
+<Sg><Dat>:·asmu[gMsc]
+<Sg><Dat>:·asmu[gNeut]
+<Sg><Gen>:·as[gFem,gMsc,gNeut]
+<Sg><Nom>:a[gFem]
+<Sg><Nom>:s[gMsc]
+<Sg><Nom>:·an[gNeut]
+
+LEXICON InflN_P25comp_x
+<Pl><Acc>:·aisins[gFem,gMsc,gNeut]
+<Pl><Dat>:·aisimans[gFem,gMsc,gNeut]
+<Pl><Gen>:·aisin[gFem,gMsc,gNeut]
+<Pl><Nom>:·aisis[gFem]
+<Pl><Nom>:·aišai[gMsc]
+<Pl><Nom>:·aišai[gNeut]
+<Sg><Acc>:·aisin[gFem]
+<Sg><Acc>:·aisin[gMsc]
+<Sg><Acc>:·aisi[gNeut]
+<Sg><Dat>:·aišai[gFem]
+<Sg><Dat>:·aišasmu[gMsc]
+<Sg><Dat>:·aišasmu[gNeut]
+<Sg><Gen>:·aišas[gFem,gMsc,gNeut]
+<Sg><Nom>:·aisi[gFem]
+<Sg><Nom>:·aisis[gMsc]
+<Sg><Nom>:·aisi[gNeut]
+
+LEXICON InflN_P25comp_suppl_x
+<Pl><Acc>:·uns[gFem,gMsc,gNeut]
+<Pl><Dat>:·umans[gFem,gMsc,gNeut]
+<Pl><Gen>:·un[gFem,gMsc,gNeut]
+<Pl><Nom>:·as[gFem]
+<Pl><Nom>:·ai[gMsc]
+<Pl><Nom>:·ai[gNeut]
+<Sg><Acc>:·an[gFem,gMsc,gNeut]
+<Sg><Dat>:·ai[gFem]
+<Sg><Dat>:·u[gMsc]
+<Sg><Dat>:·u[gNeut]
+<Sg><Gen>:·as[gFem,gMsc,gNeut]
+<Sg><Nom>:a[gFem]
+<Sg><Nom>:s[gMsc]
+<Sg><Nom>:·an[gNeut]
+
+LEXICON InflN_P25comp_suppl2_x
+<Pl><Acc>:·uns[gFem,gMsc,gNeut]
+<Pl><Dat>:·umans[gFem,gMsc,gNeut]
+<Pl><Gen>:·un[gFem,gMsc,gNeut]
+<Pl><Nom>:·as[gFem]
+<Pl><Nom>:·ai[gMsc]
+<Pl><Nom>:·ai[gNeut]
+<Sg><Acc>:·an[gFem,gMsc,gNeut]
+<Sg><Dat>:·ai[gFem]
+<Sg><Dat>:·u[gMsc]
+<Sg><Dat>:·u[gNeut]
+<Sg><Gen>:·as[gFem,gMsc,gNeut]
+<Sg><Nom>:a[gFem]
+<Sg><Nom>:s[gMsc]
+<Sg><Nom>:·an[gNeut]
+
+LEXICON InflN_P25sup_x
+<Pl><Acc>:·aisins[gFem,gMsc,gNeut]
+<Pl><Dat>:·aisimans[gFem,gMsc,gNeut]
+<Pl><Gen>:·aisin[gFem,gMsc,gNeut]
+<Pl><Nom>:·aisis[gFem]
+<Pl><Nom>:·aišai[gMsc]
+<Pl><Nom>:·aišai[gNeut]
+<Sg><Acc>:·aisin[gFem]
+<Sg><Acc>:·aisin[gMsc]
+<Sg><Acc>:·aisi[gNeut]
+<Sg><Dat>:·aišai[gFem]
+<Sg><Dat>:·aišasmu[gMsc]
+<Sg><Dat>:·aišasmu[gNeut]
+<Sg><Gen>:·aišas[gFem,gMsc,gNeut]
+<Sg><Nom>:·aisi[gFem]
+<Sg><Nom>:·aisis[gMsc]
+<Sg><Nom>:·aisi[gNeut]
+
+LEXICON InflN_P25sup_suppl_x
+<Pl><Acc>:·uns[gFem,gMsc,gNeut]
+<Pl><Dat>:·umans[gFem,gMsc,gNeut]
+<Pl><Gen>:·un[gFem,gMsc,gNeut]
+<Pl><Nom>:·as[gFem]
+<Pl><Nom>:·ai[gMsc]
+<Pl><Nom>:·ai[gNeut]
+<Sg><Acc>:·an[gFem,gMsc,gNeut]
+<Sg><Dat>:·ai[gFem]
+<Sg><Dat>:·u[gMsc]
+<Sg><Dat>:·u[gNeut]
+<Sg><Gen>:·as[gFem,gMsc,gNeut]
+<Sg><Nom>:a[gFem]
+<Sg><Nom>:s[gMsc]
+<Sg><Nom>:·an[gNeut]
+
+LEXICON InflN_P25sup_suppl2_x
+<Pl><Acc>:·uns[gFem,gMsc,gNeut]
+<Pl><Dat>:·umans[gFem,gMsc,gNeut]
+<Pl><Gen>:·un[gFem,gMsc,gNeut]
+<Pl><Nom>:·as[gFem]
+<Pl><Nom>:·ai[gMsc]
+<Pl><Nom>:·ai[gNeut]
+<Sg><Acc>:·an[gFem,gMsc,gNeut]
+<Sg><Dat>:·ai[gFem]
+<Sg><Dat>:·u[gMsc]
+<Sg><Dat>:·u[gNeut]
+<Sg><Gen>:·as[gFem,gMsc,gNeut]
+<Sg><Nom>:a[gFem]
+<Sg><Nom>:s[gMsc]
+<Sg><Nom>:·an[gNeut]
+
+LEXICON InflN_P26_x
+<Pl><Acc>:·bans[gFem,gMsc,gNeut]
+<Pl><Dat>:·āmans[gFem]
+<Pl><Dat>:·ammans[gMsc]
+<Pl><Dat>:·ammans[gNeut]
+<Pl><Gen>:·ban[gFem,gMsc,gNeut]
+<Pl><Nom>:·bas[gFem]
+<Pl><Nom>:·āi[gMsc]
+<Pl><Nom>:·āi[gNeut]
+<Sg><Acc>:·ban[gFem,gMsc,gNeut]
+<Sg><Dat>:·bai[gFem]
+<Sg><Dat>:·àsmu[gMsc]
+<Sg><Dat>:·àsmu[gNeut]
+<Sg><Gen>:·bas[gFem,gMsc,gNeut]
+<Sg><Nom>:ā[gFem]
+<Sg><Nom>:s[gMsc]
+<Sg><Nom>:·ban[gNeut]
+
+LEXICON InflN_P26comp_x
+<Pl><Acc>:·aisins[gFem,gMsc,gNeut]
+<Pl><Dat>:·aisimans[gFem,gMsc,gNeut]
+<Pl><Gen>:·aisin[gFem,gMsc,gNeut]
+<Pl><Nom>:·aisis[gFem]
+<Pl><Nom>:·aišai[gMsc]
+<Pl><Nom>:·aišai[gNeut]
+<Sg><Acc>:·aisin[gFem]
+<Sg><Acc>:·aisin[gMsc]
+<Sg><Acc>:·aisi[gNeut]
+<Sg><Dat>:·aišai[gFem]
+<Sg><Dat>:·aišasmu[gMsc]
+<Sg><Dat>:·aišasmu[gNeut]
+<Sg><Gen>:·aišas[gFem,gMsc,gNeut]
+<Sg><Nom>:·aisi[gFem]
+<Sg><Nom>:·aisis[gMsc]
+<Sg><Nom>:·aisi[gNeut]
+
+LEXICON InflN_P26comp_suppl_x
+<Pl><Acc>:·uns[gFem,gMsc,gNeut]
+<Pl><Dat>:·umans[gFem,gMsc,gNeut]
+<Pl><Gen>:·un[gFem,gMsc,gNeut]
+<Pl><Nom>:·as[gFem]
+<Pl><Nom>:·ai[gMsc]
+<Pl><Nom>:·ai[gNeut]
+<Sg><Acc>:·an[gFem,gMsc,gNeut]
+<Sg><Dat>:·ai[gFem]
+<Sg><Dat>:·u[gMsc]
+<Sg><Dat>:·u[gNeut]
+<Sg><Gen>:·as[gFem,gMsc,gNeut]
+<Sg><Nom>:a[gFem]
+<Sg><Nom>:s[gMsc]
+<Sg><Nom>:·an[gNeut]
+
+LEXICON InflN_P26sup_x
+<Pl><Acc>:·aisins[gFem,gMsc,gNeut]
+<Pl><Dat>:·aisimans[gFem,gMsc,gNeut]
+<Pl><Gen>:·aisin[gFem,gMsc,gNeut]
+<Pl><Nom>:·aisis[gFem]
+<Pl><Nom>:·aišai[gMsc]
+<Pl><Nom>:·aišai[gNeut]
+<Sg><Acc>:·aisin[gFem]
+<Sg><Acc>:·aisin[gMsc]
+<Sg><Acc>:·aisi[gNeut]
+<Sg><Dat>:·aišai[gFem]
+<Sg><Dat>:·aišasmu[gMsc]
+<Sg><Dat>:·aišasmu[gNeut]
+<Sg><Gen>:·aišas[gFem,gMsc,gNeut]
+<Sg><Nom>:·aisi[gFem]
+<Sg><Nom>:·aisis[gMsc]
+<Sg><Nom>:·aisi[gNeut]
+
+LEXICON InflN_P26sup_suppl_x
+<Pl><Acc>:·uns[gFem,gMsc,gNeut]
+<Pl><Dat>:·umans[gFem,gMsc,gNeut]
+<Pl><Gen>:·un[gFem,gMsc,gNeut]
+<Pl><Nom>:·as[gFem]
+<Pl><Nom>:·ai[gMsc]
+<Pl><Nom>:·ai[gNeut]
+<Sg><Acc>:·an[gFem,gMsc,gNeut]
+<Sg><Dat>:·ai[gFem]
+<Sg><Dat>:·u[gMsc]
+<Sg><Dat>:·u[gNeut]
+<Sg><Gen>:·as[gFem,gMsc,gNeut]
+<Sg><Nom>:a[gFem]
+<Sg><Nom>:s[gMsc]
+<Sg><Nom>:·an[gNeut]
+
+LEXICON InflN_P27_x
+<Pl><Acc>:·ins[gFem,gMsc,gNeut]
+<Pl><Dat>:·imans[gFem,gMsc,gNeut]
+<Pl><Gen>:·in[gFem,gMsc,gNeut]
+<Pl><Nom>:is[gFem]
+<Pl><Nom>:·ei[gMsc]
+<Pl><Nom>:·ei[gNeut]
+<Sg><Acc>:·in[gFem]
+<Sg><Acc>:·in[gMsc]
+<Sg><Acc>:i[gNeut]
+<Sg><Dat>:·ei[gFem]
+<Sg><Dat>:·ismu[gMsc]
+<Sg><Dat>:·ismu[gNeut]
+<Sg><Gen>:is[gFem,gMsc,gNeut]
+<Sg><Nom>:i[gFem]
+<Sg><Nom>:is[gMsc]
+<Sg><Nom>:i[gNeut]
+
+LEXICON InflN_P27comp_x
+<Pl><Acc>:Jaisins[gFem,gMsc,gNeut]
+<Pl><Dat>:Jaisimans[gFem,gMsc,gNeut]
+<Pl><Gen>:Jaisin[gFem,gMsc,gNeut]
+<Pl><Nom>:Jaisis[gFem]
+<Pl><Nom>:Jaišai[gMsc]
+<Pl><Nom>:Jaišai[gNeut]
+<Sg><Acc>:Jaisin[gFem]
+<Sg><Acc>:Jaisin[gMsc]
+<Sg><Acc>:Jaisi[gNeut]
+<Sg><Dat>:Jaišai[gFem]
+<Sg><Dat>:Jaišasmu[gMsc]
+<Sg><Dat>:Jaišasmu[gNeut]
+<Sg><Gen>:Jaišas[gFem,gMsc,gNeut]
+<Sg><Nom>:Jaisi[gFem]
+<Sg><Nom>:Jaisis[gMsc]
+<Sg><Nom>:Jaisi[gNeut]
+
+LEXICON InflN_P27sup_x
+<Pl><Acc>:Jaisins[gFem,gMsc,gNeut]
+<Pl><Dat>:Jaisimans[gFem,gMsc,gNeut]
+<Pl><Gen>:Jaisin[gFem,gMsc,gNeut]
+<Pl><Nom>:Jaisis[gFem]
+<Pl><Nom>:Jaišai[gMsc]
+<Pl><Nom>:Jaišai[gNeut]
+<Sg><Acc>:Jaisin[gFem]
+<Sg><Acc>:Jaisin[gMsc]
+<Sg><Acc>:Jaisi[gNeut]
+<Sg><Dat>:Jaišai[gFem]
+<Sg><Dat>:Jaišasmu[gMsc]
+<Sg><Dat>:Jaišasmu[gNeut]
+<Sg><Gen>:Jaišas[gFem,gMsc,gNeut]
+<Sg><Nom>:Jaisi[gFem]
+<Sg><Nom>:Jaisis[gMsc]
+<Sg><Nom>:Jaisi[gNeut]
+
+LEXICON InflN_P28_x
+<Pl><Acc>:·ins[gFem,gMsc,gNeut]
+<Pl><Dat>:·imans[gFem]
+<Pl><Dat>:Jamans[gMsc]
+<Pl><Dat>:·imans[gNeut]
+<Pl><Gen>:·in[gFem,gMsc,gNeut]
+<Pl><Nom>:is[gFem]
+<Pl><Nom>:Jai[gMsc]
+<Pl><Nom>:Jai[gNeut]
+<Sg><Acc>:·in[gFem]
+<Sg><Acc>:·in[gMsc]
+<Sg><Acc>:i[gNeut]
+<Sg><Dat>:Jai[gFem]
+<Sg><Dat>:Ju[gMsc]
+<Sg><Dat>:Jasmu[gNeut]
+<Sg><Gen>:Jas[gFem,gMsc,gNeut]
+<Sg><Nom>:i[gFem]
+<Sg><Nom>:is[gMsc]
+<Sg><Nom>:i[gNeut]
+
+LEXICON InflN_P28sup_x
+<Pl><Acc>:·ins[gFem,gMsc,gNeut]
+<Pl><Dat>:·imans[gFem]
+<Pl><Dat>:Jamans[gMsc]
+<Pl><Dat>:·imans[gNeut]
+<Pl><Gen>:·in[gFem,gMsc,gNeut]
+<Pl><Nom>:is[gFem]
+<Pl><Nom>:Jai[gMsc]
+<Pl><Nom>:Jai[gNeut]
+<Sg><Acc>:·in[gFem]
+<Sg><Acc>:·in[gMsc]
+<Sg><Acc>:i[gNeut]
+<Sg><Dat>:Jai[gFem]
+<Sg><Dat>:Ju[gMsc]
+<Sg><Dat>:Jasmu[gNeut]
+<Sg><Gen>:Jas[gFem,gMsc,gNeut]
+<Sg><Nom>:i[gFem]
+<Sg><Nom>:is[gMsc]
+<Sg><Nom>:i[gNeut]
+
+LEXICON InflN_P29_x
+<Pl><Acc>:·ans[gFem,gMsc,gNeut]
+<Pl><Dat>:·amans[gFem,gMsc,gNeut]
+<Pl><Gen>:·an[gFem,gMsc,gNeut]
+<Pl><Nom>:·as[gFem]
+<Pl><Nom>:·ai[gMsc]
+<Pl><Nom>:·ai[gNeut]
+<Sg><Acc>:·an[gFem,gMsc,gNeut]
+<Sg><Dat>:·ai[gFem]
+<Sg><Dat>:·asmu[gMsc]
+<Sg><Dat>:·asmu[gNeut]
+<Sg><Gen>:·as[gFem,gMsc,gNeut]
+<Sg><Nom>:a[gFem]
+<Sg><Nom>:s[gMsc]
+<Sg><Nom>:·an[gNeut]
+
+LEXICON InflN_P29comp_x
+<Pl><Acc>:·aisins[gFem,gMsc,gNeut]
+<Pl><Dat>:·aisimans[gFem,gMsc,gNeut]
+<Pl><Gen>:·aisin[gFem,gMsc,gNeut]
+<Pl><Nom>:·aisis[gFem]
+<Pl><Nom>:·aišai[gMsc]
+<Pl><Nom>:·aišai[gNeut]
+<Sg><Acc>:·aisin[gFem]
+<Sg><Acc>:·aisin[gMsc]
+<Sg><Acc>:·aisi[gNeut]
+<Sg><Dat>:·aišai[gFem]
+<Sg><Dat>:·aišasmu[gMsc]
+<Sg><Dat>:·aišasmu[gNeut]
+<Sg><Gen>:·aišas[gFem,gMsc,gNeut]
+<Sg><Nom>:·aisi[gFem]
+<Sg><Nom>:·aisis[gMsc]
+<Sg><Nom>:·aisi[gNeut]
+
+LEXICON InflN_P29sup_x
+<Pl><Acc>:·aisins[gFem,gMsc,gNeut]
+<Pl><Dat>:·aisimans[gFem,gMsc,gNeut]
+<Pl><Gen>:·aisin[gFem,gMsc,gNeut]
+<Pl><Nom>:·aisis[gFem]
+<Pl><Nom>:·aišai[gMsc]
+<Pl><Nom>:·aišai[gNeut]
+<Sg><Acc>:·aisin[gFem]
+<Sg><Acc>:·aisin[gMsc]
+<Sg><Acc>:·aisi[gNeut]
+<Sg><Dat>:·aišai[gFem]
+<Sg><Dat>:·aišasmu[gMsc]
+<Sg><Dat>:·aišasmu[gNeut]
+<Sg><Gen>:·aišas[gFem,gMsc,gNeut]
+<Sg><Nom>:·aisi[gFem]
+<Sg><Nom>:·aisis[gMsc]
+<Sg><Nom>:·aisi[gNeut]
+
+LEXICON InflN_P30_x
+<Pl><Acc>:·ins[gFem]
+<Pl><Acc>:·uns[gMsc]
+<Pl><Acc>:·uns[gNeut]
+<Pl><Dat>:·emans[gFem]
+<Pl><Dat>:·umans[gMsc]
+<Pl><Dat>:·umans[gNeut]
+<Pl><Gen>:·in[gFem]
+<Pl><Gen>:·un[gMsc]
+<Pl><Gen>:·un[gNeut]
+<Pl><Nom>:·es[gFem]
+<Pl><Nom>:·wai[gMsc]
+<Pl><Nom>:·wai[gNeut]
+<Sg><Acc>:·in[gFem]
+<Sg><Acc>:·un[gMsc]
+<Sg><Acc>:·u[gNeut]
+<Sg><Dat>:·ei[gFem]
+<Sg><Dat>:·usmu[gMsc]
+<Sg><Dat>:·usmu[gNeut]
+<Sg><Gen>:·es[gFem]
+<Sg><Gen>:·was[gMsc]
+<Sg><Gen>:·was[gNeut]
+<Sg><Nom>:i[gFem]
+<Sg><Nom>:·us[gMsc]
+<Sg><Nom>:·u[gNeut]
+
+LEXICON InflN_P30a_x
+<Pl><Acc>:·ins[gFem]
+<Pl><Acc>:·uns[gMsc]
+<Pl><Acc>:·uns[gNeut]
+<Pl><Dat>:jamans[gFem]
+<Pl><Dat>:·umans[gMsc]
+<Pl><Dat>:·umans[gNeut]
+<Pl><Gen>:·in[gFem]
+<Pl><Gen>:·un[gMsc]
+<Pl><Gen>:·un[gNeut]
+<Pl><Nom>:jas[gFem]
+<Pl><Nom>:·ai[gMsc]
+<Pl><Nom>:·ai[gNeut]
+<Sg><Acc>:·in[gFem]
+<Sg><Acc>:·un[gMsc]
+<Sg><Acc>:·u[gNeut]
+<Sg><Dat>:jai[gFem]
+<Sg><Dat>:·usmu[gMsc]
+<Sg><Dat>:·usmu[gNeut]
+<Sg><Gen>:jas[gFem]
+<Sg><Gen>:·as[gMsc]
+<Sg><Gen>:·as[gNeut]
+<Sg><Nom>:i[gFem]
+<Sg><Nom>:s[gMsc]
+<Sg><Nom>:·u[gNeut]
+
+LEXICON InflN_P30acomp_x
+<Pl><Acc>:·aisins[gFem,gMsc,gNeut]
+<Pl><Dat>:·aisimans[gFem,gMsc,gNeut]
+<Pl><Gen>:·aisin[gFem,gMsc,gNeut]
+<Pl><Nom>:·aisis[gFem]
+<Pl><Nom>:·aišai[gMsc]
+<Pl><Nom>:·aišai[gNeut]
+<Sg><Acc>:·aisin[gFem]
+<Sg><Acc>:·aisin[gMsc]
+<Sg><Acc>:·aisi[gNeut]
+<Sg><Dat>:·aišai[gFem]
+<Sg><Dat>:·aišasmu[gMsc]
+<Sg><Dat>:·aišasmu[gNeut]
+<Sg><Gen>:·aišas[gFem,gMsc,gNeut]
+<Sg><Nom>:·aisi[gFem]
+<Sg><Nom>:·aisis[gMsc]
+<Sg><Nom>:·aisi[gNeut]
+
+LEXICON InflN_P30asup_x
+<Pl><Acc>:·aisins[gFem,gMsc,gNeut]
+<Pl><Dat>:·aisimans[gFem,gMsc,gNeut]
+<Pl><Gen>:·aisin[gFem,gMsc,gNeut]
+<Pl><Nom>:·aisis[gFem]
+<Pl><Nom>:·aišai[gMsc]
+<Pl><Nom>:·aišai[gNeut]
+<Sg><Acc>:·aisin[gFem]
+<Sg><Acc>:·aisin[gMsc]
+<Sg><Acc>:·aisi[gNeut]
+<Sg><Dat>:·aišai[gFem]
+<Sg><Dat>:·aišasmu[gMsc]
+<Sg><Dat>:·aišasmu[gNeut]
+<Sg><Gen>:·aišas[gFem,gMsc,gNeut]
+<Sg><Nom>:·aisi[gFem]
+<Sg><Nom>:·aisis[gMsc]
+<Sg><Nom>:·aisi[gNeut]
+
+LEXICON InflN_P30comp_x
+<Pl><Acc>:·uisins[gFem,gMsc,gNeut]
+<Pl><Dat>:·uisimans[gFem,gMsc,gNeut]
+<Pl><Gen>:·uisin[gFem,gMsc,gNeut]
+<Pl><Nom>:·uisis[gFem]
+<Pl><Nom>:·uišai[gMsc]
+<Pl><Nom>:·uišai[gNeut]
+<Sg><Acc>:·uisin[gFem]
+<Sg><Acc>:·uisin[gMsc]
+<Sg><Acc>:·uisi[gNeut]
+<Sg><Dat>:·uišai[gFem]
+<Sg><Dat>:·uišasmu[gMsc]
+<Sg><Dat>:·uišasmu[gNeut]
+<Sg><Gen>:·uišas[gFem,gMsc,gNeut]
+<Sg><Nom>:·uisi[gFem]
+<Sg><Nom>:·uisis[gMsc]
+<Sg><Nom>:·uisi[gNeut]
+
+LEXICON InflN_P30sup_x
+<Pl><Acc>:·uisins[gFem,gMsc,gNeut]
+<Pl><Dat>:·uisimans[gFem,gMsc,gNeut]
+<Pl><Gen>:·uisin[gFem,gMsc,gNeut]
+<Pl><Nom>:·uisis[gFem]
+<Pl><Nom>:·uišai[gMsc]
+<Pl><Nom>:·uišai[gNeut]
+<Sg><Acc>:·uisin[gFem]
+<Sg><Acc>:·uisin[gMsc]
+<Sg><Acc>:·uisi[gNeut]
+<Sg><Dat>:·uišai[gFem]
+<Sg><Dat>:·uišasmu[gMsc]
+<Sg><Dat>:·uišasmu[gNeut]
+<Sg><Gen>:·uišas[gFem,gMsc,gNeut]
+<Sg><Nom>:·uisi[gFem]
+<Sg><Nom>:·uisis[gMsc]
+<Sg><Nom>:·uisi[gNeut]
+
+LEXICON InflN_P31_x
+<Pl><Acc>:·ins[gFem]
+<Pl><Acc>:·uns[gMsc]
+<Pl><Acc>:·uns[gNeut]
+<Pl><Dat>:JSāmans[gFem]
+<Pl><Dat>:S·ummans[gMsc]
+<Pl><Dat>:S·ummans[gNeut]
+<Pl><Gen>:·in[gFem]
+<Pl><Gen>:·un[gMsc]
+<Pl><Gen>:·un[gNeut]
+<Pl><Nom>:·es[gFem]
+<Pl><Nom>:S·wāi[gMsc]
+<Pl><Nom>:S·wāi[gNeut]
+<Sg><Acc>:·in[gFem]
+<Sg><Acc>:·un[gMsc]
+<Sg><Acc>:·u[gNeut]
+<Sg><Dat>:·ei[gFem]
+<Sg><Dat>:·usmu[gMsc]
+<Sg><Dat>:·usmu[gNeut]
+<Sg><Gen>:·es[gFem]
+<Sg><Gen>:·was[gMsc]
+<Sg><Gen>:·was[gNeut]
+<Sg><Nom>:Sī[gFem]
+<Sg><Nom>:·us[gMsc]
+<Sg><Nom>:·u[gNeut]
+
+LEXICON InflN_P31comp_x
+<Pl><Acc>:·uisins[gFem,gMsc,gNeut]
+<Pl><Dat>:·uisimans[gFem,gMsc,gNeut]
+<Pl><Gen>:·uisin[gFem,gMsc,gNeut]
+<Pl><Nom>:·uisis[gFem]
+<Pl><Nom>:·uišai[gMsc]
+<Pl><Nom>:·uišai[gNeut]
+<Sg><Acc>:·uisin[gFem]
+<Sg><Acc>:·uisin[gMsc]
+<Sg><Acc>:·uisi[gNeut]
+<Sg><Dat>:·uišai[gFem]
+<Sg><Dat>:·uišasmu[gMsc]
+<Sg><Dat>:·uišasmu[gNeut]
+<Sg><Gen>:·uišas[gFem,gMsc,gNeut]
+<Sg><Nom>:·uisi[gFem]
+<Sg><Nom>:·uisis[gMsc]
+<Sg><Nom>:·uisi[gNeut]
+
+LEXICON InflN_P31sup_x
+<Pl><Acc>:·uisins[gFem,gMsc,gNeut]
+<Pl><Dat>:·uisimans[gFem,gMsc,gNeut]
+<Pl><Gen>:·uisin[gFem,gMsc,gNeut]
+<Pl><Nom>:·uisis[gFem]
+<Pl><Nom>:·uišai[gMsc]
+<Pl><Nom>:·uišai[gNeut]
+<Sg><Acc>:·uisin[gFem]
+<Sg><Acc>:·uisin[gMsc]
+<Sg><Acc>:·uisi[gNeut]
+<Sg><Dat>:·uišai[gFem]
+<Sg><Dat>:·uišasmu[gMsc]
+<Sg><Dat>:·uišasmu[gNeut]
+<Sg><Gen>:·uišas[gFem,gMsc,gNeut]
+<Sg><Nom>:·uisi[gFem]
+<Sg><Nom>:·uisis[gMsc]
+<Sg><Nom>:·uisi[gNeut]
+
+LEXICON InflN_P32_x
+<Pl><Acc>:·ans[gMsc]
+<Pl><Dat>:·amans[gMsc]
+<Pl><Gen>:·an[gMsc]
+<Pl><Nom>:·ai[gMsc]
+<Sg><Acc>:·an[gMsc]
+<Sg><Dat>:·u[gMsc]
+<Sg><Gen>:·as[gMsc]
+<Sg><Nom>:s[gMsc]
+
+LEXICON InflN_P33_x
+<Pl><Acc>:·āuwans[gMsc]
+<Pl><Dat>:·āumans[gMsc]
+<Pl><Gen>:·āuwan[gMsc]
+<Pl><Nom>:·āuwai[gMsc]
+<Sg><Acc>:·āuwan[gMsc]
+<Sg><Dat>:·āuwu[gMsc]
+<Sg><Gen>:·āuwas[gMsc]
+<Sg><Nom>:·aws[gMsc]
+
+LEXICON InflN_P34_x
+<Pl><Acc>:·nans[gMsc]
+<Pl><Dat>:·namans[gMsc]
+<Pl><Gen>:·nan[gMsc]
+<Pl><Nom>:·nai[gMsc]
+<Sg><Acc>:·nan[gMsc]
+<Sg><Dat>:·nu[gMsc]
+<Sg><Gen>:·nas[gMsc]
+<Sg><Nom>:·ans[gMsc]
+
+LEXICON InflN_P35_x
+<Pl><Acc>:·ans[gNeut]
+<Pl><Dat>:S·ammans[gNeut]
+<Pl><Gen>:·an[gNeut]
+<Pl><Nom>:S·āi[gNeut]
+<Sg><Acc>:·an[gNeut]
+<Sg><Dat>:·u[gNeut]
+<Sg><Gen>:·as[gNeut]
+<Sg><Nom>:·an[gNeut]
+
+LEXICON InflN_P35a_x
+<Pl><Acc>:·lins[gNeut]
+<Pl><Gen>:·lin[gNeut]
+<Pl><Nom>:·āi[gNeut]
+<Sg><Acc>:·lin[gNeut]
+<Sg><Dat>:·lu[gNeut]
+<Sg><Gen>:·las[gNeut]
+<Sg><Nom>:·lin[gNeut]
+
+LEXICON InflN_P36_x
+<Pl><Acc>:·ans[gMsc]
+<Pl><Dat>:S·ammans[gMsc]
+<Pl><Gen>:·an[gMsc]
+<Pl><Nom>:S·āi[gMsc]
+<Sg><Acc>:·an[gMsc]
+<Sg><Dat>:·u[gMsc]
+<Sg><Gen>:·as[gMsc]
+<Sg><Nom>:s[gMsc]
+
+LEXICON InflN_P37_x
+<Pl><Acc>:·nins[gNeut]
+<Pl><Dat>:·emmans[gNeut]
+<Pl><Gen>:·nin[gNeut]
+<Pl><Nom>:·ēi[gNeut]
+<Sg><Acc>:·nin[gNeut]
+<Sg><Dat>:Jņu[gNeut]
+<Sg><Gen>:·nes[gNeut]
+<Sg><Nom>:·nin[gNeut]
+
+LEXICON InflN_P37a_x
+<Pl><Acc>:·ins[gNeut]
+<Pl><Dat>:Jammans[gNeut]
+<Pl><Gen>:·in[gNeut]
+<Pl><Nom>:Jāi[gNeut]
+<Sg><Acc>:·in[gNeut]
+<Sg><Dat>:Ju[gNeut]
+<Sg><Gen>:Jas[gNeut]
+<Sg><Nom>:·in[gNeut]
+
+LEXICON InflN_P38_x
+<Pl><Acc>:ījans[gMsc]
+<Pl><Dat>:·īmans[gMsc]
+<Pl><Gen>:ījan[gMsc]
+<Pl><Nom>:ījai[gMsc]
+<Sg><Acc>:ījan[gMsc]
+<Sg><Dat>:īju[gMsc]
+<Sg><Gen>:ījas[gMsc]
+<Sg><Nom>:īs[gMsc]
+
+LEXICON InflN_P39_x
+<Pl><Acc>:ijjans[gMsc]
+<Pl><Dat>:kijmans[gMsc]
+<Pl><Gen>:ijjan[gMsc]
+<Pl><Nom>:ijjai[gMsc]
+<Sg><Acc>:ijjan[gMsc]
+<Sg><Dat>:ijju[gMsc]
+<Sg><Gen>:ijjas[gMsc]
+<Sg><Nom>:īs[gMsc]
+
+LEXICON InflN_P40_x
+<Pl><Acc>:·ins[gMsc]
+<Pl><Dat>:·emans[gMsc]
+<Pl><Gen>:·in[gMsc]
+<Pl><Nom>:·ei[gMsc]
+<Sg><Acc>:·in[gMsc]
+<Sg><Dat>:Ju[gMsc]
+<Sg><Gen>:·es[gMsc]
+<Sg><Nom>:is[gMsc]
+
+LEXICON InflN_P40a_x
+<Pl><Acc>:·ins[gMsc]
+<Pl><Dat>:Jamans[gMsc]
+<Pl><Gen>:·in[gMsc]
+<Pl><Nom>:Jai[gMsc]
+<Sg><Acc>:·in[gMsc]
+<Sg><Dat>:Ju[gMsc]
+<Sg><Gen>:Jas[gMsc]
+<Sg><Nom>:is[gMsc]
+
+LEXICON InflN_P40b_x
+<Pl><Acc>:·ins[gMsc]
+<Pl><Dat>:jamans[gMsc]
+<Pl><Gen>:·in[gMsc]
+<Pl><Nom>:jai[gMsc]
+<Sg><Acc>:·in[gMsc]
+<Sg><Dat>:ju[gMsc]
+<Sg><Gen>:jas[gMsc]
+<Sg><Nom>:is[gMsc]
+
+LEXICON InflN_P40c_x
+<Pl><Acc>:·ins[gMsc]
+<Pl><Dat>:·amans[gMsc]
+<Pl><Gen>:·in[gMsc]
+<Pl><Nom>:·ai[gMsc]
+<Sg><Acc>:·in[gMsc]
+<Sg><Dat>:·u[gMsc]
+<Sg><Gen>:·as[gMsc]
+<Sg><Nom>:is[gMsc]
+
+LEXICON InflN_P41_x
+<Pl><Acc>:·ins[gMsc]
+<Pl><Dat>:S·emmans[gMsc]
+<Pl><Gen>:·in[gMsc]
+<Pl><Nom>:S·ēi[gMsc]
+<Sg><Acc>:·in[gMsc]
+<Sg><Dat>:Ju[gMsc]
+<Sg><Gen>:·es[gMsc]
+<Sg><Nom>:is[gMsc]
+
+LEXICON InflN_P42_x
+<Pl><Acc>:·luns[gMsc]
+<Pl><Dat>:·lumans[gMsc]
+<Pl><Gen>:·lun[gMsc]
+<Pl><Nom>:·lus[gMsc]
+<Sg><Acc>:·lun[gMsc]
+<Sg><Dat>:·lu[gMsc]
+<Sg><Gen>:·lus[gMsc]
+<Sg><Nom>:s[gMsc]
+
+LEXICON InflN_P43_x
+<Pl><Acc>:·uns[gMsc]
+<Pl><Dat>:S·ummans[gMsc]
+<Pl><Gen>:·un[gMsc]
+<Pl><Nom>:·us[gMsc]
+<Sg><Acc>:·un[gMsc]
+<Sg><Dat>:·u[gMsc]
+<Sg><Gen>:·us[gMsc]
+<Sg><Nom>:s[gMsc]
+
+LEXICON InflN_P44_x
+<Pl><Acc>:·u[gNeut]
+<Pl><Dat>:·u[gNeut]
+<Pl><Gen>:·us[gNeut]
+<Pl><Nom>:·u[gNeut]
+<Sg><Acc>:·u[gNeut]
+<Sg><Dat>:·u[gNeut]
+<Sg><Gen>:·us[gNeut]
+<Sg><Nom>:·u[gNeut]
+
+LEXICON InflN_P45_x
+<Pl><Acc>:·ans[gFem]
+<Pl><Dat>:·amans[gFem]
+<Pl><Gen>:·an[gFem]
+<Pl><Nom>:·as[gFem]
+<Sg><Acc>:·an[gFem]
+<Sg><Dat>:·ai[gFem]
+<Sg><Gen>:·as[gFem]
+<Sg><Nom>:a[gFem]
+
+LEXICON InflN_P46_x
+<Pl><Acc>:·ans[gFem]
+<Pl><Dat>:S·āmans[gFem]
+<Pl><Gen>:·an[gFem]
+<Pl><Nom>:·as[gFem]
+<Sg><Acc>:·an[gFem]
+<Sg><Dat>:·ai[gFem]
+<Sg><Gen>:·as[gFem]
+<Sg><Nom>:Sā[gFem]
+
+LEXICON InflN_P47_x
+<Pl><Acc>:·ans[gMsc]
+<Pl><Dat>:·amans[gMsc]
+<Pl><Gen>:·an[gMsc]
+<Pl><Nom>:·as[gMsc]
+<Sg><Acc>:·an[gMsc]
+<Sg><Dat>:·ai[gMsc]
+<Sg><Gen>:·as[gMsc]
+<Sg><Nom>:a[gMsc]
+
+LEXICON InflN_P48_x
+<Pl><Acc>:·ans[gFem]
+<Pl><Dat>:·āmans[gFem]
+<Pl><Gen>:·an[gFem]
+<Pl><Nom>:·as[gFem]
+<Sg><Acc>:·an[gFem]
+<Sg><Dat>:·ai[gFem]
+<Sg><Gen>:·as[gFem]
+<Sg><Nom>:ā[gFem]
+
+LEXICON InflN_P49_x
+<Pl><Acc>:·wans[gFem]
+<Pl><Dat>:·wamans[gFem]
+<Pl><Gen>:·wan[gFem]
+<Pl><Nom>:·was[gFem]
+<Sg><Acc>:·wan[gFem]
+<Sg><Dat>:·wai[gFem]
+<Sg><Gen>:·was[gFem]
+<Sg><Nom>:·u[gFem]
+
+LEXICON InflN_P50_x
+<Pl><Acc>:·ins[gFem]
+<Pl><Dat>:·emans[gFem]
+<Pl><Gen>:·in[gFem]
+<Pl><Nom>:·es[gFem]
+<Sg><Acc>:·in[gFem]
+<Sg><Dat>:·ei[gFem]
+<Sg><Gen>:·es[gFem]
+<Sg><Nom>:i[gFem]
+
+LEXICON InflN_P50a_x
+<Pl><Acc>:·ins[gFem]
+<Pl><Dat>:Jamans[gFem]
+<Pl><Gen>:·in[gFem]
+<Pl><Nom>:Jas[gFem]
+<Sg><Acc>:·in[gFem]
+<Sg><Dat>:Jai[gFem]
+<Sg><Gen>:Jas[gFem]
+<Sg><Nom>:i[gFem]
+
+LEXICON InflN_P51_x
+<Pl><Acc>:·ins[gFem]
+<Pl><Dat>:JSāmans[gFem]
+<Pl><Gen>:·in[gFem]
+<Pl><Nom>:·es[gFem]
+<Sg><Acc>:·in[gFem]
+<Sg><Dat>:·ei[gFem]
+<Sg><Gen>:·es[gFem]
+<Sg><Nom>:Sī[gFem]
+
+LEXICON InflN_P51a_x
+<Pl><Acc>:·ins[gFem]
+<Pl><Dat>:JSāmans[gFem]
+<Pl><Gen>:·in[gFem]
+<Pl><Nom>:Jas[gFem]
+<Sg><Acc>:·in[gFem]
+<Sg><Dat>:Jai[gFem]
+<Sg><Gen>:Jas[gFem]
+<Sg><Nom>:Sī[gFem]
+
+LEXICON InflN_P52_x
+<Pl><Acc>:·ins[gFem]
+<Pl><Dat>:·imans[gFem]
+<Pl><Gen>:·in[gFem]
+<Pl><Nom>:is[gFem]
+<Sg><Acc>:·in[gFem]
+<Sg><Dat>:·ei[gFem]
+<Sg><Gen>:is[gFem]
+<Sg><Nom>:i[gFem]
+
+LEXICON InflN_P53_x
+<Pl><Acc>:·mins[gFem]
+<Pl><Dat>:·īmans[gFem]
+<Pl><Gen>:·min[gFem]
+<Pl><Nom>:·mis[gFem]
+<Sg><Acc>:·min[gFem]
+<Sg><Dat>:·mei[gFem]
+<Sg><Gen>:·mis[gFem]
+<Sg><Nom>:ē[gFem]
+
+LEXICON InflN_P54_x
+<Pl><Acc>:·ins[gMsc]
+<Pl><Dat>:·emans[gMsc]
+<Pl><Gen>:·in[gMsc]
+<Pl><Nom>:·ei[gMsc]
+<Sg><Acc>:·in[gMsc]
+<Sg><Dat>:·ei[gMsc]
+<Sg><Gen>:·es[gMsc]
+<Sg><Nom>:is[gMsc]
+
+LEXICON InflN_P55_x
+<Pl><Acc>:·ens[gMsc]
+<Pl><Dat>:·emans[gMsc]
+<Pl><Gen>:·en[gMsc]
+<Pl><Nom>:·es[gMsc]
+<Sg><Acc>:·en[gMsc]
+<Sg><Dat>:·ei[gMsc]
+<Sg><Gen>:·es[gMsc]
+<Sg><Nom>:e[gMsc]
+
+LEXICON InflN_P56_x
+<Pl><Acc>:·ins[gMsc]
+<Pl><Dat>:·imans[gMsc]
+<Pl><Gen>:·in[gMsc]
+<Pl><Nom>:·ei[gMsc]
+<Sg><Acc>:·in[gMsc]
+<Sg><Dat>:i[gMsc]
+<Sg><Gen>:is[gMsc]
+<Sg><Nom>:s[gMsc]
+
+LEXICON InflN_P57_x
+<Pl><Acc>:·ins[gMsc]
+<Pl><Dat>:S·immans[gMsc]
+<Pl><Gen>:·in[gMsc]
+<Pl><Nom>:·ei[gMsc]
+<Sg><Acc>:·in[gMsc]
+<Sg><Dat>:i[gMsc]
+<Sg><Gen>:is[gMsc]
+<Sg><Nom>:s[gMsc]
+
+LEXICON InflN_P58_x
+<Pl><Acc>:·ins[gFem]
+<Pl><Dat>:·imans[gFem]
+<Pl><Gen>:·in[gFem]
+<Pl><Nom>:is[gFem]
+<Sg><Acc>:·in[gFem]
+<Sg><Dat>:·ei[gFem]
+<Sg><Gen>:is[gFem]
+<Sg><Nom>:s[gFem]
+
+LEXICON InflN_P59_x
+<Pl><Acc>:i[gNeut]
+<Pl><Dat>:i[gNeut]
+<Pl><Gen>:is[gNeut]
+<Pl><Nom>:i[gNeut]
+<Sg><Acc>:i[gNeut]
+<Sg><Dat>:i[gNeut]
+<Sg><Gen>:is[gNeut]
+<Sg><Nom>:i[gNeut]
+
+LEXICON InflN_P60_x
+<Pl><Acc>:·kins[gFem]
+<Pl><Dat>:·immans[gFem]
+<Pl><Gen>:·kin[gFem]
+<Pl><Nom>:·kis[gFem]
+<Sg><Acc>:·kin[gFem]
+<Sg><Dat>:·kei[gFem]
+<Sg><Gen>:·kis[gFem]
+<Sg><Nom>:s[gFem]
+
+LEXICON InflN_P61_x
+<Pl><Acc>:·ins[gMsc]
+<Pl><Dat>:·imans[gMsc]
+<Pl><Gen>:·in[gMsc]
+<Pl><Nom>:·ei[gMsc]
+<Sg><Acc>:·in[gMsc]
+<Sg><Dat>:i[gMsc]
+<Sg><Gen>:·es[gMsc]
+<Sg><Nom>:s[gMsc]
+
+LEXICON InflN_P62_x
+<Pl><Acc>:·nins[gMsc]
+<Pl><Dat>:·nimans[gMsc]
+<Pl><Gen>:·nin[gMsc]
+<Pl><Nom>:·nei[gMsc]
+<Sg><Acc>:·nin[gMsc]
+<Sg><Dat>:·ni[gMsc]
+<Sg><Gen>:·nes[gMsc]
+<Sg><Nom>:·mens[gMsc]
+
+LEXICON InflN_P63_x
+<Pl><Acc>:·ins[gNeut]
+<Pl><Dat>:S·immans[gNeut]
+<Pl><Gen>:·in[gNeut]
+<Pl><Nom>:S·ēi[gNeut]
+<Sg><Acc>:[gNeut]
+<Sg><Dat>:i[gNeut]
+<Sg><Gen>:·es[gNeut]
+<Sg><Nom>:[gNeut]
+
+LEXICON InflN_P64_x
+<Pl><Acc>:·ūnins[gMsc]
+<Pl><Dat>:·ūnimans[gMsc]
+<Pl><Gen>:·ūnin[gMsc]
+<Pl><Nom>:·ūnei[gMsc]
+<Sg><Acc>:·ūnin[gMsc]
+<Sg><Dat>:·ūni[gMsc]
+<Sg><Gen>:·ūnes[gMsc]
+<Sg><Nom>:·ūi[gMsc]
+
+LEXICON InflN_P65_x
+<Pl><Acc>:·ins[gMsc]
+<Pl><Dat>:·rimans[gMsc]
+<Pl><Gen>:·in[gMsc]
+<Pl><Nom>:·ei[gMsc]
+<Sg><Acc>:·in[gMsc]
+<Sg><Dat>:·ri[gMsc]
+<Sg><Gen>:is[gMsc]
+<Sg><Nom>:i[gMsc]
+
+LEXICON InflN_P66_x
+<Pl><Acc>:·ins[gFem]
+<Pl><Dat>:·erimans[gFem]
+<Pl><Gen>:·in[gFem]
+<Pl><Nom>:is[gFem]
+<Sg><Acc>:·in[gFem]
+<Sg><Dat>:·erei[gFem]
+<Sg><Gen>:is[gFem]
+<Sg><Nom>:i[gFem]
+
+LEXICON InflN_P67_x
+<Pl><Acc>:·ins[gFem]
+<Pl><Dat>:·erimmans[gFem]
+<Pl><Gen>:·in[gFem]
+<Pl><Nom>:is[gFem]
+<Sg><Acc>:·in[gFem]
+<Sg><Dat>:·erei[gFem]
+<Sg><Gen>:is[gFem]
+<Sg><Nom>:i[gFem]
+
+LEXICON InflN_P70_x
+<Pl><Acc>:·ins[gFem]
+<Pl><Acc>:·ans[gMsc]
+<Pl><Acc>:·ans[gNeut]
+<Pl><Dat>:Sjāmans[gFem]
+<Pl><Dat>:S·ēimans[gMsc]
+<Pl><Dat>:S·ēimans[gNeut]
+<Pl><Gen>:·in[gFem]
+<Pl><Gen>:S·ēisan[gMsc]
+<Pl><Gen>:S·ēisan[gNeut]
+<Pl><Nom>:·es[gFem]
+<Pl><Nom>:S·āi[gMsc]
+<Pl><Nom>:S·āi[gNeut]
+<Sg><Acc>:·in[gFem]
+<Sg><Acc>:·an[gMsc]
+<Sg><Acc>:·an[gNeut]
+<Sg><Dat>:·ei[gFem]
+<Sg><Dat>:·smu[gMsc]
+<Sg><Dat>:·smu[gNeut]
+<Sg><Gen>:·es[gFem]
+<Sg><Gen>:·se[gMsc]
+<Sg><Gen>:·se[gNeut]
+<Sg><Nom>:Sī[gFem]
+<Sg><Nom>:s[gMsc]
+<Sg><Nom>:·an[gNeut]
+
+LEXICON InflN_P9_x
+<Pl><Acc>:·ans[gFem]
+<Pl><Acc>:·ans[gMsc]
+<Pl><Acc>:a[gNeut]
+<Pl><Dat>:·wēimans[gFem]
+<Pl><Dat>:·wēimans[gMsc]
+<Pl><Dat>:·asmu[gNeut]
+<Pl><Gen>:·wēisan[gFem]
+<Pl><Gen>:·wēisan[gMsc]
+<Pl><Gen>:·asse[gNeut]
+<Pl><Nom>:·wās[gFem]
+<Pl><Nom>:·wāi[gMsc]
+<Pl><Nom>:a[gNeut]
+<Sg><Acc>:·an[gFem]
+<Sg><Acc>:·an[gMsc]
+<Sg><Acc>:a[gNeut]
+<Sg><Dat>:·assei[gFem]
+<Sg><Dat>:·asmu[gMsc]
+<Sg><Dat>:·asmu[gNeut]
+<Sg><Gen>:·asses[gFem]
+<Sg><Gen>:·asse[gMsc]
+<Sg><Gen>:·asse[gNeut]
+<Sg><Nom>:·wāi[gFem]
+<Sg><Nom>:·as[gMsc]
+<Sg><Nom>:a[gNeut]
+
+LEXICON InflN_P1_x
+<Pl><Acc>:·mans
+<Pl><Dat>:·nūmans
+<Pl><Gen>:·nūse
+<Pl><Nom>:·mes
+<Sg><Acc>:·men
+<Sg><Dat>:·mennei
+<Sg><Gen>:·māise
+<Sg><Nom>:·as
+
+LEXICON InflN_P115_x
+<Pl><Acc>:m
+<Pl><Dat>:·ac
+<Pl><Gen>:pt
+<Pl><Nom>:pc
+<Sg><Acc>:m
+<Sg><Dat>:·ac
+<Sg><Gen>:pt
+<Sg><Nom>:pc
+
+LEXICON InflN_P118_x
+<Pl><Acc>:m\:
+<Pl><Dat>:·ac
+<Pl><Gen>:pt
+<Pl><Nom>:pc
+<Sg><Acc>:m\:
+<Sg><Dat>:·ac
+<Sg><Gen>:pt
+<Sg><Nom>:pc
+
+LEXICON InflN_P2_x
+<Pl><Acc>:·wans
+<Pl><Dat>:jūmans
+<Pl><Gen>:jūse
+<Pl><Nom>:jūs
+<Sg><Acc>:·ten
+<Sg><Dat>:·tebbei
+<Sg><Gen>:·twāise
+<Sg><Nom>:·tū
+
+LEXICON InflV_P100_present
+<Inf>:JSun
+<Prs><1Pl>:·imai
+<Prs><1Sg>:a
+<Prs><2Pl>:·itei
+<Prs><2Sg>:a
+<Prs><3>:a
+
+LEXICON InflV_P100_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P102_present
+<Inf>:JSun
+<Prs><1Pl>:·imai
+<Prs><1Sg>:a
+<Prs><2Pl>:·itei
+<Prs><2Sg>:a
+<Prs><3>:a
+
+LEXICON InflV_P102_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P102a_present
+<Inf>:JSun
+<Prs><1Pl>:·imai
+<Prs><1Sg>:a
+<Prs><2Pl>:·itei
+<Prs><2Sg>:a
+<Prs><3>:a
+
+LEXICON InflV_P102a_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P105_present
+<Inf>:Jwei
+<Prs><1Pl>:·imai
+<Prs><1Sg>:a
+<Prs><2Pl>:·itei
+<Prs><2Sg>:a
+<Prs><3>:a
+
+LEXICON InflV_P105_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P106a_pres_stem
+<Inf>:Jun
+<Prs><1Pl>:·imai
+<Prs><1Sg>:a
+<Prs><2Pl>:·itei
+<Prs><2Sg>:a
+<Prs><3>:a
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P106b_present
+<Inf>:·eītwei
+<Prs><1Pl><Refl>:·eīmai
+<Prs><1Sg><Refl>:eīja
+<Prs><2Pl><Refl>:·eītei
+<Prs><2Sg><Refl>:eīja
+<Prs><3><Refl>:eīja
+
+LEXICON InflV_P106b_preterite
+<Prt><1Pl><Refl>:·amai
+<Prt><1Sg><Refl>:a
+<Prt><2Pl><Refl>:·atei
+<Prt><2Sg><Refl>:a
+<Prt><3><Refl>:a
+
+LEXICON InflV_P106c_pres_stem
+<Inf>:Jwei
+<Prs><1Pl>:·imai
+<Prs><1Sg>:a
+<Prs><2Pl>:·itei
+<Prs><2Sg>:a
+<Prs><3>:a
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P106d_present
+<Inf>:·aītun
+<Prs><1Pl>:·aīmai
+<Prs><1Sg>:aīja
+<Prs><2Pl>:·aītei
+<Prs><2Sg>:aīja
+<Prs><3>:aīja
+
+LEXICON InflV_P106d_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P107_present
+<Inf>:·ītwei
+<Prs><1Pl>:·īmai
+<Prs><1Sg>:ijja
+<Prs><2Pl>:·ītei
+<Prs><2Sg>:ijja
+<Prs><3>:ijja
+
+LEXICON InflV_P107_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P108_present
+<Inf>:·ītun
+<Prs><1Pl>:·eīmai
+<Prs><1Sg>:eīja
+<Prs><2Pl>:·eītei
+<Prs><2Sg>:eīja
+<Prs><3>:eīja
+
+LEXICON InflV_P108_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P109_present
+<Inf>:Jwei
+<Prs><1Pl>:·imai
+<Prs><1Sg>:a
+<Prs><2Pl>:·itei
+<Prs><2Sg>:a
+<Prs><3>:a
+
+LEXICON InflV_P109_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P110_present
+<Inf>:Jwei
+<Prs><1Pl>:·imai
+<Prs><1Sg>:e
+<Prs><2Pl>:·itei
+<Prs><2Sg>:e
+<Prs><3>:e
+
+LEXICON InflV_P110_preterite
+<Prt><1Pl>:·āimai
+<Prt><1Sg>:·āi
+<Prt><2Pl>:·āitei
+<Prt><2Sg>:·āi
+<Prt><3>:·āi
+
+LEXICON InflV_P111_present
+<Inf>:Jun
+<Prs><1Pl>:·imai
+<Prs><1Sg>:e
+<Prs><2Pl>:·itei
+<Prs><2Sg>:e
+<Prs><3>:e
+
+LEXICON InflV_P111_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P112_present
+<Inf>:Jn
+<Prs><1Pl>:·imai
+<Prs><1Sg>:a
+<Prs><2Pl>:·itei
+<Prs><2Sg>:a
+<Prs><3>:a
+
+LEXICON InflV_P112_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·tei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P113_present
+<Inf>:Jun
+<Prs><1Pl>:·imai
+<Prs><1Sg>:a
+<Prs><2Pl>:·itei
+<Prs><2Sg>:a
+<Prs><3>:a
+
+LEXICON InflV_P113_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P114_present
+<Inf>:·wei
+<Prs><1Pl>:·mai
+<Prs><1Sg>:
+<Prs><2Pl>:·ei
+<Prs><2Sg>:
+<Prs><3>:
+
+LEXICON InflV_P114_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P115_inf_stem
+<Inf>:·twei
+
+LEXICON InflV_P115_present
+<Prs><1Pl>:·mai
+<Prs><1Sg>:·ma
+<Prs><2Pl>:·tei
+<Prs><2Sg>:·sei
+<Prs><3>:t
+
+LEXICON InflV_P115_preterite
+<Prt><1Pl>:·ēimai
+<Prt><1Sg>:·ēi
+<Prt><2Pl>:·ēitei
+<Prt><2Sg>:·ēi
+<Prt><3>:·ēi
+
+LEXICON InflV_P116_present
+<Inf>:·twei
+<Prs><1Pl>:·mai
+<Prs><1Sg>:·ma
+<Prs><2Pl>:·tei
+<Prs><2Sg>:·sei
+<Prs><3>:t
+
+LEXICON InflV_P116_preterite
+<Prt><1Pl>:·imai
+<Prt><1Sg>:i
+<Prt><2Pl>:·itei
+<Prt><2Sg>:i
+<Prt><3>:i
+
+LEXICON InflV_P117_present
+<Inf>:·stun
+<Prs><1Pl>:·mai
+<Prs><1Sg>:·ma
+<Prs><2Pl>:·tei
+<Prs><2Sg>:·sei
+<Prs><3>:st
+
+LEXICON InflV_P117_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P118_pres_stem
+<Inf>:·ātun
+<Prs><1Pl>:·āmai
+<Prs><1Sg>:·āma
+<Prs><2Pl>:·ātei
+<Prs><2Sg>:·āsei
+<Prs><3>:·āst
+<Prt><1Pl>:·āimai
+<Prt><1Sg>:·āi
+<Prt><2Pl>:·āitei
+<Prt><2Sg>:·āi
+<Prt><3>:·āi
+
+LEXICON InflV_P119_present
+<Inf>:·ātwei
+<Prs><1Pl>:·āmai
+<Prs><1Sg>:·āma
+<Prs><2Pl>:·ātei
+<Prs><2Sg>:·āsei
+<Prs><3>:·āt
+
+LEXICON InflV_P119_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P120_present
+<Inf>:·ītwei
+<Prs><1Pl>:·īmai
+<Prs><1Sg>:·īma
+<Prs><2Pl>:·ītei
+<Prs><2Sg>:·īsei
+<Prs><3>:·īt
+
+LEXICON InflV_P120_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P121_present
+<Inf>:·ītun
+<Prs><1Pl>:·īmai
+<Prs><1Sg>:·īma
+<Prs><2Pl>:·ītei
+<Prs><2Sg>:·īsei
+<Prs><3>:·īt
+
+LEXICON InflV_P121_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P122_pres_stem
+<Inf>:Jtun
+<Prs><1Pl>:·imai
+<Prs><1Sg>:a
+<Prs><2Pl>:·itei
+<Prs><2Sg>:a
+<Prs><3>:a
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P123_present
+<Inf>:·ītwei
+<Prs><1Pl>:·eīmai
+<Prs><1Sg>:·eīma
+<Prs><2Pl>:·eītei
+<Prs><2Sg>:·eīsei
+<Prs><3>:·eīt
+
+LEXICON InflV_P123_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P124_present
+<Inf>:JSwei
+<Prs><1Pl>:·mai
+<Prs><1Sg>:t
+<Prs><2Pl>:·tei
+<Prs><2Sg>:t
+<Prs><3>:t
+
+LEXICON InflV_P124_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P125_present
+<Inf>:JSwei
+<Prs><1Pl>:·mai
+<Prs><1Sg>:·ma
+<Prs><2Pl>:·tei
+<Prs><2Sg>:·sei
+<Prs><3>:t
+
+LEXICON InflV_P125_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P126_pres_stem
+<Inf>:Jwei
+<Prs><1Pl>:·imai
+<Prs><1Sg>:a
+<Prs><2Pl>:·itei
+<Prs><2Sg>:a
+<Prs><3>:a
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P127_pres_stem
+<Inf>:·tun
+<Prs><1Pl>:·mai
+<Prs><1Sg>:·ma
+<Prs><2Pl>:·tei
+<Prs><2Sg>:·ei
+<Prs><3>:t
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P128_present
+<Inf>:Jwei
+<Prs><1Pl>:·imai
+<Prs><1Sg>:a
+<Prs><2Pl>:·itei
+<Prs><2Sg>:a
+<Prs><3>:a
+
+LEXICON InflV_P128_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P131_pres_stem
+<Inf>:·atun
+<Prs><1Pl>:·aimai
+<Prs><1Sg>:·ai
+<Prs><2Pl>:·aitei
+<Prs><2Sg>:·ai
+<Prs><3>:·ai
+<Prt><1Pl>:·aimai
+<Prt><1Sg>:·ai
+<Prt><2Pl>:·aitei
+<Prt><2Sg>:·ai
+<Prt><3>:·ai
+
+LEXICON InflV_P132_pres_stem
+<Inf>:·ātun
+<Prs><1Pl>:·āimai
+<Prs><1Sg>:·āi
+<Prs><2Pl>:·āitei
+<Prs><2Sg>:·āi
+<Prs><3>:·āi
+<Prt><1Pl>:·āimai
+<Prt><1Sg>:·āi
+<Prt><2Pl>:·āitei
+<Prt><2Sg>:·āi
+<Prt><3>:·āi
+
+LEXICON InflV_P133_pres_stem
+<Inf>:·itun
+<Prs><1Pl>:·eimai
+<Prs><1Sg>:·ei
+<Prs><2Pl>:·eitei
+<Prs><2Sg>:·ei
+<Prs><3>:·ei
+<Prt><1Pl>:·eimai
+<Prt><1Sg>:·ei
+<Prt><2Pl>:·eitei
+<Prt><2Sg>:·ei
+<Prt><3>:·ei
+
+LEXICON InflV_P134_pres_stem
+<Inf>:·ītun
+<Prs><1Pl>:·ēimai
+<Prs><1Sg>:·ēi
+<Prs><2Pl>:·ēitei
+<Prs><2Sg>:·ēi
+<Prs><3>:·ēi
+<Prt><1Pl>:·ēimai
+<Prt><1Sg>:·ēi
+<Prt><2Pl>:·ēitei
+<Prt><2Sg>:·ēi
+<Prt><3>:·ēi
+
+LEXICON InflV_P134a_pres_stem
+<Inf>:·ītun
+<Prs><1Pl>:·āimai
+<Prs><1Sg>:·āi
+<Prs><2Pl>:·āitei
+<Prs><2Sg>:·āi
+<Prs><3>:·āi
+<Prt><1Pl>:·āimai
+<Prt><1Sg>:·āi
+<Prt><2Pl>:·āitei
+<Prt><2Sg>:·āi
+<Prt><3>:·āi
+
+LEXICON InflV_P135_present
+<Inf>:·itun
+<Prs><1Pl>:·imai
+<Prs><1Sg>:i
+<Prs><2Pl>:·itei
+<Prs><2Sg>:i
+<Prs><3>:i
+
+LEXICON InflV_P135_preterite
+<Prt><1Pl>:·eimai
+<Prt><1Sg>:·ei
+<Prt><2Pl>:·eitei
+<Prt><2Sg>:·ei
+<Prt><3>:·ei
+
+LEXICON InflV_P136_pres_stem
+<Inf>:·ītun
+<Prs><1Pl>:·imai
+<Prs><1Sg>:a
+<Prs><2Pl>:·itei
+<Prs><2Sg>:a
+<Prs><3>:a
+<Prt><1Pl>:·ēimai
+<Prt><1Sg>:·ēi
+<Prt><2Pl>:·ēitei
+<Prt><2Sg>:·ēi
+<Prt><3>:·ēi
+
+LEXICON InflV_P137_present
+<Inf>:Jtun
+<Prs><1Pl>:·imai
+<Prs><1Sg>:i
+<Prs><2Pl>:·itei
+<Prs><2Sg>:i
+<Prs><3>:i
+
+LEXICON InflV_P137_preterite
+<Prt><1Pl>:·ēimai
+<Prt><1Sg>:·ēi
+<Prt><2Pl>:·ēitei
+<Prt><2Sg>:·ēi
+<Prt><3>:·ēi
+
+LEXICON InflV_P137a_present
+<Inf>:S·ītun
+<Prs><1Pl>:·imai
+<Prs><1Sg>:i
+<Prs><2Pl>:·itei
+<Prs><2Sg>:i
+<Prs><3>:i
+
+LEXICON InflV_P137a_preterite
+<Prt><1Pl>:·āimai
+<Prt><1Sg>:·āi
+<Prt><2Pl>:·āitei
+<Prt><2Sg>:·āi
+<Prt><3>:·āi
+
+LEXICON InflV_P138_pres_stem
+<Inf>:Jitun
+<Prs><1Pl>:·imai
+<Prs><1Sg>:i
+<Prs><2Pl>:·itei
+<Prs><2Sg>:i
+<Prs><3>:i
+<Prt><1Pl>:·imai
+<Prt><1Sg>:i
+<Prt><2Pl>:·itei
+<Prt><2Sg>:i
+<Prt><3>:i
+
+LEXICON InflV_P139_pres_stem
+<Inf>:Jn
+<Prs><1Pl>:·amai
+<Prs><1Sg>:a
+<Prs><2Pl>:·atei
+<Prs><2Sg>:a
+<Prs><3>:a
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P140_present
+<Inf>:·ītun
+<Prs><1Pl>:·imai
+<Prs><1Sg>:i
+<Prs><2Pl>:·itei
+<Prs><2Sg>:i
+<Prs><3>:i
+
+LEXICON InflV_P140_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P141_present
+<Inf>:J
+<Prs><1Pl>:·imai
+<Prs><1Sg>:a
+<Prs><2Pl>:·itei
+<Prs><2Sg>:a
+<Prs><3>:a
+
+LEXICON InflV_P141_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P142_present
+<Inf>:Jtun
+<Prs><1Pl>:·imai
+<Prs><1Sg>:a
+<Prs><2Pl>:·itei
+<Prs><2Sg>:a
+<Prs><3>:a
+
+LEXICON InflV_P142_preterite
+<Prt><1Pl>:·āimai
+<Prt><1Sg>:·āi
+<Prt><2Pl>:·āitei
+<Prt><2Sg>:·āi
+<Prt><3>:·āi
+
+LEXICON InflV_P143_pres_stem
+<Inf>:·autun
+<Prs><1Pl>:·awimai
+<Prs><1Sg>:·aui
+<Prs><2Pl>:·awitei
+<Prs><2Sg>:·aui
+<Prs><3>:·aui
+<Prt><1Pl>:·aumai
+<Prt><1Sg>:·au
+<Prt><2Pl>:·autei
+<Prt><2Sg>:·au
+<Prt><3>:·au
+
+LEXICON InflV_P144_present
+<Inf>:Jun
+<Prs><1Pl>:·imai
+<Prs><1Sg>:a
+<Prs><2Pl>:·itei
+<Prs><2Sg>:a
+<Prs><3>:a
+
+LEXICON InflV_P144_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P71_imperative
+<Imp><2Pl>:·aiti
+<Imp><2Sg>:·ais
+
+LEXICON InflV_P71_inf_stem
+<Inf>:·tun
+<Opt>:·sei
+<Subj><1Pl>:·limai
+<Subj><1Sg>:·lai
+<Subj><2Pl>:·litei
+<Subj><2Sg>:·lai
+<Subj><3>:·lai
+
+LEXICON InflV_P71_pres_stem
+<Prs><1Pl>:·imai
+<Prs><1Sg>:a
+<Prs><2Pl>:·itei
+<Prs><2Sg>:a
+<Prs><3>:a
+<Prt><1Pl>:·imai
+<Prt><1Sg>:i
+<Prt><2Pl>:·itei
+<Prt><2Sg>:i
+<Prt><3>:i
+
+LEXICON InflV_P72_pres_stem
+<Inf>:Jun
+<Prs><1Pl>:·imai
+<Prs><1Sg>:a
+<Prs><2Pl>:·itei
+<Prs><2Sg>:a
+<Prs><3>:a
+<Prt><1Pl>:·imai
+<Prt><1Sg>:i
+<Prt><2Pl>:·itei
+<Prt><2Sg>:i
+<Prt><3>:i
+
+LEXICON InflV_P73_pres_stem
+<Inf>:Jun
+<Prs><1Pl>:·imai
+<Prs><1Sg>:a
+<Prs><2Pl>:·itei
+<Prs><2Sg>:a
+<Prs><3>:a
+<Prt><1Pl>:·imai
+<Prt><1Sg>:i
+<Prt><2Pl>:·itei
+<Prt><2Sg>:i
+<Prt><3>:i
+
+LEXICON InflV_P74_pres_stem
+<Inf>:Jun
+<Prs><3>:a
+<Prt><3>:i
+
+LEXICON InflV_P75_pres_stem
+<Inf>:·tun
+<Prs><1Pl>:·imai
+<Prs><1Sg>:e
+<Prs><2Pl>:·itei
+<Prs><2Sg>:e
+<Prs><3>:e
+<Prt><1Pl>:·imai
+<Prt><1Sg>:i
+<Prt><2Pl>:·itei
+<Prt><2Sg>:i
+<Prt><3>:i
+
+LEXICON InflV_P76_pres_stem
+<Inf>:Jun
+<Prs><1Pl>:·imai
+<Prs><1Sg>:e
+<Prs><2Pl>:·itei
+<Prs><2Sg>:e
+<Prs><3>:e
+<Prt><1Pl>:·imai
+<Prt><1Sg>:i
+<Prt><2Pl>:·itei
+<Prt><2Sg>:i
+<Prt><3>:i
+
+LEXICON InflV_P76s_pres_stem
+<Inf>:·wei
+<Prs><1Pl>:·imai
+<Prs><1Sg>:e
+<Prs><2Pl>:·itei
+<Prs><2Sg>:e
+<Prs><3>:e
+<Prt><1Pl>:·imai
+<Prt><1Sg>:i
+<Prt><2Pl>:·itei
+<Prt><2Sg>:i
+<Prt><3>:i
+
+LEXICON InflV_P77_present
+<Inf>:Jun
+<Prs><1Pl>:·amai
+<Prs><1Sg>:a
+<Prs><2Pl>:·atei
+<Prs><2Sg>:a
+<Prs><3>:a
+
+LEXICON InflV_P77_preterite
+<Prt><1Pl>:·imai
+<Prt><1Sg>:i
+<Prt><2Pl>:·itei
+<Prt><2Sg>:i
+<Prt><3>:i
+
+LEXICON InflV_P78_present
+<Inf>:Jtun
+<Prs><1Pl>:Jimai
+<Prs><1Sg>:a
+<Prs><2Pl>:Jitei
+<Prs><2Sg>:a
+<Prs><3>:a
+
+LEXICON InflV_P78_preterite
+<Prt><1Pl>:·imai
+<Prt><1Sg>:i
+<Prt><2Pl>:·itei
+<Prt><2Sg>:i
+<Prt><3>:i
+
+LEXICON InflV_P79_present
+<Inf>:Jtun
+<Prs><1Pl>:Jimai
+<Prs><1Sg>:a
+<Prs><2Pl>:Jitei
+<Prs><2Sg>:a
+<Prs><3>:a
+
+LEXICON InflV_P79_preterite
+<Prt><1Pl>:·imai
+<Prt><1Sg>:i
+<Prt><2Pl>:·itei
+<Prt><2Sg>:i
+<Prt><3>:i
+
+LEXICON InflV_P80b_present
+<Inf>:Jun
+<Prs><1Pl>:·imai
+<Prs><1Sg>:ja
+<Prs><2Pl>:·itei
+<Prs><2Sg>:ja
+<Prs><3>:ja
+
+LEXICON InflV_P80b_preterite
+<Prt><1Pl>:·imai
+<Prt><1Sg>:i
+<Prt><2Pl>:·itei
+<Prt><2Sg>:i
+<Prt><3>:i
+
+LEXICON InflV_P81_present
+<Inf>:J
+<Prs><1Pl>:·amai
+<Prs><1Sg>:a
+<Prs><2Pl>:·atei
+<Prs><2Sg>:a
+<Prs><3>:a
+
+LEXICON InflV_P81_preterite
+<Prt><1Pl>:·īrimai
+<Prt><1Sg>:·ēri
+<Prt><2Pl>:·ēritei
+<Prt><2Sg>:·ēri
+<Prt><3>:·ēri
+
+LEXICON InflV_P81a_present
+<Inf>:Jun
+<Prs><1Pl>:·imai
+<Prs><1Sg>:a
+<Prs><2Pl>:·itei
+<Prs><2Sg>:a
+<Prs><3>:a
+
+LEXICON InflV_P81a_preterite
+<Prt><1Pl>:·imai
+<Prt><1Sg>:i
+<Prt><2Pl>:·itei
+<Prt><2Sg>:i
+<Prt><3>:i
+
+LEXICON InflV_P81b_present
+<Inf>:Jun
+<Prs><1Pl>:·imai
+<Prs><1Sg>:ja
+<Prs><2Pl>:·itei
+<Prs><2Sg>:ja
+<Prs><3>:ja
+
+LEXICON InflV_P81b_preterite
+<Prt><1Pl>:·imai
+<Prt><1Sg>:i
+<Prt><2Pl>:·itei
+<Prt><2Sg>:i
+<Prt><3>:i
+
+LEXICON InflV_P81c_present
+<Inf>:Jun
+<Prs><1Pl>:Jimai
+<Prs><1Sg>:a
+<Prs><2Pl>:Jitei
+<Prs><2Sg>:a
+<Prs><3>:a
+
+LEXICON InflV_P81c_preterite
+<Prt><1Pl>:·imai
+<Prt><1Sg>:i
+<Prt><2Pl>:·itei
+<Prt><2Sg>:i
+<Prt><3>:i
+
+LEXICON InflV_P81d_present
+<Inf>:Jun
+<Prs><1Pl>:·imai
+<Prs><1Sg>:e
+<Prs><2Pl>:·itei
+<Prs><2Sg>:e
+<Prs><3>:e
+
+LEXICON InflV_P81d_preterite
+<Prt><1Pl>:·imai
+<Prt><1Sg>:i
+<Prt><2Pl>:·itei
+<Prt><2Sg>:i
+<Prt><3>:i
+
+LEXICON InflV_P82_present
+<Inf>:Jun
+<Prs><1Pl>:·imai
+<Prs><1Sg>:e
+<Prs><2Pl>:·itei
+<Prs><2Sg>:e
+<Prs><3>:e
+
+LEXICON InflV_P82_preterite
+<Prt><1Pl>:·imai
+<Prt><1Sg>:i
+<Prt><2Pl>:·itei
+<Prt><2Sg>:i
+<Prt><3>:i
+
+LEXICON InflV_P82a_present
+<Inf>:Jun
+<Prs><1Pl>:·imai
+<Prs><1Sg>:a
+<Prs><2Pl>:·itei
+<Prs><2Sg>:a
+<Prs><3>:a
+
+LEXICON InflV_P82a_preterite
+<Prt><1Pl>:·imai
+<Prt><1Sg>:i
+<Prt><2Pl>:·itei
+<Prt><2Sg>:i
+<Prt><3>:i
+
+LEXICON InflV_P83_present
+<Inf>:Jun
+<Prs><1Pl>:·amai
+<Prs><1Sg>:a
+<Prs><2Pl>:·atei
+<Prs><2Sg>:a
+<Prs><3>:a
+
+LEXICON InflV_P83_preterite
+<Prt><1Pl>:·imai
+<Prt><1Sg>:i
+<Prt><2Pl>:·itei
+<Prt><2Sg>:i
+<Prt><3>:i
+
+LEXICON InflV_P84_present
+<Inf>:JSwei
+<Prs><1Pl>:·imai
+<Prs><1Sg>:ja
+<Prs><2Pl>:·itei
+<Prs><2Sg>:ja
+<Prs><3>:ja
+
+LEXICON InflV_P84_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P85_pres_stem
+<Inf>:Jun
+<Prs><1Pl>:·imai
+<Prs><1Sg>:a
+<Prs><2Pl>:·itei
+<Prs><2Sg>:a
+<Prs><3>:a
+<Prt><1Pl>:·imai
+<Prt><1Sg>:a
+<Prt><2Pl>:·itei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P86_pres_stem
+<Inf>:Jtun
+<Prs><1Pl>:·imai
+<Prs><1Sg>:a
+<Prs><2Pl>:·itei
+<Prs><2Sg>:a
+<Prs><3>:a
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P87_pres_stem
+<Inf>:Jun
+<Prs><1Pl>:·imai
+<Prs><1Sg>:a
+<Prs><2Pl>:·itei
+<Prs><2Sg>:a
+<Prs><3>:a
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P88_pres_stem
+<Inf>:·tun
+<Prs><1Pl>:·imai
+<Prs><1Sg>:a
+<Prs><2Pl>:·itei
+<Prs><2Sg>:a
+<Prs><3>:a
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P89_present
+<Inf>:JSwei
+<Prs><1Pl>:·imai
+<Prs><1Sg>:a
+<Prs><2Pl>:·itei
+<Prs><2Sg>:a
+<Prs><3>:a
+
+LEXICON InflV_P89_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P91_present
+<Inf>:JSwei
+<Prs><1Pl>:·imai
+<Prs><1Sg>:a
+<Prs><2Pl>:·itei
+<Prs><2Sg>:a
+<Prs><3>:a
+
+LEXICON InflV_P91_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P92_present
+<Inf>:Jei
+<Prs><1Pl>:·imai
+<Prs><1Sg>:a
+<Prs><2Pl>:·itei
+<Prs><2Sg>:a
+<Prs><3>:a
+
+LEXICON InflV_P92_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P93_present
+<Inf>:·un
+<Prs><1Pl>:·imai
+<Prs><1Sg>:a
+<Prs><2Pl>:·itei
+<Prs><2Sg>:a
+<Prs><3>:a
+
+LEXICON InflV_P93_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P94_present
+<Inf>:Jun
+<Prs><1Pl>:·imai
+<Prs><1Sg>:a
+<Prs><2Pl>:·itei
+<Prs><2Sg>:a
+<Prs><3>:a
+
+LEXICON InflV_P94_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P95_present
+<Inf>:S·wei
+<Prs><1Pl>:·imai
+<Prs><1Sg>:a
+<Prs><2Pl>:·itei
+<Prs><2Sg>:a
+<Prs><3>:a
+
+LEXICON InflV_P95_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P96_present
+<Inf>:Jwei
+<Prs><1Pl>:·imai
+<Prs><1Sg>:a
+<Prs><2Pl>:·itei
+<Prs><2Sg>:a
+<Prs><3>:a
+
+LEXICON InflV_P96_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P97_present
+<Inf>:Jun
+<Prs><1Pl>:·imai
+<Prs><1Sg>:a
+<Prs><2Pl>:·itei
+<Prs><2Sg>:a
+<Prs><3>:a
+
+LEXICON InflV_P97_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P98_present
+<Inf>:Jtun
+<Prs><1Pl>:·imai
+<Prs><1Sg>:a
+<Prs><2Pl>:·itei
+<Prs><2Sg>:a
+<Prs><3>:a
+
+LEXICON InflV_P98_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P99_present
+<Inf>:JSwei
+<Prs><1Pl>:·imai
+<Prs><1Sg>:a
+<Prs><2Pl>:·itei
+<Prs><2Sg>:a
+<Prs><3>:a
+
+LEXICON InflV_P99_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflVp_P29_decl
+<PrsPrc><Msc><Pl><Acc>:·ins
+<PrsPrc><Msc><Pl><Dat>:·immans
+<PrsPrc><Msc><Pl><Gen>:·in
+<PrsPrc><Msc><Pl><Nom>:·ei
+<PrsPrc><Msc><Sg><Acc>:·in
+<PrsPrc><Msc><Sg><Dat>:S·ismu
+<PrsPrc><Msc><Sg><Gen>:is
+<PrsPrc><Msc><Sg><Nom>:s
+
+LEXICON InflVp_P68_decl
+<PstPrc><Msc><Pl><Acc>:·usins
+<PstPrc><Msc><Pl><Dat>:·usimans
+<PstPrc><Msc><Pl><Gen>:·usin
+<PstPrc><Msc><Pl><Nom>:·usis
+<PstPrc><Msc><Sg><Acc>:·usin
+<PstPrc><Msc><Sg><Dat>:·ušasmu
+<PstPrc><Msc><Sg><Gen>:·ušas
+<PstPrc><Msc><Sg><Nom>:·uns
+
+LEXICON InflVp_P69_decl
+<PssPrc><Msc><Pl><Acc>:·ans
+<PssPrc><Msc><Pl><Dat>:S·ammans
+<PssPrc><Msc><Pl><Gen>:·an
+<PssPrc><Msc><Pl><Nom>:S·āi
+<PssPrc><Msc><Sg><Acc>:·an
+<PssPrc><Msc><Sg><Dat>:S·asmu
+<PssPrc><Msc><Sg><Gen>:·as
+<PssPrc><Msc><Sg><Nom>:s
+
+LEXICON FuncWords
+adder<Cjn>:adder
+au<Pr>:au
+be<Cjn>:be
+bītai<Pcl>:bītai
+bītan<Pcl>:bītan
+eb<Pr>:eb
+en<Pr>:en
+ep<Pr>:ep
+et<Pr>:et
+ezze<Pr>:ezze
+ik<Pcl>:ik
+iz<Pr>:iz
+jāu<Pcl>:jāu
+kaddan<Cjn>:kaddan
+kai<Cjn>:kai
+kawīdan<Pron>:kawīdan
+kawīdse<Pron>:kawīdse
+kawīdsen<Pron>:kawīdsen
+kawīdsmu<Pron>:kawīdsmu
+kwijāi<Pron>:kwijāi
+kwēi<Pcl>:kwēi
+kwēigi<Pron>:kwēigi
+kāi<Pron>:kāi
+kāigi<Cjn>:kāigi
+na<Pcl>:na
+ni<Pcl>:ni
+no<Pr>:no
+pa<Pr>:pa
+per<Pr>:per
+pir<Pr>:pir
+po<Pr>:po
+pra<Pr>:pra
+pre<Pr>:pre
+prei<Pr>:prei
+pēr<Pr>:pēr
+sen<Pr>:sen
+stwi<Pcl>:stwi
+sēn<Pr>:sēn
+te<Pcl>:te
+teinu<Pcl>:teinu
+teinū<Pcl>:teinū
+ti<Pcl>:ti
+tikrō<Cjn>:tikrō
+tin<Pcl>:tin
+tēr<Pr>:tēr
+tīt<Pcl>:tīt
+īr<Pcl>:īr
+
+LEXICON Adverbs
+abipussi<Adv>:abipussi
+ainakēsmingiskai<Adv>:ainakēsmingiskai
+ainawārst<Adv>:ainawārst
+ainawīdai<Adv>:ainawīdai
+ainawīdan<Adv>:ainawīdan
+ainuntkaddan<Adv>:ainuntkaddan
+ainuntkwei<Adv>:ainuntkwei
+akiwīstai<Adv>:akiwīstai
+akrāts<Adv>:akrāts
+alārmewingi<Adv>:alārmewingi
+ankstāinai<Adv>:ankstāinai
+ankstāinan<Adv>:ankstāinan
+arwi<Adv>:arwi
+arwiskai<Adv>:arwiskai
+astōnerinsun<Adv>:astōnerinsun
+aulāikingi<Adv>:aulāikingi
+aīnapausiskai<Adv>:aīnapausiskai
+aīnat<Adv>:aīnat
+aīns<Adv>:aīns
+bijāwingi<Adv>:bijāwingi
+blāndewingi<Adv>:blāndewingi
+brewīngi<Adv>:brewīngi
+buttai<Adv>:buttai
+bētai<Adv>:bētai
+būtewingi<Adv>:būtewingi
+deiwūtiskai<Adv>:deiwūtiskai
+deliwārst<Adv>:deliwārst
+dessimterinsun<Adv>:dessimterinsun
+deznimai<Adv>:deznimai
+drāugan<Adv>:drāugan
+drūktai<Adv>:drūktai
+dweīsun<Adv>:dweīsun
+dāngunsun<Adv>:dāngunsun
+dēininiskai<Adv>:dēininiskai
+dēiwadeiwūtiskai<Adv>:dēiwadeiwūtiskai
+dēiwiskai<Adv>:dēiwiskai
+dēiwūtai<Adv>:dēiwūtai
+dīkai<Adv>:dīkai
+dīwai<Adv>:dīwai
+dūrai<Adv>:dūrai
+ebimāntjai<Adv>:ebimāntjai
+ebwārtai<Adv>:ebwārtai
+empadīngan<Adv>:empadīngan
+empalīgu<Adv>:empalīgu
+emprābutskan<Adv>:emprābutskan
+emprīki<Adv>:emprīki
+emprīkiskai<Adv>:emprīkiskai
+empēriniskai<Adv>:empēriniskai
+enimmewingi<Adv>:enimmewingi
+enimmumni<Adv>:enimmumni
+enwangiskan<Adv>:enwangiskan
+enwartinnewingi<Adv>:enwartinnewingi
+etbilīntjai<Adv>:etbilīntjai
+etnīwingiskai<Adv>:etnīwingiskai
+etwiringi<Adv>:etwiringi
+eīsku<Adv>:eīsku
+faktiskai<Adv>:faktiskai
+garawīngi<Adv>:garawīngi
+ginewīngiskan<Adv>:ginewīngiskan
+glandawīngi<Adv>:glandawīngi
+grāudu<Adv>:grāudu
+gāncai<Adv>:gāncai
+ilgai<Adv>:ilgai
+ilgimai<Adv>:ilgimai
+interessanti<Adv>:interessanti
+iskwendau<Adv>:iskwendau
+istwendau<Adv>:istwendau
+izarwi<Adv>:izarwi
+izarwiskai<Adv>:izarwiskai
+izbilīwīngi<Adv>:izbilīwīngi
+izimmantjai<Adv>:izimmantjai
+izpretewīngi<Adv>:izpretewīngi
+izpretīngi<Adv>:izpretīngi
+izreizan<Adv>:izreizan
+izstalīwingi<Adv>:izstalīwingi
+izšendau<Adv>:izšendau
+jāuku<Adv>:jāuku
+jūsepausiskai<Adv>:jūsepausiskai
+kadeznimai<Adv>:kadeznimai
+kaitāl<Adv>:kaitāl
+kalsīwingiskai<Adv>:kalsīwingiskai
+kams<Adv>:kams
+ketwerinsun<Adv>:ketwerinsun
+kirsāi<Adv>:kirsāi
+kitakwēi<Adv>:kitakwēi
+kitawīdai<Adv>:kitawīdai
+kitawīdi<Adv>:kitawīdi
+kitawīdiskai<Adv>:kitawīdiskai
+kittapaus<Adv>:kittapaus
+kittapausiskai<Adv>:kittapausiskai
+klāntewingi<Adv>:klāntewingi
+kānkstai<Adv>:kānkstai
+kērmeneniskan<Adv>:kērmeneniskan
+kēsmingiskai<Adv>:kēsmingiskai
+kōmplicitan<Adv>:kōmplicitan
+kōnkretai<Adv>:kōnkretai
+labbai<Adv>:labbai
+lāimintiskai<Adv>:lāimintiskai
+lāimiskai<Adv>:lāimiskai
+lāiskai<Adv>:lāiskai
+lāngewingskai<Adv>:lāngewingskai
+lāngewingskan<Adv>:lāngewingskan
+līgu<Adv>:līgu
+līkutan<Adv>:līkutan
+līnku<Adv>:līnku
+maksimum<Adv>:maksimum
+mazzan<Adv>:mazzan
+mazīngi<Adv>:mazīngi
+miksiskai<Adv>:miksiskai
+minimum<Adv>:minimum
+māgiskai<Adv>:māgiskai
+māisepausiskai<Adv>:māisepausiskai
+māisiskan<Adv>:māisiskan
+mīlis<Adv>:mīlis
+newīnerinsun<Adv>:newīnerinsun
+niaumadliminai<Adv>:niaumadliminai
+niblāndewingi<Adv>:niblāndewingi
+niggeistai<Adv>:niggeistai
+nōdewingi<Adv>:nōdewingi
+nūsepausiskai<Adv>:nūsepausiskai
+paankstāinan<Adv>:paankstāinan
+padāwingi<Adv>:padāwingi
+pakawīngi<Adv>:pakawīngi
+paklusmai<Adv>:paklusmai
+paklusmingi<Adv>:paklusmingi
+pamettewingi<Adv>:pamettewingi
+panzdau<Adv>:panzdau
+pasegīwingi<Adv>:pasegīwingi
+pastippan<Adv>:pastippan
+pausiskai<Adv>:pausiskai
+perarwi<Adv>:perarwi
+perarwiskai<Adv>:perarwiskai
+perejīngiskai<Adv>:perejīngiskai
+perpettas<Adv>:perpettas
+pirzdbetai<Adv>:pirzdbetai
+pirzdpernai<Adv>:pirzdpernai
+prawerru<Adv>:prawerru
+preistalīwingi<Adv>:preistalīwingi
+preitarīngi<Adv>:preitarīngi
+preīkin<Adv>:preīkin
+prābutiskai<Adv>:prābutiskai
+prāliskai<Adv>:prāliskai
+prēipalingi<Adv>:prēipalingi
+prēipaus<Adv>:prēipaus
+prōpaus<Adv>:prōpaus
+prūsiskai<Adv>:prūsiskai
+pēnkerinsun<Adv>:pēnkerinsun
+pērnai<Adv>:pērnai
+pērpusin<Adv>:pērpusin
+pēstjai<Adv>:pēstjai
+pōliskai<Adv>:pōliskai
+reddawingi<Adv>:reddawingi
+reddi<Adv>:reddi
+relatīwai<Adv>:relatīwai
+rindewīngi<Adv>:rindewīngi
+rānkiskai<Adv>:rānkiskai
+rēidai<Adv>:rēidai
+rēizewingjai<Adv>:rēizewingjai
+rīkisnai<Adv>:rīkisnai
+salūbiskai<Adv>:salūbiskai
+sendrāugi<Adv>:sendrāugi
+septinnerinsun<Adv>:septinnerinsun
+sklāitewingi<Adv>:sklāitewingi
+sklāitiskai<Adv>:sklāitiskai
+skīstai<Adv>:skīstai
+skīstan<Adv>:skīstan
+spārtai<Adv>:spārtai
+staddan<Adv>:staddan
+stankēsman<Adv>:stankēsman
+stawīdiskai<Adv>:stawīdiskai
+stwen<Adv>:stwen
+stwi<Adv>:stwi
+stānintjai<Adv>:stānintjai
+stūrnawingiskai<Adv>:stūrnawingiskai
+subbawai<Adv>:subbawai
+subbawingi<Adv>:subbawingi
+substalīwingi<Adv>:substalīwingi
+swentai<Adv>:swentai
+swāisepausiskai<Adv>:swāisepausiskai
+sāusai<Adv>:sāusai
+sēriskai<Adv>:sēriskai
+sūit<Adv>:sūit
+taūwu<Adv>:taūwu
+teinū<Adv>:teinū
+teisīngi<Adv>:teisīngi
+tenessepausiskai<Adv>:tenessepausiskai
+tenessespausiskai<Adv>:tenessespausiskai
+trappewingi<Adv>:trappewingi
+twāisepausiskai<Adv>:twāisepausiskai
+tāli<Adv>:tāli
+tālis<Adv>:tālis
+tēmprai<Adv>:tēmprai
+tēnti<Adv>:tēnti
+tēr<Adv>:tēr
+tēt<Adv>:tēt
+tētet<Adv>:tētet
+tūlan<Adv>:tūlan
+umzus<Adv>:umzus
+usserinsun<Adv>:usserinsun
+wesselingi<Adv>:wesselingi
+winnai<Adv>:winnai
+wisaddan<Adv>:wisaddan
+wisawīdai<Adv>:wisawīdai
+wārai<Adv>:wārai
+wēisewingi<Adv>:wēisewingi
+wēlai<Adv>:wēlai
+wēlan<Adv>:wēlan
+wūnzai<Adv>:wūnzai
+zemmai<Adv>:zemmai
+zūrgiskai<Adv>:zūrgiskai
+ānkstai<Adv>:ānkstai
+āumeningi<Adv>:āumeningi
+ēmpersdirīntjai<Adv>:ēmpersdirīntjai
+ēmpersin<Adv>:ēmpersin
+ēmpirzdan<Adv>:ēmpirzdan
+ēndwejan<Adv>:ēndwejan
+ēnilgan<Adv>:ēnilgan
+ēnstwendau<Adv>:ēnstwendau
+ēnterpan<Adv>:ēnterpan
+ēnterpiskan<Adv>:ēnterpiskan
+ēnwangan<Adv>:ēnwangan
+ērteinu<Adv>:ērteinu
+ēst<Adv>:ēst
+šan<Adv>:šan
+šandau<Adv>:šandau
+šandēinan<Adv>:šandēinan
+šlūzingiskai<Adv>:šlūzingiskai
+šāi<Adv>:šāi
+šāipaus<Adv>:šāipaus
+
+LEXICON Variants
+aīns<Num><Neut><Pl><Acc>:aīnans
+aīns<Num><Neut><Pl><Dat>:ainammans
+aīns<Num><Neut><Pl><Gen>:aīnan
+aīns<Num><Neut><Pl><Nom>:aināi
+kits<Pron><Neut><Pl><Acc>:kittans
+kits<Pron><Neut><Pl><Dat>:kitēimans
+kits<Pron><Neut><Pl><Gen>:kitēisan
+kits<Pron><Neut><Pl><Nom>:kitāi
+stas<Pron><Neut><Pl><Acc>:stans
+stas<Pron><Neut><Pl><Dat>:stēimans
+stas<Pron><Neut><Pl><Gen>:stēisan
+stas<Pron><Neut><Pl><Nom>:stāi
+stas<Pron><Neut><Sg><Acc>:stan
+stas<Pron><Neut><Sg><Nom>:stan
+subs<Pron><Neut><Pl><Acc>:subbans
+subs<Pron><Neut><Pl><Dat>:subbeimans
+subs<Pron><Neut><Pl><Gen>:subbeisan
+subs<Pron><Neut><Pl><Nom>:subbai
