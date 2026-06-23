@@ -53,8 +53,23 @@ def has_archiphoneme(stamm: str) -> bool:
     return any(c.isupper() for c in stamm)
 
 
+def is_steigerung(paradigm: str) -> bool:
+    """Produktive Komparativ-/Superlativparadigmen (nicht suppletiv).
+
+    Der Steigerungsformant -ais-/-uis- ist ein inhärent starkes (akzentuiertes)
+    Derivationsmorphem; nach der Grundregel »Akzent = erstes starkes Morphem«
+    tragen folglich *alle* Zellen den Akzent (Stammarchiphonem irrelevant).
+    Suppletive Steigerung (*_suppl) ist lexikalisiert und akzentlos → `na`.
+    Siehe AKZENT.md §3.6.
+    """
+    return ("comp" in paradigm or "sup" in paradigm) and "suppl" not in paradigm
+
+
 def accent_class(entry: dict) -> str:
-    """bar = Stamm immer lang, mob = alterniert, na = nicht beobachtbar."""
+    """bar = Stamm immer lang, mob = alterniert, na = nicht beobachtbar,
+    steig = produktive Steigerung (Suffixakzent, immer betont)."""
+    if is_steigerung(entry["paradigm"]):
+        return "steig"
     if not has_archiphoneme(entry["stamm"]):
         return "na"
     vals = [v["betont"] for v in entry["suffixe"].values()]
@@ -148,8 +163,10 @@ def derive_nominal_model(entries: list[dict]):
         for cell, v in e["suffixe"].items():
             total += 1
             sfx = std_suffix(v)
-            if cls in ("bar", "na"):
-                pred = (cls == "bar")
+            if cls != "mob":
+                # bar/steig → Akzent auf Stamm bzw. Steigerungssuffix (betont);
+                # na → kein Archiphonem, Stammvokal nie lang (unbetont).
+                pred = cls in ("bar", "steig")
             else:
                 rec = strength[cell].get(sfx)
                 if rec is None:
@@ -228,7 +245,7 @@ def main() -> None:
         ncls[rec["class"]] += 1
     print(f"Nominal: {len(entries)} Einträge, {len(classes)} Paradigma×Genus")
     print(f"  Barytona: {ncls['bar']}   Mobilia: {ncls['mob']}   "
-          f"unbeobachtbar: {ncls['na']}")
+          f"unbeobachtbar: {ncls['na']}   Steigerung: {ncls['steig']}")
     n_stark = sum(1 for c in strength for s in strength[c]
                   if strength[c][s]["strength"] == "stark")
     n_schw = sum(len(strength[c]) for c in strength) - n_stark

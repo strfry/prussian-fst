@@ -1,6 +1,6 @@
 # Das Akzentmodell (nach Rinkevičius 2009)
 
-Stand: 2026-06-13. Abgeleitet von `src/prussian/gold/accent.py` aus
+Stand: 2026-06-22. Abgeleitet von `src/prussian/gold/accent.py` aus
 `data/gold/goldstandard.json`; Ergebnis in `data/gold/accent_model.json`.
 
 ## 1. Theorie
@@ -36,7 +36,8 @@ Daraus wird abgeleitet (Details: Docstring von `accent.py`):
 
 1. **Lexemklasse** pro Paradigma × Genus:
    `bar` (alle Zellen betont) / `mob` (gemischt) / `na` (kein Archiphonem im
-   Stamm — Akzent an diesem Lexem nicht beobachtbar).
+   Stamm — Akzent an diesem Lexem nicht beobachtbar) / `steig` (produktive
+   Steigerung mit akzenttragendem Suffix, s. §3.6).
 2. **Endungsstärke**: In Mobilia gilt `betont=false` ⟺ Endung **stark**.
    Aggregation über alle Mobilia pro (Zelle, Endungsoberfläche).
 3. **De-Akzentuierungspaare**: starke Endung minus Akzentorthographie
@@ -44,13 +45,16 @@ Daraus wird abgeleitet (Details: Docstring von `accent.py`):
 
 ## 3. Ergebnisse
 
-### 3.1 Dreiteilung ist exakt (121 Einträge, 118 Paradigma × Genus)
+### 3.1 Dreiteilung der Grunddeklination ist exakt
+
+Für die Grunddeklination (ohne Steigerung, s. §3.6) ist die Klassifikation
+deckungsgleich mit den `betont`-Flags:
 
 | Klasse | Anzahl | Kriterium | Befund |
 |---|---|---|---|
 | Barytona | 28 | Archiphonem + alle Zellen betont | deckungsgleich |
 | Mobilia | 18 | Archiphonem + gemischt | deckungsgleich |
-| unbeobachtbar | 72 | kein Archiphonem im Stamm | deckungsgleich |
+| unbeobachtbar | 90 | kein Archiphonem im Stamm | deckungsgleich |
 
 Es gibt **keinen** Eintrag mit Archiphonem, der nie lang erscheint, und
 keinen ohne Archiphonem mit betont-Variation — die Flags kodieren exakt
@@ -59,8 +63,8 @@ das Akzentsystem.
 ### 3.2 Endungsstärke ist global konsistent — 0 Konflikte, 100 % Abdeckung
 
 Eine **einzige** Tabelle (Zelle + Endungsoberfläche → stark/schwach) sagt
-alle 967 Goldstandard-Zellen korrekt vorher (`accent_exceptions.json` ist
-leer). Starke Endungen (19):
+zusammen mit den Lexemklassen alle 1471 Goldstandard-Zellen korrekt vorher
+(`accent_exceptions.json` ist leer). Starke Endungen (19):
 
 | Zelle | starke Endungen | schwache Endungen (Auswahl) |
 |---|---|---|
@@ -112,14 +116,34 @@ Akzentregel.
 | schwach: Nom pl der ā/ē/i/u-St. | ✓ bestätigt (-as, -es, -us schwach) |
 | — | **neu:** Gen pl -ēisan, -asse stark |
 
-### 3.5 Verben: „Mischung" = Ablaut, nicht Akzent
+### 3.5 Finite Verben: „Mischung" = Ablaut, nicht Akzent
 
-160 Verbeinträge (Paradigma × Tempus): 64 bar, 85 na, **11 „gemischt" —
-alle elf betreffen ausschließlich den Infinitiv** (justwei↔jāut-,
-kwistun↔kweit-, milītun↔mīl-). Das ist Stammstufen-Ablaut und wird im
-Modell als Klasse `ablaut` getrennt geführt; im FST wird er als
-lexikalischer Infinitivstamm behandelt (vgl. docs/ORTHO_RULES.md §2),
-nicht über die Akzentregel.
+Bei den **finiten** Verbformen (Präsens, Präteritum, Optativ, …) ist jede
+gemischte Betonung Stammstufen-Ablaut: alle entsprechenden Einträge betreffen
+ausschließlich den Infinitiv (justwei↔jāut-, kwistun↔kweit-, milītun↔mīl-).
+Das wird im Modell als Klasse `ablaut` getrennt geführt; im FST wird es als
+lexikalischer Infinitivstamm behandelt (vgl. docs/ORTHO_RULES.md §2), nicht
+über die Akzentregel.
+
+### 3.6 Deverbale/dekomponierte Akzentschicht: Steigerung & Partizipien
+
+Zwei produktive Ableitungsschichten verhalten sich akzentuell nicht wie die
+Grunddeklination, sondern folgen weiterhin der Grundregel „Akzent = erstes
+starkes Morphem":
+
+- **Produktive Steigerung** (Komparativ/Superlativ, Klasse `steig`): Der
+  Steigerungsformant `-ais-/-uis-` ist ein **inhärent starkes** Morphem und
+  trägt selbst den Akzent — unabhängig davon, ob der Grundstamm ein
+  Archiphonem enthält. Folglich sind **alle** Zellen betont (360/360 Zellen
+  im Goldstandard). Erkennung über den Paradigmennamen (`…comp`/`…sup`).
+  *Suppletive* Steigerung (`…comp_suppl`, `…sup_suppl2`: māises, maz, waln)
+  ist lexikalisiert und akzentlos → sie bleibt `na` (144/144 Zellen unbetont).
+- **Partizipien** (Präsens-/Passivpartizip) dekliniert **nominal** und sind
+  echte **Mobilia**: der Akzent springt auf dieselben starken Endungen wie
+  bei den nominalen Mobilia (Dat sg -asmu/-ismu, Nom pl -āi, Dat pl
+  -ammans/-āmans/-jāmans, fem Nom sg -ā/-ī). Sie werden daher als `mob`
+  klassifiziert, nicht als `ablaut`. Das aktive Partizip (kein Archiphonem)
+  bleibt `na`.
 
 ## 4. Konsequenz für die FST-Architektur (Schritt 2)
 
