@@ -1,0 +1,179 @@
+# Athematische / suppletive Verben (echte Sonderfälle) — handgeschrieben.
+#
+# Konsonantisches Präsens (3sg auf -t/-st) und Stammwechsel: ēitwei (ēit),
+# īstun (īst/īd-), dātun (dāst/dā-), jātwei, skītwei, dītun, skrītwei,
+# snigtwei, migtwei, jāstun. būtwei (P115) steht in 40-verbs.lexd. Die
+# regelmäßigen thematischen Verben bleiben generiert. Stämme generiert.
+#
+# Bootstrapped aus data/gold/goldstandard_verben_fst.json; Paradigmen:
+# P115, P116, P117, P118, P119, P120, P121, P123, P124, P125, P127.
+
+PATTERNS
+StemsV_P115_inf_stem InflV_P115_inf_stem
+StemsV_P116_present InflV_P116_present
+StemsV_P116_preterite InflV_P116_preterite
+StemsV_P117_present InflV_P117_present
+StemsV_P117_preterite InflV_P117_preterite
+StemsV_P118_pres_stem InflV_P118_pres_stem
+StemsV_P119_present InflV_P119_present
+StemsV_P119_preterite InflV_P119_preterite
+StemsV_P120_present InflV_P120_present
+StemsV_P120_preterite InflV_P120_preterite
+StemsV_P121_present InflV_P121_present
+StemsV_P121_preterite InflV_P121_preterite
+StemsV_P123_present InflV_P123_present
+StemsV_P123_preterite InflV_P123_preterite
+StemsV_P124_present InflV_P124_present
+StemsV_P124_preterite InflV_P124_preterite
+StemsV_P125_present InflV_P125_present
+StemsV_P125_preterite InflV_P125_preterite
+StemsV_P127_pres_stem InflV_P127_pres_stem
+
+LEXICON InflV_P115_inf_stem
+<Inf>:·twei
+
+LEXICON InflV_P116_present
+<Inf>:·twei
+<Prs><1Pl>:·mai
+<Prs><1Sg>:·ma
+<Prs><2Pl>:·tei
+<Prs><2Sg>:·sei
+<Prs><3>:t
+
+LEXICON InflV_P116_preterite
+<Prt><1Pl>:·imai
+<Prt><1Sg>:i
+<Prt><2Pl>:·itei
+<Prt><2Sg>:i
+<Prt><3>:i
+
+LEXICON InflV_P117_present
+<Inf>:·stun
+<Prs><1Pl>:·mai
+<Prs><1Sg>:·ma
+<Prs><2Pl>:·tei
+<Prs><2Sg>:·sei
+<Prs><3>:st
+
+LEXICON InflV_P117_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P118_pres_stem
+<Inf>:·ātun
+<Prs><1Pl>:·āmai
+<Prs><1Sg>:·āma
+<Prs><2Pl>:·ātei
+<Prs><2Sg>:·āsei
+<Prs><3>:·āst
+<Prt><1Pl>:·āimai
+<Prt><1Sg>:·āi
+<Prt><2Pl>:·āitei
+<Prt><2Sg>:·āi
+<Prt><3>:·āi
+
+LEXICON InflV_P119_present
+<Inf>:·ātwei
+<Prs><1Pl>:·āmai
+<Prs><1Sg>:·āma
+<Prs><2Pl>:·ātei
+<Prs><2Sg>:·āsei
+<Prs><3>:·āt
+
+LEXICON InflV_P119_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P120_present
+<Inf>:·ītwei
+<Prs><1Pl>:·īmai
+<Prs><1Sg>:·īma
+<Prs><2Pl>:·ītei
+<Prs><2Sg>:·īsei
+<Prs><3>:·īt
+
+LEXICON InflV_P120_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P121_present
+<Inf>:·ītun
+<Prs><1Pl>:·īmai
+<Prs><1Sg>:·īma
+<Prs><2Pl>:·ītei
+<Prs><2Sg>:·īsei
+<Prs><3>:·īt
+
+LEXICON InflV_P121_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P123_present
+<Inf>:·ītwei
+<Prs><1Pl>:·eīmai
+<Prs><1Sg>:·eīma
+<Prs><2Pl>:·eītei
+<Prs><2Sg>:·eīsei
+<Prs><3>:·eīt
+
+LEXICON InflV_P123_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P124_present
+<Inf>:JSwei
+<Prs><1Pl>:·mai
+<Prs><1Sg>:t
+<Prs><2Pl>:·tei
+<Prs><2Sg>:t
+<Prs><3>:t
+
+LEXICON InflV_P124_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P125_present
+<Inf>:JSwei
+<Prs><1Pl>:·mai
+<Prs><1Sg>:·ma
+<Prs><2Pl>:·tei
+<Prs><2Sg>:·sei
+<Prs><3>:t
+
+LEXICON InflV_P125_preterite
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
+
+LEXICON InflV_P127_pres_stem
+<Inf>:·tun
+<Prs><1Pl>:·mai
+<Prs><1Sg>:·ma
+<Prs><2Pl>:·tei
+<Prs><2Sg>:·ei
+<Prs><3>:t
+<Prt><1Pl>:·amai
+<Prt><1Sg>:a
+<Prt><2Pl>:·atei
+<Prt><2Sg>:a
+<Prt><3>:a
