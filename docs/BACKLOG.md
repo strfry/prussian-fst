@@ -16,6 +16,16 @@
       → erledigt 2026-06-13: V-Stammvariante in `lexd_gen.py`,
       akzeptiert von `build/lenient.fst` (Test: `tests/test_ortho.py`)
 
+- [x] **Steigerungs-Formant `š` ↔ `sj`** Der Komparativ-/Superlativformant
+      palatalisiert das Formant-s vor a-anlautender weicher Endung; der
+      Goldstandard backt das literal als `š` ein (`aišas`, Template AIS/UIS in
+      `data/spec/adj_comparison.json`), Twanksta schreibt dieselbe Zelle als
+      `sj` (`spārtaisjas`, `māldaisjas`). → erledigt: `sj_variant` in
+      `spellrelax.py` emittiert die V-Variante, nur `lenient.fst` akzeptiert
+      sie. Hebt die Adjektiv-Form-Coverage von 43,3 % auf 52,3 % (+9 pp,
+      +6.759 Formen, ausschließlich über den nachsichtigen Pfad; der
+      Standard-Analysator bleibt unverändert).
+
 - [ ] **Nom sg -as/-us vs -s** Paradigmen P25/P32 haben Nom-sg-Suffix
       wahlweise `-as`/`-us` statt `-s`.  Stamm-Extraktion in
       `wordlist_to_entries` muss das erkennen:
