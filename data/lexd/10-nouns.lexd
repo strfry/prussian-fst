@@ -14,16 +14,6 @@ LEXICON InflN_P25_x
 <Pl><Dat>:·amans[gFem,gMsc,gNeut]
 <Pl><Acc>:·ans[gFem,gMsc,gNeut]
 
-LEXICON InflN_P12_x
-<Sg><Nom>:·āns[gMsc]
-<Sg><Gen>:·enesse[gMsc]
-<Sg><Dat>:·enesmu[gMsc]
-<Sg><Acc>:·ennan[gMsc]
-<Pl><Nom>:·enēi[gMsc]
-<Pl><Gen>:·enēisan[gMsc]
-<Pl><Dat>:·enēimans[gMsc]
-<Pl><Acc>:·ennans[gMsc]
-
 LEXICON InflN_P45_x
 <Sg><Nom>:a[gFem]
 <Sg><Gen>:·as[gFem]
@@ -34,22 +24,3 @@ LEXICON InflN_P45_x
 <Pl><Dat>:·amans[gFem]
 <Pl><Acc>:·ans[gFem]
 
-LEXICON InflN_P1_x
-<Sg><Nom>:·as
-<Sg><Gen>:·māise
-<Sg><Dat>:·mennei
-<Sg><Acc>:·men
-<Pl><Nom>:·mes
-<Pl><Gen>:·nūse
-<Pl><Dat>:·nūmans
-<Pl><Acc>:·mans
-
-LEXICON InflN_P2_x
-<Sg><Nom>:·tū
-<Sg><Gen>:·twāise
-<Sg><Dat>:·tebbei
-<Sg><Acc>:·ten
-<Pl><Nom>:jūs
-<Pl><Gen>:jūse
-<Pl><Dat>:jūmans
-<Pl><Acc>:·wans

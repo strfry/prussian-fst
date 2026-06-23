@@ -36,6 +36,35 @@ lenient.hfst  (Oberfläche + Quellvarianten → Analyse)
 Anders als die V-Zeilen sind das **echte Regeln**: sie greifen auch auf
 Wortlisten-/Korpusvokabular, nicht nur auf belegte Lexeme.
 
+## Zwei Lexikon-Backends: lexc (inline) und lexd (handgeschrieben + generiert)
+
+Die Morphotaktik gibt es in zwei Varianten, beide mit identischer markierter
+Unterseite und identischer Regelschicht:
+
+- **lexc** (`hfst/lexc_gen.py` + `hfst/build.py`): alles inline aus den
+  Eintragsdaten generiert, kompiliert mit `hfst.compile_lexc_file` (reines
+  python-hfst, keine externen CLIs). Schnellster Selbsttest.
+- **lexd** (`hfst/lexd_gen.py` + `hfst/lexd_build.py`): Apertium-`lexd`-Format,
+  kompiliert über die CLIs `lexd` → `.att` → `hfst-txt2fst`. Hier ist die
+  **Arbeitsteilung** umgesetzt, die der pyfoma-Zweig nicht hat:
+
+  | Teil | Quelle |
+  |------|--------|
+  | Paradigmentabellen (PATTERNS + Infl) | **handgeschrieben** in `data/lexd/*.lexd` |
+  | geschlossene Klassen — Pronomen, Suppletive, Numeralia, Funktionswörter, Adverbien | **handgeschrieben** in `data/lexd/{30-pronouns,35-suppletives,70-numerals,50-function-words,60-adverbs}.lexd` (literale Vollformen) |
+  | große Wortliste (Lemma → Stamm + Paradigma) | **automatisch generiert** (`lexd_gen.build_lexd(stems_close_only=True)`) |
+
+  Die geschlossenen Klassen sind hochgradig suppletiv/irregulär (z. B.
+  `as→men→mans`, `tāns→ten-`, `debīks→māises-`); sie werden daher — wie die
+  Numeralia — als **literale Vollformen** geschrieben statt über
+  Stamm+Endung+Regeln. `lexd_build._handwritten_closed()` filtert die
+  entsprechenden Paradigmen aus den generierten Stämmen, damit sie nicht
+  doppelt erscheinen. Bootstrap der Literalformen aus dem Goldstandard über
+  `report.cases.nominal_cases`; danach in `data/lexd/*` von Hand gepflegt.
+
+  **Toolchain (lexd-Build):** zusätzlich zu `python-hfst` die System-CLIs
+  `lexd` und `hfst-txt2fst` (Debian/Ubuntu: `apt-get install lexd hfst`).
+
 ## Module
 
 | Modul | Aufgabe |

@@ -60,14 +60,20 @@ jobs:
           curl -fsSL https://github.com/strfry/prussian-corpus/releases/download/v2026-06-21/twanksta_entries.json \
             -o data/external/twanksta_entries.json
 
+      - name: Install lexd + hfst CLI
+        run: sudo apt-get update && sudo apt-get install -y lexd hfst
+
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
-      - name: Install HFST
+      - name: Install python-hfst
         run: python -m pip install hfst
 
-      - name: Build + validate HFST analyser
+      - name: Full build (Smoke: lexd kompiliert, handgeschriebene Tabellen gültig)
+        run: PYTHONPATH=src python -m prussian.fst.hfst.lexd_build
+
+      - name: Gold-only Paritäts-Gate (1471/1471 nominal)
         run: |
-          PYTHONPATH=src python -m prussian.fst.hfst.lexd_build
+          PYTHONPATH=src python -m prussian.fst.hfst.lexd_build --gold-only
           PYTHONPATH=src python -m prussian.fst.hfst.check

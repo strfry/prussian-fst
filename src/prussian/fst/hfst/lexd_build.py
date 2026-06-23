@@ -37,6 +37,17 @@ from prussian.fst.morphology import adverbs as adv_mod
 from prussian.fst.morphology import function_words as fw_mod
 from prussian.fst.morphology import verbs as verb_morph
 from prussian.fst.morphology.nominals import combine_entries, wordlist_to_entries
+from prussian.fst.tags import _pos
+
+
+def _handwritten_closed(paradigm: str) -> bool:
+    """Geschlossene Klassen, die im Vollbau handgeschrieben in data/lexd/*
+    stehen (nicht aus den Eintragsdaten zu generieren):
+      * Pronomen (30-pronouns.lexd) — ``_pos == +Pron``
+      * suppletive Steigerung (35-suppletives.lexd) — Paradigmen ``*_suppl*``
+    Numeralia/Funktionswörter/Adverbien laufen ohnehin über eigene Lexika;
+    hier zählt nur, was sonst über die Paradigma-Stämme generiert würde."""
+    return _pos(paradigm) == "+Pron" or "suppl" in paradigm
 
 ROOT = Path(__file__).resolve().parent.parent.parent.parent.parent
 GOLD = ROOT / "data/gold/goldstandard.json"
@@ -126,14 +137,22 @@ def main():
             adverbs=adv_words,
         )
     else:
-        # voller Build: lexd/* (handgeschriebene Tabellen) + generierte Stämme
+        # voller Build: lexd/* (handgeschriebene Tabellen) + generierte Stämme.
+        # Geschlossene Klassen (Pronomen) kommen handgeschrieben aus data/lexd/
+        # (30-pronouns.lexd) — daher nicht zusätzlich generieren (closed=None,
+        # Pronomen-Paradigmen aus den Stämmen herausfiltern).
+        open_entries = [
+            e for e in combined if not _handwritten_closed(e["paradigm"])
+        ]
+        # function_words/adverbs/Pronomen/Numeralia: alle handgeschrieben in
+        # data/lexd/* (50/60/30/70) — daher hier None.
         stems_text = build_lexd(
-            combined,
+            open_entries,
             verb_data,
             verb_wl,
-            closed_entries=closed,
-            function_words=fw_words,
-            adverbs=adv_words,
+            closed_entries=None,
+            function_words=None,
+            adverbs=None,
             stems_close_only=True,
         )
         lexd_parts = []
