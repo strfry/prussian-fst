@@ -304,9 +304,12 @@ Das Modell deckt 100 % der 967 Goldstandard-Zellen ab
 Beispiel: `wāiks+N+Msc+Sg+Nom` → `wāiks`; `analyse("kūgjan")` über
 `lenient.fst` → `kūgis+N+Msc+Sg+Acc`.
 
-Ein späterer HFST-Port bleibt möglich: lexd ist Apertium-kompatibel,
-die twolc-Äquivalente der Regeln sind in `docs/ORTHO_RULES.md` §4
-dokumentiert.
+**HFST-nativer Paralleler Zweig:** Dieselbe Sprachbeschreibung wird zusätzlich
+durchgängig in HFST komponiert (lexc-Lexikon ∘ Phonologie-/spellrelax-Regeln),
+mit generalisierenden Regeln statt aufgezählter V-Zeilen. Volle Parität mit
+dem pyfoma-Zweig (1471/1471 nominale Gold-Zellen). Bau: `scripts/build_hfst.sh`,
+Details in [`docs/HFST_BRANCH.md`](docs/HFST_BRANCH.md). lexd ist Apertium-
+kompatibel, die twolc-Äquivalente der Regeln stehen in `docs/ORTHO_RULES.md` §4.
 
 **Doublettenformen / Parallelformen (Pronomina):**
 Einige pronominale Neutrum-Zellen (P11 stas, P16 subs, P18 kits, P21 aīns —

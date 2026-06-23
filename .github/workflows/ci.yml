@@ -45,3 +45,29 @@ jobs:
         with:
           name: test-report
           path: build/test-report.txt
+
+  hfst:
+    # HFST-nativer Paralleler Zweig (docs/HFST_BRANCH.md): lexc ∘ Regeln,
+    # gegen den Goldstandard validiert. python-hfst hat kein cp313-Wheel,
+    # daher Python 3.12 in eigenem venv.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download Twanksta entries
+        run: |
+          mkdir -p data/external
+          curl -fsSL https://github.com/strfry/prussian-corpus/releases/download/v2026-06-21/twanksta_entries.json \
+            -o data/external/twanksta_entries.json
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install HFST
+        run: python -m pip install hfst
+
+      - name: Build + validate HFST analyser
+        run: |
+          PYTHONPATH=src python -m prussian.fst.hfst.build
+          PYTHONPATH=src python -m prussian.fst.hfst.check

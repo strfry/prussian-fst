@@ -8,6 +8,7 @@ wheels/
 
 # Virtual environments
 .venv
+.venv-hfst
 
 # Giella reference clones (own .git, read-only)
 lang-lit/

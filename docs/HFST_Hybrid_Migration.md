@@ -1,7 +1,12 @@
 # Generalisierende Leniency in die Architektur integrieren (H2 + V-Zeilen-Migration)
 
-> **Status:** 🚧 In Arbeit (Migrationsplan) — noch nicht umgesetzt.
-> Klassifikation siehe [docs/README.md](README.md).
+> **Status:** ⤳ überholt. Statt des Hybrid-Round-Trips (H2: HFST nur als
+> Kompositions-Engine, Ergebnis zurück nach pyfoma) wurde ein **vollständig
+> HFST-nativer Paralleler Zweig** umgesetzt — dieselbe Sprachbeschreibung
+> durchgängig in HFST komponiert, die V-Zeilen durch generalisierende Regeln
+> ersetzt. Siehe **[docs/HFST_BRANCH.md](HFST_BRANCH.md)**. Der pyfoma-Zweig
+> bleibt unverändert als Vergleichsbasis. Diese Notiz dokumentiert den
+> ursprünglichen H1/H2/H3-Entscheidungsraum (Hintergrund).
 
 ## Context
 
