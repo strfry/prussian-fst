@@ -10,7 +10,7 @@ flowchart TD
   T --> X
   P[Prusaspira<br/>Online-Wörterbuch · HTTP-Fetch 1 req/s] --> X
   W[Twanksta<br/>API-Wörterbuch · prussian_dictionary.json-Export] --> X
-  X[Übertragung in den Vergleich<br/>iterativ · LLM-assistiert · Helfer-Skripte] --> V
+  X[Übertragung in den Vergleich<br/>committete Parser-/Vergleichsskripte<br/>compare_sources.py · deterministisch] --> V
   V[vergleich.html / vergleich.json<br/>3-Wege-Merge je Inflektionszelle<br/>✔ manuell verifiziert] --> G
   G[goldstandard.json / GOLDSTANDARD.md<br/>1 Variante je Zelle gewählt<br/>Mehrheitsvotum 2/3 + manuelle Entscheide] --> F
   F[FST-Eingabe<br/>Stamm + Suffixe → nominals.fst]
@@ -26,10 +26,14 @@ flowchart TD
 
 ## Schritte
 
-**Übertragung.** Die Daten der drei Quellen wurden **iterativ, LLM-assistiert und
-mit Helfer-Skripten** in ein gemeinsames Vergleichsformat überführt — kein reiner
-automatischer Parse. `tabula.htm` wurde dafür vorab halb-manuell von seinen
-HTML-Fehlern bereinigt.
+**Übertragung.** Die Daten der drei Quellen werden durch **committete, wieder
+ausführbare Parser-/Vergleichsskripte** (`src/prussian/compare/compare_sources.py`)
+in ein gemeinsames Vergleichsformat überführt; jeder Wert in `vergleich.json`
+stammt ausschließlich aus diesen Skripten (deterministisch reproduzierbar). Ein
+LLM hat beim **Schreiben dieses Codes** assistiert — nicht an den Datenwerten
+oder linguistischen Entscheidungen mitgewirkt. Einzige manuelle Vorstufe:
+`tabula.htm` wurde von seinen HTML-Fehlern halb-manuell bereinigt
+(→ `tabula.html`), bevor der Parser greift.
 
 **Zusammenführung & Verifikation.** Die drei Quellen werden je Inflektionszelle
 gegenübergestellt: `vergleich.html` (farbcodiert für Review) und `vergleich.json`
