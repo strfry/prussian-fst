@@ -24,7 +24,7 @@ if [ ! -x "$VENV/bin/python" ]; then
 fi
 
 echo ">> Baue HFST-Analysator …"
-PYTHONPATH=src "$VENV/bin/python" -m prussian.fst.hfst.build "$@"
+PYTHONPATH=src "$VENV/bin/python" -m prussian.fst.hfst.lexd_build "$@"
 
 echo ">> Validiere gegen Goldstandard …"
 PYTHONPATH=src "$VENV/bin/python" -m prussian.fst.hfst.check
