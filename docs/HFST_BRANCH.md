@@ -50,17 +50,31 @@ Unterseite und identischer Regelschicht:
 
   | Teil | Quelle |
   |------|--------|
-  | Paradigmentabellen (PATTERNS + Infl) | **handgeschrieben** in `data/lexd/*.lexd` |
   | geschlossene Klassen — Pronomen, Suppletive, Numeralia, Funktionswörter, Adverbien | **handgeschrieben** in `data/lexd/{30-pronouns,35-suppletives,70-numerals,50-function-words,60-adverbs}.lexd` (literale Vollformen) |
-  | große Wortliste (Lemma → Stamm + Paradigma) | **automatisch generiert** (`lexd_gen.build_lexd(stems_close_only=True)`) |
+  | kuratierte Paradigmentabellen (PATTERNS + Infl) | **handgeschrieben** in `data/lexd/{10-nouns,20-adjectives,40-verbs,41-participles}.lexd` |
+  | übrige Paradigmentabellen (PATTERNS + Infl) | **lean generiert** (gender-gemergt) für alle Paradigmen, die *nicht* handgeschrieben sind |
+  | große Wortliste (Lemma → Stamm + Paradigma) | **automatisch generiert** (Stem-Lexika) |
 
   Die geschlossenen Klassen sind hochgradig suppletiv/irregulär (z. B.
   `as→men→mans`, `tāns→ten-`, `debīks→māises-`); sie werden daher — wie die
   Numeralia — als **literale Vollformen** geschrieben statt über
   Stamm+Endung+Regeln. `lexd_build._handwritten_closed()` filtert die
-  entsprechenden Paradigmen aus den generierten Stämmen, damit sie nicht
-  doppelt erscheinen. Bootstrap der Literalformen aus dem Goldstandard über
-  `report.cases.nominal_cases`; danach in `data/lexd/*` von Hand gepflegt.
+  entsprechenden Paradigmen aus den generierten Stämmen.
+
+  Die Paradigmentabellen folgen dem **Override-Prinzip**: `lexd_build` scannt
+  `data/lexd/*.lexd` nach handgeschriebenen `LEXICON Infl…` und übergibt die
+  Namen als `skip_infl` an `build_lexd`. Für diese Paradigmen wird nur das
+  Stem-Lexikon generiert (PATTERN + Infl kommen handgeschrieben); alle übrigen
+  offenen Paradigmen erhalten PATTERN + Infl **lean generiert** (gender-gemergt,
+  kein bloated Voll-Dump wie `data/paradigms.lexd`). Eine handgeschriebene
+  Tabelle ersetzt also einfach das Generat — die Migration kann Paradigma für
+  Paradigma kuratieren, ohne Abdeckung zu verlieren. Bootstrap der Literal-/
+  Tabellenformen aus dem Goldstandard über `report.cases`; danach von Hand
+  gepflegt.
+
+  **Vollbau-Parität:** der Vollbau erreicht damit dieselben **1471/1471**
+  nominalen Gold-Zellen wie der gold-only-Selbsttest und deckt die gesamte
+  Wortliste ab (≈15 k Lexikon-Zustände).
 
   **Toolchain (lexd-Build):** zusätzlich zu `python-hfst` die System-CLIs
   `lexd` und `hfst-txt2fst` (Debian/Ubuntu: `apt-get install lexd hfst`).

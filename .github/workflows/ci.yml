@@ -70,10 +70,7 @@ jobs:
       - name: Install python-hfst
         run: python -m pip install hfst
 
-      - name: Full build (Smoke: lexd kompiliert, handgeschriebene Tabellen gültig)
-        run: PYTHONPATH=src python -m prussian.fst.hfst.lexd_build
-
-      - name: Gold-only Paritäts-Gate (1471/1471 nominal)
+      - name: Build + validate HFST analyser (Vollbau, Parität 1471/1471)
         run: |
-          PYTHONPATH=src python -m prussian.fst.hfst.lexd_build --gold-only
+          PYTHONPATH=src python -m prussian.fst.hfst.lexd_build
           PYTHONPATH=src python -m prussian.fst.hfst.check

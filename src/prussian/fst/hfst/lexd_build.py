@@ -26,6 +26,7 @@ Aufruf (im hfst-venv, Python 3.12):
 import argparse
 import json
 import random
+import re
 import subprocess
 from pathlib import Path
 
@@ -137,15 +138,23 @@ def main():
             adverbs=adv_words,
         )
     else:
-        # voller Build: lexd/* (handgeschriebene Tabellen) + generierte Stämme.
-        # Geschlossene Klassen (Pronomen) kommen handgeschrieben aus data/lexd/
-        # (30-pronouns.lexd) — daher nicht zusätzlich generieren (closed=None,
-        # Pronomen-Paradigmen aus den Stämmen herausfiltern).
+        # voller Build: handgeschriebene Tabellen (data/lexd/*) + Generat.
+        # Geschlossene Klassen (Pronomen/Suppletive) kommen handgeschrieben
+        # aus data/lexd/ — daher aus den generierten Stämmen herausfiltern.
         open_entries = [
             e for e in combined if not _handwritten_closed(e["paradigm"])
         ]
+        # Welche Infl-Lexika sind in data/lexd/* schon handgeschrieben? Für
+        # diese Paradigmen generiert build_lexd nur das Stem-Lexikon (kein
+        # PATTERN/Infl-Duplikat); alle übrigen offenen Paradigmen werden lean
+        # generiert (gender-gemergt), sodass der Vollbau die ganze Wortliste
+        # abdeckt — ohne den bloated data/paradigms.lexd-Dump.
+        lexd_parts = [f.read_text(encoding="utf-8")
+                      for f in sorted(LEXD_DIR.glob("*.lexd"))]
+        handwritten = set(re.findall(
+            r"^LEXICON\s+(Infl\S+)", "\n".join(lexd_parts), re.MULTILINE))
         # function_words/adverbs/Pronomen/Numeralia: alle handgeschrieben in
-        # data/lexd/* (50/60/30/70) — daher hier None.
+        # data/lexd/* — daher hier None; Doubletten (Variants) ebenso.
         stems_text = build_lexd(
             open_entries,
             verb_data,
@@ -153,11 +162,9 @@ def main():
             closed_entries=None,
             function_words=None,
             adverbs=None,
-            stems_close_only=True,
+            skip_infl=handwritten,
+            emit_variants=False,
         )
-        lexd_parts = []
-        for f in sorted(LEXD_DIR.glob("*.lexd")):
-            lexd_parts.append(f.read_text(encoding="utf-8"))
         lexd_parts.append(stems_text)
         lexd_text = "\n".join(lexd_parts)
 
