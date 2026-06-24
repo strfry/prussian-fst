@@ -35,6 +35,7 @@ import hfst
 from prussian.fst.hfst.lexd_gen import build_lexd
 from prussian.fst.hfst import fold as fold_mod
 from prussian.fst.hfst import rules
+from prussian.gold import derive
 from prussian.fst.morphology import adverbs as adv_mod
 from prussian.fst.morphology import function_words as fw_mod
 from prussian.fst.morphology import verbs as verb_morph
@@ -55,6 +56,7 @@ ROOT = Path(__file__).resolve().parent.parent.parent.parent.parent
 GOLD = ROOT / "data/gold/goldstandard.json"
 VERB_GOLD = ROOT / "data/gold/goldstandard_verben_fst.json"
 TWANKSTA = ROOT / "data/external/twanksta_entries.json"
+PRUSASPIRA = ROOT / "data/external/prusaspira_entries.json"
 CLOSED_FW = ROOT / "data/closed/function_words.json"
 CLOSED_PRONOUNS = ROOT / "data/closed/personal_pronouns.json"
 LEXD_DIR = ROOT / "data/lexd"
@@ -213,24 +215,37 @@ def main():
     analyser.invert()
     analyser.minimize()
 
-    # lenient = Faltung ∘ (generator ∘ Faltung)⁻¹
-    #   Variante → Skelett → Standardoberfläche → Analyse.
-    # Die Ortho-Faltung (hfst/fold.FOLD_SURFACE, Spiegel von prussian.fst.ortho)
-    # ersetzt die frühere spellrelax-Schicht: alle orthographischen Quell-
-    # varianten (Diakritika, palatales Twanksta-j gj/sj…, elaktr) leben jetzt
-    # zentral in der Faltung. Nur die ortho-SICHERE Teilmenge (keine Kasus-
-    # Vermischung) trägt den Analysator; verlustbehaftete Lemma-Falten
-    # (themat. -s, -an~-u) bleiben in ortho.py fürs Wörterbuch-Matching.
+    # lenient = (T ∘ Faltung) ∘ (generator ∘ Faltung)⁻¹
+    #   Variante → [Twanksta-j-Endung→Standard] → Skelett → Analyse.
+    # Faltung (hfst/fold.FOLD_SURFACE, Spiegel von prussian.fst.ortho): ortho-
+    # SICHERE Teilmenge (Diakritika, palatales Twanksta-j gj/sj…, elaktr) ohne
+    # Kasus-Vermischung. T: die weichvokalischen Twanksta-j-Flexionsendungen
+    # (-jas~-es …), DATENGETRIEBEN aus beiden Wörterbüchern abgeleitet
+    # (derive.derive_twanksta_j_pairs) — ersetzt die frühere generative
+    # spellrelax-Schicht durch native, evidenzbasierte Endungen.
     fold = _compose_chain(hfst.regex(fold_mod.FOLD_SURFACE[0]),
                           fold_mod.FOLD_SURFACE[1:])
+    input_fold = hfst.HfstTransducer(fold)
+    if PRUSASPIRA.exists() and TWANKSTA.exists():
+        pr = json.loads(PRUSASPIRA.read_text(encoding="utf-8"))
+        tw = json.loads(TWANKSTA.read_text(encoding="utf-8"))
+        pairs = derive.derive_twanksta_j_pairs(pr, tw)
+        t_regex = fold_mod.twanksta_j_replace(pairs)
+        if t_regex:
+            T = hfst.regex(t_regex)
+            T.convert(FOMA)
+            input_fold = hfst.HfstTransducer(T)
+            input_fold.compose(fold)   # Twanksta-j-Endung → Standard → Skelett
+            input_fold.minimize()
+            print(f"Twanksta-j-Endungen (abgeleitet): {len(pairs)} Muster")
     gen_skel = hfst.HfstTransducer(generator)
     gen_skel.compose(fold)        # Analyse → Skelett
     gen_skel.minimize()
     gen_skel.invert()             # Skelett → Analyse
-    lenient = hfst.HfstTransducer(fold)
-    lenient.compose(gen_skel)     # Oberfläche → Skelett → Analyse
+    lenient = hfst.HfstTransducer(input_fold)
+    lenient.compose(gen_skel)     # Oberfläche → (Std-Endung) → Skelett → Analyse
     lenient.minimize()
-    print(f"lenient (∘ Faltung): {lenient.number_of_states()} Zustände")
+    print(f"lenient (∘ Faltung + Twanksta-j): {lenient.number_of_states()} Zustände")
 
     for fst, path in ((generator, GEN_OUT), (analyser, ANA_OUT), (lenient, LEN_OUT)):
         out = hfst.HfstOutputStream(filename=str(path), type=FOMA)

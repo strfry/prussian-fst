@@ -54,11 +54,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Download Twanksta entries
+      - name: Download Twanksta + Prusaspira entries
         run: |
           mkdir -p data/external
-          curl -fsSL https://github.com/strfry/prussian-corpus/releases/download/v2026-06-21/twanksta_entries.json \
-            -o data/external/twanksta_entries.json
+          REL=https://github.com/strfry/prussian-corpus/releases/download/v2026-06-21
+          curl -fsSL "$REL/twanksta_entries.json"  -o data/external/twanksta_entries.json
+          curl -fsSL "$REL/prusaspira_entries.json" -o data/external/prusaspira_entries.json
 
       - name: Install lexd + hfst CLI
         run: sudo apt-get update && sudo apt-get install -y lexd hfst

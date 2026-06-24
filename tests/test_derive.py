@@ -8,8 +8,12 @@ import json
 import pytest
 
 from prussian.gold.derive import (
-    PR_PATH, char_fold, declension_cells, derive_suffix_tables, stem_boundary,
+    PR_PATH, char_fold, declension_cells, derive_suffix_tables,
+    derive_twanksta_j_pairs, stem_boundary,
 )
+
+ROOT = PR_PATH.parent.parent.parent
+TW_PATH = PR_PATH.parent / "twanksta_entries.json"
 
 
 def test_char_fold_macron_palatal():
@@ -48,3 +52,16 @@ def test_derived_table_matches_standard(tables, par, exp):
     for cell, suffix in exp.items():
         assert got.get(cell) == suffix, (
             f"P{par} {cell}: abgeleitet {got.get(cell)!r} ≠ Standard {suffix!r}")
+
+
+def test_twanksta_j_pairs_derived():
+    """Die weichvokalischen Twanksta-j-Endungen (-jas~-es …) werden aus dem
+    Wörterbuchvergleich abgeleitet (datengetrieben, kein Regel-Listing)."""
+    if not (PR_PATH.exists() and TW_PATH.exists()):
+        pytest.skip("externe Dicts fehlen — s. README data/external")
+    pr = json.loads(PR_PATH.read_text(encoding="utf-8"))
+    tw = json.loads(TW_PATH.read_text(encoding="utf-8"))
+    pairs = derive_twanksta_j_pairs(pr, tw)
+    assert "jas" in pairs and "es" in pairs["jas"]   # Gen sg -jas~-es
+    assert "jan" in pairs and "in" in pairs["jan"]   # Akk sg -jan~-in
+    assert all("j" in tw_ for tw_ in pairs)          # nur echte j-Varianten

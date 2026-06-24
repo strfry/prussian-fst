@@ -42,3 +42,22 @@ _ELAKTR = "a -> e || e l _ k t r ;"
 
 #: Ortho-sichere Faltungskaskade für den Analysator (keine Kasus-Vermischung).
 FOLD_SURFACE = [_CHAR, _PALATAL_J, _ELAKTR]
+
+
+def twanksta_j_replace(pairs: dict[str, list[str]]) -> str | None:
+    """HFST-Regex: wortfinale Twanksta-j-Endung → {Standardendungen}.
+
+    ``pairs`` aus prussian.gold.derive.derive_twanksta_j_pairs (datengetrieben).
+    Das so gebaute T wird im Lenient-Pfad VOR die Faltung komponiert
+    (``lenient = (T ∘ Faltung) ∘ (generator ∘ Faltung)⁻¹``), damit die
+    weichvokalischen Twanksta-j-Flexionsformen (``-jas~-es`` …) wieder
+    analysieren — ohne generative spellrelax-Regeln.
+    """
+    if not pairs:
+        return None
+    sp = lambda s: " ".join(s)  # noqa: E731  (Einzelzeichen-Tokenisierung)
+    rules = ", ".join(
+        f"{sp(tw)} -> [ {' | '.join(sp(x) for x in stds)} ]"
+        for tw, stds in pairs.items()
+    )
+    return f"{rules} || _ .#. ;"

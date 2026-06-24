@@ -108,6 +108,34 @@ def derive_suffix_tables(
     }
 
 
+def derive_twanksta_j_pairs(
+    prusaspira: list[dict], twanksta: list[dict],
+) -> dict[str, list[str]]:
+    """{Twanksta-Endung: [Standardendungen]} — weichvokalische Twanksta-j-Varianten.
+
+    Die Twanksta-Wörterbücher schreiben die Palatalisierung/Weichheit am
+    Stamm-Endungs-Übergang als explizites ``j`` (``-jas`` für Standard ``-es``,
+    ``-jan`` für ``-in`` …). Diese **morphologische** Alternation (ja↔e/i) ist
+    keine Faltung; sie wird hier aus dem Vergleich der je-Paradigma abgeleiteten
+    Suffixtabellen beider Dicts gewonnen (j in Twanksta, nicht im Standard) und
+    speist die nachsichtige Analyse — datengetrieben, kein generatives
+    Regel-Listing.
+    """
+    std = derive_suffix_tables(prusaspira)
+    var = derive_suffix_tables(twanksta)
+    grouped: dict[str, set[str]] = defaultdict(set)
+    for par, s_table in std.items():
+        v_table = var.get(par, {})
+        for cell in CELLS:
+            sc, vc = s_table.get(cell), v_table.get(cell)
+            if not sc or not vc or any(x in sc + vc for x in " /"):
+                continue
+            if (char_fold(sc) != char_fold(vc)
+                    and "j" in vc and "j" not in sc and len(vc) <= 8):
+                grouped[vc].add(sc)
+    return {tw: sorted(stds) for tw, stds in sorted(grouped.items())}
+
+
 def _report() -> None:
     pr = json.loads(PR_PATH.read_text(encoding="utf-8"))
     tables = derive_suffix_tables(pr)
