@@ -33,6 +33,7 @@ from pathlib import Path
 import hfst
 
 from prussian.fst.hfst.lexd_gen import build_lexd
+from prussian.fst.hfst import fold as fold_mod
 from prussian.fst.hfst import rules
 from prussian.fst.morphology import adverbs as adv_mod
 from prussian.fst.morphology import function_words as fw_mod
@@ -212,20 +213,24 @@ def main():
     analyser.invert()
     analyser.minimize()
 
-    # lenient wie lexc-Build
-    lenient_phon = [
-        rules.SHORTEN,
-        rules.LENGTHEN,
-        rules.JPAL,
-        *rules.SPELLRELAX_MARKED,
-        rules.CLEANUP,
-    ]
-    lenient_gen = _compose_chain(lexicon, lenient_phon)
-    lenient_gen = _compose_chain(lenient_gen, rules.SPELLRELAX_SURFACE)
-    lenient = hfst.HfstTransducer(lenient_gen)
-    lenient.invert()
+    # lenient = Faltung ∘ (generator ∘ Faltung)⁻¹
+    #   Variante → Skelett → Standardoberfläche → Analyse.
+    # Die Ortho-Faltung (hfst/fold.FOLD_SURFACE, Spiegel von prussian.fst.ortho)
+    # ersetzt die frühere spellrelax-Schicht: alle orthographischen Quell-
+    # varianten (Diakritika, palatales Twanksta-j gj/sj…, elaktr) leben jetzt
+    # zentral in der Faltung. Nur die ortho-SICHERE Teilmenge (keine Kasus-
+    # Vermischung) trägt den Analysator; verlustbehaftete Lemma-Falten
+    # (themat. -s, -an~-u) bleiben in ortho.py fürs Wörterbuch-Matching.
+    fold = _compose_chain(hfst.regex(fold_mod.FOLD_SURFACE[0]),
+                          fold_mod.FOLD_SURFACE[1:])
+    gen_skel = hfst.HfstTransducer(generator)
+    gen_skel.compose(fold)        # Analyse → Skelett
+    gen_skel.minimize()
+    gen_skel.invert()             # Skelett → Analyse
+    lenient = hfst.HfstTransducer(fold)
+    lenient.compose(gen_skel)     # Oberfläche → Skelett → Analyse
     lenient.minimize()
-    print(f"lenient (∘ spellrelax, invertiert): {lenient.number_of_states()} Zustände")
+    print(f"lenient (∘ Faltung): {lenient.number_of_states()} Zustände")
 
     for fst, path in ((generator, GEN_OUT), (analyser, ANA_OUT), (lenient, LEN_OUT)):
         out = hfst.HfstOutputStream(filename=str(path), type=FOMA)

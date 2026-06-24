@@ -108,11 +108,14 @@ def main() -> None:
         got = analyser.analyze(form)
         print(f"  {'OK' if expected in got else 'FAIL':6s} {form} → {expected}  {got}")
 
-    print("\n--- spellrelax-Spot-Checks (lenient) ---")
+    # Faltungs-Lenient (hfst.fold ∘ Analysator): orthographische + palatal-
+    # konsonantische Twanksta-j-Varianten. Das weichvokalische Twanksta-j
+    # (kūgjan~kūgin) ist morphologisch und kommt aus der gold-freien
+    # Morphologie, nicht aus der Faltung — daher hier kein Testfall.
+    print("\n--- Faltungs-Spot-Checks (lenient) ---")
     for variant, expected in [
-        ("kūgjan", "kūgis+N+Msc+Sg+Acc"),
-        ("kūgju", "kūgis+N+Msc+Sg+Dat"),
-        ("dulzjas", "dulzis+N+Msc+Sg+Gen"),
+        ("kūgju", "kūgis+N+Msc+Sg+Dat"),       # palatales j (gj~ģ)
+        ("dulzjas", "dulzis+N+Msc+Sg+Gen"),    # zj~ž
     ]:
         got = lenient.analyze(variant)
         std_ok = analyser.analyze(variant)  # darf der Standard NICHT
