@@ -2,20 +2,12 @@ name: Build Dashboard
 
 on:
   push:
-    branches: [main]
+  pull_request:
   workflow_dispatch:
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pages: write
-      id-token: write
-
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
 
     steps:
       - name: Checkout prussian-fst
@@ -54,6 +46,53 @@ jobs:
 
       - name: Run tests
         run: PYTHONPATH=src pypy3 -m pytest tests/ -v
+
+  deploy:
+    needs: test
+    if: always() && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+
+    steps:
+      - name: Checkout prussian-fst
+        uses: actions/checkout@v4
+
+      - name: Checkout prussian-mcp (Git LFS)
+        uses: actions/checkout@v4
+        with:
+          repository: strfry/prussian-mcp
+          lfs: true
+          path: prussian-mcp
+
+      - name: Copy external data files
+        run: |
+          mkdir -p data/external
+          cp prussian-mcp/data/wordlist.json data/external/wordlist.json
+          cp prussian-mcp/data/prussian_dictionary.json data/external/prussian_dictionary.json
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install dependencies
+        run: uv sync --group dev
+
+      - name: Restore FST cache
+        uses: actions/cache@v4
+        with:
+          path: build/
+          key: fst-${{ hashFiles('src/**/*.py', 'data/gold/**', 'data/closed/**') }}
+
+      - name: Build FST (falls Cache miss)
+        run: uv run python -m prussian.fst.build
 
       - name: Generate dashboard.json
         run: PYTHONPATH=src pypy3 -m prussian.report.dashboard

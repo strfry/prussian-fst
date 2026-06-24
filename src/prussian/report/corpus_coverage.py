@@ -76,6 +76,8 @@ def dict_surface_set(words: list[dict]) -> set[str]:
 def _read_docs(source: dict):
     """(doc_id, text) je Quelle, je nach Format."""
     path = ROOT / source["path"]
+    if not path.exists():
+        return
     fmt = source["format"]
     if fmt == "tsv_prg":
         with open(path, encoding="utf-8") as f:
