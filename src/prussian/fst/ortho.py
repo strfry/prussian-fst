@@ -17,6 +17,8 @@ Gefaltete Merkmale (evidenzbasiert aus dem Wörterbuchvergleich):
   Caron-Sibilanten    š→s ž→z ź→z č→c
   Stress-Akzent       à→a è→e ì→i ò→o ù→u  (+ akut, ǹ→n)
   Rhotik/Lateral      ŕ→r ĺ→l ľ→l
+  Palatale            ģ→g ķ→k ņ→n ţ→t ļ→l ŗ→r  + Twanksta-j (gj/sj…→g/s…)
+  elektr ~ elaktr     Lehnwort-Stammvokal (elaktr→elektr)
   c↔k (Lehnwörter)    c→k
   themat. Vokal -s    (a|i|u) vor wortfinalem s gelöscht  (-as/-is/-us ~ -s)
 
@@ -44,8 +46,18 @@ _CHAR_FOLD = (
     "à:a|è:e|ì:i|ò:o|ù:u|"          # Gravis
     "á:a|é:e|í:i|ó:o|ú:u|ǹ:n|"      # Akut + ǹ
     "ŕ:r|ĺ:l|ľ:l|"                   # Rhotik/Lateral
+    "ģ:g|ķ:k|ņ:n|ţ:t|ļ:l|ŗ:r|"      # Palatale (Mažiulis §§21–25)
     "c:k"                            # Lehnwort-c
 )
+
+#: Twanksta schreibt die Palatalisierung als explizites ``j`` nach dem
+#: Stammkonsonanten (gj/kj/nj/sj/tj/zj); der Standard als palatalisierten
+#: Konsonanten (ģ/ķ/ņ/š/ţ/ž → via _CHAR_FOLD g/k/n/s/t/z). Das ``j`` nach
+#: diesen Konsonanten tilgen, damit beide Schreibungen zusammenfallen.
+_PALATAL_J = "$^rewrite(j:'' / [g|k|n|s|t|z] _ )"
+
+#: Lehnwort-Stammvokal elektr- ~ elaktr- (Twanksta/Prusaspira).
+_ELAKTR = "$^rewrite(a:e / e l _ k t r)"
 
 #: Thematischer Vokal vor wortfinalem s (Nom.-Endung -as/-is/-us ~ -s).
 _THEMATIC_S = "$^rewrite((a|i|u):'' / _ s #)"
@@ -56,8 +68,10 @@ _END_AN_U = "$^rewrite((a n):u / _ #)"
 
 @lru_cache(maxsize=1)
 def fold_fst() -> FST:
-    """Falt-Transducer (Zeichen-Faltung ∘ Themavokal-Tilgung ∘ -an~-u)."""
+    """Falt-Transducer (Zeichen ∘ Palatal-j ∘ elaktr ∘ Themavokal ∘ -an~-u)."""
     return (FST.re(f"$^rewrite({_CHAR_FOLD})")
+            .compose(FST.re(_PALATAL_J))
+            .compose(FST.re(_ELAKTR))
             .compose(FST.re(_THEMATIC_S))
             .compose(FST.re(_END_AN_U)))
 

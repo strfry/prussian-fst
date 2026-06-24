@@ -23,6 +23,10 @@ VARIANT_PAIRS = [
     ("ankstāinan", "ankstaīnan"),      # Diphthong-Macron-Position + -an
     ("bilīsnā", "bilisnā"),            # Macron im Stamm
     ("agristi", "agrìsti"),            # Stress-Akzent
+    ("kūgju", "kūģu"),                 # Twanksta-j ~ palataler Konsonant (gj~ģ)
+    ("dulzjas", "dulžas"),             # zj ~ ž
+    ("māldaisjan", "māldaišan"),       # sj ~ š (+ -an~-u)
+    ("elaktriskas", "elektriskas"),    # Lehnwort elaktr ~ elektr
 ]
 
 # Paare, die NICHT kollabieren dürfen (verschiedene Lexeme).
