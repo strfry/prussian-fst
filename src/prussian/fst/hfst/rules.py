@@ -1,17 +1,10 @@
-"""Regelschicht des HFST-Zweigs als HFST-Regex-Strings (reines Python).
+"""Phonologie-/Akzent-Regelschicht des HFST-Zweigs als HFST-Regex-Strings.
 
-Keine hfst-Importe beim Laden — die Strings werden in build.py mit
-``hfst.regex`` kompiliert. Zwei Gruppen:
-
-1. **Phonologie/Akzent** (entspricht pyfomas ``phonology.rule_chain``):
-   löst Archiphoneme (Â Ê Î Ô Û) und die Marker M/S/J zur Standard-
-   oberfläche auf. Markierte Unterseite → saubere Oberfläche.
-   twolc-Äquivalente: docs/ORTHO_RULES.md §4.
-
-2. **spellrelax** (nur lenient): generalisierende optionale Replace, die
-   belegte Quellschreibungen auf die Standardoberfläche abbilden, ohne
-   sie pro Lexem aufzuzählen. Über-Generierung ist zulässig — der
-   Analysator filtert (docs/HFST_SPIKE.md §D).
+Keine hfst-Importe beim Laden — die Strings werden in ``lexd_build`` mit
+``hfst.regex`` kompiliert. ``PHONOLOGY`` löst Archiphoneme (Â Ê Î Ô Û) und die
+Marker M/S/J zur Standardoberfläche auf (markierte Unterseite → saubere
+Oberfläche). twolc-Äquivalente: docs/ORTHO_RULES.md §4. Die orthographischen
+Quellvarianten liegen separat in der Faltung (``hfst.fold``), nicht hier.
 
 Konvention: ``Â Ê Î Ô Û`` Archiphoneme (distinkte Symbole statt nackter
 Großbuchstaben, damit literale Großbuchstaben/Eigennamen frei sind),
@@ -42,13 +35,10 @@ JPAL = (
     "|| _ J ;"
 )
 
-#: Marker-Tilgung nach allen kontextsensitiven Regeln. Neben M/S/J/V wird
-#: auch der (jetzt funktionslose) Grenzmarker ``·`` getilgt: er trug früher die
-#: spellrelax-Grenz-j-Regeln; die orthographischen Quellvarianten liegen jetzt
-#: zentral in der Faltung (prussian.fst.ortho / hfst.fold), nicht mehr hier.
-#: ``·`` wird von lexd_gen noch emittiert und hier folgenlos getilgt
-#: (Aufräumen: eigener Folgeschritt).
-CLEANUP = "M -> 0, S -> 0, J -> 0, V -> 0, · -> 0 ;"
+#: Marker-Tilgung nach allen kontextsensitiven Regeln (M/S/J/V). Die
+#: orthographischen Quellvarianten liegen in der Faltung (hfst.fold), nicht
+#: in der Morphotaktik.
+CLEANUP = "M -> 0, S -> 0, J -> 0, V -> 0 ;"
 
 #: Phonologie-Kaskade in Anwendungsreihenfolge (Standard-Generator).
 PHONOLOGY = [SHORTEN, LENGTHEN, JPAL, CLEANUP]

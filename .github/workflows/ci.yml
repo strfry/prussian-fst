@@ -6,50 +6,10 @@ on:
   pull_request:
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Download Twanksta entries
-        run: |
-          mkdir -p data/external
-          curl -fsSL https://github.com/strfry/prussian-corpus/releases/download/v2026-06-21/twanksta_entries.json \
-            -o data/external/twanksta_entries.json
-
-      - name: Download Tatoeba corpus
-        run: |
-          mkdir -p corpus
-          curl -fsSL https://downloads.tatoeba.org/exports/per_language/prg/prg_sentences.tsv.bz2 \
-            | bunzip2 > corpus/prg_sentences.tsv
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: 'pypy-3.10'
-
-      - name: Install dependencies
-        run: pypy3 -m pip install pyfoma pytest
-
-      - name: Build FST
-        run: PYTHONPATH=src pypy3 -m prussian.fst.build
-
-      - name: Run tests
-        continue-on-error: true
-        run: |
-          mkdir -p build
-          PYTHONPATH=src pypy3 -m pytest -v --tb=short 2>&1 | tee build/test-report.txt
-
-      - name: Upload test report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-report
-          path: build/test-report.txt
-
   hfst:
-    # HFST-nativer Paralleler Zweig (docs/HFST_BRANCH.md): lexc ∘ Regeln,
+    # HFST-nativer Analysator (docs/HFST_BRANCH.md): lexd ∘ Regeln,
     # gegen den Goldstandard validiert. python-hfst hat kein cp313-Wheel,
-    # daher Python 3.12 in eigenem venv.
+    # daher Python 3.12.
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

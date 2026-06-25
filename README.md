@@ -1,7 +1,7 @@
-# Prussian Foma
+# Prussian FST
 
 Vergleich der altpreußischen Paradigmendaten aus drei Quellen mit
-Finite-State-Transducer-Analyse (experimentell, PyFoma).
+Finite-State-Transducer-Analyse (HFST/lexd-Stack).
 
 > **Umfang:** Dieses Projekt reproduziert die **normalisierte Oberfläche der
 > TABVLA NOVA** (rekonstruiertes/wiederbelebtes „Neupreußisch", Palmaitis/Klusis)
@@ -95,17 +95,17 @@ tabula.html               prusaspira.org            wirdeins.twanksta.org
                                  │
                 ┌────────────────┤
                 ▼                ▼
-  src/prussian/gold/accent.py   src/prussian/fst/build.py
-  (Akzentmodell, docs/AKZENT.md) (= entries + lexd_gen ∘ rules)
+  src/prussian/gold/accent.py   src/prussian/fst/hfst/lexd_build.py
+  (Akzentmodell, docs/AKZENT.md) (= lexd_gen ∘ rules ∘ fold)
                 │                        │
                 ▼                ┌───────┴────────────┐
   data/gold/accent_model.json    ▼                    ▼
-                        build/morphotactics.lexd  build/analyser.fst
-                        (Stämme 1×, Marker M/S/J/V) build/lenient.fst
+                        build/hfst/morphotactics.lexd  build/hfst/analyser.hfst
+                        (Stämme 1×, Marker M/S/J)       build/hfst/lenient.hfst
                                                        │
                                                        ▼
-                                          src/prussian/fst/gen_check.py
-                                          (967/967 Zellen + 18 Doubletten ✓)
+                                          src/prussian/fst/hfst/check.py
+                                          (1471/1471 Zellen + 18 Doubletten ✓)
 ```
 
 ## Entscheidungen für die Vergleichstabelle
@@ -257,25 +257,26 @@ Bei echten 3-Wege-Konflikten, die das Votum nicht auflöst, werden Entscheidunge
 | `gold/goldstandard_verbs.py` | dito für Verben |
 | `gold/accent.py` | Leitet das Akzentmodell ab → `accent_model.json` (s. `docs/AKZENT.md`) |
 | `gold/{analyze,validate}_participles.py` | Partizip-Auswertung (Vorarbeit nächster Schritt) |
-| `fst/entries.py` | Goldstandard + Wortliste → FST-Einträge (Routing, Archiphonem-Detektion) |
-| `fst/lexd_gen.py` | Einträge → `build/morphotactics.lexd` (Marker M/S/J/V) |
-| `fst/rules.py` | Akzent-/Palatalisierungs-/Varianten-Regeln (pyfoma-Rewrite) |
-| `fst/build.py` | Komposition → `build/analyser.fst` + `build/lenient.fst` |
-| `fst/gen_check.py` | Validiert Generierung gegen alle 967 Gold-Zellen + 18 Parallelformen |
-| `fst/match_forms.py` | Korpus-Coverage gegen `twanksta_entries.json` |
-| `fst/analyze.py` | CLI: Wörter analysieren (Standard + nachsichtig) |
+| `fst/morphology/{nominals,verbs,…}.py` | Goldstandard + Wortliste → FST-Einträge (Routing, Archiphonem-Detektion) |
+| `fst/morphology/lexd.py` | gemeinsame Morphotaktik-Helfer (markierte Unterseite) |
+| `fst/hfst/lexd_gen.py` | Einträge → `build/hfst/morphotactics.lexd` (Marker M/S/J) |
+| `fst/hfst/rules.py` | Phonologie-/Akzentregeln (HFST-Regex) |
+| `fst/hfst/fold.py` | Orthographie-Faltung (Twanksta ↔ Standard) |
+| `fst/hfst/lexd_build.py` | Komposition → `build/hfst/{analyser,lenient}.hfst` |
+| `fst/hfst/check.py` | Validiert Generierung gegen alle Gold-Zellen + Parallelformen |
 
 ## FST-Modell
 
-`python -m prussian.fst.build` erzeugt bidirektionale FSTs für Nominal-
-(P9–P70) und Verbalparadigmen (P71–P144, Präs/Prät/Inf). Architektur:
+`scripts/build_hfst.sh` (bzw. `python -m prussian.fst.hfst.lexd_build`) erzeugt
+bidirektionale FSTs für Nominal- (P9–P70) und Verbalparadigmen (P71–P144,
+Präs/Prät/Inf). Architektur:
 
 ```
-build/morphotactics.lexd   Morphotaktik (lexd): Stämme genau 1×, Endungen 1×
-        ∘  rules.py        Akzent- + Palatalisierungsregeln (pyfoma-Rewrite)
-        =  analyser.fst    Standard-Orthographie ↔ +Tags
-        ∘  V-Zeilen+Regeln Twanksta-j-Schreibung, elektr-/elaktr-
-        =  lenient.fst     akzeptiert Quellvarianten → Standardanalyse
+build/hfst/morphotactics.lexd  Morphotaktik (lexd): Stämme genau 1×, Endungen 1×
+        ∘  rules.PHONOLOGY     Akzent- + Palatalisierungsregeln (HFST-Regex)
+        =  analyser.hfst       Standard-Orthographie ↔ +Tags
+        ∘  fold.FOLD_SURFACE   Twanksta-j-Schreibung, elektr-/elaktr- (Faltung)
+        =  lenient.hfst        akzeptiert Quellvarianten → Standardanalyse
 ```
 
 Die Morphotaktik trägt auf der Unterseite **Marker**, die die Regelschicht
@@ -286,14 +287,17 @@ auflöst und tilgt:
 | `M` | vor dem Stamm | Lexem ist Mobile (Akzentklasse) |
 | `S` | vor der Endung | Endung ist stark (zieht den Akzent) |
 | `J` | vor der Endung | Endung palatalisiert den Stammauslaut (`g→ģ` …) |
-| `V` | vor der Endung | Twanksta-Orthographievariante (nur in `lenient.fst`) |
-| `A E I O U` | im Stamm | Archiphonem: Vokal alterniert lang/kurz |
+| `Â Ê Î Ô Û` | im Stamm | Archiphonem: Vokal alterniert lang/kurz |
+
+Orthographische Quellvarianten (Twanksta-j, elektr-/elaktr-) werden **nicht**
+mehr als Marker in der Morphotaktik geführt, sondern in der Faltung
+(`fst/hfst/fold.py`) auf der Oberfläche komponiert (nur `lenient.hfst`).
 
 **Akzentmodell (Rinkevičius 2009, hergeleitet in `docs/AKZENT.md`):**
 Akzent = erstes starkes Morphem. Barytona (starker Stamm) tragen das
 Makron in allen Zellen; Mobilia (`M`) kürzen das Stamm-Archiphonem vor
 starken Endungen (`S`): `MmIstan → mīstan`, aber `MmIstSāi → mistāi`.
-Das Modell deckt 100 % der 967 Goldstandard-Zellen ab
+Das Modell deckt 100 % der nominalen Goldstandard-Zellen ab
 (`data/gold/accent_model.json`, 0 Exceptions).
 
 **Tagset (Giella flat-plus Format):**
@@ -301,15 +305,15 @@ Das Modell deckt 100 % der 967 Goldstandard-Zellen ab
 +N +A +Pron +Num +V  +Msc +Fem +Neut  +Sg +Pl  +Nom +Gen +Dat +Acc
 +Inf +Prs +Prt +1Sg +2Sg +3 +1Pl +2Pl  +Def +Superl +Adv +Comp +Pos
 ```
-Beispiel: `wāiks+N+Msc+Sg+Nom` → `wāiks`; `analyse("kūgjan")` über
-`lenient.fst` → `kūgis+N+Msc+Sg+Acc`.
+Beispiel: `wāiks+N+Msc+Sg+Nom` → `wāiks`; `analyze("kūgju")` über
+`lenient.hfst` → `kūgis+N+Msc+Sg+Dat`.
 
-**HFST-nativer Paralleler Zweig:** Dieselbe Sprachbeschreibung wird zusätzlich
-durchgängig in HFST komponiert (lexc-Lexikon ∘ Phonologie-/spellrelax-Regeln),
-mit generalisierenden Regeln statt aufgezählter V-Zeilen. Volle Parität mit
-dem pyfoma-Zweig (1471/1471 nominale Gold-Zellen). Bau: `scripts/build_hfst.sh`,
-Details in [`docs/HFST_BRANCH.md`](docs/HFST_BRANCH.md). lexd ist Apertium-
-kompatibel, die twolc-Äquivalente der Regeln stehen in `docs/ORTHO_RULES.md` §4.
+**HFST/lexd-Stack:** Die Sprachbeschreibung wird durchgängig in HFST komponiert
+(lexd-Lexikon ∘ Phonologie-Regeln ∘ Faltung), mit generalisierenden Regeln
+statt aufgezählter Varianten-Zeilen (1471/1471 nominale Gold-Zellen). Bau:
+`scripts/build_hfst.sh`, Details in [`docs/HFST_BRANCH.md`](docs/HFST_BRANCH.md).
+lexd ist Apertium-kompatibel, die twolc-Äquivalente der Regeln stehen in
+`docs/ORTHO_RULES.md` §4.
 
 **Doublettenformen / Parallelformen (Pronomina):**
 Einige pronominale Neutrum-Zellen (P11 stas, P16 subs, P18 kits, P21 aīns —
@@ -323,7 +327,7 @@ generate(stas+N+Neut+Sg+Nom) → ['sta', 'stan']
 analyze('sta')  → … stas+N+Neut+Sg+Nom
 analyze('stan') → … stas+N+Neut+Sg+Nom
 ```
-Umsetzung in `src/prussian/fst/lexd_gen.py`: `split_suffix()` trennt die
+Umsetzung in `src/prussian/fst/hfst/lexd_gen.py`: `split_suffix()` trennt die
 Zelle; der Standard laeuft durch die normale Stamm+Suffix-Mechanik, die
 Variante wird als literale `upper:lower`-Vollform in ein eigenes
 `LEXICON Variants` emittiert. Ein Guard
@@ -331,17 +335,16 @@ Variante wird als literale `upper:lower`-Vollform in ein eigenes
 lemma-spezifische Variante faelschlich auf Geschwister-Lemmata derselben Klasse
 (z. B. eraīns, jūss) vererbt wird. Das Goldformat behaelt `/` als Quellnotation.
 
-**Validierung:** `src/prussian/fst/gen_check.py` generiert alle 967 Zellen aus
+**Validierung:** `src/prussian/fst/hfst/check.py` generiert alle Gold-Zellen aus
 dem FST und vergleicht sie mit den erwarteten Formen aus `goldstandard.json`.
-Ergebnis: **967/967 Standard-Zellen exakt** (100 %) **+ 18/18 Parallelformen**;
-dazu 872/872 Verbzellen (`tests/`).
+Ergebnis: **1471/1471 nominale Gold-Zellen exakt** (100 %) **+ 18/18
+Parallelformen**; die verbalen `no_gen` (Partizip-Deklination) sind die bekannte
+Baseline.
 
-> **Hinweis zur Aussagekraft:** `gen_check` misst die **interne Konsistenz** —
+> **Hinweis zur Aussagekraft:** `check.py` misst die **interne Konsistenz** —
 > der FST wird gegen denselben Goldstandard geprüft, aus dem er gebaut wurde;
 > 100 % bedeutet hier *implementatorische Korrektheit*, **keine** unabhängige
-> linguistische Validierung. Die externen Maße sind die Wortlisten- und
-> Korpus-Coverage (`report/dict_coverage.py`, `report/corpus_coverage.py`,
-> Tests `test_wordlist_coverage.py` / `test_tatoeba_coverage.py`).
+> linguistische Validierung.
 
 ## Setup / externe Daten
 
@@ -359,12 +362,12 @@ Ebenfalls ignoriert (regenerierbar bzw. read-only Referenz):
 - `build/` — vollstaendig aus `data/gold/` + `data/external/` generiert.
 - `lang-lit/`, `lang-lav/`, `lang-fao/` — optionale Giella-Referenzklone.
 
-Aufbau (nach `uv sync`):
+Aufbau (HFST/lexd, braucht `lexd` + `hfst` CLIs, s. `scripts/build_hfst.sh`):
 ```
-uv run python -m prussian.fst.build              # → build/analyser.fst, build/lenient.fst
-uv run python -m prussian.fst.build --gold-only  # schneller Testbau ohne Wortliste
-uv run python src/prussian/fst/gen_check.py      # validiert: 967/967 Zellen
-uv run python src/prussian/gold/accent.py        # Akzentmodell neu ableiten
+scripts/build_hfst.sh                 # Vollbau → build/hfst/{analyser,lenient}.hfst
+scripts/build_hfst.sh --gold-only     # schneller Testbau ohne Wortliste
+PYTHONPATH=src python -m prussian.fst.hfst.check   # validiert: 1471/1471 Zellen
+uv run python src/prussian/gold/accent.py          # Akzentmodell neu ableiten
 ```
 
 ## Struktur
@@ -375,7 +378,8 @@ data/external/     twanksta_entries.json, prusaspira_entries.json   [ignoriert]
 data/derived/      vergleich*.{json,html}           3-Wege-Vergleich
 data/gold/         goldstandard*.json, GOLDSTANDARD*.md, accent_model.json
 src/prussian/      fetch/ compare/ gold/ fst/       Pipeline-Module (s. o.)
+data/lexd/         handgeschriebene lexd-Tabellen (Morphotaktik)
 docs/              AKZENT.md, ORTHO_RULES.md, PROVENANCE.md, references.md, …
-build/             morphotactics.lexd, analyser.fst, lenient.fst   [generiert]
+build/hfst/        morphotactics.lexd, analyser.hfst, lenient.hfst   [generiert]
 tests/             pytest-Suite
 ```

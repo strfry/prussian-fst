@@ -1,13 +1,13 @@
 """Markierte Morphotaktik als lexd-Grammatik mit Tag-Filterung (HFST-Zweig).
 
-Erzeugt aus denselben Eintragsdaten wie der pyfoma-Build ein **lexd**-Lexikon
-mit markierter Unterseite (Archiphoneme A E I O U, Marker M/S/J/·). Das
+Erzeugt aus den Eintragsdaten ein **lexd**-Lexikon mit markierter Unterseite
+(Archiphoneme Â Ê Î Ô Û, Marker M/S/J). Das
 ``<Tag>``-Format wird von ``lexd`` nativ als Multichar-Symbol erkannt; die
 Gender-Konditionierung erfolgt über lexd-eigene ``[gFem]``/``[gMsc]``/
 ``[gNeut]``-Filter-Tags — **ein** Stem+Infl-Lexikon pro Paradigma statt drei.
 
-Keine V-Varianten-Zeilen — Quellvarianten entstehen über generalisierende
-spellrelax-Regeln (``rules.py``), wie im bisherigen lexc-Zweig.
+Keine V-Varianten-Zeilen — orthographische Quellvarianten entstehen über die
+Faltung (``hfst.fold``), nicht in der Morphotaktik.
 
 Struktur:
     PATTERNS
@@ -38,10 +38,7 @@ from prussian.fst.morphology.lexd import (
     render_stem,
 )
 from prussian.fst.oracle import resolve_stem
-from prussian.fst.spellrelax import jan_variant
 from prussian.fst.tags import split_suffix
-
-_BD = "·"
 
 #: Gender-Sub-Werte → lexd-Filter-Tag
 _GENDER_TAG = {"m": "gMsc", "f": "gFem", "n": "gNeut"}
@@ -72,13 +69,12 @@ def _esc(s: str) -> str:
 
 
 def _render_suffix_std(v: dict, cls: str) -> str:
-    """(J)(S)(·)suffix — markerhaft, keine V-Varianten."""
+    """(J)(S)suffix — markerhaft, keine V-Varianten."""
     std, _variant = split_suffix(v["suffix"])
     palatize = v.get("palatize", False)
     s_marker = "S" if cls == "mob" and not v["betont"] else ""
     j_marker = "J" if palatize else ""
-    bd = _BD if (not palatize and jan_variant(std) is not None) else ""
-    return f"{j_marker}{s_marker}{bd}{std}"
+    return f"{j_marker}{s_marker}{std}"
 
 
 def collect(
@@ -87,7 +83,7 @@ def collect(
     verb_wl_entries: list[dict] | None = None,
     closed_entries: list[dict] | None = None,
 ) -> tuple[dict, dict, set]:
-    """(Stämme, Endungen, Parallelformen) wie lexc_gen.collect, V-frei."""
+    """(Stämme, Endungen, Parallelformen), V-frei (markierte Unterseite)."""
     stems: dict[tuple, list[tuple[str, str]]] = defaultdict(list)
     infls: dict[tuple, dict[str, str]] = {}
     variants: set[tuple[str, str]] = set()

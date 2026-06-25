@@ -1,10 +1,8 @@
-"""Morphotaktische lexd-Grammatik zusammenbauen (≈ root.lexc + stems/affixes).
+"""Gemeinsame Morphotaktik-Helfer für den lexd-Generator (hfst.lexd_gen).
 
-POS-agnostischer Emissions-Kern: aus den (Gruppenschlüssel, Tag-Präfix,
-Art, Eintrag)-Strömen von morphology.nominals und morphology.verbs entsteht
-der lexd-Quelltext mit markierter Unterseite. Jeder Stamm steht genau einmal
-pro Gruppe; Archiphoneme (A E I O U) und Marker (M/S/J) bleiben sichtbar, die
-Auflösung zur Oberfläche übernimmt phonology.py.
+Akzentklassen-Logik und Unterseiten-Rendering (markierte Stämme/Endungen mit
+Archiphonemen Â Ê Î Ô Û und Markern M/S/J), geteilt vom HFST-lexd-Generator.
+Die Auflösung zur Oberfläche übernimmt die Regelschicht (hfst.rules).
 
 Akzentklassen (vgl. docs/AKZENT.md):
   bar  Stamm immer lang   → Stamm literal mit Makron, keine Marker
@@ -14,21 +12,12 @@ Akzentklassen (vgl. docs/AKZENT.md):
                             detektiertem Makron werden lang gehalten
                             (Baryton-Default — das frühere Kürzen in
                             allen Zellen widersprach der Nom-sg-Evidenz)
-
-Twanksta-j- und elaktr-Quellvarianten werden als V-markierte Zeilen
-emittiert (spellrelax.py); der Standard-Analysator filtert V-Pfade aus,
-der nachsichtige (lenient.fst) akzeptiert sie.
 """
 
-from collections import defaultdict
-from itertools import chain
-
-from prussian.fst.oracle import ARCHI_SET, LONG, resolve_stem
-from prussian.fst.spellrelax import elaktr_variant, jan_variant, sj_variant
+from prussian.fst.oracle import ARCHI_SET, LONG
 from prussian.fst.tags import (
-    cell_tag, ptcp_cell_tag, split_reflexive, split_suffix, verb_cell_tag,
+    cell_tag, ptcp_cell_tag, split_reflexive, verb_cell_tag,
 )
-from prussian.fst.morphology import nominals, verbs
 
 
 # Verb-Sub-Schlüssel, deren Gruppen Endungen mehrerer Einträge bündeln (s.
@@ -60,25 +49,6 @@ def render_stem(stamm: str, cls: str) -> str:
     return "".join(LONG.get(c, c.lower()) for c in stamm)
 
 
-def render_suffix(v: dict, cls: str) -> list[str]:
-    """Unterseiten-Endungen: [Standard, ggf. Twanksta-j-Variante].
-
-    Standard:  (J)(S)suffix — J palatalisiert den Stammauslaut.
-    Variante:  V(S)j-suffix — explizites j, Stamm bleibt unpalatalisiert.
-    """
-    std, _variant = split_suffix(v["suffix"])
-    s_marker = "S" if cls == "mob" and not v["betont"] else ""
-    j_marker = "J" if v.get("palatize", False) else ""
-    lowers = [f"{j_marker}{s_marker}{std}"]
-    jvar = jan_variant(std)
-    if jvar is not None:
-        lowers.append(f"V{s_marker}{jvar}")
-    sjvar = sj_variant(std)
-    if sjvar is not None:
-        lowers.append(f"V{s_marker}{sjvar}")
-    return lowers
-
-
 def _lexname(kind: str, par: str, sub: str) -> str:
     return f"{kind}_P{par}_{sub or 'x'}"
 
@@ -93,128 +63,3 @@ def _cell_tag(lexkind: str, e: dict, cell: str, v: dict) -> tuple[str, dict]:
             v = {**v, "suffix": bare}
         return verb_cell_tag(e["tense"], cell, refl), v
     return cell_tag(cell), v
-
-
-def build_lexd(
-    entries: list[dict],
-    verb_entries: list[dict],
-    verb_wl_entries: list[dict] | None = None,
-    closed_entries: list[dict] | None = None,
-    function_words: list[tuple[str, str]] | None = None,
-    adverbs: list[tuple[str, str]] | None = None,
-) -> str:
-    """Nominale + verbale Einträge → lexd-Quelltext.
-
-    ``verb_wl_entries`` werden mit eigenem Gruppenschlüssel (Vw statt V)
-    eingefügt, damit sie separate Infl-Lexika erhalten (erforderlich,
-    weil Wortlisten-Verben eine abweichende Infinitiv-Endung ``tun``/``twei``
-    anstelle von ``un``/``wei`` im Goldstandard verwenden).
-
-    ``closed_entries``: handkuratierte Einträge (Personalpronomen) im
-    Goldstandard-Format — durchlaufen denselben Stem+Infl-Mechanismus.
-
-    ``function_words``: (Wort, POS-Tag)-Paare für uninflected closed-class
-    words — werden als einzelne lexd-Einträge ``Wort+Tag:Wort`` emittiert
-    (POS-Tag auf der Analyse-Oberseite, Wort als Surface-Unterseite).
-
-    ``adverbs``: ebensolche (Wort, +Adv)-Paare; eigene geschlossene Klasse
-    (eigenes Lexikon ``Adverbs``), da altpreußische Adverbien überwiegend
-    lexikalisiert sind und nicht aus dem Adjektivsystem abgeleitet werden.
-    """
-    # Gruppen: (paradigm, gender) bzw. (paradigm, tense) teilen Endungslexikon
-    stems: dict[tuple, list[str]] = defaultdict(list)
-    infls: dict[tuple, dict[str, list[str]]] = {}
-    variants: set[tuple[str, str]] = set()
-
-    def add_group(key, upper_prefix, lexkind, e):
-        cls = entry_class(e["suffixe"])
-        # Infl-Lexikon: nicht-kollabierte Gruppen wie bisher EINMAL aus dem ersten
-        # Eintrag bauen (alle Lexeme der Gruppe teilen paradigmenuniforme Endungen;
-        # spätere Einträge nicht erneut schreiben → keine Übergenerierung). Nur die
-        # bewusst kollabierten Verbgruppen (Inf-Stamm-Modi, Präsens+Präteritum,
-        # s. verbs._verb_sub) akkumulieren Tags mehrerer Einträge; setdefault hält
-        # dabei "erster Schreiber gewinnt" (Gold vor Wortliste) je Tag.
-        merged = key[-1] in _MERGED_SUBS
-        if key not in infls:
-            infls[key] = {}
-        infl = infls[key]
-        if merged or not infl:
-            for cell, v in e["suffixe"].items():
-                tag, v = _cell_tag(lexkind, e, cell, v)
-                infl.setdefault(tag, render_suffix(v, cls))
-        stem = render_stem(e["stamm"], cls)
-        lines = [f"{e['lemma']}{upper_prefix}:{stem}"]
-        # Stammvariante elektr- ↔ elaktr- (Prusaspira-Schreibung,
-        # docs/BACKLOG.md) — über denselben V-Mechanismus wie die
-        # Endungsvarianten, nur im nachsichtigen Analysator.
-        ev = elaktr_variant(stem)
-        if ev is not None:
-            lines.append(f"{e['lemma']}{upper_prefix}:V{ev}")
-        for line in lines:
-            if line not in stems[key]:
-                stems[key].append(line)
-
-        # Doubletten: literale Vollformen, sofern sie zum Stamm passen
-        for cell, v in e["suffixe"].items():
-            _std, variant_full = split_suffix(v["suffix"])
-            if variant_full is None:
-                continue
-            pal = v.get("palatize", False)
-            if (variant_full.startswith(resolve_stem(e["stamm"], True, pal))
-                    or variant_full.startswith(resolve_stem(e["stamm"], False, pal))):
-                tag, _v = _cell_tag(lexkind, e, cell, v)
-                variants.add((f"{e['lemma']}{upper_prefix}{tag}", variant_full))
-
-    sources = [nominals.groups(entries), verbs.groups(verb_entries)]
-    if verb_wl_entries:
-        sources.append(verbs.wl_groups(verb_wl_entries))
-    if closed_entries:
-        sources.append(nominals.groups(closed_entries))
-
-    for key, upper_prefix, lexkind, e in chain(*sources):
-        add_group(key, upper_prefix, lexkind, e)
-
-    # ── lexd-Text ──
-    lines = ["PATTERNS"]
-    for key in sorted(infls):
-        kind, par, sub = key
-        lines.append(f"{_lexname(f'Stems{kind}', par, sub)} "
-                     f"{_lexname(f'Infl{kind}', par, sub)}")
-    if function_words:
-        lines.append("FuncWords")
-    if adverbs:
-        lines.append("Adverbs")
-    if variants:
-        lines.append("Variants")
-    lines.append("")
-
-    for key in sorted(infls):
-        kind, par, sub = key
-        lines.append(f"LEXICON {_lexname(f'Stems{kind}', par, sub)}")
-        lines.extend(sorted(stems[key]))
-        lines.append("")
-        lines.append(f"LEXICON {_lexname(f'Infl{kind}', par, sub)}")
-        for tag, lowers in sorted(infls[key].items()):
-            for lower in lowers:
-                lines.append(f"{tag}:{lower}")
-        lines.append("")
-
-    if function_words:
-        lines.append("LEXICON FuncWords")
-        for w, tag in sorted(function_words):
-            lines.append(f"{w}{tag}:{w}")
-        lines.append("")
-
-    if adverbs:
-        lines.append("LEXICON Adverbs")
-        for w, tag in sorted(set(adverbs)):
-            lines.append(f"{w}{tag}:{w}")
-        lines.append("")
-
-    if variants:
-        lines.append("LEXICON Variants")
-        for upper, surface in sorted(variants):
-            lines.append(f"{upper}:{surface}")
-        lines.append("")
-
-    return "\n".join(lines)

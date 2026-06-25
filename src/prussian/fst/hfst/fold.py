@@ -1,8 +1,9 @@
-"""HFST-native Orthographie-Faltung (Spiegel von prussian.fst.ortho).
+"""HFST-native Orthographie-Faltung (Twanksta ↔ Prusaspira/Standard).
 
-prussian.fst.ortho ist die kanonische, pyfoma-basierte Faltung (Twanksta↔
-Prusaspira). Für die HFST-native Komposition mit dem Analysator (lenient =
-Faltung ∘ Analysator) werden dieselben Regeln hier als HFST-Regex gespiegelt.
+Modelliert die systematischen Schreibweisen-Unterschiede zwischen Twanksta
+(wirdeins.twanksta.org) und dem Prusaspira/Tabula-Standard (prusaspira.org)
+als HFST-Regex. Für die HFST-native Komposition mit dem Analysator
+(lenient = Faltung ∘ Analysator).
 
 WICHTIG — zwei Geltungsbereiche:
 
@@ -12,10 +13,10 @@ WICHTIG — zwei Geltungsbereiche:
   Mažiulis §§21–25) und elektr~elaktr. Diese gelten auf beliebigen flektierten
   Oberflächen und tragen den nachsichtigen Analysator.
 
-* **Nur Lemma-Ebene** (in ortho.py: themat. ``-as/-us~-s`` und ``-an~-u``):
+* **Nur Lemma-Ebene** (themat. ``-as/-us~-s`` und ``-an~-u``):
   verlustbehaftet — sie vermischen Kasus (Gen ``-as`` mit Nom ``-s``, Akk
   ``-an`` mit Dat ``-u``), wenn man sie auf flektierte Formen anwendet. Daher
-  NICHT im Analysator, nur fürs Wörterbuch-Matching (ortho.fold).
+  NICHT im Analysator und hier (FOLD_SURFACE) bewusst ausgespart.
 
 Das weichvokalische Twanksta-``j`` (``-jas~-es``, ``-jan~-in``) ist eine
 **morphologische** Alternation (ja↔e/i), keine Faltung — es kommt aus der

@@ -2,8 +2,8 @@
 
 Statt des hand-kuratierten Goldstandards (data/gold/goldstandard.json) werden
 die Suffixtabellen je Paradigma direkt aus den Prusaspira-Deklinationstabellen
-gewonnen — Twanksta faltet via prussian.fst.ortho auf denselben Standard
-(brauchen Gold nicht mehr). Die Faltung liefert die orthographische
+gewonnen — Twanksta faltet via der orthographischen Faltung (hfst.fold) auf
+denselben Standard (brauchen Gold nicht mehr). Die Faltung liefert die
 Normalisierung; die Morphotaktik kommt aus der Evidenz der Wörterbücher.
 
 Ansatz (nominal):
@@ -32,8 +32,8 @@ PR_PATH = ROOT / "data/external/prusaspira_entries.json"
 
 #: Längenerhaltende Diakritika- + Palatalisierungs-Faltung für die Stammgrenze
 #: (= makron-/palatal-insensitiver gemeinsamer Präfix, Gold-Stammdefinition).
-#: Die *verlustbehafteten* Falt-Schritte (themat. -s, -an~-u) aus
-#: prussian.fst.ortho gehören NICHT hierher — sie zerstören die Endung.
+#: Die *verlustbehafteten* Falt-Schritte (themat. -s, -an~-u) der
+#: Lemma-Faltung gehören NICHT hierher — sie zerstören die Endung.
 CHAR_FOLD = str.maketrans({
     "ā": "a", "ē": "e", "ī": "i", "ō": "o", "ū": "u",        # Makron
     "š": "s", "ž": "z", "ź": "z", "č": "c",                  # Caron

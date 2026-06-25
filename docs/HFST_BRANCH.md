@@ -1,52 +1,43 @@
-# HFST-nativer Analysatorzweig
+# HFST-nativer Analysator
 
-> **Status:** ✅ umgesetzt (paralleler Zweig zu pyfoma). Ziel: dieselbe
-> Sprachbeschreibung **durchgängig in HFST** komponieren — echte Komposition
-> statt aufgezählter Varianten — und später quantitativ mit dem pyfoma-Zweig
-> vergleichen.
+> **Status:** ✅ umgesetzt. Die Sprachbeschreibung wird **durchgängig in HFST**
+> komponiert — echte Komposition statt aufgezählter Varianten. Dies ist der
+> einzige Analysatorzweig (der frühere pyfoma- und der lexc-Inline-Zweig
+> wurden entfernt).
 
 Code: `src/prussian/fst/hfst/`. Bau & Prüfung: `scripts/build_hfst.sh`.
 
 ## Motivation
 
-Der pyfoma-Zweig (`src/prussian/fst/{build,phonology}.py`) erzeugt den
-nachsichtigen Analysator `lenient.fst`, indem er die Quellschreibungen
-(Twanksta-`j`, `elaktr-`, …) als **V-Zeilen pro Stamm/Endung** in die
-Morphotaktik *aufzählt* — pyfoma kann die zugehörigen Wildcard-Regeln nicht
-komponieren (docs/HFST_SPIKE.md). HFST kann es. Dieser Zweig formuliert die
-Varianten daher als **generalisierende Regeln** und komponiert die gesamte
-Pipeline nativ in HFST:
+Quellschreibungen (Twanksta-`j`, `elaktr-`, …) werden **nicht** als Varianten-
+Zeilen pro Stamm/Endung in die Morphotaktik aufgezählt, sondern als
+**generalisierende Faltungsregeln** auf der Oberfläche komponiert. Die gesamte
+Pipeline läuft nativ in HFST:
 
 ```
-data/gold + Wortliste                       (dieselbe Quelle wie pyfoma)
-   │  hfst/lexc_gen.py   (markierte Unterseite: Â Ê Î Ô Û, M/S/J, Grenzmarker ·)
+data/gold + Wortliste
+   │  hfst/lexd_gen.py   (markierte Unterseite: Â Ê Î Ô Û, M/S/J)
    ▼
-build/hfst/morphotactics.lexc
-   │  hfst.compile_lexc_file
+build/hfst/morphotactics.lexd
+   │  lexd CLI → .att → hfst-txt2fst
    ▼
 Lexikon  ∘  rules.PHONOLOGY            = generator.hfst  (Analyse → Oberfläche)
             (SHORTEN ∘ LENGTHEN ∘ JPAL ∘ CLEANUP)        invertiert: analyser.hfst
    │
-   │  ∘ rules.SPELLRELAX_MARKED  (Grenz-j vor CLEANUP)
-   │  ∘ rules.SPELLRELAX_SURFACE (TWANKSTA_J, ELAKTR, -as/-us; nach CLEANUP)
+   │  ∘ fold.FOLD_SURFACE  (Diakritika, palatales Twanksta-j, elaktr)
+   │  ∘ Twanksta-j-Endungen (datengetrieben aus beiden Wörterbüchern)
    ▼
 lenient.hfst  (Oberfläche + Quellvarianten → Analyse)
 ```
 
-Anders als die V-Zeilen sind das **echte Regeln**: sie greifen auch auf
+Anders als Varianten-Zeilen sind das **echte Regeln**: sie greifen auch auf
 Wortlisten-/Korpusvokabular, nicht nur auf belegte Lexeme.
 
 ## Zwei Lexikon-Backends: lexc (inline) und lexd (handgeschrieben + generiert)
 
-Die Morphotaktik gibt es in zwei Varianten, beide mit identischer markierter
-Unterseite und identischer Regelschicht:
-
-- **lexc** (`hfst/lexc_gen.py` + `hfst/build.py`): alles inline aus den
-  Eintragsdaten generiert, kompiliert mit `hfst.compile_lexc_file` (reines
-  python-hfst, keine externen CLIs). Schnellster Selbsttest.
-- **lexd** (`hfst/lexd_gen.py` + `hfst/lexd_build.py`): Apertium-`lexd`-Format,
-  kompiliert über die CLIs `lexd` → `.att` → `hfst-txt2fst`. Hier ist die
-  **Arbeitsteilung** umgesetzt, die der pyfoma-Zweig nicht hat:
+Die Morphotaktik liegt im **lexd**-Format (`hfst/lexd_gen.py` +
+`hfst/lexd_build.py`, Apertium-`lexd`), kompiliert über die CLIs
+`lexd` → `.att` → `hfst-txt2fst`. Die **Arbeitsteilung**:
 
   | Teil | Quelle |
   |------|--------|
@@ -65,9 +56,9 @@ Unterseite und identischer Regelschicht:
   `data/lexd/*.lexd` nach handgeschriebenen `LEXICON Infl…` und übergibt die
   Namen als `skip_infl` an `build_lexd`. Für diese Paradigmen wird nur das
   Stem-Lexikon generiert (PATTERN + Infl kommen handgeschrieben); alle übrigen
-  offenen Paradigmen erhalten PATTERN + Infl **lean generiert** (gender-gemergt,
-  kein bloated Voll-Dump wie `data/paradigms.lexd`). Eine handgeschriebene
-  Tabelle ersetzt also einfach das Generat — die Migration kann Paradigma für
+  offenen Paradigmen erhalten PATTERN + Infl **lean generiert** (gender-gemergt).
+  Eine handgeschriebene Tabelle ersetzt also einfach das Generat — die
+  Migration kann Paradigma für
   Paradigma kuratieren, ohne Abdeckung zu verlieren. Bootstrap der Literal-/
   Tabellenformen aus dem Goldstandard über `report.cases`; danach von Hand
   gepflegt.
@@ -83,15 +74,15 @@ Unterseite und identischer Regelschicht:
 
 | Modul | Aufgabe |
 |-------|---------|
-| `hfst/lexc_gen.py` | Eintragsdaten → `morphotactics.lexc` (markiert, V-frei). Wiederverwendet die pyfoma-freie Morphotaktik-Logik aus `morphology.lexd`. |
-| `hfst/rules.py` | Regelschicht als HFST-Regex-Strings: Phonologie/Akzent + spellrelax. Keine hfst-Importe beim Laden. |
-| `hfst/build.py` | Komposition: lexc ∘ Regeln → `generator/analyser/lenient.hfst`. |
-| `hfst/check.py` | Validierung gegen Goldstandard (= `gen_check` für den HFST-Zweig), spiegelt `report.generation.run` über Lookup-Adapter. |
+| `hfst/lexd_gen.py` | Eintragsdaten → `morphotactics.lexd` (markiert, V-frei). Nutzt die Morphotaktik-Helfer aus `morphology.lexd`. |
+| `hfst/rules.py` | Phonologie-/Akzentregeln als HFST-Regex-Strings. Keine hfst-Importe beim Laden. |
+| `hfst/fold.py` | Orthographie-Faltung (Twanksta ↔ Standard) als HFST-Regex. |
+| `hfst/lexd_build.py` | Komposition: lexd ∘ Regeln ∘ Faltung → `generator/analyser/lenient.hfst`. |
+| `hfst/check.py` | Validierung gegen Goldstandard, spiegelt `report.generation.run` über Lookup-Adapter. |
 
 ## Markierte Unterseite
 
-Identisch zum pyfoma-Zweig (docs/AKZENT.md, docs/ORTHO_RULES.md §4), plus
-ein Grenzmarker:
+Siehe docs/AKZENT.md, docs/ORTHO_RULES.md §4:
 
 | Marker | Bedeutung |
 |--------|-----------|
@@ -99,12 +90,10 @@ ein Grenzmarker:
 | `M` | Mobile-Lexem (Akzentklasse), vor dem Stamm |
 | `S` | starke Endung (zieht den Akzent) |
 | `J` | palatalisierende Endung (`g→ģ` …) |
-| `·` | **neu:** Stamm\|Endungs-Grenze, nur auf j-relaxbaren, nicht-palatalen Endungen. Trägt die generalisierenden Grenz-j-Regeln; wird von `CLEANUP` getilgt. |
 
-Der Grenzmarker macht die Twanksta-`j`-Variante regelhaft: statt 166+
-aufgezählter Endungsvarianten platziert `lexc_gen` den Marker (das
-`jan_variant`-Prädikat liefert nur die *Endungsklasse*), und
-`rules.HARD_J`/`SOFT_J` berechnen die Form (`in→jan`, `us→jus`, `ēi→jai`, …).
+Die Twanksta-`j`-Variante wird nicht in der Morphotaktik aufgezählt, sondern
+auf der Oberfläche durch die Faltung (`hfst.fold`) und die datengetrieben
+abgeleiteten Twanksta-j-Endungen behandelt (nur `lenient.hfst`).
 
 ## Bauen & Prüfen
 
@@ -114,29 +103,23 @@ scripts/build_hfst.sh               # voll (braucht data/external/twanksta_entri
 ```
 
 Das Skript legt beim ersten Lauf ein Python-3.12-venv (`.venv-hfst`) an und
-installiert `python-hfst` (kein cp313-Wheel verfügbar, daher separat vom
-pyfoma-venv). Build ~8 s für den vollen Datensatz (≈35 k Lexeme).
+installiert `python-hfst` (kein cp313-Wheel verfügbar). Build ~8 s für den
+vollen Datensatz (≈35 k Lexeme).
 
-## Paritätsergebnis (gegen pyfoma-Zweig)
+## Ergebnis
 
-| Maß | HFST | pyfoma |
-|-----|------|--------|
-| Nominale Gold-Zellen | **1471/1471 exakt** | 1471/1471 |
-| Doublettenformen | **18/18** | 18/18 |
-| Verbale Gold-Zellen | 904/952 (48 no_gen) | 904/952 (48 no_gen) |
-| `test_ortho`-Varianten | 8/9 | 8/9 |
+| Maß | Wert |
+|-----|------|
+| Nominale Gold-Zellen | **1471/1471 exakt** |
+| Doublettenformen | **18/18** |
+| Verbale Gold-Zellen | 904/952 (48 no_gen) |
 
-Die 48 verbalen `no_gen` sind die noch nicht modellierte Partizip-
-Deklination (PrsPrc/PstPrc Fem/Neut) — in **beiden** Zweigen identisch.
-Das 9. `test_ortho`-Paar (`māldaisjan↔māldaisin`, Komparativ-Formant) ist
-ebenfalls in beiden Zweigen offen (der Grenzmarker sitzt vor dem ganzen
-`ais`-Formanten statt vor der Kasusendung).
+Die 48 verbalen `no_gen` sind die noch nicht modellierte Partizip-Deklination
+(PrsPrc/PstPrc Fem/Neut).
 
 ## Offene Punkte / Nächstes
 
-- Komparativ-Grenzmarker zwischen Formant und Kasusendung setzen
-  (`māld·ais·in`), damit das 9. Paar fällt — wäre der erste Punkt, an dem
-  der HFST-Zweig den pyfoma-Zweig **übertrifft**.
-- Quantitativer Coverage-Vergleich (Wortliste/Korpus) HFST vs. pyfoma als
-  eigener Report.
-- `-as/-us`-Generalisierung (`rules.AS_US_S`) gegen die BACKLOG-Lücke messen.
+- Partizip-Deklination (PrsPrc/PstPrc Fem/Neut) modellieren (48 verbale `no_gen`).
+- Ebene 3 (Phonologie/Faltung) deklarativ als twol/xfst-Dateien (statt
+  HFST-Regex-Strings in `rules.py`/`fold.py`).
+- Quantitativer Coverage-Report (Wortliste/Korpus).

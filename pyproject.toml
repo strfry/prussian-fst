@@ -3,14 +3,12 @@ requires = ["setuptools>=61", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "prussian-foma"
+name = "prussian-fst"
 version = "0.2.0"
-description = "Old Prussian morphological analyzer and generator using pyfoma"
+description = "Old Prussian morphological analyzer and generator (HFST/lexd)"
 readme = "README.md"
-requires-python = ">=3.13"
-dependencies = [
-    "pyfoma>=1.1.0",
-]
+requires-python = ">=3.12"
+dependencies = []
 
 [project.urls]
 Repository = "https://github.com/strfry/prussian-fst"
@@ -25,6 +23,3 @@ find = {where = ["src"]}
 dev = [
     "pytest>=9.0.3",
 ]
-
-[project.scripts]
-prussian-fst-build = "prussian.fst.build:main"

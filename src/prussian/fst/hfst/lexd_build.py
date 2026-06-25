@@ -8,8 +8,8 @@
     lexicon.hfst
         ∘  rules.PHONOLOGY   (SHORTEN ∘ LENGTHEN ∘ JPAL ∘ CLEANUP)
         =  generator.hfst    (Analyse → Standardoberfläche)
-        ∘  rules.SPELLRELAX  (generalisierende Quellvarianten)
-        =  lenient (generator-Seite) ; invertiert = analyser/lenient
+        ∘  fold.FOLD_SURFACE (Orthographie-Faltung + Twanksta-j-Endungen)
+        =  lenient (Oberfläche + Quellvarianten → Analyse)
 
 Gespeichert werden (alle als HFST-Transducer, FOMA-Backend):
     build/hfst/morphotactics.lexd    lexd-Quelltext
@@ -60,7 +60,6 @@ PRUSASPIRA = ROOT / "data/external/prusaspira_entries.json"
 CLOSED_FW = ROOT / "data/closed/function_words.json"
 CLOSED_PRONOUNS = ROOT / "data/closed/personal_pronouns.json"
 LEXD_DIR = ROOT / "data/lexd"
-PARADIGMS = ROOT / "data/paradigms.lexd"
 BUILD = ROOT / "build/hfst"
 
 LEXD_OUT = BUILD / "morphotactics.lexd"
@@ -151,7 +150,7 @@ def main():
         # diese Paradigmen generiert build_lexd nur das Stem-Lexikon (kein
         # PATTERN/Infl-Duplikat); alle übrigen offenen Paradigmen werden lean
         # generiert (gender-gemergt), sodass der Vollbau die ganze Wortliste
-        # abdeckt — ohne den bloated data/paradigms.lexd-Dump.
+        # abdeckt.
         lexd_parts = [f.read_text(encoding="utf-8")
                       for f in sorted(LEXD_DIR.glob("*.lexd"))]
         handwritten = set(re.findall(
@@ -217,7 +216,7 @@ def main():
 
     # lenient = (T ∘ Faltung) ∘ (generator ∘ Faltung)⁻¹
     #   Variante → [Twanksta-j-Endung→Standard] → Skelett → Analyse.
-    # Faltung (hfst/fold.FOLD_SURFACE, Spiegel von prussian.fst.ortho): ortho-
+    # Faltung (hfst/fold.FOLD_SURFACE): ortho-
     # SICHERE Teilmenge (Diakritika, palatales Twanksta-j gj/sj…, elaktr) ohne
     # Kasus-Vermischung. T: die weichvokalischen Twanksta-j-Flexionsendungen
     # (-jas~-es …), DATENGETRIEBEN aus beiden Wörterbüchern abgeleitet
