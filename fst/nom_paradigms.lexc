@@ -1310,3 +1310,18 @@ LEXICON A27
   +Pl+Dat+Neut:abipussimans  # ;
   +Sg+Akk+Neut:abipussi  # ;
   +Pl+Akk+Neut:abipussins  # ;
+
+! P3 — reflexive pronoun (oblique only, no nominative)
+LEXICON P3
+  +Sg+Gen+Masc:swāise   # ;
+  +Sg+Gen+Fem:swāise    # ;
+  +Sg+Dat+Masc:sebbei   # ;
+  +Sg+Dat+Fem:sebbei    # ;
+  +Sg+Akk+Masc:sin      # ;
+  +Sg+Akk+Fem:sin       # ;
+  +Pl+Gen+Masc:swāise   # ;
+  +Pl+Gen+Fem:swāise    # ;
+  +Pl+Dat+Masc:sebbei   # ;
+  +Pl+Dat+Fem:sebbei    # ;
+  +Pl+Akk+Masc:sins     # ;
+  +Pl+Akk+Fem:sins      # ;

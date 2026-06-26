@@ -2,6 +2,7 @@
 ! Generated from twanksta_entries.json + prusaspira_entries.json.
 
 LEXICON Pronouns
+  P3_stems ;
   P9_stems ;
   P10_stems ;
   P11_stems ;
@@ -15235,3 +15236,11 @@ LEXICON A27_stems
   ōliwiskai% zallis+Adj:0  A27 ;
   škūdewingis+Adj:0  A27 ;
   šlūzingis+Adj:0  A27 ;
+
+! P3 — reflexive pronoun
+LEXICON P3_stems
+  sebbei+Pron:0  P3 ;
+  sen+Pron:0  P3 ;
+  si+Pron:0  P3 ;
+  sin+Pron:0  P3 ;
+  swāise+Pron:0  P3 ;
