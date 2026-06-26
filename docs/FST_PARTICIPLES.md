@@ -35,28 +35,37 @@ Stamm** — nicht einen aus dem Verbstamm abgeleiteten:
 Der Stamm wird je Partizip aus seiner **eigenen** attestierten Mask-Nom-Sg-Form
 gewonnen (Endung abstreifen). Damit ist die Gemination automatisch korrekt.
 
-## Zwei Stammgrade (Präsens & Passiv)
+## Akzentverschiebung: zwei Stammgrade (Präsens & Passiv)
 
 Präsens (≈ P29) und Passiv (≈ P69, harter t-Stamm) flektieren mit **zwei
-betonungsbedingten Stammgraden**:
+betonungsbedingten Stammgraden**, gesteuert von der **Akzentklasse des Lexems**
+(Rinkevičius 2009, [docs/AKZENT.md](AKZENT.md)):
 
-```
-dānts (lang, die meisten Zellen)   vs   dantimmans / dantī (kurz, Dat-Pl + Fem-Nom-Sg)
-```
+- **Barytona** (feste Stammbetonung): der Stamm behält in *allen* Zellen seinen
+  Akzent (Makron/Gemination); die Endungen sind durchweg schwach/entakzentuiert
+  → `abōnit-ai`, `abōnit-i`.
+- **Mobilia** (mobile Betonung): eine **starke Endung** zieht den Akzent vom
+  Stamm; dort ist der Wurzelvokal unbetont — er **entakzentuiert** — und die
+  Endung erscheint „schwer“ → `dat-āi`, `dant-immans`, `dant-ī`.
 
-In den betonungstragenden Zellen (Dat-Pl aller Genera, Fem-Nom-Sg; Passiv
-zusätzlich Nom-Pl) wandert die Betonung auf die Endung; der Stammvokal kürzt,
-die Endung wird „schwer“ (geminiert/lang). Die **More bleibt erhalten**:
-entweder *langer Stamm + leichte Endung* oder *kurzer Stamm + schwere Endung*.
+Starke Zellen sind **Dat-Pl** und **Fem-Nom-Sg** (Präsens), beim Passiv
+zusätzlich **Nom-Pl**. Die Entakzentuierung eines mobilen Stamms entfernt das
+Akzentexponent der betonten Silbe — Rinkevičius §1: das ist entweder ein
+**Langvokal** (Makron/Gravis) **oder** die **Gemination** des Folgekonsonanten
+(Kürzezeichen). `deaccent_stem` kürzt daher Lang-/Gravisvokale **und**
+entgeminiert (`adressit → adresit`, `dānt → dant`, `ausàkstint → ausakstint`).
 
-Welche der beiden Realisierungen attestiert ist, hängt vom **lexikalischen
-Akzent** ab (z. B. `abōnitai` vs `artāi`) — der noch nicht in `stress.twolc`
-modelliert ist. Daher emittiert der FST für diese akzentbedingten Zellen
-**beide** Realisierungen; der Analysator akzeptiert beide, die Generierung gibt
-beide aus (Ø 1,13 Oberflächenvarianten je Analyse).
+Die Akzentklasse ist **lexikalisch idiosynkratisch** — aus der Zitierform
+(Nom-Sg, wo beide Klassen langen Stamm zeigen) **nicht** ableitbar. Sie wird
+darum pro Lemma aus prusaspiras `full_declension` gelesen (starkes vs schwaches
+Allomorph in einer starken Zelle: `ī`/`i`, `āi`/`ai`) und im FST hinterlegt;
+twanksta-only-Verben bekommen den Default `mob` (die 96-%-Mehrheit). Verteilung:
+**96 % mobil, 4–5 % baryton**, Präsens/Passiv desselben Verbs zu 99,8 % gleich.
+
+Pro Zelle wird so **genau eine** korrekte Form generiert (keine Überproduktion).
 
 Das **Prät.-Aktiv-Partizip** (≈ P68, `-uns`/`-us-`) hat einen invarianten Stamm
-und dekliniert vollständig aus einem Stamm + festen Endungen.
+ohne Akzentwechsel und dekliniert vollständig aus einem Stamm + festen Endungen.
 
 ## Tagschema
 
@@ -72,13 +81,14 @@ weg (wie bei den finiten Reflexivverben).
 | Partizip | exakt | Anmerkung |
 |----------|-------|-----------|
 | Prät-Akt | 99,7 % | invarianter Stamm, vollständig regulär |
-| Präsens  | 95,2 % | ≈ 99,4 % ohne die **korrupte** Quellzelle Fem-Dat-Pl (`ț`) |
-| Passiv   | 88,3 % | weicher Vokalstamm-Passiv (≈ 6 %) nur als Zitierform |
-| **gesamt** | **94,9 %** | |
+| Präsens  | 95,3 % | ≈ 99,4 % ohne die **korrupte** Quellzelle Fem-Dat-Pl (`ț`) |
+| Passiv   | 90,5 % | weicher `-tas`-Vokalstamm-Passiv (≈ 6 %) nur als Zitierform |
+| **gesamt** | **95,6 %** | **99,6 %** der *bewertbaren* Zellen |
 
-Verbleibende Lücken: (a) der weiche `-as`-Passiv (eigenes Mini-Paradigma, hier
-nur Mask-Nom-Sg-Zitierform), (b) eine in der Quelle korrupt gerenderte Zelle,
-(c) die wenigen rein akzentbedingten Restfälle.
+Verbleibende Lücken: (a) der weiche `-tas`-Passiv (eigenes Mini-Paradigma,
+Standardvariation zwischen den Quellen — hier nur Mask-Nom-Sg-Zitierform),
+(b) eine in der Quelle korrupt gerenderte Zelle (`ț`), (c) ~7 Verben mit
+quellenabweichendem Partizipstamm.
 
 Neu generieren:
 

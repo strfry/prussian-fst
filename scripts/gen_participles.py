@@ -7,17 +7,26 @@ fixed order: [present-active, past-active, passive].
 
 The three participles decline like adjectives (present ≈ P29, past-active ≈ P68,
 passive ≈ P69). The crux is gemination / vowel length: the FST concatenates
-literally and has no phonology layer, so each participle needs its OWN correctly
-graded stem rather than one stem derived from the verb.
+literally, so each participle needs its OWN correctly graded stem rather than one
+derived from the verb.
 
   īmtun:  present imānts (im-)   past immuns (imm-)   passive īmts (īm-)
 
-Two stem grades appear in present & passive declension, conditioned by stress:
-  dānts (long, most cells)  vs  dantimmans / dantī (short, dat-pl + fem-nom-sg).
-We emit BOTH grades as separate stem entries routed to disjoint cell-lexicons:
-the long stem feeds the L-cells, the short stem (long vowel shortened) feeds the
-stress-bearing S-cells, where the suffix takes its heavy (geminated) shape.
-The past-active participle has a single invariant stem.
+ACCENT SHIFT (Rinkevičius 2009, docs/AKZENT.md). Present & passive decline with a
+two-grade stem governed by the lexeme's accent class:
+
+  • Barytona (fixed stem stress): the stem keeps its accent (long vowel) in every
+    cell; the endings are always weak/deaccented   →  abōnit-ai, abōnit-i.
+  • Mobilia (mobile stress): a STRONG ending pulls the accent off the stem; there
+    the root vowel is unstressed and shortens, and the ending takes its heavy
+    (long/geminated) shape                          →  dat-āi, dant-immans, dant-ī.
+
+The strong cells are Dat-Pl and Fem-Nom-Sg (present) plus Nom-Pl (passive). The
+accent class is lexically idiosyncratic — not recoverable from the citation
+(Nom-Sg) form, where both classes show a long stem — so we read it per lemma from
+prusaspira's full_declension (strong vs weak allomorph in a strong cell) and
+default twanksta-only verbs to mobile (the 96 % majority). The past-active
+participle has a single invariant stem (no accent alternation).
 
 Run from the repo root:  python scripts/gen_participles.py
 """
@@ -29,20 +38,35 @@ ROOT = Path(__file__).resolve().parent.parent
 EXTERNAL = ROOT / "data" / "external"
 OUT = ROOT / "fst" / "verb_participles.lexc"
 
-SHORTEN = {"ā": "a", "ē": "e", "ī": "i", "ō": "o", "ū": "u"}
+# Accent orthography (Rinkevičius 2009): a stressed stem vowel is written either
+# long (macron) or as a gravis, and its shortness can be marked by gemination of
+# the following consonant. All three are accent exponents.
+SHORTEN = {"ā": "a", "ē": "e", "ī": "i", "ō": "o", "ū": "u",
+           "à": "a", "è": "e", "ì": "i", "ò": "o", "ù": "u"}
+VOWELS = set("aeiouāēīōūàèìòùáéíóú")
 
 
-def shorten_last_long(stem: str) -> str:
-    """Shorten the last long vowel (stress retraction to the ending). Returns the
-    stem unchanged if it has no long vowel (then no grade alternation applies)."""
-    for i in range(len(stem) - 1, -1, -1):
-        if stem[i] in SHORTEN:
-            return stem[:i] + SHORTEN[stem[i]] + stem[i + 1:]
-    return stem
+def deaccent_stem(stem: str) -> str:
+    """De-accent a mobile stem under a strong ending: the whole stem is unstressed,
+    so remove every accent exponent — shorten long/gravis vowels and de-geminate
+    doubled consonants. A short-rooted mobile has none and stays unchanged (the
+    shift then shows only on the ending)."""
+    out: list[str] = []
+    for i, ch in enumerate(stem):
+        if ch in SHORTEN:
+            out.append(SHORTEN[ch])
+        elif out and ch == stem[i - 1] and ch not in VOWELS:
+            continue                      # drop the second half of a geminate
+        else:
+            out.append(ch)
+    return "".join(out)
 
 
 # ── Declension tables ────────────────────────────────────────────────────────
-# Cell order for emission (stable, readable).
+# A cell is either
+#   ("L", end)              accent-invariant: long stem + weak ending (all classes)
+#   ("S", strong, weak)     accent-conditioned strong cell: mobile → short stem +
+#                           strong ending; barytone → long stem + weak ending.
 CELLS = [
     ("m", "Nom", "Sg"), ("m", "Gen", "Sg"), ("m", "Dat", "Sg"), ("m", "Akk", "Sg"),
     ("m", "Nom", "Pl"), ("m", "Gen", "Pl"), ("m", "Dat", "Pl"), ("m", "Akk", "Pl"),
@@ -53,7 +77,7 @@ CELLS = [
 ]
 GTAG = {"m": "+Masc", "f": "+Fem", "n": "+Neut"}
 
-# Past-active participle (P68): single invariant stem (strip -uns), uniform endings.
+# Past-active (P68): single invariant stem (strip -uns), uniform weak endings.
 PAST = {
     ("m", "Nom", "Sg"): "uns",  ("m", "Gen", "Sg"): "ušas",  ("m", "Dat", "Sg"): "ušasmu", ("m", "Akk", "Sg"): "usin",
     ("m", "Nom", "Pl"): "usis", ("m", "Gen", "Pl"): "usin",  ("m", "Dat", "Pl"): "usimans", ("m", "Akk", "Pl"): "usins",
@@ -63,16 +87,7 @@ PAST = {
     ("n", "Nom", "Pl"): "us",   ("n", "Gen", "Pl"): "usin",  ("n", "Dat", "Pl"): "usimans", ("n", "Akk", "Pl"): "usins",
 }
 
-# Present participle (P29) and passive (P69, hard t-stem) decline with two
-# stress-graded stems. A cell is either:
-#   ("L", end)             — accent-invariant: long stem + a fixed ending.
-#   ("S", heavy, light)    — accent-conditioned (the ~3 cells per word the data
-#                            wavers on): stress may sit on stem or ending. The
-#                            mora is conserved, so we emit BOTH realizations —
-#                            short stem + heavy/geminated ending, and long stem +
-#                            light ending — letting the analyser accept either
-#                            (the choice is lexical stress, deferred to
-#                            stress.twolc). Generation then yields both variants.
+# Present participle (P29). Strong cells: Dat-Pl (all genera) + Fem-Nom-Sg.
 PRES = {
     ("m", "Nom", "Sg"): ("L", "s"),     ("m", "Gen", "Sg"): ("L", "is"),
     ("m", "Dat", "Sg"): ("L", "ismu"),  ("m", "Akk", "Sg"): ("L", "in"),
@@ -88,6 +103,7 @@ PRES = {
     ("n", "Dat", "Pl"): ("S", "immans", "imans"), ("n", "Akk", "Pl"): ("L", "ins"),
 }
 
+# Passive participle (P69, hard t-stem). Strong cells: Nom-Pl (m/n) + Dat-Pl + Fem-Nom-Sg.
 PASS = {
     ("m", "Nom", "Sg"): ("L", "s"),     ("m", "Gen", "Sg"): ("L", "as"),
     ("m", "Dat", "Sg"): ("L", "asmu"),  ("m", "Akk", "Sg"): ("L", "an"),
@@ -103,9 +119,10 @@ PASS = {
     ("n", "Dat", "Pl"): ("S", "ammans", "amans"), ("n", "Akk", "Pl"): ("L", "ans"),
 }
 
+TABLES = {"Pres": PRES, "Pass": PASS}
+
 
 def lexc_esc(s: str) -> str:
-    """Escape a literal space (reflexive clitic) for lexc."""
     return s.replace(" ", "% ")
 
 
@@ -113,59 +130,90 @@ def cell_tag(g: str, case: str, num: str) -> str:
     return f"{GTAG[g]}+{num}+{case}"
 
 
-# ── Participle classification ────────────────────────────────────────────────
+# ── Participle classification & accent class ─────────────────────────────────
 def classify(forms: list[str]):
-    """Map a verb's participle forms to {present,past,passive: bare_form}.
-
-    Order in the source is [present, past, passive]; the past-active form ends in
-    -uns. We assign past = the -uns slot, then fill present/passive from the
-    remaining slots in their original order. Placeholder slots that merely repeat
-    the infinitive (or carry a space, i.e. multiword) are dropped.
-    """
-    out = {}
-    rest = []
+    """Map a verb's participle forms to {present,past,passive: bare_form}, using
+    the fixed source order [present, past, passive]. Past = the -uns slot;
+    present/passive fill the remaining -s slots in order. Placeholder slots that
+    repeat the infinitive (or carry a space) are dropped."""
+    out, rest = {}, []
     for f in forms:
         bare = f[:-3] if f.endswith(" si") else f
-        if " " in bare:        # multiword participle — not modelled
+        if " " in bare:
             continue
         if bare.endswith("uns"):
             out.setdefault("past", bare)
         else:
             rest.append(bare)
-    # present then passive, by source order, requiring a final -s
     pp = [b for b in rest if b.endswith("s")]
-    if len(pp) >= 1:
+    if pp:
         out["present"] = pp[0]
     if len(pp) >= 2:
         out["passive"] = pp[1]
     return out
 
 
+def _cell(part, gen, case, num):
+    for g in part.get("full_declension", []):
+        if g["gender"] != gen:
+            continue
+        for cs in g["cases"]:
+            if cs["case"] == case:
+                v = cs.get(num, "")
+                return v if v and " " not in v else None
+    return None
+
+
+def accent_class(part, cat):
+    """Read 'mob'/'bar' from a prusaspira participle's strong cell, else None.
+    Present → Fem-Nom-Sg (ī mobile / i barytone); passive → Masc-Nom-Pl (āi / ai)."""
+    if cat == "present":
+        v = _cell(part, "f", "Nominative", "singular")
+        if v:
+            return "mob" if v.endswith("ī") else "bar"
+    elif cat == "passive":
+        v = _cell(part, "m", "Nominative", "plural")
+        if v:
+            return "mob" if v.endswith("āi") else ("bar" if v.endswith("ai") else None)
+    return None
+
+
 def collect():
-    """Union verbs from both dumps keyed by lemma; return {lemma: {cat: bareform}}."""
-    verbs: dict[str, dict] = {}
+    """Union verbs keyed by lemma. Returns (forms, accent) where
+    forms = {lemma: {cat: bareform}} and accent = {(lemma, cat): 'mob'/'bar'}
+    (only where prusaspira attests it)."""
+    forms: dict[str, dict] = {}
+    accent: dict[tuple, str] = {}
     for name in ("twanksta_entries.json", "prusaspira_entries.json"):
         path = EXTERNAL / name
         if not path.exists():
             continue
+        is_pr = name.startswith("prus")
         for e in json.loads(path.read_text(encoding="utf-8")):
             parts = e.get("forms", {}).get("participles")
             if not parts:
                 continue
             word = e["word"]
             core = word[:-3] if word.endswith(" si") else word
-            if " " in core:      # multiword lemma — skip whole verb
+            if " " in core:
                 continue
             cats = classify([p["form"] for p in parts])
             if not cats:
                 continue
-            verbs.setdefault(word, {}).update(cats)
-    return verbs
+            forms.setdefault(word, {}).update(cats)
+            if is_pr:
+                for part in parts:
+                    cat = {"Present": "present", "Past": "past",
+                           "Passive": "passive"}.get(part.get("type"))
+                    if cat in ("present", "passive"):
+                        cls = accent_class(part, cat)
+                        if cls:
+                            accent[(word, cat)] = cls
+    return forms, accent
 
 
 # ── Emission ─────────────────────────────────────────────────────────────────
 def emit_decl_lexicons() -> list[str]:
-    """The shared continuation lexicons (cell endings, relative to the stem)."""
     L: list[str] = []
 
     def block(name, pairs):
@@ -174,54 +222,59 @@ def emit_decl_lexicons() -> list[str]:
             L.append(f"  {tag}:{end}  # ;")
         L.append("")
 
-    # Past-active: one lexicon, all 24 cells.
     block("PtcpPast", [(cell_tag(*c), PAST[c]) for c in CELLS])
-
-    # Present / passive: L-cells (accent-invariant, long stem) + the two halves of
-    # the accent-conditioned cells: heavy ending (on the short stem) and light
-    # ending (on the long stem).
-    for name, TAB in (("Pres", PRES), ("Pass", PASS)):
+    for name, TAB in TABLES.items():
+        # L-cells (weak endings, long stem — both classes).
         block(f"Ptcp{name}L",
               [(cell_tag(*c), TAB[c][1]) for c in CELLS if TAB[c][0] == "L"])
-        block(f"Ptcp{name}Heavy",
+        # Strong cells, mobile half: strong endings on the de-accented stem.
+        block(f"Ptcp{name}Strong",
               [(cell_tag(*c), TAB[c][1]) for c in CELLS if TAB[c][0] == "S"])
-        block(f"Ptcp{name}Light",
+        # Strong cells, barytone half: weak endings on the long stem.
+        block(f"Ptcp{name}Weak",
               [(cell_tag(*c), TAB[c][2]) for c in CELLS if TAB[c][0] == "S"])
     return L
 
 
-def emit_stems(verbs: dict) -> tuple[list[str], dict]:
+def emit_stems(forms: dict, accent: dict) -> tuple[list[str], dict]:
     L = ["LEXICON PtcpStems"]
-    stats = {"present": 0, "past": 0, "passive": 0, "passive_soft": 0}
-    for lemma in sorted(verbs):
-        cats = verbs[lemma]
+    stats = {"present": 0, "past": 0, "passive": 0, "passive_soft": 0,
+             "mob": 0, "bar": 0, "default_mob": 0}
+
+    def two_grade(cat, tag, name, lemma_esc, long_stem, lemma):
+        cls = accent.get((lemma, cat))
+        if cls is None:
+            cls = "mob"            # twanksta-only default (96 % majority)
+            stats["default_mob"] += 1
+        stats[cls] += 1
+        up = f"{lemma_esc}+V+Part+{tag}"
+        L.append(f"  {up}:{lexc_esc(long_stem)}  Ptcp{name}L ;")
+        if cls == "mob":
+            short = deaccent_stem(long_stem)
+            L.append(f"  {up}:{lexc_esc(short)}  Ptcp{name}Strong ;")
+        else:
+            L.append(f"  {up}:{lexc_esc(long_stem)}  Ptcp{name}Weak ;")
+
+    for lemma in sorted(forms):
+        cats = forms[lemma]
         lem = lexc_esc(lemma)
 
-        def two_grade(tag: str, long_stem: str, name: str):
-            """Emit the three stem entries for a two-grade (present/passive) ptcp:
-            long stem → L-cells and the light half; short stem → heavy half."""
-            short_stem = shorten_last_long(long_stem)
-            up = f"{lem}+V+Part+{tag}"
-            L.append(f"  {up}:{lexc_esc(long_stem)}  Ptcp{name}L ;")
-            L.append(f"  {up}:{lexc_esc(long_stem)}  Ptcp{name}Light ;")
-            L.append(f"  {up}:{lexc_esc(short_stem)}  Ptcp{name}Heavy ;")
-
         if "present" in cats:
-            two_grade("Pres", cats["present"][:-1], "Pres")   # strip masc-nom-sg -s
+            two_grade("present", "Pres", "Pres", lem, cats["present"][:-1], lemma)
             stats["present"] += 1
 
         if "past" in cats:
-            stem = cats["past"][:-3]               # strip -uns (invariant stem)
+            stem = cats["past"][:-3]
             L.append(f"  {lem}+V+Part+Pret:{lexc_esc(stem)}  PtcpPast ;")
             stats["past"] += 1
 
         if "passive" in cats:
             form = cats["passive"]
-            if form.endswith("ts"):                # hard t-stem passive
-                two_grade("Pass", form[:-1], "Pass")
+            if form.endswith("ts"):
+                two_grade("passive", "Pass", "Pass", lem, form[:-1], lemma)
                 stats["passive"] += 1
             else:
-                # soft/vowel-stem passive (≈6%, distinct paradigm): citation only.
+                # soft/vowel-stem passive (-tas, Standardvariation): citation only.
                 L.append(f"  {lem}+V+Part+Pass+Masc+Sg+Nom:{lexc_esc(form)}  # ;")
                 stats["passive_soft"] += 1
     L.append("")
@@ -229,22 +282,26 @@ def emit_stems(verbs: dict) -> tuple[list[str], dict]:
 
 
 def main():
-    verbs = collect()
+    forms, accent = collect()
     out = ["! Participle declension — generated by scripts/gen_participles.py",
            "! Source: data/external/{twanksta,prusaspira}_entries.json",
-           "! Present/passive use two stress-graded stems (long + shortened);",
-           "! past-active uses a single invariant stem.",
+           "! Accent shift (Rinkevičius 2009): mobile stems de-accent (shorten)",
+           "! under a strong ending; barytone stems keep stress and take weak",
+           "! endings. Class read per lemma from prusaspira full_declension;",
+           "! twanksta-only verbs default to mobile. See docs/FST_PARTICIPLES.md.",
            "",
            "LEXICON VParticiples",
            "  PtcpStems ;",
            ""]
-    stem_lines, stats = emit_stems(verbs)
+    stem_lines, stats = emit_stems(forms, accent)
     out += stem_lines
     out += emit_decl_lexicons()
     OUT.write_text("\n".join(out) + "\n", encoding="utf-8")
-    print(f"Wrote {OUT}  ({len(verbs)} verbs)")
+    print(f"Wrote {OUT}  ({len(forms)} verbs)")
     print(f"  present={stats['present']} past={stats['past']} "
-          f"passive(hard)={stats['passive']} passive(soft,citation)={stats['passive_soft']}")
+          f"passive(hard)={stats['passive']} passive(soft)={stats['passive_soft']}")
+    print(f"  accent: mob={stats['mob']} bar={stats['bar']} "
+          f"(default-mob for twanksta-only={stats['default_mob']})")
 
 
 if __name__ == "__main__":

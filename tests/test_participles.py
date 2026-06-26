@@ -5,12 +5,14 @@ For every verb in prusaspira_entries.json that carries declined participles,
 generate each attested cell (gender × case × number, all three participle types)
 through the FST and check the attested surface is among the generated variants.
 
-The present/passive participles have two stress-graded stems whose accent-
-conditioned cells surface in two length variants; the FST emits both, so a cell
-counts as covered when the attestation matches ANY generated variant.
+Present/passive decline with two stress-graded stems chosen by the lexeme's
+accent class (Rinkevičius 2009): a mobile stem de-accents under a strong ending,
+a barytone stem keeps its accent. Each cell therefore generates exactly one form.
 
-Pass criterion: ≥ 90 % of attested cells covered (the residual is the soft
-vowel-stem passive — modelled as citation-only — plus a corrupt source cell).
+Pass criterion: ≥ 95 % of attested cells covered. The residual (~4–5 %) is the
+soft -tas vowel-stem passive (modelled as citation-only, Standardvariation), one
+corrupt source cell (present Fem-Dat-Pl, rendered with `ț`), and a handful of
+verbs whose participle stem diverges between the two sources.
 """
 
 import json
@@ -22,7 +24,7 @@ FST = "fst/build/prusaspira.hfst"
 GENDER = {"m": "Masc", "f": "Fem", "n": "Neut"}
 CASE = {"Nominative": "Nom", "Genitive": "Gen", "Dative": "Dat", "Accusative": "Akk"}
 TYPE = {"Present": "Pres", "Past": "Pret", "Passive": "Pass"}
-THRESHOLD = 90.0
+THRESHOLD = 95.0
 
 
 def collect_pairs():
