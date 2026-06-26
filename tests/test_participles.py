@@ -5,14 +5,16 @@ For every verb in prusaspira_entries.json that carries declined participles,
 generate each attested cell (gender × case × number, all three participle types)
 through the FST and check the attested surface is among the generated variants.
 
-Present/passive decline with two stress-graded stems chosen by the lexeme's
-accent class (Rinkevičius 2009): a mobile stem de-accents under a strong ending,
-a barytone stem keeps its accent. Each cell therefore generates exactly one form.
+Each verb stores ONE citation stem per participle; the accent shift (Rinkevičius
+2009) is a twolc rule: a mobile stem's strong endings carry a DEAC trigger that
+shortens the preceding long stem vowels, a barytone stem routes through endings
+without it. Each cell therefore generates exactly one form.
 
-Pass criterion: ≥ 95 % of attested cells covered. The residual (~4–5 %) is the
-soft -tas vowel-stem passive (modelled as citation-only, Standardvariation), one
-corrupt source cell (present Fem-Dat-Pl, rendered with `ț`), and a handful of
-verbs whose participle stem diverges between the two sources.
+Pass criterion: ≥ 95 % of attested cells covered. The residual (~5 %) is the
+soft -tas vowel-stem passive (citation-only, Standardvariation), one corrupt
+source cell (present Fem-Dat-Pl, rendered with `ț`), and ~99 mobile verbs whose
+strong-cell accent exponent is a medial geminate rather than a long vowel — not
+capturable by the vowel-shortening rule. See docs/FST_PARTICIPLES.md.
 """
 
 import json
@@ -65,7 +67,7 @@ def main():
     pairs = collect_pairs()
     inp = "\n".join(a for a, _, _ in pairs) + "\n"
     out = subprocess.run(["hfst-lookup", "-q", FST], input=inp,
-                         capture_output=True, text=True, timeout=120).stdout
+                         capture_output=True, text=True, timeout=600).stdout
     gen = {}
     for line in out.splitlines():
         if not line.strip():

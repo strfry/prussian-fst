@@ -27,6 +27,11 @@ Multichar_Symbols
   +P2   ! 2nd person
   +P3   ! 3rd person
 
+  ! Morphophonology trigger: deaccent (mobile stem under a strong participle
+  ! ending). Sits on the surface tape at the stem|ending boundary; stress.twolc
+  ! shortens the preceding long stem vowel / degeminates, then deletes it.
+  DEAC
+
   ! Flag diacritics for divergence layers
   @P.standard.prusaspira@
   @P.standard.twanksta@

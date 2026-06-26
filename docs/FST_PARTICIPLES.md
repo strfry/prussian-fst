@@ -1,9 +1,15 @@
 # Partizip-Deklination im FST
 
-Generiert von [`scripts/gen_participles.py`](../scripts/gen_participles.py) nach
-[`fst/verb_participles.lexc`](../fst/verb_participles.lexc); im Build über die
-`Makefile`-Liste `LEXC_FILES` eingehängt, erreichbar aus `root.lexc` via
-`LEXICON VParticiples`.
+Drei Dateien, klare Arbeitsteilung:
+
+| Datei | Inhalt | Pflege |
+|-------|--------|--------|
+| [`fst/verb_participles.lexc`](../fst/verb_participles.lexc) | die fünf Endungsparadigmen (Past, Pres·Mob/Bar, Pass·Mob/Bar) | **von Hand** |
+| [`fst/stress.twolc`](../fst/stress.twolc) | Akzentshift-Regel (Vokalkürzung) | **von Hand** |
+| [`fst/verb_participle_stems.lexc`](../fst/verb_participle_stems.lexc) | ein Zitierstamm je Verb je Partizip + Routing | generiert ([`scripts/gen_participles.py`](../scripts/gen_participles.py)) |
+
+Eingehängt über die `Makefile`-Liste `LEXC_FILES`, erreichbar aus `root.lexc`
+via `LEXICON VParticiples`.
 
 ## Datenquelle
 
@@ -19,53 +25,51 @@ Partizipien in fester Reihenfolge **[Präsens-Aktiv, Prät.-Aktiv, Passiv]**:
 (`full_declension`, Genus × Kasus × Numerus) — sie ist die Validierungsgrundlage
 (`tests/test_participles.py`).
 
-## Kernproblem: Gemination / Vokallänge
+## Stamm: ein Zitierstamm je Partizip
 
-Der FST konkateniert literal und hat **keine** aktive Phonologie-Ebene
-(`stress.twolc` ist noch ein No-op; Gemination/Makron stehen direkt im Lexc).
-Jedes der drei Partizipien braucht daher seinen **eigenen, korrekt gradierten
-Stamm** — nicht einen aus dem Verbstamm abgeleiteten:
+Der FST konkateniert literal. Jedes der drei Partizipien dekliniert wie ein
+Adjektiv aus **einem** Stamm — dem langen (barytonen) Zitierstamm, gewonnen aus
+seiner eigenen attestierten Mask-Nom-Sg-Form (Endung abstreifen). Damit ist die
+Gemination/Länge der Grundform automatisch korrekt:
 
-| Partizip | Form  | Stamm | Endung |
-|----------|-------|-------|--------|
-| Präsens  | imānts | `im`  | `ānts` (keine Gemination!) |
-| Prät-Akt | immuns | `imm` | `uns`  (Gemination) |
-| Passiv   | īmts   | `īm`  | `ts`   |
+| Partizip | Form  | Stamm | Paradigma |
+|----------|-------|-------|-----------|
+| Präsens  | imānts | `imān`  | `PtcpPres{Mob,Bar}` |
+| Prät-Akt | immuns | `imm`   | `PtcpPast` |
+| Passiv   | īmts   | `īm`    | `PtcpPass{Mob,Bar}` |
 
-Der Stamm wird je Partizip aus seiner **eigenen** attestierten Mask-Nom-Sg-Form
-gewonnen (Endung abstreifen). Damit ist die Gemination automatisch korrekt.
+Die finiten Verbstämme (Indikativ `imm`, Infinitiv `īm`) passen **nicht** als
+Partizipstamm: das Präsenspartizip braucht den entgeminierten Grad (`imān`, nicht
+`imm`), der sich weder aus dem Indikativ- noch aus dem Infinitivstamm ergibt.
 
-## Akzentverschiebung: zwei Stammgrade (Präsens & Passiv)
+## Akzentshift als twolc-Regel (Präsens & Passiv)
 
-Präsens (≈ P29) und Passiv (≈ P69, harter t-Stamm) flektieren mit **zwei
-betonungsbedingten Stammgraden**, gesteuert von der **Akzentklasse des Lexems**
-(Rinkevičius 2009, [docs/AKZENT.md](AKZENT.md)):
+Präsens (≈ P29) und Passiv (≈ P69) flektieren mit **zwei betonungsbedingten
+Stammgraden** (Rinkevičius 2009, [docs/AKZENT.md](AKZENT.md)):
 
 - **Barytona** (feste Stammbetonung): der Stamm behält in *allen* Zellen seinen
-  Akzent (Makron/Gemination); die Endungen sind durchweg schwach/entakzentuiert
-  → `abōnit-ai`, `abōnit-i`.
-- **Mobilia** (mobile Betonung): eine **starke Endung** zieht den Akzent vom
-  Stamm; dort ist der Wurzelvokal unbetont — er **entakzentuiert** — und die
-  Endung erscheint „schwer“ → `dat-āi`, `dant-immans`, `dant-ī`.
+  Akzent; die Endungen sind durchweg schwach → `abōnit-i`, `abōnit-ai`.
+- **Mobilia** (mobile Betonung): in den **starken Zellen** zieht die Endung den
+  Akzent vom Stamm; der Wurzelvokal entakzentuiert → `aikant-ī`, `aikat-āi`.
 
-Starke Zellen sind **Dat-Pl** und **Fem-Nom-Sg** (Präsens), beim Passiv
-zusätzlich **Nom-Pl**. Die Entakzentuierung eines mobilen Stamms entfernt das
-Akzentexponent der betonten Silbe — Rinkevičius §1: das ist entweder ein
-**Langvokal** (Makron/Gravis) **oder** die **Gemination** des Folgekonsonanten
-(Kürzezeichen). `deaccent_stem` kürzt daher Lang-/Gravisvokale **und**
-entgeminiert (`adressit → adresit`, `dānt → dant`, `ausàkstint → ausakstint`).
+Starke Zellen sind **Dat-Pl** und **Fem-Nom-Sg** (Präsens), beim Passiv zusätzlich
+**Nom-Pl**. Statt für jedes Lexem einen vorberechneten Kurzstamm abzulegen, tragen
+die **starken Endungen der `…Mob`-Paradigmen** ein `DEAC`-Trigger-Symbol an der
+Stamm-Endungs-Grenze. `stress.twolc` kürzt davor jeden langen/gravischen
+Stammvokal und löscht den Trigger:
 
-Die Akzentklasse ist **lexikalisch idiosynkratisch** — aus der Zitierform
-(Nom-Sg, wo beide Klassen langen Stamm zeigen) **nicht** ableitbar. Sie wird
-darum pro Lemma aus prusaspiras `full_declension` gelesen (starkes vs schwaches
-Allomorph in einer starken Zelle: `ī`/`i`, `āi`/`ai`) und im FST hinterlegt;
-twanksta-only-Verben bekommen den Default `mob` (die 96-%-Mehrheit). Verteilung:
-**96 % mobil, 4–5 % baryton**, Präsens/Passiv desselben Verbs zu 99,8 % gleich.
+```
+aikānt DEAC ī   →  aikantī
+aikāt  DEAC āi  →  aikatāi      (das ā der Endung bleibt — es steht nach DEAC)
+```
 
-Pro Zelle wird so **genau eine** korrekte Form generiert (keine Überproduktion).
-
-Das **Prät.-Aktiv-Partizip** (≈ P68, `-uns`/`-us-`) hat einen invarianten Stamm
-ohne Akzentwechsel und dekliniert vollständig aus einem Stamm + festen Endungen.
+Die `…Bar`-Paradigmen nehmen in denselben Zellen die schwache Endung ohne Trigger;
+der Stamm bleibt lang. Die **Akzentklasse ist lexikalisch idiosynkratisch** — aus
+der Zitierform nicht ableitbar — und wird pro Lemma aus prusaspiras
+`full_declension` gelesen (starkes vs schwaches Allomorph in einer starken Zelle:
+Präsens Fem-Nom-Sg `ī`/`i`, Passiv Mask-Nom-Pl `āi`/`ai`); twanksta-only-Verben
+bekommen den Default `Mob` (die 96-%-Mehrheit). Das **Prät.-Aktiv-Partizip**
+(≈ P68) hat einen invarianten Stamm ohne Akzentwechsel.
 
 ## Tagschema
 
@@ -73,22 +77,27 @@ ohne Akzentwechsel und dekliniert vollständig aus einem Stamm + festen Endungen
 <lemma>+V+Part+<Pres|Pret|Pass>+<Masc|Fem|Neut>+<Sg|Pl>+<Nom|Gen|Dat|Akk>
 ```
 
-Reflexiva behalten `% si` im Analyse-Lemma; die Oberfläche lässt das Klitikon
-weg (wie bei den finiten Reflexivverben).
+Reflexiva behalten `% si` im Analyse-Lemma; die Oberfläche lässt das Klitikon weg.
 
 ## Abdeckung (gegen `prusaspira full_declension`, 116 520 Zellen)
 
 | Partizip | exakt | Anmerkung |
 |----------|-------|-----------|
 | Prät-Akt | 99,7 % | invarianter Stamm, vollständig regulär |
-| Präsens  | 95,3 % | ≈ 99,4 % ohne die **korrupte** Quellzelle Fem-Dat-Pl (`ț`) |
-| Passiv   | 90,5 % | weicher `-tas`-Vokalstamm-Passiv (≈ 6 %) nur als Zitierform |
-| **gesamt** | **95,6 %** | **99,6 %** der *bewertbaren* Zellen |
+| Präsens  | 95,3 % | ≈ 99 % ohne die **korrupte** Quellzelle Fem-Dat-Pl (`ț`) |
+| Passiv   | 88,6 % | weicher `-tas`-Passiv + Geminat-Entakzentuierung (s. u.) |
+| **gesamt** | **95,0 %** | |
 
-Verbleibende Lücken: (a) der weiche `-tas`-Passiv (eigenes Mini-Paradigma,
-Standardvariation zwischen den Quellen — hier nur Mask-Nom-Sg-Zitierform),
-(b) eine in der Quelle korrupt gerenderte Zelle (`ț`), (c) ~7 Verben mit
-quellenabweichendem Partizipstamm.
+Verbleibende Lücken:
+1. **Korrupte Quellzelle**: Präsens Fem-Dat-Pl ist in der Quelle mit `ț`
+   (t-Cedille statt `t`) gerendert — unmatchbar, betrifft ~1 760 Zellen.
+2. **Weicher `-tas`-Vokalstamm-Passiv** (Standardvariation, eigenes Thema): nur
+   als Mask-Nom-Sg-Zitierform abgelegt.
+3. **Geminat-Entakzentuierung**: bei ~99 mobilen Verben ist der Akzentexponent ein
+   *medialer Geminat* (`audribbint → audribint`), kein Langvokal. Die twolc-Regel
+   kürzt nur Vokale; eine stabile Geminat-Tilgungsregel ist in hfst-twolc nicht
+   formulierbar (Tilgungsregeln mit Kleene-Stern-Kontext explodieren). Diese
+   wenigen starken Passivzellen bleiben langgradig.
 
 Neu generieren:
 

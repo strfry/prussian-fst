@@ -5,7 +5,7 @@
 #   make twanksta  — build twanksta
 #   make clean
 
-LEXC_FILES := symbols.lexc root.lexc nom_stems.lexc nom_paradigms.lexc verb_stems.lexc verb_paradigms.lexc verb_participles.lexc
+LEXC_FILES := symbols.lexc root.lexc nom_stems.lexc nom_paradigms.lexc verb_stems.lexc verb_paradigms.lexc verb_participles.lexc verb_participle_stems.lexc
 LEXC_MERGED := build/lexc.merged
 
 TWOL_STRESS := stress.twolc
