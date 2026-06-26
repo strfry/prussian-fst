@@ -1283,3 +1283,30 @@ LEXICON Part70
   +Pl+Dat+Neut:tirtēimans  # ;
   +Pl+Gen+Neut:tirtēisan  # ;
   +Pl+Nom+Neut:tirtāi  # ;
+
+! P27 — abipussis (adjective, 3-gender)
+LEXICON A27
+  +Sg+Nom+Masc:abipussis  # ;
+  +Pl+Nom+Masc:abipuššai  # ;
+  +Sg+Gen+Masc:abipussis  # ;
+  +Pl+Gen+Masc:abipussin  # ;
+  +Sg+Dat+Masc:abipussismu  # ;
+  +Pl+Dat+Masc:abipussimans  # ;
+  +Sg+Akk+Masc:abipussin  # ;
+  +Pl+Akk+Masc:abipussins  # ;
+  +Sg+Nom+Fem:abipussi  # ;
+  +Pl+Nom+Fem:abipussis  # ;
+  +Sg+Gen+Fem:abipussis  # ;
+  +Pl+Gen+Fem:abipussin  # ;
+  +Sg+Dat+Fem:abipuššai  # ;
+  +Pl+Dat+Fem:abipussimans  # ;
+  +Sg+Akk+Fem:abipussin  # ;
+  +Pl+Akk+Fem:abipussins  # ;
+  +Sg+Nom+Neut:abipussi  # ;
+  +Pl+Nom+Neut:abipuššai  # ;
+  +Sg+Gen+Neut:abipussis  # ;
+  +Pl+Gen+Neut:abipussin  # ;
+  +Sg+Dat+Neut:abipussismu  # ;
+  +Pl+Dat+Neut:abipussimans  # ;
+  +Sg+Akk+Neut:abipussi  # ;
+  +Pl+Akk+Neut:abipussins  # ;
