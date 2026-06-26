@@ -1,246 +1,6 @@
-! Verb paradigm endings.
+! Verb paradigm endings — bare stems + endings.
 
-! 138 — abōnitun
-LEXICON V138_pres
-  +Pres+P1+Sg:  # ;
-  +Pres+P2+Sg:  # ;
-  +Pres+P3+Sg:  # ;
-  +Pres+P1+Pl:mai  # ;
-  +Pres+P2+Pl:tei  # ;
-  +Pres+P3+Pl:  # ;
-LEXICON V138_pret
-  +Pret+P1+Sg:i  # ;
-  +Pret+P2+Sg:i  # ;
-  +Pret+P3+Sg:i  # ;
-  +Pret+P1+Pl:imai  # ;
-  +Pret+P2+Pl:itei  # ;
-  +Pret+P3+Pl:i  # ;
-
-! 132 — aikātun
-LEXICON V132_pres
-  +Pres+P1+Sg:  # ;
-  +Pres+P2+Sg:  # ;
-  +Pres+P3+Sg:  # ;
-  +Pres+P1+Pl:mai  # ;
-  +Pres+P2+Pl:tei  # ;
-  +Pres+P3+Pl:  # ;
-LEXICON V132_pret
-  +Pret+P1+Sg:i  # ;
-  +Pret+P2+Sg:i  # ;
-  +Pret+P3+Sg:i  # ;
-  +Pret+P1+Pl:imai  # ;
-  +Pret+P2+Pl:itei  # ;
-  +Pret+P3+Pl:i  # ;
-
-! 85 — ainapreslintun
-LEXICON V85_pres
-  +Pres+P1+Sg:a  # ;
-  +Pres+P2+Sg:a  # ;
-  +Pres+P3+Sg:a  # ;
-  +Pres+P1+Pl:imai  # ;
-  +Pres+P2+Pl:itei  # ;
-  +Pres+P3+Pl:a  # ;
-LEXICON V85_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
-
-! 95 — āistwei
-LEXICON V95_pres
-  +Pres+P1+Sg:a  # ;
-  +Pres+P2+Sg:a  # ;
-  +Pres+P3+Sg:a  # ;
-  +Pres+P1+Pl:imai  # ;
-  +Pres+P2+Pl:itei  # ;
-  +Pres+P3+Pl:a  # ;
-LEXICON V95_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
-
-! 139 — akcēntitun
-LEXICON V139_pres
-  +Pres+P1+Sg:  # ;
-  +Pres+P2+Sg:  # ;
-  +Pres+P3+Sg:  # ;
-  +Pres+P1+Pl:mai  # ;
-  +Pres+P2+Pl:tei  # ;
-  +Pres+P3+Pl:  # ;
-LEXICON V139_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
-
-! 143 — alkautwei
-LEXICON V143_pres
-  +Pres+P1+Sg:ui  # ;
-  +Pres+P2+Sg:ui  # ;
-  +Pres+P3+Sg:ui  # ;
-  +Pres+P1+Pl:wimai  # ;
-  +Pres+P2+Pl:witei  # ;
-  +Pres+P3+Pl:ui  # ;
-LEXICON V143_pret
-  +Pret+P1+Sg:u  # ;
-  +Pret+P2+Sg:u  # ;
-  +Pret+P3+Sg:u  # ;
-  +Pret+P1+Pl:umai  # ;
-  +Pret+P2+Pl:utei  # ;
-  +Pret+P3+Pl:u  # ;
-
-! 92 — alktwei
-LEXICON V92_pres
-  +Pres+P1+Sg:a  # ;
-  +Pres+P2+Sg:a  # ;
-  +Pres+P3+Sg:a  # ;
-  +Pres+P1+Pl:imai  # ;
-  +Pres+P2+Pl:itei  # ;
-  +Pres+P3+Pl:a  # ;
-LEXICON V92_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
-
-! 131 — āngautwei
-LEXICON V131_pres
-  +Pres+P1+Sg:  # ;
-  +Pres+P2+Sg:  # ;
-  +Pres+P3+Sg:  # ;
-  +Pres+P1+Pl:mai  # ;
-  +Pres+P2+Pl:tei  # ;
-  +Pres+P3+Pl:  # ;
-LEXICON V131_pret
-  +Pret+P1+Sg:i  # ;
-  +Pret+P2+Sg:i  # ;
-  +Pret+P3+Sg:i  # ;
-  +Pret+P1+Pl:imai  # ;
-  +Pret+P2+Pl:itei  # ;
-  +Pret+P3+Pl:i  # ;
-
-! 75 — anktwei
-LEXICON V75_pres
-  +Pres+P1+Sg:e  # ;
-  +Pres+P2+Sg:e  # ;
-  +Pres+P3+Sg:e  # ;
-  +Pres+P1+Pl:imai  # ;
-  +Pres+P2+Pl:itei  # ;
-  +Pres+P3+Pl:e  # ;
-LEXICON V75_pret
-  +Pret+P1+Sg:i  # ;
-  +Pret+P2+Sg:i  # ;
-  +Pret+P3+Sg:i  # ;
-  +Pret+P1+Pl:imai  # ;
-  +Pret+P2+Pl:itei  # ;
-  +Pret+P3+Pl:i  # ;
-
-! 118 — audātun si
-LEXICON V118_pres
-  +Pres+P1+Sg:% si  # ;
-  +Pres+P2+Sg:audāsei% si  # ;
-  +Pres+P3+Sg:audāst% si  # ;
-  +Pres+P1+Pl:i% si  # ;
-  +Pres+P2+Pl:audātei% si  # ;
-  +Pres+P3+Pl:audāst% si  # ;
-LEXICON V118_pret
-  +Pret+P1+Sg:i  # ;
-  +Pret+P2+Sg:i  # ;
-  +Pret+P3+Sg:i  # ;
-  +Pret+P1+Pl:imai  # ;
-  +Pret+P2+Pl:itei  # ;
-  +Pret+P3+Pl:i  # ;
-
-! 121 — audītun
-LEXICON V121_pres
-  +Pres+P1+Sg:  # ;
-  +Pres+P2+Sg:audessei  # ;
-  +Pres+P3+Sg:audest  # ;
-  +Pres+P1+Pl:i  # ;
-  +Pres+P2+Pl:audestei  # ;
-  +Pres+P3+Pl:audest  # ;
-LEXICON V121_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
-
-! 83 — audumtun
-LEXICON V83_pres
-  +Pres+P1+Sg:ja  # ;
-  +Pres+P2+Sg:ja  # ;
-  +Pres+P3+Sg:ja  # ;
-  +Pres+P1+Pl:imai  # ;
-  +Pres+P2+Pl:itei  # ;
-  +Pres+P3+Pl:ja  # ;
-LEXICON V83_pret
-  +Pret+P1+Sg:i  # ;
-  +Pret+P2+Sg:i  # ;
-  +Pret+P3+Sg:i  # ;
-  +Pret+P1+Pl:imai  # ;
-  +Pret+P2+Pl:itei  # ;
-  +Pret+P3+Pl:i  # ;
-
-! 111 — augaūtun
-LEXICON V111_pres
-  +Pres+P1+Sg:e  # ;
-  +Pres+P2+Sg:e  # ;
-  +Pres+P3+Sg:e  # ;
-  +Pres+P1+Pl:imai  # ;
-  +Pres+P2+Pl:itei  # ;
-  +Pres+P3+Pl:e  # ;
-LEXICON V111_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
-
-! 81 — augertun
-LEXICON V81_pres
-  +Pres+P1+Sg:e  # ;
-  +Pres+P2+Sg:e  # ;
-  +Pres+P3+Sg:e  # ;
-  +Pres+P1+Pl:imai  # ;
-  +Pres+P2+Pl:itei  # ;
-  +Pres+P3+Pl:e  # ;
-LEXICON V81_pret
-  +Pret+P1+Sg:i  # ;
-  +Pret+P2+Sg:i  # ;
-  +Pret+P3+Sg:i  # ;
-  +Pret+P1+Pl:imai  # ;
-  +Pret+P2+Pl:itei  # ;
-  +Pret+P3+Pl:i  # ;
-
-! 77 — augraūstun
-LEXICON V77_pres
-  +Pres+P1+Sg:e  # ;
-  +Pres+P2+Sg:e  # ;
-  +Pres+P3+Sg:e  # ;
-  +Pres+P1+Pl:imai  # ;
-  +Pres+P2+Pl:itei  # ;
-  +Pres+P3+Pl:e  # ;
-LEXICON V77_pret
-  +Pret+P1+Sg:i  # ;
-  +Pret+P2+Sg:i  # ;
-  +Pret+P3+Sg:i  # ;
-  +Pret+P1+Pl:imai  # ;
-  +Pret+P2+Pl:itei  # ;
-  +Pret+P3+Pl:i  # ;
-
-! 71 — auīmtun
+! 71 — auīmtun  PS='auimm' PT='auimmi'
 LEXICON V71_pres
   +Pres+P1+Sg:a  # ;
   +Pres+P2+Sg:a  # ;
@@ -249,94 +9,14 @@ LEXICON V71_pres
   +Pres+P2+Pl:itei  # ;
   +Pres+P3+Pl:a  # ;
 LEXICON V71_pret
-  +Pret+P1+Sg:i  # ;
-  +Pret+P2+Sg:i  # ;
-  +Pret+P3+Sg:i  # ;
-  +Pret+P1+Pl:imai  # ;
-  +Pret+P2+Pl:itei  # ;
-  +Pret+P3+Pl:i  # ;
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
 
-! 119 — aujātwei
-LEXICON V119_pres
-  +Pres+P1+Sg:  # ;
-  +Pres+P2+Sg:aujāsei  # ;
-  +Pres+P3+Sg:aujāt  # ;
-  +Pres+P1+Pl:i  # ;
-  +Pres+P2+Pl:aujātei  # ;
-  +Pres+P3+Pl:aujāt  # ;
-LEXICON V119_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
-
-! 87 — aukanstun
-LEXICON V87_pres
-  +Pres+P1+Sg:a  # ;
-  +Pres+P2+Sg:a  # ;
-  +Pres+P3+Sg:a  # ;
-  +Pres+P1+Pl:imai  # ;
-  +Pres+P2+Pl:itei  # ;
-  +Pres+P3+Pl:a  # ;
-LEXICON V87_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
-
-! 144 — auklaūtun
-LEXICON V144_pres
-  +Pres+P1+Sg:a  # ;
-  +Pres+P2+Sg:a  # ;
-  +Pres+P3+Sg:a  # ;
-  +Pres+P1+Pl:imai  # ;
-  +Pres+P2+Pl:itei  # ;
-  +Pres+P3+Pl:a  # ;
-LEXICON V144_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
-
-! 97 — aukliptun
-LEXICON V97_pres
-  +Pres+P1+Sg:a  # ;
-  +Pres+P2+Sg:a  # ;
-  +Pres+P3+Sg:a  # ;
-  +Pres+P1+Pl:imai  # ;
-  +Pres+P2+Pl:itei  # ;
-  +Pres+P3+Pl:a  # ;
-LEXICON V97_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
-
-! 140 — aumadlītun
-LEXICON V140_pres
-  +Pres+P1+Sg:  # ;
-  +Pres+P2+Sg:  # ;
-  +Pres+P3+Sg:  # ;
-  +Pres+P1+Pl:mai  # ;
-  +Pres+P2+Pl:tei  # ;
-  +Pres+P3+Pl:  # ;
-LEXICON V140_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
-
-! 72 — aumestun
+! 72 — aumestun  PS='aumett' PT='aumetti'
 LEXICON V72_pres
   +Pres+P1+Sg:a  # ;
   +Pres+P2+Sg:a  # ;
@@ -345,126 +25,14 @@ LEXICON V72_pres
   +Pres+P2+Pl:itei  # ;
   +Pres+P3+Pl:a  # ;
 LEXICON V72_pret
-  +Pret+P1+Sg:i  # ;
-  +Pret+P2+Sg:i  # ;
-  +Pret+P3+Sg:i  # ;
-  +Pret+P1+Pl:imai  # ;
-  +Pret+P2+Pl:itei  # ;
-  +Pret+P3+Pl:i  # ;
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
 
-! 137 — auminītwei
-LEXICON V137_pres
-  +Pres+P1+Sg:  # ;
-  +Pres+P2+Sg:  # ;
-  +Pres+P3+Sg:  # ;
-  +Pres+P1+Pl:mai  # ;
-  +Pres+P2+Pl:tei  # ;
-  +Pres+P3+Pl:  # ;
-LEXICON V137_pret
-  +Pret+P1+Sg:i  # ;
-  +Pret+P2+Sg:i  # ;
-  +Pret+P3+Sg:i  # ;
-  +Pret+P1+Pl:imai  # ;
-  +Pret+P2+Pl:itei  # ;
-  +Pret+P3+Pl:i  # ;
-
-! 113 — aumūtun
-LEXICON V113_pres
-  +Pres+P1+Sg:a  # ;
-  +Pres+P2+Sg:a  # ;
-  +Pres+P3+Sg:a  # ;
-  +Pres+P1+Pl:imai  # ;
-  +Pres+P2+Pl:itei  # ;
-  +Pres+P3+Pl:a  # ;
-LEXICON V113_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
-
-! 134 — aupaikītun
-LEXICON V134_pres
-  +Pres+P1+Sg:  # ;
-  +Pres+P2+Sg:  # ;
-  +Pres+P3+Sg:  # ;
-  +Pres+P1+Pl:mai  # ;
-  +Pres+P2+Pl:tei  # ;
-  +Pres+P3+Pl:  # ;
-LEXICON V134_pret
-  +Pret+P1+Sg:i  # ;
-  +Pret+P2+Sg:i  # ;
-  +Pret+P3+Sg:i  # ;
-  +Pret+P1+Pl:imai  # ;
-  +Pret+P2+Pl:itei  # ;
-  +Pret+P3+Pl:i  # ;
-
-! 94 — auplūstwei
-LEXICON V94_pres
-  +Pres+P1+Sg:a  # ;
-  +Pres+P2+Sg:a  # ;
-  +Pres+P3+Sg:a  # ;
-  +Pres+P1+Pl:imai  # ;
-  +Pres+P2+Pl:itei  # ;
-  +Pres+P3+Pl:a  # ;
-LEXICON V94_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
-
-! 93 — auprestun
-LEXICON V93_pres
-  +Pres+P1+Sg:a  # ;
-  +Pres+P2+Sg:a  # ;
-  +Pres+P3+Sg:a  # ;
-  +Pres+P1+Pl:imai  # ;
-  +Pres+P2+Pl:itei  # ;
-  +Pres+P3+Pl:a  # ;
-LEXICON V93_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
-
-! 76 — aupūstun
-LEXICON V76_pres
-  +Pres+P1+Sg:e  # ;
-  +Pres+P2+Sg:e  # ;
-  +Pres+P3+Sg:e  # ;
-  +Pres+P1+Pl:imai  # ;
-  +Pres+P2+Pl:itei  # ;
-  +Pres+P3+Pl:e  # ;
-LEXICON V76_pret
-  +Pret+P1+Sg:i  # ;
-  +Pret+P2+Sg:i  # ;
-  +Pret+P3+Sg:i  # ;
-  +Pret+P1+Pl:imai  # ;
-  +Pret+P2+Pl:itei  # ;
-  +Pret+P3+Pl:i  # ;
-
-! 108 — ausītun
-LEXICON V108_pres
-  +Pres+P1+Sg:ja  # ;
-  +Pres+P2+Sg:ja  # ;
-  +Pres+P3+Sg:ja  # ;
-  +Pres+P1+Pl:mai  # ;
-  +Pres+P2+Pl:tei  # ;
-  +Pres+P3+Pl:ja  # ;
-LEXICON V108_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
-
-! 73 — aušpānstun
+! 73 — aušpānstun  PS='aušpānd' PT='aušpāndi'
 LEXICON V73_pres
   +Pres+P1+Sg:a  # ;
   +Pres+P2+Sg:a  # ;
@@ -473,238 +41,62 @@ LEXICON V73_pres
   +Pres+P2+Pl:itei  # ;
   +Pres+P3+Pl:a  # ;
 LEXICON V73_pret
-  +Pret+P1+Sg:i  # ;
-  +Pret+P2+Sg:i  # ;
-  +Pret+P3+Sg:i  # ;
-  +Pret+P1+Pl:imai  # ;
-  +Pret+P2+Pl:itei  # ;
-  +Pret+P3+Pl:i  # ;
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
 
-! 89 — austebtwei
-LEXICON V89_pres
-  +Pres+P1+Sg:a  # ;
-  +Pres+P2+Sg:a  # ;
-  +Pres+P3+Sg:a  # ;
+! 75 — anktwei  PS='ank' PT='anki'
+LEXICON V75_pres
+  +Pres+P1+Sg:e  # ;
+  +Pres+P2+Sg:e  # ;
+  +Pres+P3+Sg:e  # ;
   +Pres+P1+Pl:imai  # ;
   +Pres+P2+Pl:itei  # ;
-  +Pres+P3+Pl:a  # ;
-LEXICON V89_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
+  +Pres+P3+Pl:e  # ;
+LEXICON V75_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
 
-! 79 — autēnstun
-LEXICON V79_pres
-  +Pres+P1+Sg:ša  # ;
-  +Pres+P2+Sg:ša  # ;
-  +Pres+P3+Sg:ša  # ;
-  +Pres+P1+Pl:simai  # ;
-  +Pres+P2+Pl:sitei  # ;
-  +Pres+P3+Pl:ša  # ;
-LEXICON V79_pret
-  +Pret+P1+Sg:i  # ;
-  +Pret+P2+Sg:i  # ;
-  +Pret+P3+Sg:i  # ;
-  +Pret+P1+Pl:imai  # ;
-  +Pret+P2+Pl:itei  # ;
-  +Pret+P3+Pl:i  # ;
-
-! 126 — auwiltun
-LEXICON V126_pres
-  +Pres+P1+Sg:  # ;
-  +Pres+P2+Sg:auwelsei  # ;
-  +Pres+P3+Sg:auwelt  # ;
-  +Pres+P1+Pl:i  # ;
-  +Pres+P2+Pl:auweltei  # ;
-  +Pres+P3+Pl:auwelt  # ;
-LEXICON V126_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
-
-! 109 — auwirtwei
-LEXICON V109_pres
-  +Pres+P1+Sg:a  # ;
-  +Pres+P2+Sg:a  # ;
-  +Pres+P3+Sg:a  # ;
+! 76 — aupūstun  PS='aupūt' PT='aupūti'
+LEXICON V76_pres
+  +Pres+P1+Sg:e  # ;
+  +Pres+P2+Sg:e  # ;
+  +Pres+P3+Sg:e  # ;
   +Pres+P1+Pl:imai  # ;
   +Pres+P2+Pl:itei  # ;
-  +Pres+P3+Pl:a  # ;
-LEXICON V109_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
+  +Pres+P3+Pl:e  # ;
+LEXICON V76_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
 
-! 142 — bandātwei
-LEXICON V142_pres
-  +Pres+P1+Sg:a  # ;
-  +Pres+P2+Sg:a  # ;
-  +Pres+P3+Sg:a  # ;
+! 77 — augraūstun  PS='augraūd' PT='augraūdi'
+LEXICON V77_pres
+  +Pres+P1+Sg:e  # ;
+  +Pres+P2+Sg:e  # ;
+  +Pres+P3+Sg:e  # ;
   +Pres+P1+Pl:imai  # ;
   +Pres+P2+Pl:itei  # ;
-  +Pres+P3+Pl:a  # ;
-LEXICON V142_pret
-  +Pret+P1+Sg:i  # ;
-  +Pret+P2+Sg:i  # ;
-  +Pret+P3+Sg:i  # ;
-  +Pret+P1+Pl:imai  # ;
-  +Pret+P2+Pl:itei  # ;
-  +Pret+P3+Pl:i  # ;
+  +Pres+P3+Pl:e  # ;
+LEXICON V77_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
 
-! 90 — bustwei
-LEXICON V90_pres
-  +Pres+P1+Sg:a  # ;
-  +Pres+P2+Sg:a  # ;
-  +Pres+P3+Sg:a  # ;
-  +Pres+P1+Pl:imai  # ;
-  +Pres+P2+Pl:itei  # ;
-  +Pres+P3+Pl:a  # ;
-LEXICON V90_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
-
-! 115 — būtwei
-LEXICON V115_pres
-  +Pres+P1+Sg:  # ;
-  +Pres+P2+Sg:assei  # ;
-  +Pres+P3+Sg:ast  # ;
-  +Pres+P1+Pl:i  # ;
-  +Pres+P2+Pl:astei  # ;
-  +Pres+P3+Pl:ast  # ;
-LEXICON V115_pret
-  +Pret+P1+Sg:i  # ;
-  +Pret+P2+Sg:i  # ;
-  +Pret+P3+Sg:i  # ;
-  +Pret+P1+Pl:imai  # ;
-  +Pret+P2+Pl:itei  # ;
-  +Pret+P3+Pl:i  # ;
-
-! 125 — dīgtwei
-LEXICON V125_pres
-  +Pres+P1+Sg:  # ;
-  +Pres+P2+Sg:deīgsei  # ;
-  +Pres+P3+Sg:deīgt  # ;
-  +Pres+P1+Pl:i  # ;
-  +Pres+P2+Pl:deīgtei  # ;
-  +Pres+P3+Pl:deīgt  # ;
-LEXICON V125_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
-
-! 120 — dītun
-LEXICON V120_pres
-  +Pres+P1+Sg:  # ;
-  +Pres+P2+Sg:dīsei  # ;
-  +Pres+P3+Sg:dīt  # ;
-  +Pres+P1+Pl:i  # ;
-  +Pres+P2+Pl:dītei  # ;
-  +Pres+P3+Pl:dīt  # ;
-LEXICON V120_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
-
-! 133 — drēuditun
-LEXICON V133_pres
-  +Pres+P1+Sg:  # ;
-  +Pres+P2+Sg:  # ;
-  +Pres+P3+Sg:  # ;
-  +Pres+P1+Pl:mai  # ;
-  +Pres+P2+Pl:tei  # ;
-  +Pres+P3+Pl:  # ;
-LEXICON V133_pret
-  +Pret+P1+Sg:i  # ;
-  +Pret+P2+Sg:i  # ;
-  +Pret+P3+Sg:i  # ;
-  +Pret+P1+Pl:imai  # ;
-  +Pret+P2+Pl:itei  # ;
-  +Pret+P3+Pl:i  # ;
-
-! 136 — dunītwei
-LEXICON V136_pres
-  +Pres+P1+Sg:a  # ;
-  +Pres+P2+Sg:a  # ;
-  +Pres+P3+Sg:a  # ;
-  +Pres+P1+Pl:imai  # ;
-  +Pres+P2+Pl:itei  # ;
-  +Pres+P3+Pl:a  # ;
-LEXICON V136_pret
-  +Pret+P1+Sg:i  # ;
-  +Pret+P2+Sg:i  # ;
-  +Pret+P3+Sg:i  # ;
-  +Pret+P1+Pl:imai  # ;
-  +Pret+P2+Pl:itei  # ;
-  +Pret+P3+Pl:i  # ;
-
-! 91 — dustwei
-LEXICON V91_pres
-  +Pres+P1+Sg:a  # ;
-  +Pres+P2+Sg:a  # ;
-  +Pres+P3+Sg:a  # ;
-  +Pres+P1+Pl:imai  # ;
-  +Pres+P2+Pl:itei  # ;
-  +Pres+P3+Pl:a  # ;
-LEXICON V91_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
-
-! 116 — ebēitun
-LEXICON V116_pres
-  +Pres+P1+Sg:  # ;
-  +Pres+P2+Sg:ebēisei  # ;
-  +Pres+P3+Sg:ebēit  # ;
-  +Pres+P1+Pl:i  # ;
-  +Pres+P2+Pl:ebēitei  # ;
-  +Pres+P3+Pl:ebēit  # ;
-LEXICON V116_pret
-  +Pret+P1+Sg:i  # ;
-  +Pret+P2+Sg:i  # ;
-  +Pret+P3+Sg:i  # ;
-  +Pret+P1+Pl:imai  # ;
-  +Pret+P2+Pl:itei  # ;
-  +Pret+P3+Pl:i  # ;
-
-! 86 — engnāstun
-LEXICON V86_pres
-  +Pres+P1+Sg:a  # ;
-  +Pres+P2+Sg:a  # ;
-  +Pres+P3+Sg:a  # ;
-  +Pres+P1+Pl:imai  # ;
-  +Pres+P2+Pl:itei  # ;
-  +Pres+P3+Pl:a  # ;
-LEXICON V86_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
-
-! 78 — enlīztwei
+! 78 — enlīztwei  PS='enlī' PT='enlīzi'
 LEXICON V78_pres
   +Pres+P1+Sg:ža  # ;
   +Pres+P2+Sg:ža  # ;
@@ -713,142 +105,46 @@ LEXICON V78_pres
   +Pres+P2+Pl:zitei  # ;
   +Pres+P3+Pl:ža  # ;
 LEXICON V78_pret
-  +Pret+P1+Sg:i  # ;
-  +Pret+P2+Sg:i  # ;
-  +Pret+P3+Sg:i  # ;
-  +Pret+P1+Pl:imai  # ;
-  +Pret+P2+Pl:itei  # ;
-  +Pret+P3+Pl:i  # ;
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
 
-! 102 — enristun
-LEXICON V102_pres
-  +Pres+P1+Sg:a  # ;
-  +Pres+P2+Sg:a  # ;
-  +Pres+P3+Sg:a  # ;
+! 79 — autēnstun  PS='autēn' PT='autēnsi'
+LEXICON V79_pres
+  +Pres+P1+Sg:ša  # ;
+  +Pres+P2+Sg:ša  # ;
+  +Pres+P3+Sg:ša  # ;
+  +Pres+P1+Pl:simai  # ;
+  +Pres+P2+Pl:sitei  # ;
+  +Pres+P3+Pl:ša  # ;
+LEXICON V79_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 81 — augertun  PS='augerr' PT='augīri'
+LEXICON V81_pres
+  +Pres+P1+Sg:e  # ;
+  +Pres+P2+Sg:e  # ;
+  +Pres+P3+Sg:e  # ;
   +Pres+P1+Pl:imai  # ;
   +Pres+P2+Pl:itei  # ;
-  +Pres+P3+Pl:a  # ;
-LEXICON V102_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
+  +Pres+P3+Pl:e  # ;
+LEXICON V81_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
 
-! 112 — ensūtwei
-LEXICON V112_pres
-  +Pres+P1+Sg:a  # ;
-  +Pres+P2+Sg:a  # ;
-  +Pres+P3+Sg:a  # ;
-  +Pres+P1+Pl:imai  # ;
-  +Pres+P2+Pl:itei  # ;
-  +Pres+P3+Pl:a  # ;
-LEXICON V112_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
-
-! 141 — enwaldītun
-LEXICON V141_pres
-  +Pres+P1+Sg:a  # ;
-  +Pres+P2+Sg:a  # ;
-  +Pres+P3+Sg:a  # ;
-  +Pres+P1+Pl:imai  # ;
-  +Pres+P2+Pl:itei  # ;
-  +Pres+P3+Pl:a  # ;
-LEXICON V141_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
-
-! 135 — etreūgitun
-LEXICON V135_pres
-  +Pres+P1+Sg:  # ;
-  +Pres+P2+Sg:  # ;
-  +Pres+P3+Sg:  # ;
-  +Pres+P1+Pl:mai  # ;
-  +Pres+P2+Pl:tei  # ;
-  +Pres+P3+Pl:  # ;
-LEXICON V135_pret
-  +Pret+P1+Sg:i  # ;
-  +Pret+P2+Sg:i  # ;
-  +Pret+P3+Sg:i  # ;
-  +Pret+P1+Pl:imai  # ;
-  +Pret+P2+Pl:itei  # ;
-  +Pret+P3+Pl:i  # ;
-
-! 88 — gestwei
-LEXICON V88_pres
-  +Pres+P1+Sg:a  # ;
-  +Pres+P2+Sg:a  # ;
-  +Pres+P3+Sg:a  # ;
-  +Pres+P1+Pl:imai  # ;
-  +Pres+P2+Pl:itei  # ;
-  +Pres+P3+Pl:a  # ;
-LEXICON V88_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
-
-! 99 — gibtwei
-LEXICON V99_pres
-  +Pres+P1+Sg:a  # ;
-  +Pres+P2+Sg:a  # ;
-  +Pres+P3+Sg:a  # ;
-  +Pres+P1+Pl:imai  # ;
-  +Pres+P2+Pl:itei  # ;
-  +Pres+P3+Pl:a  # ;
-LEXICON V99_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
-
-! 96 — grīmztwei
-LEXICON V96_pres
-  +Pres+P1+Sg:a  # ;
-  +Pres+P2+Sg:a  # ;
-  +Pres+P3+Sg:a  # ;
-  +Pres+P1+Pl:imai  # ;
-  +Pres+P2+Pl:itei  # ;
-  +Pres+P3+Pl:a  # ;
-LEXICON V96_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
-
-! 98 — grīnstun
-LEXICON V98_pres
-  +Pres+P1+Sg:a  # ;
-  +Pres+P2+Sg:a  # ;
-  +Pres+P3+Sg:a  # ;
-  +Pres+P1+Pl:imai  # ;
-  +Pres+P2+Pl:itei  # ;
-  +Pres+P3+Pl:a  # ;
-LEXICON V98_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
-
-! 82 — irtun
+! 82 — irtun  PS='irr' PT='īri'
 LEXICON V82_pres
   +Pres+P1+Sg:e  # ;
   +Pres+P2+Sg:e  # ;
@@ -857,46 +153,30 @@ LEXICON V82_pres
   +Pres+P2+Pl:itei  # ;
   +Pres+P3+Pl:e  # ;
 LEXICON V82_pret
-  +Pret+P1+Sg:i  # ;
-  +Pret+P2+Sg:i  # ;
-  +Pret+P3+Sg:i  # ;
-  +Pret+P1+Pl:imai  # ;
-  +Pret+P2+Pl:itei  # ;
-  +Pret+P3+Pl:i  # ;
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
 
-! 117 — īstun
-LEXICON V117_pres
-  +Pres+P1+Sg:  # ;
-  +Pres+P2+Sg:īsei  # ;
-  +Pres+P3+Sg:īst  # ;
-  +Pres+P1+Pl:i  # ;
-  +Pres+P2+Pl:ītei  # ;
-  +Pres+P3+Pl:īst  # ;
-LEXICON V117_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
+! 83 — audumtun  PS='audumm' PT='audūmi'
+LEXICON V83_pres
+  +Pres+P1+Sg:ja  # ;
+  +Pres+P2+Sg:ja  # ;
+  +Pres+P3+Sg:ja  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:ja  # ;
+LEXICON V83_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
 
-! 127 — jāstun
-LEXICON V127_pres
-  +Pres+P1+Sg:  # ;
-  +Pres+P2+Sg:jāsei  # ;
-  +Pres+P3+Sg:jāst  # ;
-  +Pres+P1+Pl:i  # ;
-  +Pres+P2+Pl:jāstei  # ;
-  +Pres+P3+Pl:jāst  # ;
-LEXICON V127_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
-
-! 84 — justun
+! 84 — justun  PS='jāut' PT='jutta'
 LEXICON V84_pres
   +Pres+P1+Sg:e  # ;
   +Pres+P2+Sg:e  # ;
@@ -905,14 +185,254 @@ LEXICON V84_pres
   +Pres+P2+Pl:itei  # ;
   +Pres+P3+Pl:e  # ;
 LEXICON V84_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
 
-! 100 — kwistwei
+! 85 — ainapreslintun  PS='ainapreslin' PT='ainapreslina'
+LEXICON V85_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+LEXICON V85_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 86 — engnāstun  PS='engnāt' PT='engnāta'
+LEXICON V86_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+LEXICON V86_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 87 — aukanstun  PS='aukand' PT='aukanda'
+LEXICON V87_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+LEXICON V87_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 88 — gestwei  PS='gess' PT='gessa'
+LEXICON V88_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+LEXICON V88_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 89 — austebtwei  PS='austēmb' PT='austebba'
+LEXICON V89_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+LEXICON V89_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 90 — bustwei  PS='būnd' PT='budda'
+LEXICON V90_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+LEXICON V90_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 91 — dustwei  PS='dūns' PT='dussa'
+LEXICON V91_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+LEXICON V91_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 92 — alktwei  PS='alkst' PT='alka'
+LEXICON V92_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+LEXICON V92_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 93 — auprestun  PS='auprest' PT='aupretta'
+LEXICON V93_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+LEXICON V93_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 94 — auplūstwei  PS='auplūst' PT='auplūda'
+LEXICON V94_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+LEXICON V94_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 95 — āistwei  PS='āist' PT='āisa'
+LEXICON V95_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+LEXICON V95_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 96 — grīmztwei  PS='grīmzd' PT='grīmza'
+LEXICON V96_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+LEXICON V96_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 97 — aukliptun  PS='auklapp' PT='auklippa'
+LEXICON V97_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+LEXICON V97_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 98 — grīnstun  PS='grēnd' PT='grīnda'
+LEXICON V98_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+LEXICON V98_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 99 — gibtwei  PS='gēib' PT='gibba'
+LEXICON V99_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+LEXICON V99_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 100 — kwistwei  PS='kwēit' PT='kwitta'
 LEXICON V100_pres
   +Pres+P1+Sg:a  # ;
   +Pres+P2+Sg:a  # ;
@@ -921,46 +441,30 @@ LEXICON V100_pres
   +Pres+P2+Pl:itei  # ;
   +Pres+P3+Pl:a  # ;
 LEXICON V100_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
 
-! 107 — lītwei
-LEXICON V107_pres
-  +Pres+P1+Sg:ijja  # ;
-  +Pres+P2+Sg:ijja  # ;
-  +Pres+P3+Sg:ijja  # ;
-  +Pres+P1+Pl:īmai  # ;
-  +Pres+P2+Pl:ītei  # ;
-  +Pres+P3+Pl:ijja  # ;
-LEXICON V107_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
-
-! 110 — pastātwei
-LEXICON V110_pres
-  +Pres+P1+Sg:e  # ;
-  +Pres+P2+Sg:e  # ;
-  +Pres+P3+Sg:e  # ;
+! 102 — enristun  PS='enrēis' PT='enrissa'
+LEXICON V102_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
   +Pres+P1+Pl:imai  # ;
   +Pres+P2+Pl:itei  # ;
-  +Pres+P3+Pl:e  # ;
-LEXICON V110_pret
-  +Pret+P1+Sg:i  # ;
-  +Pret+P2+Sg:i  # ;
-  +Pret+P3+Sg:i  # ;
-  +Pret+P1+Pl:imai  # ;
-  +Pret+P2+Pl:itei  # ;
-  +Pret+P3+Pl:i  # ;
+  +Pres+P3+Pl:a  # ;
+LEXICON V102_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
 
-! 104 — pīrstwei
+! 104 — pīrstwei  PS='pērd' PT='pīrda'
 LEXICON V104_pres
   +Pres+P1+Sg:a  # ;
   +Pres+P2+Sg:a  # ;
@@ -969,62 +473,126 @@ LEXICON V104_pres
   +Pres+P2+Pl:itei  # ;
   +Pres+P3+Pl:a  # ;
 LEXICON V104_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
 
-! 128 — sīstwei
-LEXICON V128_pres
+! 107 — lītwei  PS='l' PT='lijja'
+LEXICON V107_pres
+  +Pres+P1+Sg:ijja  # ;
+  +Pres+P2+Sg:ijja  # ;
+  +Pres+P3+Sg:ijja  # ;
+  +Pres+P1+Pl:īmai  # ;
+  +Pres+P2+Pl:ītei  # ;
+  +Pres+P3+Pl:ijja  # ;
+LEXICON V107_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 108 — ausītun  PS='auseī' PT='ausijja'
+LEXICON V108_pres
+  +Pres+P1+Sg:ja  # ;
+  +Pres+P2+Sg:ja  # ;
+  +Pres+P3+Sg:ja  # ;
+  +Pres+P1+Pl:mai  # ;
+  +Pres+P2+Pl:tei  # ;
+  +Pres+P3+Pl:ja  # ;
+LEXICON V108_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 109 — auwirtwei  PS='auwerd' PT='auwirra'
+LEXICON V109_pres
   +Pres+P1+Sg:a  # ;
   +Pres+P2+Sg:a  # ;
   +Pres+P3+Sg:a  # ;
   +Pres+P1+Pl:imai  # ;
   +Pres+P2+Pl:itei  # ;
   +Pres+P3+Pl:a  # ;
-LEXICON V128_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
+LEXICON V109_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
 
-! 123 — skrītwei
-LEXICON V123_pres
-  +Pres+P1+Sg:  # ;
-  +Pres+P2+Sg:skreīsei  # ;
-  +Pres+P3+Sg:skreīt  # ;
-  +Pres+P1+Pl:i  # ;
-  +Pres+P2+Pl:skreītei  # ;
-  +Pres+P3+Pl:skreīt  # ;
-LEXICON V123_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
+! 110 — pastātwei  PS='pastān' PT='pastāi'
+LEXICON V110_pres
+  +Pres+P1+Sg:e  # ;
+  +Pres+P2+Sg:e  # ;
+  +Pres+P3+Sg:e  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:e  # ;
+LEXICON V110_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
 
-! 122 — waīstun
-LEXICON V122_pres
+! 111 — augaūtun  PS='augaūn' PT='augaūwa'
+LEXICON V111_pres
+  +Pres+P1+Sg:e  # ;
+  +Pres+P2+Sg:e  # ;
+  +Pres+P3+Sg:e  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:e  # ;
+LEXICON V111_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 112 — ensūtwei  PS='ensāuj' PT='ensuwwa'
+LEXICON V112_pres
   +Pres+P1+Sg:a  # ;
   +Pres+P2+Sg:a  # ;
   +Pres+P3+Sg:a  # ;
   +Pres+P1+Pl:imai  # ;
   +Pres+P2+Pl:itei  # ;
   +Pres+P3+Pl:a  # ;
-LEXICON V122_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
+LEXICON V112_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
 
-! 114 — wīrstwei
+! 113 — aumūtun  PS='aumūj' PT='aumūwa'
+LEXICON V113_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+LEXICON V113_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 114 — wīrstwei  PS='wīrst' PT='wīrta'
 LEXICON V114_pres
   +Pres+P1+Sg:  # ;
   +Pres+P2+Sg:  # ;
@@ -1033,10 +601,442 @@ LEXICON V114_pres
   +Pres+P2+Pl:ei  # ;
   +Pres+P3+Pl:  # ;
 LEXICON V114_pret
-  +Pret+P1+Sg:a  # ;
-  +Pret+P2+Sg:a  # ;
-  +Pret+P3+Sg:a  # ;
-  +Pret+P1+Pl:amai  # ;
-  +Pret+P2+Pl:atei  # ;
-  +Pret+P3+Pl:a  # ;
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 115 — būtwei  PS='as' PT='bēi'
+LEXICON V115_pres
+  +Pres+P1+Sg:ma  # ;
+  +Pres+P2+Sg:sei  # ;
+  +Pres+P3+Sg:t  # ;
+  +Pres+P1+Pl:mai  # ;
+  +Pres+P2+Pl:tei  # ;
+  +Pres+P3+Pl:t  # ;
+LEXICON V115_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 116 — ebēitun  PS='ebēi' PT='ebgūbi'
+LEXICON V116_pres
+  +Pres+P1+Sg:ma  # ;
+  +Pres+P2+Sg:sei  # ;
+  +Pres+P3+Sg:t  # ;
+  +Pres+P1+Pl:mai  # ;
+  +Pres+P2+Pl:tei  # ;
+  +Pres+P3+Pl:t  # ;
+LEXICON V116_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 117 — īstun  PS='ī' PT='īda'
+LEXICON V117_pres
+  +Pres+P1+Sg:ma  # ;
+  +Pres+P2+Sg:sei  # ;
+  +Pres+P3+Sg:st  # ;
+  +Pres+P1+Pl:mai  # ;
+  +Pres+P2+Pl:tei  # ;
+  +Pres+P3+Pl:st  # ;
+LEXICON V117_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 118 — dātun  PS='dā' PT='dāi'
+LEXICON V118_pres
+  +Pres+P1+Sg:ma  # ;
+  +Pres+P2+Sg:sei  # ;
+  +Pres+P3+Sg:st  # ;
+  +Pres+P1+Pl:mai  # ;
+  +Pres+P2+Pl:tei  # ;
+  +Pres+P3+Pl:st  # ;
+LEXICON V118_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 119 — aujātwei  PS='aujā' PT='aujāja'
+LEXICON V119_pres
+  +Pres+P1+Sg:ma  # ;
+  +Pres+P2+Sg:sei  # ;
+  +Pres+P3+Sg:t  # ;
+  +Pres+P1+Pl:mai  # ;
+  +Pres+P2+Pl:tei  # ;
+  +Pres+P3+Pl:t  # ;
+LEXICON V119_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 120 — dītun  PS='dī' PT='dīja'
+LEXICON V120_pres
+  +Pres+P1+Sg:ma  # ;
+  +Pres+P2+Sg:sei  # ;
+  +Pres+P3+Sg:t  # ;
+  +Pres+P1+Pl:mai  # ;
+  +Pres+P2+Pl:tei  # ;
+  +Pres+P3+Pl:t  # ;
+LEXICON V120_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 121 — audītun  PS='aude' PT='audīja'
+LEXICON V121_pres
+  +Pres+P1+Sg:mma  # ;
+  +Pres+P2+Sg:ssei  # ;
+  +Pres+P3+Sg:st  # ;
+  +Pres+P1+Pl:mmai  # ;
+  +Pres+P2+Pl:stei  # ;
+  +Pres+P3+Pl:st  # ;
+LEXICON V121_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 122 — waīstun  PS='waīd' PT='waīda'
+LEXICON V122_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+LEXICON V122_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 123 — skrītwei  PS='skreī' PT='skrijja'
+LEXICON V123_pres
+  +Pres+P1+Sg:ma  # ;
+  +Pres+P2+Sg:sei  # ;
+  +Pres+P3+Sg:t  # ;
+  +Pres+P1+Pl:mai  # ;
+  +Pres+P2+Pl:tei  # ;
+  +Pres+P3+Pl:t  # ;
+LEXICON V123_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 125 — dīgtwei  PS='deīg' PT='dīga'
+LEXICON V125_pres
+  +Pres+P1+Sg:ma  # ;
+  +Pres+P2+Sg:sei  # ;
+  +Pres+P3+Sg:t  # ;
+  +Pres+P1+Pl:mai  # ;
+  +Pres+P2+Pl:tei  # ;
+  +Pres+P3+Pl:t  # ;
+LEXICON V125_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 126 — auwiltun  PS='auwel' PT='auwilla'
+LEXICON V126_pres
+  +Pres+P1+Sg:ma  # ;
+  +Pres+P2+Sg:sei  # ;
+  +Pres+P3+Sg:t  # ;
+  +Pres+P1+Pl:mai  # ;
+  +Pres+P2+Pl:tei  # ;
+  +Pres+P3+Pl:t  # ;
+LEXICON V126_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 127 — jāstun  PS='jās' PT='jāsa'
+LEXICON V127_pres
+  +Pres+P1+Sg:ma  # ;
+  +Pres+P2+Sg:ei  # ;
+  +Pres+P3+Sg:t  # ;
+  +Pres+P1+Pl:mai  # ;
+  +Pres+P2+Pl:tei  # ;
+  +Pres+P3+Pl:t  # ;
+LEXICON V127_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 128 — sīstwei  PS='sīnd' PT='sīda'
+LEXICON V128_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+LEXICON V128_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 131 — āngautwei  PS='āngai' PT='āngai'
+LEXICON V131_pres
+  +Pres+P1+Sg:  # ;
+  +Pres+P2+Sg:  # ;
+  +Pres+P3+Sg:  # ;
+  +Pres+P1+Pl:mai  # ;
+  +Pres+P2+Pl:tei  # ;
+  +Pres+P3+Pl:  # ;
+LEXICON V131_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 132 — aikātun  PS='aikāi' PT='aikāi'
+LEXICON V132_pres
+  +Pres+P1+Sg:  # ;
+  +Pres+P2+Sg:  # ;
+  +Pres+P3+Sg:  # ;
+  +Pres+P1+Pl:mai  # ;
+  +Pres+P2+Pl:tei  # ;
+  +Pres+P3+Pl:  # ;
+LEXICON V132_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 133 — drēuditun  PS='drēudei' PT='drēudei'
+LEXICON V133_pres
+  +Pres+P1+Sg:  # ;
+  +Pres+P2+Sg:  # ;
+  +Pres+P3+Sg:  # ;
+  +Pres+P1+Pl:mai  # ;
+  +Pres+P2+Pl:tei  # ;
+  +Pres+P3+Pl:  # ;
+LEXICON V133_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 134 — aupaikītun  PS='aupaikēi' PT='aupaikēi'
+LEXICON V134_pres
+  +Pres+P1+Sg:  # ;
+  +Pres+P2+Sg:  # ;
+  +Pres+P3+Sg:  # ;
+  +Pres+P1+Pl:mai  # ;
+  +Pres+P2+Pl:tei  # ;
+  +Pres+P3+Pl:  # ;
+LEXICON V134_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 135 — etreūgitun  PS='etreūgi' PT='etreūgei'
+LEXICON V135_pres
+  +Pres+P1+Sg:  # ;
+  +Pres+P2+Sg:  # ;
+  +Pres+P3+Sg:  # ;
+  +Pres+P1+Pl:mai  # ;
+  +Pres+P2+Pl:tei  # ;
+  +Pres+P3+Pl:  # ;
+LEXICON V135_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 136 — dunītwei  PS='dūn' PT='dunēi'
+LEXICON V136_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+LEXICON V136_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 137 — auminītwei  PS='auminni' PT='auminēi'
+LEXICON V137_pres
+  +Pres+P1+Sg:  # ;
+  +Pres+P2+Sg:  # ;
+  +Pres+P3+Sg:  # ;
+  +Pres+P1+Pl:mai  # ;
+  +Pres+P2+Pl:tei  # ;
+  +Pres+P3+Pl:  # ;
+LEXICON V137_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 138 — abōnitun  PS='abōni' PT='abōni'
+LEXICON V138_pres
+  +Pres+P1+Sg:  # ;
+  +Pres+P2+Sg:  # ;
+  +Pres+P3+Sg:  # ;
+  +Pres+P1+Pl:mai  # ;
+  +Pres+P2+Pl:tei  # ;
+  +Pres+P3+Pl:  # ;
+LEXICON V138_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 139 — akcēntitun  PS='akcenijja' PT='akcenijja'
+LEXICON V139_pres
+  +Pres+P1+Sg:  # ;
+  +Pres+P2+Sg:  # ;
+  +Pres+P3+Sg:  # ;
+  +Pres+P1+Pl:mai  # ;
+  +Pres+P2+Pl:tei  # ;
+  +Pres+P3+Pl:  # ;
+LEXICON V139_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 140 — aumadlītun  PS='aumadli' PT='aumadlijja'
+LEXICON V140_pres
+  +Pres+P1+Sg:  # ;
+  +Pres+P2+Sg:  # ;
+  +Pres+P3+Sg:  # ;
+  +Pres+P1+Pl:mai  # ;
+  +Pres+P2+Pl:tei  # ;
+  +Pres+P3+Pl:  # ;
+LEXICON V140_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 141 — enwaldītun  PS='enwald' PT='enwaldīja'
+LEXICON V141_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+LEXICON V141_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 142 — bandātwei  PS='bānd' PT='bandāi'
+LEXICON V142_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+LEXICON V142_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 143 — alkautwei  PS='alka' PT='alkau'
+LEXICON V143_pres
+  +Pres+P1+Sg:ui  # ;
+  +Pres+P2+Sg:ui  # ;
+  +Pres+P3+Sg:ui  # ;
+  +Pres+P1+Pl:wimai  # ;
+  +Pres+P2+Pl:witei  # ;
+  +Pres+P3+Pl:ui  # ;
+LEXICON V143_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
+
+! 144 — auklaūtun  PS='auklaūj' PT='auklaūwa'
+LEXICON V144_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+LEXICON V144_pret
+  +Pret+P1+Sg:  # ;
+  +Pret+P2+Sg:  # ;
+  +Pret+P3+Sg:  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:  # ;
 
