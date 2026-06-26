@@ -1,0 +1,1590 @@
+! Verb paradigm endings — STEM + ENDING decomposition.
+! Bare stem on lower side from verb_stems.lexc, endings added here.
+
+! 71 — īmtun (present) stem='imm'
+LEXICON V71_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  @P.standard.twanksta@+Pres+P1+Pl:amai  # ;
+  +Pres+P2+Pl:itei  # ;
+  @P.standard.twanksta@+Pres+P2+Pl:atei  # ;
+  +Pres+P3+Pl:a  # ;
+
+! 71 — īmtun (preterite) stem='immi'
+LEXICON V71_pret
+  +Pret+P1+Sg:immi  # ;
+  +Pret+P2+Sg:immi  # ;
+  +Pret+P3+Sg:immi  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:immi  # ;
+
+! 72 — mestun (present) stem='mett'
+LEXICON V72_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  @P.standard.twanksta@+Pres+P1+Pl:amai  # ;
+  +Pres+P2+Pl:itei  # ;
+  @P.standard.twanksta@+Pres+P2+Pl:atei  # ;
+  +Pres+P3+Pl:a  # ;
+
+! 72 — mestun (preterite) stem='metti'
+LEXICON V72_pret
+  +Pret+P1+Sg:metti  # ;
+  +Pret+P2+Sg:metti  # ;
+  +Pret+P3+Sg:metti  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:metti  # ;
+
+! 73 — westun (present) stem='wedd'
+LEXICON V73_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  @P.standard.twanksta@+Pres+P1+Pl:amai  # ;
+  +Pres+P2+Pl:itei  # ;
+  @P.standard.twanksta@+Pres+P2+Pl:atei  # ;
+  +Pres+P3+Pl:a  # ;
+
+! 73 — westun (preterite) stem='weddi'
+LEXICON V73_pret
+  +Pret+P1+Sg:weddi  # ;
+  +Pret+P2+Sg:weddi  # ;
+  +Pret+P3+Sg:weddi  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:weddi  # ;
+
+! 75 — lānktun (present) stem='lānk'
+LEXICON V75_pres
+  +Pres+P1+Sg:e  # ;
+  @P.standard.twanksta@+Pres+P1+Sg:ja  # ;
+  +Pres+P2+Sg:e  # ;
+  @P.standard.twanksta@+Pres+P2+Sg:ja  # ;
+  +Pres+P3+Sg:e  # ;
+  @P.standard.twanksta@+Pres+P3+Sg:ja  # ;
+  +Pres+P1+Pl:imai  # ;
+  @P.standard.twanksta@+Pres+P1+Pl:jamai  # ;
+  +Pres+P2+Pl:itei  # ;
+  @P.standard.twanksta@+Pres+P2+Pl:jatei  # ;
+  +Pres+P3+Pl:e  # ;
+  @P.standard.twanksta@+Pres+P3+Pl:ja  # ;
+
+! 75 — lānktun (preterite) stem='lānki'
+LEXICON V75_pret
+  +Pret+P1+Sg:lānki  # ;
+  +Pret+P2+Sg:lānki  # ;
+  +Pret+P3+Sg:lānki  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:lānki  # ;
+
+! 76 — gnestun (present) stem='gnett'
+LEXICON V76_pres
+  +Pres+P1+Sg:e  # ;
+  @P.standard.twanksta@+Pres+P1+Sg:ja  # ;
+  +Pres+P2+Sg:e  # ;
+  @P.standard.twanksta@+Pres+P2+Sg:ja  # ;
+  +Pres+P3+Sg:e  # ;
+  @P.standard.twanksta@+Pres+P3+Sg:ja  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:e  # ;
+  @P.standard.twanksta@+Pres+P3+Pl:ja  # ;
+
+! 76 — gnestun (preterite) stem='gnetti'
+LEXICON V76_pret
+  +Pret+P1+Sg:gnetti  # ;
+  +Pret+P2+Sg:gnetti  # ;
+  +Pret+P3+Sg:gnetti  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:gnetti  # ;
+
+! 77 — gēistun (present) stem='gēidja'
+LEXICON V77_pres
+  +Pres+P1+Sg:gēidja  # ;
+  +Pres+P2+Sg:gēidja  # ;
+  +Pres+P3+Sg:gēidja  # ;
+  +Pres+P1+Pl:mai  # ;
+  +Pres+P2+Pl:tei  # ;
+  +Pres+P3+Pl:gēidja  # ;
+
+! 77 — gēistun (preterite) stem='gēidi'
+LEXICON V77_pret
+  +Pret+P1+Sg:gēidi  # ;
+  +Pret+P2+Sg:gēidi  # ;
+  +Pret+P3+Sg:gēidi  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:gēidi  # ;
+
+! 78 — līztun (present) stem='lī'
+LEXICON V78_pres
+  +Pres+P1+Sg:ža  # ;
+  +Pres+P2+Sg:ža  # ;
+  +Pres+P3+Sg:ža  # ;
+  +Pres+P1+Pl:zimai  # ;
+  +Pres+P2+Pl:zitei  # ;
+  +Pres+P3+Pl:ža  # ;
+
+! 78 — līztun (preterite) stem='līzi'
+LEXICON V78_pret
+  +Pret+P1+Sg:līzi  # ;
+  +Pret+P2+Sg:līzi  # ;
+  +Pret+P3+Sg:līzi  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:līzi  # ;
+
+! 79 — ōstun (present) stem='ō'
+LEXICON V79_pres
+  +Pres+P1+Sg:ša  # ;
+  @P.standard.twanksta@+Pres+P1+Sg:autēnsja  # ;
+  +Pres+P2+Sg:ša  # ;
+  @P.standard.twanksta@+Pres+P2+Sg:autēnsja  # ;
+  +Pres+P3+Sg:ša  # ;
+  @P.standard.twanksta@+Pres+P3+Sg:autēnsja  # ;
+  +Pres+P1+Pl:simai  # ;
+  @P.standard.twanksta@+Pres+P1+Pl:autēnsjamai  # ;
+  +Pres+P2+Pl:sitei  # ;
+  @P.standard.twanksta@+Pres+P2+Pl:autēnsjatei  # ;
+  +Pres+P3+Pl:ša  # ;
+  @P.standard.twanksta@+Pres+P3+Pl:autēnsja  # ;
+
+! 79 — ōstun (preterite) stem='ōsi'
+LEXICON V79_pret
+  +Pret+P1+Sg:ōsi  # ;
+  @P.standard.twanksta@+Pret+P1+Sg:autēnsi  # ;
+  +Pret+P2+Sg:ōsi  # ;
+  @P.standard.twanksta@+Pret+P2+Sg:autēnsi  # ;
+  +Pret+P3+Sg:ōsi  # ;
+  @P.standard.twanksta@+Pret+P3+Sg:autēnsi  # ;
+  +Pret+P1+Pl:mai  # ;
+  @P.standard.twanksta@+Pret+P1+Pl:autēnsimai  # ;
+  +Pret+P2+Pl:tei  # ;
+  @P.standard.twanksta@+Pret+P2+Pl:autēnsitei  # ;
+  +Pret+P3+Pl:ōsi  # ;
+  @P.standard.twanksta@+Pret+P3+Pl:autēnsi  # ;
+
+! 80b — glabtun (present) stem='glabb'
+LEXICON V80b_pres
+  +Pres+P1+Sg:ja  # ;
+  +Pres+P2+Sg:ja  # ;
+  +Pres+P3+Sg:ja  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:ja  # ;
+
+! 80b — glabtun (preterite) stem='glābi'
+LEXICON V80b_pret
+  +Pret+P1+Sg:glābi  # ;
+  +Pret+P2+Sg:glābi  # ;
+  +Pret+P3+Sg:glābi  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:glābi  # ;
+
+! 81 — wertun (present) stem='auwerrja'
+LEXICON V81_pres
+  +Pres+P1+Sg:auwerrja  # ;
+  +Pres+P2+Sg:auwerrja  # ;
+  +Pres+P3+Sg:auwerrja  # ;
+  +Pres+P1+Pl:mai  # ;
+  +Pres+P2+Pl:tei  # ;
+  +Pres+P3+Pl:auwerrja  # ;
+
+! 81 — wertun (preterite) stem='auw'
+LEXICON V81_pret
+  +Pret+P1+Sg:ēri  # ;
+  +Pret+P2+Sg:ēri  # ;
+  +Pret+P3+Sg:ēri  # ;
+  +Pret+P1+Pl:īrimai  # ;
+  +Pret+P2+Pl:ēritei  # ;
+  +Pret+P3+Pl:ēri  # ;
+
+! 81a — weltun (present) stem='well'
+LEXICON V81a_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+
+! 81a — weltun (preterite) stem='wīli'
+LEXICON V81a_pret
+  +Pret+P1+Sg:wīli  # ;
+  +Pret+P2+Sg:wīli  # ;
+  +Pret+P3+Sg:wīli  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:wīli  # ;
+
+! 81b — drebtun (present) stem='drebb'
+LEXICON V81b_pres
+  +Pres+P1+Sg:ja  # ;
+  +Pres+P2+Sg:ja  # ;
+  +Pres+P3+Sg:ja  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:ja  # ;
+
+! 81b — drebtun (preterite) stem='drībi'
+LEXICON V81b_pret
+  +Pret+P1+Sg:drībi  # ;
+  +Pret+P2+Sg:drībi  # ;
+  +Pret+P3+Sg:drībi  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:drībi  # ;
+
+! 81c — dwestun (present) stem='dwe'
+LEXICON V81c_pres
+  +Pres+P1+Sg:šša  # ;
+  +Pres+P2+Sg:šša  # ;
+  +Pres+P3+Sg:šša  # ;
+  +Pres+P1+Pl:ssimai  # ;
+  +Pres+P2+Pl:ssitei  # ;
+  +Pres+P3+Pl:šša  # ;
+
+! 81c — dwestun (preterite) stem='dwīsi'
+LEXICON V81c_pret
+  +Pret+P1+Sg:dwīsi  # ;
+  +Pret+P2+Sg:dwīsi  # ;
+  +Pret+P3+Sg:dwīsi  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:dwīsi  # ;
+
+! 82 — tirtun (present) stem='tirr'
+LEXICON V82_pres
+  +Pres+P1+Sg:e  # ;
+  @P.standard.twanksta@+Pres+P1+Sg:ja  # ;
+  +Pres+P2+Sg:e  # ;
+  @P.standard.twanksta@+Pres+P2+Sg:ja  # ;
+  +Pres+P3+Sg:e  # ;
+  @P.standard.twanksta@+Pres+P3+Sg:ja  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:e  # ;
+  @P.standard.twanksta@+Pres+P3+Pl:ja  # ;
+
+! 82 — tirtun (preterite) stem='tīri'
+LEXICON V82_pret
+  +Pret+P1+Sg:tīri  # ;
+  +Pret+P2+Sg:tīri  # ;
+  +Pret+P3+Sg:tīri  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:tīri  # ;
+
+! 82a — piltun (present) stem='pill'
+LEXICON V82a_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+
+! 82a — piltun (preterite) stem='pīli'
+LEXICON V82a_pret
+  +Pret+P1+Sg:pīli  # ;
+  +Pret+P2+Sg:pīli  # ;
+  +Pret+P3+Sg:pīli  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:pīli  # ;
+
+! 83 — dumtun (present) stem='dumja'
+LEXICON V83_pres
+  +Pres+P1+Sg:dumja  # ;
+  +Pres+P2+Sg:dumja  # ;
+  +Pres+P3+Sg:dumja  # ;
+  +Pres+P1+Pl:mai  # ;
+  +Pres+P2+Pl:tei  # ;
+  +Pres+P3+Pl:dumja  # ;
+
+! 83 — dumtun (preterite) stem='dūmi'
+LEXICON V83_pret
+  +Pret+P1+Sg:dūmi  # ;
+  +Pret+P2+Sg:dūmi  # ;
+  +Pret+P3+Sg:dūmi  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:dūmi  # ;
+
+! 84 — justwei (present) stem='jāut'
+LEXICON V84_pres
+  +Pres+P1+Sg:ja  # ;
+  +Pres+P2+Sg:ja  # ;
+  +Pres+P3+Sg:ja  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:ja  # ;
+
+! 84 — justwei (preterite) stem='jutta'
+LEXICON V84_pret
+  +Pret+P1+Sg:jutta  # ;
+  +Pret+P2+Sg:jutta  # ;
+  +Pret+P3+Sg:jutta  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:jutta  # ;
+
+! 85 — treptun (present) stem='trepp'
+LEXICON V85_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+
+! 85 — treptun (preterite) stem='trepp'
+LEXICON V85_pret
+  +Pret+P1+Sg:a  # ;
+  +Pret+P2+Sg:a  # ;
+  +Pret+P3+Sg:a  # ;
+  +Pret+P1+Pl:imai  # ;
+  +Pret+P2+Pl:itei  # ;
+  +Pret+P3+Pl:a  # ;
+
+! 86 — kīrstun (present) stem='kīrt'
+LEXICON V86_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+
+! 86 — kīrstun (preterite) stem='kīrta'
+LEXICON V86_pret
+  +Pret+P1+Sg:kīrta  # ;
+  +Pret+P2+Sg:kīrta  # ;
+  +Pret+P3+Sg:kīrta  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  @P.standard.twanksta@+Pret+P2+Pl:kīratei  # ;
+  +Pret+P3+Pl:kīrta  # ;
+
+! 87 — bastun (present) stem='badd'
+LEXICON V87_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+
+! 87 — bastun (preterite) stem='badda'
+LEXICON V87_pret
+  +Pret+P1+Sg:badda  # ;
+  +Pret+P2+Sg:badda  # ;
+  +Pret+P3+Sg:badda  # ;
+  +Pret+P1+Pl:mai  # ;
+  @P.standard.twanksta@+Pret+P1+Pl:baddimai  # ;
+  +Pret+P2+Pl:tei  # ;
+  @P.standard.twanksta@+Pret+P2+Pl:badditei  # ;
+  +Pret+P3+Pl:badda  # ;
+
+! 88 — kāistun (present) stem='kāis'
+LEXICON V88_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+
+! 88 — kāistun (preterite) stem='kāisa'
+LEXICON V88_pret
+  +Pret+P1+Sg:kāisa  # ;
+  +Pret+P2+Sg:kāisa  # ;
+  +Pret+P3+Sg:kāisa  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:kāisa  # ;
+
+! 89 — kaktwei (present) stem='līmp'
+LEXICON V89_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+
+! 89 — kaktwei (preterite) stem='lippa'
+LEXICON V89_pret
+  +Pret+P1+Sg:lippa  # ;
+  +Pret+P2+Sg:lippa  # ;
+  +Pret+P3+Sg:lippa  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:lippa  # ;
+
+! 91 — dustwei (present) stem='dūns'
+LEXICON V91_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+
+! 91 — dustwei (preterite) stem='dussa'
+LEXICON V91_pret
+  +Pret+P1+Sg:dussa  # ;
+  +Pret+P2+Sg:dussa  # ;
+  +Pret+P3+Sg:dussa  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:dussa  # ;
+
+! 92 — alktwei (present) stem='alkst'
+LEXICON V92_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+
+! 92 — alktwei (preterite) stem='alka'
+LEXICON V92_pret
+  +Pret+P1+Sg:alka  # ;
+  +Pret+P2+Sg:alka  # ;
+  +Pret+P3+Sg:alka  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:alka  # ;
+
+! 93 — prestun (present) stem='prest'
+LEXICON V93_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+
+! 93 — prestun (preterite) stem='pretta'
+LEXICON V93_pret
+  +Pret+P1+Sg:pretta  # ;
+  +Pret+P2+Sg:pretta  # ;
+  +Pret+P3+Sg:pretta  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:pretta  # ;
+
+! 94 — līstun (present) stem='lāis'
+LEXICON V94_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+
+! 94 — līstun (preterite) stem='lissa'
+LEXICON V94_pret
+  +Pret+P1+Sg:lissa  # ;
+  +Pret+P2+Sg:lissa  # ;
+  +Pret+P3+Sg:lissa  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:lissa  # ;
+
+! 95 — aistwei (present) stem='āist'
+LEXICON V95_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+
+! 95 — aistwei (preterite) stem='āisa'
+LEXICON V95_pret
+  +Pret+P1+Sg:āisa  # ;
+  +Pret+P2+Sg:āisa  # ;
+  +Pret+P3+Sg:āisa  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:āisa  # ;
+
+! 96 — grīmztwei (present) stem='grīmzd'
+LEXICON V96_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+
+! 96 — grīmztwei (preterite) stem='grīmza'
+LEXICON V96_pret
+  +Pret+P1+Sg:grīmza  # ;
+  +Pret+P2+Sg:grīmza  # ;
+  +Pret+P3+Sg:grīmza  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:grīmza  # ;
+
+! 97 — etmīntun (present) stem='etmenn'
+LEXICON V97_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+
+! 97 — etmīntun (preterite) stem='etminna'
+LEXICON V97_pret
+  +Pret+P1+Sg:etminna  # ;
+  +Pret+P2+Sg:etminna  # ;
+  +Pret+P3+Sg:etminna  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:etminna  # ;
+
+! 98 — grīnstun (present) stem='grēnd'
+LEXICON V98_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+
+! 98 — grīnstun (preterite) stem='grīnda'
+LEXICON V98_pret
+  +Pret+P1+Sg:grīnda  # ;
+  +Pret+P2+Sg:grīnda  # ;
+  +Pret+P3+Sg:grīnda  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:grīnda  # ;
+
+! 99 — swigtwei (present) stem='swēig'
+LEXICON V99_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+
+! 99 — swigtwei (preterite) stem='swigga'
+LEXICON V99_pret
+  +Pret+P1+Sg:swigga  # ;
+  +Pret+P2+Sg:swigga  # ;
+  +Pret+P3+Sg:swigga  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:swigga  # ;
+
+! 100 — kwistun (present) stem='kwēit'
+LEXICON V100_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+
+! 100 — kwistun (preterite) stem='kwitta'
+LEXICON V100_pret
+  +Pret+P1+Sg:kwitta  # ;
+  +Pret+P2+Sg:kwitta  # ;
+  +Pret+P3+Sg:kwitta  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:kwitta  # ;
+
+! 102 — ristun (present) stem='rēis'
+LEXICON V102_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+
+! 102 — ristun (preterite) stem='rissa'
+LEXICON V102_pret
+  +Pret+P1+Sg:rissa  # ;
+  +Pret+P2+Sg:rissa  # ;
+  +Pret+P3+Sg:rissa  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:rissa  # ;
+
+! 102a — listun (present) stem='lāis'
+LEXICON V102a_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+
+! 102a — listun (preterite) stem='lissa'
+LEXICON V102a_pret
+  +Pret+P1+Sg:lissa  # ;
+  +Pret+P2+Sg:lissa  # ;
+  +Pret+P3+Sg:lissa  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:lissa  # ;
+
+! 105 — wiptwei (present) stem='wepp'
+LEXICON V105_pres
+  +Pres+P1+Sg:a  # ;
+  @P.standard.twanksta@+Pres+P1+Sg:elpa  # ;
+  +Pres+P2+Sg:a  # ;
+  @P.standard.twanksta@+Pres+P2+Sg:elpa  # ;
+  +Pres+P3+Sg:a  # ;
+  @P.standard.twanksta@+Pres+P3+Sg:elpa  # ;
+  +Pres+P1+Pl:imai  # ;
+  @P.standard.twanksta@+Pres+P1+Pl:elpimai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+  @P.standard.twanksta@+Pres+P3+Pl:elpa  # ;
+
+! 105 — wiptwei (preterite) stem='wippa'
+LEXICON V105_pret
+  +Pret+P1+Sg:wippa  # ;
+  +Pret+P2+Sg:wippa  # ;
+  +Pret+P3+Sg:wippa  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:wippa  # ;
+
+! 106a — grēitun (present) stem='grejj'
+LEXICON V106a_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+
+! 106a — grēitun (preterite) stem='grejja'
+LEXICON V106a_pret
+  +Pret+P1+Sg:grejja  # ;
+  +Pret+P2+Sg:grejja  # ;
+  +Pret+P3+Sg:grejja  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:grejja  # ;
+
+! 106b — smeītwei (present) stem='smeī'
+LEXICON V106b_pres
+  +Pres+P1+Sg:ja% si  # ;
+  +Pres+P2+Sg:ja% si  # ;
+  +Pres+P3+Sg:ja% si  # ;
+  +Pres+P1+Pl:mai% si  # ;
+  +Pres+P2+Pl:tei% si  # ;
+  +Pres+P3+Pl:ja% si  # ;
+
+! 106b — smeītwei (preterite) stem='smeīja'
+LEXICON V106b_pret
+  +Pret+P1+Sg:% si  # ;
+  +Pret+P2+Sg:% si  # ;
+  +Pret+P3+Sg:% si  # ;
+  +Pret+P1+Pl:mai% si  # ;
+  +Pret+P2+Pl:tei% si  # ;
+  +Pret+P3+Pl:% si  # ;
+
+! 106c — sklāitwei (present) stem='sklajj'
+LEXICON V106c_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+
+! 106c — sklāitwei (preterite) stem='sklajja'
+LEXICON V106c_pret
+  +Pret+P1+Sg:sklajja  # ;
+  +Pret+P2+Sg:sklajja  # ;
+  +Pret+P3+Sg:sklajja  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:sklajja  # ;
+
+! 107 — lītwei (present) stem='l'
+LEXICON V107_pres
+  +Pres+P1+Sg:ijja  # ;
+  @P.standard.twanksta@+Pres+P1+Sg:īma  # ;
+  +Pres+P2+Sg:ijja  # ;
+  @P.standard.twanksta@+Pres+P2+Sg:īsei  # ;
+  +Pres+P3+Sg:ijja  # ;
+  @P.standard.twanksta@+Pres+P3+Sg:īt  # ;
+  +Pres+P1+Pl:īmai  # ;
+  +Pres+P2+Pl:ītei  # ;
+  +Pres+P3+Pl:ijja  # ;
+  @P.standard.twanksta@+Pres+P3+Pl:īt  # ;
+
+! 107 — lītwei (preterite) stem='lijja'
+LEXICON V107_pret
+  +Pret+P1+Sg:lijja  # ;
+  @P.standard.twanksta@+Pret+P1+Sg:līja  # ;
+  +Pret+P2+Sg:lijja  # ;
+  @P.standard.twanksta@+Pret+P2+Sg:līja  # ;
+  +Pret+P3+Sg:lijja  # ;
+  @P.standard.twanksta@+Pret+P3+Sg:līja  # ;
+  +Pret+P1+Pl:mai  # ;
+  @P.standard.twanksta@+Pret+P1+Pl:līmai  # ;
+  +Pret+P2+Pl:tei  # ;
+  @P.standard.twanksta@+Pret+P2+Pl:lītei  # ;
+  +Pret+P3+Pl:lijja  # ;
+  @P.standard.twanksta@+Pret+P3+Pl:līja  # ;
+
+! 108 — wītun (present) stem='weī'
+LEXICON V108_pres
+  +Pres+P1+Sg:ja  # ;
+  @P.standard.twanksta@+Pres+P1+Sg:wejja  # ;
+  +Pres+P2+Sg:ja  # ;
+  @P.standard.twanksta@+Pres+P2+Sg:wejja  # ;
+  +Pres+P3+Sg:ja  # ;
+  @P.standard.twanksta@+Pres+P3+Sg:wejja  # ;
+  +Pres+P1+Pl:mai  # ;
+  @P.standard.twanksta@+Pres+P1+Pl:wejjimai  # ;
+  +Pres+P2+Pl:tei  # ;
+  @P.standard.twanksta@+Pres+P2+Pl:wejjitei  # ;
+  +Pres+P3+Pl:ja  # ;
+  @P.standard.twanksta@+Pres+P3+Pl:wejja  # ;
+
+! 108 — wītun (preterite) stem='wijja'
+LEXICON V108_pret
+  +Pret+P1+Sg:wijja  # ;
+  +Pret+P2+Sg:wijja  # ;
+  +Pret+P3+Sg:wijja  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:wijja  # ;
+
+! 109 — wirtwei (present) stem='werd'
+LEXICON V109_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+
+! 109 — wirtwei (preterite) stem='wirra'
+LEXICON V109_pret
+  +Pret+P1+Sg:wirra  # ;
+  +Pret+P2+Sg:wirra  # ;
+  +Pret+P3+Sg:wirra  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:wirra  # ;
+
+! 110 — pastātwei (present) stem='pastān'
+LEXICON V110_pres
+  +Pres+P1+Sg:e  # ;
+  @P.standard.twanksta@+Pres+P1+Sg:ja  # ;
+  +Pres+P2+Sg:e  # ;
+  @P.standard.twanksta@+Pres+P2+Sg:ja  # ;
+  +Pres+P3+Sg:e  # ;
+  @P.standard.twanksta@+Pres+P3+Sg:ja  # ;
+  +Pres+P1+Pl:imai  # ;
+  @P.standard.twanksta@+Pres+P1+Pl:jimai  # ;
+  +Pres+P2+Pl:itei  # ;
+  @P.standard.twanksta@+Pres+P2+Pl:jitei  # ;
+  +Pres+P3+Pl:e  # ;
+  @P.standard.twanksta@+Pres+P3+Pl:ja  # ;
+
+! 110 — pastātwei (preterite) stem='pastāi'
+LEXICON V110_pret
+  +Pret+P1+Sg:pastāi  # ;
+  +Pret+P2+Sg:pastāi  # ;
+  +Pret+P3+Sg:pastāi  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:pastāi  # ;
+
+! 111 — gaūtun (present) stem='gaūn'
+LEXICON V111_pres
+  +Pres+P1+Sg:e  # ;
+  @P.standard.twanksta@+Pres+P1+Sg:ja  # ;
+  +Pres+P2+Sg:e  # ;
+  @P.standard.twanksta@+Pres+P2+Sg:ja  # ;
+  +Pres+P3+Sg:e  # ;
+  @P.standard.twanksta@+Pres+P3+Sg:ja  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:e  # ;
+  @P.standard.twanksta@+Pres+P3+Pl:ja  # ;
+
+! 111 — gaūtun (preterite) stem='gaūwa'
+LEXICON V111_pret
+  +Pret+P1+Sg:gaūwa  # ;
+  +Pret+P2+Sg:gaūwa  # ;
+  +Pret+P3+Sg:gaūwa  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:gaūwa  # ;
+
+! 112 — strūtun (present) stem='strāuj'
+LEXICON V112_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+
+! 112 — strūtun (preterite) stem='struwwa'
+LEXICON V112_pret
+  +Pret+P1+Sg:struwwa  # ;
+  +Pret+P2+Sg:struwwa  # ;
+  +Pret+P3+Sg:struwwa  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:struwwtei  # ;
+  +Pret+P3+Pl:struwwa  # ;
+
+! 113 — pūtun (present) stem='pūj'
+LEXICON V113_pres
+  +Pres+P1+Sg:a  # ;
+  @P.standard.twanksta@+Pres+P1+Sg:pāuja  # ;
+  +Pres+P2+Sg:a  # ;
+  @P.standard.twanksta@+Pres+P2+Sg:pāuja  # ;
+  +Pres+P3+Sg:a  # ;
+  @P.standard.twanksta@+Pres+P3+Sg:pāuja  # ;
+  +Pres+P1+Pl:imai  # ;
+  @P.standard.twanksta@+Pres+P1+Pl:pāujimai  # ;
+  +Pres+P2+Pl:itei  # ;
+  @P.standard.twanksta@+Pres+P2+Pl:pāujitei  # ;
+  +Pres+P3+Pl:a  # ;
+  @P.standard.twanksta@+Pres+P3+Pl:pāuja  # ;
+
+! 113 — pūtun (preterite) stem='pūwa'
+LEXICON V113_pret
+  +Pret+P1+Sg:pūwa  # ;
+  @P.standard.twanksta@+Pret+P1+Sg:puwwa  # ;
+  +Pret+P2+Sg:pūwa  # ;
+  @P.standard.twanksta@+Pret+P2+Sg:puwwa  # ;
+  +Pret+P3+Sg:pūwa  # ;
+  @P.standard.twanksta@+Pret+P3+Sg:puwwa  # ;
+  +Pret+P1+Pl:mai  # ;
+  @P.standard.twanksta@+Pret+P1+Pl:puwwamai  # ;
+  +Pret+P2+Pl:tei  # ;
+  @P.standard.twanksta@+Pret+P2+Pl:puwwtei  # ;
+  +Pret+P3+Pl:pūwa  # ;
+  @P.standard.twanksta@+Pret+P3+Pl:puwwa  # ;
+
+! 114 — wīrstwei (present) stem='wīrst'
+LEXICON V114_pres
+  +Pres+P1+Sg:wīrst  # ;
+  +Pres+P2+Sg:wīrst  # ;
+  +Pres+P3+Sg:wīrst  # ;
+  +Pres+P1+Pl:mai  # ;
+  +Pres+P2+Pl:ei  # ;
+  +Pres+P3+Pl:wīrst  # ;
+
+! 114 — wīrstwei (preterite) stem='wīrta'
+LEXICON V114_pret
+  +Pret+P1+Sg:wīrta  # ;
+  +Pret+P2+Sg:wīrta  # ;
+  +Pret+P3+Sg:wīrta  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:wīrta  # ;
+
+! 115 — būtwei (present) stem='asma'
+LEXICON V115_pres
+  +Pres+P1+Sg:asma  # ;
+  +Pres+P2+Sg:assei  # ;
+  +Pres+P3+Sg:ast  # ;
+  +Pres+P1+Pl:i  # ;
+  +Pres+P2+Pl:astei  # ;
+  +Pres+P3+Pl:ast  # ;
+
+! 115 — būtwei (preterite) stem='bēi'
+LEXICON V115_pret
+  +Pret+P1+Sg:bēi  # ;
+  +Pret+P2+Sg:bēi  # ;
+  +Pret+P3+Sg:bēi  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:bēi  # ;
+
+! 116 — ēitwei (present) stem='ēima'
+LEXICON V116_pres
+  +Pres+P1+Sg:ēima  # ;
+  +Pres+P2+Sg:ēisei  # ;
+  +Pres+P3+Sg:ēit  # ;
+  +Pres+P1+Pl:i  # ;
+  +Pres+P2+Pl:ēitei  # ;
+  +Pres+P3+Pl:ēit  # ;
+
+! 116 — ēitwei (preterite) stem='gūbi'
+LEXICON V116_pret
+  +Pret+P1+Sg:gūbi  # ;
+  +Pret+P2+Sg:gūbi  # ;
+  +Pret+P3+Sg:gūbi  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:gūbi  # ;
+
+! 117 — īstun (present) stem='īma'
+LEXICON V117_pres
+  +Pres+P1+Sg:īma  # ;
+  @P.standard.twanksta@+Pres+P1+Sg:ēma  # ;
+  +Pres+P2+Sg:īsei  # ;
+  @P.standard.twanksta@+Pres+P2+Sg:ēsei  # ;
+  +Pres+P3+Sg:īst  # ;
+  @P.standard.twanksta@+Pres+P3+Sg:ēst  # ;
+  +Pres+P1+Pl:i  # ;
+  @P.standard.twanksta@+Pres+P1+Pl:ēmai  # ;
+  +Pres+P2+Pl:ītei  # ;
+  @P.standard.twanksta@+Pres+P2+Pl:ēstei  # ;
+  +Pres+P3+Pl:īst  # ;
+  @P.standard.twanksta@+Pres+P3+Pl:ēst  # ;
+
+! 117 — īstun (preterite) stem='īda'
+LEXICON V117_pret
+  +Pret+P1+Sg:īda  # ;
+  @P.standard.twanksta@+Pret+P1+Sg:ēda  # ;
+  +Pret+P2+Sg:īda  # ;
+  @P.standard.twanksta@+Pret+P2+Sg:ēda  # ;
+  +Pret+P3+Sg:īda  # ;
+  @P.standard.twanksta@+Pret+P3+Sg:ēda  # ;
+  +Pret+P1+Pl:mai  # ;
+  @P.standard.twanksta@+Pret+P1+Pl:ēdamai  # ;
+  +Pret+P2+Pl:tei  # ;
+  @P.standard.twanksta@+Pret+P2+Pl:ēdatei  # ;
+  +Pret+P3+Pl:īda  # ;
+  @P.standard.twanksta@+Pret+P3+Pl:ēda  # ;
+
+! 118 — dātun (present) stem='dāma'
+LEXICON V118_pres
+  +Pres+P1+Sg:dāma  # ;
+  +Pres+P2+Sg:dāsei  # ;
+  +Pres+P3+Sg:dāst  # ;
+  +Pres+P1+Pl:i  # ;
+  +Pres+P2+Pl:dātei  # ;
+  @P.standard.twanksta@+Pres+P2+Pl:dāstei  # ;
+  +Pres+P3+Pl:dāst  # ;
+
+! 118 — dātun (preterite) stem='dāi'
+LEXICON V118_pret
+  +Pret+P1+Sg:dāi  # ;
+  +Pret+P2+Sg:dāi  # ;
+  +Pret+P3+Sg:dāi  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:dāi  # ;
+
+! 119 — jātwei (present) stem='jāma'
+LEXICON V119_pres
+  +Pres+P1+Sg:jāma  # ;
+  +Pres+P2+Sg:jāsei  # ;
+  +Pres+P3+Sg:jāt  # ;
+  +Pres+P1+Pl:i  # ;
+  +Pres+P2+Pl:jātei  # ;
+  +Pres+P3+Pl:jāt  # ;
+
+! 119 — jātwei (preterite) stem='jāja'
+LEXICON V119_pret
+  +Pret+P1+Sg:jāja  # ;
+  +Pret+P2+Sg:jāja  # ;
+  +Pret+P3+Sg:jāja  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:jāja  # ;
+
+! 120 — skītwei (present) stem='skīma'
+LEXICON V120_pres
+  +Pres+P1+Sg:skīma  # ;
+  +Pres+P2+Sg:skīsei  # ;
+  +Pres+P3+Sg:skīt  # ;
+  +Pres+P1+Pl:i  # ;
+  +Pres+P2+Pl:skītei  # ;
+  +Pres+P3+Pl:skīt  # ;
+
+! 120 — skītwei (preterite) stem='skīja'
+LEXICON V120_pret
+  +Pret+P1+Sg:skīja  # ;
+  +Pret+P2+Sg:skīja  # ;
+  +Pret+P3+Sg:skīja  # ;
+  +Pret+P1+Pl:mai  # ;
+  @P.standard.twanksta@+Pret+P1+Pl:skīmai  # ;
+  +Pret+P2+Pl:tei  # ;
+  @P.standard.twanksta@+Pret+P2+Pl:skītei  # ;
+  +Pret+P3+Pl:skīja  # ;
+
+! 121 — dītun (present) stem='dīma'
+LEXICON V121_pres
+  +Pres+P1+Sg:dīma  # ;
+  +Pres+P2+Sg:dīsei  # ;
+  +Pres+P3+Sg:dīt  # ;
+  +Pres+P1+Pl:i  # ;
+  +Pres+P2+Pl:dītei  # ;
+  +Pres+P3+Pl:dīt  # ;
+
+! 121 — dītun (preterite) stem='dīja'
+LEXICON V121_pret
+  +Pret+P1+Sg:dīja  # ;
+  +Pret+P2+Sg:dīja  # ;
+  +Pret+P3+Sg:dīja  # ;
+  +Pret+P1+Pl:mai  # ;
+  @P.standard.twanksta@+Pret+P1+Pl:dīmai  # ;
+  +Pret+P2+Pl:tei  # ;
+  @P.standard.twanksta@+Pret+P2+Pl:dītei  # ;
+  +Pret+P3+Pl:dīja  # ;
+
+! 122 — waīstun (present) stem='waīd'
+LEXICON V122_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+
+! 122 — waīstun (preterite) stem='waīda'
+LEXICON V122_pret
+  +Pret+P1+Sg:waīda  # ;
+  +Pret+P2+Sg:waīda  # ;
+  +Pret+P3+Sg:waīda  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:waīda  # ;
+
+! 123 — skrītwei (present) stem='skreīma'
+LEXICON V123_pres
+  +Pres+P1+Sg:skreīma  # ;
+  @P.standard.twanksta@+Pres+P1+Sg:skrēima  # ;
+  +Pres+P2+Sg:skreīsei  # ;
+  @P.standard.twanksta@+Pres+P2+Sg:skrēisei  # ;
+  +Pres+P3+Sg:skreīt  # ;
+  @P.standard.twanksta@+Pres+P3+Sg:skrēit  # ;
+  +Pres+P1+Pl:i  # ;
+  @P.standard.twanksta@+Pres+P1+Pl:skrēimai  # ;
+  +Pres+P2+Pl:skreītei  # ;
+  @P.standard.twanksta@+Pres+P2+Pl:skrēitei  # ;
+  +Pres+P3+Pl:skreīt  # ;
+  @P.standard.twanksta@+Pres+P3+Pl:skrēit  # ;
+
+! 123 — skrītwei (preterite) stem='skrijja'
+LEXICON V123_pret
+  +Pret+P1+Sg:skrijja  # ;
+  +Pret+P2+Sg:skrijja  # ;
+  +Pret+P3+Sg:skrijja  # ;
+  +Pret+P1+Pl:mai  # ;
+  @P.standard.twanksta@+Pret+P1+Pl:skrīmai  # ;
+  +Pret+P2+Pl:tei  # ;
+  @P.standard.twanksta@+Pret+P2+Pl:skrītei  # ;
+  +Pret+P3+Pl:skrijja  # ;
+
+! 124 — snigtwei (present) stem='snēig'
+LEXICON V124_pres
+  +Pres+P1+Sg:t  # ;
+  +Pres+P2+Sg:t  # ;
+  +Pres+P3+Sg:t  # ;
+  +Pres+P1+Pl:mai  # ;
+  +Pres+P2+Pl:tei  # ;
+  +Pres+P3+Pl:t  # ;
+
+! 124 — snigtwei (preterite) stem='snigga'
+LEXICON V124_pret
+  +Pret+P1+Sg:snigga  # ;
+  +Pret+P2+Sg:snigga  # ;
+  +Pret+P3+Sg:snigga  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:snigga  # ;
+
+! 125 — migtwei (present) stem='meīgma'
+LEXICON V125_pres
+  +Pres+P1+Sg:meīgma  # ;
+  @P.standard.twanksta@+Pres+P1+Sg:mēigma  # ;
+  +Pres+P2+Sg:meīgsei  # ;
+  @P.standard.twanksta@+Pres+P2+Sg:mēigt  # ;
+  +Pres+P3+Sg:meīgt  # ;
+  @P.standard.twanksta@+Pres+P3+Sg:mēigt  # ;
+  +Pres+P1+Pl:i  # ;
+  @P.standard.twanksta@+Pres+P1+Pl:mēigmai  # ;
+  +Pres+P2+Pl:meīgtei  # ;
+  @P.standard.twanksta@+Pres+P2+Pl:mēigtei  # ;
+  +Pres+P3+Pl:meīgt  # ;
+  @P.standard.twanksta@+Pres+P3+Pl:mēigt  # ;
+
+! 125 — migtwei (preterite) stem='migga'
+LEXICON V125_pret
+  +Pret+P1+Sg:migga  # ;
+  +Pret+P2+Sg:migga  # ;
+  +Pret+P3+Sg:migga  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:migga  # ;
+
+! 126 — wiltwei (present) stem='will'
+LEXICON V126_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+
+! 126 — wiltwei (preterite) stem='willa'
+LEXICON V126_pret
+  +Pret+P1+Sg:willa  # ;
+  +Pret+P2+Sg:willa  # ;
+  +Pret+P3+Sg:willa  # ;
+  +Pret+P1+Pl:mai  # ;
+  @P.standard.twanksta@+Pret+P1+Pl:willimai  # ;
+  +Pret+P2+Pl:tei  # ;
+  @P.standard.twanksta@+Pret+P2+Pl:willitei  # ;
+  +Pret+P3+Pl:willa  # ;
+
+! 127 — jāstun (present) stem='jāsma'
+LEXICON V127_pres
+  +Pres+P1+Sg:jāsma  # ;
+  +Pres+P2+Sg:jāsei  # ;
+  +Pres+P3+Sg:jāst  # ;
+  +Pres+P1+Pl:i  # ;
+  +Pres+P2+Pl:jāstei  # ;
+  +Pres+P3+Pl:jāst  # ;
+
+! 127 — jāstun (preterite) stem='jāsa'
+LEXICON V127_pret
+  +Pret+P1+Sg:jāsa  # ;
+  +Pret+P2+Sg:jāsa  # ;
+  +Pret+P3+Sg:jāsa  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:jāsa  # ;
+
+! 128 — sīstwei (present) stem='sīnd'
+LEXICON V128_pres
+  +Pres+P1+Sg:a  # ;
+  @P.standard.twanksta@+Pres+P1+Sg:sēnda  # ;
+  +Pres+P2+Sg:a  # ;
+  @P.standard.twanksta@+Pres+P2+Sg:sēnda  # ;
+  +Pres+P3+Sg:a  # ;
+  @P.standard.twanksta@+Pres+P3+Sg:sēnda  # ;
+  +Pres+P1+Pl:imai  # ;
+  @P.standard.twanksta@+Pres+P1+Pl:sēndimai  # ;
+  +Pres+P2+Pl:itei  # ;
+  @P.standard.twanksta@+Pres+P2+Pl:sēnditei  # ;
+  +Pres+P3+Pl:a  # ;
+  @P.standard.twanksta@+Pres+P3+Pl:sēnda  # ;
+
+! 128 — sīstwei (preterite) stem='sīda'
+LEXICON V128_pret
+  +Pret+P1+Sg:sīda  # ;
+  @P.standard.twanksta@+Pret+P1+Sg:sēda  # ;
+  +Pret+P2+Sg:sīda  # ;
+  @P.standard.twanksta@+Pret+P2+Sg:sēda  # ;
+  +Pret+P3+Sg:sīda  # ;
+  @P.standard.twanksta@+Pret+P3+Sg:sēda  # ;
+  +Pret+P1+Pl:mai  # ;
+  @P.standard.twanksta@+Pret+P1+Pl:sēdamai  # ;
+  +Pret+P2+Pl:tei  # ;
+  @P.standard.twanksta@+Pret+P2+Pl:sēdatei  # ;
+  +Pret+P3+Pl:sīda  # ;
+  @P.standard.twanksta@+Pret+P3+Pl:sēda  # ;
+
+! 131 — pūdatun (present) stem='pūdai'
+LEXICON V131_pres
+  +Pres+P1+Sg:pūdai  # ;
+  @P.standard.twanksta@+Pres+P1+Sg:auskīpai  # ;
+  +Pres+P2+Sg:pūdai  # ;
+  @P.standard.twanksta@+Pres+P2+Sg:auskīpai  # ;
+  +Pres+P3+Sg:pūdai  # ;
+  @P.standard.twanksta@+Pres+P3+Sg:auskīpai  # ;
+  +Pres+P1+Pl:mai  # ;
+  @P.standard.twanksta@+Pres+P1+Pl:auskīpaimai  # ;
+  +Pres+P2+Pl:tei  # ;
+  @P.standard.twanksta@+Pres+P2+Pl:auskīpaitei  # ;
+  +Pres+P3+Pl:pūdai  # ;
+  @P.standard.twanksta@+Pres+P3+Pl:auskīpai  # ;
+
+! 131 — pūdatun (preterite) stem='pūdai'
+LEXICON V131_pret
+  +Pret+P1+Sg:pūdai  # ;
+  @P.standard.twanksta@+Pret+P1+Sg:auskīpai  # ;
+  +Pret+P2+Sg:pūdai  # ;
+  @P.standard.twanksta@+Pret+P2+Sg:auskīpai  # ;
+  +Pret+P3+Sg:pūdai  # ;
+  @P.standard.twanksta@+Pret+P3+Sg:auskīpai  # ;
+  +Pret+P1+Pl:mai  # ;
+  @P.standard.twanksta@+Pret+P1+Pl:auskīpaimai  # ;
+  +Pret+P2+Pl:tei  # ;
+  @P.standard.twanksta@+Pret+P2+Pl:auskīpaitei  # ;
+  +Pret+P3+Pl:pūdai  # ;
+  @P.standard.twanksta@+Pret+P3+Pl:auskīpai  # ;
+
+! 132 — maitātun (present) stem='maitāi'
+LEXICON V132_pres
+  +Pres+P1+Sg:maitāi  # ;
+  +Pres+P2+Sg:maitāi  # ;
+  +Pres+P3+Sg:maitāi  # ;
+  +Pres+P1+Pl:mai  # ;
+  +Pres+P2+Pl:tei  # ;
+  +Pres+P3+Pl:maitāi  # ;
+
+! 132 — maitātun (preterite) stem='maitāi'
+LEXICON V132_pret
+  +Pret+P1+Sg:maitāi  # ;
+  +Pret+P2+Sg:maitāi  # ;
+  +Pret+P3+Sg:maitāi  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:maitāi  # ;
+
+! 133 — kāimalukitun (present) stem='kāimalukei'
+LEXICON V133_pres
+  +Pres+P1+Sg:kāimalukei  # ;
+  @P.standard.twanksta@+Pres+P1+Sg:kāimalukjai  # ;
+  +Pres+P2+Sg:kāimalukei  # ;
+  @P.standard.twanksta@+Pres+P2+Sg:kāimalukjai  # ;
+  +Pres+P3+Sg:kāimalukei  # ;
+  @P.standard.twanksta@+Pres+P3+Sg:kāimalukjai  # ;
+  +Pres+P1+Pl:mai  # ;
+  @P.standard.twanksta@+Pres+P1+Pl:kāimalukjaimai  # ;
+  +Pres+P2+Pl:tei  # ;
+  @P.standard.twanksta@+Pres+P2+Pl:kāimalukjaitei  # ;
+  +Pres+P3+Pl:kāimalukei  # ;
+  @P.standard.twanksta@+Pres+P3+Pl:kāimalukjai  # ;
+
+! 133 — kāimalukitun (preterite) stem='kāimalukei'
+LEXICON V133_pret
+  +Pret+P1+Sg:kāimalukei  # ;
+  @P.standard.twanksta@+Pret+P1+Sg:kāimaluki  # ;
+  +Pret+P2+Sg:kāimalukei  # ;
+  @P.standard.twanksta@+Pret+P2+Sg:kāimaluki  # ;
+  +Pret+P3+Sg:kāimalukei  # ;
+  @P.standard.twanksta@+Pret+P3+Sg:kāimaluki  # ;
+  +Pret+P1+Pl:mai  # ;
+  @P.standard.twanksta@+Pret+P1+Pl:kāimalukimai  # ;
+  +Pret+P2+Pl:tei  # ;
+  @P.standard.twanksta@+Pret+P2+Pl:kāimalukitei  # ;
+  +Pret+P3+Pl:kāimalukei  # ;
+  @P.standard.twanksta@+Pret+P3+Pl:kāimaluki  # ;
+
+! 134 — segītun (present) stem='segēi'
+LEXICON V134_pres
+  +Pres+P1+Sg:segēi  # ;
+  +Pres+P2+Sg:segēi  # ;
+  +Pres+P3+Sg:segēi  # ;
+  +Pres+P1+Pl:mai  # ;
+  +Pres+P2+Pl:tei  # ;
+  +Pres+P3+Pl:segēi  # ;
+
+! 134 — segītun (preterite) stem='segēi'
+LEXICON V134_pret
+  +Pret+P1+Sg:segēi  # ;
+  +Pret+P2+Sg:segēi  # ;
+  +Pret+P3+Sg:segēi  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:segēi  # ;
+
+! 134a — bilītun (present) stem='bilāi'
+LEXICON V134a_pres
+  +Pres+P1+Sg:bilāi  # ;
+  +Pres+P2+Sg:bilāi  # ;
+  +Pres+P3+Sg:bilāi  # ;
+  +Pres+P1+Pl:mai  # ;
+  +Pres+P2+Pl:tei  # ;
+  +Pres+P3+Pl:bilāi  # ;
+
+! 134a — bilītun (preterite) stem='bilāi'
+LEXICON V134a_pret
+  +Pret+P1+Sg:bilāi  # ;
+  +Pret+P2+Sg:bilāi  # ;
+  +Pret+P3+Sg:bilāi  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:bilāi  # ;
+
+! 135 — līkitun (present) stem='līki'
+LEXICON V135_pres
+  +Pres+P1+Sg:līki  # ;
+  @P.standard.twanksta@+Pres+P1+Sg:palīki  # ;
+  +Pres+P2+Sg:līki  # ;
+  @P.standard.twanksta@+Pres+P2+Sg:palīki  # ;
+  +Pres+P3+Sg:līki  # ;
+  @P.standard.twanksta@+Pres+P3+Sg:palīki  # ;
+  +Pres+P1+Pl:mai  # ;
+  @P.standard.twanksta@+Pres+P1+Pl:palīkimai  # ;
+  +Pres+P2+Pl:tei  # ;
+  @P.standard.twanksta@+Pres+P2+Pl:palīkitei  # ;
+  +Pres+P3+Pl:līki  # ;
+  @P.standard.twanksta@+Pres+P3+Pl:palīki  # ;
+
+! 135 — līkitun (preterite) stem='līki'
+LEXICON V135_pret
+  +Pret+P1+Sg:līki  # ;
+  @P.standard.twanksta@+Pret+P1+Sg:palīkei  # ;
+  +Pret+P2+Sg:līki  # ;
+  @P.standard.twanksta@+Pret+P2+Sg:palīkei  # ;
+  +Pret+P3+Sg:līki  # ;
+  @P.standard.twanksta@+Pret+P3+Sg:palīkei  # ;
+  +Pret+P1+Pl:mai  # ;
+  @P.standard.twanksta@+Pret+P1+Pl:palīkeimai  # ;
+  +Pret+P2+Pl:tei  # ;
+  @P.standard.twanksta@+Pret+P2+Pl:palīkeitei  # ;
+  +Pret+P3+Pl:līki  # ;
+  @P.standard.twanksta@+Pret+P3+Pl:palīkei  # ;
+
+! 136 — klantītun (present) stem='klant'
+LEXICON V136_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+
+! 136 — klantītun (preterite) stem='klantēi'
+LEXICON V136_pret
+  +Pret+P1+Sg:klantēi  # ;
+  +Pret+P2+Sg:klantēi  # ;
+  +Pret+P3+Sg:klantēi  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:klantēi  # ;
+
+! 137 — turītun (present) stem='turri'
+LEXICON V137_pres
+  +Pres+P1+Sg:turri  # ;
+  +Pres+P2+Sg:turri  # ;
+  +Pres+P3+Sg:turri  # ;
+  +Pres+P1+Pl:mai  # ;
+  +Pres+P2+Pl:tei  # ;
+  +Pres+P3+Pl:turri  # ;
+
+! 137 — turītun (preterite) stem='turēi'
+LEXICON V137_pret
+  +Pret+P1+Sg:turēi  # ;
+  +Pret+P2+Sg:turēi  # ;
+  +Pret+P3+Sg:turēi  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:turēi  # ;
+
+! 137a — milītun (present) stem='mīli'
+LEXICON V137a_pres
+  +Pres+P1+Sg:mīli  # ;
+  +Pres+P2+Sg:mīli  # ;
+  +Pres+P3+Sg:mīli  # ;
+  +Pres+P1+Pl:mai  # ;
+  +Pres+P2+Pl:tei  # ;
+  +Pres+P3+Pl:mīli  # ;
+
+! 137a — milītun (preterite) stem='milāi'
+LEXICON V137a_pret
+  +Pret+P1+Sg:milāi  # ;
+  +Pret+P2+Sg:milāi  # ;
+  +Pret+P3+Sg:milāi  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:milāi  # ;
+
+! 138 — grīkitun (present) stem='abōni'
+LEXICON V138_pres
+  +Pres+P1+Sg:abōni  # ;
+  +Pres+P2+Sg:abōni  # ;
+  +Pres+P3+Sg:abōni  # ;
+  +Pres+P1+Pl:mai  # ;
+  +Pres+P2+Pl:tei  # ;
+  +Pres+P3+Pl:abōni  # ;
+
+! 138 — grīkitun (preterite) stem='abōni'
+LEXICON V138_pret
+  +Pret+P1+Sg:abōni  # ;
+  +Pret+P2+Sg:abōni  # ;
+  +Pret+P3+Sg:abōni  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:abōni  # ;
+
+! 139 — krikstītun (present) stem='krikstijja'
+LEXICON V139_pres
+  +Pres+P1+Sg:krikstijja  # ;
+  +Pres+P2+Sg:krikstijja  # ;
+  +Pres+P3+Sg:krikstijja  # ;
+  +Pres+P1+Pl:mai  # ;
+  @P.standard.twanksta@+Pres+P1+Pl:krikstijjimai  # ;
+  +Pres+P2+Pl:tei  # ;
+  @P.standard.twanksta@+Pres+P2+Pl:krikstijjitei  # ;
+  +Pres+P3+Pl:krikstijja  # ;
+
+! 139 — krikstītun (preterite) stem='krikstijja'
+LEXICON V139_pret
+  +Pret+P1+Sg:krikstijja  # ;
+  +Pret+P2+Sg:krikstijja  # ;
+  +Pret+P3+Sg:krikstijja  # ;
+  +Pret+P1+Pl:mai  # ;
+  @P.standard.twanksta@+Pret+P1+Pl:krikstijjimai  # ;
+  +Pret+P2+Pl:tei  # ;
+  @P.standard.twanksta@+Pret+P2+Pl:krikstijjitei  # ;
+  +Pret+P3+Pl:krikstijja  # ;
+
+! 140 — madlītun (present) stem='madli'
+LEXICON V140_pres
+  +Pres+P1+Sg:madli  # ;
+  +Pres+P2+Sg:madli  # ;
+  +Pres+P3+Sg:madli  # ;
+  +Pres+P1+Pl:mai  # ;
+  +Pres+P2+Pl:tei  # ;
+  +Pres+P3+Pl:madli  # ;
+
+! 140 — madlītun (preterite) stem='madlijja'
+LEXICON V140_pret
+  +Pret+P1+Sg:madlijja  # ;
+  +Pret+P2+Sg:madlijja  # ;
+  +Pret+P3+Sg:madlijja  # ;
+  +Pret+P1+Pl:mai  # ;
+  @P.standard.twanksta@+Pret+P1+Pl:madlīmai  # ;
+  +Pret+P2+Pl:tei  # ;
+  @P.standard.twanksta@+Pret+P2+Pl:madlītei  # ;
+  +Pret+P3+Pl:madlijja  # ;
+
+! 141 — giwītun (present) stem='perwald'
+LEXICON V141_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+
+! 141 — giwītun (preterite) stem='perwaldīja'
+LEXICON V141_pret
+  +Pret+P1+Sg:perwaldīja  # ;
+  +Pret+P2+Sg:perwaldīja  # ;
+  +Pret+P3+Sg:perwaldīja  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:perwaldīja  # ;
+
+! 142 — zinātun (present) stem='zinn'
+LEXICON V142_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+
+! 142 — zinātun (preterite) stem='zināi'
+LEXICON V142_pret
+  +Pret+P1+Sg:zināi  # ;
+  +Pret+P2+Sg:zināi  # ;
+  +Pret+P3+Sg:zināi  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:zināi  # ;
+
+! 143 — dīnkautun (present) stem='dīnka'
+LEXICON V143_pres
+  +Pres+P1+Sg:ui  # ;
+  +Pres+P2+Sg:ui  # ;
+  +Pres+P3+Sg:ui  # ;
+  +Pres+P1+Pl:wimai  # ;
+  +Pres+P2+Pl:witei  # ;
+  +Pres+P3+Pl:ui  # ;
+
+! 143 — dīnkautun (preterite) stem='dīnkau'
+LEXICON V143_pret
+  +Pret+P1+Sg:dīnkau  # ;
+  +Pret+P2+Sg:dīnkau  # ;
+  +Pret+P3+Sg:dīnkau  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:dīnkau  # ;
+
+! 144 — rikaūtun (present) stem='rikaūj'
+LEXICON V144_pres
+  +Pres+P1+Sg:a  # ;
+  +Pres+P2+Sg:a  # ;
+  +Pres+P3+Sg:a  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:a  # ;
+
+! 144 — rikaūtun (preterite) stem='rikaūwa'
+LEXICON V144_pret
+  +Pret+P1+Sg:rikaūwa  # ;
+  +Pret+P2+Sg:rikaūwa  # ;
+  +Pret+P3+Sg:rikaūwa  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:rikaūwa  # ;
+
+! 106d — laītun (present) stem='laī'
+LEXICON V106d_pres
+  +Pres+P1+Sg:ja  # ;
+  +Pres+P2+Sg:ja  # ;
+  +Pres+P3+Sg:ja  # ;
+  +Pres+P1+Pl:mai  # ;
+  +Pres+P2+Pl:tei  # ;
+  +Pres+P3+Pl:ja  # ;
+
+! 106d — laītun (preterite) stem='laīja'
+LEXICON V106d_pret
+  +Pret+P1+Sg:laīja  # ;
+  +Pret+P2+Sg:laīja  # ;
+  +Pret+P3+Sg:laīja  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:laīja  # ;
+
+! 76s — krīkstwei (present) stem='krīkst'
+LEXICON V76s_pres
+  +Pres+P1+Sg:e  # ;
+  +Pres+P2+Sg:e  # ;
+  +Pres+P3+Sg:e  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:e  # ;
+
+! 76s — krīkstwei (preterite) stem='krīksti'
+LEXICON V76s_pret
+  +Pret+P1+Sg:krīksti  # ;
+  +Pret+P2+Sg:krīksti  # ;
+  +Pret+P3+Sg:krīksti  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:krīksti  # ;
+
+! 81d — skestun (present) stem='skett'
+LEXICON V81d_pres
+  +Pres+P1+Sg:e  # ;
+  +Pres+P2+Sg:e  # ;
+  +Pres+P3+Sg:e  # ;
+  +Pres+P1+Pl:imai  # ;
+  +Pres+P2+Pl:itei  # ;
+  +Pres+P3+Pl:e  # ;
+
+! 81d — skestun (preterite) stem='skīti'
+LEXICON V81d_pret
+  +Pret+P1+Sg:skīti  # ;
+  +Pret+P2+Sg:skīti  # ;
+  +Pret+P3+Sg:skīti  # ;
+  +Pret+P1+Pl:mai  # ;
+  +Pret+P2+Pl:tei  # ;
+  +Pret+P3+Pl:skīti  # ;
+

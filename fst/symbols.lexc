@@ -1,0 +1,35 @@
+Multichar_Symbols
+  +N    ! noun
+  +Adj  ! adjective
+  +Pron ! pronoun
+  +Num  ! numeral
+  +V    ! verb
+  +Part ! participle
+
+  +Sg   ! singular
+  +Pl   ! plural
+
+  +Nom  ! nominative
+  +Gen  ! genitive
+  +Dat  ! dative
+  +Akk  ! accusative
+
+  +Masc ! masculine
+  +Fem  ! feminine
+  +Neut ! neuter
+
+  +Pres ! present tense
+  +Pret ! preterite tense
+  +Inf  ! infinitive
+
+  +P1   ! 1st person
+  +P2   ! 2nd person
+  +P3   ! 3rd person
+
+  ! Flag diacritics for divergence layers
+  @P.standard.prusaspira@
+  @P.standard.twanksta@
+  @P.verb_theme.i@
+  @P.verb_theme.a@
+  @P.iotation.surface@
+  @P.iotation.leveled@

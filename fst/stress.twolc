@@ -1,0 +1,14 @@
+! Stress exponence — twolc rules for notation layer.
+!
+! Current state: Gravis is stored directly in lexc (only 2 cells: labàsmu).
+! Gemination and Makron are stored directly in lexc.
+!
+! Future: Gravis and gemination rules will read stress markers from
+! the akzent[standard][paradigma][zelle] table when that is implemented.
+
+Alphabet
+ a à ā b c d ḑ e è ē f g ģ h i ì ī j k ķ l m n ņ o ò ō p r ŗ s š t ţ u ù ū w z ž ;
+
+Rules
+
+"Noop" a:a <=> _ ;

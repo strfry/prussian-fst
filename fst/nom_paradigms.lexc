@@ -1,0 +1,1285 @@
+! Nominal paradigm form productions — STEM + ENDING decomposition.
+! Each paradigm has a stem lexicon (sg/pl stems) and ending lexicons.
+! Surface form = stem + ending.
+
+! ============================================================
+! PRONOUNS — irregular, full forms stored
+! ============================================================
+
+! 9 — kas
+LEXICON P9
+  +Sg+Nom+Masc:kas        # ;
+  +Sg+Gen+Masc:kasse      # ;
+  +Sg+Dat+Masc:kasmu      # ;
+  +Sg+Akk+Masc:kan        # ;
+  +Pl+Nom+Masc:kwāi       # ;
+  +Pl+Gen+Masc:kwēisan    # ;
+  +Pl+Dat+Masc:kwēimans   # ;
+  +Pl+Akk+Masc:kans       # ;
+  +Sg+Nom+Fem:kwāi        # ;
+  +Sg+Gen+Fem:kasses      # ;
+  +Sg+Dat+Fem:kassei      # ;
+  +Sg+Akk+Fem:kan         # ;
+  +Pl+Nom+Fem:kwās        # ;
+  +Pl+Gen+Fem:kwēisan     # ;
+  +Pl+Dat+Fem:kwēimans    # ;
+  +Pl+Akk+Fem:kans        # ;
+  +Sg+Nom+Neut:ka         # ;
+  +Sg+Gen+Neut:kasse      # ;
+  +Sg+Dat+Neut:kasmu      # ;
+  +Sg+Akk+Neut:ka         # ;
+  +Pl+Nom+Neut:ka         # ;
+  +Pl+Gen+Neut:kasse      # ;
+  +Pl+Dat+Neut:kasmu      # ;
+  +Pl+Akk+Neut:ka         # ;
+
+! 10 — dis
+LEXICON P10
+  +Sg+Nom+Masc:dis        # ;
+  +Sg+Gen+Masc:din        # ;
+  +Sg+Dat+Masc:din        # ;
+  +Sg+Akk+Masc:din        # ;
+  +Pl+Nom+Masc:dei        # ;
+  +Pl+Gen+Masc:dins       # ;
+  +Pl+Dat+Masc:dins       # ;
+  +Pl+Akk+Masc:dins       # ;
+  +Sg+Nom+Fem:dis         # ;
+  +Sg+Gen+Fem:din         # ;
+  +Sg+Dat+Fem:din         # ;
+  +Sg+Akk+Fem:din         # ;
+  +Pl+Nom+Fem:dei         # ;
+  +Pl+Gen+Fem:dins        # ;
+  +Pl+Dat+Fem:dins        # ;
+  +Pl+Akk+Fem:dins        # ;
+  +Sg+Nom+Neut:di         # ;
+  +Sg+Gen+Neut:di         # ;
+  +Sg+Dat+Neut:di         # ;
+  +Sg+Akk+Neut:di         # ;
+  +Pl+Nom+Neut:di         # ;
+  +Pl+Gen+Neut:di         # ;
+  +Pl+Dat+Neut:di         # ;
+  +Pl+Akk+Neut:di         # ;
+
+! 12 — tāns
+LEXICON P12
+  +Sg+Nom+Masc:tāns       # ;
+  +Sg+Gen+Masc:tenesse    # ;
+  +Sg+Dat+Masc:tenesmu    # ;
+  +Sg+Akk+Masc:tennan     # ;
+  +Pl+Nom+Masc:tenēi      # ;
+  +Pl+Gen+Masc:tenēisan   # ;
+  +Pl+Dat+Masc:tenēimans  # ;
+  +Pl+Akk+Masc:tennans    # ;
+
+! 13 — tenā
+LEXICON P13
+  +Sg+Nom+Fem:tenā        # ;
+  +Sg+Gen+Fem:tenesses    # ;
+  +Sg+Dat+Fem:tenessei    # ;
+  +Sg+Akk+Fem:tennan      # ;
+  +Pl+Nom+Fem:tennas      # ;
+  +Pl+Gen+Fem:tenēisan    # ;
+  +Pl+Dat+Fem:tenēimans   # ;
+  +Pl+Akk+Fem:tennans     # ;
+
+! 15 — šis
+LEXICON P15
+  +Sg+Nom+Masc:šis        # ;
+  +Sg+Gen+Masc:šisse      # ;
+  +Sg+Dat+Masc:šismu      # ;
+  +Sg+Akk+Masc:šin        # ;
+  +Pl+Nom+Masc:šāi        # ;
+  +Pl+Gen+Masc:šēisan     # ;
+  +Pl+Dat+Masc:šēimans    # ;
+  +Pl+Akk+Masc:šans       # ;
+  @P.standard.twanksta@+Pl+Akk+Masc:šins  # ;
+  +Sg+Nom+Fem:šī          # ;
+  +Sg+Gen+Fem:šisses      # ;
+  +Sg+Dat+Fem:šissei      # ;
+  +Sg+Akk+Fem:šan         # ;
+  +Pl+Nom+Fem:šās         # ;
+  +Pl+Gen+Fem:šēisan      # ;
+  +Pl+Dat+Fem:šēimans     # ;
+  +Pl+Akk+Fem:šans        # ;
+  @P.standard.twanksta@+Pl+Akk+Fem:šins  # ;
+  +Sg+Nom+Neut:šin        # ;
+  +Sg+Gen+Neut:šisse      # ;
+  +Sg+Dat+Neut:šismu      # ;
+  +Sg+Akk+Neut:šin        # ;
+  +Pl+Nom+Neut:šāi        # ;
+  +Pl+Gen+Neut:šēisan     # ;
+  +Pl+Dat+Neut:šēimans    # ;
+  +Pl+Akk+Neut:šans       # ;
+  @P.standard.twanksta@+Pl+Akk+Neut:šins  # ;
+
+! 17 — wiss
+LEXICON P17
+  +Sg+Nom+Masc:wiss       # ;
+  +Sg+Gen+Masc:wisse      # ;
+  +Sg+Dat+Masc:wismu      # ;
+  +Sg+Akk+Masc:wissan     # ;
+  +Pl+Nom+Masc:wisāi      # ;
+  +Pl+Gen+Masc:wisēisan   # ;
+  +Pl+Dat+Masc:wisēimans  # ;
+  +Pl+Akk+Masc:wissans    # ;
+  @P.standard.twanksta@+Pl+Akk+Masc:wisans   # ;
+  +Sg+Nom+Fem:wisā        # ;
+  +Sg+Gen+Fem:wissas      # ;
+  +Sg+Dat+Fem:wissai      # ;
+  @P.standard.twanksta@+Sg+Dat+Fem:wisssai   # ;
+  +Sg+Akk+Fem:wissan      # ;
+  +Pl+Nom+Fem:wissas      # ;
+  +Pl+Gen+Fem:wissan      # ;
+  +Pl+Dat+Fem:wisāmans    # ;
+  +Pl+Akk+Fem:wissans     # ;
+  @P.standard.twanksta@+Pl+Akk+Fem:wisans    # ;
+  +Sg+Nom+Neut:wissan     # ;
+  +Sg+Gen+Neut:wisse      # ;
+  +Sg+Dat+Neut:wismu      # ;
+  +Sg+Akk+Neut:wissan     # ;
+  +Pl+Nom+Neut:wisāi      # ;
+  +Pl+Gen+Neut:wisēisan   # ;
+  +Pl+Dat+Neut:wisēimans  # ;
+  +Pl+Akk+Neut:wissans    # ;
+  @P.standard.twanksta@+Pl+Akk+Neut:wisans    # ;
+
+! 19 — kawīds
+LEXICON P19
+  +Sg+Nom+Masc:kawīds     # ;
+  +Sg+Gen+Masc:kawīdse    # ;
+  +Sg+Dat+Masc:kawīdsmu   # ;
+  +Sg+Akk+Masc:kawīdan    # ;
+  +Pl+Nom+Masc:kawīdai    # ;
+  +Pl+Gen+Masc:kawīdan    # ;
+  +Pl+Dat+Masc:kawīdamans # ;
+  +Pl+Akk+Masc:kawīdans   # ;
+  +Sg+Nom+Fem:kawīda      # ;
+  +Sg+Gen+Fem:kawīdses    # ;
+  +Sg+Dat+Fem:kawīdsei    # ;
+  +Sg+Akk+Fem:kawīdan     # ;
+  +Pl+Nom+Fem:kawīdas     # ;
+  +Pl+Gen+Fem:kawīdan     # ;
+  +Pl+Dat+Fem:kawīdamans  # ;
+  +Pl+Akk+Fem:kawīdans    # ;
+  +Sg+Nom+Neut:kawīdan    # ;
+  +Sg+Gen+Neut:kawīdse    # ;
+  +Sg+Dat+Neut:kawīdsmu   # ;
+  +Sg+Akk+Neut:kawīdan    # ;
+  +Pl+Nom+Neut:kawīdai    # ;
+  +Pl+Gen+Neut:kawīdan    # ;
+  +Pl+Dat+Neut:kawīdamans # ;
+  +Pl+Akk+Neut:kawīdans   # ;
+
+! 20 — majs
+LEXICON P20
+  +Sg+Nom+Masc:majs       # ;
+  +Sg+Gen+Masc:māise      # ;
+  +Sg+Dat+Masc:majasmu    # ;
+  +Sg+Akk+Masc:majjan     # ;
+  +Pl+Nom+Masc:majāi      # ;
+  +Pl+Gen+Masc:māisan     # ;
+  +Pl+Dat+Masc:māimans    # ;
+  +Pl+Akk+Masc:majjans    # ;
+  +Sg+Nom+Fem:majā        # ;
+  +Sg+Gen+Fem:majāses     # ;
+  +Sg+Dat+Fem:majjai      # ;
+  +Sg+Akk+Fem:majjan      # ;
+  +Pl+Nom+Fem:majjas      # ;
+  +Pl+Gen+Fem:majāsan     # ;
+  +Pl+Dat+Fem:majāmans    # ;
+  +Pl+Akk+Fem:majjans     # ;
+  +Sg+Nom+Neut:majjan     # ;
+  +Sg+Gen+Neut:māise      # ;
+  +Sg+Dat+Neut:majasmu    # ;
+  +Sg+Akk+Neut:majjan     # ;
+  +Pl+Nom+Neut:majāi      # ;
+  +Pl+Gen+Neut:māisan     # ;
+  +Pl+Dat+Neut:māimans    # ;
+  +Pl+Akk+Neut:majjans    # ;
+  @P.standard.twanksta@+Pl+Akk+Neut:majans   # ;
+
+! ============================================================
+! NUMERALS
+! ============================================================
+
+! 22 — abbai
+LEXICON Num22
+  +Pl+Nom+Masc:abbai      # ;
+  +Pl+Gen+Masc:abbejan    # ;
+  +Pl+Dat+Masc:abbeimas   # ;
+  +Pl+Akk+Masc:abbans     # ;
+  +Pl+Nom+Fem:abbai       # ;
+  +Pl+Gen+Fem:abbejan     # ;
+  +Pl+Dat+Fem:abbeimas    # ;
+  +Pl+Akk+Fem:abbans      # ;
+  +Pl+Nom+Neut:abbai      # ;
+  +Pl+Gen+Neut:abbejan    # ;
+  +Pl+Dat+Neut:abbeimas   # ;
+  +Pl+Akk+Neut:abbans     # ;
+
+! ============================================================
+! ADJECTIVES — full forms (3-gender, stem allomorphy makes decomposition impractical)
+! ============================================================
+
+! 25 — debīks
+LEXICON A25
+  +Sg+Nom+Masc:debīks     # ;
+  +Sg+Gen+Masc:debīkas    # ;
+  +Sg+Dat+Masc:debīkasmu  # ;
+  +Sg+Akk+Masc:debīkan    # ;
+  +Pl+Nom+Masc:debīkai    # ;
+  +Pl+Gen+Masc:debīkan    # ;
+  +Pl+Dat+Masc:debīkamans # ;
+  +Pl+Akk+Masc:debīkans   # ;
+  +Sg+Nom+Fem:debīka      # ;
+  +Sg+Gen+Fem:debīkas     # ;
+  +Sg+Dat+Fem:debīkai     # ;
+  +Sg+Akk+Fem:debīkan     # ;
+  +Pl+Nom+Fem:debīkas     # ;
+  +Pl+Gen+Fem:debīkan     # ;
+  +Pl+Dat+Fem:debīkamans  # ;
+  +Pl+Akk+Fem:debīkans    # ;
+  +Sg+Nom+Neut:debīkan    # ;
+  +Sg+Gen+Neut:debīkas    # ;
+  +Sg+Dat+Neut:debīkasmu  # ;
+  +Sg+Akk+Neut:debīkan    # ;
+  +Pl+Nom+Neut:debīkai    # ;
+  +Pl+Gen+Neut:debīkan    # ;
+  +Pl+Dat+Neut:debīkamans # ;
+  +Pl+Akk+Neut:debīkans   # ;
+
+! 26 — labs
+LEXICON A26
+  +Sg+Nom+Masc:labs       # ;
+  +Sg+Gen+Masc:labbas     # ;
+  +Sg+Dat+Masc:labàsmu    # ;
+  +Sg+Akk+Masc:labban     # ;
+  +Pl+Nom+Masc:labāi      # ;
+  +Pl+Gen+Masc:labban     # ;
+  +Pl+Dat+Masc:labammans  # ;
+  +Pl+Akk+Masc:labbans    # ;
+  +Sg+Nom+Fem:labā        # ;
+  +Sg+Gen+Fem:labbas      # ;
+  +Sg+Dat+Fem:labbai      # ;
+  @P.standard.twanksta@+Sg+Dat+Fem:labai     # ;
+  +Sg+Akk+Fem:labban      # ;
+  +Pl+Nom+Fem:labbas      # ;
+  +Pl+Gen+Fem:labban      # ;
+  +Pl+Dat+Fem:labāmans    # ;
+  +Pl+Akk+Fem:labbans     # ;
+  +Sg+Nom+Neut:labban     # ;
+  +Sg+Gen+Neut:labbas     # ;
+  +Sg+Dat+Neut:labàsmu    # ;
+  +Sg+Akk+Neut:labban     # ;
+  +Pl+Nom+Neut:labāi      # ;
+  +Pl+Gen+Neut:labban     # ;
+  +Pl+Dat+Neut:labammans  # ;
+  +Pl+Akk+Neut:labbans    # ;
+
+! ============================================================
+! NOUNS — STEM + ENDING
+! ============================================================
+
+! Paradigm 32 — wīrs (masc o-stem: stem = lemma - "s")
+LEXICON N32_sg
+  +Sg+Nom+Masc:s      # ;
+  +Sg+Gen+Masc:as     # ;
+  +Sg+Dat+Masc:u      # ;
+  +Sg+Akk+Masc:an     # ;
+LEXICON N32_pl
+  +Pl+Nom+Masc:ai     # ;
+  +Pl+Gen+Masc:an     # ;
+  +Pl+Dat+Masc:amans  # ;
+  +Pl+Akk+Masc:ans    # ;
+
+! Paradigm 34 — aliskans (masc n-stem: stem = lemma - "ans")
+LEXICON N34_sg
+  +Sg+Nom+Masc:ans    # ;
+  +Sg+Gen+Masc:nas    # ;
+  +Sg+Dat+Masc:nu     # ;
+  +Sg+Akk+Masc:nan    # ;
+LEXICON N34_pl
+  +Pl+Nom+Masc:nai    # ;
+  +Pl+Gen+Masc:nan    # ;
+  +Pl+Dat+Masc:namans # ;
+  +Pl+Akk+Masc:nans   # ;
+
+! Paradigm 35 — mīstan (neut o-stem: stem = lemma - "an")
+LEXICON N35_sg
+  +Sg+Nom+Neut:an     # ;
+  +Sg+Gen+Neut:as     # ;
+  +Sg+Dat+Neut:u      # ;
+  +Sg+Akk+Neut:an     # ;
+LEXICON N35_pl
+  +Pl+Nom+Neut:āi     # ;
+  +Pl+Gen+Neut:an     # ;
+  +Pl+Dat+Neut:amans  # ;
+  @P.standard.twanksta@+Pl+Dat+Neut:amans   # ;  ! Twan: mīstamans
+  ! Prus default with gemination handled inline:
+  ! Prus Dat pl = mistammans — gemination must be in stem
+  +Pl+Akk+Neut:ans    # ;
+
+! Paradigm 36 — wāiks (masc ja-stem: sg stem = lemma-"s", pl stem shorter)
+LEXICON N36_sg
+  +Sg+Nom+Masc:s      # ;
+  +Sg+Gen+Masc:as     # ;
+  +Sg+Dat+Masc:u      # ;
+  +Sg+Akk+Masc:an     # ;
+LEXICON N36_pl
+  +Pl+Nom+Masc:āi     # ;
+  +Pl+Gen+Masc:an     # ;
+  +Pl+Dat+Masc:ammans # ;
+  +Pl+Akk+Masc:ans    # ;
+
+! Paradigm 38 — gewinīs (masc ī-stem: stem = lemma - "s")
+LEXICON N38_sg
+  +Sg+Nom+Masc:s      # ;
+  +Sg+Gen+Masc:jas    # ;
+  +Sg+Dat+Masc:ju     # ;
+  +Sg+Akk+Masc:jan    # ;
+LEXICON N38_pl
+  +Pl+Nom+Masc:jai    # ;
+  +Pl+Gen+Masc:jan    # ;
+  +Pl+Dat+Masc:mans  # ;
+  +Pl+Akk+Masc:jans   # ;
+
+! Paradigm 42 — tals (masc u-stem: stem = lemma - "s", but stem gets ll)
+LEXICON N42_sg
+  +Sg+Nom+Masc:s      # ;
+  +Sg+Gen+Masc:us     # ;
+  +Sg+Dat+Masc:u      # ;
+  +Sg+Akk+Masc:un     # ;
+LEXICON N42_pl
+  +Pl+Nom+Masc:us     # ;
+  +Pl+Gen+Masc:un     # ;
+  +Pl+Dat+Masc:umans  # ;
+  +Pl+Akk+Masc:uns    # ;
+
+! Paradigm 43 — sūns (masc u-stem: stem = lemma - "s")
+LEXICON N43_sg
+  +Sg+Nom+Masc:s      # ;
+  +Sg+Gen+Masc:us     # ;
+  +Sg+Dat+Masc:u      # ;
+  +Sg+Akk+Masc:un     # ;
+LEXICON N43_pl
+  +Pl+Nom+Masc:us     # ;
+  +Pl+Gen+Masc:un     # ;
+  +Pl+Dat+Masc:ummans  # ;
+  +Pl+Akk+Masc:uns    # ;
+
+! Paradigm 44 — pannu (neut u-stem, invariable: full forms)
+LEXICON N44
+  +Sg+Nom+Neut:pannu      # ;
+  +Sg+Gen+Neut:pannus     # ;
+  +Sg+Dat+Neut:pannu      # ;
+  +Sg+Akk+Neut:pannu      # ;
+  +Pl+Nom+Neut:pannu      # ;
+  +Pl+Gen+Neut:pannus     # ;
+  +Pl+Dat+Neut:pannu      # ;
+  +Pl+Akk+Neut:pannu      # ;
+
+! Paradigm 45 — mūsa (fem a-stem: stem = lemma - "a")
+LEXICON N45_sg
+  +Sg+Nom+Fem:a       # ;
+  +Sg+Gen+Fem:as      # ;
+  +Sg+Dat+Fem:ai      # ;
+  +Sg+Akk+Fem:an      # ;
+LEXICON N45_pl
+  +Pl+Nom+Fem:as      # ;
+  +Pl+Gen+Fem:an      # ;
+  +Pl+Dat+Fem:āmans   # ;
+  +Pl+Akk+Fem:ans     # ;
+
+! Paradigm 47 — āubirga (masc a-stem noun: stem = lemma - "a")
+LEXICON N47_sg
+  +Sg+Nom+Masc:a      # ;
+  +Sg+Gen+Masc:as     # ;
+  +Sg+Dat+Masc:ai     # ;
+  +Sg+Akk+Masc:an     # ;
+LEXICON N47_pl
+  +Pl+Nom+Masc:as     # ;
+  +Pl+Gen+Masc:an     # ;
+  +Pl+Dat+Masc:amans  # ;
+  +Pl+Akk+Masc:ans    # ;
+
+! Paradigm 52 — bitti (fem i-stem: stem = lemma - "i")
+LEXICON N52_sg
+  +Sg+Nom+Fem:i       # ;
+  +Sg+Gen+Fem:is      # ;
+  +Sg+Dat+Fem:ei      # ;
+  +Sg+Akk+Fem:in      # ;
+LEXICON N52_pl
+  +Pl+Nom+Fem:is      # ;
+  +Pl+Gen+Fem:in      # ;
+  +Pl+Dat+Fem:imans   # ;
+  +Pl+Akk+Fem:ins     # ;
+
+! Paradigm 53 — zemē (fem ē-stem: stem = lemma - "ē")
+LEXICON N53_sg
+  +Sg+Nom+Fem:ē       # ;
+  +Sg+Gen+Fem:mis     # ;
+  +Sg+Dat+Fem:mei     # ;
+  +Sg+Akk+Fem:min     # ;
+LEXICON N53_pl
+  +Pl+Nom+Fem:mis     # ;
+  +Pl+Gen+Fem:min     # ;
+  +Pl+Dat+Fem:īmans   # ;
+  +Pl+Akk+Fem:mins    # ;
+
+! Paradigm 56 — gigānts (masc consonant: stem = lemma - "s")
+LEXICON N56_sg
+  +Sg+Nom+Masc:s      # ;
+  +Sg+Gen+Masc:is     # ;
+  +Sg+Dat+Masc:i      # ;
+  +Sg+Akk+Masc:in     # ;
+LEXICON N56_pl
+  +Pl+Nom+Masc:ei     # ;
+  @P.standard.twanksta@+Pl+Nom+Masc:jai    # ;
+  +Pl+Gen+Masc:in     # ;
+  +Pl+Dat+Masc:imans  # ;
+  +Pl+Akk+Masc:ins    # ;
+
+! Paradigm 57 — dānts (masc consonant: stem = lemma - "s")
+LEXICON N57_sg
+  +Sg+Nom+Masc:s      # ;
+  +Sg+Gen+Masc:is     # ;
+  +Sg+Dat+Masc:i      # ;
+  +Sg+Akk+Masc:in     # ;
+LEXICON N57_pl
+  +Pl+Nom+Masc:ei     # ;
+  @P.standard.twanksta@+Pl+Nom+Masc:jai    # ;
+  +Pl+Gen+Masc:in     # ;
+  +Pl+Dat+Masc:immans # ;
+  +Pl+Akk+Masc:ins    # ;
+
+! Paradigm 60 — aks (fem consonant: stem = lemma - "s")
+LEXICON N60_sg
+  +Sg+Nom+Fem:s       # ;
+  +Sg+Gen+Fem:is      # ;
+  +Sg+Dat+Fem:ei      # ;
+  +Sg+Akk+Fem:in      # ;
+LEXICON N60_pl
+  +Pl+Nom+Fem:is      # ;
+  +Pl+Gen+Fem:in      # ;
+  +Pl+Dat+Fem:imans   # ;
+  +Pl+Akk+Fem:ins     # ;
+
+! Paradigm 61 — kērmens (masc n-stem: stem = lemma - "s")
+LEXICON N61_sg
+  +Sg+Nom+Masc:s      # ;
+  +Sg+Gen+Masc:es     # ;
+  +Sg+Dat+Masc:i      # ;
+  +Sg+Akk+Masc:in     # ;
+LEXICON N61_pl
+  +Pl+Nom+Masc:ei     # ;
+  @P.standard.twanksta@+Pl+Nom+Masc:jai    # ;
+  +Pl+Gen+Masc:in     # ;
+  +Pl+Dat+Masc:imans  # ;
+  +Pl+Akk+Masc:ins    # ;
+
+! Paradigm 33 — šmaws (u-stem, stem allomorphy: full forms)
+LEXICON N33
+  +Sg+Nom+Masc:šmaws      # ;
+  +Sg+Gen+Masc:šmāuwas    # ;
+  +Sg+Dat+Masc:šmāuwu     # ;
+  +Sg+Akk+Masc:šmāuwan    # ;
+  +Pl+Nom+Masc:šmāuwai    # ;
+  +Pl+Gen+Masc:šmāuwan    # ;
+  +Pl+Dat+Masc:šmāumans   # ;
+  @P.standard.twanksta@+Pl+Dat+Masc:šmāuamans  # ;
+  +Pl+Akk+Masc:šmāuwans   # ;
+
+! Paradigm 39 — rikīs (ī-stem, stem allomorphy: full forms)
+LEXICON N39
+  +Sg+Nom+Masc:Rikīs      # ;
+  +Sg+Gen+Masc:Rikijjas   # ;
+  +Sg+Dat+Masc:Rikijju    # ;
+  +Sg+Akk+Masc:Rikijjan   # ;
+  +Pl+Nom+Masc:Rikijjai   # ;
+  +Pl+Gen+Masc:Rikijjan   # ;
+  +Pl+Dat+Masc:Rikkijmans # ;
+  @P.standard.twanksta@+Pl+Dat+Masc:Rikkimans  # ;
+  +Pl+Akk+Masc:Rikijjans  # ;
+
+! ============================================================
+! ADDITIONAL PARADIGMS (iotation, pronouns, adjectives)
+! ============================================================
+
+! 11 — stas (Pron)
+LEXICON P11
+  +Sg+Akk+Fem:stan  # ;
+  +Sg+Dat+Fem:stessei  # ;
+  +Sg+Gen+Fem:stesses  # ;
+  +Sg+Nom+Fem:stāi  # ;
+  +Pl+Akk+Fem:stans  # ;
+  +Pl+Dat+Fem:stēimans  # ;
+  +Pl+Gen+Fem:stēisan  # ;
+  +Pl+Nom+Fem:stās  # ;
+  +Sg+Akk+Masc:stan  # ;
+  +Sg+Dat+Masc:stesmu  # ;
+  +Sg+Gen+Masc:stesse  # ;
+  +Sg+Nom+Masc:stas  # ;
+  +Pl+Akk+Masc:stans  # ;
+  +Pl+Dat+Masc:stēimans  # ;
+  +Pl+Gen+Masc:stēisan  # ;
+  +Pl+Nom+Masc:stāi  # ;
+  +Sg+Akk+Neut:sta  # ;
+  +Sg+Dat+Neut:stesmu  # ;
+  +Sg+Gen+Neut:stesse  # ;
+  +Sg+Nom+Neut:sta  # ;
+  +Pl+Akk+Neut:sta  # ;
+  +Pl+Dat+Neut:stesmu  # ;
+  +Pl+Gen+Neut:stesse  # ;
+  +Pl+Nom+Neut:sta  # ;
+
+! 14 — tennan (Pron)
+LEXICON P14
+  +Sg+Akk+Neut:tennan  # ;
+  +Sg+Dat+Neut:tenesmu  # ;
+  +Sg+Gen+Neut:tenesse  # ;
+  +Sg+Nom+Neut:tennan  # ;
+  +Pl+Akk+Neut:tennans  # ;
+  +Pl+Dat+Neut:tenēimans  # ;
+  +Pl+Gen+Neut:tenēisan  # ;
+  +Pl+Nom+Neut:tenēi  # ;
+
+! 16 — subs (Pron)
+LEXICON P16
+  +Sg+Akk+Fem:subban  # ;
+  +Sg+Dat+Fem:subsei  # ;
+  +Sg+Gen+Fem:subses  # ;
+  +Sg+Nom+Fem:subba  # ;
+  +Pl+Akk+Fem:subbans  # ;
+  +Pl+Dat+Fem:subbeimans  # ;
+  +Pl+Gen+Fem:subbeisan  # ;
+  +Pl+Nom+Fem:subbas  # ;
+  +Sg+Akk+Masc:subban  # ;
+  +Sg+Dat+Masc:subsmu  # ;
+  +Sg+Gen+Masc:subse  # ;
+  +Sg+Nom+Masc:subs  # ;
+  +Pl+Akk+Masc:subbans  # ;
+  +Pl+Dat+Masc:subbeimans  # ;
+  +Pl+Gen+Masc:subbeisan  # ;
+  +Pl+Nom+Masc:subbai  # ;
+  +Sg+Akk+Neut:subban  # ;
+  +Sg+Dat+Neut:subsmu  # ;
+  +Sg+Gen+Neut:subse  # ;
+  +Sg+Nom+Neut:subban  # ;
+  +Pl+Akk+Neut:subban  # ;
+  +Pl+Dat+Neut:subsmu  # ;
+  +Pl+Gen+Neut:subse  # ;
+  +Pl+Nom+Neut:subban  # ;
+
+! 18 — kits (Pron)
+LEXICON P18
+  +Sg+Akk+Fem:kittan  # ;
+  +Sg+Dat+Fem:kitsei  # ;
+  +Sg+Gen+Fem:kitses  # ;
+  +Sg+Nom+Fem:kitā  # ;
+  +Pl+Akk+Fem:kittans  # ;
+  @P.standard.twanksta@+Pl+Akk+Fem:kitans  # ;
+  +Pl+Dat+Fem:kitēimans  # ;
+  +Pl+Gen+Fem:kitēisan  # ;
+  +Pl+Nom+Fem:kittas  # ;
+  +Sg+Akk+Masc:kittan  # ;
+  +Sg+Dat+Masc:kitsmu  # ;
+  +Sg+Gen+Masc:kitse  # ;
+  +Sg+Nom+Masc:kits  # ;
+  +Pl+Akk+Masc:kittans  # ;
+  +Pl+Dat+Masc:kitēimans  # ;
+  +Pl+Gen+Masc:kitēisan  # ;
+  +Pl+Nom+Masc:kitāi  # ;
+  +Sg+Akk+Neut:kittan  # ;
+  +Sg+Dat+Neut:kitsmu  # ;
+  +Sg+Gen+Neut:kitse  # ;
+  +Sg+Nom+Neut:kittan  # ;
+  +Pl+Akk+Neut:kittan  # ;
+  +Pl+Dat+Neut:kitsmu  # ;
+  +Pl+Gen+Neut:kitse  # ;
+  +Pl+Nom+Neut:kittan  # ;
+
+! 21 — aīns (Pron)
+LEXICON P21
+  +Sg+Akk+Fem:aīnan  # ;
+  +Sg+Dat+Fem:ainassei  # ;
+  +Sg+Gen+Fem:ainasses  # ;
+  +Sg+Nom+Fem:ainā  # ;
+  +Pl+Akk+Fem:aīnans  # ;
+  +Pl+Dat+Fem:aināmans  # ;
+  +Pl+Gen+Fem:aīnan  # ;
+  +Pl+Nom+Fem:aīnas  # ;
+  +Sg+Akk+Masc:aīnan  # ;
+  +Sg+Dat+Masc:ainasmu  # ;
+  +Sg+Gen+Masc:ainasse  # ;
+  +Sg+Nom+Masc:aīns  # ;
+  +Pl+Akk+Masc:aīnans  # ;
+  +Pl+Dat+Masc:ainammans  # ;
+  +Pl+Gen+Masc:aīnan  # ;
+  +Pl+Nom+Masc:aināi  # ;
+  +Sg+Akk+Neut:aīnan  # ;
+  +Sg+Dat+Neut:ainasmu  # ;
+  @P.standard.twanksta@+Sg+Dat+Neut:aīnasmu  # ;
+  +Sg+Gen+Neut:ainasse  # ;
+  @P.standard.twanksta@+Sg+Gen+Neut:aīnase  # ;
+  +Sg+Nom+Neut:aīnan  # ;
+  +Pl+Akk+Neut:aīnan  # ;
+  +Pl+Dat+Neut:aīnasmu  # ;
+  @P.standard.twanksta@+Pl+Dat+Neut:ainasmu  # ;
+  +Pl+Gen+Neut:ainasse  # ;
+  +Pl+Nom+Neut:aīnan  # ;
+
+! 23 — dwāi (Pron)
+LEXICON Num23
+  +Pl+Akk+Fem:dwāi  # ;
+  +Pl+Dat+Fem:dwēimas  # ;
+  +Pl+Gen+Fem:dwejjan  # ;
+  +Pl+Nom+Fem:dwāi  # ;
+  +Pl+Akk+Masc:dwāi  # ;
+  +Pl+Dat+Masc:dwēimas  # ;
+  +Pl+Gen+Masc:dwejjan  # ;
+  +Pl+Nom+Masc:dwāi  # ;
+  +Pl+Akk+Neut:dwāi  # ;
+  +Pl+Dat+Neut:dwēimas  # ;
+  +Pl+Gen+Neut:dwejjan  # ;
+  +Pl+Nom+Neut:dwāi  # ;
+
+! 24 — trīs (Pron)
+LEXICON Num24
+  +Pl+Akk+Fem:trins  # ;
+  +Pl+Dat+Fem:trimmans  # ;
+  +Pl+Gen+Fem:trijjan  # ;
+  +Pl+Nom+Fem:trīs  # ;
+  +Pl+Akk+Masc:trins  # ;
+  +Pl+Dat+Masc:trimmans  # ;
+  +Pl+Gen+Masc:trijjan  # ;
+  +Pl+Nom+Masc:trīs  # ;
+  +Pl+Akk+Neut:trins  # ;
+  +Pl+Dat+Neut:trimmans  # ;
+  +Pl+Gen+Neut:trijjan  # ;
+  +Pl+Nom+Neut:trīs  # ;
+
+! 28 — māldaisis (Adj)
+LEXICON A28
+  +Sg+Akk+Masc:māldaisin  # ;
+  @P.standard.twanksta@+Sg+Akk+Masc:māldaisjan  # ;
+  +Sg+Dat+Masc:māldaišu  # ;
+  @P.standard.twanksta@+Sg+Dat+Masc:māldaisju  # ;
+  +Sg+Gen+Masc:māldaišas  # ;
+  @P.standard.twanksta@+Sg+Gen+Masc:māldaisjas  # ;
+  +Sg+Nom+Masc:māldaisis  # ;
+  +Pl+Akk+Masc:māldaisins  # ;
+  @P.standard.twanksta@+Pl+Akk+Masc:māldaisjans  # ;
+  +Pl+Dat+Masc:māldaišamans  # ;
+  @P.standard.twanksta@+Pl+Dat+Masc:māldaisjamans  # ;
+  +Pl+Gen+Masc:māldaisin  # ;
+  @P.standard.twanksta@+Pl+Gen+Masc:māldaisjan  # ;
+  +Pl+Nom+Masc:māldaišai  # ;
+  @P.standard.twanksta@+Pl+Nom+Masc:māldaisjai  # ;
+
+! 29 — sēnts (Adj)
+LEXICON A29
+  +Sg+Akk+Fem:swintan  # ;
+  @P.standard.twanksta@+Sg+Akk+Fem:swentan  # ;
+  +Sg+Dat+Fem:swintai  # ;
+  @P.standard.twanksta@+Sg+Dat+Fem:swentai  # ;
+  +Sg+Gen+Fem:swintas  # ;
+  @P.standard.twanksta@+Sg+Gen+Fem:swentas  # ;
+  +Sg+Nom+Fem:swinta  # ;
+  @P.standard.twanksta@+Sg+Nom+Fem:swenta  # ;
+  +Pl+Akk+Fem:swintans  # ;
+  @P.standard.twanksta@+Pl+Akk+Fem:swentans  # ;
+  +Pl+Dat+Fem:swintamans  # ;
+  @P.standard.twanksta@+Pl+Dat+Fem:swentamans  # ;
+  +Pl+Gen+Fem:swintan  # ;
+  @P.standard.twanksta@+Pl+Gen+Fem:swentan  # ;
+  +Pl+Nom+Fem:swintas  # ;
+  @P.standard.twanksta@+Pl+Nom+Fem:swentas  # ;
+  +Sg+Akk+Masc:swintan  # ;
+  @P.standard.twanksta@+Sg+Akk+Masc:swentan  # ;
+  +Sg+Dat+Masc:swintasmu  # ;
+  @P.standard.twanksta@+Sg+Dat+Masc:swentasmu  # ;
+  +Sg+Gen+Masc:swintas  # ;
+  @P.standard.twanksta@+Sg+Gen+Masc:swentas  # ;
+  +Sg+Nom+Masc:swints  # ;
+  @P.standard.twanksta@+Sg+Nom+Masc:swents  # ;
+  +Pl+Akk+Masc:swintans  # ;
+  @P.standard.twanksta@+Pl+Akk+Masc:swentans  # ;
+  +Pl+Dat+Masc:swintamans  # ;
+  @P.standard.twanksta@+Pl+Dat+Masc:swentamans  # ;
+  +Pl+Gen+Masc:swintan  # ;
+  @P.standard.twanksta@+Pl+Gen+Masc:swentan  # ;
+  +Pl+Nom+Masc:swintai  # ;
+  @P.standard.twanksta@+Pl+Nom+Masc:swentai  # ;
+  +Sg+Akk+Neut:swintan  # ;
+  @P.standard.twanksta@+Sg+Akk+Neut:swentan  # ;
+  +Sg+Dat+Neut:swintasmu  # ;
+  @P.standard.twanksta@+Sg+Dat+Neut:swentasmu  # ;
+  +Sg+Gen+Neut:swintas  # ;
+  @P.standard.twanksta@+Sg+Gen+Neut:swentas  # ;
+  +Sg+Nom+Neut:swintan  # ;
+  @P.standard.twanksta@+Sg+Nom+Neut:swentan  # ;
+  +Pl+Akk+Neut:swintans  # ;
+  @P.standard.twanksta@+Pl+Akk+Neut:swentans  # ;
+  +Pl+Dat+Neut:swintamans  # ;
+  @P.standard.twanksta@+Pl+Dat+Neut:swentamans  # ;
+  +Pl+Gen+Neut:swintan  # ;
+  @P.standard.twanksta@+Pl+Gen+Neut:swentan  # ;
+  +Pl+Nom+Neut:swintai  # ;
+  @P.standard.twanksta@+Pl+Nom+Neut:swentai  # ;
+
+! 30 — āngus (Adj)
+LEXICON A30
+  +Sg+Akk+Fem:āngin  # ;
+  @P.standard.twanksta@+Sg+Akk+Fem:āngjan  # ;
+  +Sg+Dat+Fem:āngei  # ;
+  @P.standard.twanksta@+Sg+Dat+Fem:āngjai  # ;
+  +Sg+Gen+Fem:ānges  # ;
+  @P.standard.twanksta@+Sg+Gen+Fem:āngjas  # ;
+  +Sg+Nom+Fem:āngi  # ;
+  +Pl+Akk+Fem:āngins  # ;
+  @P.standard.twanksta@+Pl+Akk+Fem:āngjans  # ;
+  +Pl+Dat+Fem:āngemans  # ;
+  @P.standard.twanksta@+Pl+Dat+Fem:āngjamans  # ;
+  +Pl+Gen+Fem:āngin  # ;
+  @P.standard.twanksta@+Pl+Gen+Fem:āngjan  # ;
+  +Pl+Nom+Fem:ānges  # ;
+  @P.standard.twanksta@+Pl+Nom+Fem:āngjas  # ;
+  +Sg+Akk+Masc:āngun  # ;
+  +Sg+Dat+Masc:āngusmu  # ;
+  +Sg+Gen+Masc:āngwas  # ;
+  +Sg+Nom+Masc:āngus  # ;
+  +Pl+Akk+Masc:ānguns  # ;
+  +Pl+Dat+Masc:āngumans  # ;
+  +Pl+Gen+Masc:āngun  # ;
+  +Pl+Nom+Masc:āngwai  # ;
+  +Sg+Akk+Neut:āngu  # ;
+  +Sg+Dat+Neut:āngusmu  # ;
+  +Sg+Gen+Neut:āngwas  # ;
+  +Sg+Nom+Neut:āngu  # ;
+  +Pl+Akk+Neut:ānguns  # ;
+  +Pl+Dat+Neut:āngumans  # ;
+  +Pl+Gen+Neut:āngun  # ;
+  +Pl+Nom+Neut:āngwai  # ;
+
+! 30a — stāws (Adj)
+LEXICON A30a
+  +Sg+Akk+Fem:stāwin  # ;
+  @P.standard.twanksta@+Sg+Akk+Fem:stāwan  # ;
+  +Sg+Dat+Fem:stāwjai  # ;
+  @P.standard.twanksta@+Sg+Dat+Fem:stāwai  # ;
+  +Sg+Gen+Fem:stāwjas  # ;
+  @P.standard.twanksta@+Sg+Gen+Fem:stāwas  # ;
+  +Sg+Nom+Fem:stāwi  # ;
+  @P.standard.twanksta@+Sg+Nom+Fem:stāwa  # ;
+  +Pl+Akk+Fem:stāwins  # ;
+  @P.standard.twanksta@+Pl+Akk+Fem:stāwans  # ;
+  +Pl+Dat+Fem:stāwjamans  # ;
+  @P.standard.twanksta@+Pl+Dat+Fem:stāwamans  # ;
+  +Pl+Gen+Fem:stāwin  # ;
+  @P.standard.twanksta@+Pl+Gen+Fem:stāwan  # ;
+  +Pl+Nom+Fem:stāwjas  # ;
+  @P.standard.twanksta@+Pl+Nom+Fem:stāwas  # ;
+  +Sg+Akk+Masc:stāwun  # ;
+  @P.standard.twanksta@+Sg+Akk+Masc:stāwan  # ;
+  +Sg+Dat+Masc:stāwusmu  # ;
+  @P.standard.twanksta@+Sg+Dat+Masc:stāwasmu  # ;
+  +Sg+Gen+Masc:staūwas  # ;
+  @P.standard.twanksta@+Sg+Gen+Masc:stāwas  # ;
+  +Sg+Nom+Masc:stāws  # ;
+  +Pl+Akk+Masc:stāwuns  # ;
+  @P.standard.twanksta@+Pl+Akk+Masc:stāwans  # ;
+  +Pl+Dat+Masc:stāwumans  # ;
+  @P.standard.twanksta@+Pl+Dat+Masc:stāwamans  # ;
+  +Pl+Gen+Masc:stāwun  # ;
+  @P.standard.twanksta@+Pl+Gen+Masc:stāwan  # ;
+  +Pl+Nom+Masc:staūwai  # ;
+  @P.standard.twanksta@+Pl+Nom+Masc:stāwai  # ;
+  +Sg+Akk+Neut:stāwu  # ;
+  @P.standard.twanksta@+Sg+Akk+Neut:stāwan  # ;
+  +Sg+Dat+Neut:stāwusmu  # ;
+  @P.standard.twanksta@+Sg+Dat+Neut:stāwasmu  # ;
+  +Sg+Gen+Neut:staūwas  # ;
+  @P.standard.twanksta@+Sg+Gen+Neut:stāwas  # ;
+  +Sg+Nom+Neut:stāwu  # ;
+  @P.standard.twanksta@+Sg+Nom+Neut:stāwan  # ;
+  +Pl+Akk+Neut:stāwuns  # ;
+  @P.standard.twanksta@+Pl+Akk+Neut:stāwans  # ;
+  +Pl+Dat+Neut:stāwumans  # ;
+  @P.standard.twanksta@+Pl+Dat+Neut:stāwamans  # ;
+  +Pl+Gen+Neut:stāwun  # ;
+  @P.standard.twanksta@+Pl+Gen+Neut:stāwan  # ;
+  +Pl+Nom+Neut:staūwai  # ;
+  @P.standard.twanksta@+Pl+Nom+Neut:stāwai  # ;
+
+! 31 — līgus (Adj)
+LEXICON A31
+  +Sg+Akk+Fem:līgin  # ;
+  @P.standard.twanksta@+Sg+Akk+Fem:līgjan  # ;
+  +Sg+Dat+Fem:līgei  # ;
+  @P.standard.twanksta@+Sg+Dat+Fem:līgjai  # ;
+  +Sg+Gen+Fem:līges  # ;
+  @P.standard.twanksta@+Sg+Gen+Fem:līgjas  # ;
+  +Sg+Nom+Fem:ligī  # ;
+  +Pl+Akk+Fem:līgins  # ;
+  @P.standard.twanksta@+Pl+Akk+Fem:līgjans  # ;
+  +Pl+Dat+Fem:liģāmans  # ;
+  @P.standard.twanksta@+Pl+Dat+Fem:ligjāmans  # ;
+  +Pl+Gen+Fem:līgin  # ;
+  @P.standard.twanksta@+Pl+Gen+Fem:līgjan  # ;
+  +Pl+Nom+Fem:līges  # ;
+  @P.standard.twanksta@+Pl+Nom+Fem:līgjas  # ;
+  +Sg+Akk+Masc:līgun  # ;
+  +Sg+Dat+Masc:līgusmu  # ;
+  +Sg+Gen+Masc:līgwas  # ;
+  @P.standard.twanksta@+Sg+Gen+Masc:ligwas  # ;
+  +Sg+Nom+Masc:līgus  # ;
+  +Pl+Akk+Masc:līguns  # ;
+  +Pl+Dat+Masc:ligummans  # ;
+  +Pl+Gen+Masc:līgun  # ;
+  +Pl+Nom+Masc:ligwāi  # ;
+  +Sg+Akk+Neut:līgu  # ;
+  +Sg+Dat+Neut:līgusmu  # ;
+  +Sg+Gen+Neut:līgwas  # ;
+  @P.standard.twanksta@+Sg+Gen+Neut:ligwas  # ;
+  +Sg+Nom+Neut:līgu  # ;
+  +Pl+Akk+Neut:līguns  # ;
+  +Pl+Dat+Neut:ligummans  # ;
+  +Pl+Gen+Neut:līgun  # ;
+  +Pl+Nom+Neut:ligwāi  # ;
+
+! 35a — interwallin (N)
+LEXICON N35a
+  +Sg+Akk+Neut:interwallin  # ;
+  @P.standard.twanksta@+Sg+Akk+Neut:interwallan  # ;
+  +Sg+Dat+Neut:interwallu  # ;
+  +Sg+Gen+Neut:interwallas  # ;
+  +Sg+Nom+Neut:interwallin  # ;
+  @P.standard.twanksta@+Sg+Nom+Neut:interwallan  # ;
+  +Pl+Akk+Neut:interwallins  # ;
+  @P.standard.twanksta@+Pl+Akk+Neut:interwallans  # ;
+  +Pl+Dat+Neut:interwallamans  # ;
+  @P.standard.twanksta@+Pl+Dat+Neut:interwalammans  # ;
+  +Pl+Gen+Neut:interwallin  # ;
+  @P.standard.twanksta@+Pl+Gen+Neut:interwallan  # ;
+  +Pl+Nom+Neut:interwallai  # ;
+  @P.standard.twanksta@+Pl+Nom+Neut:interwalāi  # ;
+
+! 37 — pannin (N)
+LEXICON N37
+  +Sg+Akk+Neut:pannin  # ;
+  @P.standard.twanksta@+Sg+Akk+Neut:pannjan  # ;
+  +Sg+Dat+Neut:paņņu  # ;
+  @P.standard.twanksta@+Sg+Dat+Neut:pannju  # ;
+  +Sg+Gen+Neut:pannes  # ;
+  @P.standard.twanksta@+Sg+Gen+Neut:pannjas  # ;
+  +Sg+Nom+Neut:pannin  # ;
+  @P.standard.twanksta@+Sg+Nom+Neut:pannjan  # ;
+  +Pl+Akk+Neut:pannins  # ;
+  @P.standard.twanksta@+Pl+Akk+Neut:pannjans  # ;
+  +Pl+Dat+Neut:panemmans  # ;
+  @P.standard.twanksta@+Pl+Dat+Neut:panjammans  # ;
+  +Pl+Gen+Neut:pannin  # ;
+  @P.standard.twanksta@+Pl+Gen+Neut:pannjan  # ;
+  +Pl+Nom+Neut:panēi  # ;
+  @P.standard.twanksta@+Pl+Nom+Neut:panjāi  # ;
+
+! 37a — amzin (N)
+LEXICON N37a
+  +Sg+Akk+Neut:amzin  # ;
+  @P.standard.twanksta@+Sg+Akk+Neut:amzjan  # ;
+  +Sg+Dat+Neut:amžu  # ;
+  @P.standard.twanksta@+Sg+Dat+Neut:amzju  # ;
+  +Sg+Gen+Neut:amžas  # ;
+  @P.standard.twanksta@+Sg+Gen+Neut:amzjas  # ;
+  +Sg+Nom+Neut:amzin  # ;
+  @P.standard.twanksta@+Sg+Nom+Neut:amzjan  # ;
+  +Pl+Akk+Neut:amzins  # ;
+  @P.standard.twanksta@+Pl+Akk+Neut:amzjans  # ;
+  +Pl+Dat+Neut:amžammans  # ;
+  @P.standard.twanksta@+Pl+Dat+Neut:amzjammans  # ;
+  +Pl+Gen+Neut:amzin  # ;
+  @P.standard.twanksta@+Pl+Gen+Neut:amzjan  # ;
+  +Pl+Nom+Neut:amžāi  # ;
+  @P.standard.twanksta@+Pl+Nom+Neut:amzjāi  # ;
+
+! 40 — kūgis (N)
+LEXICON N40
+  +Sg+Akk+Masc:kūgin  # ;
+  @P.standard.twanksta@+Sg+Akk+Masc:kūgjan  # ;
+  +Sg+Dat+Masc:kūģu  # ;
+  @P.standard.twanksta@+Sg+Dat+Masc:kūgju  # ;
+  +Sg+Gen+Masc:kūges  # ;
+  @P.standard.twanksta@+Sg+Gen+Masc:kūgjas  # ;
+  +Sg+Nom+Masc:kūgis  # ;
+  +Pl+Akk+Masc:kūgins  # ;
+  @P.standard.twanksta@+Pl+Akk+Masc:kūgjans  # ;
+  +Pl+Dat+Masc:kūgemans  # ;
+  @P.standard.twanksta@+Pl+Dat+Masc:kūgjamans  # ;
+  +Pl+Gen+Masc:kūgin  # ;
+  @P.standard.twanksta@+Pl+Gen+Masc:kūgjan  # ;
+  +Pl+Nom+Masc:kūgei  # ;
+  @P.standard.twanksta@+Pl+Nom+Masc:kūgjai  # ;
+
+! 40a — dulzis (N)
+LEXICON N40a
+  +Sg+Akk+Masc:dulzin  # ;
+  @P.standard.twanksta@+Sg+Akk+Masc:dulzjan  # ;
+  +Sg+Dat+Masc:dulžu  # ;
+  @P.standard.twanksta@+Sg+Dat+Masc:dulzju  # ;
+  +Sg+Gen+Masc:dulžas  # ;
+  @P.standard.twanksta@+Sg+Gen+Masc:dulzjas  # ;
+  +Sg+Nom+Masc:dulzis  # ;
+  +Pl+Akk+Masc:dulzins  # ;
+  @P.standard.twanksta@+Pl+Akk+Masc:dulzjans  # ;
+  +Pl+Dat+Masc:dulžamans  # ;
+  @P.standard.twanksta@+Pl+Dat+Masc:dulzjamans  # ;
+  +Pl+Gen+Masc:dulzin  # ;
+  @P.standard.twanksta@+Pl+Gen+Masc:dulzjan  # ;
+  +Pl+Nom+Masc:dulžai  # ;
+  @P.standard.twanksta@+Pl+Nom+Masc:dulzjai  # ;
+
+! 40b — gīrbis (N)
+LEXICON N40b
+  +Sg+Akk+Masc:gīrbin  # ;
+  @P.standard.twanksta@+Sg+Akk+Masc:gīrbjan  # ;
+  +Sg+Dat+Masc:gīrbju  # ;
+  +Sg+Gen+Masc:gīrbjas  # ;
+  +Sg+Nom+Masc:gīrbis  # ;
+  +Pl+Akk+Masc:gīrbins  # ;
+  @P.standard.twanksta@+Pl+Akk+Masc:gīrbjans  # ;
+  +Pl+Dat+Masc:gīrbjamans  # ;
+  +Pl+Gen+Masc:gīrbin  # ;
+  @P.standard.twanksta@+Pl+Gen+Masc:gīrbjan  # ;
+  +Pl+Nom+Masc:gīrbjai  # ;
+
+! 40c — buccis (N)
+LEXICON N40c
+  +Sg+Akk+Masc:buccin  # ;
+  @P.standard.twanksta@+Sg+Akk+Masc:buccjan  # ;
+  +Sg+Dat+Masc:buccu  # ;
+  @P.standard.twanksta@+Sg+Dat+Masc:buccju  # ;
+  +Sg+Gen+Masc:buccas  # ;
+  @P.standard.twanksta@+Sg+Gen+Masc:buccjas  # ;
+  +Sg+Nom+Masc:buccis  # ;
+  +Pl+Akk+Masc:buccins  # ;
+  @P.standard.twanksta@+Pl+Akk+Masc:buccjans  # ;
+  +Pl+Dat+Masc:buccamans  # ;
+  @P.standard.twanksta@+Pl+Dat+Masc:buccjamans  # ;
+  +Pl+Gen+Masc:buccin  # ;
+  @P.standard.twanksta@+Pl+Gen+Masc:buccjan  # ;
+  +Pl+Nom+Masc:buccai  # ;
+  @P.standard.twanksta@+Pl+Nom+Masc:buccjai  # ;
+
+! 41 — klākis (N)
+LEXICON N41
+  +Sg+Akk+Masc:klākin  # ;
+  @P.standard.twanksta@+Sg+Akk+Masc:tlākjan  # ;
+  +Sg+Dat+Masc:klāķu  # ;
+  @P.standard.twanksta@+Sg+Dat+Masc:tlākju  # ;
+  +Sg+Gen+Masc:klākes  # ;
+  @P.standard.twanksta@+Sg+Gen+Masc:tlākjas  # ;
+  +Sg+Nom+Masc:klākis  # ;
+  @P.standard.twanksta@+Sg+Nom+Masc:tlākis  # ;
+  +Pl+Akk+Masc:klākins  # ;
+  @P.standard.twanksta@+Pl+Akk+Masc:tlākjans  # ;
+  +Pl+Dat+Masc:klakemmans  # ;
+  @P.standard.twanksta@+Pl+Dat+Masc:tlakjammans  # ;
+  +Pl+Gen+Masc:klākin  # ;
+  @P.standard.twanksta@+Pl+Gen+Masc:tlākjan  # ;
+  +Pl+Nom+Masc:klakēi  # ;
+  @P.standard.twanksta@+Pl+Nom+Masc:tlakjāi  # ;
+
+! 46 — spigsnā (N)
+LEXICON N46
+  +Sg+Akk+Fem:spīgsnan  # ;
+  @P.standard.twanksta@+Sg+Akk+Fem:spēgsnan  # ;
+  +Sg+Dat+Fem:spīgsnai  # ;
+  @P.standard.twanksta@+Sg+Dat+Fem:spēgsnai  # ;
+  +Sg+Gen+Fem:spīgsnas  # ;
+  @P.standard.twanksta@+Sg+Gen+Fem:spēgsnas  # ;
+  +Sg+Nom+Fem:spigsnā  # ;
+  @P.standard.twanksta@+Sg+Nom+Fem:spegsnā  # ;
+  +Pl+Akk+Fem:spīgsnans  # ;
+  @P.standard.twanksta@+Pl+Akk+Fem:spēgsnans  # ;
+  +Pl+Dat+Fem:spigsnāmans  # ;
+  @P.standard.twanksta@+Pl+Dat+Fem:spegsnāmans  # ;
+  +Pl+Gen+Fem:spīgsnan  # ;
+  @P.standard.twanksta@+Pl+Gen+Fem:spēgsnan  # ;
+  +Pl+Nom+Fem:spīgsnas  # ;
+  @P.standard.twanksta@+Pl+Nom+Fem:spēgsnas  # ;
+
+! 48 — galwā (N)
+LEXICON N48
+  +Sg+Akk+Fem:galwan  # ;
+  +Sg+Dat+Fem:galwai  # ;
+  +Sg+Gen+Fem:galwas  # ;
+  +Sg+Nom+Fem:galwā  # ;
+  +Pl+Akk+Fem:galwans  # ;
+  +Pl+Dat+Fem:galwāmans  # ;
+  +Pl+Gen+Fem:galwan  # ;
+  +Pl+Nom+Fem:galwas  # ;
+
+! 49 — auktimmisku (N)
+LEXICON N49
+  +Sg+Akk+Fem:auktimmiskwan  # ;
+  +Sg+Dat+Fem:auktimmiskwai  # ;
+  +Sg+Gen+Fem:auktimmiskwas  # ;
+  +Sg+Nom+Fem:auktimmisku  # ;
+  +Pl+Akk+Fem:auktimmiskwans  # ;
+  +Pl+Dat+Fem:auktimmiskwamans  # ;
+  +Pl+Gen+Fem:auktimmiskwan  # ;
+  +Pl+Nom+Fem:auktimmiskwas  # ;
+
+! 50 — garkīti (N)
+LEXICON N50
+  +Sg+Akk+Fem:garkītin  # ;
+  @P.standard.twanksta@+Sg+Akk+Fem:garkītjan  # ;
+  +Sg+Dat+Fem:garkītei  # ;
+  @P.standard.twanksta@+Sg+Dat+Fem:garkītjai  # ;
+  +Sg+Gen+Fem:garkītes  # ;
+  @P.standard.twanksta@+Sg+Gen+Fem:garkītjas  # ;
+  +Sg+Nom+Fem:garkīti  # ;
+  +Pl+Akk+Fem:garkītins  # ;
+  @P.standard.twanksta@+Pl+Akk+Fem:garkītjans  # ;
+  +Pl+Dat+Fem:garkītemans  # ;
+  @P.standard.twanksta@+Pl+Dat+Fem:garkītjamans  # ;
+  +Pl+Gen+Fem:garkītin  # ;
+  @P.standard.twanksta@+Pl+Gen+Fem:garkītjan  # ;
+  +Pl+Nom+Fem:garkītes  # ;
+  @P.standard.twanksta@+Pl+Nom+Fem:garkītjas  # ;
+
+! 50a — ķāsi (N)
+LEXICON N50a
+  +Sg+Akk+Fem:ķāsin  # ;
+  @P.standard.twanksta@+Sg+Akk+Fem:kjāsjan  # ;
+  +Sg+Dat+Fem:ķāšai  # ;
+  @P.standard.twanksta@+Sg+Dat+Fem:kjāsjai  # ;
+  +Sg+Gen+Fem:ķāšas  # ;
+  @P.standard.twanksta@+Sg+Gen+Fem:kjāsjas  # ;
+  +Sg+Nom+Fem:ķāsi  # ;
+  @P.standard.twanksta@+Sg+Nom+Fem:kjāsi  # ;
+  +Pl+Akk+Fem:ķāsins  # ;
+  @P.standard.twanksta@+Pl+Akk+Fem:kjāsjans  # ;
+  +Pl+Dat+Fem:ķāšamans  # ;
+  @P.standard.twanksta@+Pl+Dat+Fem:kjāsjamans  # ;
+  +Pl+Gen+Fem:ķāsin  # ;
+  @P.standard.twanksta@+Pl+Gen+Fem:kjāsjan  # ;
+  +Pl+Nom+Fem:ķāšas  # ;
+  @P.standard.twanksta@+Pl+Nom+Fem:kjāsjas  # ;
+
+! 51 — martī (N)
+LEXICON N51
+  +Sg+Akk+Fem:mārtin  # ;
+  @P.standard.twanksta@+Sg+Akk+Fem:mārtjan  # ;
+  +Sg+Dat+Fem:mārtei  # ;
+  @P.standard.twanksta@+Sg+Dat+Fem:mārtjai  # ;
+  +Sg+Gen+Fem:mārtes  # ;
+  @P.standard.twanksta@+Sg+Gen+Fem:mārtjas  # ;
+  +Sg+Nom+Fem:martī  # ;
+  +Pl+Akk+Fem:mārtins  # ;
+  @P.standard.twanksta@+Pl+Akk+Fem:mārtjans  # ;
+  +Pl+Dat+Fem:marțāmans  # ;
+  @P.standard.twanksta@+Pl+Dat+Fem:martjāmans  # ;
+  +Pl+Gen+Fem:mārtin  # ;
+  @P.standard.twanksta@+Pl+Gen+Fem:mārtjan  # ;
+  +Pl+Nom+Fem:mārtes  # ;
+  @P.standard.twanksta@+Pl+Nom+Fem:mārtjas  # ;
+
+! 51a — zansī (N)
+LEXICON N51a
+  +Sg+Akk+Fem:zānsin  # ;
+  @P.standard.twanksta@+Sg+Akk+Fem:zānsjan  # ;
+  +Sg+Dat+Fem:zānšai  # ;
+  @P.standard.twanksta@+Sg+Dat+Fem:zānsjai  # ;
+  +Sg+Gen+Fem:zānšas  # ;
+  @P.standard.twanksta@+Sg+Gen+Fem:zānsjas  # ;
+  +Sg+Nom+Fem:zansī  # ;
+  +Pl+Akk+Fem:zānsins  # ;
+  @P.standard.twanksta@+Pl+Akk+Fem:zānsjans  # ;
+  +Pl+Dat+Fem:zanšāmans  # ;
+  @P.standard.twanksta@+Pl+Dat+Fem:zansjāmans  # ;
+  +Pl+Gen+Fem:zānsin  # ;
+  @P.standard.twanksta@+Pl+Gen+Fem:zānsjan  # ;
+  +Pl+Nom+Fem:zānšas  # ;
+  @P.standard.twanksta@+Pl+Nom+Fem:zānsjas  # ;
+
+! 54 — pekūri (N)
+LEXICON N54
+  +Sg+Akk+Fem:pekūrin  # ;
+  @P.standard.twanksta@+Sg+Akk+Fem:pekārin  # ;
+  +Sg+Dat+Fem:pekūrei  # ;
+  @P.standard.twanksta@+Sg+Dat+Fem:pekārei  # ;
+  +Sg+Gen+Fem:pekūres  # ;
+  @P.standard.twanksta@+Sg+Gen+Fem:pekāris  # ;
+  +Sg+Nom+Fem:pekūri  # ;
+  @P.standard.twanksta@+Sg+Nom+Fem:pekāri  # ;
+  +Pl+Akk+Fem:pekūrins  # ;
+  @P.standard.twanksta@+Pl+Akk+Fem:pekārins  # ;
+  +Pl+Dat+Fem:pekūremans  # ;
+  @P.standard.twanksta@+Pl+Dat+Fem:pekārimans  # ;
+  +Pl+Gen+Fem:pekūrin  # ;
+  @P.standard.twanksta@+Pl+Gen+Fem:pekārin  # ;
+  +Pl+Nom+Fem:pekūres  # ;
+  @P.standard.twanksta@+Pl+Nom+Fem:pekāris  # ;
+  +Sg+Akk+Masc:pekūrin  # ;
+  @P.standard.twanksta@+Sg+Akk+Masc:pekārjan  # ;
+  +Sg+Dat+Masc:pekūŗu  # ;
+  @P.standard.twanksta@+Sg+Dat+Masc:pekārju  # ;
+  +Sg+Gen+Masc:pekūres  # ;
+  @P.standard.twanksta@+Sg+Gen+Masc:pekārjas  # ;
+  +Sg+Nom+Masc:pekūris  # ;
+  @P.standard.twanksta@+Sg+Nom+Masc:pekāris  # ;
+  +Pl+Akk+Masc:pekūrins  # ;
+  @P.standard.twanksta@+Pl+Akk+Masc:pekārjans  # ;
+  +Pl+Dat+Masc:pekūremans  # ;
+  @P.standard.twanksta@+Pl+Dat+Masc:pekārjamans  # ;
+  +Pl+Gen+Masc:pekūrin  # ;
+  @P.standard.twanksta@+Pl+Gen+Masc:pekārjan  # ;
+  +Pl+Nom+Masc:pekūrei  # ;
+  @P.standard.twanksta@+Pl+Nom+Masc:pekārjai  # ;
+
+! 58 — klīts (N)
+LEXICON N58
+  +Sg+Akk+Fem:klītin  # ;
+  @P.standard.twanksta@+Sg+Akk+Fem:klētin  # ;
+  +Sg+Dat+Fem:klītei  # ;
+  @P.standard.twanksta@+Sg+Dat+Fem:klētei  # ;
+  +Sg+Gen+Fem:klītis  # ;
+  @P.standard.twanksta@+Sg+Gen+Fem:klētis  # ;
+  +Sg+Nom+Fem:klīts  # ;
+  @P.standard.twanksta@+Sg+Nom+Fem:klēts  # ;
+  +Pl+Akk+Fem:klītins  # ;
+  @P.standard.twanksta@+Pl+Akk+Fem:klētins  # ;
+  +Pl+Dat+Fem:klītimans  # ;
+  @P.standard.twanksta@+Pl+Dat+Fem:klētimans  # ;
+  +Pl+Gen+Fem:klītin  # ;
+  @P.standard.twanksta@+Pl+Gen+Fem:klētin  # ;
+  +Pl+Nom+Fem:klītis  # ;
+  @P.standard.twanksta@+Pl+Nom+Fem:klētis  # ;
+
+! 59 — kiŕksni (N)
+LEXICON N59
+  +Sg+Akk+Neut:kirksni  # ;
+  +Sg+Dat+Neut:kirksni  # ;
+  +Sg+Gen+Neut:kirksnis  # ;
+  +Sg+Nom+Neut:kirksni  # ;
+  +Pl+Akk+Neut:kirksni  # ;
+  +Pl+Dat+Neut:kirksni  # ;
+  +Pl+Gen+Neut:kirksnis  # ;
+  +Pl+Nom+Neut:kirksni  # ;
+
+! 63 — sīmen (N)
+LEXICON N63
+  +Sg+Akk+Neut:sīmen  # ;
+  @P.standard.twanksta@+Sg+Akk+Neut:sēmen  # ;
+  +Sg+Dat+Neut:sīmeni  # ;
+  @P.standard.twanksta@+Sg+Dat+Neut:sēmeni  # ;
+  +Sg+Gen+Neut:sīmenes  # ;
+  @P.standard.twanksta@+Sg+Gen+Neut:sēmenes  # ;
+  +Sg+Nom+Neut:sīmen  # ;
+  @P.standard.twanksta@+Sg+Nom+Neut:sēmen  # ;
+  +Pl+Akk+Neut:sīmenins  # ;
+  @P.standard.twanksta@+Pl+Akk+Neut:sēmenins  # ;
+  +Pl+Dat+Neut:simenimmans  # ;
+  @P.standard.twanksta@+Pl+Dat+Neut:semenimmans  # ;
+  +Pl+Gen+Neut:sīmenin  # ;
+  @P.standard.twanksta@+Pl+Gen+Neut:sēmenin  # ;
+  +Pl+Nom+Neut:simenēi  # ;
+  @P.standard.twanksta@+Pl+Nom+Neut:sēmenes  # ;
+
+! 64 — zmūi (N)
+LEXICON N64
+  +Sg+Akk+Masc:zmūnin  # ;
+  @P.standard.twanksta@+Sg+Akk+Masc:zmānin  # ;
+  +Sg+Dat+Masc:zmūni  # ;
+  @P.standard.twanksta@+Sg+Dat+Masc:zmāni  # ;
+  +Sg+Gen+Masc:zmūnes  # ;
+  @P.standard.twanksta@+Sg+Gen+Masc:zmānes  # ;
+  +Sg+Nom+Masc:zmūi  # ;
+  @P.standard.twanksta@+Sg+Nom+Masc:zmōi  # ;
+  +Pl+Akk+Masc:zmūnins  # ;
+  @P.standard.twanksta@+Pl+Akk+Masc:zmānins  # ;
+  +Pl+Dat+Masc:zmūnimans  # ;
+  @P.standard.twanksta@+Pl+Dat+Masc:zmānimans  # ;
+  +Pl+Gen+Masc:zmūnin  # ;
+  @P.standard.twanksta@+Pl+Gen+Masc:zmānin  # ;
+  +Pl+Nom+Masc:zmūnei  # ;
+  @P.standard.twanksta@+Pl+Nom+Masc:zmānes  # ;
+
+! 65 — brāti (N)
+LEXICON N65
+  +Sg+Akk+Masc:brātin  # ;
+  +Sg+Dat+Masc:brātri  # ;
+  +Sg+Gen+Masc:brātis  # ;
+  +Sg+Nom+Masc:brāti  # ;
+  +Pl+Akk+Masc:brātins  # ;
+  +Pl+Dat+Masc:brātrimans  # ;
+  +Pl+Gen+Masc:brātin  # ;
+  +Pl+Nom+Masc:brātei  # ;
+  @P.standard.twanksta@+Pl+Nom+Masc:brātjai  # ;
+
+! 66 — mūti (N)
+LEXICON N66
+  +Sg+Akk+Fem:mūtin  # ;
+  @P.standard.twanksta@+Sg+Akk+Fem:mātin  # ;
+  +Sg+Dat+Fem:mūterei  # ;
+  @P.standard.twanksta@+Sg+Dat+Fem:māterei  # ;
+  +Sg+Gen+Fem:mūtis  # ;
+  @P.standard.twanksta@+Sg+Gen+Fem:mātis  # ;
+  +Sg+Nom+Fem:mūti  # ;
+  @P.standard.twanksta@+Sg+Nom+Fem:māti  # ;
+  +Pl+Akk+Fem:mūtins  # ;
+  @P.standard.twanksta@+Pl+Akk+Fem:mātins  # ;
+  +Pl+Dat+Fem:mūterimans  # ;
+  @P.standard.twanksta@+Pl+Dat+Fem:māterimans  # ;
+  +Pl+Gen+Fem:mūtin  # ;
+  @P.standard.twanksta@+Pl+Gen+Fem:mātin  # ;
+  +Pl+Nom+Fem:mūtis  # ;
+  @P.standard.twanksta@+Pl+Nom+Fem:mātes  # ;
+
+! 67 — dukti (N)
+LEXICON N67
+  +Sg+Akk+Fem:duktin  # ;
+  +Sg+Dat+Fem:dukterei  # ;
+  +Sg+Gen+Fem:duktis  # ;
+  +Sg+Nom+Fem:dukti  # ;
+  +Pl+Akk+Fem:duktins  # ;
+  +Pl+Dat+Fem:dukterimmans  # ;
+  +Pl+Gen+Fem:duktin  # ;
+  +Pl+Nom+Fem:duktis  # ;
+  @P.standard.twanksta@+Pl+Nom+Fem:duktes  # ;
+
+! 70 — tīrts (Part)
+LEXICON Part70
+  +Sg+Akk+Fem:tīrtin  # ;
+  @P.standard.twanksta@+Sg+Akk+Fem:tīrtjan  # ;
+  +Sg+Dat+Fem:tīrtei  # ;
+  @P.standard.twanksta@+Sg+Dat+Fem:tīrtjai  # ;
+  +Sg+Gen+Fem:tīrtes  # ;
+  @P.standard.twanksta@+Sg+Gen+Fem:tīrtjas  # ;
+  +Sg+Nom+Fem:tirtī  # ;
+  @P.standard.twanksta@+Sg+Nom+Fem:tīrtī  # ;
+  +Pl+Akk+Fem:tīrtins  # ;
+  @P.standard.twanksta@+Pl+Akk+Fem:tīrtjans  # ;
+  +Pl+Dat+Fem:tirtāmans  # ;
+  @P.standard.twanksta@+Pl+Dat+Fem:tirtjāmans  # ;
+  +Pl+Gen+Fem:tīrtin  # ;
+  @P.standard.twanksta@+Pl+Gen+Fem:tīrtjan  # ;
+  +Pl+Nom+Fem:tīrtes  # ;
+  @P.standard.twanksta@+Pl+Nom+Fem:tīrtjas  # ;
+  +Sg+Akk+Masc:tīrtan  # ;
+  +Sg+Dat+Masc:tīrtsmu  # ;
+  +Sg+Gen+Masc:tīrtse  # ;
+  +Sg+Nom+Masc:tīrts  # ;
+  +Pl+Akk+Masc:tīrtans  # ;
+  +Pl+Dat+Masc:tirtēimans  # ;
+  +Pl+Gen+Masc:tirtēisan  # ;
+  +Pl+Nom+Masc:tirtāi  # ;
+  +Sg+Akk+Neut:tīrtan  # ;
+  +Sg+Dat+Neut:tīrtsmu  # ;
+  +Sg+Gen+Neut:tīrtse  # ;
+  +Sg+Nom+Neut:tīrtan  # ;
+  +Pl+Akk+Neut:tīrtans  # ;
+  +Pl+Dat+Neut:tirtēimans  # ;
+  +Pl+Gen+Neut:tirtēisan  # ;
+  +Pl+Nom+Neut:tirtāi  # ;
