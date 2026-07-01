@@ -66,6 +66,8 @@ def main():
         par = e.get("paradigm", "")
         if not par:
             continue
+        if "indicative" in e.get("forms", {}):
+            continue
         gender = e.get("gender", "")
         forms = inflected_forms(e)
         
