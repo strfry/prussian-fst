@@ -4,5 +4,6 @@ LEXICON Root
   Nouns ;
   Adjectives ;
   Pronouns ;
+  Numerals ;
   FunctionWords ;
   Verbs ;
