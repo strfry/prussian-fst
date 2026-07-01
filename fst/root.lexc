@@ -1,10 +1,9 @@
 ! Root lexicon – entry point for all word classes
 
 LEXICON Root
-  Pronouns ;
   Nouns ;
   Adjectives ;
-  Numerals ;
-  Participles ;
+  Pronouns ;
+  FunctionWords ;
   VParticiples ;
   Verbs ;
