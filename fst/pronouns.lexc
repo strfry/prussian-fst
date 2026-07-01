@@ -306,7 +306,7 @@ LEXICON P3_stems
 ! 9 — kas
 LEXICON P9_stems
   kas+Pron:k  P9 ;
-  nika+Pron+Sg+Nom+Masc:nika  # ;
+  nika+Pron+Sg+Nom+Neut:nika  # ;
   nika+Pron:nik  P9 ;
 
 ! 10 — dis
@@ -328,7 +328,7 @@ LEXICON P13_stems
 
 ! 14 — tennan
 LEXICON P14_stems
-  tennan+Pron:t  P14 ;
+  tāns+Pron:t  P14 ;
 
 ! 15 — šis
 LEXICON P15_stems
