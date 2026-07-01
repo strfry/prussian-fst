@@ -4,7 +4,7 @@
 !   present-active (≈ P29)   past-active (≈ P68)   passive (≈ P69, hard t-stem)
 !
 ! Each lemma contributes ONE citation (long / barytone) stem per participle,
-! listed in verb_participle_stems.lexc (generated once from the corpus dumps).
+! listed in verb_stems.lexc (generated from twanksta_entries.json).
 ! The stem entry routes to the paradigm matching the lemma's accent class:
 !
 !   …Mob   mobile stress: the strong cells (Dat-Pl, Fem-Nom-Sg; passive also
@@ -15,9 +15,6 @@
 !
 ! The past-active participle has a single invariant stem (no accent shift).
 ! See docs/FST_PARTICIPLES.md.
-
-LEXICON VParticiples
-  PtcpStems ;
 
 ! ── Past-active (P68): one invariant stem, uniform weak endings ──────────────
 LEXICON PtcpPast
