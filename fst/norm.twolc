@@ -25,3 +25,30 @@ Rules
 
 "rr → r after long vowel"
   r:0 <=> ā _ r ; ē _ r ; ī _ r ; ō _ r ; ū _ r ;
+
+! Same degemination after SHORT vowels — allows corpus geminates to
+! match canonical single-consonant forms (P32 nouns like snaps, lads).
+
+"nn → n after short vowel"
+  n:0 <=> a _ n ; e _ n ; i _ n ; o _ n ; u _ n ;
+
+"mm → m after short vowel"
+  m:0 <=> a _ m ; e _ m ; i _ m ; o _ m ; u _ m ;
+
+"kk → k after short vowel"
+  k:0 <=> a _ k ; e _ k ; i _ k ; o _ k ; u _ k ;
+
+"pp → p after short vowel"
+  p:0 <=> a _ p ; e _ p ; i _ p ; o _ p ; u _ p ;
+
+"tt → t after short vowel"
+  t:0 <=> a _ t ; e _ t ; i _ t ; o _ t ; u _ t ;
+
+"rr → r after short vowel"
+  r:0 <=> a _ r ; e _ r ; i _ r ; o _ r ; u _ r ;
+
+"dd → d after short vowel"
+  d:0 <=> a _ d ; e _ d ; i _ d ; o _ d ; u _ d ;
+
+"ll → l after short vowel"
+  l:0 <=> a _ l ; e _ l ; i _ l ; o _ l ; u _ l ;
