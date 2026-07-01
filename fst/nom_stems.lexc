@@ -11767,6 +11767,14 @@ LEXICON N35_stems
   unds+N+Pl+Dat+Neut:undamans  # ;
   unds+N+Sg+Akk+Neut:undan  # ;
   unds+N+Pl+Akk+Neut:undans  # ;
+  unds+N+Sg+Nom+Neut:unds  # ;
+  unds+N+Pl+Nom+Neut:undāi  # ;
+  unds+N+Sg+Gen+Neut:undas  # ;
+  unds+N+Pl+Gen+Neut:undan  # ;
+  unds+N+Sg+Dat+Neut:undu  # ;
+  unds+N+Pl+Dat+Neut:undamans  # ;
+  unds+N+Sg+Akk+Neut:undan  # ;
+  unds+N+Pl+Akk+Neut:undans  # ;
   begalbiskan+N+Sg+Nom+Neut:begalbiskan  # ;
   begalbiskan+N+Pl+Nom+Neut:begalbiskāi  # ;
   begalbiskan+N+Sg+Gen+Neut:begalbiskas  # ;

@@ -346,8 +346,46 @@ LEXICON P17_stems
 ! 18 — kits
 LEXICON P18_stems
   kits+Pron:kit  P18 ;
-  jūss+Pron:jūs  P18 ;
-  nūss+Pron:nūs  P18 ;
+  jūss+Pron+Sg+Nom+Masc:jūss  # ;
+  jūss+Pron+Pl+Nom+Masc:jusāi  # ;
+  jūss+Pron+Sg+Gen+Masc:jūse  # ;
+  jūss+Pron+Pl+Gen+Masc:jusēisan  # ;
+  jūss+Pron+Sg+Dat+Masc:jūsmu  # ;
+  jūss+Pron+Pl+Dat+Masc:jusēimans  # ;
+  jūss+Pron+Sg+Akk+Masc:jūsan  # ;
+  jūss+Pron+Pl+Akk+Masc:jūsans  # ;
+  jūss+Pron+Sg+Nom+Fem:jusā  # ;
+  jūss+Pron+Pl+Nom+Fem:jūsas  # ;
+  jūss+Pron+Sg+Gen+Fem:jūses  # ;
+  jūss+Pron+Pl+Gen+Fem:jusēisan  # ;
+  jūss+Pron+Sg+Dat+Fem:jūsei  # ;
+  jūss+Pron+Pl+Dat+Fem:jusēimans  # ;
+  jūss+Pron+Sg+Akk+Fem:jūsan  # ;
+  jūss+Pron+Pl+Akk+Fem:jūsans  # ;
+  jūss+Pron+Sg+Nom+Neut:jūsan  # ;
+  jūss+Pron+Sg+Gen+Neut:jūse  # ;
+  jūss+Pron+Sg+Dat+Neut:jūsmu  # ;
+  jūss+Pron+Sg+Akk+Neut:jūsan  # ;
+  nūss+Pron+Sg+Nom+Masc:nūss  # ;
+  nūss+Pron+Pl+Nom+Masc:nusāi  # ;
+  nūss+Pron+Sg+Gen+Masc:nūse  # ;
+  nūss+Pron+Pl+Gen+Masc:nusēisan  # ;
+  nūss+Pron+Sg+Dat+Masc:nūsmu  # ;
+  nūss+Pron+Pl+Dat+Masc:nusēimans  # ;
+  nūss+Pron+Sg+Akk+Masc:nūsan  # ;
+  nūss+Pron+Pl+Akk+Masc:nūsans  # ;
+  nūss+Pron+Sg+Nom+Fem:nusā  # ;
+  nūss+Pron+Pl+Nom+Fem:nūsas  # ;
+  nūss+Pron+Sg+Gen+Fem:nūses  # ;
+  nūss+Pron+Pl+Gen+Fem:nusēisan  # ;
+  nūss+Pron+Sg+Dat+Fem:nūsei  # ;
+  nūss+Pron+Pl+Dat+Fem:nusēimans  # ;
+  nūss+Pron+Sg+Akk+Fem:nūsan  # ;
+  nūss+Pron+Pl+Akk+Fem:nūsans  # ;
+  nūss+Pron+Sg+Nom+Neut:nūsan  # ;
+  nūss+Pron+Sg+Gen+Neut:nūse  # ;
+  nūss+Pron+Sg+Dat+Neut:nūsmu  # ;
+  nūss+Pron+Sg+Akk+Neut:nūsan  # ;
 
 ! 19 — kawīds
 LEXICON P19_stems
