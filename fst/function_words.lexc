@@ -18,6 +18,7 @@ LEXICON Conjunctions
   kwei+Conj+Sg+Nom:kwei        # ;
   jaī+Conj+Sg+Nom:jaī          # ;
   nī+Conj+Sg+Nom:nī            # ;
+  beggi+Conj+Sg+Nom:beggi      # ;
 
 ! ── Prepositions ───────────────────────────────────
 LEXICON Prepositions
@@ -33,6 +34,8 @@ LEXICON Prepositions
   pō+Prep:pō             # ;
   prikki+Prep:prikki     # ;
   sīndru+Prep:sīndru     # ;
+  na+Prep:na             # ;
+  kīrsa+Prep:kīrsa       # ;
 
 ! ── Adverbs ────────────────────────────────────────
 LEXICON Adverbs
@@ -71,6 +74,10 @@ LEXICON Adverbs
   preilīnkun+Adv:preilīnkun # ;
   waira+Adv:waira         # ;
   iz+Adv:iz               # ;
+  dabber+Adv:dabber       # ;
+  tēr+Adv:tēr             # ;
+  ik+Adv:ik               # ;
+  angāi+Adv:angāi         # ;
 
 ! ── Particles ──────────────────────────────────────
 LEXICON Particles
