@@ -11759,6 +11759,14 @@ LEXICON N34_stems
 
 ! N35 — 642 entries
 LEXICON N35_stems
+  unds+N+Sg+Nom+Neut:unds  # ;
+  unds+N+Pl+Nom+Neut:undāi  # ;
+  unds+N+Sg+Gen+Neut:undas  # ;
+  unds+N+Pl+Gen+Neut:undan  # ;
+  unds+N+Sg+Dat+Neut:undu  # ;
+  unds+N+Pl+Dat+Neut:undamans  # ;
+  unds+N+Sg+Akk+Neut:undan  # ;
+  unds+N+Pl+Akk+Neut:undans  # ;
   kīrsan+N+Sg+Nom+Neut:kīrsan  # ;
   kīrsan+N+Pl+Nom+Neut:kirsāi  # ;
   kīrsan+N+Sg+Gen+Neut:kīrsas  # ;
