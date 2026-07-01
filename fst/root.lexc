@@ -1,9 +1,13 @@
 ! Root lexicon – entry point for all word classes
 
 LEXICON Root
+  Conjunctions ;
+  Prepositions ;
+  Adverbs ;
+  Particles ;
+  Interjections ;
   Nouns ;
   Adjectives ;
   Pronouns ;
   Numerals ;
-  FunctionWords ;
   Verbs ;

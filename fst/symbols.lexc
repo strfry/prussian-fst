@@ -20,8 +20,11 @@ Multichar_Symbols
 
   +Pres ! present tense
   +Pret ! preterite tense
-  +Pass ! passive (participle)
   +Inf  ! infinitive
+  +Opt  ! optative
+  +Imp  ! imperative
+  +Subj ! subjunctive
+  +Pass ! passive (participle)
 
   +P1   ! 1st person
   +P2   ! 2nd person
