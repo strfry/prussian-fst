@@ -12,7 +12,7 @@ import sys
 from collections import defaultdict
 from pathlib import Path
 
-FST_STRINGS = Path("/tmp/twanksta_strings.txt")
+FST_STRINGS = Path("/tmp/twanksta_strings_v2.txt")
 CORPUS = Path("/home/strfry/projekte/prussian-corpus/parsed/youtube_corpus_sentences.json")
 SKIP_VIDEOS = {"qLwBCWtMuH8"}
 

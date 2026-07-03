@@ -15,7 +15,9 @@ define DegemZZ [z -> 0 || Vowel _ z];
 
 define DegemAll DegemNN .o. DegemMM .o. DegemPP .o. DegemTT .o. DegemDD .o. DegemKK .o. DegemLL .o. DegemRR .o. DegemSS .o. DegemBB .o. DegemGG .o. DegemZZ ;
 
-define WProthese [0 -> w || "#" _ u];
-define SamlandI [0 -> i || s t s _ "#"];
+define WProthese [0 -> w || .#. _ u];
+define SamlandI [0 -> i || s t s _ .#.];
 
 regex DegemAll .o. WProthese .o. SamlandI ;
+save stack build/norm.hfst
+quit

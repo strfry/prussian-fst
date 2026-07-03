@@ -1,13 +1,12 @@
 ! Conjunctions — handwritten
 
 LEXICON Conjunctions
-  be+Conj+Sg+Nom:be            # ;
-  adder+Conj+Sg+Nom:adder      # ;
-  kaddan+Conj+Sg+Nom:kaddan    # ;
-  anga+Conj+Sg+Nom:anga        # ;
-  angā+Conj+Sg+Nom:angā        # ;
-  kwei+Conj+Sg+Nom:kwei        # ;
-  jaī+Conj+Sg+Nom:jaī          # ;
-  nī+Conj+Sg+Nom:nī            # ;
-  beggi+Conj+Sg+Nom:beggi      # ;
-  paggan+Conj+Sg+Nom:paggan    # ;
+  be+Conj:be            # ;
+  adder+Conj:adder      # ;
+  kaddan+Conj:kaddan    # ;
+  anga+Conj:anga        # ;
+  kwei+Conj:kwei        # ;
+  jaī+Conj:jaī          # ;
+  nī+Conj:nī            # ;
+  beggi+Conj:beggi      # ;
+  paggan+Conj:paggan    # ;

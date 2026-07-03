@@ -35,7 +35,7 @@ twanksta: build/base.hfst build/stress.twolc.hfst
 	@echo "Built build/twanksta.hfst"
 
 build/norm.hfst: norm.regex
-	hfst-regexp2fst -o build/norm.hfst < norm.regex
+	hfst-xfst -p < norm.regex
 
 lenient: build/norm.hfst build/twanksta.hfst
 	hfst-compose -o build/lenient.hfst build/norm.hfst build/twanksta.hfst
