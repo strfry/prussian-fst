@@ -8,6 +8,7 @@ Reflexive verbs (`` si``) get ``+Refl`` tag; the `` si`` is split off.
 """
 
 import json
+import re
 from collections import defaultdict
 from pathlib import Path
 
@@ -72,6 +73,24 @@ def paradigm_int(par: str) -> int | None:
         else:
             break
     return int(num) if num else None
+
+
+def desc_gram(desc: str) -> str:
+    """Grammatical part of the desc field (source refs ``[...]`` stripped)."""
+    return re.sub(r"\[.*?\]", "", desc).strip()
+
+
+def prep_gov_tags(desc: str) -> list[str]:
+    """Governed-case tags for a preposition, from ``prp acc`` / ``prp dat`` desc."""
+    g = desc_gram(desc)
+    if not g.startswith("prp"):
+        return []
+    tags = []
+    if re.search(r"\bacc\b", g):
+        tags.append("+GovAkk")
+    if re.search(r"\bdat\b", g):
+        tags.append("+GovDat")
+    return tags
 
 
 def classify(e: dict) -> str:
@@ -146,19 +165,45 @@ def strip_si(form: str) -> str:
 
 def nominal_forms(entry: dict, pos_tag: str) -> list[tuple[str, str]]:
     results = []
-    for gen_decl in entry.get("forms", {}).get("declension", []):
-        g = gen_decl.get("gender", "masc")
-        g_tag = GENDER_MAP.get(g, "")
-        for case_entry in gen_decl.get("cases", []):
-            c = case_entry.get("case", "")
-            c_tag = CASE_MAP.get(c, c[:3])
-            for num_attr, num_tag in [("singular", "Sg"), ("plural", "Pl")]:
-                form = case_entry.get(num_attr, "")
-                if form:
-                    for variant in form.split(" / "):
-                        if " " not in variant:
-                            results.append((f"{pos_tag}+{num_tag}+{c_tag}{g_tag}", variant))
+    for decl_key, deg_tag in [("declension", ""), ("comparative", "+Cmp"),
+                              ("superlative", "+Sup")]:
+        for gen_decl in entry.get("forms", {}).get(decl_key, []):
+            g = gen_decl.get("gender", "masc")
+            g_tag = GENDER_MAP.get(g, "")
+            for case_entry in gen_decl.get("cases", []):
+                c = case_entry.get("case", "")
+                c_tag = CASE_MAP.get(c, c[:3])
+                for num_attr, num_tag in [("singular", "Sg"), ("plural", "Pl")]:
+                    form = case_entry.get(num_attr, "")
+                    if form:
+                        for variant in form.split(" / "):
+                            if " " not in variant:
+                                results.append((f"{pos_tag}{deg_tag}+{num_tag}+{c_tag}{g_tag}", variant))
     return results
+
+
+def adverb_forms(entry: dict) -> list[str]:
+    """Derived adverb lines (``+Adv``/``+Adv+Cmp``/``+Adv+Sup``) from the
+    ``forms.adverb`` degree table of an adjective entry.
+
+    Lemma is the positive adverb form (falls back to the entry word).
+    """
+    adv = entry.get("forms", {}).get("adverb")
+    if not isinstance(adv, dict):
+        return []
+    pos_form = (adv.get("positive") or "").strip()
+    lemma = pos_form or entry.get("word", "")
+    if not lemma or " " in lemma:
+        return []
+    lines = []
+    for key, deg_tag in [("positive", ""), ("comparative", "+Cmp"),
+                         ("superlative", "+Sup")]:
+        form = (adv.get(key) or "").strip()
+        for variant in form.split(" / "):
+            variant = variant.strip()
+            if variant and " " not in variant:
+                lines.append(f"{lexc_esc(lemma)}+Adv{deg_tag}:{lexc_esc(variant)}")
+    return lines
 
 
 def verb_forms(entry: dict) -> tuple[str, dict]:
@@ -180,8 +225,8 @@ def verb_forms(entry: dict) -> tuple[str, dict]:
     # Indicative (present / past / perfect / future)
     for tense_entry in forms.get("indicative", []):
         tname = tense_entry.get("tense", "")
-        mood = "Pres" if tname == "Present" else "Pret" if tname == "Past" else None
-        if not mood:
+        tense = "Pres" if tname == "Present" else "Pret" if tname == "Past" else None
+        if not tense:
             continue
         for sub in tense_entry.get("forms", []):
             f = sub.get("form", "").strip()
@@ -192,7 +237,7 @@ def verb_forms(entry: dict) -> tuple[str, dict]:
                 idx = PRONOUN_MAP.get(sub.get("pronoun", ""))
                 if idx is None:
                     continue
-                results[f"{upper}+V+{mood}+{PERSON_TAGS[idx]}{refl}:{lexc_esc(f_clean)}"] = True
+                results[f"{upper}+V+Ind+{tense}+{PERSON_TAGS[idx]}{refl}:{lexc_esc(f_clean)}"] = True
 
     # Optative (single string)
     opt = forms.get("optative")
@@ -288,6 +333,12 @@ def main():
         else:
             by_pos[pos].append((word, e))
 
+    # Derived adverbs (degree table on adjective entries) → adverbs.lexc
+    derived_adverbs = []
+    for pos_entries in by_pos.values():
+        for _word, e in pos_entries:
+            derived_adverbs.extend(adverb_forms(e))
+
     # ── Nominal POS files ──
     for pos in ["noun", "adjective", "pronoun", "numeral",
                 "adverb", "preposition", "conjunction", "particle", "interjection"]:
@@ -302,19 +353,39 @@ def main():
         lines.append(f"LEXICON {lex_name}")
 
         total = 0
+        seen_bodies = set()
         invariable = pos in ("adverb", "preposition", "conjunction", "particle", "interjection")
         for word, e in entries or []:
             forms = nominal_forms(e, tag)
             if not forms:
-                if invariable:
-                    lines.append(f"  {lexc_esc(word)}{tag}:{lexc_esc(word)}  # ;")
+                if pos == "preposition":
+                    gov_tags = prep_gov_tags(e.get("desc", "")) or [""]
+                    for gov in gov_tags:
+                        body = f"{lexc_esc(word)}{tag}{gov}:{lexc_esc(word)}"
+                        if body not in seen_bodies:
+                            seen_bodies.add(body)
+                            lines.append(f"  {body}  # ;")
+                            total += 1
+                elif invariable:
+                    body = f"{lexc_esc(word)}{tag}:{lexc_esc(word)}"
+                    if body not in seen_bodies:
+                        seen_bodies.add(body)
+                        lines.append(f"  {body}  # ;")
+                        total += 1
                 else:
                     gender = GENDER_MAP.get(e.get("gender", ""), "")
                     lines.append(f"  {lexc_esc(word)}{tag}+Sg+Nom{gender}:{lexc_esc(word)}  # ;")
-                total += 1
+                    total += 1
             else:
                 for tt, form in forms:
                     lines.append(f"  {lexc_esc(word)}{tt}:{lexc_esc(form)}  # ;")
+                    total += 1
+
+        if pos == "adverb":
+            for body in derived_adverbs:
+                if body not in seen_bodies:
+                    seen_bodies.add(body)
+                    lines.append(f"  {body}  # ;")
                     total += 1
 
         lines.append("")

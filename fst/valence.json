@@ -1,0 +1,1538 @@
+{
+  "_source": "twanksta_entries.json",
+  "_note": "Best-effort parse of the Twanksta desc field. Preposition rection is complete; verb valence covers only the verbs annotated in the dictionary. Impersonal verbs are not encoded in Twanksta at all.",
+  "prepositions": {
+    "be": [
+      "Acc"
+    ],
+    "ezze": [
+      "Acc",
+      "Dat"
+    ],
+    "iz": [
+      "Acc"
+    ],
+    "kīrsa": [
+      "Acc"
+    ],
+    "na": [
+      "Acc"
+    ],
+    "nō": [
+      "Acc"
+    ],
+    "pa": [
+      "Dat",
+      "Acc"
+    ],
+    "pagār": [
+      "Acc"
+    ],
+    "pas": [
+      "Acc"
+    ],
+    "pirzdau": [
+      "Acc"
+    ],
+    "pra": [
+      "Acc"
+    ],
+    "prēi": [
+      "Acc"
+    ],
+    "prīki": [
+      "Acc"
+    ],
+    "prīkin": [
+      "Acc"
+    ],
+    "prō": [
+      "Acc"
+    ],
+    "pēr": [
+      "Acc"
+    ],
+    "pō": [
+      "Acc",
+      "Dat"
+    ],
+    "sirzdau": [
+      "Acc"
+    ],
+    "sklāit": [
+      "Acc"
+    ],
+    "sklāits": [
+      "Acc"
+    ],
+    "sēn": [
+      "Acc"
+    ],
+    "zūrgi": [
+      "Acc"
+    ],
+    "ēn": [
+      "Acc",
+      "Dat"
+    ],
+    "ēr": [
+      "Acc"
+    ],
+    "ērgi": [
+      "Acc"
+    ]
+  },
+  "verbs": [
+    {
+      "lemma": "arāikautwei",
+      "desc": "sen + Akk [Arāiks drv MK]",
+      "gram": "sen + Akk",
+      "prep_rection": [
+        {
+          "prep": "sen",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "attentatwei",
+      "desc": "en acc [attentare, Attentat MK]",
+      "gram": "en acc",
+      "prep_rection": [
+        {
+          "prep": "en",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "audribbintun",
+      "desc": "acc ezze sebbei [Āu-, Dribbintun drv, nusikratyti, atkratīties]",
+      "gram": "acc ezze sebbei",
+      "obj_cases": [
+        "Acc"
+      ]
+    },
+    {
+      "lemma": "aukabīntun",
+      "desc": "ezze dat [Kabīntun drv]",
+      "gram": "ezze dat",
+      "prep_rection": [
+        {
+          "prep": "ezze",
+          "case": "Dat"
+        }
+      ]
+    },
+    {
+      "lemma": "ausītun",
+      "desc": "(ezze DAT) [Sītun DRV]",
+      "gram": "(ezze DAT)",
+      "prep_rection": [
+        {
+          "prep": "ezze",
+          "case": "Dat"
+        }
+      ]
+    },
+    {
+      "lemma": "auwīngtun",
+      "desc": "(acc ezze acc) [Wīngtwei, wīngriskan , nusukti MK]",
+      "gram": "(acc ezze acc)",
+      "prep_rection": [
+        {
+          "prep": "ezze",
+          "case": "Acc"
+        }
+      ],
+      "obj_cases": [
+        "Acc"
+      ]
+    },
+    {
+      "lemma": "auwīngtwei",
+      "desc": "(iz acc) [Wīngtwei MK]",
+      "gram": "(iz acc)",
+      "prep_rection": [
+        {
+          "prep": "iz",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "aušaūtun",
+      "desc": "akk + dat [āuschautins 53 MK]",
+      "gram": "akk + dat",
+      "obj_cases": [
+        "Acc",
+        "Dat"
+      ]
+    },
+    {
+      "lemma": "aušaūtun si",
+      "desc": "akk, ezze + dat [Aušaūtun drv, skolintis, aizņemties MK]",
+      "gram": "akk, ezze + dat",
+      "prep_rection": [
+        {
+          "prep": "ezze",
+          "case": "Dat"
+        }
+      ],
+      "obj_cases": [
+        "Acc"
+      ]
+    },
+    {
+      "lemma": "bilancītwei",
+      "desc": "ITR ITR [Bilanz DRV]",
+      "gram": "ITR ITR",
+      "intransitive": true
+    },
+    {
+      "lemma": "bilītun",
+      "desc": "per (acc) [billē 53(9) ps 3]",
+      "gram": "per (acc)",
+      "obj_cases": [
+        "Acc"
+      ]
+    },
+    {
+      "lemma": "bilītun si",
+      "desc": "per (acc) [billē 53(9) ps 3]",
+      "gram": "per (acc)",
+      "obj_cases": [
+        "Acc"
+      ]
+    },
+    {
+      "lemma": "dalljautun",
+      "desc": "(+ sen) + Akk [Dalā DRV]",
+      "gram": "(+ sen) + Akk",
+      "obj_cases": [
+        "Acc"
+      ]
+    },
+    {
+      "lemma": "delīkan īmtun",
+      "desc": "ēn acc [teilnehmen MK]",
+      "gram": "ēn acc",
+      "prep_rection": [
+        {
+          "prep": "ēn",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "delītun si",
+      "desc": "en acc [Delītun drv]",
+      "gram": "en acc",
+      "prep_rection": [
+        {
+          "prep": "en",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "dirītwei",
+      "desc": "(en acc) [dereis 107 drv]",
+      "gram": "(en acc)",
+      "prep_rection": [
+        {
+          "prep": "en",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "diskutītwei",
+      "desc": "(zūrgi acc) [diskutieren MK]",
+      "gram": "(zūrgi acc)",
+      "prep_rection": [
+        {
+          "prep": "zūrgi",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "distāncitun si",
+      "desc": "ezze DAT [sich distanzieren von, Distānci DRV MK]",
+      "gram": "ezze DAT",
+      "prep_rection": [
+        {
+          "prep": "ezze",
+          "case": "Dat"
+        }
+      ]
+    },
+    {
+      "lemma": "druwītwei",
+      "desc": "(en acc) [druwīt 45]",
+      "gram": "(en acc)",
+      "prep_rection": [
+        {
+          "prep": "en",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "drāugautwei",
+      "desc": "(sen acc) [Drāugs drv]",
+      "gram": "(sen acc)",
+      "prep_rection": [
+        {
+          "prep": "sen",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "dātun",
+      "desc": "dat + if [Dātun 1 drv]",
+      "gram": "dat + if",
+      "obj_cases": [
+        "Dat"
+      ],
+      "takes_infinitive": true
+    },
+    {
+      "lemma": "dīngtwei",
+      "desc": "(prēi acc) [podingai 79 VM, MK]",
+      "gram": "(prēi acc)",
+      "prep_rection": [
+        {
+          "prep": "prēi",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "ebstalītwei",
+      "desc": "na acc [bestehen, pastāvēt, obstawać Nx]",
+      "gram": "na acc",
+      "prep_rection": [
+        {
+          "prep": "na",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "ebtiktwei",
+      "desc": "(na acc) [Tiktwei MK]",
+      "gram": "(na acc)",
+      "prep_rection": [
+        {
+          "prep": "na",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "ebwijātun si",
+      "desc": "(zūrgi acc) [Ebwijātun drv]",
+      "gram": "(zūrgi acc)",
+      "prep_rection": [
+        {
+          "prep": "zūrgi",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "ebwīlktun",
+      "desc": "acc (en acc) [Wīlktun drv, apvilkti]",
+      "gram": "acc (en acc)",
+      "prep_rection": [
+        {
+          "prep": "en",
+          "case": "Acc"
+        }
+      ],
+      "obj_cases": [
+        "Acc"
+      ]
+    },
+    {
+      "lemma": "ebwīlktun si",
+      "desc": "(en acc) [Ebwīlktun drv, apsivilkti]",
+      "gram": "(en acc)",
+      "prep_rection": [
+        {
+          "prep": "en",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "ebzentlitun si",
+      "desc": "(pra acc) [Ebzentlitun drv]",
+      "gram": "(pra acc)",
+      "prep_rection": [
+        {
+          "prep": "pra",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "emprīkibilītwei",
+      "desc": "dat [emprijkin bille 125]",
+      "gram": "dat",
+      "obj_cases": [
+        "Dat"
+      ]
+    },
+    {
+      "lemma": "enbilancītun",
+      "desc": "TR [Ēn-, Bilancītwei DRV MK]",
+      "gram": "TR",
+      "transitive": true
+    },
+    {
+      "lemma": "engardautwei",
+      "desc": "(en acc) [Gardautwei drv, gardžiuotis MK]",
+      "gram": "(en acc)",
+      "prep_rection": [
+        {
+          "prep": "en",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "engillintun si",
+      "desc": "(en acc) [Gillintun drv]",
+      "gram": "(en acc)",
+      "prep_rection": [
+        {
+          "prep": "en",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "engnessenjan segītun",
+      "desc": "+ dat [daryti, palikti įspūdį, darīt, atstāt iespaidu MK]",
+      "gram": "+ dat",
+      "obj_cases": [
+        "Dat"
+      ]
+    },
+    {
+      "lemma": "engraudītwei",
+      "desc": "(kīrsa acc) [engraudīs 67 drv]",
+      "gram": "(kīrsa acc)",
+      "prep_rection": [
+        {
+          "prep": "kīrsa",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "enmīlītun si",
+      "desc": "en ACC [Mīlītun DRV, įsimylėti, iemīlēties MK]",
+      "gram": "en ACC",
+      "prep_rection": [
+        {
+          "prep": "en",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "enpaltwei",
+      "desc": "(en acc) [aupallai 107(6) + įpulti, wpaść]",
+      "gram": "(en acc)",
+      "prep_rection": [
+        {
+          "prep": "en",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "enregistrītwei",
+      "desc": "ēn acc [registrieren Nx]",
+      "gram": "ēn acc",
+      "prep_rection": [
+        {
+          "prep": "ēn",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "enrikaūtwei",
+      "desc": "(kīrsa acc) [Rikaūtwei drv]",
+      "gram": "(kīrsa acc)",
+      "prep_rection": [
+        {
+          "prep": "kīrsa",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "ensegītun",
+      "desc": "(acc sen acc) [Segītun drv]",
+      "gram": "(acc sen acc)",
+      "prep_rection": [
+        {
+          "prep": "sen",
+          "case": "Acc"
+        }
+      ],
+      "obj_cases": [
+        "Acc"
+      ]
+    },
+    {
+      "lemma": "enskēiptun",
+      "desc": "en acc [Skēiptun drv]",
+      "gram": "en acc",
+      "prep_rection": [
+        {
+          "prep": "en",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "ensmittintwei",
+      "desc": "(en acc) [Smit drv]",
+      "gram": "(en acc)",
+      "prep_rection": [
+        {
+          "prep": "en",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "ensūtwei",
+      "desc": "en acc [Sūtwei DRV]",
+      "gram": "en acc",
+      "prep_rection": [
+        {
+          "prep": "en",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "enwijātun",
+      "desc": "(en acc) [Enwijātun drv]",
+      "gram": "(en acc)",
+      "prep_rection": [
+        {
+          "prep": "en",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "enīmtun",
+      "desc": "+ acc ēn sin [enimt 117 GlN]",
+      "gram": "+ acc ēn sin",
+      "obj_cases": [
+        "Acc"
+      ]
+    },
+    {
+      "lemma": "erbilītun",
+      "desc": "(acc per acc) [ernennen + pabilītun]",
+      "gram": "(acc per acc)",
+      "prep_rection": [
+        {
+          "prep": "per",
+          "case": "Acc"
+        }
+      ],
+      "obj_cases": [
+        "Acc"
+      ]
+    },
+    {
+      "lemma": "etgarbātun",
+      "desc": "(ezze dat) [etgērbtun drv]",
+      "gram": "(ezze dat)",
+      "prep_rection": [
+        {
+          "prep": "ezze",
+          "case": "Dat"
+        }
+      ]
+    },
+    {
+      "lemma": "etgērdautun si",
+      "desc": "IF, ACC [Gērdautwei + atsisakyti, atteikties, odmówić się MK]",
+      "gram": "IF, ACC",
+      "obj_cases": [
+        "Acc"
+      ],
+      "takes_infinitive": true
+    },
+    {
+      "lemma": "etkūmpitwei",
+      "desc": "(na acc) [Etkūmpis MK]",
+      "gram": "(na acc)",
+      "prep_rection": [
+        {
+          "prep": "na",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "etminītun",
+      "desc": "(ezze acc) [Minītun drv]",
+      "gram": "(ezze acc)",
+      "prep_rection": [
+        {
+          "prep": "ezze",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "etpeisātun",
+      "desc": "Na + Akk [Peisātun DRV]",
+      "gram": "Na + Akk",
+      "prep_rection": [
+        {
+          "prep": "na",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "etsparātun si",
+      "desc": "(na acc) [Etsparātun drv]",
+      "gram": "(na acc)",
+      "prep_rection": [
+        {
+          "prep": "na",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "etspertwei",
+      "desc": "(en acc) [Spertlan E 150 VM]",
+      "gram": "(en acc)",
+      "prep_rection": [
+        {
+          "prep": "en",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "etwartīntun",
+      "desc": "(en acc) [wartint 35 MK]",
+      "gram": "(en acc)",
+      "prep_rection": [
+        {
+          "prep": "en",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "etwartīntun si",
+      "desc": "(en acc) [wartint 35 MK]",
+      "gram": "(en acc)",
+      "prep_rection": [
+        {
+          "prep": "en",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "gattawintun",
+      "desc": "(prēi acc) [pogattawint 77(11)]",
+      "gram": "(prēi acc)",
+      "prep_rection": [
+        {
+          "prep": "prēi",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "gedītwei",
+      "desc": "(zurgi + acc)[Gestwei drv MK]",
+      "gram": "(zurgi + acc)",
+      "prep_rection": [
+        {
+          "prep": "zurgi",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "graudīntun si",
+      "desc": "ezze acc [graudīntun drv]",
+      "gram": "ezze acc",
+      "prep_rection": [
+        {
+          "prep": "ezze",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "gēistwei",
+      "desc": "(na acc) [gēide 85 drv]",
+      "gram": "(na acc)",
+      "prep_rection": [
+        {
+          "prep": "na",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "izdātun si",
+      "desc": "(per acc) [sich ausgeben fur MK]",
+      "gram": "(per acc)",
+      "prep_rection": [
+        {
+          "prep": "per",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "izlīgintun si",
+      "desc": "(na acc) [Izlīgintun MK]",
+      "gram": "(na acc)",
+      "prep_rection": [
+        {
+          "prep": "na",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "izmakīntun si",
+      "desc": "acc [izmakīntun drv]",
+      "gram": "acc",
+      "obj_cases": [
+        "Acc"
+      ]
+    },
+    {
+      "lemma": "izwīngtwei",
+      "desc": "(iz acc) [Wīngtwei MK]",
+      "gram": "(iz acc)",
+      "prep_rection": [
+        {
+          "prep": "iz",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "iĺgitun si",
+      "desc": "(gen) [Ilgs + ilgėtis, ilgoties, to be longing MK]",
+      "gram": "(gen)",
+      "obj_cases": [
+        "Gen"
+      ]
+    },
+    {
+      "lemma": "juktwei",
+      "desc": "(prēi acc) [iaukint 77 + prijunkti MK]",
+      "gram": "(prēi acc)",
+      "prep_rection": [
+        {
+          "prep": "prēi",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "kakīnslintwei",
+      "desc": "(en acc) [Kakīnsli + zielen MK]",
+      "gram": "(en acc)",
+      "prep_rection": [
+        {
+          "prep": "en",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "kīnintun si",
+      "desc": "(paggan psp gen) [Kīnintun MK]",
+      "gram": "(paggan psp gen)",
+      "obj_cases": [
+        "Gen"
+      ]
+    },
+    {
+      "lemma": "kīnintun si",
+      "desc": "(per acc) [Kīnintun MK]",
+      "gram": "(per acc)",
+      "prep_rection": [
+        {
+          "prep": "per",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "kīntwei",
+      "desc": "(prēi acc) [erkīnina 117 VM]",
+      "gram": "(prēi acc)",
+      "prep_rection": [
+        {
+          "prep": "prēi",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "kōncentritun si",
+      "desc": "Na ACC [konzentrieren MK]",
+      "gram": "Na ACC",
+      "prep_rection": [
+        {
+          "prep": "na",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "kōnfliktitwei",
+      "desc": "(sen acc) [konfliktieren MK]",
+      "gram": "(sen acc)",
+      "prep_rection": [
+        {
+          "prep": "sen",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "kōntaktitwei",
+      "desc": "sen (acc) [Kōntakts drv]",
+      "gram": "sen (acc)",
+      "obj_cases": [
+        "Acc"
+      ]
+    },
+    {
+      "lemma": "laikātun",
+      "desc": "(per acc) [laikūt 107]",
+      "gram": "(per acc)",
+      "prep_rection": [
+        {
+          "prep": "per",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "laikātun si",
+      "desc": "(prēi acc) [sich halten an, laikytis ko MK]",
+      "gram": "(prēi acc)",
+      "prep_rection": [
+        {
+          "prep": "prēi",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "liptwei",
+      "desc": "(prēi acc) [laipinna 105 VM]",
+      "gram": "(prēi acc)",
+      "prep_rection": [
+        {
+          "prep": "prēi",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "lipīntun",
+      "desc": "(prēi acc) [Liptwei drv]",
+      "gram": "(prēi acc)",
+      "prep_rection": [
+        {
+          "prep": "prēi",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "līnktwei",
+      "desc": "(prēi acc) [perlānkei 53 MK]",
+      "gram": "(prēi acc)",
+      "prep_rection": [
+        {
+          "prep": "prēi",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "majātwei",
+      "desc": "+ dat. + sen ACC , iter [Mūtwei DRV]",
+      "gram": "+ dat. + sen ACC , iter",
+      "prep_rection": [
+        {
+          "prep": "sen",
+          "case": "Acc"
+        }
+      ],
+      "obj_cases": [
+        "Dat"
+      ]
+    },
+    {
+      "lemma": "minītun",
+      "desc": "(acc) [menisnan I 15]",
+      "gram": "(acc)",
+      "obj_cases": [
+        "Acc"
+      ]
+    },
+    {
+      "lemma": "mātwei",
+      "desc": "+ dat. + sen ACC [moti, māt GlN]",
+      "gram": "+ dat. + sen ACC",
+      "prep_rection": [
+        {
+          "prep": "sen",
+          "case": "Acc"
+        }
+      ],
+      "obj_cases": [
+        "Dat"
+      ]
+    },
+    {
+      "lemma": "māuktun",
+      "desc": "na acc [maukti + maukt + wymknąć MK]",
+      "gram": "na acc",
+      "prep_rection": [
+        {
+          "prep": "na",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "nadirītun",
+      "desc": "(kīrsa acc), acc [Dirītwei + aufsehen MK]",
+      "gram": "(kīrsa acc), acc",
+      "prep_rection": [
+        {
+          "prep": "kīrsa",
+          "case": "Acc"
+        }
+      ],
+      "obj_cases": [
+        "Acc"
+      ]
+    },
+    {
+      "lemma": "nadruwītwei",
+      "desc": "(na acc) [Nadruwisnā MK]",
+      "gram": "(na acc)",
+      "prep_rection": [
+        {
+          "prep": "na",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "nōpaltwei",
+      "desc": "(na acc) [Au-paltwei + nōpalis, napaść]",
+      "gram": "(na acc)",
+      "prep_rection": [
+        {
+          "prep": "na",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "pabilītun",
+      "desc": "(per acc) [Bilītun drv + benennen MK]",
+      "gram": "(per acc)",
+      "prep_rection": [
+        {
+          "prep": "per",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "padelītun",
+      "desc": "(sirzdau acc) [Delītun drv]",
+      "gram": "(sirzdau acc)",
+      "prep_rection": [
+        {
+          "prep": "sirzdau",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "padīngautun",
+      "desc": "(acc) [podingausnan 85(6) drv]",
+      "gram": "(acc)",
+      "obj_cases": [
+        "Acc"
+      ]
+    },
+    {
+      "lemma": "padīngautun si",
+      "desc": "(sen acc) [Padīngautun drv]",
+      "gram": "(sen acc)",
+      "prep_rection": [
+        {
+          "prep": "sen",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "pakaptun",
+      "desc": "pakaptun pa ACC [untergraben MK]",
+      "gram": "pakaptun pa ACC",
+      "prep_rection": [
+        {
+          "prep": "pa",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "paklustwei",
+      "desc": "dat [Paklusman + paklusti MK]",
+      "gram": "dat",
+      "obj_cases": [
+        "Dat"
+      ]
+    },
+    {
+      "lemma": "palīkitun si",
+      "desc": "DAT [Palīkitun DRV]",
+      "gram": "DAT",
+      "obj_cases": [
+        "Dat"
+      ]
+    },
+    {
+      "lemma": "parazītautwei",
+      "desc": "ezze DAT [parasitieren MK]",
+      "gram": "ezze DAT",
+      "prep_rection": [
+        {
+          "prep": "ezze",
+          "case": "Dat"
+        }
+      ]
+    },
+    {
+      "lemma": "parkautwei",
+      "desc": "prei AKK / AKK prei AKK [to park, parken MK]",
+      "gram": "prei AKK / AKK prei AKK",
+      "prep_rection": [
+        {
+          "prep": "prei",
+          "case": "Acc"
+        },
+        {
+          "prep": "prei",
+          "case": "Acc"
+        }
+      ],
+      "obj_cases": [
+        "Acc"
+      ]
+    },
+    {
+      "lemma": "pergrēnztun",
+      "desc": "(ēn, prēi acc) [Grēnztun drv]",
+      "gram": "(ēn, prēi acc)",
+      "prep_rection": [
+        {
+          "prep": "prēi",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "perlānktwei",
+      "desc": "(ezze acc) [perlānkei 53]",
+      "gram": "(ezze acc)",
+      "prep_rection": [
+        {
+          "prep": "ezze",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "perlānktwei",
+      "desc": "(prēi acc) [perlānkei 53]",
+      "gram": "(prēi acc)",
+      "prep_rection": [
+        {
+          "prep": "prēi",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "pertiktwei",
+      "desc": "(ezze acc) [Tiktwei drv]",
+      "gram": "(ezze acc)",
+      "prep_rection": [
+        {
+          "prep": "ezze",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "prabilītun",
+      "desc": "per (acc) [Bilītun drv GlN]",
+      "gram": "per (acc)",
+      "obj_cases": [
+        "Acc"
+      ]
+    },
+    {
+      "lemma": "praktikītun",
+      "desc": "TR [praktiki, praktizieren Nx]",
+      "gram": "TR",
+      "transitive": true
+    },
+    {
+      "lemma": "praktikītwei",
+      "desc": "ITR [Praktikītun DRV]",
+      "gram": "ITR",
+      "intransitive": true
+    },
+    {
+      "lemma": "pralēztwei",
+      "desc": "(kīrsa akk) [Lēztwei drv]",
+      "gram": "(kīrsa akk)",
+      "prep_rection": [
+        {
+          "prep": "kīrsa",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "pralēztwei",
+      "desc": "pra acc [Lēztwei drv]",
+      "gram": "pra acc",
+      "prep_rection": [
+        {
+          "prep": "pra",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "pramadlitun",
+      "desc": "(per acc) [Pra madlin 91]",
+      "gram": "(per acc)",
+      "prep_rection": [
+        {
+          "prep": "per",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "prasūtwei",
+      "desc": "pra akk [Sūtwei drv]",
+      "gram": "pra akk",
+      "prep_rection": [
+        {
+          "prep": "pra",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "pratreptun",
+      "desc": "(kīrsa acc) [Treptwei + prawedduns 119 MK]",
+      "gram": "(kīrsa acc)",
+      "prep_rection": [
+        {
+          "prep": "kīrsa",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "prawiltun si",
+      "desc": "(ēn dat) [Prawiltun drv]",
+      "gram": "(ēn dat)",
+      "prep_rection": [
+        {
+          "prep": "ēn",
+          "case": "Dat"
+        }
+      ]
+    },
+    {
+      "lemma": "preidrūktintun",
+      "desc": "(prei acc) [drūkts drv]",
+      "gram": "(prei acc)",
+      "prep_rection": [
+        {
+          "prep": "prei",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "preidātun",
+      "desc": "(prei acc) [sendāuns 109 + prijungti MK]",
+      "gram": "(prei acc)",
+      "prep_rection": [
+        {
+          "prep": "prei",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "preidātun si",
+      "desc": "(prei acc) [Preidātun drv]",
+      "gram": "(prei acc)",
+      "prep_rection": [
+        {
+          "prep": "prei",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "preijustwei",
+      "desc": "preijustwei DAT (en DAT) [prijausti MK]",
+      "gram": "preijustwei DAT (en DAT)",
+      "prep_rection": [
+        {
+          "prep": "en",
+          "case": "Dat"
+        }
+      ],
+      "obj_cases": [
+        "Dat"
+      ]
+    },
+    {
+      "lemma": "preikakīntun si",
+      "desc": "(prēi acc) [Kakīntun drv]",
+      "gram": "(prēi acc)",
+      "prep_rection": [
+        {
+          "prep": "prēi",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "preikāusintun si",
+      "desc": "(prēi acc) [Kāusintun drv]",
+      "gram": "(prēi acc)",
+      "prep_rection": [
+        {
+          "prep": "prēi",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "preilipīntun",
+      "desc": "(prei acc) [Liptwei drv]",
+      "gram": "(prei acc)",
+      "prep_rection": [
+        {
+          "prep": "prei",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "preiminītun",
+      "desc": "(ezze acc) [pominīsnan 75 drv]",
+      "gram": "(ezze acc)",
+      "prep_rection": [
+        {
+          "prep": "ezze",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "preimāslintun",
+      "desc": "(prēi acc) [Māslintun drv]",
+      "gram": "(prēi acc)",
+      "prep_rection": [
+        {
+          "prep": "prēi",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "preiplūtwei",
+      "desc": "prei + Akk [priplaukti,plūtwei drv]",
+      "gram": "prei + Akk",
+      "prep_rection": [
+        {
+          "prep": "prei",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "preisaltwei",
+      "desc": "prei acc [Saltwei drv]",
+      "gram": "prei acc",
+      "prep_rection": [
+        {
+          "prep": "prei",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "preizentlitun",
+      "desc": "prei (acc) [an-deuten + zentlitun MK]",
+      "gram": "prei (acc)",
+      "obj_cases": [
+        "Acc"
+      ]
+    },
+    {
+      "lemma": "prēitarītwei",
+      "desc": "(dat / prēi acc) [zustimmen + tarītun + pritarti MK]",
+      "gram": "(dat / prēi acc)",
+      "prep_rection": [
+        {
+          "prep": "prēi",
+          "case": "Acc"
+        }
+      ],
+      "obj_cases": [
+        "Dat"
+      ]
+    },
+    {
+      "lemma": "rikaūtwei",
+      "desc": "(kīrsa acc) [rickaūsnan 53]",
+      "gram": "(kīrsa acc)",
+      "prep_rection": [
+        {
+          "prep": "kīrsa",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "rēptwei",
+      "desc": "(pas acc) [rīpaiti 89 MK]",
+      "gram": "(pas acc)",
+      "prep_rection": [
+        {
+          "prep": "pas",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "sendētun si",
+      "desc": "(iz acc) [Sendītun + susidėti + składać się MK]",
+      "gram": "(iz acc)",
+      "prep_rection": [
+        {
+          "prep": "iz",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "senskītwei",
+      "desc": "(prīki acc) [Skītwei + su-kilti + sa-celties]",
+      "gram": "(prīki acc)",
+      "prep_rection": [
+        {
+          "prep": "prīki",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "sklāitun",
+      "desc": "tr [schklāits III  59, sklieti VM]",
+      "gram": "tr",
+      "transitive": true
+    },
+    {
+      "lemma": "sklāitwei",
+      "desc": "itr [schklāits III  59, sklieti VM]",
+      "gram": "itr",
+      "intransitive": true
+    },
+    {
+      "lemma": "smīrdītwei",
+      "desc": "(sen + Akk) [Smorde E 612 MK]",
+      "gram": "(sen + Akk)",
+      "prep_rection": [
+        {
+          "prep": "sen",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "springtwei",
+      "desc": "sen akk [springti, sprangat MK]",
+      "gram": "sen akk",
+      "prep_rection": [
+        {
+          "prep": "sen",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "spētwei",
+      "desc": "(pas acc) [spėti + spēt + śpiać MK]",
+      "gram": "(pas acc)",
+      "prep_rection": [
+        {
+          "prep": "pas",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "spīltun",
+      "desc": "tr [Spelanxtis E 642 VM MK]",
+      "gram": "tr",
+      "transitive": true
+    },
+    {
+      "lemma": "swiltun",
+      "desc": "TR  [Swiltwei DRV + Swalmen JG MK]",
+      "gram": "TR",
+      "transitive": true
+    },
+    {
+      "lemma": "swiltwei",
+      "desc": "itr [Swalmen JG + svilti, svilt MK]",
+      "gram": "itr",
+      "intransitive": true
+    },
+    {
+      "lemma": "sīrgtwei",
+      "desc": "(na acc) [absergīsnan 91 VM]",
+      "gram": "(na acc)",
+      "prep_rection": [
+        {
+          "prep": "na",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "trintautwei",
+      "desc": "dat (per acc) [Trintaws, Trintwei drv MK]",
+      "gram": "dat (per acc)",
+      "prep_rection": [
+        {
+          "prep": "per",
+          "case": "Acc"
+        }
+      ],
+      "obj_cases": [
+        "Dat"
+      ]
+    },
+    {
+      "lemma": "waltīntun si",
+      "desc": "+ PA ACC, iz [Waltīntun DRV MK]",
+      "gram": "+ PA ACC, iz",
+      "prep_rection": [
+        {
+          "prep": "pa",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "wartīntun si",
+      "desc": "(prēi acc) [wartinna sin 101]",
+      "gram": "(prēi acc)",
+      "prep_rection": [
+        {
+          "prep": "prēi",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "wīrstwei",
+      "desc": "(en acc) [wīrst 17]",
+      "gram": "(en acc)",
+      "prep_rection": [
+        {
+          "prep": "en",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "zinātun si",
+      "desc": "(sen acc) [ersinnat 53 MK]",
+      "gram": "(sen acc)",
+      "prep_rection": [
+        {
+          "prep": "sen",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "zurgautwei",
+      "desc": "(per acc) [surgaut 69]",
+      "gram": "(per acc)",
+      "prep_rection": [
+        {
+          "prep": "per",
+          "case": "Acc"
+        }
+      ]
+    },
+    {
+      "lemma": "šmīnkintun",
+      "desc": "tr / i [šmīnka drv]",
+      "gram": "tr / i",
+      "transitive": true
+    }
+  ]
+}

@@ -5,6 +5,11 @@ Multichar_Symbols
   +Num  ! numeral
   +V    ! verb
   +Part ! participle
+  +Adv  ! adverb
+  +Prp  ! preposition
+  +Cnj  ! conjunction
+  +Pcl  ! particle
+  +IJ   ! interjection
 
   +Sg   ! singular
   +Pl   ! plural
@@ -21,14 +26,23 @@ Multichar_Symbols
   +Pres ! present tense
   +Pret ! preterite tense
   +Inf  ! infinitive
+  +Ind  ! indicative mood
   +Opt  ! optative
   +Imp  ! imperative
   +Subj ! subjunctive
   +Pass ! passive (participle)
+  +Refl ! reflexive (si-verb)
 
   +P1   ! 1st person
   +P2   ! 2nd person
   +P3   ! 3rd person
+
+  +Cmp  ! comparative degree
+  +Sup  ! superlative degree
+
+  ! Case government (prepositions, from Twanksta desc field)
+  +GovAkk ! governs accusative
+  +GovDat ! governs dative
 
   ! Morphophonology trigger: deaccent (mobile stem under a strong participle
   ! ending). Sits on the surface tape at the stem|ending boundary; stress.twolc

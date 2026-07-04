@@ -2,10 +2,9 @@
 ! Source: ../../data/external/twanksta_entries.json
 
 LEXICON Particles
-  stwi+Pcl:stwi  # ;
-  pēr+Pcl:pēr  # ;
   mi+Pcl:mi  # ;
+  pēr+Pcl:pēr  # ;
   si+Pcl:si  # ;
-  si+Pcl:si  # ;
+  stwi+Pcl:stwi  # ;
   ti+Pcl:ti  # ;
 

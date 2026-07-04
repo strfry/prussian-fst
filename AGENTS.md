@@ -11,7 +11,7 @@ Requires `twanksta_entries.json` from the
 [`strfry/prussian-corpus`](https://github.com/strfry/prussian-corpus) release:
 
 ```bash
-RELEASE="https://github.com/strfry/prussian-corpus/releases/download/v2026-06-21"
+RELEASE="https://github.com/strfry/prussian-corpus/releases/download/v2026-07-04"
 curl -fsSL "$RELEASE/twanksta_entries.json" -o data/external/twanksta_entries.json
 ```
 
