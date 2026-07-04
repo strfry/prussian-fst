@@ -1,0 +1,11 @@
+! particles — generated from Twanksta data
+! Source: ../../data/external/twanksta_entries.json
+
+LEXICON Particles
+  stwi+Pcl:stwi  # ;
+  pēr+Pcl:pēr  # ;
+  mi+Pcl:mi  # ;
+  si+Pcl:si  # ;
+  si+Pcl:si  # ;
+  ti+Pcl:ti  # ;
+

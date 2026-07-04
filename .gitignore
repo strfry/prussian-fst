@@ -1,33 +1,19 @@
-# Python-generated files
 __pycache__/
 *.py[oc]
 build/
 dist/
 wheels/
 *.egg-info
-
-# Virtual environments
 .venv
 .venv-hfst
-
-# Giella reference clones (own .git, read-only)
-lang-lit/
-lang-lav/
-lang-fao/
-
-# External data (obtain externally — see README)
 data/external/twanksta_entries.json
 data/external/prusaspira_entries.json
 data/external/prussian_corpus_*.tar.zst
-
-# Fetched corpora (regenerate via fetch_prusaspira.py / twanksta_api_check.py)
-prusaspira/
-twanksta/
-
-# Generated FST artefacts
-
-# Corpora (external, regenerate if needed) — nur das Top-Level-Verzeichnis,
-# nicht data/corpus/ (enthält das eingecheckte manifest.json)
-/corpus/
-
+data/reports/
 .env
+Untitled.ipynb
+.ipynb_checkpoints/
+.opencode/
+lang-fao/
+lang-lav/
+lang-lit/

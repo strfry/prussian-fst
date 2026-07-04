@@ -1,0 +1,29 @@
+! Function words — hand-written override.
+! Dispatched before Nouns so they take precedence.
+
+LEXICON FunctionWords
+  ! Particles
+  ni+Pcl:ni            # ;
+  ne+Pcl:ne            # ;
+  te+Pcl:te            # ;
+  uka+Pcl:uka          # ;
+
+  ! Conjunctions
+  beggi+Cnj:beggi      # ;
+  adder+Cnj:adder      # ;
+  ei+Cnj:ei            # ;
+  sklāits+Cnj:sklāits  # ;
+  stā+Cnj:stā          # ;
+
+  ! Adverbs
+  kelli+Adv:kelli      # ;
+  dabber+Adv:dabber    # ;
+  ēmperi+Adv:ēmperi    # ;
+  mattai+Adv:mattai    # ;
+  nū+Adv:nū            # ;
+
+  ! Interjections
+  kukūk+IJ:kukūk       # ;
+
+  ! Pronoun forms (paradigms that don't cover this variant)
+  stā+Pron+Sg+Nom+Fem:stā  # ;

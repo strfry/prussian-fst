@@ -1,6 +1,8 @@
 ! Root lexicon – entry point for all word classes
 
 LEXICON Root
+  ! hand-written function-word override (vor Nouns!)
+  FunctionWords ;
   Conjunctions ;
   Prepositions ;
   Adverbs ;

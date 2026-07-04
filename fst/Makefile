@@ -1,45 +1,30 @@
-# Build the Prussian morphological FST (HFST stack).
+# Build the Prussian full-form lookup FST (HFST stack).
 #
-# Targets:
-#   make           — build prusaspira (default standard)
-#   make twanksta  — build twanksta
+# Target:
+#   make         — build base.fst from all .lexc files
 #   make clean
 
-LEXC_FILES := symbols.lexc root.lexc nom_stems.lexc pronouns.lexc numerals.lexc verb_stems.lexc verb_participles.lexc adverbs.lexc conjunctions.lexc prepositions.lexc particles.lexc interjections.lexc
+LEXC_FILES := symbols.lexc root.lexc function_words.lexc nouns.lexc adjectives.lexc \
+              pronouns.lexc numerals.lexc verbs.lexc adverbs.lexc \
+              prepositions.lexc conjunctions.lexc particles.lexc interjections.lexc
+
 LEXC_MERGED := build/lexc.merged
 
-TWOL_STRESS := stress.twolc
+.PHONY: all gen clean
 
-.PHONY: all prusaspira twanksta clean
+all: build/base.fst
 
-all: prusaspira
-
-build:
+build/:
 	mkdir -p build
 
-$(LEXC_MERGED): $(LEXC_FILES) | build
+gen:
+	python3 scripts/gen_lexc.py
+
+$(LEXC_MERGED): $(LEXC_FILES) | build/
 	cat $(LEXC_FILES) > $@
 
-build/base.hfst: $(LEXC_MERGED) | build
+build/base.fst: $(LEXC_MERGED) | build/
 	hfst-lexc -o $@ $(LEXC_MERGED)
-
-build/stress.twolc.hfst: $(TWOL_STRESS)
-	hfst-twolc -o $@ $(TWOL_STRESS)
-
-prusaspira: build/base.hfst build/stress.twolc.hfst
-	hfst-compose -o build/prusaspira.hfst build/base.hfst build/stress.twolc.hfst
-	@echo "Built build/prusaspira.hfst"
-
-twanksta: build/base.hfst build/stress.twolc.hfst
-	hfst-compose -o build/twanksta.hfst build/base.hfst build/stress.twolc.hfst
-	@echo "Built build/twanksta.hfst"
-
-build/norm.hfst: norm.regex
-	hfst-xfst -p < norm.regex
-
-lenient: build/norm.hfst build/twanksta.hfst
-	hfst-compose -o build/lenient.hfst build/norm.hfst build/twanksta.hfst
-	@echo "Built build/lenient.hfst"
 
 clean:
 	rm -rf build
