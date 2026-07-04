@@ -27,3 +27,86 @@ LEXICON FunctionWords
 
   ! Pronoun forms (paradigms that don't cover this variant)
   stā+Pron+Sg+Nom+Fem:stā  # ;
+
+  ! ──────────────────────────────────────────────────────────────
+  ! Nachtrag 2026-07: Twanksta-Einträge ohne desc-Tag und ohne
+  ! Paradigmentabellen (Bucket "no desc, no forms"), POS von Hand
+  ! anhand der Übersetzungen zugewiesen.
+  ! ACHTUNG: Zeilen mit "UNSICHER" sind nicht abgesicherte
+  ! Klassifikationen — vor UD-Annotation gegenprüfen.
+  ! ──────────────────────────────────────────────────────────────
+
+  ! Konjunktionen
+  be+Cnj:be            # ; ! „und" (homonym zu be+Prp+GovAkk „ohne")
+  kāi+Cnj:kāi          # ; ! „dass, damit"
+  kaddan+Cnj:kaddan    # ; ! „wenn, als"
+  ik+Cnj:ik            # ; ! „wenn, falls"
+  ikkai+Cnj:ikkai      # ; ! „wenn, solange"
+  anga+Cnj:anga        # ; ! „ob"
+  neggi+Cnj:neggi      # ; ! „weder … noch"
+  nikāi+Cnj:nikāi      # ; ! „als" (nach Komparativ)
+  ikāi+Cnj:ikāi        # ; ! UNSICHER: „ob, obwohl" — Cnj oder Pcl?
+  ikāigi+Cnj:ikāigi    # ; ! UNSICHER: „als ob" — Cnj oder Adv?
+  kāigi+Cnj:kāigi      # ; ! UNSICHER: „wie, als" — Cnj oder Adv (UD: SCONJ/ADV)?
+
+  ! Präpositionen
+  dīnkun+Prp+GovDat:dīnkun  # ; ! „dank" (+ Dat laut Übersetzungsfeld)
+
+  ! Partikeln
+  gi+Pcl:gi            # ; ! „doch" (enklitisch)
+  jā+Pcl:jā            # ; ! „ja"
+  pat+Pcl:pat          # ; ! „eben, gerade"
+  madli+Pcl:madli      # ; ! UNSICHER: „bitte" — Pcl oder erstarrte Verbform (3.Sg zu madlītun)?
+  mīnus+Pcl:mīnus      # ; ! UNSICHER: „minus" — Pcl/Cnj/Sym?
+  plūs+Pcl:plūs        # ; ! UNSICHER: „plus" — Pcl/Cnj/Sym?
+
+  ! Adverbien
+  jāu+Adv:jāu          # ; ! „schon"
+  dīgi+Adv:dīgi        # ; ! „auch"
+  īr+Adv:īr            # ; ! „sogar"
+  kwēi+Adv:kwēi        # ; ! „wo"
+  nikwēi+Adv:nikwēi    # ; ! „nirgends"
+  nikwēigi+Adv:nikwēigi # ; ! „nie, nirgends"
+  wiskwēi+Adv:wiskwēi  # ; ! „überall"
+  tēt+Adv:tēt          # ; ! „so, folglich"
+  kadāi+Adv:kadāi      # ; ! „einst, ehemals"
+  eršandau+Adv:eršandau # ; ! „bisher, bis hierher"
+  ezteinū+Adv:ezteinū  # ; ! „von nun an"
+  atpenti+Adv:atpenti  # ; ! „rückwärts"
+  etwārtai+Adv:etwārtai # ; ! „zurück"
+  izwinandau+Adv:izwinandau # ; ! „von außen"
+  biskin+Adv:biskin    # ; ! „ein bisschen"
+  lāt+Adv:lāt          # ; ! „spät"
+  plakkawingi+Adv:plakkawingi # ; ! „plötzlich"
+  spōradiskai+Adv:spōradiskai # ; ! „sporadisch"
+  rēzewingei+Adv:rēzewingei # ; ! „zeitweise"
+  gratis+Adv:gratis    # ; ! „gratis" (Lehnwort)
+  mazzais+Adv:mazzais  # ; ! UNSICHER: „wenigstens" — auch Komparativ „weniger" (massais)?
+  dwaiwārst+Adv:dwaiwārst   # ; ! „zweimal"
+  triwārst+Adv:triwārst     # ; ! „dreimal"
+  keturwārst+Adv:keturwārst # ; ! „viermal"
+  treīsun+Adv:treīsun  # ; ! „zu dritt"
+  nijāu+Adv:nijāu      # ; ! UNSICHER: „nicht mehr" — Adv oder Pcl?
+  līgu+Adv:līgu        # ; ! UNSICHER: „gleich, unentschieden" — Adv oder Adj-Neutrum?
+  telli+Adv:telli      # ; ! UNSICHER: „soviel" — Korrelat zu kelli; Adv oder Pron?
+  delli+Adv:delli      # ; ! UNSICHER: „einige, etliche" — Adv oder indekl. Pron?
+  ēntrai+Adv:ēntrai    # ; ! UNSICHER: „innerhalb" — Adv oder Prp (Rektion unbekannt)?
+
+  ! Pronomina (indeklinabel)
+  abbejan+Pron:abbejan # ; ! UNSICHER: „beides" — indekl. Pron oder Num?
+
+  ! Numeralia (Hunderter indeklinabel? Formen fehlen im Wörterbuch)
+  dwāinadesimt+Num:dwāinadesimt # ; ! „zwölf"
+  dwissimta+Num:dwissimta       # ; ! „zweihundert"
+  trīsimta+Num:trīsimta         # ; ! „dreihundert"
+  kettursimta+Num:kettursimta   # ; ! „vierhundert"
+  pēnksimta+Num:pēnksimta       # ; ! „fünfhundert"
+  ussimta+Num:ussimta           # ; ! „sechshundert"
+  septīnsimta+Num:septīnsimta   # ; ! „siebenhundert"
+  astōnsimta+Num:astōnsimta     # ; ! „achthundert"
+  newīnsimta+Num:newīnsimta     # ; ! „neunhundert"
+
+  ! Interjektionen (Ausrufezeichen des Wörterbuch-Lemmas entfernt)
+  kaīls+IJ:kaīls       # ; ! „Heil! hallo!"
+  ērdiw+IJ:ērdiw       # ; ! „tschüß!" (Lemma im Dict: „ērdiw!")
+  deiwūtiskan+IJ:deiwūtiskan # ; ! UNSICHER: „bye-bye!" (Dict: „deiwūtiskan!") — erstarrter Akk?
