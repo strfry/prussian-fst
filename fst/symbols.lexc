@@ -7,7 +7,8 @@ Multichar_Symbols
   +Part ! participle
   +Adv  ! adverb
   +Prp  ! preposition
-  +Cnj  ! conjunction
+  +Cnj  ! coordinating conjunction
+  +SCnj ! subordinating conjunction
   +Pcl  ! particle
   +IJ   ! interjection
 

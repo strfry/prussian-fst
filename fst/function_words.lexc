@@ -38,15 +38,15 @@ LEXICON FunctionWords
 
   ! Konjunktionen
   be+Cnj:be            # ; ! „und" (homonym zu be+Prp+GovAkk „ohne")
-  kāi+Cnj:kāi          # ; ! „dass, damit"
-  kaddan+Cnj:kaddan    # ; ! „wenn, als"
-  ik+Cnj:ik            # ; ! „wenn, falls"
+  kāi+SCnj:kāi         # ; ! „dass, damit"
+  kaddan+SCnj:kaddan   # ; ! „wenn, als"
+  ik+SCnj:ik           # ; ! „wenn, falls"
   ikkai+Cnj:ikkai      # ; ! „wenn, solange"
   anga+Cnj:anga        # ; ! „ob"
   neggi+Cnj:neggi      # ; ! „weder … noch"
   nikāi+Cnj:nikāi      # ; ! „als" (nach Komparativ)
-  ikāi+Cnj:ikāi        # ; ! UNSICHER: „ob, obwohl" — Cnj oder Pcl?
-  ikāigi+Cnj:ikāigi    # ; ! UNSICHER: „als ob" — Cnj oder Adv?
+  ikāi+SCnj:ikāi       # ; ! UNSICHER: „ob, obwohl" — SCnj oder Pcl?
+  ikāigi+SCnj:ikāigi   # ; ! UNSICHER: „als ob" — SCnj oder Adv?
   kāigi+Cnj:kāigi      # ; ! UNSICHER: „wie, als" — Cnj oder Adv (UD: SCONJ/ADV)?
 
   ! Präpositionen
