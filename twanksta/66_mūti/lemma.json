@@ -1,0 +1,65 @@
+{
+  "query": "mūti",
+  "match": "māti",
+  "score": 1.0,
+  "method": "manual",
+  "entries": [
+    {
+      "word": "māti",
+      "paradigm": "66",
+      "gender": "fem",
+      "desc": "[Mothe E 170]",
+      "audio": "",
+      "description": "",
+      "translations": {
+        "engl": [
+          "mother"
+        ],
+        "miks": [
+          "Mutter"
+        ],
+        "leit": [
+          "motina"
+        ],
+        "latt": [
+          "māte"
+        ],
+        "pols": [
+          "matka"
+        ],
+        "mask": [
+          "мать"
+        ]
+      },
+      "forms": {
+        "declension": [
+          {
+            "gender": "fem",
+            "cases": [
+              {
+                "case": "Nominative",
+                "singular": "māti",
+                "plural": "mātes / māteres"
+              },
+              {
+                "case": "Genitive",
+                "singular": "mātis / māteris",
+                "plural": "mātin / māteran"
+              },
+              {
+                "case": "Dative",
+                "singular": "māterei",
+                "plural": "māterimans"
+              },
+              {
+                "case": "Accusative",
+                "singular": "mātin / māterin",
+                "plural": "mātins / māterins"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

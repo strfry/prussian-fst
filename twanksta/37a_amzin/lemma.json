@@ -1,0 +1,65 @@
+{
+  "query": "amzin",
+  "match": "amzjan",
+  "score": 1.0,
+  "method": "manual",
+  "entries": [
+    {
+      "word": "amzjan",
+      "paradigm": "35",
+      "gender": "neut",
+      "desc": "n [amsin 55]",
+      "audio": "",
+      "description": "",
+      "translations": {
+        "engl": [
+          "people (nation)"
+        ],
+        "miks": [
+          "Volk"
+        ],
+        "leit": [
+          "tauta"
+        ],
+        "latt": [
+          "tauta"
+        ],
+        "pols": [
+          "naród"
+        ],
+        "mask": [
+          "народ"
+        ]
+      },
+      "forms": {
+        "declension": [
+          {
+            "gender": "neut",
+            "cases": [
+              {
+                "case": "Nominative",
+                "singular": "amzjan",
+                "plural": "amzjāi"
+              },
+              {
+                "case": "Genitive",
+                "singular": "amzjas",
+                "plural": "amzjan"
+              },
+              {
+                "case": "Dative",
+                "singular": "amzju",
+                "plural": "amzjammans"
+              },
+              {
+                "case": "Accusative",
+                "singular": "amzjan",
+                "plural": "amzjans"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

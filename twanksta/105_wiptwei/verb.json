@@ -1,0 +1,40 @@
+{
+  "lemma": "wiptwei",
+  "source": "twanksta",
+  "forms": {
+    "present": {
+      "1sg": "elpa",
+      "2sg": "elpa",
+      "3sg": "elpa",
+      "1pl": "elpimai",
+      "2pl": "weppitei",
+      "3pl": "elpa"
+    },
+    "preterite": {
+      "1sg": "wippa",
+      "2sg": "wippa",
+      "3sg": "wippa",
+      "1pl": "wippamai",
+      "2pl": "wippatei",
+      "3pl": "wippa"
+    },
+    "perfect": {
+      "1sg": "asma\n                    wippuns / wippusi",
+      "2sg": "assei\n                    wippuns / wippusi",
+      "1pl": "asmai\n                    wippusis / wippusjas",
+      "2pl": "astei\n                    wippusis / wippusjas",
+      "3pl": "ast\n                    wippusis / wippusjas"
+    },
+    "future": {
+      "1sg": "wīrst\n                    wippuns / wippusi",
+      "2sg": "wīrst\n                    wippuns / wippusi",
+      "1pl": "wīrstmai\n                    wippusis / wippusjas",
+      "2pl": "wīrstei\n                    wippusis / wippusjas",
+      "3pl": "wīrst\n                    wippusis / wippusjas"
+    }
+  },
+  "translations": [
+    "1to thrill",
+    "2to vibrate"
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "lemma": "listun",
+  "source": "twanksta",
+  "forms": {
+    "present": {
+      "1sg": "lāisa",
+      "2sg": "lāisa",
+      "3sg": "lāisa",
+      "1pl": "lāisimai",
+      "2pl": "lāisitei",
+      "3pl": "lāisa"
+    },
+    "preterite": {
+      "1sg": "lissa",
+      "2sg": "lissa",
+      "3sg": "lissa",
+      "1pl": "lissamai",
+      "2pl": "lissatei",
+      "3pl": "lissa"
+    },
+    "perfect": {
+      "1sg": "asma\n                    lissuns / lissusi",
+      "2sg": "assei\n                    lissuns / lissusi",
+      "1pl": "asmai\n                    lissusis / lissusjas",
+      "2pl": "astei\n                    lissusis / lissusjas",
+      "3pl": "ast\n                    lissusis / lissusjas"
+    },
+    "future": {
+      "1sg": "wīrst\n                    lissuns / lissusi",
+      "2sg": "wīrst\n                    lissuns / lissusi",
+      "1pl": "wīrstmai\n                    lissusis / lissusjas",
+      "2pl": "wīrstei\n                    lissusis / lissusjas",
+      "3pl": "wīrst\n                    lissusis / lissusjas"
+    }
+  },
+  "translations": [
+    "1to model (in clay)"
+  ]
+}

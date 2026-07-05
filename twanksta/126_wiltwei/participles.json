@@ -1,0 +1,183 @@
+{
+  "lemma": "wiltwei",
+  "paradigm": "126",
+  "infinitive_stem": "wil",
+  "prusaspira": {
+    "participles": {
+      "present": "wilānts",
+      "past": "willuns"
+    },
+    "optative": "wilsei",
+    "conjunctive": {
+      "sg_3pl": "willai",
+      "1pl": "willimai",
+      "2pl": "willitei"
+    },
+    "imperative": [
+      "wilsei",
+      "willais",
+      "willimai",
+      "willaiti"
+    ]
+  },
+  "twanksta": {
+    "participles": {
+      "present": {
+        "form": "wilānts",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "wilānts",
+              "pl": "wilāntjai"
+            },
+            "Gen": {
+              "sg": "wilāntis",
+              "pl": "wilāntin"
+            },
+            "Dat": {
+              "sg": "wilāntismu",
+              "pl": "wilantimmans"
+            },
+            "Akk": {
+              "sg": "wilāntin",
+              "pl": "wilāntins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "wilantī",
+              "pl": "wilāntjas"
+            },
+            "Gen": {
+              "sg": "wilāntjas",
+              "pl": "wilāntjan"
+            },
+            "Dat": {
+              "sg": "wilāntjai",
+              "pl": "wilantjāmans"
+            },
+            "Akk": {
+              "sg": "wilāntjan",
+              "pl": "wilāntjans"
+            }
+          }
+        }
+      },
+      "past": {
+        "form": "willuns",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "willuns",
+              "pl": "willusis"
+            },
+            "Gen": {
+              "sg": "willusjas",
+              "pl": "willusin"
+            },
+            "Dat": {
+              "sg": "willusjasmu",
+              "pl": "willusimans"
+            },
+            "Akk": {
+              "sg": "willusin",
+              "pl": "willusins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "willusi",
+              "pl": "willusjas"
+            },
+            "Gen": {
+              "sg": "willusjas",
+              "pl": "willusjan"
+            },
+            "Dat": {
+              "sg": "willusjai",
+              "pl": "willusjamans"
+            },
+            "Akk": {
+              "sg": "willusjan",
+              "pl": "willusjans"
+            }
+          }
+        }
+      },
+      "passive": {
+        "form": "wilts",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "wilts",
+              "pl": "wiltāi"
+            },
+            "Gen": {
+              "sg": "wiltas",
+              "pl": "wiltan"
+            },
+            "Dat": {
+              "sg": "wiltasmu",
+              "pl": "wiltammans"
+            },
+            "Akk": {
+              "sg": "wiltan",
+              "pl": "wiltans"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "wiltā",
+              "pl": "wiltas"
+            },
+            "Gen": {
+              "sg": "wiltas",
+              "pl": "wiltan"
+            },
+            "Dat": {
+              "sg": "wiltai",
+              "pl": "wiltāmans"
+            },
+            "Akk": {
+              "sg": "wiltan",
+              "pl": "wiltans"
+            }
+          }
+        }
+      }
+    },
+    "optative": "wilsei",
+    "imperative": {
+      "2sg": "willais",
+      "2pl": "willaiti"
+    },
+    "subjunctive": {
+      "forms": [
+        [
+          "as",
+          "willai"
+        ],
+        [
+          "tū",
+          "willai"
+        ],
+        [
+          "tāns/tenā/tennan",
+          "willai"
+        ],
+        [
+          "mes",
+          "willimai"
+        ],
+        [
+          "jūs",
+          "willitei"
+        ],
+        [
+          "tenēi/tennas",
+          "willai"
+        ]
+      ]
+    }
+  }
+}

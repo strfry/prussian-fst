@@ -1,0 +1,110 @@
+[
+  {
+    "word": "kawīds",
+    "paradigm": "19",
+    "gender": "",
+    "desc": "nom sg m [kawīds 87]",
+    "audio": "",
+    "description": "",
+    "translations": {
+      "engl": [
+        "which",
+        "what a"
+      ],
+      "miks": [
+        "welch"
+      ],
+      "leit": [
+        "koks"
+      ],
+      "latt": [
+        "kāds"
+      ],
+      "pols": [
+        "jaki"
+      ],
+      "mask": [
+        "какой"
+      ]
+    },
+    "forms": {
+      "declension": [
+        {
+          "gender": "masc",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "kawīds",
+              "plural": "kawīdai"
+            },
+            {
+              "case": "Genitive",
+              "singular": "kawīdse",
+              "plural": "kawīdan"
+            },
+            {
+              "case": "Dative",
+              "singular": "kawīdsmu",
+              "plural": "kawīdamans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "kawīdan",
+              "plural": "kawīdans"
+            }
+          ]
+        },
+        {
+          "gender": "fem",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "kawīda",
+              "plural": "kawīdas"
+            },
+            {
+              "case": "Genitive",
+              "singular": "kawīdses",
+              "plural": "kawīdan"
+            },
+            {
+              "case": "Dative",
+              "singular": "kawīdsei",
+              "plural": "kawīdamans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "kawīdan",
+              "plural": "kawīdans"
+            }
+          ]
+        },
+        {
+          "gender": "neut",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "kawīdan",
+              "plural": "kawīdai"
+            },
+            {
+              "case": "Genitive",
+              "singular": "kawīdse",
+              "plural": "kawīdan"
+            },
+            {
+              "case": "Dative",
+              "singular": "kawīdsmu",
+              "plural": "kawīdamans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "kawīdan",
+              "plural": "kawīdans"
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

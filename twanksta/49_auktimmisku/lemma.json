@@ -1,0 +1,71 @@
+{
+  "query": "auktimmisku",
+  "match": "auktimmiskan",
+  "score": 1.0,
+  "method": "manual",
+  "entries": [
+    {
+      "word": "auktimmiskan",
+      "paradigm": "35",
+      "gender": "neut",
+      "desc": "[aucktimmiskū 89]",
+      "audio": "",
+      "description": "",
+      "translations": {
+        "engl": [
+          "authority",
+          "government"
+        ],
+        "miks": [
+          "Obrigkeit",
+          "Regierung"
+        ],
+        "leit": [
+          "vyresnybė",
+          "vyriausybė"
+        ],
+        "latt": [
+          "priekšniecība",
+          "valdība"
+        ],
+        "pols": [
+          "zwierzchnictwo",
+          "rząd (państwowy)"
+        ],
+        "mask": [
+          "начальство",
+          "правительство"
+        ]
+      },
+      "forms": {
+        "declension": [
+          {
+            "gender": "neut",
+            "cases": [
+              {
+                "case": "Nominative",
+                "singular": "auktimmiskan",
+                "plural": "auktimiskāi"
+              },
+              {
+                "case": "Genitive",
+                "singular": "auktimmiskas",
+                "plural": "auktimmiskan"
+              },
+              {
+                "case": "Dative",
+                "singular": "auktimmisku",
+                "plural": "auktimiskammans"
+              },
+              {
+                "case": "Accusative",
+                "singular": "auktimmiskan",
+                "plural": "auktimmiskans"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

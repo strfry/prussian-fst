@@ -1,0 +1,59 @@
+[
+  {
+    "word": "tāns",
+    "paradigm": "12",
+    "gender": "masc",
+    "desc": "pn nom sg m [tāns 436]",
+    "audio": "",
+    "description": "",
+    "translations": {
+      "engl": [
+        "he"
+      ],
+      "miks": [
+        "er"
+      ],
+      "leit": [
+        "jis"
+      ],
+      "latt": [
+        "viņš"
+      ],
+      "pols": [
+        "on"
+      ],
+      "mask": [
+        "он"
+      ]
+    },
+    "forms": {
+      "declension": [
+        {
+          "gender": "masc",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "tāns",
+              "plural": "tenēi"
+            },
+            {
+              "case": "Genitive",
+              "singular": "tenesse",
+              "plural": "tenēisan"
+            },
+            {
+              "case": "Dative",
+              "singular": "tenesmu",
+              "plural": "tenēimans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "tennan",
+              "plural": "tennans"
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

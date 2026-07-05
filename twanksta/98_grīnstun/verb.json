@@ -1,0 +1,46 @@
+{
+  "lemma": "grīnstun",
+  "source": "twanksta",
+  "forms": {
+    "present": {
+      "1sg": "grēnda",
+      "2sg": "grēnda",
+      "3sg": "grēnda",
+      "1pl": "grēndimai",
+      "2pl": "grēnditei",
+      "3pl": "grēnda"
+    },
+    "preterite": {
+      "1sg": "grīnda",
+      "2sg": "grīnda",
+      "3sg": "grīnda",
+      "1pl": "grīndamai",
+      "2pl": "grīndatei",
+      "3pl": "grīnda"
+    },
+    "perfect": {
+      "1sg": "asma\n                    grīnduns / grīndusi",
+      "2sg": "assei\n                    grīnduns / grīndusi",
+      "1pl": "asmai\n                    grīndusis / grīndusjas",
+      "2pl": "astei\n                    grīndusis / grīndusjas",
+      "3pl": "ast\n                    grīndusis / grīndusjas"
+    },
+    "future": {
+      "1sg": "wīrst\n                    grīnduns / grīndusi",
+      "2sg": "wīrst\n                    grīnduns / grīndusi",
+      "1pl": "wīrstmai\n                    grīndusis / grīndusjas",
+      "2pl": "wīrstei\n                    grīndusis / grīndusjas",
+      "3pl": "wīrst\n                    grīndusis / grīndusjas"
+    },
+    "optative": {
+      "form": "grīnssei / grēndais / grēndaiti / grīndants / grīndantjai / grīndantis / grīndantin / grīndantismu / grindantimmans / grīndantin / grīndantins / grindantī / grīndantjas / grīndantjas / grīndantjan / grīndantjai / grindantjāmans / grīndantjan / grīndantjans / grīndanti / grīndantjai / grīndantis / grīndantin / grīndantismu / grindantimmans / grīndantin / grīndantins / grīnduns / grīndusis / grīndusjas / grīndusin / grīndusjasmu / grīndusimans / grīndusin / grīndusins / grīndusi / grīndusjas / grīndusjas / grīndusjan / grīndusjai / grīndusjamans / grīndusjan / grīndusjans / grīndus / grīndus / grīndusjas / grīndusin / grīndusjasmu / grīndusimans / grīndus / grīndus / grīnsts / grinstāi / grīnstas / grīnstan / grīnstasmu / grinstammans / grīnstan / grīnstans / grinstā / grīnstas / grīnstas / grīnstan / grīnstai / grinstāmans / grīnstan / grīnstans / grīnstan / grinstāi / grīnstas / grīnstan / grīnstasmu / grinstammans / grīnstan / grīnstans / grīndlai / grīndlai / grīndlai / grīndlimai / grīndlitei / grīndlai"
+    },
+    "imperative": {
+      "form": "grēndais / grēndaiti / grīndants / grīndantjai / grīndantis / grīndantin / grīndantismu / grindantimmans / grīndantin / grīndantins / grindantī / grīndantjas / grīndantjas / grīndantjan / grīndantjai / grindantjāmans / grīndantjan / grīndantjans / grīndanti / grīndantjai / grīndantis / grīndantin / grīndantismu / grindantimmans / grīndantin / grīndantins / grīnduns / grīndusis / grīndusjas / grīndusin / grīndusjasmu / grīndusimans / grīndusin / grīndusins / grīndusi / grīndusjas / grīndusjas / grīndusjan / grīndusjai / grīndusjamans / grīndusjan / grīndusjans / grīndus / grīndus / grīndusjas / grīndusin / grīndusjasmu / grīndusimans / grīndus / grīndus / grīnsts / grinstāi / grīnstas / grīnstan / grīnstasmu / grinstammans / grīnstan / grīnstans / grinstā / grīnstas / grīnstas / grīnstan / grīnstai / grinstāmans / grīnstan / grīnstans / grīnstan / grinstāi / grīnstas / grīnstan / grīnstasmu / grinstammans / grīnstan / grīnstans / grīndlai / grīndlai / grīndlai / grīndlimai / grīndlitei / grīndlai"
+    }
+  },
+  "translations": [
+    "1to cobble (pave)",
+    "2topave"
+  ]
+}

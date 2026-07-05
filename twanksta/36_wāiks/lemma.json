@@ -1,0 +1,63 @@
+[
+  {
+    "word": "wāiks",
+    "paradigm": "36",
+    "gender": "masc",
+    "desc": "[waix 95]",
+    "audio": "",
+    "description": "",
+    "translations": {
+      "engl": [
+        "farmhand"
+      ],
+      "miks": [
+        "Bursche",
+        "Knecht"
+      ],
+      "leit": [
+        "bernas",
+        "tarnas"
+      ],
+      "latt": [
+        "puisis",
+        "kalps"
+      ],
+      "pols": [
+        "chłopak"
+      ],
+      "mask": [
+        "парень",
+        "слуга"
+      ]
+    },
+    "forms": {
+      "declension": [
+        {
+          "gender": "masc",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "wāiks",
+              "plural": "waikāi"
+            },
+            {
+              "case": "Genitive",
+              "singular": "wāikas",
+              "plural": "wāikan"
+            },
+            {
+              "case": "Dative",
+              "singular": "wāiku",
+              "plural": "waikammans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "wāikan",
+              "plural": "wāikans"
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

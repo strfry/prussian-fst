@@ -1,0 +1,46 @@
+{
+  "lemma": "kwistwei",
+  "source": "twanksta",
+  "forms": {
+    "present": {
+      "1sg": "kwēita",
+      "2sg": "kwēita",
+      "3sg": "kwēita",
+      "1pl": "kwēitimai",
+      "2pl": "kwēititei",
+      "3pl": "kwēita"
+    },
+    "preterite": {
+      "1sg": "kwitta",
+      "2sg": "kwitta",
+      "3sg": "kwitta",
+      "1pl": "kwittamai",
+      "2pl": "kwittatei",
+      "3pl": "kwitta"
+    },
+    "perfect": {
+      "1sg": "asma\n                    kwittuns / kwittusi",
+      "2sg": "assei\n                    kwittuns / kwittusi",
+      "1pl": "asmai\n                    kwittusis / kwittusjas",
+      "2pl": "astei\n                    kwittusis / kwittusjas",
+      "3pl": "ast\n                    kwittusis / kwittusjas"
+    },
+    "future": {
+      "1sg": "wīrst\n                    kwittuns / kwittusi",
+      "2sg": "wīrst\n                    kwittuns / kwittusi",
+      "1pl": "wīrstmai\n                    kwittusis / kwittusjas",
+      "2pl": "wīrstei\n                    kwittusis / kwittusjas",
+      "3pl": "wīrst\n                    kwittusis / kwittusjas"
+    },
+    "optative": {
+      "form": "kwitsei / kwēitais / kwēitaiti / kwēitants / kwēitantjai / kwēitantis / kwēitantin / kwēitantismu / kweitantimmans / kwēitantin / kwēitantins / kweitantī / kwēitantjas / kwēitantjas / kwēitantjan / kwēitantjai / kweitantjāmans / kwēitantjan / kwēitantjans / kwēitanti / kwēitantjai / kwēitantis / kwēitantin / kwēitantismu / kweitantimmans / kwēitantin / kwēitantins / kwittuns / kwittusis / kwittusjas / kwittusin / kwittusjasmu / kwittusimans / kwittusin / kwittusins / kwittusi / kwittusjas / kwittusjas / kwittusjan / kwittusjai / kwittusjamans / kwittusjan / kwittusjans / kwittus / kwittus / kwittusjas / kwittusin / kwittusjasmu / kwittusimans / kwittus / kwittus / kwists / kwistāi / kwistas / kwistan / kwistasmu / kwistammans / kwistan / kwistans / kwistā / kwistas / kwistas / kwistan / kwistai / kwistāmans / kwistan / kwistans / kwistan / kwistāi / kwistas / kwistan / kwistasmu / kwistammans / kwistan / kwistans / kwitlai / kwitlai / kwitlai / kwitlimai / kwitlitei / kwitlai"
+    },
+    "imperative": {
+      "form": "kwēitais / kwēitaiti / kwēitants / kwēitantjai / kwēitantis / kwēitantin / kwēitantismu / kweitantimmans / kwēitantin / kwēitantins / kweitantī / kwēitantjas / kwēitantjas / kwēitantjan / kwēitantjai / kweitantjāmans / kwēitantjan / kwēitantjans / kwēitanti / kwēitantjai / kwēitantis / kwēitantin / kwēitantismu / kweitantimmans / kwēitantin / kwēitantins / kwittuns / kwittusis / kwittusjas / kwittusin / kwittusjasmu / kwittusimans / kwittusin / kwittusins / kwittusi / kwittusjas / kwittusjas / kwittusjan / kwittusjai / kwittusjamans / kwittusjan / kwittusjans / kwittus / kwittus / kwittusjas / kwittusin / kwittusjasmu / kwittusimans / kwittus / kwittus / kwists / kwistāi / kwistas / kwistan / kwistasmu / kwistammans / kwistan / kwistans / kwistā / kwistas / kwistas / kwistan / kwistai / kwistāmans / kwistan / kwistans / kwistan / kwistāi / kwistas / kwistan / kwistasmu / kwistammans / kwistan / kwistans / kwitlai / kwitlai / kwitlai / kwitlimai / kwitlitei / kwitlai"
+    }
+  },
+  "translations": [
+    "1to come into bloom",
+    "2toeffloresce"
+  ]
+}

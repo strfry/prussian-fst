@@ -1,0 +1,65 @@
+{
+  "query": "sīmen",
+  "match": "sēmen",
+  "score": 0.8,
+  "method": "fuzzy",
+  "entries": [
+    {
+      "word": "sēmen",
+      "paradigm": "63",
+      "gender": "neut",
+      "desc": "n [Semen E 256]",
+      "audio": "",
+      "description": "",
+      "translations": {
+        "engl": [
+          "seed"
+        ],
+        "miks": [
+          "Samen"
+        ],
+        "leit": [
+          "sėkla"
+        ],
+        "latt": [
+          "sēkla"
+        ],
+        "pols": [
+          "siemię"
+        ],
+        "mask": [
+          "семя"
+        ]
+      },
+      "forms": {
+        "declension": [
+          {
+            "gender": "neut",
+            "cases": [
+              {
+                "case": "Nominative",
+                "singular": "sēmen",
+                "plural": "sēmenes / semenjāi"
+              },
+              {
+                "case": "Genitive",
+                "singular": "sēmenes",
+                "plural": "sēmenin"
+              },
+              {
+                "case": "Dative",
+                "singular": "sēmeni",
+                "plural": "semenimmans"
+              },
+              {
+                "case": "Accusative",
+                "singular": "sēmen",
+                "plural": "sēmenins"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

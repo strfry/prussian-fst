@@ -1,0 +1,59 @@
+[
+  {
+    "word": "emmens",
+    "paradigm": "62",
+    "gender": "masc",
+    "desc": "[emmens I 9]",
+    "audio": "",
+    "description": "",
+    "translations": {
+      "engl": [
+        "name"
+      ],
+      "miks": [
+        "Name"
+      ],
+      "leit": [
+        "vardas"
+      ],
+      "latt": [
+        "vārds (nosaukums)"
+      ],
+      "pols": [
+        "imię"
+      ],
+      "mask": [
+        "имя"
+      ]
+    },
+    "forms": {
+      "declension": [
+        {
+          "gender": "masc",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "emmens",
+              "plural": "emnes / emnjai"
+            },
+            {
+              "case": "Genitive",
+              "singular": "emnes",
+              "plural": "emnin"
+            },
+            {
+              "case": "Dative",
+              "singular": "emni",
+              "plural": "emnimans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "emnin",
+              "plural": "emnins"
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

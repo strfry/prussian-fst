@@ -1,0 +1,45 @@
+{
+  "lemma": "autēnstun",
+  "source": "twanksta",
+  "forms": {
+    "present": {
+      "1sg": "autēnsja",
+      "2sg": "autēnsja",
+      "3sg": "autēnsja",
+      "1pl": "autēnsjamai",
+      "2pl": "autēnsjatei",
+      "3pl": "autēnsja"
+    },
+    "preterite": {
+      "1sg": "autēnsi",
+      "2sg": "autēnsi",
+      "3sg": "autēnsi",
+      "1pl": "autēnsimai",
+      "2pl": "autēnsitei",
+      "3pl": "autēnsi"
+    },
+    "perfect": {
+      "1sg": "asma\n                    autēnsuns / autēnsusi",
+      "2sg": "assei\n                    autēnsuns / autēnsusi",
+      "1pl": "asmai\n                    autēnsusis / autēnsusjas",
+      "2pl": "astei\n                    autēnsusis / autēnsusjas",
+      "3pl": "ast\n                    autēnsusis / autēnsusjas"
+    },
+    "future": {
+      "1sg": "wīrst\n                    autēnsuns / autēnsusi",
+      "2sg": "wīrst\n                    autēnsuns / autēnsusi",
+      "1pl": "wīrstmai\n                    autēnsusis / autēnsusjas",
+      "2pl": "wīrstei\n                    autēnsusis / autēnsusjas",
+      "3pl": "wīrst\n                    autēnsusis / autēnsusjas"
+    },
+    "optative": {
+      "form": "autēnsei / autēnsjais / autēnsjaiti / autēnsjants / autēnsjantjai / autēnsjantis / autēnsjantin / autēnsjantismu / autensjantimmans / autēnsjantin / autēnsjantins / autensjantī / autēnsjantjas / autēnsjantjas / autēnsjantjan / autēnsjantjai / autensjantjāmans / autēnsjantjan / autēnsjantjans / autēnsjanti / autēnsjantjai / autēnsjantis / autēnsjantin / autēnsjantismu / autensjantimmans / autēnsjantin / autēnsjantins / autēnsuns / autēnsusis / autēnsusjas / autēnsusin / autēnsusjasmu / autēnsusimans / autēnsusin / autēnsusins / autēnsusi / autēnsusjas / autēnsusjas / autēnsusjan / autēnsusjai / autēnsusjamans / autēnsusjan / autēnsusjans / autēnsus / autēnsus / autēnsusjas / autēnsusin / autēnsusjasmu / autēnsusimans / autēnsus / autēnsus / autēnsts / autenstāi / autēnstas / autēnstan / autēnstasmu / autenstammans / autēnstan / autēnstans / autenstā / autēnstas / autēnstas / autēnstan / autēnstai / autenstāmans / autēnstan / autēnstans / autēnstan / autenstāi / autēnstas / autēnstan / autēnstasmu / autenstammans / autēnstan / autēnstans / autēnslai / autēnslai / autēnslai / autēnslimai / autēnslitei / autēnslai"
+    },
+    "imperative": {
+      "form": "autēnsjais / autēnsjaiti / autēnsjants / autēnsjantjai / autēnsjantis / autēnsjantin / autēnsjantismu / autensjantimmans / autēnsjantin / autēnsjantins / autensjantī / autēnsjantjas / autēnsjantjas / autēnsjantjan / autēnsjantjai / autensjantjāmans / autēnsjantjan / autēnsjantjans / autēnsjanti / autēnsjantjai / autēnsjantis / autēnsjantin / autēnsjantismu / autensjantimmans / autēnsjantin / autēnsjantins / autēnsuns / autēnsusis / autēnsusjas / autēnsusin / autēnsusjasmu / autēnsusimans / autēnsusin / autēnsusins / autēnsusi / autēnsusjas / autēnsusjas / autēnsusjan / autēnsusjai / autēnsusjamans / autēnsusjan / autēnsusjans / autēnsus / autēnsus / autēnsusjas / autēnsusin / autēnsusjasmu / autēnsusimans / autēnsus / autēnsus / autēnsts / autenstāi / autēnstas / autēnstan / autēnstasmu / autenstammans / autēnstan / autēnstans / autenstā / autēnstas / autēnstas / autēnstan / autēnstai / autenstāmans / autēnstan / autēnstans / autēnstan / autenstāi / autēnstas / autēnstan / autēnstasmu / autenstammans / autēnstan / autēnstans / autēnslai / autēnslai / autēnslai / autēnslimai / autēnslitei / autēnslai"
+    }
+  },
+  "translations": [
+    "1to interrupt (stop)"
+  ]
+}

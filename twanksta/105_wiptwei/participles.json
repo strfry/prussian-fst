@@ -1,0 +1,183 @@
+{
+  "lemma": "wiptwei",
+  "paradigm": "105",
+  "infinitive_stem": "wip",
+  "prusaspira": {
+    "participles": {
+      "present": "wepānts",
+      "past": "wippuns"
+    },
+    "optative": "wipsei",
+    "conjunctive": {
+      "sg_3pl": "wiplai",
+      "1pl": "wiplimai",
+      "2pl": "wiplitei"
+    },
+    "imperative": [
+      "wipsei",
+      "weppais",
+      "weppimai",
+      "weppaiti"
+    ]
+  },
+  "twanksta": {
+    "participles": {
+      "present": {
+        "form": "wepānts",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "wepānts",
+              "pl": "wepāntjai"
+            },
+            "Gen": {
+              "sg": "wepāntis",
+              "pl": "wepāntin"
+            },
+            "Dat": {
+              "sg": "wepāntismu",
+              "pl": "wepantimmans"
+            },
+            "Akk": {
+              "sg": "wepāntin",
+              "pl": "wepāntins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "wepantī",
+              "pl": "wepāntjas"
+            },
+            "Gen": {
+              "sg": "wepāntjas",
+              "pl": "wepāntjan"
+            },
+            "Dat": {
+              "sg": "wepāntjai",
+              "pl": "wepantjāmans"
+            },
+            "Akk": {
+              "sg": "wepāntjan",
+              "pl": "wepāntjans"
+            }
+          }
+        }
+      },
+      "past": {
+        "form": "wippuns",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "wippuns",
+              "pl": "wippusis"
+            },
+            "Gen": {
+              "sg": "wippusjas",
+              "pl": "wippusin"
+            },
+            "Dat": {
+              "sg": "wippusjasmu",
+              "pl": "wippusimans"
+            },
+            "Akk": {
+              "sg": "wippusin",
+              "pl": "wippusins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "wippusi",
+              "pl": "wippusjas"
+            },
+            "Gen": {
+              "sg": "wippusjas",
+              "pl": "wippusjan"
+            },
+            "Dat": {
+              "sg": "wippusjai",
+              "pl": "wippusjamans"
+            },
+            "Akk": {
+              "sg": "wippusjan",
+              "pl": "wippusjans"
+            }
+          }
+        }
+      },
+      "passive": {
+        "form": "wipts",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "wipts",
+              "pl": "wiptāi"
+            },
+            "Gen": {
+              "sg": "wiptas",
+              "pl": "wiptan"
+            },
+            "Dat": {
+              "sg": "wiptasmu",
+              "pl": "wiptammans"
+            },
+            "Akk": {
+              "sg": "wiptan",
+              "pl": "wiptans"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "wiptā",
+              "pl": "wiptas"
+            },
+            "Gen": {
+              "sg": "wiptas",
+              "pl": "wiptan"
+            },
+            "Dat": {
+              "sg": "wiptai",
+              "pl": "wiptāmans"
+            },
+            "Akk": {
+              "sg": "wiptan",
+              "pl": "wiptans"
+            }
+          }
+        }
+      }
+    },
+    "optative": "wipsei",
+    "imperative": {
+      "2sg": "weppais",
+      "2pl": "weppaiti"
+    },
+    "subjunctive": {
+      "forms": [
+        [
+          "as",
+          "wiplai"
+        ],
+        [
+          "tū",
+          "wiplai"
+        ],
+        [
+          "tāns/tenā/tennan",
+          "wiplai"
+        ],
+        [
+          "mes",
+          "wiplimai"
+        ],
+        [
+          "jūs",
+          "wiplitei"
+        ],
+        [
+          "tenēi/tennas",
+          "wiplai"
+        ]
+      ]
+    }
+  }
+}

@@ -1,0 +1,174 @@
+Indicative mood
+Present     as     rēisa     tū     rēisa     tāns/tenā/tennan     rēisa     mes     rēisimai     jūs     rēisitei                          tenēi/tennas     rēisa
+Past
+as     rissa     tū     rissa     tāns/tenā/tennan     rissa     mes     rissamai     jūs     rissatei                          tenēi/tennas     rissa
+Perfect     as     asma
+rissuns / rissusi
+tū     assei
+rissuns / rissusi
+tāns/tenā     ast
+rissuns / rissusi
+tennan     ast
+rissus     mes     asmai
+rissusis / rissusjas       jūs     astei
+rissusis / rissusjas     tenēi/tennas     ast
+rissusis / rissusjas
+Future     as     wīrst
+rissuns / rissusi     tū     wīrst
+rissuns / rissusi     tāns/tenā     wīrst
+rissuns / rissusi     tennan     wīrst
+rissus     mes     wīrstmai
+rissusis / rissusjas     jūs     wīrstei
+rissusis / rissusjas     tenēi/tennas     wīrst
+rissusis / rissusjas
+Optative
+rissei
+Imperative
+(tū)
+rēisais
+(jūs)
+rēisaiti
+Participle
+Present
+►   					 rēisants
+masc
+sing
+plur
+Nominative
+rēisants
+rēisantjai
+Genitive
+rēisantis
+rēisantin
+Dative
+rēisantismu
+reisantimmans
+Accusative
+rēisantin
+rēisantins
+fem
+sing
+plur
+Nominative
+reisantī
+rēisantjas
+Genitive
+rēisantjas
+rēisantjan
+Dative
+rēisantjai
+reisantjāmans
+Accusative
+rēisantjan
+rēisantjans
+neut
+sing
+plur
+Nominative
+rēisanti
+rēisantjai
+Genitive
+rēisantis
+rēisantin
+Dative
+rēisantismu
+reisantimmans
+Accusative
+rēisantin
+rēisantins
+Past      ►  					 rissuns
+masc
+sing
+plur
+Nominative
+rissuns
+rissusis
+Genitive
+rissusjas
+rissusin
+Dative
+rissusjasmu
+rissusimans
+Accusative
+rissusin
+rissusins
+fem
+sing
+plur
+Nominative
+rissusi
+rissusjas
+Genitive
+rissusjas
+rissusjan
+Dative
+rissusjai
+rissusjamans
+Accusative
+rissusjan
+rissusjans
+neut
+sing
+plur
+Nominative
+rissus
+rissus
+Genitive
+rissusjas
+rissusin
+Dative
+rissusjasmu
+rissusimans
+Accusative
+rissus
+rissus
+Passive
+►
+rists
+masc
+sing
+plur
+Nominative
+rists
+ristāi
+Genitive
+ristas
+ristan
+Dative
+ristasmu
+ristammans
+Accusative
+ristan
+ristans
+fem
+sing
+plur
+Nominative
+ristā
+ristas
+Genitive
+ristas
+ristan
+Dative
+ristai
+ristāmans
+Accusative
+ristan
+ristans
+neut
+sing
+plur
+Nominative
+ristan
+ristāi
+Genitive
+ristas
+ristan
+Dative
+ristasmu
+ristammans
+Accusative
+ristan
+ristans
+Subjunctive
+as     rislai     tū     rislai     tāns/tenā/tennan     rislai     mes     rislimai     jūs     rislitei     tenēi/tennas     rislai

@@ -1,0 +1,137 @@
+[
+  {
+    "word": "aīns",
+    "paradigm": "",
+    "gender": "",
+    "desc": "av [(ni)ains 91]",
+    "audio": "https://wirdeins.twanksta.org/upload/audio/ains.mp3",
+    "description": "",
+    "translations": {
+      "engl": [
+        "alone"
+      ],
+      "miks": [
+        "allein"
+      ],
+      "leit": [
+        "vien"
+      ],
+      "latt": [
+        "vienīgi"
+      ],
+      "pols": [
+        "jedno"
+      ],
+      "mask": [
+        "единственно"
+      ]
+    }
+  },
+  {
+    "word": "aīns",
+    "paradigm": "21",
+    "gender": "",
+    "desc": "crd [ains 101(24)]",
+    "audio": "https://wirdeins.twanksta.org/upload/audio/ains.mp3",
+    "description": "",
+    "translations": {
+      "engl": [
+        "one"
+      ],
+      "miks": [
+        "ein"
+      ],
+      "leit": [
+        "vienas"
+      ],
+      "latt": [
+        "viens"
+      ],
+      "pols": [
+        "jeden"
+      ],
+      "mask": [
+        "один"
+      ]
+    },
+    "forms": {
+      "declension": [
+        {
+          "gender": "masc",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "aīns",
+              "plural": "aināi"
+            },
+            {
+              "case": "Genitive",
+              "singular": "ainasse",
+              "plural": "aīnan"
+            },
+            {
+              "case": "Dative",
+              "singular": "ainasmu",
+              "plural": "ainammans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "aīnan",
+              "plural": "aīnans"
+            }
+          ]
+        },
+        {
+          "gender": "fem",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "ainā",
+              "plural": "aīnas"
+            },
+            {
+              "case": "Genitive",
+              "singular": "ainasses",
+              "plural": "aīnan"
+            },
+            {
+              "case": "Dative",
+              "singular": "ainassei",
+              "plural": "aināmans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "aīnan",
+              "plural": "aīnans"
+            }
+          ]
+        },
+        {
+          "gender": "neut",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "aīnan",
+              "plural": "aīnan / aināi"
+            },
+            {
+              "case": "Genitive",
+              "singular": "aīnase",
+              "plural": "ainasse / aīnan"
+            },
+            {
+              "case": "Dative",
+              "singular": "aīnasmu",
+              "plural": "ainasmu / ainammans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "aīnan",
+              "plural": "aīnan / aīnans"
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

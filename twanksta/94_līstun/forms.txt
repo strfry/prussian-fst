@@ -1,0 +1,174 @@
+Indicative mood
+Present     as     lāisa     tū     lāisa     tāns/tenā/tennan     lāisa     mes     lāisimai     jūs     lāisitei                          tenēi/tennas     lāisa
+Past
+as     lissa     tū     lissa     tāns/tenā/tennan     lissa     mes     lissamai     jūs     lissatei                          tenēi/tennas     lissa
+Perfect     as     asma
+lissuns / lissusi
+tū     assei
+lissuns / lissusi
+tāns/tenā     ast
+lissuns / lissusi
+tennan     ast
+lissus     mes     asmai
+lissusis / lissusjas       jūs     astei
+lissusis / lissusjas     tenēi/tennas     ast
+lissusis / lissusjas
+Future     as     wīrst
+lissuns / lissusi     tū     wīrst
+lissuns / lissusi     tāns/tenā     wīrst
+lissuns / lissusi     tennan     wīrst
+lissus     mes     wīrstmai
+lissusis / lissusjas     jūs     wīrstei
+lissusis / lissusjas     tenēi/tennas     wīrst
+lissusis / lissusjas
+Optative
+lissei
+Imperative
+(tū)
+lāisais
+(jūs)
+lāisaiti
+Participle
+Present
+►   					 lāisants
+masc
+sing
+plur
+Nominative
+lāisants
+lāisantjai
+Genitive
+lāisantis
+lāisantin
+Dative
+lāisantismu
+laisantimmans
+Accusative
+lāisantin
+lāisantins
+fem
+sing
+plur
+Nominative
+laisantī
+lāisantjas
+Genitive
+lāisantjas
+lāisantjan
+Dative
+lāisantjai
+laisantjāmans
+Accusative
+lāisantjan
+lāisantjans
+neut
+sing
+plur
+Nominative
+lāisanti
+lāisantjai
+Genitive
+lāisantis
+lāisantin
+Dative
+lāisantismu
+laisantimmans
+Accusative
+lāisantin
+lāisantins
+Past      ►  					 lissuns
+masc
+sing
+plur
+Nominative
+lissuns
+lissusis
+Genitive
+lissusjas
+lissusin
+Dative
+lissusjasmu
+lissusimans
+Accusative
+lissusin
+lissusins
+fem
+sing
+plur
+Nominative
+lissusi
+lissusjas
+Genitive
+lissusjas
+lissusjan
+Dative
+lissusjai
+lissusjamans
+Accusative
+lissusjan
+lissusjans
+neut
+sing
+plur
+Nominative
+lissus
+lissus
+Genitive
+lissusjas
+lissusin
+Dative
+lissusjasmu
+lissusimans
+Accusative
+lissus
+lissus
+Passive
+►
+lists
+masc
+sing
+plur
+Nominative
+lists
+listāi
+Genitive
+listas
+listan
+Dative
+listasmu
+listammans
+Accusative
+listan
+listans
+fem
+sing
+plur
+Nominative
+listā
+listas
+Genitive
+listas
+listan
+Dative
+listai
+listāmans
+Accusative
+listan
+listans
+neut
+sing
+plur
+Nominative
+listan
+listāi
+Genitive
+listas
+listan
+Dative
+listasmu
+listammans
+Accusative
+listan
+listans
+Subjunctive
+as     lislai     tū     lislai     tāns/tenā/tennan     lislai     mes     lislimai     jūs     lislitei     tenēi/tennas     lislai

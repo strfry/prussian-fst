@@ -1,0 +1,39 @@
+{
+  "lemma": "drebtun",
+  "source": "twanksta",
+  "forms": {
+    "present": {
+      "1sg": "drebja",
+      "2sg": "drebja",
+      "3sg": "drebja",
+      "1pl": "drebjamai",
+      "2pl": "drebjatei",
+      "3pl": "drebja"
+    },
+    "preterite": {
+      "1sg": "drēbi",
+      "2sg": "drēbi",
+      "3sg": "drībi",
+      "1pl": "drēbimai",
+      "2pl": "drēbitei",
+      "3pl": "drībi"
+    },
+    "perfect": {
+      "1sg": "asma\n                    drēbuns / drēbusi",
+      "2sg": "assei\n                    drēbuns / drēbusi",
+      "1pl": "asmai\n                    drēbusis / drēbusjas",
+      "2pl": "astei\n                    drēbusis / drēbusjas",
+      "3pl": "ast\n                    drēbusis / drēbusjas"
+    },
+    "future": {
+      "1sg": "wīrst\n                    drēbuns / drēbusi",
+      "2sg": "wīrst\n                    drēbuns / drēbusi",
+      "1pl": "wīrstmai\n                    drēbusis / drēbusjas",
+      "2pl": "wīrstei\n                    drēbusis / drēbusjas",
+      "3pl": "wīrst\n                    drēbusis / drēbusjas"
+    }
+  },
+  "translations": [
+    "1to plonk"
+  ]
+}

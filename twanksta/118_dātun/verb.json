@@ -1,0 +1,45 @@
+{
+  "lemma": "dātun",
+  "source": "twanksta",
+  "forms": {
+    "present": {
+      "1sg": "dāma",
+      "2sg": "dāsei",
+      "3sg": "dāst",
+      "1pl": "dāmai",
+      "2pl": "dāstei",
+      "3pl": "dāst"
+    },
+    "preterite": {
+      "1sg": "dāi",
+      "2sg": "dāi",
+      "3sg": "dāi",
+      "1pl": "dāimai",
+      "2pl": "dāitei",
+      "3pl": "dāi"
+    },
+    "perfect": {
+      "1sg": "asma\n                    dāwuns / dāwusi",
+      "2sg": "assei\n                    dāwuns / dāwusi",
+      "1pl": "asmai\n                    dāwusis / dāwusjas",
+      "2pl": "astei\n                    dāwusis / dāwusjas",
+      "3pl": "ast\n                    dāwusis / dāwusjas"
+    },
+    "future": {
+      "1sg": "wīrst\n                    dāwuns / dāwusi",
+      "2sg": "wīrst\n                    dāwuns / dāwusi",
+      "1pl": "wīrstmai\n                    dāwusis / dāwusjas",
+      "2pl": "wīrstei\n                    dāwusis / dāwusjas",
+      "3pl": "wīrst\n                    dāwusis / dāwusjas"
+    },
+    "optative": {
+      "form": "dāsei / dāis / dāiti / dānts / dāntjai / dāntis / dāntin / dāntismu / dantimmans / dāntin / dāntins / dantī / dāntjas / dāntjas / dāntjan / dāntjai / dantjāmans / dāntjan / dāntjans / dānti / dāntjai / dāntis / dāntin / dāntismu / dantimmans / dāntin / dāntins / dāwuns / dāwusis / dāwusjas / dāwusin / dāwusjasmu / dāwusimans / dāwusin / dāwusins / dāwusi / dāwusjas / dāwusjas / dāwusjan / dāwusjai / dāwusjamans / dāwusjan / dāwusjans / dāwus / dāwus / dāwusjas / dāwusin / dāwusjasmu / dāwusimans / dāwus / dāwus / dāts / datāi / dātas / dātan / dātasmu / datammans / dātan / dātans / datā / dātas / dātas / dātan / dātai / datāmans / dātan / dātans / dātan / datāi / dātas / dātan / dātasmu / datammans / dātan / dātans / dālai / dālai / dālai / dālimai / dālitei / dālai"
+    },
+    "imperative": {
+      "form": "dāis / dāiti / dānts / dāntjai / dāntis / dāntin / dāntismu / dantimmans / dāntin / dāntins / dantī / dāntjas / dāntjas / dāntjan / dāntjai / dantjāmans / dāntjan / dāntjans / dānti / dāntjai / dāntis / dāntin / dāntismu / dantimmans / dāntin / dāntins / dāwuns / dāwusis / dāwusjas / dāwusin / dāwusjasmu / dāwusimans / dāwusin / dāwusins / dāwusi / dāwusjas / dāwusjas / dāwusjan / dāwusjai / dāwusjamans / dāwusjan / dāwusjans / dāwus / dāwus / dāwusjas / dāwusin / dāwusjasmu / dāwusimans / dāwus / dāwus / dāts / datāi / dātas / dātan / dātasmu / datammans / dātan / dātans / datā / dātas / dātas / dātan / dātai / datāmans / dātan / dātans / dātan / datāi / dātas / dātan / dātasmu / datammans / dātan / dātans / dālai / dālai / dālai / dālimai / dālitei / dālai"
+    }
+  },
+  "translations": [
+    "1to give"
+  ]
+}

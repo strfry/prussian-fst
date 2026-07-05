@@ -1,0 +1,174 @@
+Indicative mood
+Present     as     dumja     tū     dumja     tāns/tenā/tennan     dumja     mes     dumjamai     jūs     dumjatei                          tenēi/tennas     dumja
+Past
+as     dūmi     tū     dūmi     tāns/tenā/tennan     dūmi     mes     dūmimai     jūs     dūmitei                          tenēi/tennas     dūmi
+Perfect     as     asma
+dūmuns / dūmusi
+tū     assei
+dūmuns / dūmusi
+tāns/tenā     ast
+dūmuns / dūmusi
+tennan     ast
+dūmus     mes     asmai
+dūmusis / dūmusjas       jūs     astei
+dūmusis / dūmusjas     tenēi/tennas     ast
+dūmusis / dūmusjas
+Future     as     wīrst
+dūmuns / dūmusi     tū     wīrst
+dūmuns / dūmusi     tāns/tenā     wīrst
+dūmuns / dūmusi     tennan     wīrst
+dūmus     mes     wīrstmai
+dūmusis / dūmusjas     jūs     wīrstei
+dūmusis / dūmusjas     tenēi/tennas     wīrst
+dūmusis / dūmusjas
+Optative
+dumsei
+Imperative
+(tū)
+dumjais
+(jūs)
+dumjaiti
+Participle
+Present
+►   					 dumīnts
+masc
+sing
+plur
+Nominative
+dumīnts
+dumīntjai
+Genitive
+dumīntis
+dumīntin
+Dative
+dumīntismu
+dumintimmans
+Accusative
+dumīntin
+dumīntins
+fem
+sing
+plur
+Nominative
+dumintī
+dumīntjas
+Genitive
+dumīntjas
+dumīntjan
+Dative
+dumīntjai
+dumintjāmans
+Accusative
+dumīntjan
+dumīntjans
+neut
+sing
+plur
+Nominative
+dumīnti
+dumīntjai
+Genitive
+dumīntis
+dumīntin
+Dative
+dumīntismu
+dumintimmans
+Accusative
+dumīntin
+dumīntins
+Past      ►  					 dūmuns
+masc
+sing
+plur
+Nominative
+dūmuns
+dūmusis
+Genitive
+dūmusjas
+dūmusin
+Dative
+dūmusjasmu
+dūmusimans
+Accusative
+dūmusin
+dūmusins
+fem
+sing
+plur
+Nominative
+dūmusi
+dūmusjas
+Genitive
+dūmusjas
+dūmusjan
+Dative
+dūmusjai
+dūmusjamans
+Accusative
+dūmusjan
+dūmusjans
+neut
+sing
+plur
+Nominative
+dūmus
+dūmus
+Genitive
+dūmusjas
+dūmusin
+Dative
+dūmusjasmu
+dūmusimans
+Accusative
+dūmus
+dūmus
+Passive
+►
+dumts
+masc
+sing
+plur
+Nominative
+dumts
+dumtāi
+Genitive
+dumtas
+dumtan
+Dative
+dumtasmu
+dumtammans
+Accusative
+dumtan
+dumtans
+fem
+sing
+plur
+Nominative
+dumtā
+dumtas
+Genitive
+dumtas
+dumtan
+Dative
+dumtai
+dumtāmans
+Accusative
+dumtan
+dumtans
+neut
+sing
+plur
+Nominative
+dumtan
+dumtāi
+Genitive
+dumtas
+dumtan
+Dative
+dumtasmu
+dumtammans
+Accusative
+dumtan
+dumtans
+Subjunctive
+as     dumlai     tū     dumlai     tāns/tenā/tennan     dumlai     mes     dumlimai     jūs     dumlitei     tenēi/tennas     dumlai

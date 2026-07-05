@@ -1,0 +1,68 @@
+[
+  {
+    "word": "kūgis",
+    "paradigm": "40",
+    "gender": "masc",
+    "desc": "[Kugis E 426]",
+    "audio": "",
+    "description": "",
+    "translations": {
+      "engl": [
+        "bulb (bulge, knob)"
+      ],
+      "miks": [
+        "Knauf",
+        "Beule",
+        "Kugel (Ball)",
+        "Ball (Kugel)"
+      ],
+      "leit": [
+        "bumbulas",
+        "rutulys"
+      ],
+      "latt": [
+        "bumbulis",
+        "lode"
+      ],
+      "pols": [
+        "głowica",
+        "główka (gałka)",
+        "gałka"
+      ],
+      "mask": [
+        "головка (оконечность)",
+        "желвак",
+        "шар"
+      ]
+    },
+    "forms": {
+      "declension": [
+        {
+          "gender": "masc",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "kūgis",
+              "plural": "kūgjai"
+            },
+            {
+              "case": "Genitive",
+              "singular": "kūgjas",
+              "plural": "kūgjan"
+            },
+            {
+              "case": "Dative",
+              "singular": "kūgju",
+              "plural": "kūgjamans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "kūgjan",
+              "plural": "kūgjans"
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

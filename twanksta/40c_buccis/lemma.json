@@ -1,0 +1,59 @@
+[
+  {
+    "word": "buccis",
+    "paradigm": "40",
+    "gender": "masc",
+    "desc": "[Butsch DIA, Buccautun MK]",
+    "audio": "",
+    "description": "",
+    "translations": {
+      "engl": [
+        "kiss"
+      ],
+      "miks": [
+        "Kuß"
+      ],
+      "leit": [
+        "bučinys"
+      ],
+      "latt": [
+        "skūpsts"
+      ],
+      "pols": [
+        "pocałunek"
+      ],
+      "mask": [
+        "поцелуй"
+      ]
+    },
+    "forms": {
+      "declension": [
+        {
+          "gender": "masc",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "buccis",
+              "plural": "buccjai"
+            },
+            {
+              "case": "Genitive",
+              "singular": "buccjas",
+              "plural": "buccjan"
+            },
+            {
+              "case": "Dative",
+              "singular": "buccju",
+              "plural": "buccjamans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "buccjan",
+              "plural": "buccjans"
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

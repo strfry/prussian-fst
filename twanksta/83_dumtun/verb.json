@@ -1,0 +1,46 @@
+{
+  "lemma": "dumtwei",
+  "source": "twanksta",
+  "forms": {
+    "present": {
+      "1sg": "dumja",
+      "2sg": "dumja",
+      "3sg": "dumja",
+      "1pl": "dumjamai",
+      "2pl": "dumjatei",
+      "3pl": "dumja"
+    },
+    "preterite": {
+      "1sg": "dūmi",
+      "2sg": "dūmi",
+      "3sg": "dūmi",
+      "1pl": "dūmimai",
+      "2pl": "dūmitei",
+      "3pl": "dūmi"
+    },
+    "perfect": {
+      "1sg": "asma\n                    dūmuns / dūmusi",
+      "2sg": "assei\n                    dūmuns / dūmusi",
+      "1pl": "asmai\n                    dūmusis / dūmusjas",
+      "2pl": "astei\n                    dūmusis / dūmusjas",
+      "3pl": "ast\n                    dūmusis / dūmusjas"
+    },
+    "future": {
+      "1sg": "wīrst\n                    dūmuns / dūmusi",
+      "2sg": "wīrst\n                    dūmuns / dūmusi",
+      "1pl": "wīrstmai\n                    dūmusis / dūmusjas",
+      "2pl": "wīrstei\n                    dūmusis / dūmusjas",
+      "3pl": "wīrst\n                    dūmusis / dūmusjas"
+    },
+    "optative": {
+      "form": "dumsei / dumjais / dumjaiti / dumīnts / dumīntjai / dumīntis / dumīntin / dumīntismu / dumintimmans / dumīntin / dumīntins / dumintī / dumīntjas / dumīntjas / dumīntjan / dumīntjai / dumintjāmans / dumīntjan / dumīntjans / dumīnti / dumīntjai / dumīntis / dumīntin / dumīntismu / dumintimmans / dumīntin / dumīntins / dūmuns / dūmusis / dūmusjas / dūmusin / dūmusjasmu / dūmusimans / dūmusin / dūmusins / dūmusi / dūmusjas / dūmusjas / dūmusjan / dūmusjai / dūmusjamans / dūmusjan / dūmusjans / dūmus / dūmus / dūmusjas / dūmusin / dūmusjasmu / dūmusimans / dūmus / dūmus / dumts / dumtāi / dumtas / dumtan / dumtasmu / dumtammans / dumtan / dumtans / dumtā / dumtas / dumtas / dumtan / dumtai / dumtāmans / dumtan / dumtans / dumtan / dumtāi / dumtas / dumtan / dumtasmu / dumtammans / dumtan / dumtans / dumlai / dumlai / dumlai / dumlimai / dumlitei / dumlai"
+    },
+    "imperative": {
+      "form": "dumjais / dumjaiti / dumīnts / dumīntjai / dumīntis / dumīntin / dumīntismu / dumintimmans / dumīntin / dumīntins / dumintī / dumīntjas / dumīntjas / dumīntjan / dumīntjai / dumintjāmans / dumīntjan / dumīntjans / dumīnti / dumīntjai / dumīntis / dumīntin / dumīntismu / dumintimmans / dumīntin / dumīntins / dūmuns / dūmusis / dūmusjas / dūmusin / dūmusjasmu / dūmusimans / dūmusin / dūmusins / dūmusi / dūmusjas / dūmusjas / dūmusjan / dūmusjai / dūmusjamans / dūmusjan / dūmusjans / dūmus / dūmus / dūmusjas / dūmusin / dūmusjasmu / dūmusimans / dūmus / dūmus / dumts / dumtāi / dumtas / dumtan / dumtasmu / dumtammans / dumtan / dumtans / dumtā / dumtas / dumtas / dumtan / dumtai / dumtāmans / dumtan / dumtans / dumtan / dumtāi / dumtas / dumtan / dumtasmu / dumtammans / dumtan / dumtans / dumlai / dumlai / dumlai / dumlimai / dumlitei / dumlai"
+    }
+  },
+  "translations": [
+    "1to blow",
+    "2to breeze"
+  ]
+}

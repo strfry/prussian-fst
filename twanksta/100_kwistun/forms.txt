@@ -1,0 +1,174 @@
+Indicative mood
+Present     as     kwēita     tū     kwēita     tāns/tenā/tennan     kwēita     mes     kwēitimai     jūs     kwēititei                          tenēi/tennas     kwēita
+Past
+as     kwitta     tū     kwitta     tāns/tenā/tennan     kwitta     mes     kwittamai     jūs     kwittatei                          tenēi/tennas     kwitta
+Perfect     as     asma
+kwittuns / kwittusi
+tū     assei
+kwittuns / kwittusi
+tāns/tenā     ast
+kwittuns / kwittusi
+tennan     ast
+kwittus     mes     asmai
+kwittusis / kwittusjas       jūs     astei
+kwittusis / kwittusjas     tenēi/tennas     ast
+kwittusis / kwittusjas
+Future     as     wīrst
+kwittuns / kwittusi     tū     wīrst
+kwittuns / kwittusi     tāns/tenā     wīrst
+kwittuns / kwittusi     tennan     wīrst
+kwittus     mes     wīrstmai
+kwittusis / kwittusjas     jūs     wīrstei
+kwittusis / kwittusjas     tenēi/tennas     wīrst
+kwittusis / kwittusjas
+Optative
+kwitsei
+Imperative
+(tū)
+kwēitais
+(jūs)
+kwēitaiti
+Participle
+Present
+►   					 kwēitants
+masc
+sing
+plur
+Nominative
+kwēitants
+kwēitantjai
+Genitive
+kwēitantis
+kwēitantin
+Dative
+kwēitantismu
+kweitantimmans
+Accusative
+kwēitantin
+kwēitantins
+fem
+sing
+plur
+Nominative
+kweitantī
+kwēitantjas
+Genitive
+kwēitantjas
+kwēitantjan
+Dative
+kwēitantjai
+kweitantjāmans
+Accusative
+kwēitantjan
+kwēitantjans
+neut
+sing
+plur
+Nominative
+kwēitanti
+kwēitantjai
+Genitive
+kwēitantis
+kwēitantin
+Dative
+kwēitantismu
+kweitantimmans
+Accusative
+kwēitantin
+kwēitantins
+Past      ►  					 kwittuns
+masc
+sing
+plur
+Nominative
+kwittuns
+kwittusis
+Genitive
+kwittusjas
+kwittusin
+Dative
+kwittusjasmu
+kwittusimans
+Accusative
+kwittusin
+kwittusins
+fem
+sing
+plur
+Nominative
+kwittusi
+kwittusjas
+Genitive
+kwittusjas
+kwittusjan
+Dative
+kwittusjai
+kwittusjamans
+Accusative
+kwittusjan
+kwittusjans
+neut
+sing
+plur
+Nominative
+kwittus
+kwittus
+Genitive
+kwittusjas
+kwittusin
+Dative
+kwittusjasmu
+kwittusimans
+Accusative
+kwittus
+kwittus
+Passive
+►
+kwists
+masc
+sing
+plur
+Nominative
+kwists
+kwistāi
+Genitive
+kwistas
+kwistan
+Dative
+kwistasmu
+kwistammans
+Accusative
+kwistan
+kwistans
+fem
+sing
+plur
+Nominative
+kwistā
+kwistas
+Genitive
+kwistas
+kwistan
+Dative
+kwistai
+kwistāmans
+Accusative
+kwistan
+kwistans
+neut
+sing
+plur
+Nominative
+kwistan
+kwistāi
+Genitive
+kwistas
+kwistan
+Dative
+kwistasmu
+kwistammans
+Accusative
+kwistan
+kwistans
+Subjunctive
+as     kwitlai     tū     kwitlai     tāns/tenā/tennan     kwitlai     mes     kwitlimai     jūs     kwitlitei     tenēi/tennas     kwitlai

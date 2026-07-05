@@ -1,0 +1,60 @@
+[
+  {
+    "word": "šmaws",
+    "paradigm": "33",
+    "gender": "masc",
+    "desc": "[Schmaus MK]",
+    "audio": "",
+    "description": "",
+    "translations": {
+      "engl": [
+        "banquet",
+        "dinner-party"
+      ],
+      "miks": [
+        "Schmaus"
+      ],
+      "leit": [
+        "vaišės"
+      ],
+      "latt": [
+        "viesības"
+      ],
+      "pols": [
+        "poczęstunek"
+      ],
+      "mask": [
+        "угощение (званое)"
+      ]
+    },
+    "forms": {
+      "declension": [
+        {
+          "gender": "masc",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "šmaws",
+              "plural": "šmāuwai"
+            },
+            {
+              "case": "Genitive",
+              "singular": "šmāuwas",
+              "plural": "šmāuwan"
+            },
+            {
+              "case": "Dative",
+              "singular": "šmāuwu",
+              "plural": "šmāuamans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "šmāuwan",
+              "plural": "šmāuwans"
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

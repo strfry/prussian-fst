@@ -1,0 +1,45 @@
+{
+  "lemma": "abōnitun",
+  "source": "twanksta",
+  "forms": {
+    "present": {
+      "1sg": "abōni",
+      "2sg": "abōni",
+      "3sg": "abōni",
+      "1pl": "abōnimai",
+      "2pl": "abōnitei",
+      "3pl": "abōni"
+    },
+    "preterite": {
+      "1sg": "abōni",
+      "2sg": "abōni",
+      "3sg": "abōni",
+      "1pl": "abōnimai",
+      "2pl": "abōnitei",
+      "3pl": "abōni"
+    },
+    "perfect": {
+      "1sg": "asma\n                    abōniwuns / abōniwusi",
+      "2sg": "assei\n                    abōniwuns / abōniwusi",
+      "1pl": "asmai\n                    abōniwusis / abōniwusjas",
+      "2pl": "astei\n                    abōniwusis / abōniwusjas",
+      "3pl": "ast\n                    abōniwusis / abōniwusjas"
+    },
+    "future": {
+      "1sg": "wīrst\n                    abōniwuns / abōniwusi",
+      "2sg": "wīrst\n                    abōniwuns / abōniwusi",
+      "1pl": "wīrstmai\n                    abōniwusis / abōniwusjas",
+      "2pl": "wīrstei\n                    abōniwusis / abōniwusjas",
+      "3pl": "wīrst\n                    abōniwusis / abōniwusjas"
+    },
+    "optative": {
+      "form": "abōnisei / abōnis / abōniti / abōnints / abōnintjai / abōnintis / abōnintin / abōnintismu / abonintimmans / abōnintin / abōnintins / abonintī / abōnintjas / abōnintjas / abōnintjan / abōnintjai / abonintjāmans / abōnintjan / abōnintjans / abōninti / abōnintjai / abōnintis / abōnintin / abōnintismu / abonintimmans / abōnintin / abōnintins / abōniwuns / abōniwusis / abōniwusjas / abōniwusin / abōniwusjasmu / abōniwusimans / abōniwusin / abōniwusins / abōniwusi / abōniwusjas / abōniwusjas / abōniwusjan / abōniwusjai / abōniwusjamans / abōniwusjan / abōniwusjans / abōniwus / abōniwus / abōniwusjas / abōniwusin / abōniwusjasmu / abōniwusimans / abōniwus / abōniwus / abōnits / abonitāi / abōnitas / abōnitan / abōnitasmu / abonitammans / abōnitan / abōnitans / abonitā / abōnitas / abōnitas / abōnitan / abōnitai / abonitāmans / abōnitan / abōnitans / abōnitan / abonitāi / abōnitas / abōnitan / abōnitasmu / abonitammans / abōnitan / abōnitans / abōnilai / abōnilai / abōnilai / abōnilimai / abōnilitei / abōnilai"
+    },
+    "imperative": {
+      "form": "abōnis / abōniti / abōnints / abōnintjai / abōnintis / abōnintin / abōnintismu / abonintimmans / abōnintin / abōnintins / abonintī / abōnintjas / abōnintjas / abōnintjan / abōnintjai / abonintjāmans / abōnintjan / abōnintjans / abōninti / abōnintjai / abōnintis / abōnintin / abōnintismu / abonintimmans / abōnintin / abōnintins / abōniwuns / abōniwusis / abōniwusjas / abōniwusin / abōniwusjasmu / abōniwusimans / abōniwusin / abōniwusins / abōniwusi / abōniwusjas / abōniwusjas / abōniwusjan / abōniwusjai / abōniwusjamans / abōniwusjan / abōniwusjans / abōniwus / abōniwus / abōniwusjas / abōniwusin / abōniwusjasmu / abōniwusimans / abōniwus / abōniwus / abōnits / abonitāi / abōnitas / abōnitan / abōnitasmu / abonitammans / abōnitan / abōnitans / abonitā / abōnitas / abōnitas / abōnitan / abōnitai / abonitāmans / abōnitan / abōnitans / abōnitan / abonitāi / abōnitas / abōnitan / abōnitasmu / abonitammans / abōnitan / abōnitans / abōnilai / abōnilai / abōnilai / abōnilimai / abōnilitei / abōnilai"
+    }
+  },
+  "translations": [
+    "1subscribe"
+  ]
+}

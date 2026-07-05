@@ -1,0 +1,174 @@
+Indicative mood
+Present     as     ēima     tū     ēisei     tāns/tenā/tennan     ēit     mes     ēimai     jūs     ēitei                          tenēi/tennas     ēit
+Past
+as     gūbi     tū     gūbi     tāns/tenā/tennan     gūbi     mes     gūbimai     jūs     gūbitei                          tenēi/tennas     gūbi
+Perfect     as     asma
+gūbuns / gūbusi
+tū     assei
+gūbuns / gūbusi
+tāns/tenā     ast
+gūbuns / gūbusi
+tennan     ast
+gūbus     mes     asmai
+gūbusis / gūbusjas       jūs     astei
+gūbusis / gūbusjas     tenēi/tennas     ast
+gūbusis / gūbusjas
+Future     as     wīrst
+gūbuns / gūbusi     tū     wīrst
+gūbuns / gūbusi     tāns/tenā     wīrst
+gūbuns / gūbusi     tennan     wīrst
+gūbus     mes     wīrstmai
+gūbusis / gūbusjas     jūs     wīrstei
+gūbusis / gūbusjas     tenēi/tennas     wīrst
+gūbusis / gūbusjas
+Optative
+ēisei
+Imperative
+(tū)
+jēis
+(jūs)
+jēiti
+Participle
+Present
+►   					 ēnts
+masc
+sing
+plur
+Nominative
+ēnts
+ēntjai
+Genitive
+ēntis
+ēntin
+Dative
+ēntismu
+entimmans
+Accusative
+ēntin
+ēntins
+fem
+sing
+plur
+Nominative
+entī
+ēntjas
+Genitive
+ēntjas
+ēntjan
+Dative
+ēntjai
+entjāmans
+Accusative
+ēntjan
+ēntjans
+neut
+sing
+plur
+Nominative
+ēnti
+ēntjai
+Genitive
+ēntis
+ēntin
+Dative
+ēntismu
+entimmans
+Accusative
+ēntin
+ēntins
+Past      ►  					 gūbuns
+masc
+sing
+plur
+Nominative
+gūbuns
+gūbusis
+Genitive
+gūbusjas
+gūbusin
+Dative
+gūbusjasmu
+gūbusimans
+Accusative
+gūbusin
+gūbusins
+fem
+sing
+plur
+Nominative
+gūbusi
+gūbusjas
+Genitive
+gūbusjas
+gūbusjan
+Dative
+gūbusjai
+gūbusjamans
+Accusative
+gūbusjan
+gūbusjans
+neut
+sing
+plur
+Nominative
+gūbus
+gūbus
+Genitive
+gūbusjas
+gūbusin
+Dative
+gūbusjasmu
+gūbusimans
+Accusative
+gūbus
+gūbus
+Passive
+►
+ēits
+masc
+sing
+plur
+Nominative
+ēits
+eitāi
+Genitive
+ēitas
+ēitan
+Dative
+ēitasmu
+eitammans
+Accusative
+ēitan
+ēitans
+fem
+sing
+plur
+Nominative
+eitā
+ēitas
+Genitive
+ēitas
+ēitan
+Dative
+ēitai
+eitāmans
+Accusative
+ēitan
+ēitans
+neut
+sing
+plur
+Nominative
+ēitan
+eitāi
+Genitive
+ēitas
+ēitan
+Dative
+ēitasmu
+eitammans
+Accusative
+ēitan
+ēitans
+Subjunctive
+as     ēilai     tū     ēilai     tāns/tenā/tennan     ēilai     mes     ēilimai     jūs     ēilitei     tenēi/tennas     ēilai

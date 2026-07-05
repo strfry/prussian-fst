@@ -1,0 +1,174 @@
+Indicative mood
+Present     as     badda     tū     badda     tāns/tenā/tennan     badda     mes     baddimai     jūs     badditei                          tenēi/tennas     badda
+Past
+as     badda     tū     badda     tāns/tenā/tennan     badda     mes     baddimai     jūs     badditei                          tenēi/tennas     badda
+Perfect     as     asma
+badduns / baddusi
+tū     assei
+badduns / baddusi
+tāns/tenā     ast
+badduns / baddusi
+tennan     ast
+baddus     mes     asmai
+baddusis / baddusjas       jūs     astei
+baddusis / baddusjas     tenēi/tennas     ast
+baddusis / baddusjas
+Future     as     wīrst
+badduns / baddusi     tū     wīrst
+badduns / baddusi     tāns/tenā     wīrst
+badduns / baddusi     tennan     wīrst
+baddus     mes     wīrstmai
+baddusis / baddusjas     jūs     wīrstei
+baddusis / baddusjas     tenēi/tennas     wīrst
+baddusis / baddusjas
+Optative
+basei
+Imperative
+(tū)
+baddais
+(jūs)
+baddaiti
+Participle
+Present
+►   					 badānts
+masc
+sing
+plur
+Nominative
+badānts
+badāntjai
+Genitive
+badāntis
+badāntin
+Dative
+badāntismu
+badantimmans
+Accusative
+badāntin
+badāntins
+fem
+sing
+plur
+Nominative
+badantī
+badāntjas
+Genitive
+badāntjas
+badāntjan
+Dative
+badāntjai
+badantjāmans
+Accusative
+badāntjan
+badāntjans
+neut
+sing
+plur
+Nominative
+badānti
+badāntjai
+Genitive
+badāntis
+badāntin
+Dative
+badāntismu
+badantimmans
+Accusative
+badāntin
+badāntins
+Past      ►  					 badduns
+masc
+sing
+plur
+Nominative
+badduns
+baddusis
+Genitive
+baddusjas
+baddusin
+Dative
+baddusjasmu
+baddusimans
+Accusative
+baddusin
+baddusins
+fem
+sing
+plur
+Nominative
+baddusi
+baddusjas
+Genitive
+baddusjas
+baddusjan
+Dative
+baddusjai
+baddusjamans
+Accusative
+baddusjan
+baddusjans
+neut
+sing
+plur
+Nominative
+baddus
+baddus
+Genitive
+baddusjas
+baddusin
+Dative
+baddusjasmu
+baddusimans
+Accusative
+baddus
+baddus
+Passive
+►
+basts
+masc
+sing
+plur
+Nominative
+basts
+bastāi
+Genitive
+bastas
+bastan
+Dative
+bastasmu
+bastammans
+Accusative
+bastan
+bastans
+fem
+sing
+plur
+Nominative
+bastā
+bastas
+Genitive
+bastas
+bastan
+Dative
+bastai
+bastāmans
+Accusative
+bastan
+bastans
+neut
+sing
+plur
+Nominative
+bastan
+bastāi
+Genitive
+bastas
+bastan
+Dative
+bastasmu
+bastammans
+Accusative
+bastan
+bastans
+Subjunctive
+as     badlai     tū     badlai     tāns/tenā/tennan     badlai     mes     badlimai     jūs     badlitei     tenēi/tennas     badlai

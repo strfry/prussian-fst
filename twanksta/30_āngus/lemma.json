@@ -1,0 +1,281 @@
+[
+  {
+    "word": "āngus",
+    "paradigm": "30",
+    "gender": "",
+    "desc": "aj [āūgus 87]",
+    "audio": "",
+    "description": "",
+    "translations": {
+      "engl": [
+        "stingy"
+      ],
+      "miks": [
+        "geizig"
+      ],
+      "leit": [
+        "šykštus",
+        "gobšus"
+      ],
+      "latt": [
+        "skops"
+      ],
+      "pols": [
+        "skąpy"
+      ],
+      "mask": [
+        "скупой",
+        "жадный"
+      ]
+    },
+    "forms": {
+      "declension": [
+        {
+          "gender": "masc",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "āngus",
+              "plural": "āngwai"
+            },
+            {
+              "case": "Genitive",
+              "singular": "āngwas",
+              "plural": "āngun"
+            },
+            {
+              "case": "Dative",
+              "singular": "āngusmu",
+              "plural": "āngumans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "āngun",
+              "plural": "ānguns"
+            }
+          ]
+        },
+        {
+          "gender": "fem",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "āngi",
+              "plural": "āngjas"
+            },
+            {
+              "case": "Genitive",
+              "singular": "āngjas",
+              "plural": "āngjan"
+            },
+            {
+              "case": "Dative",
+              "singular": "āngjai",
+              "plural": "āngjamans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "āngjan",
+              "plural": "āngjans"
+            }
+          ]
+        },
+        {
+          "gender": "neut",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "āngu",
+              "plural": "āngwai"
+            },
+            {
+              "case": "Genitive",
+              "singular": "āngwas",
+              "plural": "āngun"
+            },
+            {
+              "case": "Dative",
+              "singular": "āngusmu",
+              "plural": "āngumans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "āngu",
+              "plural": "ānguns"
+            }
+          ]
+        },
+        {
+          "gender": "",
+          "cases": [
+            {
+              "case": "",
+              "singular": "āngus",
+              "plural": ""
+            },
+            {
+              "case": "Nominative",
+              "singular": "ānguisis",
+              "plural": "ānguisjai"
+            },
+            {
+              "case": "Genitive",
+              "singular": "ānguisjas",
+              "plural": "ānguisin"
+            },
+            {
+              "case": "Dative",
+              "singular": "ānguisjasmu",
+              "plural": "ānguisimans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "ānguisin",
+              "plural": "ānguisins"
+            }
+          ]
+        },
+        {
+          "gender": "fem",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "ānguisi",
+              "plural": "ānguisjas"
+            },
+            {
+              "case": "Genitive",
+              "singular": "ānguisjas",
+              "plural": "ānguisjan"
+            },
+            {
+              "case": "Dative",
+              "singular": "ānguisjai",
+              "plural": "ānguisjamans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "ānguisjan",
+              "plural": "ānguisjans"
+            }
+          ]
+        },
+        {
+          "gender": "neut",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "ānguisi",
+              "plural": "ānguisjai"
+            },
+            {
+              "case": "Genitive",
+              "singular": "ānguisjas",
+              "plural": "ānguisin"
+            },
+            {
+              "case": "Dative",
+              "singular": "ānguisjasmu",
+              "plural": "ānguisimans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "ānguisi",
+              "plural": "ānguisins"
+            }
+          ]
+        },
+        {
+          "gender": "masc",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "ukaānguisis",
+              "plural": "ukaānguisjai"
+            },
+            {
+              "case": "Genitive",
+              "singular": "ukaānguisjas",
+              "plural": "ukaānguisin"
+            },
+            {
+              "case": "Dative",
+              "singular": "ukaānguisjasmu",
+              "plural": "ukaānguisimans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "ukaānguisin",
+              "plural": "ukaānguisins"
+            }
+          ]
+        },
+        {
+          "gender": "fem",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "ukaānguisi",
+              "plural": "ukaānguisjas"
+            },
+            {
+              "case": "Genitive",
+              "singular": "ukaānguisjas",
+              "plural": "ukaānguisjan"
+            },
+            {
+              "case": "Dative",
+              "singular": "ukaānguisjai",
+              "plural": "ukaānguisjamans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "ukaānguisjan",
+              "plural": "ukaānguisjans"
+            }
+          ]
+        },
+        {
+          "gender": "neut",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "ukaānguisi",
+              "plural": "ukaānguisjai"
+            },
+            {
+              "case": "Genitive",
+              "singular": "ukaānguisjas",
+              "plural": "ukaānguisin"
+            },
+            {
+              "case": "Dative",
+              "singular": "ukaānguisjasmu",
+              "plural": "ukaānguisimans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "ukaānguisi",
+              "plural": "ukaānguisins"
+            }
+          ]
+        },
+        {
+          "gender": "",
+          "cases": [
+            {
+              "case": "",
+              "singular": "āngu",
+              "plural": "ānguis"
+            }
+          ]
+        }
+      ],
+      "adverb": {
+        "positive": "āngu",
+        "comparative": "ānguis",
+        "superlative": "ukaānguis"
+      }
+    }
+  }
+]

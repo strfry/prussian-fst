@@ -1,0 +1,174 @@
+Indicative mood
+Present     as     mēigma     tū     mēigt     tāns/tenā/tennan     mēigt     mes     mēigmai     jūs     mēigtei                          tenēi/tennas     mēigt
+Past
+as     migga     tū     migga     tāns/tenā/tennan     migga     mes     miggamai     jūs     miggatei                          tenēi/tennas     migga
+Perfect     as     asma
+migguns / miggusi
+tū     assei
+migguns / miggusi
+tāns/tenā     ast
+migguns / miggusi
+tennan     ast
+miggus     mes     asmai
+miggusis / miggusjas       jūs     astei
+miggusis / miggusjas     tenēi/tennas     ast
+miggusis / miggusjas
+Future     as     wīrst
+migguns / miggusi     tū     wīrst
+migguns / miggusi     tāns/tenā     wīrst
+migguns / miggusi     tennan     wīrst
+miggus     mes     wīrstmai
+miggusis / miggusjas     jūs     wīrstei
+miggusis / miggusjas     tenēi/tennas     wīrst
+miggusis / miggusjas
+Optative
+migsei
+Imperative
+(tū)
+mēigais
+(jūs)
+mēigaiti
+Participle
+Present
+►   					 mēigants
+masc
+sing
+plur
+Nominative
+mēigants
+mēigantjai
+Genitive
+mēigantis
+mēigantin
+Dative
+mēigantismu
+meigantimmans
+Accusative
+mēigantin
+mēigantins
+fem
+sing
+plur
+Nominative
+meigantī
+mēigantjas
+Genitive
+mēigantjas
+mēigantjan
+Dative
+mēigantjai
+meigantjāmans
+Accusative
+mēigantjan
+mēigantjans
+neut
+sing
+plur
+Nominative
+mēiganti
+mēigantjai
+Genitive
+mēigantis
+mēigantin
+Dative
+mēigantismu
+meigantimmans
+Accusative
+mēigantin
+mēigantins
+Past      ►  					 migguns
+masc
+sing
+plur
+Nominative
+migguns
+miggusis
+Genitive
+miggusjas
+miggusin
+Dative
+miggusjasmu
+miggusimans
+Accusative
+miggusin
+miggusins
+fem
+sing
+plur
+Nominative
+miggusi
+miggusjas
+Genitive
+miggusjas
+miggusjan
+Dative
+miggusjai
+miggusjamans
+Accusative
+miggusjan
+miggusjans
+neut
+sing
+plur
+Nominative
+miggus
+miggus
+Genitive
+miggusjas
+miggusin
+Dative
+miggusjasmu
+miggusimans
+Accusative
+miggus
+miggus
+Passive
+►
+migts
+masc
+sing
+plur
+Nominative
+migts
+migtāi
+Genitive
+migtas
+migtan
+Dative
+migtasmu
+migtammans
+Accusative
+migtan
+migtans
+fem
+sing
+plur
+Nominative
+migtā
+migtas
+Genitive
+migtas
+migtan
+Dative
+migtai
+migtāmans
+Accusative
+migtan
+migtans
+neut
+sing
+plur
+Nominative
+migtan
+migtāi
+Genitive
+migtas
+migtan
+Dative
+migtasmu
+migtammans
+Accusative
+migtan
+migtans
+Subjunctive
+as     miglai     tū     miglai     tāns/tenā/tennan     miglai     mes     miglimai     jūs     miglitei     tenēi/tennas     miglai

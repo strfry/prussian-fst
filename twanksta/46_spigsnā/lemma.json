@@ -1,0 +1,67 @@
+{
+  "query": "spigsnā",
+  "match": "spēgsnā",
+  "score": 1.0,
+  "method": "manual",
+  "entries": [
+    {
+      "word": "spēgsnā",
+      "paradigm": "46",
+      "gender": "fem",
+      "desc": "[Spigsnā 63(2)]",
+      "audio": "",
+      "description": "",
+      "translations": {
+        "engl": [
+          "bath (bathing)"
+        ],
+        "miks": [
+          "Baden (Bad)"
+        ],
+        "leit": [
+          "maudymas",
+          "prausimas"
+        ],
+        "latt": [
+          "peldināšana"
+        ],
+        "pols": [
+          "kąpanie"
+        ],
+        "mask": [
+          "омовение",
+          "купание"
+        ]
+      },
+      "forms": {
+        "declension": [
+          {
+            "gender": "fem",
+            "cases": [
+              {
+                "case": "Nominative",
+                "singular": "spegsnā",
+                "plural": "spēgsnas"
+              },
+              {
+                "case": "Genitive",
+                "singular": "spēgsnas",
+                "plural": "spēgsnan"
+              },
+              {
+                "case": "Dative",
+                "singular": "spēgsnai",
+                "plural": "spegsnāmans"
+              },
+              {
+                "case": "Accusative",
+                "singular": "spēgsnan",
+                "plural": "spēgsnans"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

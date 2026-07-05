@@ -1,0 +1,184 @@
+{
+  "lemma": "lānktun",
+  "paradigm": "75",
+  "infinitive_stem": "lānk",
+  "prusaspira": {
+    "participles": {
+      "present": "lānkints",
+      "past": "lānkuns",
+      "passive": "lānkts"
+    },
+    "optative": "lānksei",
+    "conjunctive": {
+      "sg_3pl": "lānklai",
+      "1pl": "lānklimai",
+      "2pl": "lānklitei"
+    },
+    "imperative": [
+      "lānksei",
+      "lānkeis",
+      "lānkimai",
+      "lānkeiti"
+    ]
+  },
+  "twanksta": {
+    "participles": {
+      "present": {
+        "form": "lānkints",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "lānkints",
+              "pl": "lānkintjai"
+            },
+            "Gen": {
+              "sg": "lānkintis",
+              "pl": "lānkintin"
+            },
+            "Dat": {
+              "sg": "lānkintismu",
+              "pl": "lankintimmans"
+            },
+            "Akk": {
+              "sg": "lānkintin",
+              "pl": "lānkintins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "lankintī",
+              "pl": "lānkintjas"
+            },
+            "Gen": {
+              "sg": "lānkintjas",
+              "pl": "lānkintjan"
+            },
+            "Dat": {
+              "sg": "lānkintjai",
+              "pl": "lankintjāmans"
+            },
+            "Akk": {
+              "sg": "lānkintjan",
+              "pl": "lānkintjans"
+            }
+          }
+        }
+      },
+      "past": {
+        "form": "lānkuns",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "lānkuns",
+              "pl": "lānkusis"
+            },
+            "Gen": {
+              "sg": "lānkusjas",
+              "pl": "lānkusin"
+            },
+            "Dat": {
+              "sg": "lānkusjasmu",
+              "pl": "lānkusimans"
+            },
+            "Akk": {
+              "sg": "lānkusin",
+              "pl": "lānkusins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "lānkusi",
+              "pl": "lānkusjas"
+            },
+            "Gen": {
+              "sg": "lānkusjas",
+              "pl": "lānkusjan"
+            },
+            "Dat": {
+              "sg": "lānkusjai",
+              "pl": "lānkusjamans"
+            },
+            "Akk": {
+              "sg": "lānkusjan",
+              "pl": "lānkusjans"
+            }
+          }
+        }
+      },
+      "passive": {
+        "form": "lānkts",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "lānkts",
+              "pl": "lanktāi"
+            },
+            "Gen": {
+              "sg": "lānktas",
+              "pl": "lānktan"
+            },
+            "Dat": {
+              "sg": "lānktasmu",
+              "pl": "lanktammans"
+            },
+            "Akk": {
+              "sg": "lānktan",
+              "pl": "lānktans"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "lanktā",
+              "pl": "lānktas"
+            },
+            "Gen": {
+              "sg": "lānktas",
+              "pl": "lānktan"
+            },
+            "Dat": {
+              "sg": "lānktai",
+              "pl": "lanktāmans"
+            },
+            "Akk": {
+              "sg": "lānktan",
+              "pl": "lānktans"
+            }
+          }
+        }
+      }
+    },
+    "optative": "lānksei",
+    "imperative": {
+      "2sg": "lānkjais",
+      "2pl": "lānkjaiti"
+    },
+    "subjunctive": {
+      "forms": [
+        [
+          "as",
+          "lānklai"
+        ],
+        [
+          "tū",
+          "lānklai"
+        ],
+        [
+          "tāns/tenā/tennan",
+          "lānklai"
+        ],
+        [
+          "mes",
+          "lānklimai"
+        ],
+        [
+          "jūs",
+          "lānklitei"
+        ],
+        [
+          "tenēi/tennas",
+          "lānklai"
+        ]
+      ]
+    }
+  }
+}

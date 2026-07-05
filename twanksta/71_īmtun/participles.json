@@ -1,0 +1,184 @@
+{
+  "lemma": "īmtun",
+  "paradigm": "71",
+  "infinitive_stem": "īm",
+  "prusaspira": {
+    "participles": {
+      "present": "imānts",
+      "past": "immuns",
+      "passive": "īmts"
+    },
+    "optative": "īmsei",
+    "conjunctive": {
+      "sg_3pl": "īmlai",
+      "1pl": "īmlimai",
+      "2pl": "īmlitei"
+    },
+    "imperative": [
+      "īmsei",
+      "immais",
+      "immimai",
+      "immaiti"
+    ]
+  },
+  "twanksta": {
+    "participles": {
+      "present": {
+        "form": "imānts",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "imānts",
+              "pl": "imāntjai"
+            },
+            "Gen": {
+              "sg": "imāntis",
+              "pl": "imāntin"
+            },
+            "Dat": {
+              "sg": "imāntismu",
+              "pl": "imantimmans"
+            },
+            "Akk": {
+              "sg": "imāntin",
+              "pl": "imāntins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "imantī",
+              "pl": "imāntjas"
+            },
+            "Gen": {
+              "sg": "imāntjas",
+              "pl": "imāntjan"
+            },
+            "Dat": {
+              "sg": "imāntjai",
+              "pl": "imantjāmans"
+            },
+            "Akk": {
+              "sg": "imāntjan",
+              "pl": "imāntjans"
+            }
+          }
+        }
+      },
+      "past": {
+        "form": "immuns",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "immuns",
+              "pl": "immusis"
+            },
+            "Gen": {
+              "sg": "immusjas",
+              "pl": "immusin"
+            },
+            "Dat": {
+              "sg": "immusjasmu",
+              "pl": "immusimans"
+            },
+            "Akk": {
+              "sg": "immusin",
+              "pl": "immusins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "immusi",
+              "pl": "immusjas"
+            },
+            "Gen": {
+              "sg": "immusjas",
+              "pl": "immusjan"
+            },
+            "Dat": {
+              "sg": "immusjai",
+              "pl": "immusjamans"
+            },
+            "Akk": {
+              "sg": "immusjan",
+              "pl": "immusjans"
+            }
+          }
+        }
+      },
+      "passive": {
+        "form": "īmts",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "īmts",
+              "pl": "imtāi"
+            },
+            "Gen": {
+              "sg": "īmtas",
+              "pl": "īmtan"
+            },
+            "Dat": {
+              "sg": "īmtasmu",
+              "pl": "imtammans"
+            },
+            "Akk": {
+              "sg": "īmtan",
+              "pl": "īmtans"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "imtā",
+              "pl": "īmtas"
+            },
+            "Gen": {
+              "sg": "īmtas",
+              "pl": "īmtan"
+            },
+            "Dat": {
+              "sg": "īmtai",
+              "pl": "imtāmans"
+            },
+            "Akk": {
+              "sg": "īmtan",
+              "pl": "īmtans"
+            }
+          }
+        }
+      }
+    },
+    "optative": "īmsei",
+    "imperative": {
+      "2sg": "immais",
+      "2pl": "immaiti"
+    },
+    "subjunctive": {
+      "forms": [
+        [
+          "as",
+          "īmlai"
+        ],
+        [
+          "tū",
+          "īmlai"
+        ],
+        [
+          "tāns/tenā/tennan",
+          "īmlai"
+        ],
+        [
+          "mes",
+          "īmlimai"
+        ],
+        [
+          "jūs",
+          "īmlitei"
+        ],
+        [
+          "tenēi/tennas",
+          "īmlai"
+        ]
+      ]
+    }
+  }
+}

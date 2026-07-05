@@ -1,0 +1,59 @@
+[
+  {
+    "word": "sūns",
+    "paradigm": "43",
+    "gender": "masc",
+    "desc": "nom [Soūns 67]",
+    "audio": "",
+    "description": "",
+    "translations": {
+      "engl": [
+        "son"
+      ],
+      "miks": [
+        "Sohn"
+      ],
+      "leit": [
+        "sūnus"
+      ],
+      "latt": [
+        "dēls"
+      ],
+      "pols": [
+        "syn"
+      ],
+      "mask": [
+        "сын"
+      ]
+    },
+    "forms": {
+      "declension": [
+        {
+          "gender": "masc",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "sūns",
+              "plural": "sūnus"
+            },
+            {
+              "case": "Genitive",
+              "singular": "sūnus",
+              "plural": "sūnun"
+            },
+            {
+              "case": "Dative",
+              "singular": "sūnu",
+              "plural": "sunummans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "sūnun",
+              "plural": "sūnuns"
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,184 @@
+{
+  "lemma": "dītun",
+  "paradigm": "121",
+  "infinitive_stem": "dī",
+  "prusaspira": {
+    "participles": {
+      "present": "dīnts",
+      "past": "dīwuns",
+      "passive": "dīts"
+    },
+    "optative": "dīsei",
+    "conjunctive": {
+      "sg_3pl": "dīlai",
+      "1pl": "dīlimai",
+      "2pl": "dīlitei"
+    },
+    "imperative": [
+      "dīsei",
+      "dījais/dīs",
+      "dīmai",
+      "dījaiti/dīti"
+    ]
+  },
+  "twanksta": {
+    "participles": {
+      "present": {
+        "form": "dīnts",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "dīnts",
+              "pl": "dīntjai"
+            },
+            "Gen": {
+              "sg": "dīntis",
+              "pl": "dīntin"
+            },
+            "Dat": {
+              "sg": "dīntismu",
+              "pl": "dintimmans"
+            },
+            "Akk": {
+              "sg": "dīntin",
+              "pl": "dīntins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "dintī",
+              "pl": "dīntjas"
+            },
+            "Gen": {
+              "sg": "dīntjas",
+              "pl": "dīntjan"
+            },
+            "Dat": {
+              "sg": "dīntjai",
+              "pl": "dintjāmans"
+            },
+            "Akk": {
+              "sg": "dīntjan",
+              "pl": "dīntjans"
+            }
+          }
+        }
+      },
+      "past": {
+        "form": "dīwuns",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "dīwuns",
+              "pl": "dīwusis"
+            },
+            "Gen": {
+              "sg": "dīwusjas",
+              "pl": "dīwusin"
+            },
+            "Dat": {
+              "sg": "dīwusjasmu",
+              "pl": "dīwusimans"
+            },
+            "Akk": {
+              "sg": "dīwusin",
+              "pl": "dīwusins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "dīwusi",
+              "pl": "dīwusjas"
+            },
+            "Gen": {
+              "sg": "dīwusjas",
+              "pl": "dīwusjan"
+            },
+            "Dat": {
+              "sg": "dīwusjai",
+              "pl": "dīwusjamans"
+            },
+            "Akk": {
+              "sg": "dīwusjan",
+              "pl": "dīwusjans"
+            }
+          }
+        }
+      },
+      "passive": {
+        "form": "dīts",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "dīts",
+              "pl": "ditāi"
+            },
+            "Gen": {
+              "sg": "dītas",
+              "pl": "dītan"
+            },
+            "Dat": {
+              "sg": "dītasmu",
+              "pl": "ditammans"
+            },
+            "Akk": {
+              "sg": "dītan",
+              "pl": "dītans"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "ditā",
+              "pl": "dītas"
+            },
+            "Gen": {
+              "sg": "dītas",
+              "pl": "dītan"
+            },
+            "Dat": {
+              "sg": "dītai",
+              "pl": "ditāmans"
+            },
+            "Akk": {
+              "sg": "dītan",
+              "pl": "dītans"
+            }
+          }
+        }
+      }
+    },
+    "optative": "dīsei",
+    "imperative": {
+      "2sg": "dīs",
+      "2pl": "dīti"
+    },
+    "subjunctive": {
+      "forms": [
+        [
+          "as",
+          "dīlai"
+        ],
+        [
+          "tū",
+          "dīlai"
+        ],
+        [
+          "tāns/tenā/tennan",
+          "dīlai"
+        ],
+        [
+          "mes",
+          "dīlimai"
+        ],
+        [
+          "jūs",
+          "dīlitei"
+        ],
+        [
+          "tenēi/tennas",
+          "dīlai"
+        ]
+      ]
+    }
+  }
+}

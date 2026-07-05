@@ -1,0 +1,347 @@
+{
+  "10_dis.txt": {
+    "num": "10",
+    "lemma": "dis",
+    "found": 1
+  },
+  "11_stas.txt": {
+    "num": "11",
+    "lemma": "stas",
+    "found": 1
+  },
+  "12_tāns.txt": {
+    "num": "12",
+    "lemma": "tāns",
+    "found": 1
+  },
+  "13_tenā.txt": {
+    "num": "13",
+    "lemma": "tenā",
+    "found": 1
+  },
+  "14_tennan.txt": {
+    "num": "14",
+    "lemma": "tennan",
+    "found": 1
+  },
+  "15_šis.txt": {
+    "num": "15",
+    "lemma": "šis",
+    "found": 1
+  },
+  "16_subs.txt": {
+    "num": "16",
+    "lemma": "subs",
+    "found": 1
+  },
+  "17_wiss.txt": {
+    "num": "17",
+    "lemma": "wiss",
+    "found": 1
+  },
+  "18_kits.txt": {
+    "num": "18",
+    "lemma": "kits",
+    "found": 1
+  },
+  "19_kawīds.txt": {
+    "num": "19",
+    "lemma": "kawīds",
+    "found": 1
+  },
+  "20_majs.txt": {
+    "num": "20",
+    "lemma": "majs",
+    "found": 1
+  },
+  "21_aīns.txt": {
+    "num": "21",
+    "lemma": "aīns",
+    "found": 2
+  },
+  "22_abbai.txt": {
+    "num": "22",
+    "lemma": "abbai",
+    "found": 1
+  },
+  "23_dwāi.txt": {
+    "num": "23",
+    "lemma": "dwāi",
+    "found": 1
+  },
+  "24_trīs.txt": {
+    "num": "24",
+    "lemma": "trīs",
+    "found": 1
+  },
+  "25_debīks.txt": {
+    "num": "25",
+    "lemma": "debīks",
+    "found": 1
+  },
+  "26_labs.txt": {
+    "num": "26",
+    "lemma": "labs",
+    "found": 1
+  },
+  "27_weselīngis.txt": {
+    "num": "27",
+    "lemma": "weselīngis",
+    "found": 0
+  },
+  "27_wesselingi.txt": {
+    "num": "27",
+    "lemma": "wesselingi",
+    "found": 1
+  },
+  "28_māldaisis.txt": {
+    "num": "28",
+    "lemma": "māldaisis",
+    "found": 2
+  },
+  "29_sēnts.txt": {
+    "num": "29",
+    "lemma": "sēnts",
+    "found": 0
+  },
+  "30_āngus.txt": {
+    "num": "30",
+    "lemma": "āngus",
+    "found": 1
+  },
+  "30a_staūs.txt": {
+    "num": "30a",
+    "lemma": "staūs",
+    "found": 0
+  },
+  "31_līgus.txt": {
+    "num": "31",
+    "lemma": "līgus",
+    "found": 1
+  },
+  "32_wīrs.txt": {
+    "num": "32",
+    "lemma": "wīrs",
+    "found": 1
+  },
+  "33_šmaws.txt": {
+    "num": "33",
+    "lemma": "šmaws",
+    "found": 1
+  },
+  "34_aliskans.txt": {
+    "num": "34",
+    "lemma": "aliskans",
+    "found": 1
+  },
+  "35_mīstan.txt": {
+    "num": "35",
+    "lemma": "mīstan",
+    "found": 0
+  },
+  "35a_interwallin.txt": {
+    "num": "35a",
+    "lemma": "interwallin",
+    "found": 0
+  },
+  "36_wāiks.txt": {
+    "num": "36",
+    "lemma": "wāiks",
+    "found": 1
+  },
+  "37_pannin.txt": {
+    "num": "37",
+    "lemma": "pannin",
+    "found": 0
+  },
+  "37a_amzin.txt": {
+    "num": "37a",
+    "lemma": "amzin",
+    "found": 0
+  },
+  "38_gewinīs.txt": {
+    "num": "38",
+    "lemma": "gewinīs",
+    "found": 1
+  },
+  "39_rikīs.txt": {
+    "num": "39",
+    "lemma": "rikīs",
+    "found": 0
+  },
+  "40_kūgis.txt": {
+    "num": "40",
+    "lemma": "kūgis",
+    "found": 1
+  },
+  "40a_dulzis.txt": {
+    "num": "40a",
+    "lemma": "dulzis",
+    "found": 1
+  },
+  "40b_gīrbis.txt": {
+    "num": "40b",
+    "lemma": "gīrbis",
+    "found": 1
+  },
+  "40c_buccis.txt": {
+    "num": "40c",
+    "lemma": "buccis",
+    "found": 1
+  },
+  "41_klākis.txt": {
+    "num": "41",
+    "lemma": "klākis",
+    "found": 0
+  },
+  "42_tals.txt": {
+    "num": "42",
+    "lemma": "tals",
+    "found": 1
+  },
+  "43_sūns.txt": {
+    "num": "43",
+    "lemma": "sūns",
+    "found": 1
+  },
+  "44_pannu.txt": {
+    "num": "44",
+    "lemma": "pannu",
+    "found": 1
+  },
+  "45_mūsa.txt": {
+    "num": "45",
+    "lemma": "mūsa",
+    "found": 1
+  },
+  "46_spigsnā.txt": {
+    "num": "46",
+    "lemma": "spigsnā",
+    "found": 0
+  },
+  "47_āubirga.txt": {
+    "num": "47",
+    "lemma": "āubirga",
+    "found": 1
+  },
+  "48_galwā.txt": {
+    "num": "48",
+    "lemma": "galwā",
+    "found": 1
+  },
+  "49_auktimmisku.txt": {
+    "num": "49",
+    "lemma": "auktimmisku",
+    "found": 0
+  },
+  "50_garkīti.txt": {
+    "num": "50",
+    "lemma": "garkīti",
+    "found": 1
+  },
+  "50a_ķāsi.txt": {
+    "num": "50a",
+    "lemma": "ķāsi",
+    "found": 0
+  },
+  "51_martī.txt": {
+    "num": "51",
+    "lemma": "martī",
+    "found": 0
+  },
+  "51a_zansī.txt": {
+    "num": "51a",
+    "lemma": "zansī",
+    "found": 0
+  },
+  "52_bitti.txt": {
+    "num": "52",
+    "lemma": "bitti",
+    "found": 1
+  },
+  "53_zemē.txt": {
+    "num": "53",
+    "lemma": "zemē",
+    "found": 2
+  },
+  "54_pekūri.txt": {
+    "num": "54",
+    "lemma": "pekūri",
+    "found": 0
+  },
+  "55_Rhode.txt": {
+    "num": "55",
+    "lemma": "Rhode",
+    "found": 0
+  },
+  "56_gigānts.txt": {
+    "num": "56",
+    "lemma": "gigānts",
+    "found": 1
+  },
+  "57_dānts.txt": {
+    "num": "57",
+    "lemma": "dānts",
+    "found": 1
+  },
+  "58_klīts.txt": {
+    "num": "58",
+    "lemma": "klīts",
+    "found": 0
+  },
+  "59_kiŕksni.txt": {
+    "num": "59",
+    "lemma": "kiŕksni",
+    "found": 0
+  },
+  "60_aks.txt": {
+    "num": "60",
+    "lemma": "aks",
+    "found": 1
+  },
+  "61_kērmens.txt": {
+    "num": "61",
+    "lemma": "kērmens",
+    "found": 1
+  },
+  "62_emmens.txt": {
+    "num": "62",
+    "lemma": "emmens",
+    "found": 1
+  },
+  "63_sīmen.txt": {
+    "num": "63",
+    "lemma": "sīmen",
+    "found": 0
+  },
+  "64_zmūi.txt": {
+    "num": "64",
+    "lemma": "zmūi",
+    "found": 0
+  },
+  "65_brāti.txt": {
+    "num": "65",
+    "lemma": "brāti",
+    "found": 1
+  },
+  "66_mūti.txt": {
+    "num": "66",
+    "lemma": "mūti",
+    "found": 0
+  },
+  "67_dukti.txt": {
+    "num": "67",
+    "lemma": "dukti",
+    "found": 1
+  },
+  "70_tīrts.txt": {
+    "num": "70",
+    "lemma": "tīrts",
+    "found": 1
+  },
+  "9_kas.txt": {
+    "num": "9",
+    "lemma": "kas",
+    "found": 1
+  }
+}

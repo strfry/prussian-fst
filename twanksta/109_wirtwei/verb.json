@@ -1,0 +1,45 @@
+{
+  "lemma": "wirtwei",
+  "source": "twanksta",
+  "forms": {
+    "present": {
+      "1sg": "werda",
+      "2sg": "werda",
+      "3sg": "werda",
+      "1pl": "werdimai",
+      "2pl": "werditei",
+      "3pl": "werda"
+    },
+    "preterite": {
+      "1sg": "wirra",
+      "2sg": "wirra",
+      "3sg": "wirra",
+      "1pl": "wirramai",
+      "2pl": "wirratei",
+      "3pl": "wirra"
+    },
+    "perfect": {
+      "1sg": "asma\n                    wirruns / wirrusi",
+      "2sg": "assei\n                    wirruns / wirrusi",
+      "1pl": "asmai\n                    wirrusis / wirrusjas",
+      "2pl": "astei\n                    wirrusis / wirrusjas",
+      "3pl": "ast\n                    wirrusis / wirrusjas"
+    },
+    "future": {
+      "1sg": "wīrst\n                    wirruns / wirrusi",
+      "2sg": "wīrst\n                    wirruns / wirrusi",
+      "1pl": "wīrstmai\n                    wirrusis / wirrusjas",
+      "2pl": "wīrstei\n                    wirrusis / wirrusjas",
+      "3pl": "wīrst\n                    wirrusis / wirrusjas"
+    },
+    "optative": {
+      "form": "wirsei / werdais / werdaiti / werdants / werdantjai / werdantis / werdantin / werdantismu / werdantimmans / werdantin / werdantins / werdantī / werdantjas / werdantjas / werdantjan / werdantjai / werdantjāmans / werdantjan / werdantjans / werdanti / werdantjai / werdantis / werdantin / werdantismu / werdantimmans / werdantin / werdantins / wirruns / wirrusis / wirrusjas / wirrusin / wirrusjasmu / wirrusimans / wirrusin / wirrusins / wirrusi / wirrusjas / wirrusjas / wirrusjan / wirrusjai / wirrusjamans / wirrusjan / wirrusjans / wirrus / wirrus / wirrusjas / wirrusin / wirrusjasmu / wirrusimans / wirrus / wirrus / wirts / wirtāi / wirtas / wirtan / wirtasmu / wirtammans / wirtan / wirtans / wirtā / wirtas / wirtas / wirtan / wirtai / wirtāmans / wirtan / wirtans / wirtan / wirtāi / wirtas / wirtan / wirtasmu / wirtammans / wirtan / wirtans / wirlai / wirlai / wirlai / wirlimai / wirlitei / wirlai"
+    },
+    "imperative": {
+      "form": "werdais / werdaiti / werdants / werdantjai / werdantis / werdantin / werdantismu / werdantimmans / werdantin / werdantins / werdantī / werdantjas / werdantjas / werdantjan / werdantjai / werdantjāmans / werdantjan / werdantjans / werdanti / werdantjai / werdantis / werdantin / werdantismu / werdantimmans / werdantin / werdantins / wirruns / wirrusis / wirrusjas / wirrusin / wirrusjasmu / wirrusimans / wirrusin / wirrusins / wirrusi / wirrusjas / wirrusjas / wirrusjan / wirrusjai / wirrusjamans / wirrusjan / wirrusjans / wirrus / wirrus / wirrusjas / wirrusin / wirrusjasmu / wirrusimans / wirrus / wirrus / wirts / wirtāi / wirtas / wirtan / wirtasmu / wirtammans / wirtan / wirtans / wirtā / wirtas / wirtas / wirtan / wirtai / wirtāmans / wirtan / wirtans / wirtan / wirtāi / wirtas / wirtan / wirtasmu / wirtammans / wirtan / wirtans / wirlai / wirlai / wirlai / wirlimai / wirlitei / wirlai"
+    }
+  },
+  "translations": [
+    "1to boil i"
+  ]
+}

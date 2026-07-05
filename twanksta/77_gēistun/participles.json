@@ -1,0 +1,183 @@
+{
+  "lemma": "gēistun",
+  "paradigm": "77",
+  "infinitive_stem": "gēis",
+  "prusaspira": {
+    "participles": {
+      "present": "gēidints",
+      "past": "gēiduns"
+    },
+    "optative": "gēisei",
+    "conjunctive": {
+      "sg_3pl": "gēidlai",
+      "1pl": "gēidlimai",
+      "2pl": "gēidlitei"
+    },
+    "imperative": [
+      "gēisei",
+      "gēideis",
+      "gēidimai",
+      "gēideiti"
+    ]
+  },
+  "twanksta": {
+    "participles": {
+      "present": {
+        "form": "gēidints",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "gēidints",
+              "pl": "gēidintjai"
+            },
+            "Gen": {
+              "sg": "gēidintis",
+              "pl": "gēidintin"
+            },
+            "Dat": {
+              "sg": "gēidintismu",
+              "pl": "geidintimmans"
+            },
+            "Akk": {
+              "sg": "gēidintin",
+              "pl": "gēidintins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "geidintī",
+              "pl": "gēidintjas"
+            },
+            "Gen": {
+              "sg": "gēidintjas",
+              "pl": "gēidintjan"
+            },
+            "Dat": {
+              "sg": "gēidintjai",
+              "pl": "geidintjāmans"
+            },
+            "Akk": {
+              "sg": "gēidintjan",
+              "pl": "gēidintjans"
+            }
+          }
+        }
+      },
+      "past": {
+        "form": "gēiduns",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "gēiduns",
+              "pl": "gēidusis"
+            },
+            "Gen": {
+              "sg": "gēidusjas",
+              "pl": "gēidusin"
+            },
+            "Dat": {
+              "sg": "gēidusjasmu",
+              "pl": "gēidusimans"
+            },
+            "Akk": {
+              "sg": "gēidusin",
+              "pl": "gēidusins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "gēidusi",
+              "pl": "gēidusjas"
+            },
+            "Gen": {
+              "sg": "gēidusjas",
+              "pl": "gēidusjan"
+            },
+            "Dat": {
+              "sg": "gēidusjai",
+              "pl": "gēidusjamans"
+            },
+            "Akk": {
+              "sg": "gēidusjan",
+              "pl": "gēidusjans"
+            }
+          }
+        }
+      },
+      "passive": {
+        "form": "gēists",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "gēists",
+              "pl": "geistāi"
+            },
+            "Gen": {
+              "sg": "gēistas",
+              "pl": "gēistan"
+            },
+            "Dat": {
+              "sg": "gēistasmu",
+              "pl": "geistammans"
+            },
+            "Akk": {
+              "sg": "gēistan",
+              "pl": "gēistans"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "geistā",
+              "pl": "gēistas"
+            },
+            "Gen": {
+              "sg": "gēistas",
+              "pl": "gēistan"
+            },
+            "Dat": {
+              "sg": "gēistai",
+              "pl": "geistāmans"
+            },
+            "Akk": {
+              "sg": "gēistan",
+              "pl": "gēistans"
+            }
+          }
+        }
+      }
+    },
+    "optative": "gēidsei",
+    "imperative": {
+      "2sg": "gēidjais",
+      "2pl": "gēidjaiti"
+    },
+    "subjunctive": {
+      "forms": [
+        [
+          "as",
+          "gēidlai"
+        ],
+        [
+          "tū",
+          "gēidlai"
+        ],
+        [
+          "tāns/tenā/tennan",
+          "gēidlai"
+        ],
+        [
+          "mes",
+          "gēidlimai"
+        ],
+        [
+          "jūs",
+          "gēidlitei"
+        ],
+        [
+          "tenēi/tennas",
+          "gēidlai"
+        ]
+      ]
+    }
+  }
+}

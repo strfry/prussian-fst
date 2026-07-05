@@ -1,0 +1,174 @@
+Indicative mood
+Present     as     madli     tū     madli     tāns/tenā/tennan     madli     mes     madlimai     jūs     madlitei                          tenēi/tennas     madli
+Past
+as     madlijja     tū     madlijja     tāns/tenā/tennan     madlijja     mes     madlīmai     jūs     madlītei                          tenēi/tennas     madlijja
+Perfect     as     asma
+madlīwuns / madlīwusi
+tū     assei
+madlīwuns / madlīwusi
+tāns/tenā     ast
+madlīwuns / madlīwusi
+tennan     ast
+madlīwus     mes     asmai
+madlīwusis / madlīwusjas       jūs     astei
+madlīwusis / madlīwusjas     tenēi/tennas     ast
+madlīwusis / madlīwusjas
+Future     as     wīrst
+madlīwuns / madlīwusi     tū     wīrst
+madlīwuns / madlīwusi     tāns/tenā     wīrst
+madlīwuns / madlīwusi     tennan     wīrst
+madlīwus     mes     wīrstmai
+madlīwusis / madlīwusjas     jūs     wīrstei
+madlīwusis / madlīwusjas     tenēi/tennas     wīrst
+madlīwusis / madlīwusjas
+Optative
+madlīsei
+Imperative
+(tū)
+madlīs
+(jūs)
+madlīti
+Participle
+Present
+►   					 madlīnts
+masc
+sing
+plur
+Nominative
+madlīnts
+madlīntjai
+Genitive
+madlīntis
+madlīntin
+Dative
+madlīntismu
+madlintimmans
+Accusative
+madlīntin
+madlīntins
+fem
+sing
+plur
+Nominative
+madlintī
+madlīntjas
+Genitive
+madlīntjas
+madlīntjan
+Dative
+madlīntjai
+madlintjāmans
+Accusative
+madlīntjan
+madlīntjans
+neut
+sing
+plur
+Nominative
+madlīnti
+madlīntjai
+Genitive
+madlīntis
+madlīntin
+Dative
+madlīntismu
+madlintimmans
+Accusative
+madlīntin
+madlīntins
+Past      ►  					 madlīwuns
+masc
+sing
+plur
+Nominative
+madlīwuns
+madlīwusis
+Genitive
+madlīwusjas
+madlīwusin
+Dative
+madlīwusjasmu
+madlīwusimans
+Accusative
+madlīwusin
+madlīwusins
+fem
+sing
+plur
+Nominative
+madlīwusi
+madlīwusjas
+Genitive
+madlīwusjas
+madlīwusjan
+Dative
+madlīwusjai
+madlīwusjamans
+Accusative
+madlīwusjan
+madlīwusjans
+neut
+sing
+plur
+Nominative
+madlīwus
+madlīwus
+Genitive
+madlīwusjas
+madlīwusin
+Dative
+madlīwusjasmu
+madlīwusimans
+Accusative
+madlīwus
+madlīwus
+Passive
+►
+madlīts
+masc
+sing
+plur
+Nominative
+madlīts
+madlitāi
+Genitive
+madlītas
+madlītan
+Dative
+madlītasmu
+madlitammans
+Accusative
+madlītan
+madlītans
+fem
+sing
+plur
+Nominative
+madlitā
+madlītas
+Genitive
+madlītas
+madlītan
+Dative
+madlītai
+madlitāmans
+Accusative
+madlītan
+madlītans
+neut
+sing
+plur
+Nominative
+madlītan
+madlitāi
+Genitive
+madlītas
+madlītan
+Dative
+madlītasmu
+madlitammans
+Accusative
+madlītan
+madlītans
+Subjunctive
+as     madlīlai     tū     madlīlai     tāns/tenā/tennan     madlīlai     mes     madlīlimai     jūs     madlīlitei     tenēi/tennas     madlīlai

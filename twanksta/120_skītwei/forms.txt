@@ -1,0 +1,174 @@
+Indicative mood
+Present     as     skīma     tū     skīsei     tāns/tenā/tennan     skīt     mes     skīmai     jūs     skītei                          tenēi/tennas     skīt
+Past
+as     skīja     tū     skīja     tāns/tenā/tennan     skīja     mes     skīmai     jūs     skītei                          tenēi/tennas     skīja
+Perfect     as     asma
+skīwuns / skīwusi
+tū     assei
+skīwuns / skīwusi
+tāns/tenā     ast
+skīwuns / skīwusi
+tennan     ast
+skīwus     mes     asmai
+skīwusis / skīwusjas       jūs     astei
+skīwusis / skīwusjas     tenēi/tennas     ast
+skīwusis / skīwusjas
+Future     as     wīrst
+skīwuns / skīwusi     tū     wīrst
+skīwuns / skīwusi     tāns/tenā     wīrst
+skīwuns / skīwusi     tennan     wīrst
+skīwus     mes     wīrstmai
+skīwusis / skīwusjas     jūs     wīrstei
+skīwusis / skīwusjas     tenēi/tennas     wīrst
+skīwusis / skīwusjas
+Optative
+skīsei
+Imperative
+(tū)
+skīs
+(jūs)
+skīti
+Participle
+Present
+►   					 skīnts
+masc
+sing
+plur
+Nominative
+skīnts
+skīntjai
+Genitive
+skīntis
+skīntin
+Dative
+skīntismu
+skintimmans
+Accusative
+skīntin
+skīntins
+fem
+sing
+plur
+Nominative
+skintī
+skīntjas
+Genitive
+skīntjas
+skīntjan
+Dative
+skīntjai
+skintjāmans
+Accusative
+skīntjan
+skīntjans
+neut
+sing
+plur
+Nominative
+skīnti
+skīntjai
+Genitive
+skīntis
+skīntin
+Dative
+skīntismu
+skintimmans
+Accusative
+skīntin
+skīntins
+Past      ►  					 skīwuns
+masc
+sing
+plur
+Nominative
+skīwuns
+skīwusis
+Genitive
+skīwusjas
+skīwusin
+Dative
+skīwusjasmu
+skīwusimans
+Accusative
+skīwusin
+skīwusins
+fem
+sing
+plur
+Nominative
+skīwusi
+skīwusjas
+Genitive
+skīwusjas
+skīwusjan
+Dative
+skīwusjai
+skīwusjamans
+Accusative
+skīwusjan
+skīwusjans
+neut
+sing
+plur
+Nominative
+skīwus
+skīwus
+Genitive
+skīwusjas
+skīwusin
+Dative
+skīwusjasmu
+skīwusimans
+Accusative
+skīwus
+skīwus
+Passive
+►
+skīts
+masc
+sing
+plur
+Nominative
+skīts
+skitāi
+Genitive
+skītas
+skītan
+Dative
+skītasmu
+skitammans
+Accusative
+skītan
+skītans
+fem
+sing
+plur
+Nominative
+skitā
+skītas
+Genitive
+skītas
+skītan
+Dative
+skītai
+skitāmans
+Accusative
+skītan
+skītans
+neut
+sing
+plur
+Nominative
+skītan
+skitāi
+Genitive
+skītas
+skītan
+Dative
+skītasmu
+skitammans
+Accusative
+skītan
+skītans
+Subjunctive
+as     skīlai     tū     skīlai     tāns/tenā/tennan     skīlai     mes     skīlimai     jūs     skīlitei     tenēi/tennas     skīlai

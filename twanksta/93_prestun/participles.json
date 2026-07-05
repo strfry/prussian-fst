@@ -1,0 +1,184 @@
+{
+  "lemma": "prestun",
+  "paradigm": "93",
+  "infinitive_stem": "pres",
+  "prusaspira": {
+    "participles": {
+      "present": "prestānts",
+      "past": "prettuns",
+      "passive": "prestas"
+    },
+    "optative": "pressei",
+    "conjunctive": {
+      "sg_3pl": "pretlai",
+      "1pl": "pretlimai",
+      "2pl": "pretlitei"
+    },
+    "imperative": [
+      "pressei",
+      "prestais",
+      "prestimai",
+      "prestaiti"
+    ]
+  },
+  "twanksta": {
+    "participles": {
+      "present": {
+        "form": "prestānts",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "prestānts",
+              "pl": "prestāntjai"
+            },
+            "Gen": {
+              "sg": "prestāntis",
+              "pl": "prestāntin"
+            },
+            "Dat": {
+              "sg": "prestāntismu",
+              "pl": "prestantimmans"
+            },
+            "Akk": {
+              "sg": "prestāntin",
+              "pl": "prestāntins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "prestantī",
+              "pl": "prestāntjas"
+            },
+            "Gen": {
+              "sg": "prestāntjas",
+              "pl": "prestāntjan"
+            },
+            "Dat": {
+              "sg": "prestāntjai",
+              "pl": "prestantjāmans"
+            },
+            "Akk": {
+              "sg": "prestāntjan",
+              "pl": "prestāntjans"
+            }
+          }
+        }
+      },
+      "past": {
+        "form": "prettuns",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "prettuns",
+              "pl": "prettusis"
+            },
+            "Gen": {
+              "sg": "prettusjas",
+              "pl": "prettusin"
+            },
+            "Dat": {
+              "sg": "prettusjasmu",
+              "pl": "prettusimans"
+            },
+            "Akk": {
+              "sg": "prettusin",
+              "pl": "prettusins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "prettusi",
+              "pl": "prettusjas"
+            },
+            "Gen": {
+              "sg": "prettusjas",
+              "pl": "prettusjan"
+            },
+            "Dat": {
+              "sg": "prettusjai",
+              "pl": "prettusjamans"
+            },
+            "Akk": {
+              "sg": "prettusjan",
+              "pl": "prettusjans"
+            }
+          }
+        }
+      },
+      "passive": {
+        "form": "prests",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "prests",
+              "pl": "prestāi"
+            },
+            "Gen": {
+              "sg": "prestas",
+              "pl": "prestan"
+            },
+            "Dat": {
+              "sg": "prestasmu",
+              "pl": "prestammans"
+            },
+            "Akk": {
+              "sg": "prestan",
+              "pl": "prestans"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "prestā",
+              "pl": "prestas"
+            },
+            "Gen": {
+              "sg": "prestas",
+              "pl": "prestan"
+            },
+            "Dat": {
+              "sg": "prestai",
+              "pl": "prestāmans"
+            },
+            "Akk": {
+              "sg": "prestan",
+              "pl": "prestans"
+            }
+          }
+        }
+      }
+    },
+    "optative": "pretsei",
+    "imperative": {
+      "2sg": "prestais",
+      "2pl": "prestaiti"
+    },
+    "subjunctive": {
+      "forms": [
+        [
+          "as",
+          "pretlai"
+        ],
+        [
+          "tū",
+          "pretlai"
+        ],
+        [
+          "tāns/tenā/tennan",
+          "pretlai"
+        ],
+        [
+          "mes",
+          "pretlimai"
+        ],
+        [
+          "jūs",
+          "pretlitei"
+        ],
+        [
+          "tenēi/tennas",
+          "pretlai"
+        ]
+      ]
+    }
+  }
+}

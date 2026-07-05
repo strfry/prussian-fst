@@ -1,0 +1,184 @@
+{
+  "lemma": "waīstun",
+  "paradigm": "122",
+  "infinitive_stem": "waīs",
+  "prusaspira": {
+    "participles": {
+      "present": "waīdants",
+      "past": "waīduns",
+      "passive": "waīstas"
+    },
+    "optative": "waīsei",
+    "conjunctive": {
+      "sg_3pl": "waīdlai",
+      "1pl": "waīdlimai",
+      "2pl": "waīdlitei"
+    },
+    "imperative": [
+      "waīsei",
+      "waīdais",
+      "waīdimai",
+      "waīdaiti"
+    ]
+  },
+  "twanksta": {
+    "participles": {
+      "present": {
+        "form": "waīdants",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "waīdants",
+              "pl": "waīdantjai"
+            },
+            "Gen": {
+              "sg": "waīdantis",
+              "pl": "waīdantin"
+            },
+            "Dat": {
+              "sg": "waīdantismu",
+              "pl": "waidantimmans"
+            },
+            "Akk": {
+              "sg": "waīdantin",
+              "pl": "waīdantins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "waidantī",
+              "pl": "waīdantjas"
+            },
+            "Gen": {
+              "sg": "waīdantjas",
+              "pl": "waīdantjan"
+            },
+            "Dat": {
+              "sg": "waīdantjai",
+              "pl": "waidantjāmans"
+            },
+            "Akk": {
+              "sg": "waīdantjan",
+              "pl": "waīdantjans"
+            }
+          }
+        }
+      },
+      "past": {
+        "form": "waīduns",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "waīduns",
+              "pl": "waīdusis"
+            },
+            "Gen": {
+              "sg": "waīdusjas",
+              "pl": "waīdusin"
+            },
+            "Dat": {
+              "sg": "waīdusjasmu",
+              "pl": "waīdusimans"
+            },
+            "Akk": {
+              "sg": "waīdusin",
+              "pl": "waīdusins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "waīdusi",
+              "pl": "waīdusjas"
+            },
+            "Gen": {
+              "sg": "waīdusjas",
+              "pl": "waīdusjan"
+            },
+            "Dat": {
+              "sg": "waīdusjai",
+              "pl": "waīdusjamans"
+            },
+            "Akk": {
+              "sg": "waīdusjan",
+              "pl": "waīdusjans"
+            }
+          }
+        }
+      },
+      "passive": {
+        "form": "waīsts",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "waīsts",
+              "pl": "waistāi"
+            },
+            "Gen": {
+              "sg": "waīstas",
+              "pl": "waīstan"
+            },
+            "Dat": {
+              "sg": "waīstasmu",
+              "pl": "waistammans"
+            },
+            "Akk": {
+              "sg": "waīstan",
+              "pl": "waīstans"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "waistā",
+              "pl": "waīstas"
+            },
+            "Gen": {
+              "sg": "waīstas",
+              "pl": "waīstan"
+            },
+            "Dat": {
+              "sg": "waīstai",
+              "pl": "waistāmans"
+            },
+            "Akk": {
+              "sg": "waīstan",
+              "pl": "waīstans"
+            }
+          }
+        }
+      }
+    },
+    "optative": "waīdsei",
+    "imperative": {
+      "2sg": "waīdais",
+      "2pl": "waīdaiti"
+    },
+    "subjunctive": {
+      "forms": [
+        [
+          "as",
+          "waīdlai"
+        ],
+        [
+          "tū",
+          "waīdlai"
+        ],
+        [
+          "tāns/tenā/tennan",
+          "waīdlai"
+        ],
+        [
+          "mes",
+          "waīdlimai"
+        ],
+        [
+          "jūs",
+          "waīdlitei"
+        ],
+        [
+          "tenēi/tennas",
+          "waīdlai"
+        ]
+      ]
+    }
+  }
+}

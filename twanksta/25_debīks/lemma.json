@@ -1,0 +1,281 @@
+[
+  {
+    "word": "debīks",
+    "paradigm": "25",
+    "gender": "",
+    "desc": "aj [debīkan 75]",
+    "audio": "",
+    "description": "",
+    "translations": {
+      "engl": [
+        "big",
+        "large"
+      ],
+      "miks": [
+        "groß"
+      ],
+      "leit": [
+        "didelis"
+      ],
+      "latt": [
+        "liels"
+      ],
+      "pols": [
+        "wielki",
+        "duży"
+      ],
+      "mask": [
+        "большой"
+      ]
+    },
+    "forms": {
+      "declension": [
+        {
+          "gender": "masc",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "debīks",
+              "plural": "debīkai"
+            },
+            {
+              "case": "Genitive",
+              "singular": "debīkas",
+              "plural": "debīkan"
+            },
+            {
+              "case": "Dative",
+              "singular": "debīkasmu",
+              "plural": "debīkamans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "debīkan",
+              "plural": "debīkans"
+            }
+          ]
+        },
+        {
+          "gender": "fem",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "debīka",
+              "plural": "debīkas"
+            },
+            {
+              "case": "Genitive",
+              "singular": "debīkas",
+              "plural": "debīkan"
+            },
+            {
+              "case": "Dative",
+              "singular": "debīkai",
+              "plural": "debīkamans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "debīkan",
+              "plural": "debīkans"
+            }
+          ]
+        },
+        {
+          "gender": "neut",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "debīkan",
+              "plural": "debīkai"
+            },
+            {
+              "case": "Genitive",
+              "singular": "debīkas",
+              "plural": "debīkan"
+            },
+            {
+              "case": "Dative",
+              "singular": "debīkasmu",
+              "plural": "debīkamans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "debīkan",
+              "plural": "debīkans"
+            }
+          ]
+        },
+        {
+          "gender": "",
+          "cases": [
+            {
+              "case": "",
+              "singular": "debīks",
+              "plural": ""
+            },
+            {
+              "case": "Nominative",
+              "singular": "māisess",
+              "plural": "māisesai"
+            },
+            {
+              "case": "Genitive",
+              "singular": "māisesas",
+              "plural": "māisesan"
+            },
+            {
+              "case": "Dative",
+              "singular": "māisesasmu",
+              "plural": "māisesamans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "māisesan",
+              "plural": "māisesans"
+            }
+          ]
+        },
+        {
+          "gender": "fem",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "māisesa",
+              "plural": "māisesas"
+            },
+            {
+              "case": "Genitive",
+              "singular": "māisesas",
+              "plural": "māisesan"
+            },
+            {
+              "case": "Dative",
+              "singular": "māisesai",
+              "plural": "māisesamans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "māisesan",
+              "plural": "māisesans"
+            }
+          ]
+        },
+        {
+          "gender": "neut",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "māisesan",
+              "plural": "māisesai"
+            },
+            {
+              "case": "Genitive",
+              "singular": "māisesas",
+              "plural": "māisesan"
+            },
+            {
+              "case": "Dative",
+              "singular": "māisesasmu",
+              "plural": "māisesamans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "māisesan",
+              "plural": "māisesans"
+            }
+          ]
+        },
+        {
+          "gender": "masc",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "ukamāisess",
+              "plural": "ukamāisesai"
+            },
+            {
+              "case": "Genitive",
+              "singular": "ukamāisesas",
+              "plural": "ukamāisesan"
+            },
+            {
+              "case": "Dative",
+              "singular": "ukamāisesasmu",
+              "plural": "ukamāisesamans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "ukamāisesan",
+              "plural": "ukamāisesans"
+            }
+          ]
+        },
+        {
+          "gender": "fem",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "ukamāisesa",
+              "plural": "ukamāisesas"
+            },
+            {
+              "case": "Genitive",
+              "singular": "ukamāisesas",
+              "plural": "ukamāisesan"
+            },
+            {
+              "case": "Dative",
+              "singular": "ukamāisesai",
+              "plural": "ukamāisesamans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "ukamāisesan",
+              "plural": "ukamāisesans"
+            }
+          ]
+        },
+        {
+          "gender": "neut",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "ukamāisesan",
+              "plural": "ukamāisesai"
+            },
+            {
+              "case": "Genitive",
+              "singular": "ukamāisesas",
+              "plural": "ukamāisesan"
+            },
+            {
+              "case": "Dative",
+              "singular": "ukamāisesasmu",
+              "plural": "ukamāisesamans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "ukamāisesan",
+              "plural": "ukamāisesans"
+            }
+          ]
+        },
+        {
+          "gender": "",
+          "cases": [
+            {
+              "case": "",
+              "singular": "tūlan",
+              "plural": "tūls"
+            }
+          ]
+        }
+      ],
+      "adverb": {
+        "positive": "tūlan",
+        "comparative": "tūls",
+        "superlative": "ukatūls"
+      }
+    }
+  }
+]

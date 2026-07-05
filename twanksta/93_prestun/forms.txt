@@ -1,0 +1,174 @@
+Indicative mood
+Present     as     presta     tū     presta     tāns/tenā/tennan     presta     mes     prestimai     jūs     prestitei                          tenēi/tennas     presta
+Past
+as     pretta     tū     pretta     tāns/tenā/tennan     pretta     mes     prettamai     jūs     prettatei                          tenēi/tennas     pretta
+Perfect     as     asma
+prettuns / prettusi
+tū     assei
+prettuns / prettusi
+tāns/tenā     ast
+prettuns / prettusi
+tennan     ast
+prettus     mes     asmai
+prettusis / prettusjas       jūs     astei
+prettusis / prettusjas     tenēi/tennas     ast
+prettusis / prettusjas
+Future     as     wīrst
+prettuns / prettusi     tū     wīrst
+prettuns / prettusi     tāns/tenā     wīrst
+prettuns / prettusi     tennan     wīrst
+prettus     mes     wīrstmai
+prettusis / prettusjas     jūs     wīrstei
+prettusis / prettusjas     tenēi/tennas     wīrst
+prettusis / prettusjas
+Optative
+pretsei
+Imperative
+(tū)
+prestais
+(jūs)
+prestaiti
+Participle
+Present
+►   					 prestānts
+masc
+sing
+plur
+Nominative
+prestānts
+prestāntjai
+Genitive
+prestāntis
+prestāntin
+Dative
+prestāntismu
+prestantimmans
+Accusative
+prestāntin
+prestāntins
+fem
+sing
+plur
+Nominative
+prestantī
+prestāntjas
+Genitive
+prestāntjas
+prestāntjan
+Dative
+prestāntjai
+prestantjāmans
+Accusative
+prestāntjan
+prestāntjans
+neut
+sing
+plur
+Nominative
+prestānti
+prestāntjai
+Genitive
+prestāntis
+prestāntin
+Dative
+prestāntismu
+prestantimmans
+Accusative
+prestāntin
+prestāntins
+Past      ►  					 prettuns
+masc
+sing
+plur
+Nominative
+prettuns
+prettusis
+Genitive
+prettusjas
+prettusin
+Dative
+prettusjasmu
+prettusimans
+Accusative
+prettusin
+prettusins
+fem
+sing
+plur
+Nominative
+prettusi
+prettusjas
+Genitive
+prettusjas
+prettusjan
+Dative
+prettusjai
+prettusjamans
+Accusative
+prettusjan
+prettusjans
+neut
+sing
+plur
+Nominative
+prettus
+prettus
+Genitive
+prettusjas
+prettusin
+Dative
+prettusjasmu
+prettusimans
+Accusative
+prettus
+prettus
+Passive
+►
+prests
+masc
+sing
+plur
+Nominative
+prests
+prestāi
+Genitive
+prestas
+prestan
+Dative
+prestasmu
+prestammans
+Accusative
+prestan
+prestans
+fem
+sing
+plur
+Nominative
+prestā
+prestas
+Genitive
+prestas
+prestan
+Dative
+prestai
+prestāmans
+Accusative
+prestan
+prestans
+neut
+sing
+plur
+Nominative
+prestan
+prestāi
+Genitive
+prestas
+prestan
+Dative
+prestasmu
+prestammans
+Accusative
+prestan
+prestans
+Subjunctive
+as     pretlai     tū     pretlai     tāns/tenā/tennan     pretlai     mes     pretlimai     jūs     pretlitei     tenēi/tennas     pretlai

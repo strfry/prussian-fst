@@ -1,0 +1,45 @@
+{
+  "lemma": "perwaldītun",
+  "source": "twanksta",
+  "forms": {
+    "present": {
+      "1sg": "perwalda",
+      "2sg": "perwalda",
+      "3sg": "perwalda",
+      "1pl": "perwaldimai",
+      "2pl": "perwalditei",
+      "3pl": "perwalda"
+    },
+    "preterite": {
+      "1sg": "perwaldīja",
+      "2sg": "perwaldīja",
+      "3sg": "perwaldīja",
+      "1pl": "perwaldījamai",
+      "2pl": "perwaldījatei",
+      "3pl": "perwaldīja"
+    },
+    "perfect": {
+      "1sg": "asma\n                    perwaldīwuns / perwaldīwusi",
+      "2sg": "assei\n                    perwaldīwuns / perwaldīwusi",
+      "1pl": "asmai\n                    perwaldīwusis / perwaldīwusjas",
+      "2pl": "astei\n                    perwaldīwusis / perwaldīwusjas",
+      "3pl": "ast\n                    perwaldīwusis / perwaldīwusjas"
+    },
+    "future": {
+      "1sg": "wīrst\n                    perwaldīwuns / perwaldīwusi",
+      "2sg": "wīrst\n                    perwaldīwuns / perwaldīwusi",
+      "1pl": "wīrstmai\n                    perwaldīwusis / perwaldīwusjas",
+      "2pl": "wīrstei\n                    perwaldīwusis / perwaldīwusjas",
+      "3pl": "wīrst\n                    perwaldīwusis / perwaldīwusjas"
+    },
+    "optative": {
+      "form": "perwaldīsei / perwaldais / perwaldaiti / perwaldants / perwaldantjai / perwaldantis / perwaldantin / perwaldantismu / perwaldantimmans / perwaldantin / perwaldantins / perwaldantī / perwaldantjas / perwaldantjas / perwaldantjan / perwaldantjai / perwaldantjāmans / perwaldantjan / perwaldantjans / perwaldanti / perwaldantjai / perwaldantis / perwaldantin / perwaldantismu / perwaldantimmans / perwaldantin / perwaldantins / perwaldīwuns / perwaldīwusis / perwaldīwusjas / perwaldīwusin / perwaldīwusjasmu / perwaldīwusimans / perwaldīwusin / perwaldīwusins / perwaldīwusi / perwaldīwusjas / perwaldīwusjas / perwaldīwusjan / perwaldīwusjai / perwaldīwusjamans / perwaldīwusjan / perwaldīwusjans / perwaldīwus / perwaldīwus / perwaldīwusjas / perwaldīwusin / perwaldīwusjasmu / perwaldīwusimans / perwaldīwus / perwaldīwus / perwaldīts / perwalditāi / perwaldītas / perwaldītan / perwaldītasmu / perwalditammans / perwaldītan / perwaldītans / perwalditā / perwaldītas / perwaldītas / perwaldītan / perwaldītai / perwalditāmans / perwaldītan / perwaldītans / perwaldītan / perwalditāi / perwaldītas / perwaldītan / perwaldītasmu / perwalditammans / perwaldītan / perwaldītans / perwaldīlai / perwaldīlai / perwaldīlai / perwaldīlimai / perwaldīlitei / perwaldīlai"
+    },
+    "imperative": {
+      "form": "perwaldais / perwaldaiti / perwaldants / perwaldantjai / perwaldantis / perwaldantin / perwaldantismu / perwaldantimmans / perwaldantin / perwaldantins / perwaldantī / perwaldantjas / perwaldantjas / perwaldantjan / perwaldantjai / perwaldantjāmans / perwaldantjan / perwaldantjans / perwaldanti / perwaldantjai / perwaldantis / perwaldantin / perwaldantismu / perwaldantimmans / perwaldantin / perwaldantins / perwaldīwuns / perwaldīwusis / perwaldīwusjas / perwaldīwusin / perwaldīwusjasmu / perwaldīwusimans / perwaldīwusin / perwaldīwusins / perwaldīwusi / perwaldīwusjas / perwaldīwusjas / perwaldīwusjan / perwaldīwusjai / perwaldīwusjamans / perwaldīwusjan / perwaldīwusjans / perwaldīwus / perwaldīwus / perwaldīwusjas / perwaldīwusin / perwaldīwusjasmu / perwaldīwusimans / perwaldīwus / perwaldīwus / perwaldīts / perwalditāi / perwaldītas / perwaldītan / perwaldītasmu / perwalditammans / perwaldītan / perwaldītans / perwalditā / perwaldītas / perwaldītas / perwaldītan / perwaldītai / perwalditāmans / perwaldītan / perwaldītans / perwaldītan / perwalditāi / perwaldītas / perwaldītan / perwaldītasmu / perwalditammans / perwaldītan / perwaldītans / perwaldīlai / perwaldīlai / perwaldīlai / perwaldīlimai / perwaldīlitei / perwaldīlai"
+    }
+  },
+  "translations": [
+    "1to administer"
+  ]
+}

@@ -1,0 +1,183 @@
+{
+  "lemma": "grīkitun",
+  "paradigm": "138",
+  "infinitive_stem": "grīki",
+  "prusaspira": {
+    "participles": {
+      "present": "grīkints",
+      "past": "grīkiwuns"
+    },
+    "optative": "grīkisei",
+    "conjunctive": {
+      "sg_3pl": "grīkilai",
+      "1pl": "grīkilimai",
+      "2pl": "grīkilitei"
+    },
+    "imperative": [
+      "grīkisei",
+      "grīkis",
+      "grīkimai",
+      "grīkiti"
+    ]
+  },
+  "twanksta": {
+    "participles": {
+      "present": {
+        "form": "abōnints",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "abōnints",
+              "pl": "abōnintjai"
+            },
+            "Gen": {
+              "sg": "abōnintis",
+              "pl": "abōnintin"
+            },
+            "Dat": {
+              "sg": "abōnintismu",
+              "pl": "abonintimmans"
+            },
+            "Akk": {
+              "sg": "abōnintin",
+              "pl": "abōnintins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "abonintī",
+              "pl": "abōnintjas"
+            },
+            "Gen": {
+              "sg": "abōnintjas",
+              "pl": "abōnintjan"
+            },
+            "Dat": {
+              "sg": "abōnintjai",
+              "pl": "abonintjāmans"
+            },
+            "Akk": {
+              "sg": "abōnintjan",
+              "pl": "abōnintjans"
+            }
+          }
+        }
+      },
+      "past": {
+        "form": "abōniwuns",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "abōniwuns",
+              "pl": "abōniwusis"
+            },
+            "Gen": {
+              "sg": "abōniwusjas",
+              "pl": "abōniwusin"
+            },
+            "Dat": {
+              "sg": "abōniwusjasmu",
+              "pl": "abōniwusimans"
+            },
+            "Akk": {
+              "sg": "abōniwusin",
+              "pl": "abōniwusins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "abōniwusi",
+              "pl": "abōniwusjas"
+            },
+            "Gen": {
+              "sg": "abōniwusjas",
+              "pl": "abōniwusjan"
+            },
+            "Dat": {
+              "sg": "abōniwusjai",
+              "pl": "abōniwusjamans"
+            },
+            "Akk": {
+              "sg": "abōniwusjan",
+              "pl": "abōniwusjans"
+            }
+          }
+        }
+      },
+      "passive": {
+        "form": "abōnits",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "abōnits",
+              "pl": "abonitāi"
+            },
+            "Gen": {
+              "sg": "abōnitas",
+              "pl": "abōnitan"
+            },
+            "Dat": {
+              "sg": "abōnitasmu",
+              "pl": "abonitammans"
+            },
+            "Akk": {
+              "sg": "abōnitan",
+              "pl": "abōnitans"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "abonitā",
+              "pl": "abōnitas"
+            },
+            "Gen": {
+              "sg": "abōnitas",
+              "pl": "abōnitan"
+            },
+            "Dat": {
+              "sg": "abōnitai",
+              "pl": "abonitāmans"
+            },
+            "Akk": {
+              "sg": "abōnitan",
+              "pl": "abōnitans"
+            }
+          }
+        }
+      }
+    },
+    "optative": "abōnisei",
+    "imperative": {
+      "2sg": "abōnis",
+      "2pl": "abōniti"
+    },
+    "subjunctive": {
+      "forms": [
+        [
+          "as",
+          "abōnilai"
+        ],
+        [
+          "tū",
+          "abōnilai"
+        ],
+        [
+          "tāns/tenā/tennan",
+          "abōnilai"
+        ],
+        [
+          "mes",
+          "abōnilimai"
+        ],
+        [
+          "jūs",
+          "abōnilitei"
+        ],
+        [
+          "tenēi/tennas",
+          "abōnilai"
+        ]
+      ]
+    }
+  }
+}

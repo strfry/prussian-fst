@@ -1,0 +1,184 @@
+{
+  "lemma": "klantītun",
+  "paradigm": "136",
+  "infinitive_stem": "klantī",
+  "prusaspira": {
+    "participles": {
+      "present": "klantānts",
+      "past": "klantīwuns",
+      "passive": "klantīts"
+    },
+    "optative": "klantīsei",
+    "conjunctive": {
+      "sg_3pl": "klantīlai",
+      "1pl": "klantīlimai",
+      "2pl": "klantīlitei"
+    },
+    "imperative": [
+      "klantīsei",
+      "klantais",
+      "klantimai",
+      "klantaiti"
+    ]
+  },
+  "twanksta": {
+    "participles": {
+      "present": {
+        "form": "klantants",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "klantants",
+              "pl": "klantantjai"
+            },
+            "Gen": {
+              "sg": "klantantis",
+              "pl": "klantantin"
+            },
+            "Dat": {
+              "sg": "klantantismu",
+              "pl": "klantantimmans"
+            },
+            "Akk": {
+              "sg": "klantantin",
+              "pl": "klantantins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "klantantī",
+              "pl": "klantantjas"
+            },
+            "Gen": {
+              "sg": "klantantjas",
+              "pl": "klantantjan"
+            },
+            "Dat": {
+              "sg": "klantantjai",
+              "pl": "klantantjāmans"
+            },
+            "Akk": {
+              "sg": "klantantjan",
+              "pl": "klantantjans"
+            }
+          }
+        }
+      },
+      "past": {
+        "form": "klantīwuns",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "klantīwuns",
+              "pl": "klantīwusis"
+            },
+            "Gen": {
+              "sg": "klantīwusjas",
+              "pl": "klantīwusin"
+            },
+            "Dat": {
+              "sg": "klantīwusjasmu",
+              "pl": "klantīwusimans"
+            },
+            "Akk": {
+              "sg": "klantīwusin",
+              "pl": "klantīwusins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "klantīwusi",
+              "pl": "klantīwusjas"
+            },
+            "Gen": {
+              "sg": "klantīwusjas",
+              "pl": "klantīwusjan"
+            },
+            "Dat": {
+              "sg": "klantīwusjai",
+              "pl": "klantīwusjamans"
+            },
+            "Akk": {
+              "sg": "klantīwusjan",
+              "pl": "klantīwusjans"
+            }
+          }
+        }
+      },
+      "passive": {
+        "form": "klantīts",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "klantīts",
+              "pl": "klantitāi"
+            },
+            "Gen": {
+              "sg": "klantītas",
+              "pl": "klantītan"
+            },
+            "Dat": {
+              "sg": "klantītasmu",
+              "pl": "klantitammans"
+            },
+            "Akk": {
+              "sg": "klantītan",
+              "pl": "klantītans"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "klantitā",
+              "pl": "klantītas"
+            },
+            "Gen": {
+              "sg": "klantītas",
+              "pl": "klantītan"
+            },
+            "Dat": {
+              "sg": "klantītai",
+              "pl": "klantitāmans"
+            },
+            "Akk": {
+              "sg": "klantītan",
+              "pl": "klantītans"
+            }
+          }
+        }
+      }
+    },
+    "optative": "klantisei",
+    "imperative": {
+      "2sg": "klantais",
+      "2pl": "klantaiti"
+    },
+    "subjunctive": {
+      "forms": [
+        [
+          "as",
+          "klantīlai"
+        ],
+        [
+          "tū",
+          "klantīlai"
+        ],
+        [
+          "tāns/tenā/tennan",
+          "klantīlai"
+        ],
+        [
+          "mes",
+          "klantīlimai"
+        ],
+        [
+          "jūs",
+          "klantīlitei"
+        ],
+        [
+          "tenēi/tennas",
+          "klantīlai"
+        ]
+      ]
+    }
+  }
+}

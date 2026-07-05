@@ -1,0 +1,46 @@
+{
+  "lemma": "grīmztwei",
+  "source": "twanksta",
+  "forms": {
+    "present": {
+      "1sg": "grīmzda",
+      "2sg": "grīmzda",
+      "3sg": "grīmzda",
+      "1pl": "grīmzdimai",
+      "2pl": "grīmzditei",
+      "3pl": "grīmzda"
+    },
+    "preterite": {
+      "1sg": "grīmza",
+      "2sg": "grīmza",
+      "3sg": "grīmza",
+      "1pl": "grīmzamai",
+      "2pl": "grīmzatei",
+      "3pl": "grīmza"
+    },
+    "perfect": {
+      "1sg": "asma\n                    grīmzuns / grīmzusi",
+      "2sg": "assei\n                    grīmzuns / grīmzusi",
+      "1pl": "asmai\n                    grīmzusis / grīmzusjas",
+      "2pl": "astei\n                    grīmzusis / grīmzusjas",
+      "3pl": "ast\n                    grīmzusis / grīmzusjas"
+    },
+    "future": {
+      "1sg": "wīrst\n                    grīmzuns / grīmzusi",
+      "2sg": "wīrst\n                    grīmzuns / grīmzusi",
+      "1pl": "wīrstmai\n                    grīmzusis / grīmzusjas",
+      "2pl": "wīrstei\n                    grīmzusis / grīmzusjas",
+      "3pl": "wīrst\n                    grīmzusis / grīmzusjas"
+    },
+    "optative": {
+      "form": "grīmzsei / grīmzdais / grīmzdaiti / grīmzants / grīmzantjai / grīmzantis / grīmzantin / grīmzantismu / grimzantimmans / grīmzantin / grīmzantins / grimzantī / grīmzantjas / grīmzantjas / grīmzantjan / grīmzantjai / grimzantjāmans / grīmzantjan / grīmzantjans / grīmzanti / grīmzantjai / grīmzantis / grīmzantin / grīmzantismu / grimzantimmans / grīmzantin / grīmzantins / grīmzuns / grīmzusis / grīmzusjas / grīmzusin / grīmzusjasmu / grīmzusimans / grīmzusin / grīmzusins / grīmzusi / grīmzusjas / grīmzusjas / grīmzusjan / grīmzusjai / grīmzusjamans / grīmzusjan / grīmzusjans / grīmzus / grīmzus / grīmzusjas / grīmzusin / grīmzusjasmu / grīmzusimans / grīmzus / grīmzus / grīmzts / grimztāi / grīmztas / grīmztan / grīmztasmu / grimztammans / grīmztan / grīmztans / grimztā / grīmztas / grīmztas / grīmztan / grīmztai / grimztāmans / grīmztan / grīmztans / grīmztan / grimztāi / grīmztas / grīmztan / grīmztasmu / grimztammans / grīmztan / grīmztans / grīmzlai / grīmzlai / grīmzlai / grīmzlimai / grīmzlitei / grīmzlai"
+    },
+    "imperative": {
+      "form": "grīmzdais / grīmzdaiti / grīmzants / grīmzantjai / grīmzantis / grīmzantin / grīmzantismu / grimzantimmans / grīmzantin / grīmzantins / grimzantī / grīmzantjas / grīmzantjas / grīmzantjan / grīmzantjai / grimzantjāmans / grīmzantjan / grīmzantjans / grīmzanti / grīmzantjai / grīmzantis / grīmzantin / grīmzantismu / grimzantimmans / grīmzantin / grīmzantins / grīmzuns / grīmzusis / grīmzusjas / grīmzusin / grīmzusjasmu / grīmzusimans / grīmzusin / grīmzusins / grīmzusi / grīmzusjas / grīmzusjas / grīmzusjan / grīmzusjai / grīmzusjamans / grīmzusjan / grīmzusjans / grīmzus / grīmzus / grīmzusjas / grīmzusin / grīmzusjasmu / grīmzusimans / grīmzus / grīmzus / grīmzts / grimztāi / grīmztas / grīmztan / grīmztasmu / grimztammans / grīmztan / grīmztans / grimztā / grīmztas / grīmztas / grīmztan / grīmztai / grimztāmans / grīmztan / grīmztans / grīmztan / grimztāi / grīmztas / grīmztan / grīmztasmu / grimztammans / grīmztan / grīmztans / grīmzlai / grīmzlai / grīmzlai / grīmzlimai / grīmzlitei / grīmzlai"
+    }
+  },
+  "translations": [
+    "1to stick i (sink into)",
+    "2to come down (sink in)"
+  ]
+}

@@ -1,0 +1,81 @@
+# Golden-Sätze für den CG3-Disambiguator (primäre Verifikationslinie:
+# korrekte Disambiguierung der Nominalgruppen).
+# Format: Satz <TAB> Token <TAB> erwartete verbleibende Lesarten
+#         (|-getrennt, exakte Mengengleichheit; Lesart = lemma+Tag+Tag…)
+#
+# NG-Agreement: Adj/N-Entscheidung + Signatur-Übernahme vom Kopf
+Labban dēinan!	Labban	labs+Adj+Sg+Akk+Fem
+Labban dēinan!	dēinan	dēinā+N+Sg+Akk+Fem
+# Adj vs. Adv: kein Kopf rechts → Adverb
+Bilāimai prūsiskai!	prūsiskai	prūsiskai+Adv
+# Präpositionsrektion (sēn + Akk) und Agreement in der PP
+Prūsisks waitjāsenis sēn prūsiskan bebrun.	Prūsisks	prūsisks+Adj+Sg+Nom+Masc
+Prūsisks waitjāsenis sēn prūsiskan bebrun.	waitjāsenis	waitjāsenis+N+Sg+Nom+Masc
+Prūsisks waitjāsenis sēn prūsiskan bebrun.	prūsiskan	prūsisks+Adj+Sg+Akk+Masc
+Prūsisks waitjāsenis sēn prūsiskan bebrun.	bebrun	bebrus+N+Sg+Akk+Masc
+# Genitivus negationis (Doc-Beispiel, Regel 5)
+Tāns ni turri kōnkretan pawīstin.	kōnkretan	kōnkrets+Adj+Pl+Gen+Fem
+Tāns ni turri kōnkretan pawīstin.	pawīstin	pawīstis+N+Pl+Gen+Fem
+# Gen-Modifikator vor der NG bleibt lizenziert (Doc-Beispiel)
+māise prūsiskas billas	māise	as+Pron+Sg+Gen|majs+Pron+Sg+Gen+Masc|majs+Pron+Sg+Gen+Neut|mes+Pron+Sg+Gen
+māise prūsiskas billas	prūsiskas	prūsisks+Adj+Pl+Nom+Fem
+māise prūsiskas billas	billas	bilā+N+Pl+Nom+Fem
+# Determinierer kongruiert mit dem Kopf; unlizenzierter Gen entfernt
+Stan wīran wīda.	Stan	stas+Pron+Sg+Akk+Masc
+Stan wīran wīda.	wīran	wīrs+N+Sg+Akk+Masc
+# Prädikativ nach Kopula: kurze Neutrum-Form ist Adj (Nom/Akk bleibt offen)
+Sta ast labban.	labban	labs+Adj+Sg+Akk+Neut|labs+Adj+Sg+Nom+Neut
+# syntax_rules §2: Prädikatsnomen im Nominativ
+As asma kunnegs.	kunnegs	kunnegs+N+Sg+Nom+Masc
+# syntax_rules §4: stēisan + nachgestellter Gen (Pl-Gen = Sg-Akk-Synkretismus)
+Saknis stēisan anzanan.	stēisan	stas+Pron+Pl+Gen+Masc
+Saknis stēisan anzanan.	anzanan	anzans+N+Pl+Gen+Masc
+# syntax_rules §5c: pa + Dativ (statisch) bleibt erhalten; R1 löst Rektion
+Kurmjai buwinna pa zemmei.	zemmei	zemē+N+Sg+Dat+Fem
+Kurmjai buwinna pa zemmei.	pa	pa+Prp+GovDat
+# R1: ēn + Dat (statisch) — Kasus des PP-Nominals löst GovAkk|GovDat
+As wīrst būwuns en buttu.	en	ēn+Prp+GovDat
+As wīrst būwuns en buttu.	buttu	buttan+N+Sg+Dat+Neut
+# syntax_rules §1+§8: Kurzform-Präposition (sen→sēn) + Instrumental-Ersatz sēn+Akk
+As pūwa sen laīwan.	sen	sēn+Prp+GovAkk
+As pūwa sen laīwan.	laīwan	laīwan+N+Sg+Akk+Neut
+# syntax_rules §1+§6c+§11: en→ēn dynamisch + Futur wīrst + Partizip
+As wīrst gūbuns en buttan.	buttan	buttan+N+Sg+Akk+Neut
+As wīrst gūbuns en buttan.	gūbuns	ēitwei+V+Part+Pret+Masc+Sg+Nom
+# Regel 4: be zwischen gleichkasigen Konstituenten ist Cnj (Doc-Beispiele)
+Rānkans be prusnans wīda.	be	be+Cnj
+Rānkans be prusnans wīda.	Rānkans	rānkā+N+Pl+Akk+Fem
+Rānkans be prusnans wīda.	prusnans	prusna+N+Pl+Akk+Fem
+gēidras be sāusas dēinas	gēidras	gēidars+Adj+Pl+Nom+Fem
+gēidras be sāusas dēinas	sāusas	sāuss+Adj+Pl+Nom+Fem
+gēidras be sāusas dēinas	dēinas	dēinā+N+Pl+Nom+Fem
+# R2: satzinitiales Be ist Diskurs-Konnektor, keine Präposition
+Be as ni waīda.	Be	be+Cnj
+# R5: Verbperson nur bei explizitem Pronomen (as → P1 Sg; Pres|Pret bleibt)
+Be as ni waīda.	waīda	waīstun+V+Ind+Pres+P1+Sg|waīstun+V+Ind+Pret+P1+Sg
+Tāns turri buttan.	turri	turītun+V+Ind+Pres+P3+Sg
+# R5: Numerus vom Nomen-Subjekt (ast Sg|Pl → Pl)
+Wīrai ast stwi.	ast	būtwei+V+Ind+Pres+P3+Pl
+# R4: N vs. V — stāi vor finitem Verb ist Demonstrativum, nicht stātwei
+Stāi wīrai bilāi.	Stāi	stas+Pron+Pl+Nom+Masc
+# Modus relativus (syntax_rules §18, korpusbelegt); per→Prp via R3
+Tāns astits per gārban.	astits	būtwei+V+Rel+Pres+P3
+Tāns astits per gārban.	per	pēr+Prp+GovAkk
+Tāns astits per gārban.	gārban	gārbs+N+Sg+Akk+Masc
+# Postposition paggan (syntax_rules §4-Umfeld): Gen davor bleibt
+Stesse paggan sta ast brendu.	Stesse	stas+Pron+Pl+Gen+Neut|stas+Pron+Sg+Gen+Masc|stas+Pron+Sg+Gen+Neut
+Stesse paggan sta ast brendu.	paggan	paggan+Psp+GovGen
+# R6: di nach finitem Verb ist Subjektersatz → Nominativ
+Tenā gērdaui, bilāi di.	di	di+Pron+Pl+Nom+Neut|di+Pron+Sg+Nom+Masc|di+Pron+Sg+Nom+Neut|dis+Pron+Pl+Nom+Neut|dis+Pron+Sg+Nom+Neut
+# syntax_rules §11: kurzes Neutrum-Partizip nach wīrst (korpusecht)
+Swāikstan wīrst pagaūwus ebwarītun.	pagaūwus	pagaūtun+V+Part+Pret+Neut+Sg+Nom|pagaūtun+V+Part+Pret+Neut+Sg+Nom+Refl
+# syntax_rules §4: stēisan + nachgestellter Gen.Pl (korpusecht)
+šlamisnā stēisan lappan	stēisan	stas+Pron+Pl+Gen+Neut
+šlamisnā stēisan lappan	lappan	lappan+N+Pl+Gen+Neut
+# Ortho-Layer (lenient): pawīsts → pawīstis; Numerus bleibt offen
+Kitā pawīsts.	pawīsts	pawīstis+N+Pl+Nom+Fem|pawīstis+N+Sg+Nom+Fem
+# Titlecase-Fallback: kleingeschriebenes dēiwan → Dēiws (FST kennt nur Dēiwan);
+# unlizenzierter Gen fällt weg (Section 4)
+As wīda dēiwan.	dēiwan	Dēiws+N+Sg+Akk+Masc
+# Kurzform-Adverb kwei → kwēi (Funktionswort-Kurzformtabelle)
+Kwei tū ēisei?	Kwei	kwēi+Adv

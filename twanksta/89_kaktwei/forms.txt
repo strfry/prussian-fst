@@ -1,0 +1,174 @@
+Indicative mood
+Present     as     līmpa     tū     līmpa     tāns/tenā/tennan     līmpa     mes     līmpimai     jūs     līmpitei                          tenēi/tennas     līmpa
+Past
+as     lippa     tū     lippa     tāns/tenā/tennan     lippa     mes     lippamai     jūs     lippatei                          tenēi/tennas     lippa
+Perfect     as     asma
+lippuns / lippusi
+tū     assei
+lippuns / lippusi
+tāns/tenā     ast
+lippuns / lippusi
+tennan     ast
+lippus     mes     asmai
+lippusis / lippusjas       jūs     astei
+lippusis / lippusjas     tenēi/tennas     ast
+lippusis / lippusjas
+Future     as     wīrst
+lippuns / lippusi     tū     wīrst
+lippuns / lippusi     tāns/tenā     wīrst
+lippuns / lippusi     tennan     wīrst
+lippus     mes     wīrstmai
+lippusis / lippusjas     jūs     wīrstei
+lippusis / lippusjas     tenēi/tennas     wīrst
+lippusis / lippusjas
+Optative
+lipsei
+Imperative
+(tū)
+līmpais
+(jūs)
+līmpaiti
+Participle
+Present
+►   					 līmpants
+masc
+sing
+plur
+Nominative
+līmpants
+līmpantjai
+Genitive
+līmpantis
+līmpantin
+Dative
+līmpantismu
+limpantimmans
+Accusative
+līmpantin
+līmpantins
+fem
+sing
+plur
+Nominative
+limpantī
+līmpantjas
+Genitive
+līmpantjas
+līmpantjan
+Dative
+līmpantjai
+limpantjāmans
+Accusative
+līmpantjan
+līmpantjans
+neut
+sing
+plur
+Nominative
+līmpanti
+līmpantjai
+Genitive
+līmpantis
+līmpantin
+Dative
+līmpantismu
+limpantimmans
+Accusative
+līmpantin
+līmpantins
+Past      ►  					 lippuns
+masc
+sing
+plur
+Nominative
+lippuns
+lippusis
+Genitive
+lippusjas
+lippusin
+Dative
+lippusjasmu
+lippusimans
+Accusative
+lippusin
+lippusins
+fem
+sing
+plur
+Nominative
+lippusi
+lippusjas
+Genitive
+lippusjas
+lippusjan
+Dative
+lippusjai
+lippusjamans
+Accusative
+lippusjan
+lippusjans
+neut
+sing
+plur
+Nominative
+lippus
+lippus
+Genitive
+lippusjas
+lippusin
+Dative
+lippusjasmu
+lippusimans
+Accusative
+lippus
+lippus
+Passive
+►
+lipts
+masc
+sing
+plur
+Nominative
+lipts
+liptāi
+Genitive
+liptas
+liptan
+Dative
+liptasmu
+liptammans
+Accusative
+liptan
+liptans
+fem
+sing
+plur
+Nominative
+liptā
+liptas
+Genitive
+liptas
+liptan
+Dative
+liptai
+liptāmans
+Accusative
+liptan
+liptans
+neut
+sing
+plur
+Nominative
+liptan
+liptāi
+Genitive
+liptas
+liptan
+Dative
+liptasmu
+liptammans
+Accusative
+liptan
+liptans
+Subjunctive
+as     liplai     tū     liplai     tāns/tenā/tennan     liplai     mes     liplimai     jūs     liplitei     tenēi/tennas     liplai

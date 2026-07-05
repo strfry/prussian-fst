@@ -1,0 +1,174 @@
+Indicative mood
+Present     as     tirrja     tū     tirrja     tāns/tenā/tennan     tirrja     mes     tirrimai     jūs     tirritei                          tenēi/tennas     tirrja
+Past
+as     tīri     tū     tīri     tāns/tenā/tennan     tīri     mes     tīrimai     jūs     tīritei                          tenēi/tennas     tīri
+Perfect     as     asma
+tīruns / tīrusi
+tū     assei
+tīruns / tīrusi
+tāns/tenā     ast
+tīruns / tīrusi
+tennan     ast
+tīrus     mes     asmai
+tīrusis / tīrusjas       jūs     astei
+tīrusis / tīrusjas     tenēi/tennas     ast
+tīrusis / tīrusjas
+Future     as     wīrst
+tīruns / tīrusi     tū     wīrst
+tīruns / tīrusi     tāns/tenā     wīrst
+tīruns / tīrusi     tennan     wīrst
+tīrus     mes     wīrstmai
+tīrusis / tīrusjas     jūs     wīrstei
+tīrusis / tīrusjas     tenēi/tennas     wīrst
+tīrusis / tīrusjas
+Optative
+tirsei
+Imperative
+(tū)
+tirlais
+(jūs)
+tirlaiti
+Participle
+Present
+►   					 tirīnts
+masc
+sing
+plur
+Nominative
+tirīnts
+tirīntjai
+Genitive
+tirīntis
+tirīntin
+Dative
+tirīntismu
+tirintimmans
+Accusative
+tirīntin
+tirīntins
+fem
+sing
+plur
+Nominative
+tirintī
+tirīntjas
+Genitive
+tirīntjas
+tirīntjan
+Dative
+tirīntjai
+tirintjāmans
+Accusative
+tirīntjan
+tirīntjans
+neut
+sing
+plur
+Nominative
+tirīnti
+tirīntjai
+Genitive
+tirīntis
+tirīntin
+Dative
+tirīntismu
+tirintimmans
+Accusative
+tirīntin
+tirīntins
+Past      ►  					 tīruns
+masc
+sing
+plur
+Nominative
+tīruns
+tīrusis
+Genitive
+tīrusjas
+tīrusin
+Dative
+tīrusjasmu
+tīrusimans
+Accusative
+tīrusin
+tīrusins
+fem
+sing
+plur
+Nominative
+tīrusi
+tīrusjas
+Genitive
+tīrusjas
+tīrusjan
+Dative
+tīrusjai
+tīrusjamans
+Accusative
+tīrusjan
+tīrusjans
+neut
+sing
+plur
+Nominative
+tīrus
+tīrus
+Genitive
+tīrusjas
+tīrusin
+Dative
+tīrusjasmu
+tīrusimans
+Accusative
+tīrus
+tīrus
+Passive
+►
+tirts
+masc
+sing
+plur
+Nominative
+tirts
+tirtāi
+Genitive
+tirtas
+tirtan
+Dative
+tirtasmu
+tirtammans
+Accusative
+tirtan
+tirtans
+fem
+sing
+plur
+Nominative
+tirtā
+tirtas
+Genitive
+tirtas
+tirtan
+Dative
+tirtai
+tirtāmans
+Accusative
+tirtan
+tirtans
+neut
+sing
+plur
+Nominative
+tirtan
+tirtāi
+Genitive
+tirtas
+tirtan
+Dative
+tirtasmu
+tirtammans
+Accusative
+tirtan
+tirtans
+Subjunctive
+as     tirlai     tū     tirlai     tāns/tenā/tennan     tirlai     mes     tirlimai     jūs     tirlitei     tenēi/tennas     tirlai

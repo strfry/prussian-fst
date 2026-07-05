@@ -1,0 +1,59 @@
+[
+  {
+    "word": "abbai",
+    "paradigm": "22",
+    "gender": "",
+    "desc": "nom pl tantum [abbai 99]",
+    "audio": "https://wirdeins.twanksta.org/upload/audio/abbai.mp3",
+    "description": "",
+    "translations": {
+      "engl": [
+        "both"
+      ],
+      "miks": [
+        "beide"
+      ],
+      "leit": [
+        "abu"
+      ],
+      "latt": [
+        "abi"
+      ],
+      "pols": [
+        "obaj"
+      ],
+      "mask": [
+        "оба"
+      ]
+    },
+    "forms": {
+      "declension": [
+        {
+          "gender": "",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "",
+              "plural": "abbai"
+            },
+            {
+              "case": "Genitive",
+              "singular": "",
+              "plural": "abbejan"
+            },
+            {
+              "case": "Dative",
+              "singular": "",
+              "plural": "abbeimas"
+            },
+            {
+              "case": "Accusative",
+              "singular": "",
+              "plural": "abbans"
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

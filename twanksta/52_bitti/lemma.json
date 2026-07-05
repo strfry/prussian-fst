@@ -1,0 +1,59 @@
+[
+  {
+    "word": "bitti",
+    "paradigm": "52",
+    "gender": "fem",
+    "desc": "[Bitte E 787]",
+    "audio": "",
+    "description": "",
+    "translations": {
+      "engl": [
+        "bee"
+      ],
+      "miks": [
+        "Biene"
+      ],
+      "leit": [
+        "bitė"
+      ],
+      "latt": [
+        "bite"
+      ],
+      "pols": [
+        "pszczoła"
+      ],
+      "mask": [
+        "пчела"
+      ]
+    },
+    "forms": {
+      "declension": [
+        {
+          "gender": "fem",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "bitti",
+              "plural": "bittis"
+            },
+            {
+              "case": "Genitive",
+              "singular": "bittis",
+              "plural": "bittin"
+            },
+            {
+              "case": "Dative",
+              "singular": "bittei",
+              "plural": "bittimans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "bittin",
+              "plural": "bittins"
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

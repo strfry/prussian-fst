@@ -1,0 +1,165 @@
+{
+  "lemma": "snigtwei",
+  "paradigm": "124",
+  "infinitive_stem": "snig",
+  "twanksta": {
+    "participles": {
+      "present": {
+        "form": "snēigants",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "snēigants",
+              "pl": "snēigantjai"
+            },
+            "Gen": {
+              "sg": "snēigantis",
+              "pl": "snēigantin"
+            },
+            "Dat": {
+              "sg": "snēigantismu",
+              "pl": "sneigantimmans"
+            },
+            "Akk": {
+              "sg": "snēigantin",
+              "pl": "snēigantins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "sneigantī",
+              "pl": "snēigantjas"
+            },
+            "Gen": {
+              "sg": "snēigantjas",
+              "pl": "snēigantjan"
+            },
+            "Dat": {
+              "sg": "snēigantjai",
+              "pl": "sneigantjāmans"
+            },
+            "Akk": {
+              "sg": "snēigantjan",
+              "pl": "snēigantjans"
+            }
+          }
+        }
+      },
+      "past": {
+        "form": "snigguns",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "snigguns",
+              "pl": "sniggusis"
+            },
+            "Gen": {
+              "sg": "sniggusjas",
+              "pl": "sniggusin"
+            },
+            "Dat": {
+              "sg": "sniggusjasmu",
+              "pl": "sniggusimans"
+            },
+            "Akk": {
+              "sg": "sniggusin",
+              "pl": "sniggusins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "sniggusi",
+              "pl": "sniggusjas"
+            },
+            "Gen": {
+              "sg": "sniggusjas",
+              "pl": "sniggusjan"
+            },
+            "Dat": {
+              "sg": "sniggusjai",
+              "pl": "sniggusjamans"
+            },
+            "Akk": {
+              "sg": "sniggusjan",
+              "pl": "sniggusjans"
+            }
+          }
+        }
+      },
+      "passive": {
+        "form": "snigts",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "snigts",
+              "pl": "snigtāi"
+            },
+            "Gen": {
+              "sg": "snigtas",
+              "pl": "snigtan"
+            },
+            "Dat": {
+              "sg": "snigtasmu",
+              "pl": "snigtammans"
+            },
+            "Akk": {
+              "sg": "snigtan",
+              "pl": "snigtans"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "snigtā",
+              "pl": "snigtas"
+            },
+            "Gen": {
+              "sg": "snigtas",
+              "pl": "snigtan"
+            },
+            "Dat": {
+              "sg": "snigtai",
+              "pl": "snigtāmans"
+            },
+            "Akk": {
+              "sg": "snigtan",
+              "pl": "snigtans"
+            }
+          }
+        }
+      }
+    },
+    "optative": "snigsei",
+    "imperative": {
+      "2sg": "snēigais",
+      "2pl": "snēigaiti"
+    },
+    "subjunctive": {
+      "forms": [
+        [
+          "as",
+          "sniglai"
+        ],
+        [
+          "tū",
+          "sniglai"
+        ],
+        [
+          "tāns/tenā/tennan",
+          "sniglai"
+        ],
+        [
+          "mes",
+          "sniglimai"
+        ],
+        [
+          "jūs",
+          "sniglitei"
+        ],
+        [
+          "tenēi/tennas",
+          "sniglai"
+        ]
+      ]
+    }
+  }
+}

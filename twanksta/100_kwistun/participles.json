@@ -1,0 +1,165 @@
+{
+  "lemma": "kwistun",
+  "paradigm": "100",
+  "infinitive_stem": "kwis",
+  "twanksta": {
+    "participles": {
+      "present": {
+        "form": "kwēitants",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "kwēitants",
+              "pl": "kwēitantjai"
+            },
+            "Gen": {
+              "sg": "kwēitantis",
+              "pl": "kwēitantin"
+            },
+            "Dat": {
+              "sg": "kwēitantismu",
+              "pl": "kweitantimmans"
+            },
+            "Akk": {
+              "sg": "kwēitantin",
+              "pl": "kwēitantins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "kweitantī",
+              "pl": "kwēitantjas"
+            },
+            "Gen": {
+              "sg": "kwēitantjas",
+              "pl": "kwēitantjan"
+            },
+            "Dat": {
+              "sg": "kwēitantjai",
+              "pl": "kweitantjāmans"
+            },
+            "Akk": {
+              "sg": "kwēitantjan",
+              "pl": "kwēitantjans"
+            }
+          }
+        }
+      },
+      "past": {
+        "form": "kwittuns",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "kwittuns",
+              "pl": "kwittusis"
+            },
+            "Gen": {
+              "sg": "kwittusjas",
+              "pl": "kwittusin"
+            },
+            "Dat": {
+              "sg": "kwittusjasmu",
+              "pl": "kwittusimans"
+            },
+            "Akk": {
+              "sg": "kwittusin",
+              "pl": "kwittusins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "kwittusi",
+              "pl": "kwittusjas"
+            },
+            "Gen": {
+              "sg": "kwittusjas",
+              "pl": "kwittusjan"
+            },
+            "Dat": {
+              "sg": "kwittusjai",
+              "pl": "kwittusjamans"
+            },
+            "Akk": {
+              "sg": "kwittusjan",
+              "pl": "kwittusjans"
+            }
+          }
+        }
+      },
+      "passive": {
+        "form": "kwists",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "kwists",
+              "pl": "kwistāi"
+            },
+            "Gen": {
+              "sg": "kwistas",
+              "pl": "kwistan"
+            },
+            "Dat": {
+              "sg": "kwistasmu",
+              "pl": "kwistammans"
+            },
+            "Akk": {
+              "sg": "kwistan",
+              "pl": "kwistans"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "kwistā",
+              "pl": "kwistas"
+            },
+            "Gen": {
+              "sg": "kwistas",
+              "pl": "kwistan"
+            },
+            "Dat": {
+              "sg": "kwistai",
+              "pl": "kwistāmans"
+            },
+            "Akk": {
+              "sg": "kwistan",
+              "pl": "kwistans"
+            }
+          }
+        }
+      }
+    },
+    "optative": "kwitsei",
+    "imperative": {
+      "2sg": "kwēitais",
+      "2pl": "kwēitaiti"
+    },
+    "subjunctive": {
+      "forms": [
+        [
+          "as",
+          "kwitlai"
+        ],
+        [
+          "tū",
+          "kwitlai"
+        ],
+        [
+          "tāns/tenā/tennan",
+          "kwitlai"
+        ],
+        [
+          "mes",
+          "kwitlimai"
+        ],
+        [
+          "jūs",
+          "kwitlitei"
+        ],
+        [
+          "tenēi/tennas",
+          "kwitlai"
+        ]
+      ]
+    }
+  }
+}

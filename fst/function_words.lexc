@@ -67,6 +67,8 @@ LEXICON FunctionWords
   kwēi+Adv:kwēi        # ; ! „wo"
   nikwēi+Adv:nikwēi    # ; ! „nirgends"
   nikwēigi+Adv:nikwēigi # ; ! „nie, nirgends"
+  ! (niaīnunts „niemand" kommt aus Twanksta/gen_lexc; die Korpusschreibung
+  !  „niainunts" ohne Makron deckt der Ortho-Layer, s. norm.regex DiphAI)
   wiskwēi+Adv:wiskwēi  # ; ! „überall"
   tēt+Adv:tēt          # ; ! „so, folglich"
   kadāi+Adv:kadāi      # ; ! „einst, ehemals"
@@ -110,3 +112,45 @@ LEXICON FunctionWords
   kaīls+IJ:kaīls       # ; ! „Heil! hallo!"
   ērdiw+IJ:ērdiw       # ; ! „tschüß!" (Lemma im Dict: „ērdiw!")
   deiwūtiskan+IJ:deiwūtiskan # ; ! UNSICHER: „bye-bye!" (Dict: „deiwūtiskan!") — erstarrter Akk?
+
+  ! ──────────────────────────────────────────────────────────────
+  ! Nachtrag 2026-07-05: korpusbelegte Formen aus der Prüfung von
+  ! prussian-grammar/syntax_rules.txt gegen das YouTube-Korpus.
+  ! Twanksta-Verweis-Einträge ohne Formen (↑X / [X drv]) fallen in
+  ! gen_lexc.py durch — hier nur die BELEGTEN von Hand.
+  ! ──────────────────────────────────────────────────────────────
+
+  ! Postposition (§4/§3-Umfeld): regiert vorangestellten Genitiv;
+  ! Twanksta: „n psp gen". YT-Korpus 55×+, fast immer „stesse paggan".
+  paggan+Psp+GovGen:paggan # ; ! „wegen" (Gen + paggan)
+
+  ! Modus relativus (§18): NUR die korpusbelegte Einzelform (2×,
+  ! „tāns astits per gārban"); Twanksta: „↑Būtwei mod rel [astits 61 MK]"
+  ! — Katechismus-Referenz, aber belegt. KEINE produktive -ts-Reihe!
+  būtwei+V+Rel+Pres+P3:astits # ; ! „sei angeblich"
+
+  ! perwaidinnas = kontrahiertes „perwaidinna si" (Twanksta-Verweis
+  ! „[Perwaidīntun si drv]"; YT-Korpus 1×). Spiegelt alle Zellen, in
+  ! denen die Vollform „perwaidinna si" lautet.
+  perwaidīntun+V+Ind+Pres+P1+Sg+Refl:perwaidinnas # ;
+  perwaidīntun+V+Ind+Pres+P2+Sg+Refl:perwaidinnas # ;
+  perwaidīntun+V+Ind+Pres+P3+Sg+Refl:perwaidinnas # ;
+  perwaidīntun+V+Ind+Pres+P3+Pl+Refl:perwaidinnas # ;
+  perwaidīntun+V+Ind+Pret+P1+Sg+Refl:perwaidinnas # ;
+  perwaidīntun+V+Ind+Pret+P2+Sg+Refl:perwaidinnas # ;
+  perwaidīntun+V+Ind+Pret+P3+Sg+Refl:perwaidinnas # ;
+  perwaidīntun+V+Ind+Pret+P3+Pl+Refl:perwaidinnas # ;
+
+  ! Indeklinable Zehner (syntax_rules §23: bare -t-Form, Nomen trägt
+  ! den Kasus; YT-belegt: dwiddesimt, trīsdesimt, ketturdesimt,
+  ! septinnadesimt, astōnadesimt, desimt→dessimt via norm-Layer)
+  dessimt+Num:dessimt           # ; ! „zehn"
+  dwiddesimt+Num:dwiddesimt     # ; ! „zwanzig"
+  trīsdesimt+Num:trīsdesimt     # ; ! „dreißig"
+  ketturdesimt+Num:ketturdesimt # ; ! „vierzig"
+  pēnkdesimt+Num:pēnkdesimt     # ; ! „fünfzig"
+  usdesimt+Num:usdesimt         # ; ! „sechzig"
+  septīndesimt+Num:septīndesimt # ; ! „siebzig"
+  astōndesimt+Num:astōndesimt   # ; ! „achtzig"
+  newīndesimt+Num:newīndesimt   # ; ! „neunzig"
+  ! (Teens der aīnadesimt-Reihe kommen bereits aus gen_lexc als +Num+Sg+Nom)

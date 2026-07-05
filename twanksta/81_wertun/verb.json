@@ -1,0 +1,45 @@
+{
+  "lemma": "auwertun",
+  "source": "twanksta",
+  "forms": {
+    "present": {
+      "1sg": "auwerrja",
+      "2sg": "auwerrja",
+      "3sg": "auwerrja",
+      "1pl": "auwerrjamai",
+      "2pl": "auwerrjatei",
+      "3pl": "auwerrja"
+    },
+    "preterite": {
+      "1sg": "auwēri",
+      "2sg": "auwēri",
+      "3sg": "auwēri",
+      "1pl": "auwīrimai",
+      "2pl": "auwēritei",
+      "3pl": "auwēri"
+    },
+    "perfect": {
+      "1sg": "asma\n                    auwēruns / auwērusi",
+      "2sg": "assei\n                    auwēruns / auwērusi",
+      "1pl": "asmai\n                    auwērusis / auwērusjas",
+      "2pl": "astei\n                    auwērusis / auwērusjas",
+      "3pl": "ast\n                    auwērusis / auwērusjas"
+    },
+    "future": {
+      "1sg": "wīrst\n                    auwēruns / auwērusi",
+      "2sg": "wīrst\n                    auwēruns / auwērusi",
+      "1pl": "wīrstmai\n                    auwērusis / auwērusjas",
+      "2pl": "wīrstei\n                    auwērusis / auwērusjas",
+      "3pl": "wīrst\n                    auwērusis / auwērusjas"
+    },
+    "optative": {
+      "form": "auwersei / auwerrjais / auwerrjaiti / auwerēnts / auwerēntjai / auwerēntis / auwerēntin / auwerēntismu / auwerentimmans / auwerēntin / auwerēntins / auwerentī / auwerēntjas / auwerēntjas / auwerēntjan / auwerēntjai / auwerentjāmans / auwerēntjan / auwerēntjans / auwerēnti / auwerēntjai / auwerēntis / auwerēntin / auwerēntismu / auwerentimmans / auwerēntin / auwerēntins / auwēruns / auwērusis / auwērusjas / auwērusin / auwērusjasmu / auwērusimans / auwērusin / auwērusins / auwērusi / auwērusjas / auwērusjas / auwērusjan / auwērusjai / auwērusjamans / auwērusjan / auwērusjans / auwērus / auwērus / auwērusjas / auwērusin / auwērusjasmu / auwērusimans / auwērus / auwērus / auwerts / auwertāi / auwertas / auwertan / auwertasmu / auwertammans / auwertan / auwertans / auwertā / auwertas / auwertas / auwertan / auwertai / auwertāmans / auwertan / auwertans / auwertan / auwertāi / auwertas / auwertan / auwertasmu / auwertammans / auwertan / auwertans / auwerlai / auwerlai / auwerlai / auwerlimai / auwerlitei / auwerlai"
+    },
+    "imperative": {
+      "form": "auwerrjais / auwerrjaiti / auwerēnts / auwerēntjai / auwerēntis / auwerēntin / auwerēntismu / auwerentimmans / auwerēntin / auwerēntins / auwerentī / auwerēntjas / auwerēntjas / auwerēntjan / auwerēntjai / auwerentjāmans / auwerēntjan / auwerēntjans / auwerēnti / auwerēntjai / auwerēntis / auwerēntin / auwerēntismu / auwerentimmans / auwerēntin / auwerēntins / auwēruns / auwērusis / auwērusjas / auwērusin / auwērusjasmu / auwērusimans / auwērusin / auwērusins / auwērusi / auwērusjas / auwērusjas / auwērusjan / auwērusjai / auwērusjamans / auwērusjan / auwērusjans / auwērus / auwērus / auwērusjas / auwērusin / auwērusjasmu / auwērusimans / auwērus / auwērus / auwerts / auwertāi / auwertas / auwertan / auwertasmu / auwertammans / auwertan / auwertans / auwertā / auwertas / auwertas / auwertan / auwertai / auwertāmans / auwertan / auwertans / auwertan / auwertāi / auwertas / auwertan / auwertasmu / auwertammans / auwertan / auwertans / auwerlai / auwerlai / auwerlai / auwerlimai / auwerlitei / auwerlai"
+    }
+  },
+  "translations": [
+    "1to close"
+  ]
+}

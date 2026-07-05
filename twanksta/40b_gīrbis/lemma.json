@@ -1,0 +1,61 @@
+[
+  {
+    "word": "gīrbis",
+    "paradigm": "40",
+    "gender": "masc",
+    "desc": "[gīrbin 121 drv]",
+    "audio": "",
+    "description": "",
+    "translations": {
+      "engl": [
+        "number (quantity, numeral)",
+        "numeral"
+      ],
+      "miks": [
+        "Zahl"
+      ],
+      "leit": [
+        "skaičius"
+      ],
+      "latt": [
+        "skaitlis"
+      ],
+      "pols": [
+        "liczba",
+        "ilość"
+      ],
+      "mask": [
+        "число"
+      ]
+    },
+    "forms": {
+      "declension": [
+        {
+          "gender": "masc",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "gīrbis",
+              "plural": "gīrbjai"
+            },
+            {
+              "case": "Genitive",
+              "singular": "gīrbjas",
+              "plural": "gīrbjan"
+            },
+            {
+              "case": "Dative",
+              "singular": "gīrbju",
+              "plural": "gīrbjamans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "gīrbjan",
+              "plural": "gīrbjans"
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

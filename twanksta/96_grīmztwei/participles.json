@@ -1,0 +1,183 @@
+{
+  "lemma": "grīmztwei",
+  "paradigm": "96",
+  "infinitive_stem": "grīmz",
+  "prusaspira": {
+    "participles": {
+      "present": "grīmzdants",
+      "past": "grīmzuns"
+    },
+    "optative": "grīmzsei",
+    "conjunctive": {
+      "sg_3pl": "grīmzlai",
+      "1pl": "grīmzlimai",
+      "2pl": "grīmzlitei"
+    },
+    "imperative": [
+      "grīmzsei",
+      "grīmzdais",
+      "grīmzdimai",
+      "grīmzdaiti"
+    ]
+  },
+  "twanksta": {
+    "participles": {
+      "present": {
+        "form": "grīmzants",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "grīmzants",
+              "pl": "grīmzantjai"
+            },
+            "Gen": {
+              "sg": "grīmzantis",
+              "pl": "grīmzantin"
+            },
+            "Dat": {
+              "sg": "grīmzantismu",
+              "pl": "grimzantimmans"
+            },
+            "Akk": {
+              "sg": "grīmzantin",
+              "pl": "grīmzantins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "grimzantī",
+              "pl": "grīmzantjas"
+            },
+            "Gen": {
+              "sg": "grīmzantjas",
+              "pl": "grīmzantjan"
+            },
+            "Dat": {
+              "sg": "grīmzantjai",
+              "pl": "grimzantjāmans"
+            },
+            "Akk": {
+              "sg": "grīmzantjan",
+              "pl": "grīmzantjans"
+            }
+          }
+        }
+      },
+      "past": {
+        "form": "grīmzuns",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "grīmzuns",
+              "pl": "grīmzusis"
+            },
+            "Gen": {
+              "sg": "grīmzusjas",
+              "pl": "grīmzusin"
+            },
+            "Dat": {
+              "sg": "grīmzusjasmu",
+              "pl": "grīmzusimans"
+            },
+            "Akk": {
+              "sg": "grīmzusin",
+              "pl": "grīmzusins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "grīmzusi",
+              "pl": "grīmzusjas"
+            },
+            "Gen": {
+              "sg": "grīmzusjas",
+              "pl": "grīmzusjan"
+            },
+            "Dat": {
+              "sg": "grīmzusjai",
+              "pl": "grīmzusjamans"
+            },
+            "Akk": {
+              "sg": "grīmzusjan",
+              "pl": "grīmzusjans"
+            }
+          }
+        }
+      },
+      "passive": {
+        "form": "grīmzts",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "grīmzts",
+              "pl": "grimztāi"
+            },
+            "Gen": {
+              "sg": "grīmztas",
+              "pl": "grīmztan"
+            },
+            "Dat": {
+              "sg": "grīmztasmu",
+              "pl": "grimztammans"
+            },
+            "Akk": {
+              "sg": "grīmztan",
+              "pl": "grīmztans"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "grimztā",
+              "pl": "grīmztas"
+            },
+            "Gen": {
+              "sg": "grīmztas",
+              "pl": "grīmztan"
+            },
+            "Dat": {
+              "sg": "grīmztai",
+              "pl": "grimztāmans"
+            },
+            "Akk": {
+              "sg": "grīmztan",
+              "pl": "grīmztans"
+            }
+          }
+        }
+      }
+    },
+    "optative": "grīmzsei",
+    "imperative": {
+      "2sg": "grīmzdais",
+      "2pl": "grīmzdaiti"
+    },
+    "subjunctive": {
+      "forms": [
+        [
+          "as",
+          "grīmzlai"
+        ],
+        [
+          "tū",
+          "grīmzlai"
+        ],
+        [
+          "tāns/tenā/tennan",
+          "grīmzlai"
+        ],
+        [
+          "mes",
+          "grīmzlimai"
+        ],
+        [
+          "jūs",
+          "grīmzlitei"
+        ],
+        [
+          "tenēi/tennas",
+          "grīmzlai"
+        ]
+      ]
+    }
+  }
+}

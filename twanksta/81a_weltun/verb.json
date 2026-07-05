@@ -1,0 +1,40 @@
+{
+  "lemma": "weltun",
+  "source": "twanksta",
+  "forms": {
+    "present": {
+      "1sg": "wella",
+      "2sg": "wella",
+      "3sg": "wella",
+      "1pl": "wellamai",
+      "2pl": "wellatei",
+      "3pl": "wella"
+    },
+    "preterite": {
+      "1sg": "wēli",
+      "2sg": "wēli",
+      "3sg": "wīli",
+      "1pl": "wēlimai",
+      "2pl": "wēlitei",
+      "3pl": "wīli"
+    },
+    "perfect": {
+      "1sg": "asma\n                    wēluns / wēlusi",
+      "2sg": "assei\n                    wēluns / wēlusi",
+      "1pl": "asmai\n                    wēlusis / wēlusjas",
+      "2pl": "astei\n                    wēlusis / wēlusjas",
+      "3pl": "ast\n                    wēlusis / wēlusjas"
+    },
+    "future": {
+      "1sg": "wīrst\n                    wēluns / wēlusi",
+      "2sg": "wīrst\n                    wēluns / wēlusi",
+      "1pl": "wīrstmai\n                    wēlusis / wēlusjas",
+      "2pl": "wīrstei\n                    wēlusis / wēlusjas",
+      "3pl": "wīrst\n                    wēlusis / wēlusjas"
+    }
+  },
+  "translations": [
+    "1to whirl smth (round)",
+    "2to revolve"
+  ]
+}

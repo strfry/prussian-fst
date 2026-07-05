@@ -1,0 +1,287 @@
+[
+  {
+    "word": "līgus",
+    "paradigm": "31",
+    "gender": "",
+    "desc": "aj nom sg m [Ligopanie ON VM]",
+    "audio": "",
+    "description": "",
+    "translations": {
+      "engl": [
+        "even (smooth)",
+        "smooth (even)",
+        "equal"
+      ],
+      "miks": [
+        "eben (glatt)",
+        "glatt (eben)",
+        "gleich"
+      ],
+      "leit": [
+        "lygus"
+      ],
+      "latt": [
+        "līdzens",
+        "gluds (līdzens)"
+      ],
+      "pols": [
+        "równy",
+        "gładki"
+      ],
+      "mask": [
+        "равный",
+        "ровный",
+        "гладкий"
+      ]
+    },
+    "forms": {
+      "declension": [
+        {
+          "gender": "masc",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "līgus",
+              "plural": "ligwāi"
+            },
+            {
+              "case": "Genitive",
+              "singular": "ligwas",
+              "plural": "līgun"
+            },
+            {
+              "case": "Dative",
+              "singular": "līgusmu",
+              "plural": "ligummans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "līgun",
+              "plural": "līguns"
+            }
+          ]
+        },
+        {
+          "gender": "fem",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "ligī",
+              "plural": "līgjas"
+            },
+            {
+              "case": "Genitive",
+              "singular": "līgjas",
+              "plural": "līgjan"
+            },
+            {
+              "case": "Dative",
+              "singular": "līgjai",
+              "plural": "ligjāmans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "līgjan",
+              "plural": "līgjans"
+            }
+          ]
+        },
+        {
+          "gender": "neut",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "līgu",
+              "plural": "ligwāi"
+            },
+            {
+              "case": "Genitive",
+              "singular": "ligwas",
+              "plural": "līgun"
+            },
+            {
+              "case": "Dative",
+              "singular": "līgusmu",
+              "plural": "ligummans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "līgu",
+              "plural": "līguns"
+            }
+          ]
+        },
+        {
+          "gender": "",
+          "cases": [
+            {
+              "case": "",
+              "singular": "līgus",
+              "plural": ""
+            },
+            {
+              "case": "Nominative",
+              "singular": "līguisis",
+              "plural": "līguisjai"
+            },
+            {
+              "case": "Genitive",
+              "singular": "līguisjas",
+              "plural": "līguisin"
+            },
+            {
+              "case": "Dative",
+              "singular": "līguisjasmu",
+              "plural": "līguisimans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "līguisin",
+              "plural": "līguisins"
+            }
+          ]
+        },
+        {
+          "gender": "fem",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "līguisi",
+              "plural": "līguisjas"
+            },
+            {
+              "case": "Genitive",
+              "singular": "līguisjas",
+              "plural": "līguisjan"
+            },
+            {
+              "case": "Dative",
+              "singular": "līguisjai",
+              "plural": "līguisjamans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "līguisjan",
+              "plural": "līguisjans"
+            }
+          ]
+        },
+        {
+          "gender": "neut",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "līguisi",
+              "plural": "līguisjai"
+            },
+            {
+              "case": "Genitive",
+              "singular": "līguisjas",
+              "plural": "līguisin"
+            },
+            {
+              "case": "Dative",
+              "singular": "līguisjasmu",
+              "plural": "līguisimans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "līguisi",
+              "plural": "līguisins"
+            }
+          ]
+        },
+        {
+          "gender": "masc",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "ukalīguisis",
+              "plural": "ukalīguisjai"
+            },
+            {
+              "case": "Genitive",
+              "singular": "ukalīguisjas",
+              "plural": "ukalīguisin"
+            },
+            {
+              "case": "Dative",
+              "singular": "ukalīguisjasmu",
+              "plural": "ukalīguisimans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "ukalīguisin",
+              "plural": "ukalīguisins"
+            }
+          ]
+        },
+        {
+          "gender": "fem",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "ukalīguisi",
+              "plural": "ukalīguisjas"
+            },
+            {
+              "case": "Genitive",
+              "singular": "ukalīguisjas",
+              "plural": "ukalīguisjan"
+            },
+            {
+              "case": "Dative",
+              "singular": "ukalīguisjai",
+              "plural": "ukalīguisjamans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "ukalīguisjan",
+              "plural": "ukalīguisjans"
+            }
+          ]
+        },
+        {
+          "gender": "neut",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "ukalīguisi",
+              "plural": "ukalīguisjai"
+            },
+            {
+              "case": "Genitive",
+              "singular": "ukalīguisjas",
+              "plural": "ukalīguisin"
+            },
+            {
+              "case": "Dative",
+              "singular": "ukalīguisjasmu",
+              "plural": "ukalīguisimans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "ukalīguisi",
+              "plural": "ukalīguisins"
+            }
+          ]
+        },
+        {
+          "gender": "",
+          "cases": [
+            {
+              "case": "",
+              "singular": "līgu",
+              "plural": "līguis"
+            }
+          ]
+        }
+      ],
+      "adverb": {
+        "positive": "līgu",
+        "comparative": "līguis",
+        "superlative": "ukalīguis"
+      }
+    }
+  }
+]

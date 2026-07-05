@@ -1,0 +1,184 @@
+{
+  "lemma": "grēitun",
+  "paradigm": "106a",
+  "infinitive_stem": "grēi",
+  "prusaspira": {
+    "participles": {
+      "present": "grejjants",
+      "past": "grejjuns",
+      "passive": "grēits"
+    },
+    "optative": "grēisei",
+    "conjunctive": {
+      "sg_3pl": "grēilai",
+      "1pl": "grēilimai",
+      "2pl": "grēilitei"
+    },
+    "imperative": [
+      "grēisei",
+      "grejjais",
+      "grejjimai",
+      "grejjaiti"
+    ]
+  },
+  "twanksta": {
+    "participles": {
+      "present": {
+        "form": "grejānts",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "grejānts",
+              "pl": "grejāntjai"
+            },
+            "Gen": {
+              "sg": "grejāntis",
+              "pl": "grejāntin"
+            },
+            "Dat": {
+              "sg": "grejāntismu",
+              "pl": "grejantimmans"
+            },
+            "Akk": {
+              "sg": "grejāntin",
+              "pl": "grejāntins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "grejantī",
+              "pl": "grejāntjas"
+            },
+            "Gen": {
+              "sg": "grejāntjas",
+              "pl": "grejāntjan"
+            },
+            "Dat": {
+              "sg": "grejāntjai",
+              "pl": "grejantjāmans"
+            },
+            "Akk": {
+              "sg": "grejāntjan",
+              "pl": "grejāntjans"
+            }
+          }
+        }
+      },
+      "past": {
+        "form": "grījuns",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "grījuns",
+              "pl": "grījusis"
+            },
+            "Gen": {
+              "sg": "grījusjas",
+              "pl": "grījusin"
+            },
+            "Dat": {
+              "sg": "grījusjasmu",
+              "pl": "grījusimans"
+            },
+            "Akk": {
+              "sg": "grījusin",
+              "pl": "grījusins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "grījusi",
+              "pl": "grījusjas"
+            },
+            "Gen": {
+              "sg": "grījusjas",
+              "pl": "grījusjan"
+            },
+            "Dat": {
+              "sg": "grījusjai",
+              "pl": "grījusjamans"
+            },
+            "Akk": {
+              "sg": "grījusjan",
+              "pl": "grījusjans"
+            }
+          }
+        }
+      },
+      "passive": {
+        "form": "grēits",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "grēits",
+              "pl": "greitāi"
+            },
+            "Gen": {
+              "sg": "grēitas",
+              "pl": "grēitan"
+            },
+            "Dat": {
+              "sg": "grēitasmu",
+              "pl": "greitammans"
+            },
+            "Akk": {
+              "sg": "grēitan",
+              "pl": "grēitans"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "greitā",
+              "pl": "grēitas"
+            },
+            "Gen": {
+              "sg": "grēitas",
+              "pl": "grēitan"
+            },
+            "Dat": {
+              "sg": "grēitai",
+              "pl": "greitāmans"
+            },
+            "Akk": {
+              "sg": "grēitan",
+              "pl": "grēitans"
+            }
+          }
+        }
+      }
+    },
+    "optative": "grēisei",
+    "imperative": {
+      "2sg": "grejjais",
+      "2pl": "grejjaiti"
+    },
+    "subjunctive": {
+      "forms": [
+        [
+          "as",
+          "grēilai"
+        ],
+        [
+          "tū",
+          "grēilai"
+        ],
+        [
+          "tāns/tenā/tennan",
+          "grēilai"
+        ],
+        [
+          "mes",
+          "grēilimai"
+        ],
+        [
+          "jūs",
+          "grēilitei"
+        ],
+        [
+          "tenēi/tennas",
+          "grēilai"
+        ]
+      ]
+    }
+  }
+}

@@ -1,0 +1,114 @@
+[
+  {
+    "word": "kas",
+    "paradigm": "9",
+    "gender": "",
+    "desc": "pn nom sg m [kas 37]",
+    "audio": "",
+    "description": "",
+    "translations": {
+      "engl": [
+        "who"
+      ],
+      "miks": [
+        "wer",
+        "der rel"
+      ],
+      "leit": [
+        "kas",
+        "kuris"
+      ],
+      "latt": [
+        "kas",
+        "kurš"
+      ],
+      "pols": [
+        "kto",
+        "który"
+      ],
+      "mask": [
+        "кто",
+        "который"
+      ]
+    },
+    "forms": {
+      "declension": [
+        {
+          "gender": "masc",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "kas",
+              "plural": "kwāi"
+            },
+            {
+              "case": "Genitive",
+              "singular": "kasse",
+              "plural": "kwēisan"
+            },
+            {
+              "case": "Dative",
+              "singular": "kasmu",
+              "plural": "kwēimans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "kan",
+              "plural": "kans"
+            }
+          ]
+        },
+        {
+          "gender": "fem",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "kwāi",
+              "plural": "kwās"
+            },
+            {
+              "case": "Genitive",
+              "singular": "kasses",
+              "plural": "kwēisan"
+            },
+            {
+              "case": "Dative",
+              "singular": "kassei",
+              "plural": "kwēimans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "kan",
+              "plural": "kans"
+            }
+          ]
+        },
+        {
+          "gender": "neut",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "ka",
+              "plural": "ka"
+            },
+            {
+              "case": "Genitive",
+              "singular": "kasse",
+              "plural": "kasse"
+            },
+            {
+              "case": "Dative",
+              "singular": "kasmu",
+              "plural": "kasmu"
+            },
+            {
+              "case": "Accusative",
+              "singular": "ka",
+              "plural": "ka"
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

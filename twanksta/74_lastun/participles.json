@@ -1,0 +1,165 @@
+{
+  "lemma": "lastun",
+  "paradigm": "74",
+  "infinitive_stem": "las",
+  "twanksta": {
+    "participles": {
+      "present": {
+        "form": "ladānts",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "ladānts",
+              "pl": "ladāntjai"
+            },
+            "Gen": {
+              "sg": "ladāntis",
+              "pl": "ladāntin"
+            },
+            "Dat": {
+              "sg": "ladāntismu",
+              "pl": "ladantimmans"
+            },
+            "Akk": {
+              "sg": "ladāntin",
+              "pl": "ladāntins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "ladantī",
+              "pl": "ladāntjas"
+            },
+            "Gen": {
+              "sg": "ladāntjas",
+              "pl": "ladāntjan"
+            },
+            "Dat": {
+              "sg": "ladāntjai",
+              "pl": "ladantjāmans"
+            },
+            "Akk": {
+              "sg": "ladāntjan",
+              "pl": "ladāntjans"
+            }
+          }
+        }
+      },
+      "past": {
+        "form": "ladduns",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "ladduns",
+              "pl": "laddusis"
+            },
+            "Gen": {
+              "sg": "laddusjas",
+              "pl": "laddusin"
+            },
+            "Dat": {
+              "sg": "laddusjasmu",
+              "pl": "laddusimans"
+            },
+            "Akk": {
+              "sg": "laddusin",
+              "pl": "laddusins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "laddusi",
+              "pl": "laddusjas"
+            },
+            "Gen": {
+              "sg": "laddusjas",
+              "pl": "laddusjan"
+            },
+            "Dat": {
+              "sg": "laddusjai",
+              "pl": "laddusjamans"
+            },
+            "Akk": {
+              "sg": "laddusjan",
+              "pl": "laddusjans"
+            }
+          }
+        }
+      },
+      "passive": {
+        "form": "lasts",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "lasts",
+              "pl": "lastāi"
+            },
+            "Gen": {
+              "sg": "lastas",
+              "pl": "lastan"
+            },
+            "Dat": {
+              "sg": "lastasmu",
+              "pl": "lastammans"
+            },
+            "Akk": {
+              "sg": "lastan",
+              "pl": "lastans"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "lastā",
+              "pl": "lastas"
+            },
+            "Gen": {
+              "sg": "lastas",
+              "pl": "lastan"
+            },
+            "Dat": {
+              "sg": "lastai",
+              "pl": "lastāmans"
+            },
+            "Akk": {
+              "sg": "lastan",
+              "pl": "lastans"
+            }
+          }
+        }
+      }
+    },
+    "optative": "lasei",
+    "imperative": {
+      "2sg": "laddais",
+      "2pl": "laddaiti"
+    },
+    "subjunctive": {
+      "forms": [
+        [
+          "as",
+          "ladlai"
+        ],
+        [
+          "tū",
+          "ladlai"
+        ],
+        [
+          "tāns/tenā/tennan",
+          "ladlai"
+        ],
+        [
+          "mes",
+          "ladlimai"
+        ],
+        [
+          "jūs",
+          "ladlitei"
+        ],
+        [
+          "tenēi/tennas",
+          "ladlai"
+        ]
+      ]
+    }
+  }
+}

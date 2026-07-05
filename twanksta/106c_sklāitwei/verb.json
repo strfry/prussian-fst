@@ -1,0 +1,42 @@
+{
+  "lemma": "sklāitwei",
+  "source": "twanksta",
+  "forms": {
+    "present": {
+      "1sg": "sklajja",
+      "2sg": "sklajja",
+      "3sg": "sklajja",
+      "1pl": "sklajjimai",
+      "2pl": "sklajjitei",
+      "3pl": "sklajja"
+    },
+    "preterite": {
+      "1sg": "sklīja",
+      "2sg": "sklīja",
+      "3sg": "sklīja",
+      "1pl": "sklījamai",
+      "2pl": "sklījatei",
+      "3pl": "sklīja"
+    },
+    "perfect": {
+      "1sg": "asma\n                    sklījuns / sklījusi",
+      "2sg": "assei\n                    sklījuns / sklījusi",
+      "1pl": "asmai\n                    sklījusis / skījusjas",
+      "2pl": "astei\n                    sklījusis / skījusjas",
+      "3pl": "ast\n                    sklījusis / skījusjas"
+    },
+    "future": {
+      "1sg": "wīrst\n                    sklījuns / sklījusi",
+      "2sg": "wīrst\n                    sklījuns / sklījusi",
+      "1pl": "wīrstmai\n                    sklījusis / skījusjas",
+      "2pl": "wīrstei\n                    sklījusis / skījusjas",
+      "3pl": "wīrst\n                    sklījusis / skījusjas"
+    }
+  },
+  "translations": [
+    "1to disperse itr",
+    "2to  dissipate itr",
+    "3to  run (to spill itr on a surface)",
+    "4to spill itr over"
+  ]
+}

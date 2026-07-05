@@ -1,0 +1,39 @@
+{
+  "lemma": "krīkstwei",
+  "source": "twanksta",
+  "forms": {
+    "present": {
+      "1sg": "krīkstja",
+      "2sg": "krīkstja",
+      "3sg": "krīkstja",
+      "1pl": "krīkstimai",
+      "2pl": "krīkstitei",
+      "3pl": "krīkstja"
+    },
+    "preterite": {
+      "1sg": "krīksti",
+      "2sg": "krīksti",
+      "3sg": "krīksti",
+      "1pl": "krīkstimai",
+      "2pl": "krīkstitei",
+      "3pl": "krīksti"
+    },
+    "perfect": {
+      "1sg": "asma\n                    krīkstuns / krīkstusi",
+      "2sg": "assei\n                    krīkstuns / krīkstusi",
+      "1pl": "asmai\n                    krīkstusis / krīkstusjas",
+      "2pl": "astei\n                    krīkstusis / krīkstusjas",
+      "3pl": "ast\n                    krīkstusis / krīkstusjas"
+    },
+    "future": {
+      "1sg": "wīrst\n                    krīkstuns / krīkstusi",
+      "2sg": "wīrst\n                    krīkstuns / krīkstusi",
+      "1pl": "wīrstmai\n                    krīkstusis / krīkstusjas",
+      "2pl": "wīrstei\n                    krīkstusis / krīkstusjas",
+      "3pl": "wīrst\n                    krīkstusis / krīkstusjas"
+    }
+  },
+  "translations": [
+    "1to shout emotionally"
+  ]
+}

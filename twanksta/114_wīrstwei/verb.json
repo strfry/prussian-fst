@@ -1,0 +1,45 @@
+{
+  "lemma": "wīrstwei",
+  "source": "twanksta",
+  "forms": {
+    "present": {
+      "1sg": "wīrst",
+      "2sg": "wīrst",
+      "3sg": "wīrst",
+      "1pl": "wīrstmai",
+      "2pl": "wīrstei",
+      "3pl": "wīrst"
+    },
+    "preterite": {
+      "1sg": "wīrta",
+      "2sg": "wīrta",
+      "3sg": "wīrta",
+      "1pl": "wīrtamai",
+      "2pl": "wīrtatei",
+      "3pl": "wīrta"
+    },
+    "perfect": {
+      "1sg": "asma\n                    wīrtuns / wīrtusi",
+      "2sg": "assei\n                    wīrtuns / wīrtusi",
+      "1pl": "asmai\n                    wīrtusis / wīrtusjas",
+      "2pl": "astei\n                    wīrtusis / wīrtusjas",
+      "3pl": "ast\n                    wīrtusis / wīrtusjas"
+    },
+    "future": {
+      "1sg": "wīrst\n                    wīrtuns / wīrtusi",
+      "2sg": "wīrst\n                    wīrtuns / wīrtusi",
+      "1pl": "wīrstmai\n                    wīrtusis / wīrtusjas",
+      "2pl": "wīrstei\n                    wīrtusis / wīrtusjas",
+      "3pl": "wīrst\n                    wīrtusis / wīrtusjas"
+    },
+    "optative": {
+      "form": "wīrtsei / wīrstais / wīrstaiti / wīrstants / wīrstantjai / wīrstantis / wīrstantin / wīrstantismu / wirstantimmans / wīrstantin / wīrstantins / wirstantī / wīrstantjas / wīrstantjas / wīrstantjan / wīrstantjai / wirstantjāmans / wīrstantjan / wīrstantjans / wīrstanti / wīrstantjai / wīrstantis / wīrstantin / wīrstantismu / wirstantimmans / wīrstantin / wīrstantins / wīrtuns / wīrtusis / wīrtusjas / wīrtusin / wīrtusjasmu / wīrtusimans / wīrtusin / wīrtusins / wīrtusi / wīrtusjas / wīrtusjas / wīrtusjan / wīrtusjai / wīrtusjamans / wīrtusjan / wīrtusjans / wīrtus / wīrtus / wīrtusjas / wīrtusin / wīrtusjasmu / wīrtusimans / wīrtus / wīrtus / wīrsts / wirstāi / wīrstas / wīrstan / wīrstasmu / wirstammans / wīrstan / wīrstans / wirstā / wīrstas / wīrstas / wīrstan / wīrstai / wirstāmans / wīrstan / wīrstans / wīrstan / wirstāi / wīrstas / wīrstan / wīrstasmu / wirstammans / wīrstan / wīrstans / wīrstlai / wīrstlai / wīrstlai / wīrstlimai / wīrstlitei / wīrstlai"
+    },
+    "imperative": {
+      "form": "wīrstais / wīrstaiti / wīrstants / wīrstantjai / wīrstantis / wīrstantin / wīrstantismu / wirstantimmans / wīrstantin / wīrstantins / wirstantī / wīrstantjas / wīrstantjas / wīrstantjan / wīrstantjai / wirstantjāmans / wīrstantjan / wīrstantjans / wīrstanti / wīrstantjai / wīrstantis / wīrstantin / wīrstantismu / wirstantimmans / wīrstantin / wīrstantins / wīrtuns / wīrtusis / wīrtusjas / wīrtusin / wīrtusjasmu / wīrtusimans / wīrtusin / wīrtusins / wīrtusi / wīrtusjas / wīrtusjas / wīrtusjan / wīrtusjai / wīrtusjamans / wīrtusjan / wīrtusjans / wīrtus / wīrtus / wīrtusjas / wīrtusin / wīrtusjasmu / wīrtusimans / wīrtus / wīrtus / wīrsts / wirstāi / wīrstas / wīrstan / wīrstasmu / wirstammans / wīrstan / wīrstans / wirstā / wīrstas / wīrstas / wīrstan / wīrstai / wirstāmans / wīrstan / wīrstans / wīrstan / wirstāi / wīrstas / wīrstan / wīrstasmu / wirstammans / wīrstan / wīrstans / wīrstlai / wīrstlai / wīrstlai / wīrstlimai / wīrstlitei / wīrstlai"
+    }
+  },
+  "translations": [
+    "1to become"
+  ]
+}

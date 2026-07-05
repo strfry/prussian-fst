@@ -1,0 +1,183 @@
+{
+  "lemma": "wīrstwei",
+  "paradigm": "114",
+  "infinitive_stem": "wīr",
+  "prusaspira": {
+    "participles": {
+      "present": "wīrstants",
+      "past": "wīrtuns"
+    },
+    "optative": "wīrsei",
+    "conjunctive": {
+      "sg_3pl": "wīrtlai",
+      "1pl": "wīrtlimai",
+      "2pl": "wīrtlitei"
+    },
+    "imperative": [
+      "wīrsei",
+      "wīrstais",
+      "wīrstmai",
+      "wīrstaiti"
+    ]
+  },
+  "twanksta": {
+    "participles": {
+      "present": {
+        "form": "wīrstants",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "wīrstants",
+              "pl": "wīrstantjai"
+            },
+            "Gen": {
+              "sg": "wīrstantis",
+              "pl": "wīrstantin"
+            },
+            "Dat": {
+              "sg": "wīrstantismu",
+              "pl": "wirstantimmans"
+            },
+            "Akk": {
+              "sg": "wīrstantin",
+              "pl": "wīrstantins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "wirstantī",
+              "pl": "wīrstantjas"
+            },
+            "Gen": {
+              "sg": "wīrstantjas",
+              "pl": "wīrstantjan"
+            },
+            "Dat": {
+              "sg": "wīrstantjai",
+              "pl": "wirstantjāmans"
+            },
+            "Akk": {
+              "sg": "wīrstantjan",
+              "pl": "wīrstantjans"
+            }
+          }
+        }
+      },
+      "past": {
+        "form": "wīrtuns",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "wīrtuns",
+              "pl": "wīrtusis"
+            },
+            "Gen": {
+              "sg": "wīrtusjas",
+              "pl": "wīrtusin"
+            },
+            "Dat": {
+              "sg": "wīrtusjasmu",
+              "pl": "wīrtusimans"
+            },
+            "Akk": {
+              "sg": "wīrtusin",
+              "pl": "wīrtusins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "wīrtusi",
+              "pl": "wīrtusjas"
+            },
+            "Gen": {
+              "sg": "wīrtusjas",
+              "pl": "wīrtusjan"
+            },
+            "Dat": {
+              "sg": "wīrtusjai",
+              "pl": "wīrtusjamans"
+            },
+            "Akk": {
+              "sg": "wīrtusjan",
+              "pl": "wīrtusjans"
+            }
+          }
+        }
+      },
+      "passive": {
+        "form": "wīrsts",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "wīrsts",
+              "pl": "wirstāi"
+            },
+            "Gen": {
+              "sg": "wīrstas",
+              "pl": "wīrstan"
+            },
+            "Dat": {
+              "sg": "wīrstasmu",
+              "pl": "wirstammans"
+            },
+            "Akk": {
+              "sg": "wīrstan",
+              "pl": "wīrstans"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "wirstā",
+              "pl": "wīrstas"
+            },
+            "Gen": {
+              "sg": "wīrstas",
+              "pl": "wīrstan"
+            },
+            "Dat": {
+              "sg": "wīrstai",
+              "pl": "wirstāmans"
+            },
+            "Akk": {
+              "sg": "wīrstan",
+              "pl": "wīrstans"
+            }
+          }
+        }
+      }
+    },
+    "optative": "wīrtsei",
+    "imperative": {
+      "2sg": "wīrstais",
+      "2pl": "wīrstaiti"
+    },
+    "subjunctive": {
+      "forms": [
+        [
+          "as",
+          "wīrstlai"
+        ],
+        [
+          "tū",
+          "wīrstlai"
+        ],
+        [
+          "tāns/tenā/tennan",
+          "wīrstlai"
+        ],
+        [
+          "mes",
+          "wīrstlimai"
+        ],
+        [
+          "jūs",
+          "wīrstlitei"
+        ],
+        [
+          "tenēi/tennas",
+          "wīrstlai"
+        ]
+      ]
+    }
+  }
+}

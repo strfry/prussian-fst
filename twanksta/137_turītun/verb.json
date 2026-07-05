@@ -1,0 +1,45 @@
+{
+  "lemma": "turītun",
+  "source": "twanksta",
+  "forms": {
+    "present": {
+      "1sg": "turri",
+      "2sg": "turri",
+      "3sg": "turri",
+      "1pl": "turrimai",
+      "2pl": "turritei",
+      "3pl": "turri"
+    },
+    "preterite": {
+      "1sg": "turēi",
+      "2sg": "turēi",
+      "3sg": "turēi",
+      "1pl": "turēimai",
+      "2pl": "turēitei",
+      "3pl": "turēi"
+    },
+    "perfect": {
+      "1sg": "asma\n                    turīwuns / turīwusi",
+      "2sg": "assei\n                    turīwuns / turīwusi",
+      "1pl": "asmai\n                    turīwusis / turīwusjas",
+      "2pl": "astei\n                    turīwusis / turīwusjas",
+      "3pl": "ast\n                    turīwusis / turīwusjas"
+    },
+    "future": {
+      "1sg": "wīrst\n                    turīwuns / turīwusi",
+      "2sg": "wīrst\n                    turīwuns / turīwusi",
+      "1pl": "wīrstmai\n                    turīwusis / turīwusjas",
+      "2pl": "wīrstei\n                    turīwusis / turīwusjas",
+      "3pl": "wīrst\n                    turīwusis / turīwusjas"
+    },
+    "optative": {
+      "form": "turīsei / turris / turriti / turīnts / turīntjai / turīntis / turīntin / turīntismu / turintimmans / turīntin / turīntins / turintī / turīntjas / turīntjas / turīntjan / turīntjai / turintjāmans / turīntjan / turīntjans / turīnti / turīntjai / turīntis / turīntin / turīntismu / turintimmans / turīntin / turīntins / turīwuns / turīwusis / turīwusjas / turīwusin / turīwusjasmu / turīwusimans / turīwusin / turīwusins / turīwusi / turīwusjas / turīwusjas / turīwusjan / turīwusjai / turīwusjamans / turīwusjan / turīwusjans / turīwus / turīwus / turīwusjas / turīwusin / turīwusjasmu / turīwusimans / turīwus / turīwus / turīts / turitāi / turītas / turītan / turītasmu / turitammans / turītan / turītans / turitā / turītas / turītas / turītan / turītai / turitāmans / turītan / turītans / turītan / turitāi / turītas / turītan / turītasmu / turitammans / turītan / turītans / turīlai / turīlai / turīlai / turīlimai / turīlitei / turīlai"
+    },
+    "imperative": {
+      "form": "turris / turriti / turīnts / turīntjai / turīntis / turīntin / turīntismu / turintimmans / turīntin / turīntins / turintī / turīntjas / turīntjas / turīntjan / turīntjai / turintjāmans / turīntjan / turīntjans / turīnti / turīntjai / turīntis / turīntin / turīntismu / turintimmans / turīntin / turīntins / turīwuns / turīwusis / turīwusjas / turīwusin / turīwusjasmu / turīwusimans / turīwusin / turīwusins / turīwusi / turīwusjas / turīwusjas / turīwusjan / turīwusjai / turīwusjamans / turīwusjan / turīwusjans / turīwus / turīwus / turīwusjas / turīwusin / turīwusjasmu / turīwusimans / turīwus / turīwus / turīts / turitāi / turītas / turītan / turītasmu / turitammans / turītan / turītans / turitā / turītas / turītas / turītan / turītai / turitāmans / turītan / turītans / turītan / turitāi / turītas / turītan / turītasmu / turitammans / turītan / turītans / turīlai / turīlai / turīlai / turīlimai / turīlitei / turīlai"
+    }
+  },
+  "translations": [
+    "1to have"
+  ]
+}

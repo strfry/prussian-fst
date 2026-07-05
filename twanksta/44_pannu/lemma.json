@@ -1,0 +1,59 @@
+[
+  {
+    "word": "pannu",
+    "paradigm": "44",
+    "gender": "neut",
+    "desc": "n [Panno E 33]",
+    "audio": "",
+    "description": "",
+    "translations": {
+      "engl": [
+        "fire"
+      ],
+      "miks": [
+        "Feuer"
+      ],
+      "leit": [
+        "ugnis"
+      ],
+      "latt": [
+        "uguns"
+      ],
+      "pols": [
+        "ogień"
+      ],
+      "mask": [
+        "огонь"
+      ]
+    },
+    "forms": {
+      "declension": [
+        {
+          "gender": "neut",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "pannu",
+              "plural": "pannu"
+            },
+            {
+              "case": "Genitive",
+              "singular": "pannus",
+              "plural": "pannus"
+            },
+            {
+              "case": "Dative",
+              "singular": "pannu",
+              "plural": "pannu"
+            },
+            {
+              "case": "Accusative",
+              "singular": "pannu",
+              "plural": "pannu"
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

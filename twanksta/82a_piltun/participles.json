@@ -1,0 +1,183 @@
+{
+  "lemma": "piltun",
+  "paradigm": "82a",
+  "infinitive_stem": "pil",
+  "prusaspira": {
+    "participles": {
+      "present": "pilānts",
+      "past": "pīluns"
+    },
+    "optative": "pilsei",
+    "conjunctive": {
+      "sg_3pl": "pillai",
+      "1pl": "pillimai",
+      "2pl": "pillitei"
+    },
+    "imperative": [
+      "pilsei",
+      "pillais",
+      "pillimai",
+      "pillaiti"
+    ]
+  },
+  "twanksta": {
+    "participles": {
+      "present": {
+        "form": "pilīnts",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "pilīnts",
+              "pl": "pilīntjai"
+            },
+            "Gen": {
+              "sg": "pilīntis",
+              "pl": "pilīntin"
+            },
+            "Dat": {
+              "sg": "pilīntismu",
+              "pl": "pilintimmans"
+            },
+            "Akk": {
+              "sg": "pilīntin",
+              "pl": "pilīntins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "pilintī",
+              "pl": "pilīntjas"
+            },
+            "Gen": {
+              "sg": "pilīntjas",
+              "pl": "pilīntjan"
+            },
+            "Dat": {
+              "sg": "pilīntjai",
+              "pl": "pilintjāmans"
+            },
+            "Akk": {
+              "sg": "pilīntjan",
+              "pl": "pilīntjans"
+            }
+          }
+        }
+      },
+      "past": {
+        "form": "pīluns",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "pīluns",
+              "pl": "pīlusis"
+            },
+            "Gen": {
+              "sg": "pīlusjas",
+              "pl": "pīlusin"
+            },
+            "Dat": {
+              "sg": "pīlusjasmu",
+              "pl": "pīlusimans"
+            },
+            "Akk": {
+              "sg": "pīlusin",
+              "pl": "pīlusins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "pīlusi",
+              "pl": "pīlusjas"
+            },
+            "Gen": {
+              "sg": "pīlusjas",
+              "pl": "pīlusjan"
+            },
+            "Dat": {
+              "sg": "pīlusjai",
+              "pl": "pīlusjamans"
+            },
+            "Akk": {
+              "sg": "pīlusjan",
+              "pl": "pīlusjans"
+            }
+          }
+        }
+      },
+      "passive": {
+        "form": "pilts",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "pilts",
+              "pl": "piltāi"
+            },
+            "Gen": {
+              "sg": "piltas",
+              "pl": "piltan"
+            },
+            "Dat": {
+              "sg": "piltasmu",
+              "pl": "piltammans"
+            },
+            "Akk": {
+              "sg": "piltan",
+              "pl": "piltans"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "piltā",
+              "pl": "piltas"
+            },
+            "Gen": {
+              "sg": "piltas",
+              "pl": "piltan"
+            },
+            "Dat": {
+              "sg": "piltai",
+              "pl": "piltāmans"
+            },
+            "Akk": {
+              "sg": "piltan",
+              "pl": "piltans"
+            }
+          }
+        }
+      }
+    },
+    "optative": "pilsei",
+    "imperative": {
+      "2sg": "pillais",
+      "2pl": "pillaiti"
+    },
+    "subjunctive": {
+      "forms": [
+        [
+          "as",
+          "pillai"
+        ],
+        [
+          "tū",
+          "pillai"
+        ],
+        [
+          "tāns/tenā/tennan",
+          "pillai"
+        ],
+        [
+          "mes",
+          "pillimai"
+        ],
+        [
+          "jūs",
+          "pillitei"
+        ],
+        [
+          "tenēi/tennas",
+          "pillai"
+        ]
+      ]
+    }
+  }
+}

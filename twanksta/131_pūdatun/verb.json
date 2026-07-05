@@ -1,0 +1,46 @@
+{
+  "lemma": "auskīpatun",
+  "source": "twanksta",
+  "forms": {
+    "present": {
+      "1sg": "auskīpai",
+      "2sg": "auskīpai",
+      "3sg": "auskīpai",
+      "1pl": "auskīpaimai",
+      "2pl": "auskīpaitei",
+      "3pl": "auskīpai"
+    },
+    "preterite": {
+      "1sg": "auskīpai",
+      "2sg": "auskīpai",
+      "3sg": "auskīpai",
+      "1pl": "auskīpaimai",
+      "2pl": "auskīpaitei",
+      "3pl": "auskīpai"
+    },
+    "perfect": {
+      "1sg": "asma\n                    auskīpawuns / auskīpawusi",
+      "2sg": "assei\n                    auskīpawuns / auskīpawusi",
+      "1pl": "asmai\n                    auskīpawusis / auskīpawusjas",
+      "2pl": "astei\n                    auskīpawusis / auskīpawusjas",
+      "3pl": "ast\n                    auskīpawusis / auskīpawusjas"
+    },
+    "future": {
+      "1sg": "wīrst\n                    auskīpawuns / auskīpawusi",
+      "2sg": "wīrst\n                    auskīpawuns / auskīpawusi",
+      "1pl": "wīrstmai\n                    auskīpawusis / auskīpawusjas",
+      "2pl": "wīrstei\n                    auskīpawusis / auskīpawusjas",
+      "3pl": "wīrst\n                    auskīpawusis / auskīpawusjas"
+    },
+    "optative": {
+      "form": "auskīpasei / auskīpais / auskīpaiti / auskīpants / auskīpantjai / auskīpantis / auskīpantin / auskīpantismu / auskipantimmans / auskīpantin / auskīpantins / auskipantī / auskīpantjas / auskīpantjas / auskīpantjan / auskīpantjai / auskipantjāmans / auskīpantjan / auskīpantjans / auskīpanti / auskīpantjai / auskīpantis / auskīpantin / auskīpantismu / auskipantimmans / auskīpantin / auskīpantins / auskīpawuns / auskīpawusis / auskīpawusjas / auskīpawusin / auskīpawusjasmu / auskīpawusimans / auskīpawusin / auskīpawusins / auskīpawusi / auskīpawusjas / auskīpawusjas / auskīpawusjan / auskīpawusjai / auskīpawusjamans / auskīpawusjan / auskīpawusjans / auskīpawus / auskīpawus / auskīpawusjas / auskīpawusin / auskīpawusjasmu / auskīpawusimans / auskīpawus / auskīpawus / auskīpats / auskipatāi / auskīpatas / auskīpatan / auskīpatasmu / auskipatammans / auskīpatan / auskīpatans / auskipatā / auskīpatas / auskīpatas / auskīpatan / auskīpatai / auskipatāmans / auskīpatan / auskīpatans / auskīpatan / auskipatāi / auskīpatas / auskīpatan / auskīpatasmu / auskipatammans / auskīpatan / auskīpatans / auskīpalai / auskīpalai / auskīpalai / auskīpalimai / auskīpalitei / auskīpalai"
+    },
+    "imperative": {
+      "form": "auskīpais / auskīpaiti / auskīpants / auskīpantjai / auskīpantis / auskīpantin / auskīpantismu / auskipantimmans / auskīpantin / auskīpantins / auskipantī / auskīpantjas / auskīpantjas / auskīpantjan / auskīpantjai / auskipantjāmans / auskīpantjan / auskīpantjans / auskīpanti / auskīpantjai / auskīpantis / auskīpantin / auskīpantismu / auskipantimmans / auskīpantin / auskīpantins / auskīpawuns / auskīpawusis / auskīpawusjas / auskīpawusin / auskīpawusjasmu / auskīpawusimans / auskīpawusin / auskīpawusins / auskīpawusi / auskīpawusjas / auskīpawusjas / auskīpawusjan / auskīpawusjai / auskīpawusjamans / auskīpawusjan / auskīpawusjans / auskīpawus / auskīpawus / auskīpawusjas / auskīpawusin / auskīpawusjasmu / auskīpawusimans / auskīpawus / auskīpawus / auskīpats / auskipatāi / auskīpatas / auskīpatan / auskīpatasmu / auskipatammans / auskīpatan / auskīpatans / auskipatā / auskīpatas / auskīpatas / auskīpatan / auskīpatai / auskipatāmans / auskīpatan / auskīpatans / auskīpatan / auskipatāi / auskīpatas / auskīpatan / auskīpatasmu / auskipatammans / auskīpatan / auskīpatans / auskīpalai / auskīpalai / auskīpalai / auskīpalimai / auskīpalitei / auskīpalai"
+    }
+  },
+  "translations": [
+    "1todeplume",
+    "2to top-and-tail"
+  ]
+}

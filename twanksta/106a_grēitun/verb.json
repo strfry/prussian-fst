@@ -1,0 +1,39 @@
+{
+  "lemma": "grēitun",
+  "source": "twanksta",
+  "forms": {
+    "present": {
+      "1sg": "grejja",
+      "2sg": "grejja",
+      "3sg": "grejja",
+      "1pl": "grejjimai",
+      "2pl": "grejjitei",
+      "3pl": "grejja"
+    },
+    "preterite": {
+      "1sg": "grīja",
+      "2sg": "grīja",
+      "3sg": "grīja",
+      "1pl": "grījamai",
+      "2pl": "grījatei",
+      "3pl": "grīja"
+    },
+    "perfect": {
+      "1sg": "asma\n                    grījuns / grījusi",
+      "2sg": "assei\n                    grījuns / grījusi",
+      "1pl": "asmai\n                    grījusis / grījusjas",
+      "2pl": "astei\n                    grījusis / grījusjas",
+      "3pl": "ast\n                    grījusis / grījusjas"
+    },
+    "future": {
+      "1sg": "wīrst\n                    grījuns / grījusi",
+      "2sg": "wīrst\n                    grījuns / grījusi",
+      "1pl": "wīrstmai\n                    grījusis / grījusjas",
+      "2pl": "wīrstei\n                    grījusis / grījusjas",
+      "3pl": "wīrst\n                    grījusis / grījusjas"
+    }
+  },
+  "translations": [
+    "1to skim (cream)"
+  ]
+}

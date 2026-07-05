@@ -1,0 +1,45 @@
+{
+  "lemma": "dīnkautwei",
+  "source": "twanksta",
+  "forms": {
+    "present": {
+      "1sg": "dīnkaui",
+      "2sg": "dīnkaui",
+      "3sg": "dīnkaui",
+      "1pl": "dīnkawimai",
+      "2pl": "dīnkawitei",
+      "3pl": "dīnkaui"
+    },
+    "preterite": {
+      "1sg": "dīnkau",
+      "2sg": "dīnkau",
+      "3sg": "dīnkau",
+      "1pl": "dīnkaumai",
+      "2pl": "dīnkautei",
+      "3pl": "dīnkau"
+    },
+    "perfect": {
+      "1sg": "asma\n                    dīnkawuns / dīnkawusi",
+      "2sg": "assei\n                    dīnkawuns / dīnkawusi",
+      "1pl": "asmai\n                    dīnkawusis / dīnkawusjas",
+      "2pl": "astei\n                    dīnkawusis / dīnkawusjas",
+      "3pl": "ast\n                    dīnkawusis / dīnkawusjas"
+    },
+    "future": {
+      "1sg": "wīrst\n                    dīnkawuns / dīnkawusi",
+      "2sg": "wīrst\n                    dīnkawuns / dīnkawusi",
+      "1pl": "wīrstmai\n                    dīnkawusis / dīnkawusjas",
+      "2pl": "wīrstei\n                    dīnkawusis / dīnkawusjas",
+      "3pl": "wīrst\n                    dīnkawusis / dīnkawusjas"
+    },
+    "optative": {
+      "form": "dīnkausei / dīnkaus / dīnkauiti / dīnkawints / dīnkawintjai / dīnkawintis / dīnkawintin / dīnkawintismu / dinkawintimmans / dīnkawintin / dīnkawintins / dinkawintī / dīnkawintjas / dīnkawintjas / dīnkawintjan / dīnkawintjai / dinkawintjāmans / dīnkawintjan / dīnkawintjans / dīnkawinti / dīnkawintjai / dīnkawintis / dīnkawintin / dīnkawintismu / dinkawintimmans / dīnkawintin / dīnkawintins / dīnkawuns / dīnkawusis / dīnkawusjas / dīnkawusin / dīnkawusjasmu / dīnkawusimans / dīnkawusin / dīnkawusins / dīnkawusi / dīnkawusjas / dīnkawusjas / dīnkawusjan / dīnkawusjai / dīnkawusjamans / dīnkawusjan / dīnkawusjans / dīnkawus / dīnkawus / dīnkawusjas / dīnkawusin / dīnkawusjasmu / dīnkawusimans / dīnkawus / dīnkawus / dīnkauts / dinkautāi / dīnkautas / dīnkautan / dīnkautasmu / dinkautammans / dīnkautan / dīnkautans / dinkautā / dīnkautas / dīnkautas / dīnkautan / dīnkautai / dinkautāmans / dīnkautan / dīnkautans / dīnkautan / dinkautāi / dīnkautas / dīnkautan / dīnkautasmu / dinkautammans / dīnkautan / dīnkautans / dīnkaulai / dīnkaulai / dīnkaulai / dīnkaulimai / dīnkaulitei / dīnkaulai"
+    },
+    "imperative": {
+      "form": "dīnkaus / dīnkauiti / dīnkawints / dīnkawintjai / dīnkawintis / dīnkawintin / dīnkawintismu / dinkawintimmans / dīnkawintin / dīnkawintins / dinkawintī / dīnkawintjas / dīnkawintjas / dīnkawintjan / dīnkawintjai / dinkawintjāmans / dīnkawintjan / dīnkawintjans / dīnkawinti / dīnkawintjai / dīnkawintis / dīnkawintin / dīnkawintismu / dinkawintimmans / dīnkawintin / dīnkawintins / dīnkawuns / dīnkawusis / dīnkawusjas / dīnkawusin / dīnkawusjasmu / dīnkawusimans / dīnkawusin / dīnkawusins / dīnkawusi / dīnkawusjas / dīnkawusjas / dīnkawusjan / dīnkawusjai / dīnkawusjamans / dīnkawusjan / dīnkawusjans / dīnkawus / dīnkawus / dīnkawusjas / dīnkawusin / dīnkawusjasmu / dīnkawusimans / dīnkawus / dīnkawus / dīnkauts / dinkautāi / dīnkautas / dīnkautan / dīnkautasmu / dinkautammans / dīnkautan / dīnkautans / dinkautā / dīnkautas / dīnkautas / dīnkautan / dīnkautai / dinkautāmans / dīnkautan / dīnkautans / dīnkautan / dinkautāi / dīnkautas / dīnkautan / dīnkautasmu / dinkautammans / dīnkautan / dīnkautans / dīnkaulai / dīnkaulai / dīnkaulai / dīnkaulimai / dīnkaulitei / dīnkaulai"
+    }
+  },
+  "translations": [
+    "1to thank"
+  ]
+}

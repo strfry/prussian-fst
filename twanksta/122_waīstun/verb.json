@@ -1,0 +1,46 @@
+{
+  "lemma": "waīstun",
+  "source": "twanksta",
+  "forms": {
+    "present": {
+      "1sg": "waīda",
+      "2sg": "waīda",
+      "3sg": "waīda",
+      "1pl": "waīdimai",
+      "2pl": "waīditei",
+      "3pl": "waīda"
+    },
+    "preterite": {
+      "1sg": "waīda",
+      "2sg": "waīda",
+      "3sg": "waīda",
+      "1pl": "waīdamai",
+      "2pl": "waīdatei",
+      "3pl": "waīda"
+    },
+    "perfect": {
+      "1sg": "asma\n                    waīduns / waīdusi",
+      "2sg": "assei\n                    waīduns / waīdusi",
+      "1pl": "asmai\n                    waīdusis / waīdusjas",
+      "2pl": "astei\n                    waīdusis / waīdusjas",
+      "3pl": "ast\n                    waīdusis / waīdusjas"
+    },
+    "future": {
+      "1sg": "wīrst\n                    waīduns / waīdusi",
+      "2sg": "wīrst\n                    waīduns / waīdusi",
+      "1pl": "wīrstmai\n                    waīdusis / waīdusjas",
+      "2pl": "wīrstei\n                    waīdusis / waīdusjas",
+      "3pl": "wīrst\n                    waīdusis / waīdusjas"
+    },
+    "optative": {
+      "form": "waīdsei / waīdais / waīdaiti / waīdants / waīdantjai / waīdantis / waīdantin / waīdantismu / waidantimmans / waīdantin / waīdantins / waidantī / waīdantjas / waīdantjas / waīdantjan / waīdantjai / waidantjāmans / waīdantjan / waīdantjans / waīdanti / waīdantjai / waīdantis / waīdantin / waīdantismu / waidantimmans / waīdantin / waīdantins / waīduns / waīdusis / waīdusjas / waīdusin / waīdusjasmu / waīdusimans / waīdusin / waīdusins / waīdusi / waīdusjas / waīdusjas / waīdusjan / waīdusjai / waīdusjamans / waīdusjan / waīdusjans / waīdus / waīdus / waīdusjas / waīdusin / waīdusjasmu / waīdusimans / waīdus / waīdus / waīsts / waistāi / waīstas / waīstan / waīstasmu / waistammans / waīstan / waīstans / waistā / waīstas / waīstas / waīstan / waīstai / waistāmans / waīstan / waīstans / waīstan / waistāi / waīstas / waīstan / waīstasmu / waistammans / waīstan / waīstans / waīdlai / waīdlai / waīdlai / waīdlimai / waīdlitei / waīdlai"
+    },
+    "imperative": {
+      "form": "waīdais / waīdaiti / waīdants / waīdantjai / waīdantis / waīdantin / waīdantismu / waidantimmans / waīdantin / waīdantins / waidantī / waīdantjas / waīdantjas / waīdantjan / waīdantjai / waidantjāmans / waīdantjan / waīdantjans / waīdanti / waīdantjai / waīdantis / waīdantin / waīdantismu / waidantimmans / waīdantin / waīdantins / waīduns / waīdusis / waīdusjas / waīdusin / waīdusjasmu / waīdusimans / waīdusin / waīdusins / waīdusi / waīdusjas / waīdusjas / waīdusjan / waīdusjai / waīdusjamans / waīdusjan / waīdusjans / waīdus / waīdus / waīdusjas / waīdusin / waīdusjasmu / waīdusimans / waīdus / waīdus / waīsts / waistāi / waīstas / waīstan / waīstasmu / waistammans / waīstan / waīstans / waistā / waīstas / waīstas / waīstan / waīstai / waistāmans / waīstan / waīstans / waīstan / waistāi / waīstas / waīstan / waīstasmu / waistammans / waīstan / waīstans / waīdlai / waīdlai / waīdlai / waīdlimai / waīdlitei / waīdlai"
+    }
+  },
+  "translations": [
+    "1to know",
+    "2to be aware"
+  ]
+}

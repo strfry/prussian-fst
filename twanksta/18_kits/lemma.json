@@ -1,0 +1,111 @@
+[
+  {
+    "word": "kits",
+    "paradigm": "18",
+    "gender": "",
+    "desc": "[kittan 55]",
+    "audio": "",
+    "description": "",
+    "translations": {
+      "engl": [
+        "other",
+        "another"
+      ],
+      "miks": [
+        "andere"
+      ],
+      "leit": [
+        "kitas"
+      ],
+      "latt": [
+        "cits"
+      ],
+      "pols": [
+        "inny",
+        "drugi"
+      ],
+      "mask": [
+        "другой"
+      ]
+    },
+    "forms": {
+      "declension": [
+        {
+          "gender": "masc",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "kits",
+              "plural": "kitāi"
+            },
+            {
+              "case": "Genitive",
+              "singular": "kitse",
+              "plural": "kitēisan"
+            },
+            {
+              "case": "Dative",
+              "singular": "kitsmu",
+              "plural": "kitēimans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "kittan",
+              "plural": "kittans"
+            }
+          ]
+        },
+        {
+          "gender": "fem",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "kitā",
+              "plural": "kittas"
+            },
+            {
+              "case": "Genitive",
+              "singular": "kitses",
+              "plural": "kitēisan"
+            },
+            {
+              "case": "Dative",
+              "singular": "kitsei",
+              "plural": "kitēimans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "kittan",
+              "plural": "kitans"
+            }
+          ]
+        },
+        {
+          "gender": "neut",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "kittan",
+              "plural": "kittan / kitāi"
+            },
+            {
+              "case": "Genitive",
+              "singular": "kitse",
+              "plural": "kitse / kitēisan"
+            },
+            {
+              "case": "Dative",
+              "singular": "kitsmu",
+              "plural": "kitsmu / kitēimans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "kittan",
+              "plural": "kittan / kittans"
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

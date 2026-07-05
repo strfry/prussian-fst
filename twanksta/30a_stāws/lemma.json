@@ -1,0 +1,294 @@
+{
+  "query": "stāws",
+  "match": "stāws",
+  "score": 1.0,
+  "method": "manual",
+  "entries": [
+    {
+      "word": "stāws",
+      "paradigm": "25",
+      "gender": "",
+      "desc": "AJ [stãvs MK]",
+      "audio": "",
+      "description": "",
+      "translations": {
+        "engl": [
+          "vertical (abrupt, steep)",
+          "right-angled"
+        ],
+        "miks": [
+          "vertikal",
+          "senkrecht",
+          "steil"
+        ],
+        "leit": [
+          "stačias",
+          "vertikalus",
+          "status"
+        ],
+        "latt": [
+          "vertikāls",
+          "stãvs (stāvošs, nostādīts stãvus )"
+        ],
+        "pols": [
+          "pioniowy",
+          "stromy"
+        ],
+        "mask": [
+          "вертикальный",
+          "отвесный",
+          "крутой (отвесный)"
+        ]
+      },
+      "forms": {
+        "declension": [
+          {
+            "gender": "masc",
+            "cases": [
+              {
+                "case": "Nominative",
+                "singular": "stāws",
+                "plural": "stāwai"
+              },
+              {
+                "case": "Genitive",
+                "singular": "stāwas",
+                "plural": "stāwan"
+              },
+              {
+                "case": "Dative",
+                "singular": "stāwasmu",
+                "plural": "stāwamans"
+              },
+              {
+                "case": "Accusative",
+                "singular": "stāwan",
+                "plural": "stāwans"
+              }
+            ]
+          },
+          {
+            "gender": "fem",
+            "cases": [
+              {
+                "case": "Nominative",
+                "singular": "stāwa",
+                "plural": "stāwas"
+              },
+              {
+                "case": "Genitive",
+                "singular": "stāwas",
+                "plural": "stāwan"
+              },
+              {
+                "case": "Dative",
+                "singular": "stāwai",
+                "plural": "stāwamans"
+              },
+              {
+                "case": "Accusative",
+                "singular": "stāwan",
+                "plural": "stāwans"
+              }
+            ]
+          },
+          {
+            "gender": "neut",
+            "cases": [
+              {
+                "case": "Nominative",
+                "singular": "stāwan",
+                "plural": "stāwai"
+              },
+              {
+                "case": "Genitive",
+                "singular": "stāwas",
+                "plural": "stāwan"
+              },
+              {
+                "case": "Dative",
+                "singular": "stāwasmu",
+                "plural": "stāwamans"
+              },
+              {
+                "case": "Accusative",
+                "singular": "stāwan",
+                "plural": "stāwans"
+              }
+            ]
+          },
+          {
+            "gender": "",
+            "cases": [
+              {
+                "case": "",
+                "singular": "stāws",
+                "plural": ""
+              },
+              {
+                "case": "Nominative",
+                "singular": "stāwaisis",
+                "plural": "stāwaisjai"
+              },
+              {
+                "case": "Genitive",
+                "singular": "stāwaisjas",
+                "plural": "stāwaisin"
+              },
+              {
+                "case": "Dative",
+                "singular": "stāwaisjasmu",
+                "plural": "stāwaisimans"
+              },
+              {
+                "case": "Accusative",
+                "singular": "stāwaisin",
+                "plural": "stāwaisins"
+              }
+            ]
+          },
+          {
+            "gender": "fem",
+            "cases": [
+              {
+                "case": "Nominative",
+                "singular": "stāwaisi",
+                "plural": "stāwaisjas"
+              },
+              {
+                "case": "Genitive",
+                "singular": "stāwaisjas",
+                "plural": "stāwaisjan"
+              },
+              {
+                "case": "Dative",
+                "singular": "stāwaisjai",
+                "plural": "stāwaisjamans"
+              },
+              {
+                "case": "Accusative",
+                "singular": "stāwaisjan",
+                "plural": "stāwaisjans"
+              }
+            ]
+          },
+          {
+            "gender": "neut",
+            "cases": [
+              {
+                "case": "Nominative",
+                "singular": "stāwaisi",
+                "plural": "stāwaisjai"
+              },
+              {
+                "case": "Genitive",
+                "singular": "stāwaisjas",
+                "plural": "stāwaisin"
+              },
+              {
+                "case": "Dative",
+                "singular": "stāwaisjasmu",
+                "plural": "stāwaisimans"
+              },
+              {
+                "case": "Accusative",
+                "singular": "stāwaisi",
+                "plural": "stāwaisins"
+              }
+            ]
+          },
+          {
+            "gender": "masc",
+            "cases": [
+              {
+                "case": "Nominative",
+                "singular": "ukastāwaisis",
+                "plural": "ukastāwaisjai"
+              },
+              {
+                "case": "Genitive",
+                "singular": "ukastāwaisjas",
+                "plural": "ukastāwaisin"
+              },
+              {
+                "case": "Dative",
+                "singular": "ukastāwaisjasmu",
+                "plural": "ukastāwaisimans"
+              },
+              {
+                "case": "Accusative",
+                "singular": "ukastāwaisin",
+                "plural": "ukastāwaisins"
+              }
+            ]
+          },
+          {
+            "gender": "fem",
+            "cases": [
+              {
+                "case": "Nominative",
+                "singular": "ukastāwaisi",
+                "plural": "ukastāwaisjas"
+              },
+              {
+                "case": "Genitive",
+                "singular": "ukastāwaisjas",
+                "plural": "ukastāwaisjan"
+              },
+              {
+                "case": "Dative",
+                "singular": "ukastāwaisjai",
+                "plural": "ukastāwaisjamans"
+              },
+              {
+                "case": "Accusative",
+                "singular": "ukastāwaisjan",
+                "plural": "ukastāwaisjans"
+              }
+            ]
+          },
+          {
+            "gender": "neut",
+            "cases": [
+              {
+                "case": "Nominative",
+                "singular": "ukastāwaisi",
+                "plural": "ukastāwaisjai"
+              },
+              {
+                "case": "Genitive",
+                "singular": "ukastāwaisjas",
+                "plural": "ukastāwaisin"
+              },
+              {
+                "case": "Dative",
+                "singular": "ukastāwaisjasmu",
+                "plural": "ukastāwaisimans"
+              },
+              {
+                "case": "Accusative",
+                "singular": "ukastāwaisi",
+                "plural": "ukastāwaisins"
+              }
+            ]
+          },
+          {
+            "gender": "",
+            "cases": [
+              {
+                "case": "",
+                "singular": "stāwai",
+                "plural": "stāwais"
+              }
+            ]
+          }
+        ],
+        "adverb": {
+          "positive": "stāwai",
+          "comparative": "stāwais",
+          "superlative": "ukastāwais"
+        }
+      }
+    }
+  ]
+}

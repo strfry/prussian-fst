@@ -1,0 +1,45 @@
+{
+  "lemma": "gnestun",
+  "source": "twanksta",
+  "forms": {
+    "present": {
+      "1sg": "gnettja",
+      "2sg": "gnettja",
+      "3sg": "gnettja",
+      "1pl": "gnettimai",
+      "2pl": "gnettitei",
+      "3pl": "gnettja"
+    },
+    "preterite": {
+      "1sg": "gnetti",
+      "2sg": "gnetti",
+      "3sg": "gnetti",
+      "1pl": "gnettimai",
+      "2pl": "gnettitei",
+      "3pl": "gnetti"
+    },
+    "perfect": {
+      "1sg": "asma\n                    gnettuns / gnettusi",
+      "2sg": "assei\n                    gnettuns / gnettusi",
+      "1pl": "asmai\n                    gnettusis / gnettusjas",
+      "2pl": "astei\n                    gnettusis / gnettusjas",
+      "3pl": "ast\n                    gnettusis / gnettusjas"
+    },
+    "future": {
+      "1sg": "wīrst\n                    gnettuns / gnettusi",
+      "2sg": "wīrst\n                    gnettuns / gnettusi",
+      "1pl": "wīrstmai\n                    gnettusis / gnettusjas",
+      "2pl": "wīrstei\n                    gnettusis / gnettusjas",
+      "3pl": "wīrst\n                    gnettusis / gnettusjas"
+    },
+    "optative": {
+      "form": "gnesei / gnettjais / gnettjaiti / gnetīnts / gnetīntjai / gnetīntis / gnetīntin / gnetīntismu / gnetintimmans / gnetīntin / gnetīntins / gnetintī / gnetīntjas / gnetīntjas / gnetīntjan / gnetīntjai / gnetintjāmans / gnetīntjan / gnetīntjans / gnetīnti / gnetīntjai / gnetīntis / gnetīntin / gnetīntismu / gnetintimmans / gnetīntin / gnetīntins / gnettuns / gnettusis / gnettusjas / gnettusin / gnettusjasmu / gnettusimans / gnettusin / gnettusins / gnettusi / gnettusjas / gnettusjas / gnettusjan / gnettusjai / gnettusjamans / gnettusjan / gnettusjans / gnettus / gnettus / gnettusjas / gnettusin / gnettusjasmu / gnettusimans / gnettus / gnettus / gnests / gnestāi / gnestas / gnestan / gnestasmu / gnestammans / gnestan / gnestans / gnestā / gnestas / gnestas / gnestan / gnestai / gnestāmans / gnestan / gnestans / gnestan / gnestāi / gnestas / gnestan / gnestasmu / gnestammans / gnestan / gnestans / gnetlai / gnetlai / gnetlai / gnetlimai / gnetlitei / gnetlai"
+    },
+    "imperative": {
+      "form": "gnettjais / gnettjaiti / gnetīnts / gnetīntjai / gnetīntis / gnetīntin / gnetīntismu / gnetintimmans / gnetīntin / gnetīntins / gnetintī / gnetīntjas / gnetīntjas / gnetīntjan / gnetīntjai / gnetintjāmans / gnetīntjan / gnetīntjans / gnetīnti / gnetīntjai / gnetīntis / gnetīntin / gnetīntismu / gnetintimmans / gnetīntin / gnetīntins / gnettuns / gnettusis / gnettusjas / gnettusin / gnettusjasmu / gnettusimans / gnettusin / gnettusins / gnettusi / gnettusjas / gnettusjas / gnettusjan / gnettusjai / gnettusjamans / gnettusjan / gnettusjans / gnettus / gnettus / gnettusjas / gnettusin / gnettusjasmu / gnettusimans / gnettus / gnettus / gnests / gnestāi / gnestas / gnestan / gnestasmu / gnestammans / gnestan / gnestans / gnestā / gnestas / gnestas / gnestan / gnestai / gnestāmans / gnestan / gnestans / gnestan / gnestāi / gnestas / gnestan / gnestasmu / gnestammans / gnestan / gnestans / gnetlai / gnetlai / gnetlai / gnetlimai / gnetlitei / gnetlai"
+    }
+  },
+  "translations": [
+    "1to oppress"
+  ]
+}

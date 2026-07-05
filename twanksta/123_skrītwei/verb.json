@@ -1,0 +1,45 @@
+{
+  "lemma": "skrītwei",
+  "source": "twanksta",
+  "forms": {
+    "present": {
+      "1sg": "skrēima",
+      "2sg": "skrēisei",
+      "3sg": "skrēit",
+      "1pl": "skrēimai",
+      "2pl": "skrēitei",
+      "3pl": "skrēit"
+    },
+    "preterite": {
+      "1sg": "skrijja",
+      "2sg": "skrijja",
+      "3sg": "skrijja",
+      "1pl": "skrīmai",
+      "2pl": "skrītei",
+      "3pl": "skrijja"
+    },
+    "perfect": {
+      "1sg": "asma\n                    skrīwuns / skrīwusi",
+      "2sg": "assei\n                    skrīwuns / skrīwusi",
+      "1pl": "asmai\n                    skrīwusis / skrīwusjas",
+      "2pl": "astei\n                    skrīwusis / skrīwusjas",
+      "3pl": "ast\n                    skrīwusis / skrīwusjas"
+    },
+    "future": {
+      "1sg": "wīrst\n                    skrīwuns / skrīwusi",
+      "2sg": "wīrst\n                    skrīwuns / skrīwusi",
+      "1pl": "wīrstmai\n                    skrīwusis / skrīwusjas",
+      "2pl": "wīrstei\n                    skrīwusis / skrīwusjas",
+      "3pl": "wīrst\n                    skrīwusis / skrīwusjas"
+    },
+    "optative": {
+      "form": "skrīsei / skrēijais / skrēijaiti / skrēints / skrēintjai / skrēintis / skrēintin / skrēintismu / skreintimmans / skrēintin / skrēintins / skreintī / skrēintjas / skrēintjas / skrēintjan / skrēintjai / skreintjāmans / skrēintjan / skrēintjans / skrēinti / skrēintjai / skrēintis / skrēintin / skrēintismu / skreintimmans / skrēintin / skrēintins / skrīwuns / skrīwusis / skrīwusjas / skrīwusin / skrīwusjasmu / skrīwusimans / skrīwusin / skrīwusins / skrīwusi / skrīwusjas / skrīwusjas / skrīwusjan / skrīwusjai / skrīwusjamans / skrīwusjan / skrīwusjans / skrīwus / skrīwus / skrīwusjas / skrīwusin / skrīwusjasmu / skrīwusimans / skrīwus / skrīwus / skrīts / skritāi / skrītas / skrītan / skrītasmu / skritammans / skrītan / skrītans / skritā / skrītas / skrītas / skrītan / skrītai / skritāmans / skrītan / skrītans / skrītan / skritāi / skrītas / skrītan / skrītasmu / skritammans / skrītan / skrītans / skrīlai / skrīlai / skrīlai / skrīlimai / skrīlitei / skrīlai"
+    },
+    "imperative": {
+      "form": "skrēijais / skrēijaiti / skrēints / skrēintjai / skrēintis / skrēintin / skrēintismu / skreintimmans / skrēintin / skrēintins / skreintī / skrēintjas / skrēintjas / skrēintjan / skrēintjai / skreintjāmans / skrēintjan / skrēintjans / skrēinti / skrēintjai / skrēintis / skrēintin / skrēintismu / skreintimmans / skrēintin / skrēintins / skrīwuns / skrīwusis / skrīwusjas / skrīwusin / skrīwusjasmu / skrīwusimans / skrīwusin / skrīwusins / skrīwusi / skrīwusjas / skrīwusjas / skrīwusjan / skrīwusjai / skrīwusjamans / skrīwusjan / skrīwusjans / skrīwus / skrīwus / skrīwusjas / skrīwusin / skrīwusjasmu / skrīwusimans / skrīwus / skrīwus / skrīts / skritāi / skrītas / skrītan / skrītasmu / skritammans / skrītan / skrītans / skritā / skrītas / skrītas / skrītan / skrītai / skritāmans / skrītan / skrītans / skrītan / skritāi / skrītas / skrītan / skrītasmu / skritammans / skrītan / skrītans / skrīlai / skrīlai / skrīlai / skrīlimai / skrīlitei / skrīlai"
+    }
+  },
+  "translations": [
+    "1to circle (fly)"
+  ]
+}

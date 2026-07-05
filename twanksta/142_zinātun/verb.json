@@ -1,0 +1,46 @@
+{
+  "lemma": "zinātun",
+  "source": "twanksta",
+  "forms": {
+    "present": {
+      "1sg": "zinna",
+      "2sg": "zinna",
+      "3sg": "zinna",
+      "1pl": "zinnimai",
+      "2pl": "zinnitei",
+      "3pl": "zinna"
+    },
+    "preterite": {
+      "1sg": "zināi",
+      "2sg": "zināi",
+      "3sg": "zināi",
+      "1pl": "zināimai",
+      "2pl": "zināitei",
+      "3pl": "zināi"
+    },
+    "perfect": {
+      "1sg": "asma\n                    zināwuns / zināwusi",
+      "2sg": "assei\n                    zināwuns / zināwusi",
+      "1pl": "asmai\n                    zināwusis / zināwusjas",
+      "2pl": "astei\n                    zināwusis / zināwusjas",
+      "3pl": "ast\n                    zināwusis / zināwusjas"
+    },
+    "future": {
+      "1sg": "wīrst\n                    zināwuns / zināwusi",
+      "2sg": "wīrst\n                    zināwuns / zināwusi",
+      "1pl": "wīrstmai\n                    zināwusis / zināwusjas",
+      "2pl": "wīrstei\n                    zināwusis / zināwusjas",
+      "3pl": "wīrst\n                    zināwusis / zināwusjas"
+    },
+    "optative": {
+      "form": "zināsei / zinnais / zinnaiti / zinānts / zināntjai / zināntis / zināntin / zināntismu / zinantimmans / zināntin / zināntins / zinantī / zināntjas / zināntjas / zināntjan / zināntjai / zinantjāmans / zināntjan / zināntjans / zinānti / zināntjai / zināntis / zināntin / zināntismu / zinantimmans / zināntin / zināntins / zināwuns / zināwusis / zināwusjas / zināwusin / zināwusjasmu / zināwusimans / zināwusin / zināwusins / zināwusi / zināwusjas / zināwusjas / zināwusjan / zināwusjai / zināwusjamans / zināwusjan / zināwusjans / zināwus / zināwus / zināwusjas / zināwusin / zināwusjasmu / zināwusimans / zināwus / zināwus / zināts / zinatāi / zinātas / zinātan / zinātasmu / zinatammans / zinātan / zinātans / zinatā / zinātas / zinātas / zinātan / zinātai / zinatāmans / zinātan / zinātans / zinātan / zinatāi / zinātas / zinātan / zinātasmu / zinatammans / zinātan / zinātans / zinālai / zinālai / zinālai / zinālimai / zinālitei / zinālai"
+    },
+    "imperative": {
+      "form": "zinnais / zinnaiti / zinānts / zināntjai / zināntis / zināntin / zināntismu / zinantimmans / zināntin / zināntins / zinantī / zināntjas / zināntjas / zināntjan / zināntjai / zinantjāmans / zināntjan / zināntjans / zinānti / zināntjai / zināntis / zināntin / zināntismu / zinantimmans / zināntin / zināntins / zināwuns / zināwusis / zināwusjas / zināwusin / zināwusjasmu / zināwusimans / zināwusin / zināwusins / zināwusi / zināwusjas / zināwusjas / zināwusjan / zināwusjai / zināwusjamans / zināwusjan / zināwusjans / zināwus / zināwus / zināwusjas / zināwusin / zināwusjasmu / zināwusimans / zināwus / zināwus / zināts / zinatāi / zinātas / zinātan / zinātasmu / zinatammans / zinātan / zinātans / zinatā / zinātas / zinātas / zinātan / zinātai / zinatāmans / zinātan / zinātans / zinātan / zinatāi / zinātas / zinātan / zinātasmu / zinatammans / zinātan / zinātans / zinālai / zinālai / zinālai / zinālimai / zinālitei / zinālai"
+    }
+  },
+  "translations": [
+    "1to know (cognize)",
+    "2to cognize"
+  ]
+}

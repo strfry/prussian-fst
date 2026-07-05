@@ -1,0 +1,66 @@
+{
+  "query": "klīts",
+  "match": "klēts",
+  "score": 1.0,
+  "method": "manual",
+  "entries": [
+    {
+      "word": "klēts",
+      "paradigm": "58",
+      "gender": "fem",
+      "desc": "f [Clenan E 194 VM]",
+      "audio": "",
+      "description": "Tīpiska kursiska klēts en Kāpamans, auīmtan zūrgi 1910 m.",
+      "translations": {
+        "engl": [
+          "garner (small granary with a dwelling storeroom)"
+        ],
+        "miks": [
+          "Vorratskammer",
+          "Klete"
+        ],
+        "leit": [
+          "klėtis"
+        ],
+        "latt": [
+          "klēts"
+        ],
+        "pols": [
+          "kleć"
+        ],
+        "mask": [
+          "клеть (кладовая)"
+        ]
+      },
+      "forms": {
+        "declension": [
+          {
+            "gender": "fem",
+            "cases": [
+              {
+                "case": "Nominative",
+                "singular": "klēts",
+                "plural": "klētis"
+              },
+              {
+                "case": "Genitive",
+                "singular": "klētis",
+                "plural": "klētin"
+              },
+              {
+                "case": "Dative",
+                "singular": "klētei",
+                "plural": "klētimans"
+              },
+              {
+                "case": "Accusative",
+                "singular": "klētin",
+                "plural": "klētins"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

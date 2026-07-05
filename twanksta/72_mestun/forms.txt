@@ -1,0 +1,174 @@
+Indicative mood
+Present     as     metta     tū     metta     tāns/tenā/tennan     metta     mes     mettamai     jūs     mettatei                          tenēi/tennas     metta
+Past
+as     metti     tū     metti     tāns/tenā/tennan     metti     mes     mettimai     jūs     mettitei                          tenēi/tennas     metti
+Perfect     as     asma
+mettuns / mettusi
+tū     assei
+mettuns / mettusi
+tāns/tenā     ast
+mettuns / mettusi
+tennan     ast
+mettus     mes     asmai
+mettusis / mettusjas       jūs     astei
+mettusis / mettusjas     tenēi/tennas     ast
+mettusis / mettusjas
+Future     as     wīrst
+mettuns / mettusi     tū     wīrst
+mettuns / mettusi     tāns/tenā     wīrst
+mettuns / mettusi     tennan     wīrst
+mettus     mes     wīrstmai
+mettusis / mettusjas     jūs     wīrstei
+mettusis / mettusjas     tenēi/tennas     wīrst
+mettusis / mettusjas
+Optative
+metsei
+Imperative
+(tū)
+mettais
+(jūs)
+mettaiti
+Participle
+Present
+►   					 metānts
+masc
+sing
+plur
+Nominative
+metānts
+metāntjai
+Genitive
+metāntis
+metāntin
+Dative
+metāntismu
+metantimmans
+Accusative
+metāntin
+metāntins
+fem
+sing
+plur
+Nominative
+metantī
+metāntjas
+Genitive
+metāntjas
+metāntjan
+Dative
+metāntjai
+metantjāmans
+Accusative
+metāntjan
+metāntjans
+neut
+sing
+plur
+Nominative
+metānti
+metāntjai
+Genitive
+metāntis
+metāntin
+Dative
+metāntismu
+metantimmans
+Accusative
+metāntin
+metāntins
+Past      ►  					 mettuns
+masc
+sing
+plur
+Nominative
+mettuns
+mettusis
+Genitive
+mettusjas
+mettusin
+Dative
+mettusjasmu
+mettusimans
+Accusative
+mettusin
+mettusins
+fem
+sing
+plur
+Nominative
+mettusi
+mettusjas
+Genitive
+mettusjas
+mettusjan
+Dative
+mettusjai
+mettusjamans
+Accusative
+mettusjan
+mettusjans
+neut
+sing
+plur
+Nominative
+mettus
+mettus
+Genitive
+mettusjas
+mettusin
+Dative
+mettusjasmu
+mettusimans
+Accusative
+mettus
+mettus
+Passive
+►
+mests
+masc
+sing
+plur
+Nominative
+mests
+mestāi
+Genitive
+mestas
+mestan
+Dative
+mestasmu
+mestammans
+Accusative
+mestan
+mestans
+fem
+sing
+plur
+Nominative
+mestā
+mestas
+Genitive
+mestas
+mestan
+Dative
+mestai
+mestāmans
+Accusative
+mestan
+mestans
+neut
+sing
+plur
+Nominative
+mestan
+mestāi
+Genitive
+mestas
+mestan
+Dative
+mestasmu
+mestammans
+Accusative
+mestan
+mestans
+Subjunctive
+as     metlai     tū     metlai     tāns/tenā/tennan     metlai     mes     metlimai     jūs     metlitei     tenēi/tennas     metlai

@@ -1,0 +1,174 @@
+Indicative mood
+Present     as     gnettja     tū     gnettja     tāns/tenā/tennan     gnettja     mes     gnettimai     jūs     gnettitei                          tenēi/tennas     gnettja
+Past
+as     gnetti     tū     gnetti     tāns/tenā/tennan     gnetti     mes     gnettimai     jūs     gnettitei                          tenēi/tennas     gnetti
+Perfect     as     asma
+gnettuns / gnettusi
+tū     assei
+gnettuns / gnettusi
+tāns/tenā     ast
+gnettuns / gnettusi
+tennan     ast
+gnettus     mes     asmai
+gnettusis / gnettusjas       jūs     astei
+gnettusis / gnettusjas     tenēi/tennas     ast
+gnettusis / gnettusjas
+Future     as     wīrst
+gnettuns / gnettusi     tū     wīrst
+gnettuns / gnettusi     tāns/tenā     wīrst
+gnettuns / gnettusi     tennan     wīrst
+gnettus     mes     wīrstmai
+gnettusis / gnettusjas     jūs     wīrstei
+gnettusis / gnettusjas     tenēi/tennas     wīrst
+gnettusis / gnettusjas
+Optative
+gnesei
+Imperative
+(tū)
+gnettjais
+(jūs)
+gnettjaiti
+Participle
+Present
+►   					 gnetīnts
+masc
+sing
+plur
+Nominative
+gnetīnts
+gnetīntjai
+Genitive
+gnetīntis
+gnetīntin
+Dative
+gnetīntismu
+gnetintimmans
+Accusative
+gnetīntin
+gnetīntins
+fem
+sing
+plur
+Nominative
+gnetintī
+gnetīntjas
+Genitive
+gnetīntjas
+gnetīntjan
+Dative
+gnetīntjai
+gnetintjāmans
+Accusative
+gnetīntjan
+gnetīntjans
+neut
+sing
+plur
+Nominative
+gnetīnti
+gnetīntjai
+Genitive
+gnetīntis
+gnetīntin
+Dative
+gnetīntismu
+gnetintimmans
+Accusative
+gnetīntin
+gnetīntins
+Past      ►  					 gnettuns
+masc
+sing
+plur
+Nominative
+gnettuns
+gnettusis
+Genitive
+gnettusjas
+gnettusin
+Dative
+gnettusjasmu
+gnettusimans
+Accusative
+gnettusin
+gnettusins
+fem
+sing
+plur
+Nominative
+gnettusi
+gnettusjas
+Genitive
+gnettusjas
+gnettusjan
+Dative
+gnettusjai
+gnettusjamans
+Accusative
+gnettusjan
+gnettusjans
+neut
+sing
+plur
+Nominative
+gnettus
+gnettus
+Genitive
+gnettusjas
+gnettusin
+Dative
+gnettusjasmu
+gnettusimans
+Accusative
+gnettus
+gnettus
+Passive
+►
+gnests
+masc
+sing
+plur
+Nominative
+gnests
+gnestāi
+Genitive
+gnestas
+gnestan
+Dative
+gnestasmu
+gnestammans
+Accusative
+gnestan
+gnestans
+fem
+sing
+plur
+Nominative
+gnestā
+gnestas
+Genitive
+gnestas
+gnestan
+Dative
+gnestai
+gnestāmans
+Accusative
+gnestan
+gnestans
+neut
+sing
+plur
+Nominative
+gnestan
+gnestāi
+Genitive
+gnestas
+gnestan
+Dative
+gnestasmu
+gnestammans
+Accusative
+gnestan
+gnestans
+Subjunctive
+as     gnetlai     tū     gnetlai     tāns/tenā/tennan     gnetlai     mes     gnetlimai     jūs     gnetlitei     tenēi/tennas     gnetlai

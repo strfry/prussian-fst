@@ -1,0 +1,47 @@
+{
+  "lemma": "bastun",
+  "source": "twanksta",
+  "forms": {
+    "present": {
+      "1sg": "badda",
+      "2sg": "badda",
+      "3sg": "badda",
+      "1pl": "baddimai",
+      "2pl": "badditei",
+      "3pl": "badda"
+    },
+    "preterite": {
+      "1sg": "badda",
+      "2sg": "badda",
+      "3sg": "badda",
+      "1pl": "baddimai",
+      "2pl": "badditei",
+      "3pl": "badda"
+    },
+    "perfect": {
+      "1sg": "asma\n                    badduns / baddusi",
+      "2sg": "assei\n                    badduns / baddusi",
+      "1pl": "asmai\n                    baddusis / baddusjas",
+      "2pl": "astei\n                    baddusis / baddusjas",
+      "3pl": "ast\n                    baddusis / baddusjas"
+    },
+    "future": {
+      "1sg": "wīrst\n                    badduns / baddusi",
+      "2sg": "wīrst\n                    badduns / baddusi",
+      "1pl": "wīrstmai\n                    baddusis / baddusjas",
+      "2pl": "wīrstei\n                    baddusis / baddusjas",
+      "3pl": "wīrst\n                    baddusis / baddusjas"
+    },
+    "optative": {
+      "form": "basei / baddais / baddaiti / badānts / badāntjai / badāntis / badāntin / badāntismu / badantimmans / badāntin / badāntins / badantī / badāntjas / badāntjas / badāntjan / badāntjai / badantjāmans / badāntjan / badāntjans / badānti / badāntjai / badāntis / badāntin / badāntismu / badantimmans / badāntin / badāntins / badduns / baddusis / baddusjas / baddusin / baddusjasmu / baddusimans / baddusin / baddusins / baddusi / baddusjas / baddusjas / baddusjan / baddusjai / baddusjamans / baddusjan / baddusjans / baddus / baddus / baddusjas / baddusin / baddusjasmu / baddusimans / baddus / baddus / basts / bastāi / bastas / bastan / bastasmu / bastammans / bastan / bastans / bastā / bastas / bastas / bastan / bastai / bastāmans / bastan / bastans / bastan / bastāi / bastas / bastan / bastasmu / bastammans / bastan / bastans / badlai / badlai / badlai / badlimai / badlitei / badlai"
+    },
+    "imperative": {
+      "form": "baddais / baddaiti / badānts / badāntjai / badāntis / badāntin / badāntismu / badantimmans / badāntin / badāntins / badantī / badāntjas / badāntjas / badāntjan / badāntjai / badantjāmans / badāntjan / badāntjans / badānti / badāntjai / badāntis / badāntin / badāntismu / badantimmans / badāntin / badāntins / badduns / baddusis / baddusjas / baddusin / baddusjasmu / baddusimans / baddusin / baddusins / baddusi / baddusjas / baddusjas / baddusjan / baddusjai / baddusjamans / baddusjan / baddusjans / baddus / baddus / baddusjas / baddusin / baddusjasmu / baddusimans / baddus / baddus / basts / bastāi / bastas / bastan / bastasmu / bastammans / bastan / bastans / bastā / bastas / bastas / bastan / bastai / bastāmans / bastan / bastans / bastan / bastāi / bastas / bastan / bastasmu / bastammans / bastan / bastans / badlai / badlai / badlai / badlimai / badlitei / badlai"
+    }
+  },
+  "translations": [
+    "1to stub (into)",
+    "2to jab(into)",
+    "3to stick in"
+  ]
+}

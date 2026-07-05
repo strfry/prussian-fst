@@ -1,0 +1,183 @@
+{
+  "lemma": "aistwei",
+  "paradigm": "95",
+  "infinitive_stem": "ai",
+  "prusaspira": {
+    "participles": {
+      "present": "āistants",
+      "past": "āisuns"
+    },
+    "optative": "āisei",
+    "conjunctive": {
+      "sg_3pl": "āislai",
+      "1pl": "āislimai",
+      "2pl": "āislitei"
+    },
+    "imperative": [
+      "āisei",
+      "āistais",
+      "āistimai",
+      "āistaiti"
+    ]
+  },
+  "twanksta": {
+    "participles": {
+      "present": {
+        "form": "āistants",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "āistants",
+              "pl": "āistantjai"
+            },
+            "Gen": {
+              "sg": "āistantis",
+              "pl": "āistantin"
+            },
+            "Dat": {
+              "sg": "āistantismu",
+              "pl": "aistantimmans"
+            },
+            "Akk": {
+              "sg": "āistantin",
+              "pl": "āistantins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "aistantī",
+              "pl": "āistantjas"
+            },
+            "Gen": {
+              "sg": "āistantjas",
+              "pl": "āistantjan"
+            },
+            "Dat": {
+              "sg": "āistantjai",
+              "pl": "aistantjāmans"
+            },
+            "Akk": {
+              "sg": "āistantjan",
+              "pl": "āistantjans"
+            }
+          }
+        }
+      },
+      "past": {
+        "form": "āisuns",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "āisuns",
+              "pl": "āisusis"
+            },
+            "Gen": {
+              "sg": "āisusjas",
+              "pl": "āisusin"
+            },
+            "Dat": {
+              "sg": "āisusjasmu",
+              "pl": "āisusimans"
+            },
+            "Akk": {
+              "sg": "āisusin",
+              "pl": "āisusins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "āisusi",
+              "pl": "āisusjas"
+            },
+            "Gen": {
+              "sg": "āisusjas",
+              "pl": "āisusjan"
+            },
+            "Dat": {
+              "sg": "āisusjai",
+              "pl": "āisusjamans"
+            },
+            "Akk": {
+              "sg": "āisusjan",
+              "pl": "āisusjans"
+            }
+          }
+        }
+      },
+      "passive": {
+        "form": "āists",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "āists",
+              "pl": "aistāi"
+            },
+            "Gen": {
+              "sg": "āistas",
+              "pl": "āistan"
+            },
+            "Dat": {
+              "sg": "āistasmu",
+              "pl": "aistammans"
+            },
+            "Akk": {
+              "sg": "āistan",
+              "pl": "āistans"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "aistā",
+              "pl": "āistas"
+            },
+            "Gen": {
+              "sg": "āistas",
+              "pl": "āistan"
+            },
+            "Dat": {
+              "sg": "āistai",
+              "pl": "aistāmans"
+            },
+            "Akk": {
+              "sg": "āistan",
+              "pl": "āistans"
+            }
+          }
+        }
+      }
+    },
+    "optative": "āisei",
+    "imperative": {
+      "2sg": "āistais",
+      "2pl": "āistaiti"
+    },
+    "subjunctive": {
+      "forms": [
+        [
+          "as",
+          "āitlai"
+        ],
+        [
+          "tū",
+          "āitlai"
+        ],
+        [
+          "tāns/tenā/tennan",
+          "āitlai"
+        ],
+        [
+          "mes",
+          "āitlimai"
+        ],
+        [
+          "jūs",
+          "āitlitei"
+        ],
+        [
+          "tenēi/tennas",
+          "āitlai"
+        ]
+      ]
+    }
+  }
+}

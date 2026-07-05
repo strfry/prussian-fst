@@ -1,0 +1,59 @@
+[
+  {
+    "word": "dānts",
+    "paradigm": "57",
+    "gender": "masc",
+    "desc": "m [Dantis E 93]",
+    "audio": "https://wirdeins.twanksta.org/upload/audio/dants.mp3",
+    "description": "",
+    "translations": {
+      "engl": [
+        "tooth"
+      ],
+      "miks": [
+        "Zahn"
+      ],
+      "leit": [
+        "dantis"
+      ],
+      "latt": [
+        "zobs"
+      ],
+      "pols": [
+        "ząb"
+      ],
+      "mask": [
+        "зуб"
+      ]
+    },
+    "forms": {
+      "declension": [
+        {
+          "gender": "masc",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "dānts",
+              "plural": "dāntes / dāntjai"
+            },
+            {
+              "case": "Genitive",
+              "singular": "dāntis",
+              "plural": "dāntin"
+            },
+            {
+              "case": "Dative",
+              "singular": "dānti",
+              "plural": "dantimmans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "dāntin",
+              "plural": "dāntins"
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

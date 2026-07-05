@@ -1,0 +1,109 @@
+[
+  {
+    "word": "tīrts",
+    "paradigm": "70",
+    "gender": "",
+    "desc": "ord [Tīrts 29]",
+    "audio": "",
+    "description": "",
+    "translations": {
+      "engl": [
+        "third"
+      ],
+      "miks": [
+        "dritte"
+      ],
+      "leit": [
+        "trečias"
+      ],
+      "latt": [
+        "trešais"
+      ],
+      "pols": [
+        "trzeci"
+      ],
+      "mask": [
+        "третий"
+      ]
+    },
+    "forms": {
+      "declension": [
+        {
+          "gender": "masc",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "tīrts",
+              "plural": "tirtāi"
+            },
+            {
+              "case": "Genitive",
+              "singular": "tīrtse",
+              "plural": "tirtēisan"
+            },
+            {
+              "case": "Dative",
+              "singular": "tīrtsmu",
+              "plural": "tirtēimans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "tīrtan",
+              "plural": "tīrtans"
+            }
+          ]
+        },
+        {
+          "gender": "fem",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "tīrtī",
+              "plural": "tīrtjas"
+            },
+            {
+              "case": "Genitive",
+              "singular": "tīrtjas",
+              "plural": "tīrtjan"
+            },
+            {
+              "case": "Dative",
+              "singular": "tīrtjai",
+              "plural": "tirtjāmans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "tīrtjan",
+              "plural": "tīrtjans"
+            }
+          ]
+        },
+        {
+          "gender": "neut",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "tīrtan",
+              "plural": "tirtāi"
+            },
+            {
+              "case": "Genitive",
+              "singular": "tīrtse",
+              "plural": "tirtēisan"
+            },
+            {
+              "case": "Dative",
+              "singular": "tīrtsmu",
+              "plural": "tirtēimans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "tīrtan",
+              "plural": "tīrtans"
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

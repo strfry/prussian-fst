@@ -1,0 +1,184 @@
+{
+  "lemma": "westun",
+  "paradigm": "73",
+  "infinitive_stem": "wes",
+  "prusaspira": {
+    "participles": {
+      "present": "wedānts",
+      "past": "wedduns",
+      "passive": "westas"
+    },
+    "optative": "wessei",
+    "conjunctive": {
+      "sg_3pl": "wedlai",
+      "1pl": "wedlimai",
+      "2pl": "wedlitei"
+    },
+    "imperative": [
+      "wessei",
+      "weddais",
+      "weddimai",
+      "weddaiti"
+    ]
+  },
+  "twanksta": {
+    "participles": {
+      "present": {
+        "form": "wedānts",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "wedānts",
+              "pl": "wedāntjai"
+            },
+            "Gen": {
+              "sg": "wedāntis",
+              "pl": "wedāntin"
+            },
+            "Dat": {
+              "sg": "wedāntismu",
+              "pl": "wedantimmans"
+            },
+            "Akk": {
+              "sg": "wedāntin",
+              "pl": "wedāntins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "wedantī",
+              "pl": "wedāntjas"
+            },
+            "Gen": {
+              "sg": "wedāntjas",
+              "pl": "wedāntjan"
+            },
+            "Dat": {
+              "sg": "wedāntjai",
+              "pl": "wedantjāmans"
+            },
+            "Akk": {
+              "sg": "wedāntjan",
+              "pl": "wedāntjans"
+            }
+          }
+        }
+      },
+      "past": {
+        "form": "wedduns",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "wedduns",
+              "pl": "weddusis"
+            },
+            "Gen": {
+              "sg": "weddusjas",
+              "pl": "weddusin"
+            },
+            "Dat": {
+              "sg": "weddusjasmu",
+              "pl": "weddusimans"
+            },
+            "Akk": {
+              "sg": "weddusin",
+              "pl": "weddusins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "weddusi",
+              "pl": "weddusjas"
+            },
+            "Gen": {
+              "sg": "weddusjas",
+              "pl": "weddusjan"
+            },
+            "Dat": {
+              "sg": "weddusjai",
+              "pl": "weddusjamans"
+            },
+            "Akk": {
+              "sg": "weddusjan",
+              "pl": "weddusjans"
+            }
+          }
+        }
+      },
+      "passive": {
+        "form": "wests",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "wests",
+              "pl": "westāi"
+            },
+            "Gen": {
+              "sg": "westas",
+              "pl": "westan"
+            },
+            "Dat": {
+              "sg": "westasmu",
+              "pl": "westammans"
+            },
+            "Akk": {
+              "sg": "westan",
+              "pl": "westans"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "westā",
+              "pl": "westas"
+            },
+            "Gen": {
+              "sg": "westas",
+              "pl": "westan"
+            },
+            "Dat": {
+              "sg": "westai",
+              "pl": "westāmans"
+            },
+            "Akk": {
+              "sg": "westan",
+              "pl": "westans"
+            }
+          }
+        }
+      }
+    },
+    "optative": "wedsei",
+    "imperative": {
+      "2sg": "weddais",
+      "2pl": "weddaiti"
+    },
+    "subjunctive": {
+      "forms": [
+        [
+          "as",
+          "weslai"
+        ],
+        [
+          "tū",
+          "weslai"
+        ],
+        [
+          "tāns/tenā/tennan",
+          "weslai"
+        ],
+        [
+          "mes",
+          "weslimai"
+        ],
+        [
+          "jūs",
+          "weslitei"
+        ],
+        [
+          "tenēi/tennas",
+          "weslai"
+        ]
+      ]
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "lemma": "lānktun",
+  "source": "twanksta",
+  "forms": {
+    "present": {
+      "1sg": "lānkja",
+      "2sg": "lānkja",
+      "3sg": "lānkja",
+      "1pl": "lānkjamai",
+      "2pl": "lānkjatei",
+      "3pl": "lānkja"
+    },
+    "preterite": {
+      "1sg": "lānki",
+      "2sg": "lānki",
+      "3sg": "lānki",
+      "1pl": "lānkimai",
+      "2pl": "lānkitei",
+      "3pl": "lānki"
+    },
+    "perfect": {
+      "1sg": "asma\n                    lānkuns / lānkusi",
+      "2sg": "assei\n                    lānkuns / lānkusi",
+      "1pl": "asmai\n                    lānkusis / lānkusjas",
+      "2pl": "astei\n                    lānkusis / lānkusjas",
+      "3pl": "ast\n                    lānkusis / lānkusjas"
+    },
+    "future": {
+      "1sg": "wīrst\n                    lānkuns / lānkusi",
+      "2sg": "wīrst\n                    lānkuns / lānkusi",
+      "1pl": "wīrstmai\n                    lānkusis / lānkusjas",
+      "2pl": "wīrstei\n                    lānkusis / lānkusjas",
+      "3pl": "wīrst\n                    lānkusis / lānkusjas"
+    },
+    "optative": {
+      "form": "lānksei / lānkjais / lānkjaiti / lānkints / lānkintjai / lānkintis / lānkintin / lānkintismu / lankintimmans / lānkintin / lānkintins / lankintī / lānkintjas / lānkintjas / lānkintjan / lānkintjai / lankintjāmans / lānkintjan / lānkintjans / lānkinti / lānkintjai / lānkintis / lānkintin / lānkintismu / lankintimmans / lānkintin / lānkintins / lānkuns / lānkusis / lānkusjas / lānkusin / lānkusjasmu / lānkusimans / lānkusin / lānkusins / lānkusi / lānkusjas / lānkusjas / lānkusjan / lānkusjai / lānkusjamans / lānkusjan / lānkusjans / lānkus / lānkus / lānkusjas / lānkusin / lānkusjasmu / lānkusimans / lānkus / lānkus / lānkts / lanktāi / lānktas / lānktan / lānktasmu / lanktammans / lānktan / lānktans / lanktā / lānktas / lānktas / lānktan / lānktai / lanktāmans / lānktan / lānktans / lānktan / lanktāi / lānktas / lānktan / lānktasmu / lanktammans / lānktan / lānktans / lānklai / lānklai / lānklai / lānklimai / lānklitei / lānklai"
+    },
+    "imperative": {
+      "form": "lānkjais / lānkjaiti / lānkints / lānkintjai / lānkintis / lānkintin / lānkintismu / lankintimmans / lānkintin / lānkintins / lankintī / lānkintjas / lānkintjas / lānkintjan / lānkintjai / lankintjāmans / lānkintjan / lānkintjans / lānkinti / lānkintjai / lānkintis / lānkintin / lānkintismu / lankintimmans / lānkintin / lānkintins / lānkuns / lānkusis / lānkusjas / lānkusin / lānkusjasmu / lānkusimans / lānkusin / lānkusins / lānkusi / lānkusjas / lānkusjas / lānkusjan / lānkusjai / lānkusjamans / lānkusjan / lānkusjans / lānkus / lānkus / lānkusjas / lānkusin / lānkusjasmu / lānkusimans / lānkus / lānkus / lānkts / lanktāi / lānktas / lānktan / lānktasmu / lanktammans / lānktan / lānktans / lanktā / lānktas / lānktas / lānktan / lānktai / lanktāmans / lānktan / lānktans / lānktan / lanktāi / lānktas / lānktan / lānktasmu / lanktammans / lānktan / lānktans / lānklai / lānklai / lānklai / lānklimai / lānklitei / lānklai"
+    }
+  },
+  "translations": [
+    "1to bend",
+    "2to crook",
+    "3to bow smth"
+  ]
+}

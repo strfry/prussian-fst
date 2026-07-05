@@ -1,0 +1,45 @@
+{
+  "lemma": "snigtwei",
+  "source": "twanksta",
+  "forms": {
+    "present": {
+      "1sg": "snēigt",
+      "2sg": "snēigt",
+      "3sg": "snēigt",
+      "1pl": "snēigmai",
+      "2pl": "snēigtei",
+      "3pl": "snēigt"
+    },
+    "preterite": {
+      "1sg": "snigga",
+      "2sg": "snigga",
+      "3sg": "snigga",
+      "1pl": "sniggamai",
+      "2pl": "sniggatei",
+      "3pl": "snigga"
+    },
+    "perfect": {
+      "1sg": "asma\n                    snigguns / sniggusi",
+      "2sg": "assei\n                    snigguns / sniggusi",
+      "1pl": "asmai\n                    sniggusis / sniggusjas",
+      "2pl": "astei\n                    sniggusis / sniggusjas",
+      "3pl": "ast\n                    sniggusis / sniggusjas"
+    },
+    "future": {
+      "1sg": "wīrst\n                    snigguns / sniggusi",
+      "2sg": "wīrst\n                    snigguns / sniggusi",
+      "1pl": "wīrstmai\n                    sniggusis / sniggusjas",
+      "2pl": "wīrstei\n                    sniggusis / sniggusjas",
+      "3pl": "wīrst\n                    sniggusis / sniggusjas"
+    },
+    "optative": {
+      "form": "snigsei / snēigais / snēigaiti / snēigants / snēigantjai / snēigantis / snēigantin / snēigantismu / sneigantimmans / snēigantin / snēigantins / sneigantī / snēigantjas / snēigantjas / snēigantjan / snēigantjai / sneigantjāmans / snēigantjan / snēigantjans / snēiganti / snēigantjai / snēigantis / snēigantin / snēigantismu / sneigantimmans / snēigantin / snēigantins / snigguns / sniggusis / sniggusjas / sniggusin / sniggusjasmu / sniggusimans / sniggusin / sniggusins / sniggusi / sniggusjas / sniggusjas / sniggusjan / sniggusjai / sniggusjamans / sniggusjan / sniggusjans / sniggus / sniggus / sniggusjas / sniggusin / sniggusjasmu / sniggusimans / sniggus / sniggus / snigts / snigtāi / snigtas / snigtan / snigtasmu / snigtammans / snigtan / snigtans / snigtā / snigtas / snigtas / snigtan / snigtai / snigtāmans / snigtan / snigtans / snigtan / snigtāi / snigtas / snigtan / snigtasmu / snigtammans / snigtan / snigtans / sniglai / sniglai / sniglai / sniglimai / sniglitei / sniglai"
+    },
+    "imperative": {
+      "form": "snēigais / snēigaiti / snēigants / snēigantjai / snēigantis / snēigantin / snēigantismu / sneigantimmans / snēigantin / snēigantins / sneigantī / snēigantjas / snēigantjas / snēigantjan / snēigantjai / sneigantjāmans / snēigantjan / snēigantjans / snēiganti / snēigantjai / snēigantis / snēigantin / snēigantismu / sneigantimmans / snēigantin / snēigantins / snigguns / sniggusis / sniggusjas / sniggusin / sniggusjasmu / sniggusimans / sniggusin / sniggusins / sniggusi / sniggusjas / sniggusjas / sniggusjan / sniggusjai / sniggusjamans / sniggusjan / sniggusjans / sniggus / sniggus / sniggusjas / sniggusin / sniggusjasmu / sniggusimans / sniggus / sniggus / snigts / snigtāi / snigtas / snigtan / snigtasmu / snigtammans / snigtan / snigtans / snigtā / snigtas / snigtas / snigtan / snigtai / snigtāmans / snigtan / snigtans / snigtan / snigtāi / snigtas / snigtan / snigtasmu / snigtammans / snigtan / snigtans / sniglai / sniglai / sniglai / sniglimai / sniglitei / sniglai"
+    }
+  },
+  "translations": [
+    "1to snow"
+  ]
+}

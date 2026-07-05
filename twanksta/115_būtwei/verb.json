@@ -1,0 +1,45 @@
+{
+  "lemma": "būtwei",
+  "source": "twanksta",
+  "forms": {
+    "present": {
+      "1sg": "asma",
+      "2sg": "assei",
+      "3sg": "ast",
+      "1pl": "asmai",
+      "2pl": "astei",
+      "3pl": "ast"
+    },
+    "preterite": {
+      "1sg": "bēi",
+      "2sg": "bēi",
+      "3sg": "bēi",
+      "1pl": "bēimai",
+      "2pl": "bēitei",
+      "3pl": "bēi"
+    },
+    "perfect": {
+      "1sg": "asma\n                    būwuns / būwusi",
+      "2sg": "assei\n                    būwuns / būwusi",
+      "1pl": "asmai\n                    būwusis / būwusjas",
+      "2pl": "astei\n                    būwusis / būwusjas",
+      "3pl": "ast\n                    būwusis / būwusjas"
+    },
+    "future": {
+      "1sg": "wīrst\n                    būwuns / būwusi",
+      "2sg": "wīrst\n                    būwuns / būwusi",
+      "1pl": "wīrstmai\n                    būwusis / būwusjas",
+      "2pl": "wīrstei\n                    būwusis / būwusjas",
+      "3pl": "wīrst\n                    būwusis / būwusjas"
+    },
+    "optative": {
+      "form": "seīsei / seīs / seīti / sēnts / sēntjai / sēntis / sēntin / sēntismu / sentimmans / sēntin / sēntins / sentī / sēntjas / sēntjas / sēntjan / sēntjai / sentjāmans / sēntjan / sēntjans / sēnti / sēntjai / sēntis / sēntin / sēntismu / sentimmans / sēntin / sēntins / būwuns / būwusis / būwusjas / būwusin / būwusjasmu / būwusimans / būwusin / būwusins / būwusi / būwusjas / būwusjas / būwusjan / būwusjai / būwusjamans / būwusjan / būwusjans / būwus / būwus / būwusjas / būwusin / būwusjasmu / būwusimans / būwus / būwus / būts / butāi / būtas / būtan / būtasmu / butammans / būtan / būtans / butā / būtas / būtas / būtan / būtai / butāmans / būtan / būtans / būtan / butāi / būtas / būtan / būtasmu / butammans / būtan / būtans / būlai / būlai / būlai / būlimai / būlitei / būlai"
+    },
+    "imperative": {
+      "form": "seīs / seīti / sēnts / sēntjai / sēntis / sēntin / sēntismu / sentimmans / sēntin / sēntins / sentī / sēntjas / sēntjas / sēntjan / sēntjai / sentjāmans / sēntjan / sēntjans / sēnti / sēntjai / sēntis / sēntin / sēntismu / sentimmans / sēntin / sēntins / būwuns / būwusis / būwusjas / būwusin / būwusjasmu / būwusimans / būwusin / būwusins / būwusi / būwusjas / būwusjas / būwusjan / būwusjai / būwusjamans / būwusjan / būwusjans / būwus / būwus / būwusjas / būwusin / būwusjasmu / būwusimans / būwus / būwus / būts / butāi / būtas / būtan / būtasmu / butammans / būtan / būtans / butā / būtas / būtas / būtan / būtai / butāmans / būtan / būtans / būtan / butāi / būtas / būtan / būtasmu / butammans / būtan / būtans / būlai / būlai / būlai / būlimai / būlitei / būlai"
+    }
+  },
+  "translations": [
+    "1to be"
+  ]
+}

@@ -1,0 +1,184 @@
+{
+  "lemma": "madlītun",
+  "paradigm": "140",
+  "infinitive_stem": "madlī",
+  "prusaspira": {
+    "participles": {
+      "present": "madlīnts",
+      "past": "madlīwuns",
+      "passive": "madlīts"
+    },
+    "optative": "madlīsei",
+    "conjunctive": {
+      "sg_3pl": "madlīlai",
+      "1pl": "madlīlimai",
+      "2pl": "madlīlitei"
+    },
+    "imperative": [
+      "madlīsei",
+      "madlīs",
+      "madlimai",
+      "madlīti"
+    ]
+  },
+  "twanksta": {
+    "participles": {
+      "present": {
+        "form": "madlīnts",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "madlīnts",
+              "pl": "madlīntjai"
+            },
+            "Gen": {
+              "sg": "madlīntis",
+              "pl": "madlīntin"
+            },
+            "Dat": {
+              "sg": "madlīntismu",
+              "pl": "madlintimmans"
+            },
+            "Akk": {
+              "sg": "madlīntin",
+              "pl": "madlīntins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "madlintī",
+              "pl": "madlīntjas"
+            },
+            "Gen": {
+              "sg": "madlīntjas",
+              "pl": "madlīntjan"
+            },
+            "Dat": {
+              "sg": "madlīntjai",
+              "pl": "madlintjāmans"
+            },
+            "Akk": {
+              "sg": "madlīntjan",
+              "pl": "madlīntjans"
+            }
+          }
+        }
+      },
+      "past": {
+        "form": "madlīwuns",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "madlīwuns",
+              "pl": "madlīwusis"
+            },
+            "Gen": {
+              "sg": "madlīwusjas",
+              "pl": "madlīwusin"
+            },
+            "Dat": {
+              "sg": "madlīwusjasmu",
+              "pl": "madlīwusimans"
+            },
+            "Akk": {
+              "sg": "madlīwusin",
+              "pl": "madlīwusins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "madlīwusi",
+              "pl": "madlīwusjas"
+            },
+            "Gen": {
+              "sg": "madlīwusjas",
+              "pl": "madlīwusjan"
+            },
+            "Dat": {
+              "sg": "madlīwusjai",
+              "pl": "madlīwusjamans"
+            },
+            "Akk": {
+              "sg": "madlīwusjan",
+              "pl": "madlīwusjans"
+            }
+          }
+        }
+      },
+      "passive": {
+        "form": "madlīts",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "madlīts",
+              "pl": "madlitāi"
+            },
+            "Gen": {
+              "sg": "madlītas",
+              "pl": "madlītan"
+            },
+            "Dat": {
+              "sg": "madlītasmu",
+              "pl": "madlitammans"
+            },
+            "Akk": {
+              "sg": "madlītan",
+              "pl": "madlītans"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "madlitā",
+              "pl": "madlītas"
+            },
+            "Gen": {
+              "sg": "madlītas",
+              "pl": "madlītan"
+            },
+            "Dat": {
+              "sg": "madlītai",
+              "pl": "madlitāmans"
+            },
+            "Akk": {
+              "sg": "madlītan",
+              "pl": "madlītans"
+            }
+          }
+        }
+      }
+    },
+    "optative": "madlīsei",
+    "imperative": {
+      "2sg": "madlīs",
+      "2pl": "madlīti"
+    },
+    "subjunctive": {
+      "forms": [
+        [
+          "as",
+          "madlīlai"
+        ],
+        [
+          "tū",
+          "madlīlai"
+        ],
+        [
+          "tāns/tenā/tennan",
+          "madlīlai"
+        ],
+        [
+          "mes",
+          "madlīlimai"
+        ],
+        [
+          "jūs",
+          "madlīlitei"
+        ],
+        [
+          "tenēi/tennas",
+          "madlīlai"
+        ]
+      ]
+    }
+  }
+}

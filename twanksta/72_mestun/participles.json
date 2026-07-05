@@ -1,0 +1,184 @@
+{
+  "lemma": "mestun",
+  "paradigm": "72",
+  "infinitive_stem": "mes",
+  "prusaspira": {
+    "participles": {
+      "present": "metānts",
+      "past": "mettuns",
+      "passive": "mestas"
+    },
+    "optative": "messei",
+    "conjunctive": {
+      "sg_3pl": "metlai",
+      "1pl": "metlimai",
+      "2pl": "metlitei"
+    },
+    "imperative": [
+      "messei",
+      "mettais",
+      "mettimai",
+      "mettaiti"
+    ]
+  },
+  "twanksta": {
+    "participles": {
+      "present": {
+        "form": "metānts",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "metānts",
+              "pl": "metāntjai"
+            },
+            "Gen": {
+              "sg": "metāntis",
+              "pl": "metāntin"
+            },
+            "Dat": {
+              "sg": "metāntismu",
+              "pl": "metantimmans"
+            },
+            "Akk": {
+              "sg": "metāntin",
+              "pl": "metāntins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "metantī",
+              "pl": "metāntjas"
+            },
+            "Gen": {
+              "sg": "metāntjas",
+              "pl": "metāntjan"
+            },
+            "Dat": {
+              "sg": "metāntjai",
+              "pl": "metantjāmans"
+            },
+            "Akk": {
+              "sg": "metāntjan",
+              "pl": "metāntjans"
+            }
+          }
+        }
+      },
+      "past": {
+        "form": "mettuns",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "mettuns",
+              "pl": "mettusis"
+            },
+            "Gen": {
+              "sg": "mettusjas",
+              "pl": "mettusin"
+            },
+            "Dat": {
+              "sg": "mettusjasmu",
+              "pl": "mettusimans"
+            },
+            "Akk": {
+              "sg": "mettusin",
+              "pl": "mettusins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "mettusi",
+              "pl": "mettusjas"
+            },
+            "Gen": {
+              "sg": "mettusjas",
+              "pl": "mettusjan"
+            },
+            "Dat": {
+              "sg": "mettusjai",
+              "pl": "mettusjamans"
+            },
+            "Akk": {
+              "sg": "mettusjan",
+              "pl": "mettusjans"
+            }
+          }
+        }
+      },
+      "passive": {
+        "form": "mests",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "mests",
+              "pl": "mestāi"
+            },
+            "Gen": {
+              "sg": "mestas",
+              "pl": "mestan"
+            },
+            "Dat": {
+              "sg": "mestasmu",
+              "pl": "mestammans"
+            },
+            "Akk": {
+              "sg": "mestan",
+              "pl": "mestans"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "mestā",
+              "pl": "mestas"
+            },
+            "Gen": {
+              "sg": "mestas",
+              "pl": "mestan"
+            },
+            "Dat": {
+              "sg": "mestai",
+              "pl": "mestāmans"
+            },
+            "Akk": {
+              "sg": "mestan",
+              "pl": "mestans"
+            }
+          }
+        }
+      }
+    },
+    "optative": "metsei",
+    "imperative": {
+      "2sg": "mettais",
+      "2pl": "mettaiti"
+    },
+    "subjunctive": {
+      "forms": [
+        [
+          "as",
+          "metlai"
+        ],
+        [
+          "tū",
+          "metlai"
+        ],
+        [
+          "tāns/tenā/tennan",
+          "metlai"
+        ],
+        [
+          "mes",
+          "metlimai"
+        ],
+        [
+          "jūs",
+          "metlitei"
+        ],
+        [
+          "tenēi/tennas",
+          "metlai"
+        ]
+      ]
+    }
+  }
+}

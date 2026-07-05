@@ -1,0 +1,184 @@
+{
+  "lemma": "listun",
+  "paradigm": "102a",
+  "infinitive_stem": "lis",
+  "prusaspira": {
+    "participles": {
+      "present": "lāisants",
+      "past": "lissuns",
+      "passive": "listas"
+    },
+    "optative": "lissei",
+    "conjunctive": {
+      "sg_3pl": "lislai",
+      "1pl": "lislimai",
+      "2pl": "lislitei"
+    },
+    "imperative": [
+      "lissei",
+      "lāisais",
+      "lāisimai",
+      "lāisaiti"
+    ]
+  },
+  "twanksta": {
+    "participles": {
+      "present": {
+        "form": "lāisants",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "lāisants",
+              "pl": "lāisantjai"
+            },
+            "Gen": {
+              "sg": "lāisantis",
+              "pl": "lāisantin"
+            },
+            "Dat": {
+              "sg": "lāisantismu",
+              "pl": "laisantimmans"
+            },
+            "Akk": {
+              "sg": "lāisantin",
+              "pl": "lāisantins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "laisantī",
+              "pl": "lāisantjas"
+            },
+            "Gen": {
+              "sg": "lāisantjas",
+              "pl": "lāisantjan"
+            },
+            "Dat": {
+              "sg": "lāisantjai",
+              "pl": "laisantjāmans"
+            },
+            "Akk": {
+              "sg": "lāisantjan",
+              "pl": "lāisantjans"
+            }
+          }
+        }
+      },
+      "past": {
+        "form": "lissuns",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "lissuns",
+              "pl": "lissusis"
+            },
+            "Gen": {
+              "sg": "lissusjas",
+              "pl": "lissusin"
+            },
+            "Dat": {
+              "sg": "lissusjasmu",
+              "pl": "lissusimans"
+            },
+            "Akk": {
+              "sg": "lissusin",
+              "pl": "lissusins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "lissusi",
+              "pl": "lissusjas"
+            },
+            "Gen": {
+              "sg": "lissusjas",
+              "pl": "lissusjan"
+            },
+            "Dat": {
+              "sg": "lissusjai",
+              "pl": "lissusjamans"
+            },
+            "Akk": {
+              "sg": "lissusjan",
+              "pl": "lissusjans"
+            }
+          }
+        }
+      },
+      "passive": {
+        "form": "lists",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "lists",
+              "pl": "listāi"
+            },
+            "Gen": {
+              "sg": "listas",
+              "pl": "listan"
+            },
+            "Dat": {
+              "sg": "listasmu",
+              "pl": "listammans"
+            },
+            "Akk": {
+              "sg": "listan",
+              "pl": "listans"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "listā",
+              "pl": "listas"
+            },
+            "Gen": {
+              "sg": "listas",
+              "pl": "listan"
+            },
+            "Dat": {
+              "sg": "listai",
+              "pl": "listāmans"
+            },
+            "Akk": {
+              "sg": "listan",
+              "pl": "listans"
+            }
+          }
+        }
+      }
+    },
+    "optative": "lissei",
+    "imperative": {
+      "2sg": "lāisais",
+      "2pl": "lāisaiti"
+    },
+    "subjunctive": {
+      "forms": [
+        [
+          "as",
+          "lislai"
+        ],
+        [
+          "tū",
+          "lislai"
+        ],
+        [
+          "tāns/tenā/tennan",
+          "lislai"
+        ],
+        [
+          "mes",
+          "lislimai"
+        ],
+        [
+          "jūs",
+          "lislitei"
+        ],
+        [
+          "tenēi/tennas",
+          "lislai"
+        ]
+      ]
+    }
+  }
+}

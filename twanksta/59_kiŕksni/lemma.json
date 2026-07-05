@@ -1,0 +1,70 @@
+{
+  "query": "kiŕksni",
+  "match": "kirksni",
+  "score": 1.0,
+  "method": "fuzzy",
+  "entries": [
+    {
+      "word": "kirksni",
+      "paradigm": "52",
+      "gender": "fem",
+      "desc": "[cirksnis, cirkšņi MK]",
+      "audio": "",
+      "description": "",
+      "translations": {
+        "engl": [
+          "perineum",
+          "crotch (perineum)",
+          "fork (perineum)"
+        ],
+        "miks": [
+          "Perineum",
+          "Hodengegend",
+          "Schamspaltenwinkel"
+        ],
+        "leit": [
+          "tarpvietė (tarpkojis)",
+          "tarpkojis (tarpvietė)"
+        ],
+        "latt": [
+          "starpene"
+        ],
+        "pols": [
+          "krocze"
+        ],
+        "mask": [
+          "промежность"
+        ]
+      },
+      "forms": {
+        "declension": [
+          {
+            "gender": "fem",
+            "cases": [
+              {
+                "case": "Nominative",
+                "singular": "kirksni",
+                "plural": "kirksnis"
+              },
+              {
+                "case": "Genitive",
+                "singular": "kirksnis",
+                "plural": "kirksnin"
+              },
+              {
+                "case": "Dative",
+                "singular": "kirksnei",
+                "plural": "kirksnimans"
+              },
+              {
+                "case": "Accusative",
+                "singular": "kirksnin",
+                "plural": "kirksnins"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

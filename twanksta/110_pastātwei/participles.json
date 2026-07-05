@@ -1,0 +1,183 @@
+{
+  "lemma": "pastātwei",
+  "paradigm": "110",
+  "infinitive_stem": "pastā",
+  "prusaspira": {
+    "participles": {
+      "present": "pastānints",
+      "past": "pastāwuns"
+    },
+    "optative": "pastāsei",
+    "conjunctive": {
+      "sg_3pl": "pastālai",
+      "1pl": "pastālimai",
+      "2pl": "pastālitei"
+    },
+    "imperative": [
+      "pastāsei",
+      "pastāneis",
+      "pastānimai",
+      "pastāneiti"
+    ]
+  },
+  "twanksta": {
+    "participles": {
+      "present": {
+        "form": "pastānints",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "pastānints",
+              "pl": "pastānintjai"
+            },
+            "Gen": {
+              "sg": "pastānintis",
+              "pl": "pastānintin"
+            },
+            "Dat": {
+              "sg": "pastānintismu",
+              "pl": "pastanintimmans"
+            },
+            "Akk": {
+              "sg": "pastānintin",
+              "pl": "pastānintins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "pastanintī",
+              "pl": "pastānintjas"
+            },
+            "Gen": {
+              "sg": "pastānintjas",
+              "pl": "pastānintjan"
+            },
+            "Dat": {
+              "sg": "pastānintjai",
+              "pl": "pastanintjāmans"
+            },
+            "Akk": {
+              "sg": "pastānintjan",
+              "pl": "pastānintjans"
+            }
+          }
+        }
+      },
+      "past": {
+        "form": "pastāwuns",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "pastāwuns",
+              "pl": "pastāwusis"
+            },
+            "Gen": {
+              "sg": "pastāwusjas",
+              "pl": "pastāwusin"
+            },
+            "Dat": {
+              "sg": "pastāwusjasmu",
+              "pl": "pastāwusimans"
+            },
+            "Akk": {
+              "sg": "pastāwusin",
+              "pl": "pastāwusins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "pastāwusi",
+              "pl": "pastāwusjas"
+            },
+            "Gen": {
+              "sg": "pastāwusjas",
+              "pl": "pastāwusjan"
+            },
+            "Dat": {
+              "sg": "pastāwusjai",
+              "pl": "pastāwusjamans"
+            },
+            "Akk": {
+              "sg": "pastāwusjan",
+              "pl": "pastāwusjans"
+            }
+          }
+        }
+      },
+      "passive": {
+        "form": "pastāts",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "pastāts",
+              "pl": "pastatāi"
+            },
+            "Gen": {
+              "sg": "pastātas",
+              "pl": "pastātan"
+            },
+            "Dat": {
+              "sg": "pastātasmu",
+              "pl": "pastatammans"
+            },
+            "Akk": {
+              "sg": "pastātan",
+              "pl": "pastātans"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "pastatā",
+              "pl": "pastātas"
+            },
+            "Gen": {
+              "sg": "pastātas",
+              "pl": "pastātan"
+            },
+            "Dat": {
+              "sg": "pastātai",
+              "pl": "pastatāmans"
+            },
+            "Akk": {
+              "sg": "pastātan",
+              "pl": "pastātans"
+            }
+          }
+        }
+      }
+    },
+    "optative": "pastāsei",
+    "imperative": {
+      "2sg": "pastānjais",
+      "2pl": "pastānjaiti"
+    },
+    "subjunctive": {
+      "forms": [
+        [
+          "as",
+          "pastālai"
+        ],
+        [
+          "tū",
+          "pastālai"
+        ],
+        [
+          "tāns/tenā/tennan",
+          "pastālai"
+        ],
+        [
+          "mes",
+          "pastālimai"
+        ],
+        [
+          "jūs",
+          "pastālitei"
+        ],
+        [
+          "tenēi/tennas",
+          "pastālai"
+        ]
+      ]
+    }
+  }
+}

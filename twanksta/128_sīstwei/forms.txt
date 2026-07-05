@@ -1,0 +1,174 @@
+Indicative mood
+Present     as     sēnda     tū     sēnda     tāns/tenā/tennan     sēnda     mes     sēndimai     jūs     sēnditei                          tenēi/tennas     sēnda
+Past
+as     sēda     tū     sēda     tāns/tenā/tennan     sēda     mes     sēdamai     jūs     sēdatei                          tenēi/tennas     sēda
+Perfect     as     asma
+sēduns / sēdusi
+tū     assei
+sēduns / sēdusi
+tāns/tenā     ast
+sēduns / sēdusi
+tennan     ast
+sēdus     mes     asmai
+sēdusis / sēdusjas       jūs     astei
+sēdusis / sēdusjas     tenēi/tennas     ast
+sēdusis / sēdusjas
+Future     as     wīrst
+sēduns / sēdusi     tū     wīrst
+sēduns / sēdusi     tāns/tenā     wīrst
+sēduns / sēdusi     tennan     wīrst
+sēdus     mes     wīrstmai
+sēdusis / sēdusjas     jūs     wīrstei
+sēdusis / sēdusjas     tenēi/tennas     wīrst
+sēdusis / sēdusjas
+Optative
+sētsei
+Imperative
+(tū)
+sēndais
+(jūs)
+sēndaiti
+Participle
+Present
+►   					 sēndants
+masc
+sing
+plur
+Nominative
+sēndants
+sēndantjai
+Genitive
+sēndantis
+sēndantin
+Dative
+sēndantismu
+sendantimmans
+Accusative
+sēndantin
+sēndantins
+fem
+sing
+plur
+Nominative
+sendantī
+sēndantjas
+Genitive
+sēndantjas
+sēndantjan
+Dative
+sēndantjai
+sendantjāmans
+Accusative
+sēndantjan
+sēndantjans
+neut
+sing
+plur
+Nominative
+sēndanti
+sēndantjai
+Genitive
+sēndantis
+sēndantin
+Dative
+sēndantismu
+sendantimmans
+Accusative
+sēndantin
+sēndantins
+Past      ►  					 sēduns
+masc
+sing
+plur
+Nominative
+sēduns
+sēdusis
+Genitive
+sēdusjas
+sēdusin
+Dative
+sēdusjasmu
+sēdusimans
+Accusative
+sēdusin
+sēdusins
+fem
+sing
+plur
+Nominative
+sēdusi
+sēdusjas
+Genitive
+sēdusjas
+sēdusjan
+Dative
+sēdusjai
+sēdusjamans
+Accusative
+sēdusjan
+sēdusjans
+neut
+sing
+plur
+Nominative
+sēdus
+sēdus
+Genitive
+sēdusjas
+sēdusin
+Dative
+sēdusjasmu
+sēdusimans
+Accusative
+sēdus
+sēdus
+Passive
+►
+sēsts
+masc
+sing
+plur
+Nominative
+sēsts
+sestāi
+Genitive
+sēstas
+sēstan
+Dative
+sēstasmu
+sestammans
+Accusative
+sēstan
+sēstans
+fem
+sing
+plur
+Nominative
+sestā
+sēstas
+Genitive
+sēstas
+sēstan
+Dative
+sēstai
+sestāmans
+Accusative
+sēstan
+sēstans
+neut
+sing
+plur
+Nominative
+sēstan
+sestāi
+Genitive
+sēstas
+sēstan
+Dative
+sēstasmu
+sestammans
+Accusative
+sēstan
+sēstans
+Subjunctive
+as     sēdlai     tū     sēdlai     tāns/tenā/tennan     sēdlai     mes     sēdlimai     jūs     sēdlitei     tenēi/tennas     sēdlai

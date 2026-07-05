@@ -1,0 +1,59 @@
+[
+  {
+    "word": "gewinīs",
+    "paradigm": "38",
+    "gender": "masc",
+    "desc": "[Gewineis E 191]",
+    "audio": "",
+    "description": "",
+    "translations": {
+      "engl": [
+        "(unskilled) labourer man"
+      ],
+      "miks": [
+        "Knecht"
+      ],
+      "leit": [
+        "juodadarbis"
+      ],
+      "latt": [
+        "mēlnstrādnieks"
+      ],
+      "pols": [
+        "wyrobnik"
+      ],
+      "mask": [
+        "чернорабочий"
+      ]
+    },
+    "forms": {
+      "declension": [
+        {
+          "gender": "masc",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "gewinīs",
+              "plural": "gewinījai"
+            },
+            {
+              "case": "Genitive",
+              "singular": "gewinījas",
+              "plural": "gewinījan"
+            },
+            {
+              "case": "Dative",
+              "singular": "gewinīju",
+              "plural": "gewinīmans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "gewinījan",
+              "plural": "gewinījans"
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

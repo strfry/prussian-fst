@@ -1,0 +1,184 @@
+{
+  "lemma": "tirtun",
+  "paradigm": "82",
+  "infinitive_stem": "tir",
+  "prusaspira": {
+    "participles": {
+      "present": "tirīnts",
+      "past": "tīruns",
+      "passive": "tirts"
+    },
+    "optative": "tirsei",
+    "conjunctive": {
+      "sg_3pl": "tirlai",
+      "1pl": "tirlimai",
+      "2pl": "tirlitei"
+    },
+    "imperative": [
+      "tirsei",
+      "tirreis",
+      "tirrimai",
+      "tirreiti"
+    ]
+  },
+  "twanksta": {
+    "participles": {
+      "present": {
+        "form": "tirīnts",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "tirīnts",
+              "pl": "tirīntjai"
+            },
+            "Gen": {
+              "sg": "tirīntis",
+              "pl": "tirīntin"
+            },
+            "Dat": {
+              "sg": "tirīntismu",
+              "pl": "tirintimmans"
+            },
+            "Akk": {
+              "sg": "tirīntin",
+              "pl": "tirīntins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "tirintī",
+              "pl": "tirīntjas"
+            },
+            "Gen": {
+              "sg": "tirīntjas",
+              "pl": "tirīntjan"
+            },
+            "Dat": {
+              "sg": "tirīntjai",
+              "pl": "tirintjāmans"
+            },
+            "Akk": {
+              "sg": "tirīntjan",
+              "pl": "tirīntjans"
+            }
+          }
+        }
+      },
+      "past": {
+        "form": "tīruns",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "tīruns",
+              "pl": "tīrusis"
+            },
+            "Gen": {
+              "sg": "tīrusjas",
+              "pl": "tīrusin"
+            },
+            "Dat": {
+              "sg": "tīrusjasmu",
+              "pl": "tīrusimans"
+            },
+            "Akk": {
+              "sg": "tīrusin",
+              "pl": "tīrusins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "tīrusi",
+              "pl": "tīrusjas"
+            },
+            "Gen": {
+              "sg": "tīrusjas",
+              "pl": "tīrusjan"
+            },
+            "Dat": {
+              "sg": "tīrusjai",
+              "pl": "tīrusjamans"
+            },
+            "Akk": {
+              "sg": "tīrusjan",
+              "pl": "tīrusjans"
+            }
+          }
+        }
+      },
+      "passive": {
+        "form": "tirts",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "tirts",
+              "pl": "tirtāi"
+            },
+            "Gen": {
+              "sg": "tirtas",
+              "pl": "tirtan"
+            },
+            "Dat": {
+              "sg": "tirtasmu",
+              "pl": "tirtammans"
+            },
+            "Akk": {
+              "sg": "tirtan",
+              "pl": "tirtans"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "tirtā",
+              "pl": "tirtas"
+            },
+            "Gen": {
+              "sg": "tirtas",
+              "pl": "tirtan"
+            },
+            "Dat": {
+              "sg": "tirtai",
+              "pl": "tirtāmans"
+            },
+            "Akk": {
+              "sg": "tirtan",
+              "pl": "tirtans"
+            }
+          }
+        }
+      }
+    },
+    "optative": "tirsei",
+    "imperative": {
+      "2sg": "tirlais",
+      "2pl": "tirlaiti"
+    },
+    "subjunctive": {
+      "forms": [
+        [
+          "as",
+          "tirlai"
+        ],
+        [
+          "tū",
+          "tirlai"
+        ],
+        [
+          "tāns/tenā/tennan",
+          "tirlai"
+        ],
+        [
+          "mes",
+          "tirlimai"
+        ],
+        [
+          "jūs",
+          "tirlitei"
+        ],
+        [
+          "tenēi/tennas",
+          "tirlai"
+        ]
+      ]
+    }
+  }
+}

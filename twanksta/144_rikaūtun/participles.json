@@ -1,0 +1,184 @@
+{
+  "lemma": "rikaūtun",
+  "paradigm": "144",
+  "infinitive_stem": "rikaū",
+  "prusaspira": {
+    "participles": {
+      "present": "rikaūjants",
+      "past": "rikaūwuns",
+      "passive": "rikaūts"
+    },
+    "optative": "rikaūsei",
+    "conjunctive": {
+      "sg_3pl": "rikaūlai",
+      "1pl": "rikaūlimai",
+      "2pl": "rikaūlitei"
+    },
+    "imperative": [
+      "rikaūsei",
+      "rikaūjais",
+      "rikaūjimai",
+      "rikaūjaiti"
+    ]
+  },
+  "twanksta": {
+    "participles": {
+      "present": {
+        "form": "rikaūjants",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "rikaūjants",
+              "pl": "rikaūjantjai"
+            },
+            "Gen": {
+              "sg": "rikaūjantis",
+              "pl": "rikaūjantin"
+            },
+            "Dat": {
+              "sg": "rikaūjantismu",
+              "pl": "rikaujantimmans"
+            },
+            "Akk": {
+              "sg": "rikaūjantin",
+              "pl": "rikaūjantins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "rikaujantī",
+              "pl": "rikaūjantjas"
+            },
+            "Gen": {
+              "sg": "rikaūjantjas",
+              "pl": "rikaūjantjan"
+            },
+            "Dat": {
+              "sg": "rikaūjantjai",
+              "pl": "rikaujantjāmans"
+            },
+            "Akk": {
+              "sg": "rikaūjantjan",
+              "pl": "rikaūjantjans"
+            }
+          }
+        }
+      },
+      "past": {
+        "form": "rikaūwuns",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "rikaūwuns",
+              "pl": "rikaūwusis"
+            },
+            "Gen": {
+              "sg": "rikaūwusjas",
+              "pl": "rikaūwusin"
+            },
+            "Dat": {
+              "sg": "rikaūwusjasmu",
+              "pl": "rikaūwusimans"
+            },
+            "Akk": {
+              "sg": "rikaūwusin",
+              "pl": "rikaūwusins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "rikaūwusi",
+              "pl": "rikaūwusjas"
+            },
+            "Gen": {
+              "sg": "rikaūwusjas",
+              "pl": "rikaūwusjan"
+            },
+            "Dat": {
+              "sg": "rikaūwusjai",
+              "pl": "rikaūwusjamans"
+            },
+            "Akk": {
+              "sg": "rikaūwusjan",
+              "pl": "rikaūwusjans"
+            }
+          }
+        }
+      },
+      "passive": {
+        "form": "rikaūts",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "rikaūts",
+              "pl": "rikautāi"
+            },
+            "Gen": {
+              "sg": "rikaūtas",
+              "pl": "rikaūtan"
+            },
+            "Dat": {
+              "sg": "rikaūtasmu",
+              "pl": "rikautammans"
+            },
+            "Akk": {
+              "sg": "rikaūtan",
+              "pl": "rikaūtans"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "rikautā",
+              "pl": "rikaūtas"
+            },
+            "Gen": {
+              "sg": "rikaūtas",
+              "pl": "rikaūtan"
+            },
+            "Dat": {
+              "sg": "rikaūtai",
+              "pl": "rikautāmans"
+            },
+            "Akk": {
+              "sg": "rikaūtan",
+              "pl": "rikaūtans"
+            }
+          }
+        }
+      }
+    },
+    "optative": "rikaūsei",
+    "imperative": {
+      "2sg": "rikaūjais",
+      "2pl": "rikaūjaiti"
+    },
+    "subjunctive": {
+      "forms": [
+        [
+          "as",
+          "rikaūlai"
+        ],
+        [
+          "tū",
+          "rikaūlai"
+        ],
+        [
+          "tāns/tenā/tennan",
+          "rikaūlai"
+        ],
+        [
+          "mes",
+          "rikaūlimai"
+        ],
+        [
+          "jūs",
+          "rikaūlitei"
+        ],
+        [
+          "tenēi/tennas",
+          "rikaūlai"
+        ]
+      ]
+    }
+  }
+}

@@ -1,0 +1,118 @@
+[
+  {
+    "word": "zemē",
+    "paradigm": "53",
+    "gender": "fem",
+    "desc": "[semmē 105(17)]",
+    "audio": "https://wirdeins.twanksta.org/upload/audio/zeme.mp3",
+    "description": "",
+    "translations": {
+      "engl": [
+        "earth"
+      ],
+      "miks": [
+        "Erde"
+      ],
+      "leit": [
+        "žemė"
+      ],
+      "latt": [
+        "zeme"
+      ],
+      "pols": [
+        "ziemia"
+      ],
+      "mask": [
+        "земля"
+      ]
+    },
+    "forms": {
+      "declension": [
+        {
+          "gender": "fem",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "zemē",
+              "plural": "zemmis"
+            },
+            {
+              "case": "Genitive",
+              "singular": "zemmis",
+              "plural": "zemmin"
+            },
+            {
+              "case": "Dative",
+              "singular": "zemmei",
+              "plural": "zemīmans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "zemmin",
+              "plural": "zemmins"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "word": "zemē",
+    "paradigm": "53",
+    "gender": "fem",
+    "desc": "[Samye E 237]",
+    "audio": "https://wirdeins.twanksta.org/upload/audio/zeme.mp3",
+    "description": "",
+    "translations": {
+      "engl": [
+        "land (earth)",
+        "soil"
+      ],
+      "miks": [
+        "Land (Acker)"
+      ],
+      "leit": [
+        "dirva (arimas)"
+      ],
+      "latt": [
+        "tīrums"
+      ],
+      "pols": [
+        "rola (orka)"
+      ],
+      "mask": [
+        "почва",
+        "пашня"
+      ]
+    },
+    "forms": {
+      "declension": [
+        {
+          "gender": "fem",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "zemē",
+              "plural": "zemmis"
+            },
+            {
+              "case": "Genitive",
+              "singular": "zemmis",
+              "plural": "zemmin"
+            },
+            {
+              "case": "Dative",
+              "singular": "zemmei",
+              "plural": "zemīmans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "zemmin",
+              "plural": "zemmins"
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

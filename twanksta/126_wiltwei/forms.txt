@@ -1,0 +1,174 @@
+Indicative mood
+Present     as     willa     tū     willa     tāns/tenā/tennan     willa     mes     willimai     jūs     willitei                          tenēi/tennas     willa
+Past
+as     willa     tū     willa     tāns/tenā/tennan     willa     mes     willimai     jūs     willitei                          tenēi/tennas     willa
+Perfect     as     asma
+willuns / willusi
+tū     assei
+willuns / willusi
+tāns/tenā     ast
+willuns / willusi
+tennan     ast
+willus     mes     asmai
+willusis / willusjas       jūs     astei
+willusis / willusjas     tenēi/tennas     ast
+willusis / willusjas
+Future     as     wīrst
+willuns / willusi     tū     wīrst
+willuns / willusi     tāns/tenā     wīrst
+willuns / willusi     tennan     wīrst
+willus     mes     wīrstmai
+willusis / willusjas     jūs     wīrstei
+willusis / willusjas     tenēi/tennas     wīrst
+willusis / willusjas
+Optative
+wilsei
+Imperative
+(tū)
+willais
+(jūs)
+willaiti
+Participle
+Present
+►   					 wilānts
+masc
+sing
+plur
+Nominative
+wilānts
+wilāntjai
+Genitive
+wilāntis
+wilāntin
+Dative
+wilāntismu
+wilantimmans
+Accusative
+wilāntin
+wilāntins
+fem
+sing
+plur
+Nominative
+wilantī
+wilāntjas
+Genitive
+wilāntjas
+wilāntjan
+Dative
+wilāntjai
+wilantjāmans
+Accusative
+wilāntjan
+wilāntjans
+neut
+sing
+plur
+Nominative
+wilānti
+wilāntjai
+Genitive
+wilāntis
+wilāntin
+Dative
+wilāntismu
+wilantimmans
+Accusative
+wilāntin
+wilāntins
+Past      ►  					 willuns
+masc
+sing
+plur
+Nominative
+willuns
+willusis
+Genitive
+willusjas
+willusin
+Dative
+willusjasmu
+willusimans
+Accusative
+willusin
+willusins
+fem
+sing
+plur
+Nominative
+willusi
+willusjas
+Genitive
+willusjas
+willusjan
+Dative
+willusjai
+willusjamans
+Accusative
+willusjan
+willusjans
+neut
+sing
+plur
+Nominative
+willus
+willus
+Genitive
+willusjas
+willusin
+Dative
+willusjasmu
+willusimans
+Accusative
+willus
+willus
+Passive
+►
+wilts
+masc
+sing
+plur
+Nominative
+wilts
+wiltāi
+Genitive
+wiltas
+wiltan
+Dative
+wiltasmu
+wiltammans
+Accusative
+wiltan
+wiltans
+fem
+sing
+plur
+Nominative
+wiltā
+wiltas
+Genitive
+wiltas
+wiltan
+Dative
+wiltai
+wiltāmans
+Accusative
+wiltan
+wiltans
+neut
+sing
+plur
+Nominative
+wiltan
+wiltāi
+Genitive
+wiltas
+wiltan
+Dative
+wiltasmu
+wiltammans
+Accusative
+wiltan
+wiltans
+Subjunctive
+as     willai     tū     willai     tāns/tenā/tennan     willai     mes     willimai     jūs     willitei     tenēi/tennas     willai

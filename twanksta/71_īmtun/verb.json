@@ -1,0 +1,45 @@
+{
+  "lemma": "īmtun",
+  "source": "twanksta",
+  "forms": {
+    "present": {
+      "1sg": "imma",
+      "2sg": "imma",
+      "3sg": "imma",
+      "1pl": "immamai",
+      "2pl": "immatei",
+      "3pl": "imma"
+    },
+    "preterite": {
+      "1sg": "immi",
+      "2sg": "immi",
+      "3sg": "immi",
+      "1pl": "immimai",
+      "2pl": "immitei",
+      "3pl": "immi"
+    },
+    "perfect": {
+      "1sg": "asma\n                    immuns / immusi",
+      "2sg": "assei\n                    immuns / immusi",
+      "1pl": "asmai\n                    immusis / immusjas",
+      "2pl": "astei\n                    immusis / immusjas",
+      "3pl": "ast\n                    immusis / immusjas"
+    },
+    "future": {
+      "1sg": "wīrst\n                    immuns / immusi",
+      "2sg": "wīrst\n                    immuns / immusi",
+      "1pl": "wīrstmai\n                    immusis / immusjas",
+      "2pl": "wīrstei\n                    immusis / immusjas",
+      "3pl": "wīrst\n                    immusis / immusjas"
+    },
+    "optative": {
+      "form": "īmsei / immais / immaiti / imānts / imāntjai / imāntis / imāntin / imāntismu / imantimmans / imāntin / imāntins / imantī / imāntjas / imāntjas / imāntjan / imāntjai / imantjāmans / imāntjan / imāntjans / imānti / imāntjai / imāntis / imāntin / imāntismu / imantimmans / imāntin / imāntins / immuns / immusis / immusjas / immusin / immusjasmu / immusimans / immusin / immusins / immusi / immusjas / immusjas / immusjan / immusjai / immusjamans / immusjan / immusjans / immus / immus / immusjas / immusin / immusjasmu / immusimans / immus / immus / īmts / imtāi / īmtas / īmtan / īmtasmu / imtammans / īmtan / īmtans / imtā / īmtas / īmtas / īmtan / īmtai / imtāmans / īmtan / īmtans / īmtan / imtāi / īmtas / īmtan / īmtasmu / imtammans / īmtan / īmtans / īmlai / īmlai / īmlai / īmlimai / īmlitei / īmlai"
+    },
+    "imperative": {
+      "form": "immais / immaiti / imānts / imāntjai / imāntis / imāntin / imāntismu / imantimmans / imāntin / imāntins / imantī / imāntjas / imāntjas / imāntjan / imāntjai / imantjāmans / imāntjan / imāntjans / imānti / imāntjai / imāntis / imāntin / imāntismu / imantimmans / imāntin / imāntins / immuns / immusis / immusjas / immusin / immusjasmu / immusimans / immusin / immusins / immusi / immusjas / immusjas / immusjan / immusjai / immusjamans / immusjan / immusjans / immus / immus / immusjas / immusin / immusjasmu / immusimans / immus / immus / īmts / imtāi / īmtas / īmtan / īmtasmu / imtammans / īmtan / īmtans / imtā / īmtas / īmtas / īmtan / īmtai / imtāmans / īmtan / īmtans / īmtan / imtāi / īmtas / īmtan / īmtasmu / imtammans / īmtan / īmtans / īmlai / īmlai / īmlai / īmlimai / īmlitei / īmlai"
+    }
+  },
+  "translations": [
+    "1to take"
+  ]
+}

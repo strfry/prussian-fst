@@ -1,0 +1,59 @@
+[
+  {
+    "word": "mūsa",
+    "paradigm": "45",
+    "gender": "fem",
+    "desc": "[muso E 782]",
+    "audio": "",
+    "description": "",
+    "translations": {
+      "engl": [
+        "fly (an insect)"
+      ],
+      "miks": [
+        "Fliege"
+      ],
+      "leit": [
+        "musė"
+      ],
+      "latt": [
+        "muša"
+      ],
+      "pols": [
+        "mucha"
+      ],
+      "mask": [
+        "муха"
+      ]
+    },
+    "forms": {
+      "declension": [
+        {
+          "gender": "fem",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "mūsa",
+              "plural": "mūsas"
+            },
+            {
+              "case": "Genitive",
+              "singular": "mūsas",
+              "plural": "mūsan"
+            },
+            {
+              "case": "Dative",
+              "singular": "mūsai",
+              "plural": "mūsamans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "mūsan",
+              "plural": "mūsans"
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

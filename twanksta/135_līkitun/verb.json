@@ -1,0 +1,46 @@
+{
+  "lemma": "palīkitun",
+  "source": "twanksta",
+  "forms": {
+    "present": {
+      "1sg": "palīki",
+      "2sg": "palīki",
+      "3sg": "palīki",
+      "1pl": "palīkimai",
+      "2pl": "palīkitei",
+      "3pl": "palīki"
+    },
+    "preterite": {
+      "1sg": "palīkei",
+      "2sg": "palīkei",
+      "3sg": "palīkei",
+      "1pl": "palīkeimai",
+      "2pl": "palīkeitei",
+      "3pl": "palīkei"
+    },
+    "perfect": {
+      "1sg": "asma\n                    palīkiwuns / palīkiwusi",
+      "2sg": "assei\n                    palīkiwuns / palīkiwusi",
+      "1pl": "asmai\n                    palīkiwusis / palīkiwusjas",
+      "2pl": "astei\n                    palīkiwusis / palīkiwusjas",
+      "3pl": "ast\n                    palīkiwusis / palīkiwusjas"
+    },
+    "future": {
+      "1sg": "wīrst\n                    palīkiwuns / palīkiwusi",
+      "2sg": "wīrst\n                    palīkiwuns / palīkiwusi",
+      "1pl": "wīrstmai\n                    palīkiwusis / palīkiwusjas",
+      "2pl": "wīrstei\n                    palīkiwusis / palīkiwusjas",
+      "3pl": "wīrst\n                    palīkiwusis / palīkiwusjas"
+    },
+    "optative": {
+      "form": "palīkisei / palīkis / palīkiti / palīkints / palīkintjai / palīkintis / palīkintin / palīkintismu / palikintimmans / palīkintin / palīkintins / palikintī / palīkintjas / palīkintjas / palīkintjan / palīkintjai / palikintjāmans / palīkintjan / palīkintjans / palīkinti / palīkintjai / palīkintis / palīkintin / palīkintismu / palikintimmans / palīkintin / palīkintins / palīkiwuns / palīkiwusis / palīkiwusjas / palīkiwusin / palīkiwusjasmu / palīkiwusimans / palīkiwusin / palīkiwusins / palīkiwusi / palīkiwusjas / palīkiwusjas / palīkiwusjan / palīkiwusjai / palīkiwusjamans / palīkiwusjan / palīkiwusjans / palīkiwus / palīkiwus / palīkiwusjas / palīkiwusin / palīkiwusjasmu / palīkiwusimans / palīkiwus / palīkiwus / palīkits / palikitāi / palīkitas / palīkitan / palīkitasmu / palikitammans / palīkitan / palīkitans / palikitā / palīkitas / palīkitas / palīkitan / palīkitai / palikitāmans / palīkitan / palīkitans / palīkitan / palikitāi / palīkitas / palīkitan / palīkitasmu / palikitammans / palīkitan / palīkitans / palīkilai / palīkilai / palīkilai / palīkilimai / palīkilitei / palīkilai"
+    },
+    "imperative": {
+      "form": "palīkis / palīkiti / palīkints / palīkintjai / palīkintis / palīkintin / palīkintismu / palikintimmans / palīkintin / palīkintins / palikintī / palīkintjas / palīkintjas / palīkintjan / palīkintjai / palikintjāmans / palīkintjan / palīkintjans / palīkinti / palīkintjai / palīkintis / palīkintin / palīkintismu / palikintimmans / palīkintin / palīkintins / palīkiwuns / palīkiwusis / palīkiwusjas / palīkiwusin / palīkiwusjasmu / palīkiwusimans / palīkiwusin / palīkiwusins / palīkiwusi / palīkiwusjas / palīkiwusjas / palīkiwusjan / palīkiwusjai / palīkiwusjamans / palīkiwusjan / palīkiwusjans / palīkiwus / palīkiwus / palīkiwusjas / palīkiwusin / palīkiwusjasmu / palīkiwusimans / palīkiwus / palīkiwus / palīkits / palikitāi / palīkitas / palīkitan / palīkitasmu / palikitammans / palīkitan / palīkitans / palikitā / palīkitas / palīkitas / palīkitan / palīkitai / palikitāmans / palīkitan / palīkitans / palīkitan / palikitāi / palīkitas / palīkitan / palīkitasmu / palikitammans / palīkitan / palīkitans / palīkilai / palīkilai / palīkilai / palīkilimai / palīkilitei / palīkilai"
+    }
+  },
+  "translations": [
+    "1to allot",
+    "2to dedicate"
+  ]
+}

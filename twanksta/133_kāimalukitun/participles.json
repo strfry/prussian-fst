@@ -1,0 +1,184 @@
+{
+  "lemma": "kāimalukitun",
+  "paradigm": "133",
+  "infinitive_stem": "kāimaluki",
+  "prusaspira": {
+    "participles": {
+      "present": "kāimalukints",
+      "past": "kāimalukiwuns",
+      "passive": "kāimalukits"
+    },
+    "optative": "kāimalukisei",
+    "conjunctive": {
+      "sg_3pl": "kāimalukilai",
+      "1pl": "kāimalukilimai",
+      "2pl": "kāimalukilitei"
+    },
+    "imperative": [
+      "kāimalukisei",
+      "kāimalukeis",
+      "kāimalukeimai",
+      "kāimalukeiti"
+    ]
+  },
+  "twanksta": {
+    "participles": {
+      "present": {
+        "form": "kāimalukints",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "kāimalukints",
+              "pl": "kāimalukintjai"
+            },
+            "Gen": {
+              "sg": "kāimalukintis",
+              "pl": "kāimalukintin"
+            },
+            "Dat": {
+              "sg": "kāimalukintismu",
+              "pl": "kaimalukintimmans"
+            },
+            "Akk": {
+              "sg": "kāimalukintin",
+              "pl": "kāimalukintins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "kaimalukintī",
+              "pl": "kāimalukintjas"
+            },
+            "Gen": {
+              "sg": "kāimalukintjas",
+              "pl": "kāimalukintjan"
+            },
+            "Dat": {
+              "sg": "kāimalukintjai",
+              "pl": "kaimalukintjāmans"
+            },
+            "Akk": {
+              "sg": "kāimalukintjan",
+              "pl": "kāimalukintjans"
+            }
+          }
+        }
+      },
+      "past": {
+        "form": "kāimalukiwuns",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "kāimalukiwuns",
+              "pl": "kāimalukiwusis"
+            },
+            "Gen": {
+              "sg": "kāimalukiwusjas",
+              "pl": "kāimalukiwusin"
+            },
+            "Dat": {
+              "sg": "kāimalukiwusjasmu",
+              "pl": "kāimalukiwusimans"
+            },
+            "Akk": {
+              "sg": "kāimalukiwusin",
+              "pl": "kāimalukiwusins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "kāimalukiwusi",
+              "pl": "kāimalukiwusjas"
+            },
+            "Gen": {
+              "sg": "kāimalukiwusjas",
+              "pl": "kāimalukiwusjan"
+            },
+            "Dat": {
+              "sg": "kāimalukiwusjai",
+              "pl": "kāimalukiwusjamans"
+            },
+            "Akk": {
+              "sg": "kāimalukiwusjan",
+              "pl": "kāimalukiwusjans"
+            }
+          }
+        }
+      },
+      "passive": {
+        "form": "kāimalukits",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "kāimalukits",
+              "pl": "kaimalukitāi"
+            },
+            "Gen": {
+              "sg": "kāimalukitas",
+              "pl": "kāimalukitan"
+            },
+            "Dat": {
+              "sg": "kāimalukitasmu",
+              "pl": "kaimalukitammans"
+            },
+            "Akk": {
+              "sg": "kāimalukitan",
+              "pl": "kāimalukitans"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "kaimalukitā",
+              "pl": "kāimalukitas"
+            },
+            "Gen": {
+              "sg": "kāimalukitas",
+              "pl": "kāimalukitan"
+            },
+            "Dat": {
+              "sg": "kāimalukitai",
+              "pl": "kaimalukitāmans"
+            },
+            "Akk": {
+              "sg": "kāimalukitan",
+              "pl": "kāimalukitans"
+            }
+          }
+        }
+      }
+    },
+    "optative": "kāimalukisei",
+    "imperative": {
+      "2sg": "kāimalukjais",
+      "2pl": "kāimalukjaiti"
+    },
+    "subjunctive": {
+      "forms": [
+        [
+          "as",
+          "kāimalukilai"
+        ],
+        [
+          "tū",
+          "kāimalukilai"
+        ],
+        [
+          "tāns/tenā/tennan",
+          "kāimalukilai"
+        ],
+        [
+          "mes",
+          "kāimalukilimai"
+        ],
+        [
+          "jūs",
+          "kāimalukilitei"
+        ],
+        [
+          "tenēi/tennas",
+          "kāimalukilai"
+        ]
+      ]
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "lemma": "ēstun",
+  "source": "twanksta",
+  "forms": {
+    "present": {
+      "1sg": "ēma",
+      "2sg": "ēsei",
+      "3sg": "ēst",
+      "1pl": "ēmai",
+      "2pl": "ēstei",
+      "3pl": "ēst"
+    },
+    "preterite": {
+      "1sg": "ēda",
+      "2sg": "ēda",
+      "3sg": "ēda",
+      "1pl": "ēdamai",
+      "2pl": "ēdatei",
+      "3pl": "ēda"
+    },
+    "perfect": {
+      "1sg": "asma\n                    ēduns / ēdusi",
+      "2sg": "assei\n                    ēduns / ēdusi",
+      "1pl": "asmai\n                    ēdusis / ēdusjas",
+      "2pl": "astei\n                    ēdusis / ēdusjas",
+      "3pl": "ast\n                    ēdusis / ēdusjas"
+    },
+    "future": {
+      "1sg": "wīrst\n                    ēduns / ēdusi",
+      "2sg": "wīrst\n                    ēduns / ēdusi",
+      "1pl": "wīrstmai\n                    ēdusis / ēdusjas",
+      "2pl": "wīrstei\n                    ēdusis / ēdusjas",
+      "3pl": "wīrst\n                    ēdusis / ēdusjas"
+    },
+    "optative": {
+      "form": "ēdsei / ēdais / ēdaiti / ēdants / ēdantjai / ēdantis / ēdantin / ēdantismu / edantimmans / ēdantin / ēdantins / edantī / ēdantjas / ēdantjas / ēdantjan / ēdantjai / edantjāmans / ēdantjan / ēdantjans / ēdanti / ēdantjai / ēdantis / ēdantin / ēdantismu / edantimmans / ēdantin / ēdantins / ēduns / ēdusis / ēdusjas / ēdusin / ēdusjasmu / ēdusimans / ēdusin / ēdusins / ēdusi / ēdusjas / ēdusjas / ēdusjan / ēdusjai / ēdusjamans / ēdusjan / ēdusjans / ēdus / ēdus / ēdusjas / ēdusin / ēdusjasmu / ēdusimans / ēdus / ēdus / ēsts / estāi / ēstas / ēstan / ēstasmu / estammans / ēstan / ēstans / estā / ēstas / ēstas / ēstan / ēstai / estāmans / ēstan / ēstans / ēstan / estāi / ēstas / ēstan / ēstasmu / estammans / ēstan / ēstans / ēdlai / ēdlai / ēdlai / ēdlimai / ēdlitei / ēdlai"
+    },
+    "imperative": {
+      "form": "ēdais / ēdaiti / ēdants / ēdantjai / ēdantis / ēdantin / ēdantismu / edantimmans / ēdantin / ēdantins / edantī / ēdantjas / ēdantjas / ēdantjan / ēdantjai / edantjāmans / ēdantjan / ēdantjans / ēdanti / ēdantjai / ēdantis / ēdantin / ēdantismu / edantimmans / ēdantin / ēdantins / ēduns / ēdusis / ēdusjas / ēdusin / ēdusjasmu / ēdusimans / ēdusin / ēdusins / ēdusi / ēdusjas / ēdusjas / ēdusjan / ēdusjai / ēdusjamans / ēdusjan / ēdusjans / ēdus / ēdus / ēdusjas / ēdusin / ēdusjasmu / ēdusimans / ēdus / ēdus / ēsts / estāi / ēstas / ēstan / ēstasmu / estammans / ēstan / ēstans / estā / ēstas / ēstas / ēstan / ēstai / estāmans / ēstan / ēstans / ēstan / estāi / ēstas / ēstan / ēstasmu / estammans / ēstan / ēstans / ēdlai / ēdlai / ēdlai / ēdlimai / ēdlitei / ēdlai"
+    }
+  },
+  "translations": [
+    "1to eat"
+  ]
+}

@@ -1,0 +1,183 @@
+{
+  "lemma": "dustwei",
+  "paradigm": "91",
+  "infinitive_stem": "du",
+  "prusaspira": {
+    "participles": {
+      "present": "dūnsants",
+      "past": "dussuns"
+    },
+    "optative": "dussei",
+    "conjunctive": {
+      "sg_3pl": "duslai",
+      "1pl": "duslimai",
+      "2pl": "duslitei"
+    },
+    "imperative": [
+      "dussei",
+      "dūnsais",
+      "dūnsimai",
+      "dūnsaiti"
+    ]
+  },
+  "twanksta": {
+    "participles": {
+      "present": {
+        "form": "dūnsants",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "dūnsants",
+              "pl": "dūnsantjai"
+            },
+            "Gen": {
+              "sg": "dūnsantis",
+              "pl": "dūnsantin"
+            },
+            "Dat": {
+              "sg": "dūnsantismu",
+              "pl": "dunsantimmans"
+            },
+            "Akk": {
+              "sg": "dūnsantin",
+              "pl": "dūnsantins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "dunsantī",
+              "pl": "dūnsantjas"
+            },
+            "Gen": {
+              "sg": "dūnsantjas",
+              "pl": "dūnsantjan"
+            },
+            "Dat": {
+              "sg": "dūnsantjai",
+              "pl": "dunsantjāmans"
+            },
+            "Akk": {
+              "sg": "dūnsantjan",
+              "pl": "dūnsantjans"
+            }
+          }
+        }
+      },
+      "past": {
+        "form": "dussuns",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "dussuns",
+              "pl": "dussusis"
+            },
+            "Gen": {
+              "sg": "dussusjas",
+              "pl": "dussusin"
+            },
+            "Dat": {
+              "sg": "dussusjasmu",
+              "pl": "dussusimans"
+            },
+            "Akk": {
+              "sg": "dussusin",
+              "pl": "dussusins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "dussusi",
+              "pl": "dussusjas"
+            },
+            "Gen": {
+              "sg": "dussusjas",
+              "pl": "dussusjan"
+            },
+            "Dat": {
+              "sg": "dussusjai",
+              "pl": "dussusjamans"
+            },
+            "Akk": {
+              "sg": "dussusjan",
+              "pl": "dussusjans"
+            }
+          }
+        }
+      },
+      "passive": {
+        "form": "dusts",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "dusts",
+              "pl": "dustāi"
+            },
+            "Gen": {
+              "sg": "dustas",
+              "pl": "dustan"
+            },
+            "Dat": {
+              "sg": "dustasmu",
+              "pl": "dustammans"
+            },
+            "Akk": {
+              "sg": "dustan",
+              "pl": "dustans"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "dustā",
+              "pl": "dustas"
+            },
+            "Gen": {
+              "sg": "dustas",
+              "pl": "dustan"
+            },
+            "Dat": {
+              "sg": "dustai",
+              "pl": "dustāmans"
+            },
+            "Akk": {
+              "sg": "dustan",
+              "pl": "dustans"
+            }
+          }
+        }
+      }
+    },
+    "optative": "dussei",
+    "imperative": {
+      "2sg": "dūnsais",
+      "2pl": "dūnsaiti"
+    },
+    "subjunctive": {
+      "forms": [
+        [
+          "as",
+          "duslai"
+        ],
+        [
+          "tū",
+          "duslai"
+        ],
+        [
+          "tāns/tenā/tennan",
+          "duslai"
+        ],
+        [
+          "mes",
+          "duslimai"
+        ],
+        [
+          "jūs",
+          "duslitei"
+        ],
+        [
+          "tenēi/tennas",
+          "duslai"
+        ]
+      ]
+    }
+  }
+}

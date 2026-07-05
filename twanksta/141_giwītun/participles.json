@@ -1,0 +1,183 @@
+{
+  "lemma": "giwītun",
+  "paradigm": "141",
+  "infinitive_stem": "giwī",
+  "prusaspira": {
+    "participles": {
+      "present": "gīwants",
+      "past": "giwīwuns"
+    },
+    "optative": "giwīsei",
+    "conjunctive": {
+      "sg_3pl": "giwīlai",
+      "1pl": "giwīlimai",
+      "2pl": "giwīlitei"
+    },
+    "imperative": [
+      "giwīsei",
+      "gīwais",
+      "gīwimai",
+      "gīwaiti"
+    ]
+  },
+  "twanksta": {
+    "participles": {
+      "present": {
+        "form": "perwaldants",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "perwaldants",
+              "pl": "perwaldantjai"
+            },
+            "Gen": {
+              "sg": "perwaldantis",
+              "pl": "perwaldantin"
+            },
+            "Dat": {
+              "sg": "perwaldantismu",
+              "pl": "perwaldantimmans"
+            },
+            "Akk": {
+              "sg": "perwaldantin",
+              "pl": "perwaldantins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "perwaldantī",
+              "pl": "perwaldantjas"
+            },
+            "Gen": {
+              "sg": "perwaldantjas",
+              "pl": "perwaldantjan"
+            },
+            "Dat": {
+              "sg": "perwaldantjai",
+              "pl": "perwaldantjāmans"
+            },
+            "Akk": {
+              "sg": "perwaldantjan",
+              "pl": "perwaldantjans"
+            }
+          }
+        }
+      },
+      "past": {
+        "form": "perwaldīwuns",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "perwaldīwuns",
+              "pl": "perwaldīwusis"
+            },
+            "Gen": {
+              "sg": "perwaldīwusjas",
+              "pl": "perwaldīwusin"
+            },
+            "Dat": {
+              "sg": "perwaldīwusjasmu",
+              "pl": "perwaldīwusimans"
+            },
+            "Akk": {
+              "sg": "perwaldīwusin",
+              "pl": "perwaldīwusins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "perwaldīwusi",
+              "pl": "perwaldīwusjas"
+            },
+            "Gen": {
+              "sg": "perwaldīwusjas",
+              "pl": "perwaldīwusjan"
+            },
+            "Dat": {
+              "sg": "perwaldīwusjai",
+              "pl": "perwaldīwusjamans"
+            },
+            "Akk": {
+              "sg": "perwaldīwusjan",
+              "pl": "perwaldīwusjans"
+            }
+          }
+        }
+      },
+      "passive": {
+        "form": "perwaldīts",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "perwaldīts",
+              "pl": "perwalditāi"
+            },
+            "Gen": {
+              "sg": "perwaldītas",
+              "pl": "perwaldītan"
+            },
+            "Dat": {
+              "sg": "perwaldītasmu",
+              "pl": "perwalditammans"
+            },
+            "Akk": {
+              "sg": "perwaldītan",
+              "pl": "perwaldītans"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "perwalditā",
+              "pl": "perwaldītas"
+            },
+            "Gen": {
+              "sg": "perwaldītas",
+              "pl": "perwaldītan"
+            },
+            "Dat": {
+              "sg": "perwaldītai",
+              "pl": "perwalditāmans"
+            },
+            "Akk": {
+              "sg": "perwaldītan",
+              "pl": "perwaldītans"
+            }
+          }
+        }
+      }
+    },
+    "optative": "perwaldīsei",
+    "imperative": {
+      "2sg": "perwaldais",
+      "2pl": "perwaldaiti"
+    },
+    "subjunctive": {
+      "forms": [
+        [
+          "as",
+          "perwaldīlai"
+        ],
+        [
+          "tū",
+          "perwaldīlai"
+        ],
+        [
+          "tāns/tenā/tennan",
+          "perwaldīlai"
+        ],
+        [
+          "mes",
+          "perwaldīlimai"
+        ],
+        [
+          "jūs",
+          "perwaldīlitei"
+        ],
+        [
+          "tenēi/tennas",
+          "perwaldīlai"
+        ]
+      ]
+    }
+  }
+}

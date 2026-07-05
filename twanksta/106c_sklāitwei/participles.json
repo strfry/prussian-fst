@@ -1,0 +1,183 @@
+{
+  "lemma": "sklāitwei",
+  "paradigm": "106c",
+  "infinitive_stem": "sklāi",
+  "prusaspira": {
+    "participles": {
+      "present": "sklajjants",
+      "past": "sklajjuns"
+    },
+    "optative": "sklāisei",
+    "conjunctive": {
+      "sg_3pl": "sklāilai",
+      "1pl": "sklāilimai",
+      "2pl": "sklāilitei"
+    },
+    "imperative": [
+      "sklāisei",
+      "sklajjais",
+      "sklajjimai",
+      "sklajjaiti"
+    ]
+  },
+  "twanksta": {
+    "participles": {
+      "present": {
+        "form": "sklajānts",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "sklajānts",
+              "pl": "sklajāntjai"
+            },
+            "Gen": {
+              "sg": "sklajāntis",
+              "pl": "sklajāntin"
+            },
+            "Dat": {
+              "sg": "sklajāntismu",
+              "pl": "sklajantimmans"
+            },
+            "Akk": {
+              "sg": "sklajāntin",
+              "pl": "sklajāntins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "sklajantī",
+              "pl": "sklajāntjas"
+            },
+            "Gen": {
+              "sg": "sklajāntjas",
+              "pl": "sklajāntjan"
+            },
+            "Dat": {
+              "sg": "sklajāntjai",
+              "pl": "sklajantjāmans"
+            },
+            "Akk": {
+              "sg": "sklajāntjan",
+              "pl": "sklajāntjans"
+            }
+          }
+        }
+      },
+      "past": {
+        "form": "sklījuns",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "sklījuns",
+              "pl": "sklījusis"
+            },
+            "Gen": {
+              "sg": "sklījusjas",
+              "pl": "sklījusin"
+            },
+            "Dat": {
+              "sg": "sklījusjasmu",
+              "pl": "sklījusimans"
+            },
+            "Akk": {
+              "sg": "sklījusin",
+              "pl": "sklījusins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "sklījusi",
+              "pl": "sklījusjas"
+            },
+            "Gen": {
+              "sg": "sklījusjas",
+              "pl": "sklījusjan"
+            },
+            "Dat": {
+              "sg": "sklījusjai",
+              "pl": "sklījusjamans"
+            },
+            "Akk": {
+              "sg": "sklījusjan",
+              "pl": "sklījusjans"
+            }
+          }
+        }
+      },
+      "passive": {
+        "form": "sklāits",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "sklāits",
+              "pl": "sklaitāi"
+            },
+            "Gen": {
+              "sg": "sklāitas",
+              "pl": "sklāitan"
+            },
+            "Dat": {
+              "sg": "sklāitasmu",
+              "pl": "sklaitammans"
+            },
+            "Akk": {
+              "sg": "sklāitan",
+              "pl": "sklāitans"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "sklaitā",
+              "pl": "sklāitas"
+            },
+            "Gen": {
+              "sg": "sklāitas",
+              "pl": "sklāitan"
+            },
+            "Dat": {
+              "sg": "sklāitai",
+              "pl": "sklaitāmans"
+            },
+            "Akk": {
+              "sg": "sklāitan",
+              "pl": "sklāitans"
+            }
+          }
+        }
+      }
+    },
+    "optative": "sklāisei",
+    "imperative": {
+      "2sg": "sklajjais",
+      "2pl": "sklajjaiti"
+    },
+    "subjunctive": {
+      "forms": [
+        [
+          "as",
+          "sklāilai"
+        ],
+        [
+          "tū",
+          "sklāilai"
+        ],
+        [
+          "tāns/tenā/tennan",
+          "sklāilai"
+        ],
+        [
+          "mes",
+          "sklāilimai"
+        ],
+        [
+          "jūs",
+          "sklāilitei"
+        ],
+        [
+          "tenēi/tennas",
+          "sklāilai"
+        ]
+      ]
+    }
+  }
+}

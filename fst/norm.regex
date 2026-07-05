@@ -18,6 +18,12 @@ define DegemAll DegemNN .o. DegemMM .o. DegemPP .o. DegemTT .o. DegemDD .o. Dege
 define WProthese [0 -> w || .#. _ u];
 define SamlandI [0 -> i || s t s _ .#.];
 
-regex DegemAll .o. WProthese .o. SamlandI ;
+! Nom-Sg-Variante der i-Stämme: pawīstis → pawīsts (YT-Korpus)
+define ISynkope [i (->) 0 || t _ s .#.];
+
+! Diphthong-Schreibvariante ohne Makron: aī → ai (niaīnunts → niainunts)
+define DiphAI [ī (->) i || a _ ];
+
+regex DegemAll .o. WProthese .o. SamlandI .o. ISynkope .o. DiphAI ;
 save stack build/norm.hfst
 quit

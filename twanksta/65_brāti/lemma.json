@@ -1,0 +1,59 @@
+[
+  {
+    "word": "brāti",
+    "paradigm": "65",
+    "gender": "masc",
+    "desc": "[Brote E 173]",
+    "audio": "",
+    "description": "",
+    "translations": {
+      "engl": [
+        "brother"
+      ],
+      "miks": [
+        "Bruder"
+      ],
+      "leit": [
+        "brolis"
+      ],
+      "latt": [
+        "brālis"
+      ],
+      "pols": [
+        "brat"
+      ],
+      "mask": [
+        "брат"
+      ]
+    },
+    "forms": {
+      "declension": [
+        {
+          "gender": "masc",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "brāti",
+              "plural": "brātjai / brātres"
+            },
+            {
+              "case": "Genitive",
+              "singular": "brātis / brātris",
+              "plural": "brātin / brātran"
+            },
+            {
+              "case": "Dative",
+              "singular": "brātri",
+              "plural": "brātrimans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "brātin / brātrin",
+              "plural": "brātins / brātrins"
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

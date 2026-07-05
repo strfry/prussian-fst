@@ -1,0 +1,174 @@
+Indicative mood
+Present     as     asma     tū     assei     tāns/tenā/tennan     ast     mes     asmai     jūs     astei                          tenēi/tennas     ast
+Past
+as     bēi     tū     bēi     tāns/tenā/tennan     bēi     mes     bēimai     jūs     bēitei                          tenēi/tennas     bēi
+Perfect     as     asma
+būwuns / būwusi
+tū     assei
+būwuns / būwusi
+tāns/tenā     ast
+būwuns / būwusi
+tennan     ast
+būwus     mes     asmai
+būwusis / būwusjas       jūs     astei
+būwusis / būwusjas     tenēi/tennas     ast
+būwusis / būwusjas
+Future     as     wīrst
+būwuns / būwusi     tū     wīrst
+būwuns / būwusi     tāns/tenā     wīrst
+būwuns / būwusi     tennan     wīrst
+būwus     mes     wīrstmai
+būwusis / būwusjas     jūs     wīrstei
+būwusis / būwusjas     tenēi/tennas     wīrst
+būwusis / būwusjas
+Optative
+seīsei
+Imperative
+(tū)
+seīs
+(jūs)
+seīti
+Participle
+Present
+►   					 sēnts
+masc
+sing
+plur
+Nominative
+sēnts
+sēntjai
+Genitive
+sēntis
+sēntin
+Dative
+sēntismu
+sentimmans
+Accusative
+sēntin
+sēntins
+fem
+sing
+plur
+Nominative
+sentī
+sēntjas
+Genitive
+sēntjas
+sēntjan
+Dative
+sēntjai
+sentjāmans
+Accusative
+sēntjan
+sēntjans
+neut
+sing
+plur
+Nominative
+sēnti
+sēntjai
+Genitive
+sēntis
+sēntin
+Dative
+sēntismu
+sentimmans
+Accusative
+sēntin
+sēntins
+Past      ►  					 būwuns
+masc
+sing
+plur
+Nominative
+būwuns
+būwusis
+Genitive
+būwusjas
+būwusin
+Dative
+būwusjasmu
+būwusimans
+Accusative
+būwusin
+būwusins
+fem
+sing
+plur
+Nominative
+būwusi
+būwusjas
+Genitive
+būwusjas
+būwusjan
+Dative
+būwusjai
+būwusjamans
+Accusative
+būwusjan
+būwusjans
+neut
+sing
+plur
+Nominative
+būwus
+būwus
+Genitive
+būwusjas
+būwusin
+Dative
+būwusjasmu
+būwusimans
+Accusative
+būwus
+būwus
+Passive
+►
+būts
+masc
+sing
+plur
+Nominative
+būts
+butāi
+Genitive
+būtas
+būtan
+Dative
+būtasmu
+butammans
+Accusative
+būtan
+būtans
+fem
+sing
+plur
+Nominative
+butā
+būtas
+Genitive
+būtas
+būtan
+Dative
+būtai
+butāmans
+Accusative
+būtan
+būtans
+neut
+sing
+plur
+Nominative
+būtan
+butāi
+Genitive
+būtas
+būtan
+Dative
+būtasmu
+butammans
+Accusative
+būtan
+būtans
+Subjunctive
+as     būlai     tū     būlai     tāns/tenā/tennan     būlai     mes     būlimai     jūs     būlitei     tenēi/tennas     būlai

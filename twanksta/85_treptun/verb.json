@@ -1,0 +1,45 @@
+{
+  "lemma": "treptwei",
+  "source": "twanksta",
+  "forms": {
+    "present": {
+      "1sg": "treppa",
+      "2sg": "treppa",
+      "3sg": "treppa",
+      "1pl": "treppimai",
+      "2pl": "treppitei",
+      "3pl": "treppa"
+    },
+    "preterite": {
+      "1sg": "treppa",
+      "2sg": "treppa",
+      "3sg": "treppa",
+      "1pl": "treppimai",
+      "2pl": "treppitei",
+      "3pl": "treppa"
+    },
+    "perfect": {
+      "1sg": "asma\n                    treppuns / treppusi",
+      "2sg": "assei\n                    treppuns / treppusi",
+      "1pl": "asmai\n                    treppusis / treppusjas",
+      "2pl": "astei\n                    treppusis / treppusjas",
+      "3pl": "ast\n                    treppusis / treppusjas"
+    },
+    "future": {
+      "1sg": "wīrst\n                    treppuns / treppusi",
+      "2sg": "wīrst\n                    treppuns / treppusi",
+      "1pl": "wīrstmai\n                    treppusis / treppusjas",
+      "2pl": "wīrstei\n                    treppusis / treppusjas",
+      "3pl": "wīrst\n                    treppusis / treppusjas"
+    },
+    "optative": {
+      "form": "trepsei / treppais / treppaiti / trepānts / trepāntjai / trepāntis / trepāntin / trepāntismu / trepantimmans / trepāntin / trepāntins / trepantī / trepāntjas / trepāntjas / trepāntjan / trepāntjai / trepantjāmans / trepāntjan / trepāntjans / trepānti / trepāntjai / trepāntis / trepāntin / trepāntismu / trepantimmans / trepāntin / trepāntins / treppuns / treppusis / treppusjas / treppusin / treppusjasmu / treppusimans / treppusin / treppusins / treppusi / treppusjas / treppusjas / treppusjan / treppusjai / treppusjamans / treppusjan / treppusjans / treppus / treppus / treppusjas / treppusin / treppusjasmu / treppusimans / treppus / treppus / trepts / treptāi / treptas / treptan / treptasmu / treptammans / treptan / treptans / treptā / treptas / treptas / treptan / treptai / treptāmans / treptan / treptans / treptan / treptāi / treptas / treptan / treptasmu / treptammans / treptan / treptans / treplai / treplai / treplai / treplimai / treplitei / treplai"
+    },
+    "imperative": {
+      "form": "treppais / treppaiti / trepānts / trepāntjai / trepāntis / trepāntin / trepāntismu / trepantimmans / trepāntin / trepāntins / trepantī / trepāntjas / trepāntjas / trepāntjan / trepāntjai / trepantjāmans / trepāntjan / trepāntjans / trepānti / trepāntjai / trepāntis / trepāntin / trepāntismu / trepantimmans / trepāntin / trepāntins / treppuns / treppusis / treppusjas / treppusin / treppusjasmu / treppusimans / treppusin / treppusins / treppusi / treppusjas / treppusjas / treppusjan / treppusjai / treppusjamans / treppusjan / treppusjans / treppus / treppus / treppusjas / treppusin / treppusjasmu / treppusimans / treppus / treppus / trepts / treptāi / treptas / treptan / treptasmu / treptammans / treptan / treptans / treptā / treptas / treptas / treptan / treptai / treptāmans / treptan / treptans / treptan / treptāi / treptas / treptan / treptasmu / treptammans / treptan / treptans / treplai / treplai / treplai / treplimai / treplitei / treplai"
+    }
+  },
+  "translations": [
+    "1to step"
+  ]
+}

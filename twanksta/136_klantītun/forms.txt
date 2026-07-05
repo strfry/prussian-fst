@@ -1,0 +1,174 @@
+Indicative mood
+Present     as     klanta     tū     klanta     tāns/tenā/tennan     klanta     mes     klantimai     jūs     klantitei                          tenēi/tennas     klanta
+Past
+as     klantēi     tū     klantēi     tāns/tenā/tennan     klantēi     mes     klantēimai     jūs     klantēitei                          tenēi/tennas     klantēi
+Perfect     as     asma
+klantīwuns / klantīwusi
+tū     assei
+klantīwuns / klantīwusi
+tāns/tenā     ast
+klantīwuns / klantīwusi
+tennan     ast
+klantīwus     mes     asmai
+klantīwusis / klantīwusjas       jūs     astei
+klantīwusis / klantīwusjas     tenēi/tennas     ast
+klantīwusis / klantīwusjas
+Future     as     wīrst
+klantīwuns / klantīwusi     tū     wīrst
+klantīwuns / klantīwusi     tāns/tenā     wīrst
+klantīwuns / klantīwusi     tennan     wīrst
+klantīwus     mes     wīrstmai
+klantīwusis / klantīwusjas     jūs     wīrstei
+klantīwusis / klantīwusjas     tenēi/tennas     wīrst
+klantīwusis / klantīwusjas
+Optative
+klantisei
+Imperative
+(tū)
+klantais
+(jūs)
+klantaiti
+Participle
+Present
+►   					 klantants
+masc
+sing
+plur
+Nominative
+klantants
+klantantjai
+Genitive
+klantantis
+klantantin
+Dative
+klantantismu
+klantantimmans
+Accusative
+klantantin
+klantantins
+fem
+sing
+plur
+Nominative
+klantantī
+klantantjas
+Genitive
+klantantjas
+klantantjan
+Dative
+klantantjai
+klantantjāmans
+Accusative
+klantantjan
+klantantjans
+neut
+sing
+plur
+Nominative
+klantanti
+klantantjai
+Genitive
+klantantis
+klantantin
+Dative
+klantantismu
+klantantimmans
+Accusative
+klantantin
+klantantins
+Past      ►  					 klantīwuns
+masc
+sing
+plur
+Nominative
+klantīwuns
+klantīwusis
+Genitive
+klantīwusjas
+klantīwusin
+Dative
+klantīwusjasmu
+klantīwusimans
+Accusative
+klantīwusin
+klantīwusins
+fem
+sing
+plur
+Nominative
+klantīwusi
+klantīwusjas
+Genitive
+klantīwusjas
+klantīwusjan
+Dative
+klantīwusjai
+klantīwusjamans
+Accusative
+klantīwusjan
+klantīwusjans
+neut
+sing
+plur
+Nominative
+klantīwus
+klantīwus
+Genitive
+klantīwusjas
+klantīwusin
+Dative
+klantīwusjasmu
+klantīwusimans
+Accusative
+klantīwus
+klantīwus
+Passive
+►
+klantīts
+masc
+sing
+plur
+Nominative
+klantīts
+klantitāi
+Genitive
+klantītas
+klantītan
+Dative
+klantītasmu
+klantitammans
+Accusative
+klantītan
+klantītans
+fem
+sing
+plur
+Nominative
+klantitā
+klantītas
+Genitive
+klantītas
+klantītan
+Dative
+klantītai
+klantitāmans
+Accusative
+klantītan
+klantītans
+neut
+sing
+plur
+Nominative
+klantītan
+klantitāi
+Genitive
+klantītas
+klantītan
+Dative
+klantītasmu
+klantitammans
+Accusative
+klantītan
+klantītans
+Subjunctive
+as     klantīlai     tū     klantīlai     tāns/tenā/tennan     klantīlai     mes     klantīlimai     jūs     klantīlitei     tenēi/tennas     klantīlai

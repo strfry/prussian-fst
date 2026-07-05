@@ -17,13 +17,20 @@ curl -fsSL "$RELEASE/twanksta_entries.json" -o data/external/twanksta_entries.js
 
 Release tags follow `v{YYYY-MM-DD}`.
 
-**Script path:** `TWANKSTA_PATH` → `data/external/twanksta_entries.json`
-
 ## Build
 
 ```bash
+cd fst && make data  # download latest twanksta_entries.json from GitHub release
 cd fst && make gen   # regenerate .lexc files from JSON
 cd fst && make       # compile FST
+```
+
+## Lookup
+
+Use `hfst-flookup` (not `hfst-lookup`) to look up forms:
+
+```bash
+echo "apperautan" | hfst-flookup fst/build/base.fst
 ```
 
 ## Twanksta API

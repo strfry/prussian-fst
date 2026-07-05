@@ -1,0 +1,184 @@
+{
+  "lemma": "turītun",
+  "paradigm": "137",
+  "infinitive_stem": "turī",
+  "prusaspira": {
+    "participles": {
+      "present": "turīnts",
+      "past": "turīwuns",
+      "passive": "turīts"
+    },
+    "optative": "turīsei",
+    "conjunctive": {
+      "sg_3pl": "turīlai",
+      "1pl": "turīlimai",
+      "2pl": "turīlitei"
+    },
+    "imperative": [
+      "turīsei",
+      "turris",
+      "turrimai",
+      "turriti"
+    ]
+  },
+  "twanksta": {
+    "participles": {
+      "present": {
+        "form": "turīnts",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "turīnts",
+              "pl": "turīntjai"
+            },
+            "Gen": {
+              "sg": "turīntis",
+              "pl": "turīntin"
+            },
+            "Dat": {
+              "sg": "turīntismu",
+              "pl": "turintimmans"
+            },
+            "Akk": {
+              "sg": "turīntin",
+              "pl": "turīntins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "turintī",
+              "pl": "turīntjas"
+            },
+            "Gen": {
+              "sg": "turīntjas",
+              "pl": "turīntjan"
+            },
+            "Dat": {
+              "sg": "turīntjai",
+              "pl": "turintjāmans"
+            },
+            "Akk": {
+              "sg": "turīntjan",
+              "pl": "turīntjans"
+            }
+          }
+        }
+      },
+      "past": {
+        "form": "turīwuns",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "turīwuns",
+              "pl": "turīwusis"
+            },
+            "Gen": {
+              "sg": "turīwusjas",
+              "pl": "turīwusin"
+            },
+            "Dat": {
+              "sg": "turīwusjasmu",
+              "pl": "turīwusimans"
+            },
+            "Akk": {
+              "sg": "turīwusin",
+              "pl": "turīwusins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "turīwusi",
+              "pl": "turīwusjas"
+            },
+            "Gen": {
+              "sg": "turīwusjas",
+              "pl": "turīwusjan"
+            },
+            "Dat": {
+              "sg": "turīwusjai",
+              "pl": "turīwusjamans"
+            },
+            "Akk": {
+              "sg": "turīwusjan",
+              "pl": "turīwusjans"
+            }
+          }
+        }
+      },
+      "passive": {
+        "form": "turīts",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "turīts",
+              "pl": "turitāi"
+            },
+            "Gen": {
+              "sg": "turītas",
+              "pl": "turītan"
+            },
+            "Dat": {
+              "sg": "turītasmu",
+              "pl": "turitammans"
+            },
+            "Akk": {
+              "sg": "turītan",
+              "pl": "turītans"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "turitā",
+              "pl": "turītas"
+            },
+            "Gen": {
+              "sg": "turītas",
+              "pl": "turītan"
+            },
+            "Dat": {
+              "sg": "turītai",
+              "pl": "turitāmans"
+            },
+            "Akk": {
+              "sg": "turītan",
+              "pl": "turītans"
+            }
+          }
+        }
+      }
+    },
+    "optative": "turīsei",
+    "imperative": {
+      "2sg": "turris",
+      "2pl": "turriti"
+    },
+    "subjunctive": {
+      "forms": [
+        [
+          "as",
+          "turīlai"
+        ],
+        [
+          "tū",
+          "turīlai"
+        ],
+        [
+          "tāns/tenā/tennan",
+          "turīlai"
+        ],
+        [
+          "mes",
+          "turīlimai"
+        ],
+        [
+          "jūs",
+          "turīlitei"
+        ],
+        [
+          "tenēi/tennas",
+          "turīlai"
+        ]
+      ]
+    }
+  }
+}

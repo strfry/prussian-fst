@@ -1,0 +1,174 @@
+Indicative mood
+Present     as     jāutja     tū     jāutja     tāns/tenā/tennan     jāutja     mes     jāutimai     jūs     jāutitei                          tenēi/tennas     jāutja
+Past
+as     jutta     tū     jutta     tāns/tenā/tennan     jutta     mes     juttamai     jūs     juttatei                          tenēi/tennas     jutta
+Perfect     as     asma
+juttuns / juttusi
+tū     assei
+juttuns / juttusi
+tāns/tenā     ast
+juttuns / juttusi
+tennan     ast
+juttus     mes     asmai
+juttusis / juttusjas       jūs     astei
+juttusis / juttusjas     tenēi/tennas     ast
+juttusis / juttusjas
+Future     as     wīrst
+juttuns / juttusi     tū     wīrst
+juttuns / juttusi     tāns/tenā     wīrst
+juttuns / juttusi     tennan     wīrst
+juttus     mes     wīrstmai
+juttusis / juttusjas     jūs     wīrstei
+juttusis / juttusjas     tenēi/tennas     wīrst
+juttusis / juttusjas
+Optative
+jāutsei
+Imperative
+(tū)
+jāutjais
+(jūs)
+jāutjaiti
+Participle
+Present
+►   					 jāutints
+masc
+sing
+plur
+Nominative
+jāutints
+jāutintjai
+Genitive
+jāutintis
+jāutintin
+Dative
+jāutintismu
+jautintimmans
+Accusative
+jāutintin
+jāutintins
+fem
+sing
+plur
+Nominative
+jautintī
+jāutintjas
+Genitive
+jāutintjas
+jāutintjan
+Dative
+jāutintjai
+jautintjāmans
+Accusative
+jāutintjan
+jāutintjans
+neut
+sing
+plur
+Nominative
+jāutinti
+jāutintjai
+Genitive
+jāutintis
+jāutintin
+Dative
+jāutintismu
+jautintimmans
+Accusative
+jāutintin
+jāutintins
+Past      ►  					 juttuns
+masc
+sing
+plur
+Nominative
+juttuns
+juttusis
+Genitive
+juttusjas
+juttusin
+Dative
+juttusjasmu
+juttusimans
+Accusative
+juttusin
+juttusins
+fem
+sing
+plur
+Nominative
+juttusi
+juttusjas
+Genitive
+juttusjas
+juttusjan
+Dative
+juttusjai
+juttusjamans
+Accusative
+juttusjan
+juttusjans
+neut
+sing
+plur
+Nominative
+juttus
+juttus
+Genitive
+juttusjas
+juttusin
+Dative
+juttusjasmu
+juttusimans
+Accusative
+juttus
+juttus
+Passive
+►
+justs
+masc
+sing
+plur
+Nominative
+justs
+justāi
+Genitive
+justas
+justan
+Dative
+justasmu
+justammans
+Accusative
+justan
+justans
+fem
+sing
+plur
+Nominative
+justā
+justas
+Genitive
+justas
+justan
+Dative
+justai
+justāmans
+Accusative
+justan
+justans
+neut
+sing
+plur
+Nominative
+justan
+justāi
+Genitive
+justas
+justan
+Dative
+justasmu
+justammans
+Accusative
+justan
+justans
+Subjunctive
+as     jutlai     tū     jutlai     tāns/tenā/tennan     jutlai     mes     jutlimai     jūs     jutlitei     tenēi/tennas     jutlai

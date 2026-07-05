@@ -1,0 +1,45 @@
+{
+  "lemma": "āistwei",
+  "source": "twanksta",
+  "forms": {
+    "present": {
+      "1sg": "āista",
+      "2sg": "āista",
+      "3sg": "āista",
+      "1pl": "āistimai",
+      "2pl": "āistitei",
+      "3pl": "āista"
+    },
+    "preterite": {
+      "1sg": "āisa",
+      "2sg": "āisa",
+      "3sg": "āisa",
+      "1pl": "āisamai",
+      "2pl": "āisatei",
+      "3pl": "āisa"
+    },
+    "perfect": {
+      "1sg": "asma\n                    āisuns / āisusi",
+      "2sg": "assei\n                    āisuns / āisusi",
+      "1pl": "asmai\n                    āisusis / āisusjas",
+      "2pl": "astei\n                    āisusis / āisusjas",
+      "3pl": "ast\n                    āisusis / āisusjas"
+    },
+    "future": {
+      "1sg": "wīrst\n                    āisuns / āisusi",
+      "2sg": "wīrst\n                    āisuns / āisusi",
+      "1pl": "wīrstmai\n                    āisusis / āisusjas",
+      "2pl": "wīrstei\n                    āisusis / āisusjas",
+      "3pl": "wīrst\n                    āisusis / āisusjas"
+    },
+    "optative": {
+      "form": "āisei / āistais / āistaiti / āistants / āistantjai / āistantis / āistantin / āistantismu / aistantimmans / āistantin / āistantins / aistantī / āistantjas / āistantjas / āistantjan / āistantjai / aistantjāmans / āistantjan / āistantjans / āistanti / āistantjai / āistantis / āistantin / āistantismu / aistantimmans / āistantin / āistantins / āisuns / āisusis / āisusjas / āisusin / āisusjasmu / āisusimans / āisusin / āisusins / āisusi / āisusjas / āisusjas / āisusjan / āisusjai / āisusjamans / āisusjan / āisusjans / āisus / āisus / āisusjas / āisusin / āisusjasmu / āisusimans / āisus / āisus / āists / aistāi / āistas / āistan / āistasmu / aistammans / āistan / āistans / aistā / āistas / āistas / āistan / āistai / aistāmans / āistan / āistans / āistan / aistāi / āistas / āistan / āistasmu / aistammans / āistan / āistans / āitlai / āitlai / āitlai / āitlimai / āitlitei / āitlai"
+    },
+    "imperative": {
+      "form": "āistais / āistaiti / āistants / āistantjai / āistantis / āistantin / āistantismu / aistantimmans / āistantin / āistantins / aistantī / āistantjas / āistantjas / āistantjan / āistantjai / aistantjāmans / āistantjan / āistantjans / āistanti / āistantjai / āistantis / āistantin / āistantismu / aistantimmans / āistantin / āistantins / āisuns / āisusis / āisusjas / āisusin / āisusjasmu / āisusimans / āisusin / āisusins / āisusi / āisusjas / āisusjas / āisusjan / āisusjai / āisusjamans / āisusjan / āisusjans / āisus / āisus / āisusjas / āisusin / āisusjasmu / āisusimans / āisus / āisus / āists / aistāi / āistas / āistan / āistasmu / aistammans / āistan / āistans / aistā / āistas / āistas / āistan / āistai / aistāmans / āistan / āistans / āistan / aistāi / āistas / āistan / āistasmu / aistammans / āistan / āistans / āitlai / āitlai / āitlai / āitlimai / āitlitei / āitlai"
+    }
+  },
+  "translations": [
+    "1to heat up (to become warmer)"
+  ]
+}

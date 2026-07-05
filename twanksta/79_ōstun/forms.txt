@@ -1,0 +1,174 @@
+Indicative mood
+Present     as     autēnsja     tū     autēnsja     tāns/tenā/tennan     autēnsja     mes     autēnsjamai     jūs     autēnsjatei                          tenēi/tennas     autēnsja
+Past
+as     autēnsi     tū     autēnsi     tāns/tenā/tennan     autēnsi     mes     autēnsimai     jūs     autēnsitei                          tenēi/tennas     autēnsi
+Perfect     as     asma
+autēnsuns / autēnsusi
+tū     assei
+autēnsuns / autēnsusi
+tāns/tenā     ast
+autēnsuns / autēnsusi
+tennan     ast
+autēnsus     mes     asmai
+autēnsusis / autēnsusjas       jūs     astei
+autēnsusis / autēnsusjas     tenēi/tennas     ast
+autēnsusis / autēnsusjas
+Future     as     wīrst
+autēnsuns / autēnsusi     tū     wīrst
+autēnsuns / autēnsusi     tāns/tenā     wīrst
+autēnsuns / autēnsusi     tennan     wīrst
+autēnsus     mes     wīrstmai
+autēnsusis / autēnsusjas     jūs     wīrstei
+autēnsusis / autēnsusjas     tenēi/tennas     wīrst
+autēnsusis / autēnsusjas
+Optative
+autēnsei
+Imperative
+(tū)
+autēnsjais
+(jūs)
+autēnsjaiti
+Participle
+Present
+►   					 autēnsjants
+masc
+sing
+plur
+Nominative
+autēnsjants
+autēnsjantjai
+Genitive
+autēnsjantis
+autēnsjantin
+Dative
+autēnsjantismu
+autensjantimmans
+Accusative
+autēnsjantin
+autēnsjantins
+fem
+sing
+plur
+Nominative
+autensjantī
+autēnsjantjas
+Genitive
+autēnsjantjas
+autēnsjantjan
+Dative
+autēnsjantjai
+autensjantjāmans
+Accusative
+autēnsjantjan
+autēnsjantjans
+neut
+sing
+plur
+Nominative
+autēnsjanti
+autēnsjantjai
+Genitive
+autēnsjantis
+autēnsjantin
+Dative
+autēnsjantismu
+autensjantimmans
+Accusative
+autēnsjantin
+autēnsjantins
+Past      ►  					 autēnsuns
+masc
+sing
+plur
+Nominative
+autēnsuns
+autēnsusis
+Genitive
+autēnsusjas
+autēnsusin
+Dative
+autēnsusjasmu
+autēnsusimans
+Accusative
+autēnsusin
+autēnsusins
+fem
+sing
+plur
+Nominative
+autēnsusi
+autēnsusjas
+Genitive
+autēnsusjas
+autēnsusjan
+Dative
+autēnsusjai
+autēnsusjamans
+Accusative
+autēnsusjan
+autēnsusjans
+neut
+sing
+plur
+Nominative
+autēnsus
+autēnsus
+Genitive
+autēnsusjas
+autēnsusin
+Dative
+autēnsusjasmu
+autēnsusimans
+Accusative
+autēnsus
+autēnsus
+Passive
+►
+autēnsts
+masc
+sing
+plur
+Nominative
+autēnsts
+autenstāi
+Genitive
+autēnstas
+autēnstan
+Dative
+autēnstasmu
+autenstammans
+Accusative
+autēnstan
+autēnstans
+fem
+sing
+plur
+Nominative
+autenstā
+autēnstas
+Genitive
+autēnstas
+autēnstan
+Dative
+autēnstai
+autenstāmans
+Accusative
+autēnstan
+autēnstans
+neut
+sing
+plur
+Nominative
+autēnstan
+autenstāi
+Genitive
+autēnstas
+autēnstan
+Dative
+autēnstasmu
+autenstammans
+Accusative
+autēnstan
+autēnstans
+Subjunctive
+as     autēnslai     tū     autēnslai     tāns/tenā/tennan     autēnslai     mes     autēnslimai     jūs     autēnslitei     tenēi/tennas     autēnslai

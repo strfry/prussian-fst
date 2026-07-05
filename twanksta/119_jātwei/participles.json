@@ -1,0 +1,183 @@
+{
+  "lemma": "jātwei",
+  "paradigm": "119",
+  "infinitive_stem": "jā",
+  "prusaspira": {
+    "participles": {
+      "present": "jānts",
+      "past": "jāwuns"
+    },
+    "optative": "jāsei",
+    "conjunctive": {
+      "sg_3pl": "jālai",
+      "1pl": "jālimai",
+      "2pl": "jālitei"
+    },
+    "imperative": [
+      "jāsei",
+      "jāis",
+      "jāmai",
+      "jāiti"
+    ]
+  },
+  "twanksta": {
+    "participles": {
+      "present": {
+        "form": "jānts",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "jānts",
+              "pl": "jāntjai"
+            },
+            "Gen": {
+              "sg": "jāntis",
+              "pl": "jāntin"
+            },
+            "Dat": {
+              "sg": "jāntismu",
+              "pl": "jantimmans"
+            },
+            "Akk": {
+              "sg": "jāntin",
+              "pl": "jāntins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "jantī",
+              "pl": "jāntjas"
+            },
+            "Gen": {
+              "sg": "jāntjas",
+              "pl": "jāntjan"
+            },
+            "Dat": {
+              "sg": "jāntjai",
+              "pl": "jantjāmans"
+            },
+            "Akk": {
+              "sg": "jāntjan",
+              "pl": "jāntjans"
+            }
+          }
+        }
+      },
+      "past": {
+        "form": "jāwuns",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "jāwuns",
+              "pl": "jāwusis"
+            },
+            "Gen": {
+              "sg": "jāwusjas",
+              "pl": "jāwusin"
+            },
+            "Dat": {
+              "sg": "jāwusjasmu",
+              "pl": "jāwusimans"
+            },
+            "Akk": {
+              "sg": "jāwusin",
+              "pl": "jāwusins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "jāwusi",
+              "pl": "jāwusjas"
+            },
+            "Gen": {
+              "sg": "jāwusjas",
+              "pl": "jāwusjan"
+            },
+            "Dat": {
+              "sg": "jāwusjai",
+              "pl": "jāwusjamans"
+            },
+            "Akk": {
+              "sg": "jāwusjan",
+              "pl": "jāwusjans"
+            }
+          }
+        }
+      },
+      "passive": {
+        "form": "jāts",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "jāts",
+              "pl": "jatāi"
+            },
+            "Gen": {
+              "sg": "jātas",
+              "pl": "jātan"
+            },
+            "Dat": {
+              "sg": "jātasmu",
+              "pl": "jatammans"
+            },
+            "Akk": {
+              "sg": "jātan",
+              "pl": "jātans"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "jatā",
+              "pl": "jātas"
+            },
+            "Gen": {
+              "sg": "jātas",
+              "pl": "jātan"
+            },
+            "Dat": {
+              "sg": "jātai",
+              "pl": "jatāmans"
+            },
+            "Akk": {
+              "sg": "jātan",
+              "pl": "jātans"
+            }
+          }
+        }
+      }
+    },
+    "optative": "jāsei",
+    "imperative": {
+      "2sg": "jāis",
+      "2pl": "jāiti"
+    },
+    "subjunctive": {
+      "forms": [
+        [
+          "as",
+          "jālai"
+        ],
+        [
+          "tū",
+          "jālai"
+        ],
+        [
+          "tāns/tenā/tennan",
+          "jālai"
+        ],
+        [
+          "mes",
+          "jālimai"
+        ],
+        [
+          "jūs",
+          "jālitei"
+        ],
+        [
+          "tenēi/tennas",
+          "jālai"
+        ]
+      ]
+    }
+  }
+}

@@ -1,0 +1,109 @@
+[
+  {
+    "word": "subs",
+    "paradigm": "16",
+    "gender": "",
+    "desc": "pn nom sg m [subs 17(20)]",
+    "audio": "",
+    "description": "",
+    "translations": {
+      "engl": [
+        "self"
+      ],
+      "miks": [
+        "selbst"
+      ],
+      "leit": [
+        "pats"
+      ],
+      "latt": [
+        "pats"
+      ],
+      "pols": [
+        "sam"
+      ],
+      "mask": [
+        "сам"
+      ]
+    },
+    "forms": {
+      "declension": [
+        {
+          "gender": "masc",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "subs",
+              "plural": "subbai"
+            },
+            {
+              "case": "Genitive",
+              "singular": "subse",
+              "plural": "subbeisan"
+            },
+            {
+              "case": "Dative",
+              "singular": "subsmu",
+              "plural": "subbeimans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "subban",
+              "plural": "subbans"
+            }
+          ]
+        },
+        {
+          "gender": "fem",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "subba",
+              "plural": "subbas"
+            },
+            {
+              "case": "Genitive",
+              "singular": "subses",
+              "plural": "subbeisan"
+            },
+            {
+              "case": "Dative",
+              "singular": "subsei",
+              "plural": "subbeimans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "subban",
+              "plural": "subbans"
+            }
+          ]
+        },
+        {
+          "gender": "neut",
+          "cases": [
+            {
+              "case": "Nominative",
+              "singular": "subban",
+              "plural": "subban / subbai"
+            },
+            {
+              "case": "Genitive",
+              "singular": "subse",
+              "plural": "subse / subbeisan"
+            },
+            {
+              "case": "Dative",
+              "singular": "subsmu",
+              "plural": "subsmu / subbeimans"
+            },
+            {
+              "case": "Accusative",
+              "singular": "subban",
+              "plural": "subban / subbans"
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

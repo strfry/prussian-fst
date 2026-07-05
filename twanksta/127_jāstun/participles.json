@@ -1,0 +1,184 @@
+{
+  "lemma": "jāstun",
+  "paradigm": "127",
+  "infinitive_stem": "jās",
+  "prusaspira": {
+    "participles": {
+      "present": "jāsints",
+      "past": "jāsuns",
+      "passive": "jāstas"
+    },
+    "optative": "jāsei",
+    "conjunctive": {
+      "sg_3pl": "jāslai",
+      "1pl": "jāslimai",
+      "2pl": "jāslitei"
+    },
+    "imperative": [
+      "jāsei",
+      "jāseis",
+      "jāsmai",
+      "jāseiti"
+    ]
+  },
+  "twanksta": {
+    "participles": {
+      "present": {
+        "form": "jāsints",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "jāsints",
+              "pl": "jāsintjai"
+            },
+            "Gen": {
+              "sg": "jāsintis",
+              "pl": "jāsintin"
+            },
+            "Dat": {
+              "sg": "jāsintismu",
+              "pl": "jasintimmans"
+            },
+            "Akk": {
+              "sg": "jāsintin",
+              "pl": "jāsintins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "jasintī",
+              "pl": "jāsintjas"
+            },
+            "Gen": {
+              "sg": "jāsintjas",
+              "pl": "jāsintjan"
+            },
+            "Dat": {
+              "sg": "jāsintjai",
+              "pl": "jasintjāmans"
+            },
+            "Akk": {
+              "sg": "jāsintjan",
+              "pl": "jāsintjans"
+            }
+          }
+        }
+      },
+      "past": {
+        "form": "jāsuns",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "jāsuns",
+              "pl": "jāsusis"
+            },
+            "Gen": {
+              "sg": "jāsusjas",
+              "pl": "jāsusin"
+            },
+            "Dat": {
+              "sg": "jāsusjasmu",
+              "pl": "jāsusimans"
+            },
+            "Akk": {
+              "sg": "jāsusin",
+              "pl": "jāsusins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "jāsusi",
+              "pl": "jāsusjas"
+            },
+            "Gen": {
+              "sg": "jāsusjas",
+              "pl": "jāsusjan"
+            },
+            "Dat": {
+              "sg": "jāsusjai",
+              "pl": "jāsusjamans"
+            },
+            "Akk": {
+              "sg": "jāsusjan",
+              "pl": "jāsusjans"
+            }
+          }
+        }
+      },
+      "passive": {
+        "form": "jāsts",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "jāsts",
+              "pl": "jastāi"
+            },
+            "Gen": {
+              "sg": "jāstas",
+              "pl": "jāstan"
+            },
+            "Dat": {
+              "sg": "jāstasmu",
+              "pl": "jastammans"
+            },
+            "Akk": {
+              "sg": "jāstan",
+              "pl": "jāstans"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "jastā",
+              "pl": "jāstas"
+            },
+            "Gen": {
+              "sg": "jāstas",
+              "pl": "jāstan"
+            },
+            "Dat": {
+              "sg": "jāstai",
+              "pl": "jastāmans"
+            },
+            "Akk": {
+              "sg": "jāstan",
+              "pl": "jāstans"
+            }
+          }
+        }
+      }
+    },
+    "optative": "jāssei",
+    "imperative": {
+      "2sg": "jāseis",
+      "2pl": "jāseiti"
+    },
+    "subjunctive": {
+      "forms": [
+        [
+          "as",
+          "jāslai"
+        ],
+        [
+          "tū",
+          "jāslai"
+        ],
+        [
+          "tāns/tenā/tennan",
+          "jāslai"
+        ],
+        [
+          "mes",
+          "jāslimai"
+        ],
+        [
+          "jūs",
+          "jāslitei"
+        ],
+        [
+          "tenēi/tennas",
+          "jāslai"
+        ]
+      ]
+    }
+  }
+}

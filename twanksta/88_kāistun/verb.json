@@ -1,0 +1,45 @@
+{
+  "lemma": "kāistun",
+  "source": "twanksta",
+  "forms": {
+    "present": {
+      "1sg": "kāisa",
+      "2sg": "kāisa",
+      "3sg": "kāisa",
+      "1pl": "kāisimai",
+      "2pl": "kāisitei",
+      "3pl": "kāisa"
+    },
+    "preterite": {
+      "1sg": "kāisa",
+      "2sg": "kāisa",
+      "3sg": "kāisa",
+      "1pl": "kāisamai",
+      "2pl": "kāisatei",
+      "3pl": "kāisa"
+    },
+    "perfect": {
+      "1sg": "asma\n                    kāisuns / kāisusi",
+      "2sg": "assei\n                    kāisuns / kāisusi",
+      "1pl": "asmai\n                    kāisusis / kāisusjas",
+      "2pl": "astei\n                    kāisusis / kāisusjas",
+      "3pl": "ast\n                    kāisusis / kāisusjas"
+    },
+    "future": {
+      "1sg": "wīrst\n                    kāisuns / kāisusi",
+      "2sg": "wīrst\n                    kāisuns / kāisusi",
+      "1pl": "wīrstmai\n                    kāisusis / kāisusjas",
+      "2pl": "wīrstei\n                    kāisusis / kāisusjas",
+      "3pl": "wīrst\n                    kāisusis / kāisusjas"
+    },
+    "optative": {
+      "form": "kāisei / kāisais / kāisaiti / kāisants / kāisantjai / kāisantis / kāisantin / kāisantismu / kaisantimmans / kāisantin / kāisantins / kaisantī / kāisantjas / kāisantjas / kāisantjan / kāisantjai / kaisantjāmans / kāisantjan / kāisantjans / kāisanti / kāisantjai / kāisantis / kāisantin / kāisantismu / kaisantimmans / kāisantin / kāisantins / kāisuns / kāisusis / kāisusjas / kāisusin / kāisusjasmu / kāisusimans / kāisusin / kāisusins / kāisusi / kāisusjas / kāisusjas / kāisusjan / kāisusjai / kāisusjamans / kāisusjan / kāisusjans / kāisus / kāisus / kāisusjas / kāisusin / kāisusjasmu / kāisusimans / kāisus / kāisus / kāists / kaistāi / kāistas / kāistan / kāistasmu / kaistammans / kāistan / kāistans / kaistā / kāistas / kāistas / kāistan / kāistai / kaistāmans / kāistan / kāistans / kāistan / kaistāi / kāistas / kāistan / kāistasmu / kaistammans / kāistan / kāistans / kāislai / kāislai / kāislai / kāislimai / kāislitei / kāislai"
+    },
+    "imperative": {
+      "form": "kāisais / kāisaiti / kāisants / kāisantjai / kāisantis / kāisantin / kāisantismu / kaisantimmans / kāisantin / kāisantins / kaisantī / kāisantjas / kāisantjas / kāisantjan / kāisantjai / kaisantjāmans / kāisantjan / kāisantjans / kāisanti / kāisantjai / kāisantis / kāisantin / kāisantismu / kaisantimmans / kāisantin / kāisantins / kāisuns / kāisusis / kāisusjas / kāisusin / kāisusjasmu / kāisusimans / kāisusin / kāisusins / kāisusi / kāisusjas / kāisusjas / kāisusjan / kāisusjai / kāisusjamans / kāisusjan / kāisusjans / kāisus / kāisus / kāisusjas / kāisusin / kāisusjasmu / kāisusimans / kāisus / kāisus / kāists / kaistāi / kāistas / kāistan / kāistasmu / kaistammans / kāistan / kāistans / kaistā / kāistas / kāistas / kāistan / kāistai / kaistāmans / kāistan / kāistans / kāistan / kaistāi / kāistas / kāistan / kāistasmu / kaistammans / kāistan / kāistans / kāislai / kāislai / kāislai / kāislimai / kāislitei / kāislai"
+    }
+  },
+  "translations": [
+    "1to comb"
+  ]
+}

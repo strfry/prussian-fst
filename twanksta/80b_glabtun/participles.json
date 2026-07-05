@@ -1,0 +1,184 @@
+{
+  "lemma": "glabtun",
+  "paradigm": "80b",
+  "infinitive_stem": "glab",
+  "prusaspira": {
+    "participles": {
+      "present": "glabīnts",
+      "past": "glābuns",
+      "passive": "glabts"
+    },
+    "optative": "glabsei",
+    "conjunctive": {
+      "sg_3pl": "glablai",
+      "1pl": "glablimai",
+      "2pl": "glablitei"
+    },
+    "imperative": [
+      "glabsei",
+      "glabbjais",
+      "glabbimai",
+      "glabbjaiti"
+    ]
+  },
+  "twanksta": {
+    "participles": {
+      "present": {
+        "form": "glabīnts",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "glabīnts",
+              "pl": "glabīntjai"
+            },
+            "Gen": {
+              "sg": "glabīntis",
+              "pl": "glabīntin"
+            },
+            "Dat": {
+              "sg": "glabīntismu",
+              "pl": "glabintimmans"
+            },
+            "Akk": {
+              "sg": "glabīntin",
+              "pl": "glabīntins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "glabintī",
+              "pl": "glabīntjas"
+            },
+            "Gen": {
+              "sg": "glabīntjas",
+              "pl": "glabīntjan"
+            },
+            "Dat": {
+              "sg": "glabīntjai",
+              "pl": "glabintjāmans"
+            },
+            "Akk": {
+              "sg": "glabīntjan",
+              "pl": "glabīntjans"
+            }
+          }
+        }
+      },
+      "past": {
+        "form": "glābuns",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "glābuns",
+              "pl": "glābusis"
+            },
+            "Gen": {
+              "sg": "glābusjas",
+              "pl": "glābusin"
+            },
+            "Dat": {
+              "sg": "glābusjasmu",
+              "pl": "glābusimans"
+            },
+            "Akk": {
+              "sg": "glābusin",
+              "pl": "glābusins"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "glābusi",
+              "pl": "glābusjas"
+            },
+            "Gen": {
+              "sg": "glābusjas",
+              "pl": "glābusjan"
+            },
+            "Dat": {
+              "sg": "glābusjai",
+              "pl": "glābusjamans"
+            },
+            "Akk": {
+              "sg": "glābusjan",
+              "pl": "glābusjans"
+            }
+          }
+        }
+      },
+      "passive": {
+        "form": "glabts",
+        "declension": {
+          "masc": {
+            "Nom": {
+              "sg": "glabts",
+              "pl": "glabtāi"
+            },
+            "Gen": {
+              "sg": "glabtas",
+              "pl": "glabtan"
+            },
+            "Dat": {
+              "sg": "glabtasmu",
+              "pl": "glabtammans"
+            },
+            "Akk": {
+              "sg": "glabtan",
+              "pl": "glabtans"
+            }
+          },
+          "fem": {
+            "Nom": {
+              "sg": "glabtā",
+              "pl": "glabtas"
+            },
+            "Gen": {
+              "sg": "glabtas",
+              "pl": "glabtan"
+            },
+            "Dat": {
+              "sg": "glabtai",
+              "pl": "glabtāmans"
+            },
+            "Akk": {
+              "sg": "glabtan",
+              "pl": "glabtans"
+            }
+          }
+        }
+      }
+    },
+    "optative": "glabsei",
+    "imperative": {
+      "2sg": "glabjais",
+      "2pl": "glabjaiti"
+    },
+    "subjunctive": {
+      "forms": [
+        [
+          "as",
+          "glablai"
+        ],
+        [
+          "tū",
+          "glablai"
+        ],
+        [
+          "tāns/tenā/tennan",
+          "glablai"
+        ],
+        [
+          "mes",
+          "glablimai"
+        ],
+        [
+          "jūs",
+          "glablitei"
+        ],
+        [
+          "tenēi/tennas",
+          "glablai"
+        ]
+      ]
+    }
+  }
+}

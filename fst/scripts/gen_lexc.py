@@ -12,8 +12,27 @@ import re
 from collections import defaultdict
 from pathlib import Path
 
-TWANKSTA = Path("../../data/external/twanksta_entries.json")
-OUT_DIR = Path("..")
+SCRIPT_DIR = Path(__file__).resolve().parent
+TWANKSTA = SCRIPT_DIR / "../../data/external/twanksta_entries.json"
+OUT_DIR = SCRIPT_DIR / ".."
+
+# Auxiliary verbs in periphrastic Perfect/Future indicative forms.
+# The first word of a multi-word form is stripped when it matches.
+AUXILIARIES = {"asma", "assei", "ast", "asmai", "astei",
+               "wīrst", "wīrstmai", "wīrstei"}
+
+# Pronoun key → ordered list of (gender, number) tuples for the
+# `` / ``-separated participle variants in Perfect/Future forms.
+# The variant index maps directly to the pronoun sub-parts.
+PARTICIPLE_PRET_GENDER = {
+    "as":           [("Masc", "Sg"), ("Fem", "Sg")],
+    "tū":           [("Masc", "Sg"), ("Fem", "Sg")],
+    "tāns/tenā":    [("Masc", "Sg"), ("Fem", "Sg")],
+    "tennan":       [("Neut", "Sg")],
+    "mes":          [("Masc", "Pl"), ("Fem", "Pl")],
+    "jūs":          [("Masc", "Pl"), ("Fem", "Pl")],
+    "tenēi/tennas": [("Masc", "Pl"), ("Fem", "Pl")],
+}
 
 CASE_MAP = {
     "Nominative": "Nom", "Genitive": "Gen",
@@ -206,6 +225,42 @@ def adverb_forms(entry: dict) -> list[str]:
     return lines
 
 
+def extract_perfect_participles(indicative: list, upper: str,
+                                 refl: str) -> dict:
+    """Extract full-form participle entries from periphrastic Perfect/Future
+    indicative forms.
+
+    Each multi-word form like ``"asma būwuns / būwusi"`` yields two
+    separate participle entries — one per ``" / "`` variant.  The auxiliary
+    verb is stripped from each variant; the remaining word(s) get tagged
+    with gender/number from the pronoun key (``PARTICIPLE_PRET_GENDER``).
+
+    Returns ``{full_line: True}`` suitable for merging into ``verb_forms()``.
+    """
+    results = {}
+    for tense_entry in indicative:
+        tname = tense_entry.get("tense", "")
+        if tname not in ("Perfect", "Future"):
+            continue
+        for sub in tense_entry.get("forms", []):
+            raw = sub.get("form", "").strip()
+            pn_key = sub.get("pronoun", "")
+            gender_list = PARTICIPLE_PRET_GENDER.get(pn_key, [])
+            for vi, variant in enumerate(raw.split(" / ")):
+                if vi >= len(gender_list):
+                    break
+                gend, num = gender_list[vi]
+                for word in variant.strip().split():
+                    w = strip_si(word)
+                    # "si" steht bei Reflexiva als eigenes Wort NACH dem
+                    # Partizip — nie selbst eine Partizipform emittieren
+                    if not w or w in AUXILIARIES or w == "si" or " " in w:
+                        continue
+                    tag = f"Part+Pret+{gend}+{num}+Nom" if gend else f"Part+Pret+{num}+Nom"
+                    results[f"{upper}+V+{tag}{refl}:{lexc_esc(w)}"] = True
+    return results
+
+
 def verb_forms(entry: dict) -> tuple[str, dict]:
     """Extract verb inflectional forms and participle full forms.
 
@@ -293,7 +348,27 @@ def verb_forms(entry: dict) -> tuple[str, dict]:
         else:
             continue
 
-        results[f"{upper}+V+Part+{tag}+Masc+Sg+Nom{refl}:{lexc_esc(bare)}"] = True
+        fd = p.get("full_declension", [])
+        if fd:
+            for gen_decl in fd:
+                g = gen_decl.get("gender", "masc")
+                g_tag = GENDER_MAP.get(g, "")
+                for case_entry in gen_decl.get("cases", []):
+                    c = case_entry.get("case", "")
+                    c_tag = CASE_MAP.get(c, c[:3])
+                    for num_attr, num_tag in [("singular", "Sg"), ("plural", "Pl")]:
+                        form = case_entry.get(num_attr, "")
+                        if form and " " not in form:
+                            for variant in form.split(" / "):
+                                variant = variant.strip()
+                                if variant:
+                                    results[f"{upper}+V+Part+{tag}+{num_tag}+{c_tag}{g_tag}{refl}:{lexc_esc(variant)}"] = True
+        else:
+            results[f"{upper}+V+Part+{tag}+Sg+Nom+Masc{refl}:{lexc_esc(bare)}"] = True
+
+    # Extra participles from periphrastic Perfect/Future indicative forms
+    results.update(extract_perfect_participles(forms.get("indicative", []),
+                                               upper, refl))
 
     return base, results
 
