@@ -8,7 +8,9 @@ version = "0.2.0"
 description = "Old Prussian morphological analyzer and generator (HFST/lexd)"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "conllu>=6.0.0",
+]
 
 [project.urls]
 Repository = "https://github.com/strfry/prussian-fst"
