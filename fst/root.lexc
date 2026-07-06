@@ -3,7 +3,8 @@
 LEXICON Root
   ! hand-written function-word override (vor Nouns!)
   FunctionWords ;
-  ProperNouns ;
+  ProperNouns ;          ! hand-curated (Kānts, Nidda, etc.)
+  ProperNounsAuto ;      ! auto-generated from Twanksta Pit/Per entries
   Conjunctions ;
   Prepositions ;
   Adverbs ;
@@ -11,6 +12,6 @@ LEXICON Root
   Interjections ;
   Nouns ;
   Adjectives ;
-  Pronouns ;
+  Pronouns ;             ! hand-curated (with +P1/+P2/+P3/+Encl)
   Numerals ;
   Verbs ;

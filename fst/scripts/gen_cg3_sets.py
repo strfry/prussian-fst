@@ -1,18 +1,14 @@
 #!/usr/bin/env python3
-"""Generate CG3 sets and $$-based agreement rules for the disambiguator.
+"""Generate CG3 sets for the disambiguator.
 
 Outputs (INCLUDEd by fst/cg3/disambiguator.cg3):
-  fst/cg3/generated-sets.cg3       — Valenz-LISTs aus valence.json
-  fst/cg3/generated-rule1.cg3      — Regel 1: SELECT Adj via $$-Unifikation
-  fst/cg3/generated-agreement.cg3  — Agreement-Filter via $$-Unifikation
+  fst/cg3/generated-sets.cg3 — GenVerb LIST aus valence.json
 
-Die $$-Unifikation expandiert ueber die 24 K×N×G-Signaturen der LIST AGR
-(disambiguator.cg3) und arbeitet per LINK-Kette (deterministische Reihenfolge).
-1* statt 1**: stoppt am ersten NGHead, ohne weiterzusuchen.
+Akk/Dat-Valenz ist tag-basiert (+GovAkk/+GovDat auf dem Verb, aus
+gen_lexc.py). Agreement-Filter sind inline in disambiguator.cg3.
 """
 
 import json
-from itertools import product
 from pathlib import Path
 
 FST_DIR = Path(__file__).resolve().parents[1]
@@ -49,49 +45,17 @@ def write_sets(valence: dict):
         HEADER,
         "# Source: fst/valence.json + kuratierte Gen-Verben.\n\n",
         fmt_list("GenVerb", lists["Gen"]),
-        fmt_list("DatVerb", lists["Dat"]),
-        fmt_list("AkkVerb", lists["Acc"]),
     ]
     (CG3_DIR / "generated-sets.cg3").write_text("".join(out), encoding="utf-8")
     return lists
-
-
-def write_rule1():
-    """$$-basierte Regel 1: Token ist Adj, wenn kongruenter Kopf rechts."""
-    out = [HEADER,
-           "# $$-Unifikation via LIST AGR (disambiguator.cg3).\n\n",
-           "SECTION  # Regel 1: Adj bei kongruierendem Kopf rechts\n",
-           "SELECT (Adj) IF (0 NAdv) (0 Adj) ",
-           "(0 $$AGR LINK 1* NGHead LINK 0 $$AGR) ;\n"]
-    (CG3_DIR / "generated-rule1.cg3").write_text("".join(out), encoding="utf-8")
-
-
-def write_agreement():
-    """$$-basierte NG-interne Agreement-Filter."""
-    out = [HEADER,
-           "# $$-Unifikation via LIST AGR (disambiguator.cg3).\n",
-           "# LINK-Kette fuer deterministische $$-Bindung; 1* stoppt an erstem NGHead.\n\n",
-           "SECTION  # a) Modifikator <- naechster Nicht-Gen-Kopf\n",
-           "REMOVE $$AGR IF (0 AdjNum) ",
-           "(0 $$AGR LINK 1* NGHead LINK NOT 0 Gen LINK NEGATE 0 $$AGR) ;\n\n",
-           "SECTION  # c) Kopf <- unmittelbar links stehender Modifikator\n",
-           "REMOVE $$AGR IF (0 NGHead) ",
-           "(0 $$AGR LINK -1 AdjNum LINK NEGATE 0 $$AGR) ;\n\n",
-           "SECTION  # b) Modifikator <- naechster Gen-Kopf\n",
-           "REMOVE $$AGR IF (0 AdjNum) ",
-           "(0 $$AGR LINK 1* NGHead + Gen LINK NEGATE 0 $$AGR) ;\n"]
-    (CG3_DIR / "generated-agreement.cg3").write_text("".join(out), encoding="utf-8")
 
 
 def main():
     valence = json.loads(VALENCE_PATH.read_text(encoding="utf-8"))
     CG3_DIR.mkdir(parents=True, exist_ok=True)
     lists = write_sets(valence)
-    write_rule1()
-    write_agreement()
-    print(f"wrote {CG3_DIR}/generated-{{sets,rule1,agreement}}.cg3 "
-          f"(GenVerb: {len(lists['Gen'])}, DatVerb: {len(lists['Dat'])}, "
-          f"AkkVerb: {len(lists['Acc'])})")
+    print(f"wrote {CG3_DIR}/generated-sets.cg3 "
+          f"(GenVerb: {len(lists['Gen'])})")
 
 
 if __name__ == "__main__":

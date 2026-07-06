@@ -55,8 +55,8 @@ PRONOUN_MAP = {
 
 LEXICON_NAMES = {
     "noun": "Nouns",
+    "proper_noun": "ProperNounsAuto",
     "adjective": "Adjectives",
-    "pronoun": "Pronouns",
     "numeral": "Numerals",
     "adverb": "Adverbs",
     "preposition": "Prepositions",
@@ -67,8 +67,8 @@ LEXICON_NAMES = {
 
 POS_TAGS = {
     "noun": "+N",
+    "proper_noun": "+PropN",
     "adjective": "+Adj",
-    "pronoun": "+Pron",
     "numeral": "+Num",
     "adverb": "+Adv",
     "preposition": "+Prp",
@@ -112,6 +112,81 @@ def prep_gov_tags(desc: str) -> list[str]:
     return tags
 
 
+# Preposition lemmas that appear in verb descs without macrons (unmacroned →
+# macroned form matching the actual preposition entry).
+PREP_NORMALIZE = {
+    "en": "ēn",
+    "per": "pēr",
+    "prei": "prēi",
+    "sen": "sēn",
+    "zurgi": "zūrgi",
+}
+
+CASE_NAMES = {"acc": "Acc", "akk": "Acc", "dat": "Dat", "gen": "Gen"}
+
+# Matches "(prep +? case)" patterns in verb desc grammatical part.
+_PREP_RECTION_RE = re.compile(
+    r"\(?\s*([\wĀ-ſ]+)\s*\+?\s*(acc|akk|dat|gen)\s*\)?", re.I)
+
+
+def verb_valence_tags(desc: str, prep_words: set[str]) -> list[str]:
+    """Parse valence tags directly from a verb's ``desc`` field.
+
+    Returns a list of lexc tags:
+    - ``+GovAkk`` / ``+GovDat`` for bare-case objects (Gen is skipped)
+    - ``+PP<prep>`` for prepositional objects (e.g. ``+PPēn``, ``+PPsen``)
+
+    *prep_words* is the set of known preposition lemmas (to filter false
+    positives from the regex).
+    """
+    g = desc_gram(desc)
+    if not g:
+        return []
+
+    # Collect prep-rection matches and strip them from remaining text
+    rest = g
+    tags = []
+    for m in _PREP_RECTION_RE.finditer(g):
+        prep = m.group(1).lower()
+        case = CASE_NAMES.get(m.group(2).lower())
+        if case is None:
+            continue
+        prep = PREP_NORMALIZE.get(prep, prep)
+        if prep not in prep_words:
+            continue
+        if case == "Gen":
+            continue  # Gen verbs skipped per user request
+        tags.append(f"+PP{prep}")
+        rest = rest.replace(m.group(0), " ")
+
+    # Remaining bare case keywords → +GovAkk / +GovDat (Gen skipped)
+    for m in re.finditer(r"\b(acc|akk|dat)\b", rest, re.I):
+        name = CASE_NAMES[m.group(1).lower()]
+        if name == "Acc":
+            gov = "+GovAkk"
+        else:
+            gov = f"+Gov{name}"
+        if gov not in tags:
+            tags.append(gov)
+
+    return tags
+
+
+def is_proper_noun(desc: str) -> bool:
+    """True if desc contains Pit (toponym) or Per (person name) marker."""
+    return bool(re.search(r"\b(Pit|Per)\b", desc))
+
+
+def numeral_subtype(desc: str) -> str:
+    """Return +Card, +Ord, or '' based on desc first token."""
+    first = desc.split()[0].lower().rstrip(",.()") if desc else ""
+    if first == "crd":
+        return "+Card"
+    if first == "ord":
+        return "+Ord"
+    return ""
+
+
 def classify(e: dict) -> str:
     desc = e.get("desc", "").strip()
     par = e.get("paradigm", "")
@@ -126,7 +201,7 @@ def classify(e: dict) -> str:
     if first in ("av", "av,"):
         return "adverb"
     if first in ("pn", "pn,"):
-        return "pronoun"
+        return "pronoun"  # hand-written in pronouns.lexc; skipped in generator
     if first in ("crd", "crd,"):
         return "numeral"
     if first in ("ord", "ord,"):
@@ -147,17 +222,22 @@ def classify(e: dict) -> str:
     pi = paradigm_int(par)
     if pi is not None:
         if 1 <= pi <= 20:
-            return "pronoun"
+            return "pronoun"  # hand-written; skipped
         if 21 <= pi <= 24:
             return "numeral"
         if 25 <= pi <= 31:
             return "adjective"
         if 32 <= pi <= 70:
+            # Proper noun if desc has Pit/Per marker, else regular noun
+            if is_proper_noun(desc):
+                return "proper_noun"
             return "noun"
         if pi >= 71:
             return "verb"
 
     if "declension" in forms and forms["declension"]:
+        if is_proper_noun(desc):
+            return "proper_noun"
         return "noun"
 
     return "unknown"
@@ -182,7 +262,7 @@ def strip_si(form: str) -> str:
     return form
 
 
-def nominal_forms(entry: dict, pos_tag: str) -> list[tuple[str, str]]:
+def nominal_forms(entry: dict, pos_tag: str, subtype_tag: str = "") -> list[tuple[str, str]]:
     results = []
     for decl_key, deg_tag in [("declension", ""), ("comparative", "+Cmp"),
                               ("superlative", "+Sup")]:
@@ -197,7 +277,7 @@ def nominal_forms(entry: dict, pos_tag: str) -> list[tuple[str, str]]:
                     if form:
                         for variant in form.split(" / "):
                             if " " not in variant:
-                                results.append((f"{pos_tag}{deg_tag}+{num_tag}+{c_tag}{g_tag}", variant))
+                                results.append((f"{pos_tag}{subtype_tag}{deg_tag}+{num_tag}+{c_tag}{g_tag}", variant))
     return results
 
 
@@ -261,7 +341,7 @@ def extract_perfect_participles(indicative: list, upper: str,
     return results
 
 
-def verb_forms(entry: dict) -> tuple[str, dict]:
+def verb_forms(entry: dict, prep_words: set[str] | None = None) -> tuple[str, dict]:
     """Extract verb inflectional forms and participle full forms.
 
     Returns ``(base_word, {full_line: True})`` where *base_word* is
@@ -271,6 +351,9 @@ def verb_forms(entry: dict) -> tuple[str, dict]:
     forms = entry.get("forms", {})
     base, refl = refl_tag(word)
     upper = lexc_esc(base)
+    # Valenz-Tags aus desc direkt geparst (+GovAkk/+GovDat/+PP<prep>)
+    val_tags = "".join(verb_valence_tags(entry.get("desc", ""), prep_words or set()))
+    refl = f"{val_tags}{refl}"
     results = {}
 
     # Infinitive
@@ -385,6 +468,16 @@ def main():
     verb_data = {}  # orig_word -> (base_word, {line: True})
     seen_bases = set()
 
+    # Preposition lemmas (for verb valence prep validation)
+    prep_words = set()
+    for e in raw:
+        g = desc_gram(e.get("desc", ""))
+        if g.startswith("prp"):
+            w = e.get("word", "")
+            if w:
+                prep_words.add(w.lower())
+    prep_words.update(PREP_NORMALIZE.keys())
+
     for e in raw:
         word = e.get("word", "")
         if not word or "/" in word:
@@ -394,13 +487,14 @@ def main():
             continue
 
         pos = classify(e)
-        if pos == "unknown":
-            stats["unknown"] += 1
+        if pos == "unknown" or pos == "pronoun":
+            # pronouns are hand-written in pronouns.lexc (with +P1/+P2/+P3/+Encl)
+            stats["skipped_pronoun" if pos == "pronoun" else "unknown"] += 1
             continue
         stats[pos] += 1
 
         if pos == "verb":
-            base_w, vf = verb_forms(e)
+            base_w, vf = verb_forms(e, prep_words)
             if vf:
                 key = word
                 verb_data[key] = (base_w, vf)
@@ -415,12 +509,13 @@ def main():
             derived_adverbs.extend(adverb_forms(e))
 
     # ── Nominal POS files ──
-    for pos in ["noun", "adjective", "pronoun", "numeral",
+    # pronoun is hand-written (pronouns.lexc); proper_noun → proper_nouns_auto.lexc
+    for pos in ["noun", "proper_noun", "adjective", "numeral",
                 "adverb", "preposition", "conjunction", "particle", "interjection"]:
         entries = by_pos.get(pos, [])
         tag = POS_TAGS[pos]
         lex_name = LEXICON_NAMES[pos]
-        out_path = OUT_DIR / f"{pos}s.lexc"
+        out_path = OUT_DIR / f"{pos}s.lexc" if pos != "proper_noun" else OUT_DIR / "proper_nouns_auto.lexc"
 
         lines = [f"! {pos}s — generated from Twanksta data"]
         lines.append(f"! Source: {TWANKSTA}")
@@ -431,7 +526,8 @@ def main():
         seen_bodies = set()
         invariable = pos in ("adverb", "preposition", "conjunction", "particle", "interjection")
         for word, e in entries or []:
-            forms = nominal_forms(e, tag)
+            subtype = numeral_subtype(e.get("desc", "")) if pos == "numeral" else ""
+            forms = nominal_forms(e, tag, subtype)
             if not forms:
                 if pos == "preposition":
                     gov_tags = prep_gov_tags(e.get("desc", "")) or [""]
@@ -449,7 +545,7 @@ def main():
                         total += 1
                 else:
                     gender = GENDER_MAP.get(e.get("gender", ""), "")
-                    lines.append(f"  {lexc_esc(word)}{tag}+Sg+Nom{gender}:{lexc_esc(word)}  # ;")
+                    lines.append(f"  {lexc_esc(word)}{tag}{subtype}+Sg+Nom{gender}:{lexc_esc(word)}  # ;")
                     total += 1
             else:
                 for tt, form in forms:

@@ -43,11 +43,18 @@ Multichar_Symbols
 
   +Cmp  ! comparative degree
   +Sup  ! superlative degree
+  +Card ! cardinal numeral (one, two, three…)
+  +Ord  ! ordinal numeral (first, second, third…)
+  +Encl ! enclitic pronoun (di, dis, din — proclitic subject replacement)
 
-  ! Case government (prepositions, from Twanksta desc field)
+  ! Case government (prepositions from Twanksta desc; verbs from desc)
   +GovAkk ! governs accusative
   +GovDat ! governs dative
   +GovGen ! governs genitive (postposition paggan: Gen precedes)
+
+  ! Prepositional object tags on verbs (from Twanksta verb desc)
+  +PPezze +PPiz +PPkīrsa +PPna +PPpa +PPpas +PPpra +PPprēi
+  +PPprīki +PPpēr +PPsirzdau +PPsēn +PPzūrgi +PPēn
 
   ! Morphophonology trigger: deaccent (mobile stem under a strong participle
   ! ending). Sits on the surface tape at the stem|ending boundary; stress.twolc

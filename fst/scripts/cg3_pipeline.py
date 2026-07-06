@@ -237,7 +237,7 @@ def parse_cg_stream(stream: str) -> list[list[dict]]:
             m = re.match(r'\t"(.*)" (.*)$', line)
             if m:
                 tags = [t for t in m.group(2).split()
-                        if not t.startswith(("REMOVE:", "SELECT:", "ADD:"))]
+                        if not t.startswith(("REMOVE:", "SELECT:", "ADD:", "#"))]
                 cur["readings"].append({"lemma": m.group(1), "tags": tags})
     return cohorts
 

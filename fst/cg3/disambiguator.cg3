@@ -11,10 +11,7 @@
 #   - Klauselgrenzen: SCnj, finite Verben; Cnj/Gen sind KEINE Grenzen
 #   - Präpositionsrektion via FST-Tags GovAkk/GovDat
 #   - Genitivobjekte: lexikalisch (GenVerb) + Genitivus negationis (ni + V)
-#
-# Agreement-Regeln (Regel 1, NG-Propagation) sind pro Signatur generiert
-# (fst/scripts/gen_cg3_sets.py), weil $$-Unifikation über mehrere
-# Kontexttests nicht backtrackt.
+#   - Verbvalenz: +GovAkk/+GovDat und +PP<prep> aus desc (gen_lexc.py)
 #
 # Input-Stream: fst/scripts/cg3_pipeline.py
 #   "<Labban>"
@@ -61,9 +58,12 @@ LIST GovGen = GovGen ;
 
 LIST Ni = "ni" ;
 LIST BOS = (>>>) ;                                 # Fensteranfang (magisches Tag)
-# di/dis: enklitisches Subjektersatz-Pronomen (syntax_rules §15, Twanksta
-# "pn 3 encl") — steht direkt nach dem finiten Verb: "bilāi di"
-LIST Di = "di" "dis" ;
+# di/dis/din: enklitisches Subjektersatz-Pronomen (syntax_rules §15, FST-Tag
+# +Encl) — steht direkt nach dem finiten Verb: "bilāi di"
+LIST Di = (Pron Encl) ;
+# Person-Tags auf Pronomina (FST +P1/+P2/+P3 aus Twanksta desc "pn 1/2/3")
+LIST P1Pron = (Pron P1) ;
+LIST P2Pron = (Pron P2) ;
 # pastātwei verhält sich prädikativ wie būtwei (syntax_rules §9/§14:
 # Prädikativ ist Neutrum, Prädikatsnomen Nominativ)
 LIST Copula = "būtwei" "pastātwei" ;
@@ -79,23 +79,12 @@ LIST MeasureN = "dessimts" "dwiddesimts" "trīsdesimts" "ketturdesimts"
 # Genitiv-Periphrase (syntax_rules §4) — lizenzieren Gen am Folgenominal
 LIST GenDet = ("stas" Gen) ;
 
-# Valenz-Sets (GenVerb/DatVerb/AkkVerb) aus valence.json
+# GenVerb: kuratierte Liste der Genitiv-Verben (valence.json).
+# Akk/Dat-Valenz ist jetzt tag-basiert (+GovAkk/+GovDat auf dem Verb).
 INCLUDE generated-sets.cg3 ;
 
 SET FiniteVerb = V - Inf - Part ;                 # Ind/Opt/Imp/Subj
 SET ClauseBoundary = SCnj OR FiniteVerb OR CLB OR PUNCT ;
-
-# AGR = Genus × Kasus × Numerus als Kreuzprodukt für &&-Unifikation
-# AGR = alle K×N×G-Kombinationen für die &&-Unifikation.
-# LIST (kein SET): && braucht OR-getrennte Top-Level Sets, kein Kreuzprodukt +.
-LIST AGR = (Sg Nom Masc) (Sg Nom Fem) (Sg Nom Neut)
-           (Sg Gen Masc) (Sg Gen Fem) (Sg Gen Neut)
-           (Sg Dat Masc) (Sg Dat Fem) (Sg Dat Neut)
-           (Sg Akk Masc) (Sg Akk Fem) (Sg Akk Neut)
-           (Pl Nom Masc) (Pl Nom Fem) (Pl Nom Neut)
-           (Pl Gen Masc) (Pl Gen Fem) (Pl Gen Neut)
-           (Pl Dat Masc) (Pl Dat Fem) (Pl Dat Neut)
-           (Pl Akk Masc) (Pl Akk Fem) (Pl Akk Neut) ;
 
 SET NGHead = N OR Pron ;
 SET NonGenHead = NGHead - Gen ;                    # Gen-Köpfe sind transparent
@@ -115,6 +104,18 @@ SET HeadBarrier = AgrBarrier OR NonGenHead ;
 
 # PP-Innenraum: Scan nach links zur regierenden Präposition
 SET PPStop = SCnj OR FiniteVerb OR CLB OR PUNCT OR Cnj OR Pcl OR Adv OR IJ OR Psp OR Unk ;
+
+
+# ============================================================ #
+# BEFORE-SECTIONS — Parent-Relation für kongruente Modifikatoren #
+# ============================================================ #
+# Jede kongruente Modifikator-Lesart (Adj/Num/Part) bekommt als
+# Parent den nächsten NGHead rechts innerhalb der Agreement-Domäne.
+# Die Parent-Relation wird in SECTION 5 von den 27 SELECT-Regeln
+# (generated-agreement.cg3) für die Merkmals-Abstimmung genutzt.
+
+BEFORE-SECTIONS
+SETPARENT CongrMod TO (1* NGHead BARRIER AgrBarrier) ;
 
 
 # ========================================== #
@@ -199,7 +200,7 @@ SELECT (Cnj) IF (0 Prp) (1* FiniteVerb BARRIER Nominal) ;
 # SECTION 3a — Regel 1: Adj bei kongruierendem Kopf    #
 # ==================================================== #
 
-INCLUDE generated-rule1.cg3 ;
+
 
 
 # ==================================================== #
@@ -314,8 +315,37 @@ REMOVE SAFE CongrMod + Gen IF (0 Nominal - Gen)
 # ============================================================ #
 # SECTION 5 — Agreement-Propagation in der NG (Doc §Agreement) #
 # ============================================================ #
+# Parent-basierte Filter (BEFORE-SECTIONS: SETPARENT CongrMod TO
+# (1* NGHead BARRIER AgrBarrier)).  9 Merkmale × 3 POS = 27 Regeln.
 
-INCLUDE generated-agreement.cg3 ;
+SECTION
+SELECT (Adj Masc) IF (0 Adj) (p (Masc)) ;
+SELECT (Adj Fem) IF (0 Adj) (p (Fem)) ;
+SELECT (Adj Neut) IF (0 Adj) (p (Neut)) ;
+SELECT (Adj Nom) IF (0 Adj) (p (Nom)) ;
+SELECT (Adj Gen) IF (0 Adj) (p (Gen)) ;
+SELECT (Adj Dat) IF (0 Adj) (p (Dat)) ;
+SELECT (Adj Akk) IF (0 Adj) (p (Akk)) ;
+SELECT (Adj Sg) IF (0 Adj) (p (Sg)) ;
+SELECT (Adj Pl) IF (0 Adj) (p (Pl)) ;
+SELECT (Num Masc) IF (0 Num) (p (Masc)) ;
+SELECT (Num Fem) IF (0 Num) (p (Fem)) ;
+SELECT (Num Neut) IF (0 Num) (p (Neut)) ;
+SELECT (Num Nom) IF (0 Num) (p (Nom)) ;
+SELECT (Num Gen) IF (0 Num) (p (Gen)) ;
+SELECT (Num Dat) IF (0 Num) (p (Dat)) ;
+SELECT (Num Akk) IF (0 Num) (p (Akk)) ;
+SELECT (Num Sg) IF (0 Num) (p (Sg)) ;
+SELECT (Num Pl) IF (0 Num) (p (Pl)) ;
+SELECT (Part Masc) IF (0 Part) (p (Masc)) ;
+SELECT (Part Fem) IF (0 Part) (p (Fem)) ;
+SELECT (Part Neut) IF (0 Part) (p (Neut)) ;
+SELECT (Part Nom) IF (0 Part) (p (Nom)) ;
+SELECT (Part Gen) IF (0 Part) (p (Gen)) ;
+SELECT (Part Dat) IF (0 Part) (p (Dat)) ;
+SELECT (Part Akk) IF (0 Part) (p (Akk)) ;
+SELECT (Part Sg) IF (0 Part) (p (Sg)) ;
+SELECT (Part Pl) IF (0 Part) (p (Pl)) ;
 
 
 # ============================================== #
@@ -361,8 +391,7 @@ SELECT (Pl Akk Neut) IF (0C Pron) (1C NGHead + (Pl Akk Neut)) ;
 LIST P1 = P1 ;
 LIST P2 = P2 ;
 LIST P3 = P3 ;
-LIST P1Pron = "as" "mes" ;                 # suppletives Paradigma, doppelt gelistet
-LIST P2Pron = "tū" "jūs" ;
+# P1Pron/P2Pron oben via FST-Tags definiert (+P1/+P2 auf Pron)
 SET P12 = P1 OR P2 ;
 SET P3SubjAny = NGHead - P1Pron - P2Pron ;
 SET SubjBarrier = ClauseBoundary OR NGHead ;

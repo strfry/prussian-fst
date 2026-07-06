@@ -14,7 +14,7 @@ RELEASE_TAG := $(shell curl -sL "https://api.github.com/repos/strfry/prussian-co
 DATA_DIR    := ../data/external
 TWANKSTA_URL := https://github.com/strfry/prussian-corpus/releases/download/$(RELEASE_TAG)/twanksta_entries.json
 
-LEXC_FILES := symbols.lexc root.lexc function_words.lexc proper_nouns.lexc nouns.lexc adjectives.lexc \
+LEXC_FILES := symbols.lexc root.lexc function_words.lexc proper_nouns.lexc proper_nouns_auto.lexc nouns.lexc adjectives.lexc \
               pronouns.lexc numerals.lexc verbs.lexc adverbs.lexc \
               prepositions.lexc conjunctions.lexc particles.lexc interjections.lexc
 

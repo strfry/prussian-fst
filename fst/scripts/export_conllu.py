@@ -25,7 +25,7 @@ BERT_CORPUS = REPO.parent / "prussian-bert/corpus"
 DEFAULT_OUT = REPO / "data/prussian_silver.conllu"
 FOREIGN_UNK_RATIO = 0.5
 
-UPOS = {"N": "NOUN", "Adj": "ADJ", "Pron": "PRON", "Num": "NUM",
+UPOS = {"N": "NOUN", "PropN": "PROPN", "Adj": "ADJ", "Pron": "PRON", "Num": "NUM",
         "V": "VERB", "Adv": "ADV", "Prp": "ADP", "Psp": "ADP",
         "Cnj": "CCONJ", "SCnj": "SCONJ", "Pcl": "PART", "IJ": "INTJ",
         "Unk": "X"}
@@ -44,7 +44,9 @@ FEAT = {"Sg": ("Number", "Sing"), "Pl": ("Number", "Plur"),
         "P1": ("Person", "1"), "P2": ("Person", "2"), "P3": ("Person", "3"),
         "Inf": ("VerbForm", "Inf"), "Part": ("VerbForm", "Part"),
         "Pass": ("Voice", "Pass"), "Refl": ("Reflex", "Yes"),
-        "Cmp": ("Degree", "Cmp"), "Sup": ("Degree", "Sup")}
+        "Cmp": ("Degree", "Cmp"), "Sup": ("Degree", "Sup"),
+        "Card": ("NumType", "Card"), "Ord": ("NumType", "Ord"),
+        "Encl": ("PronType", "Clit")}
 
 GOV = {"GovAkk": "Acc", "GovDat": "Dat", "GovGen": "Gen"}
 

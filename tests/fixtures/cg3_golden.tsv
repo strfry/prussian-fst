@@ -17,7 +17,7 @@ Prūsisks waitjāsenis sēn prūsiskan bebrun.	bebrun	bebrus+N+Sg+Akk+Masc
 Tāns ni turri kōnkretan pawīstin.	kōnkretan	kōnkrets+Adj+Pl+Gen+Fem
 Tāns ni turri kōnkretan pawīstin.	pawīstin	pawīstis+N+Pl+Gen+Fem
 # Gen-Modifikator vor der NG bleibt lizenziert (Doc-Beispiel)
-māise prūsiskas billas	māise	as+Pron+Sg+Gen|majs+Pron+Sg+Gen+Masc|majs+Pron+Sg+Gen+Neut|mes+Pron+Sg+Gen
+māise prūsiskas billas	māise	as+Pron+P1+Sg+Gen|majs+Pron+P1+Sg+Gen+Masc|majs+Pron+P1+Sg+Gen+Neut
 māise prūsiskas billas	prūsiskas	prūsisks+Adj+Pl+Nom+Fem
 māise prūsiskas billas	billas	bilā+N+Pl+Nom+Fem
 # Determinierer kongruiert mit dem Kopf; unlizenzierter Gen entfernt
@@ -66,7 +66,7 @@ Tāns astits per gārban.	gārban	gārbs+N+Sg+Akk+Masc
 Stesse paggan sta ast brendu.	Stesse	stas+Pron+Pl+Gen+Neut|stas+Pron+Sg+Gen+Masc|stas+Pron+Sg+Gen+Neut
 Stesse paggan sta ast brendu.	paggan	paggan+Psp+GovGen
 # R6: di nach finitem Verb ist Subjektersatz → Nominativ
-Tenā gērdaui, bilāi di.	di	di+Pron+Pl+Nom+Neut|di+Pron+Sg+Nom+Masc|di+Pron+Sg+Nom+Neut|dis+Pron+Pl+Nom+Neut|dis+Pron+Sg+Nom+Neut
+Tenā gērdaui, bilāi di.	di	di+Pron+P3+Encl+Pl+Nom+Neut|di+Pron+P3+Encl+Sg+Nom+Neut
 # syntax_rules §11: kurzes Neutrum-Partizip nach wīrst (korpusecht)
 Swāikstan wīrst pagaūwus ebwarītun.	pagaūwus	pagaūtun+V+Part+Pret+Neut+Sg+Nom|pagaūtun+V+Part+Pret+Neut+Sg+Nom+Refl
 # syntax_rules §4: stēisan + nachgestellter Gen.Pl (korpusecht)
