@@ -85,6 +85,18 @@ INCLUDE generated-sets.cg3 ;
 SET FiniteVerb = V - Inf - Part ;                 # Ind/Opt/Imp/Subj
 SET ClauseBoundary = SCnj OR FiniteVerb OR CLB OR PUNCT ;
 
+# AGR = Genus × Kasus × Numerus als Kreuzprodukt für &&-Unifikation
+# AGR = alle K×N×G-Kombinationen für die &&-Unifikation.
+# LIST (kein SET): && braucht OR-getrennte Top-Level Sets, kein Kreuzprodukt +.
+LIST AGR = (Sg Nom Masc) (Sg Nom Fem) (Sg Nom Neut)
+           (Sg Gen Masc) (Sg Gen Fem) (Sg Gen Neut)
+           (Sg Dat Masc) (Sg Dat Fem) (Sg Dat Neut)
+           (Sg Akk Masc) (Sg Akk Fem) (Sg Akk Neut)
+           (Pl Nom Masc) (Pl Nom Fem) (Pl Nom Neut)
+           (Pl Gen Masc) (Pl Gen Fem) (Pl Gen Neut)
+           (Pl Dat Masc) (Pl Dat Fem) (Pl Dat Neut)
+           (Pl Akk Masc) (Pl Akk Fem) (Pl Akk Neut) ;
+
 SET NGHead = N OR Pron ;
 SET NonGenHead = NGHead - Gen ;                    # Gen-Köpfe sind transparent
 SET CongrMod = Adj OR Num OR Part ;                # kongruente Modifikatoren
@@ -210,6 +222,15 @@ SELECT (N) IF (0 Adj)
     (NEGATE 1* NGHead BARRIER AgrBarrier)
     (NEGATE -1*C Copula BARRIER ClauseBoundary) ;
 
+# R8 — Adj+IJ-Token ohne N-Kopf rechts und ohne Kopula links: Adj entfernen.
+# Adjektiv braucht einen N-Kopf; ohne N-Kopf ist die IJ-Lesart die korrekte
+# (Grüße "kaīls!", "kaīls wisēimans!").
+# Der N-Kopf-Scan stoppt an AgrBarrier — ein N jenseits einer Klauselgrenze
+# oder eines finiten Verbs zählt nicht.
+REMOVE SAFE (Adj) IF (0 IJ)
+    (NEGATE 1* N BARRIER AgrBarrier)
+    (NEGATE -1*C Copula BARRIER ClauseBoundary) ;
+
 # R6 — di-Impersonal (syntax_rules §15): di direkt nach finitem Verb
 # ist Subjektersatz → Nominativ ("bilāi di", "mēri di").
 SELECT (Nom) IF (0 Di) (-1C FiniteVerb) ;
@@ -298,25 +319,37 @@ INCLUDE generated-agreement.cg3 ;
 
 
 # ============================================== #
-# SECTION 6 — Determinierer direkt vor dem Kopf  #
+# SECTION 6 — Determinierer vor eindeutigem Kopf  #
 # ============================================== #
 
 SECTION
 
-# Demonstrativum/Determinierer kongruiert mit dem direkt folgenden Kopf.
-# $$AGR bindet hier nur an EINER Kontextstelle (funktioniert daher trotz
-# fehlendem Backtracking); greift nur bei eindeutigem Kopf — bei nicht
-# teilbarer Signatur matcht das Target nicht und die Regel ist ein No-op.
-LIST AGR = (Sg Nom Masc) (Sg Nom Fem) (Sg Nom Neut)
-           (Sg Gen Masc) (Sg Gen Fem) (Sg Gen Neut)
-           (Sg Dat Masc) (Sg Dat Fem) (Sg Dat Neut)
-           (Sg Akk Masc) (Sg Akk Fem) (Sg Akk Neut)
-           (Pl Nom Masc) (Pl Nom Fem) (Pl Nom Neut)
-           (Pl Gen Masc) (Pl Gen Fem) (Pl Gen Neut)
-           (Pl Dat Masc) (Pl Dat Fem) (Pl Dat Neut)
-           (Pl Akk Masc) (Pl Akk Fem) (Pl Akk Neut) ;
-
-SELECT $$AGR IF (0C Pron) (1C NGHead LINK 0 $$AGR) ;
+# Pronomen auf das direkt folgende NGHead abstimmen, ABER nur bei
+# eindeutigem Kopf (1C = alle Lesarten des Kopfes müssen die Signatur haben).
+SELECT (Sg Nom Masc) IF (0C Pron) (1C NGHead + (Sg Nom Masc)) ;
+SELECT (Sg Nom Fem) IF (0C Pron) (1C NGHead + (Sg Nom Fem)) ;
+SELECT (Sg Nom Neut) IF (0C Pron) (1C NGHead + (Sg Nom Neut)) ;
+SELECT (Sg Gen Masc) IF (0C Pron) (1C NGHead + (Sg Gen Masc)) ;
+SELECT (Sg Gen Fem) IF (0C Pron) (1C NGHead + (Sg Gen Fem)) ;
+SELECT (Sg Gen Neut) IF (0C Pron) (1C NGHead + (Sg Gen Neut)) ;
+SELECT (Sg Dat Masc) IF (0C Pron) (1C NGHead + (Sg Dat Masc)) ;
+SELECT (Sg Dat Fem) IF (0C Pron) (1C NGHead + (Sg Dat Fem)) ;
+SELECT (Sg Dat Neut) IF (0C Pron) (1C NGHead + (Sg Dat Neut)) ;
+SELECT (Sg Akk Masc) IF (0C Pron) (1C NGHead + (Sg Akk Masc)) ;
+SELECT (Sg Akk Fem) IF (0C Pron) (1C NGHead + (Sg Akk Fem)) ;
+SELECT (Sg Akk Neut) IF (0C Pron) (1C NGHead + (Sg Akk Neut)) ;
+SELECT (Pl Nom Masc) IF (0C Pron) (1C NGHead + (Pl Nom Masc)) ;
+SELECT (Pl Nom Fem) IF (0C Pron) (1C NGHead + (Pl Nom Fem)) ;
+SELECT (Pl Nom Neut) IF (0C Pron) (1C NGHead + (Pl Nom Neut)) ;
+SELECT (Pl Gen Masc) IF (0C Pron) (1C NGHead + (Pl Gen Masc)) ;
+SELECT (Pl Gen Fem) IF (0C Pron) (1C NGHead + (Pl Gen Fem)) ;
+SELECT (Pl Gen Neut) IF (0C Pron) (1C NGHead + (Pl Gen Neut)) ;
+SELECT (Pl Dat Masc) IF (0C Pron) (1C NGHead + (Pl Dat Masc)) ;
+SELECT (Pl Dat Fem) IF (0C Pron) (1C NGHead + (Pl Dat Fem)) ;
+SELECT (Pl Dat Neut) IF (0C Pron) (1C NGHead + (Pl Dat Neut)) ;
+SELECT (Pl Akk Masc) IF (0C Pron) (1C NGHead + (Pl Akk Masc)) ;
+SELECT (Pl Akk Fem) IF (0C Pron) (1C NGHead + (Pl Akk Fem)) ;
+SELECT (Pl Akk Neut) IF (0C Pron) (1C NGHead + (Pl Akk Neut)) ;
 
 
 # ====================================================== #
