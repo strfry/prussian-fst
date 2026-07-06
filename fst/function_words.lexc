@@ -48,6 +48,7 @@ LEXICON FunctionWords
   ikāi+SCnj:ikāi       # ; ! UNSICHER: „ob, obwohl" — SCnj oder Pcl?
   ikāigi+SCnj:ikāigi   # ; ! UNSICHER: „als ob" — SCnj oder Adv?
   kāigi+Cnj:kāigi      # ; ! UNSICHER: „wie, als" — Cnj oder Adv (UD: SCONJ/ADV)?
+  kaīgi+Cnj:kaīgi      # ; ! UNSICHER: „wie" — Vokalvarianten-Form von kāigi
 
   ! Präpositionen
   dīnkun+Prp+GovDat:dīnkun  # ; ! „dank" (+ Dat laut Übersetzungsfeld)
@@ -69,6 +70,12 @@ LEXICON FunctionWords
   nikwēigi+Adv:nikwēigi # ; ! „nie, nirgends"
   ! (niaīnunts „niemand" kommt aus Twanksta/gen_lexc; die Korpusschreibung
   !  „niainunts" ohne Makron deckt der Ortho-Layer, s. norm.regex DiphAI)
+
+  ! ni-Komposita
+  nikaddan+Adv:nikaddan  # ; ! „niemals"
+  nitāli+Adv:nitāli      # ; ! UNSICHER: „nicht so sehr/(so) sehr"?
+  nimazīngi+Adv:nimazīngi # ; ! UNSICHER: „ziemlich"?
+
   wiskwēi+Adv:wiskwēi  # ; ! „überall"
   tēt+Adv:tēt          # ; ! „so, folglich"
   kadāi+Adv:kadāi      # ; ! „einst, ehemals"
@@ -95,6 +102,11 @@ LEXICON FunctionWords
   ēntrai+Adv:ēntrai    # ; ! UNSICHER: „innerhalb" — Adv oder Prp (Rektion unbekannt)?
 
   ! Pronomina (indeklinabel)
+
+  ! Reflexivpronomina (Twanksta sin/sebbei ohne Formen-Tabelle; zu „Swāise acc/dat")
+  sin+Pron+Refl+Akk:sin     # ; ! reflexiv, Akkusativ („sich")
+  sebbei+Pron+Refl+Dat:sebbei # ; ! reflexiv, Dativ („sich")
+
   abbejan+Pron:abbejan # ; ! UNSICHER: „beides" — indekl. Pron oder Num?
 
   ! Numeralia (Hunderter indeklinabel? Formen fehlen im Wörterbuch)
@@ -153,4 +165,6 @@ LEXICON FunctionWords
   septīndesimt+Num:septīndesimt # ; ! „siebzig"
   astōndesimt+Num:astōndesimt   # ; ! „achtzig"
   newīndesimt+Num:newīndesimt   # ; ! „neunzig"
+  ! (Teens der aīnadesimt-Reihe kommen bereits aus gen_lexc als +Num+Sg+Nom)
+
   ! (Teens der aīnadesimt-Reihe kommen bereits aus gen_lexc als +Num+Sg+Nom)

@@ -1,0 +1,43 @@
+! Proper nouns — Orts-/Personennamen, korpusbelegt.
+! Dispatched before regular nouns (via root.lexc: ProperNouns before Nouns).
+
+LEXICON ProperNouns
+
+  ! Nidda — Fluss/Stadt (fem. ā-Stamm: -a/-as/-ai/-an)
+  Nidda+PropN+Sg+Nom+Fem:Nidda   # ;
+  Nidda+PropN+Sg+Gen+Fem:Niddas  # ;
+  Nidda+PropN+Sg+Dat+Fem:Niddai  # ;
+  Nidda+PropN+Sg+Akk+Fem:Niddan  # ;
+
+  ! Kānts — Immanuel Kant (masc. o-Stamm: -s/-as/-u/-an)
+  Kānts+PropN+Sg+Nom+Masc:Kānts   # ;
+  Kānts+PropN+Sg+Gen+Masc:Kāntas  # ;
+  Kānts+PropN+Sg+Dat+Masc:Kāntu   # ;
+  Kānts+PropN+Sg+Akk+Masc:Kāntan  # ;
+
+  ! Luīzi — Personenname (fem. ē-Stamm: -i/-is/-ei/-in)
+  Luīzi+PropN+Sg+Nom+Fem:Luīzi  # ;
+  Luīzi+PropN+Sg+Gen+Fem:Luīzis # ;
+  Luīzi+PropN+Sg+Dat+Fem:Luīzei # ;
+  Luīzi+PropN+Sg+Akk+Fem:Luīzin # ;
+
+  ! Tilzē — Stadt Tilsit (fem. ē-Stamm: -ē/-es/-ei/-in)
+  Tilzē+PropN+Sg+Nom+Fem:Tilzē  # ;
+  Tilzē+PropN+Sg+Gen+Fem:Tilzes # ;
+  Tilzē+PropN+Sg+Dat+Fem:tilzei  # ;
+  Tilzē+PropN+Sg+Akk+Fem:tilzin  # ;
+
+  ! Ālberts — Personenname (masc. o-Stamm)
+  Ālberts+PropN+Sg+Nom+Masc:Ālberts  # ;
+
+  ! Trīmps — Name (masc. o-Stamm)
+  Trīmps+PropN+Sg+Nom+Masc:Trīmps   # ;
+  Trīmps+PropN+Sg+Gen+Masc:Trīmpas  # ;
+  Trīmps+PropN+Sg+Dat+Masc:Trīmpu   # ;
+  Trīmps+PropN+Sg+Akk+Masc:trīmpan  # ;
+
+  ! Kulakōws — russ./lit. Familienname (masc. o-Stamm)
+  Kulakōws+PropN+Sg+Nom+Masc:Kulakōws # ;
+
+  ! waraprūsai — „Altpreußen" (Pluraletantum, PlNom)
+  waraprūsai+PropN+Pl+Nom+Masc:waraprūsai # ;

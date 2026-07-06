@@ -3,6 +3,7 @@
 LEXICON Root
   ! hand-written function-word override (vor Nouns!)
   FunctionWords ;
+  ProperNouns ;
   Conjunctions ;
   Prepositions ;
   Adverbs ;

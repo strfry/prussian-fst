@@ -15,7 +15,7 @@ define DegemZZ [z -> 0 || Vowel _ z];
 
 define DegemAll DegemNN .o. DegemMM .o. DegemPP .o. DegemTT .o. DegemDD .o. DegemKK .o. DegemLL .o. DegemRR .o. DegemSS .o. DegemBB .o. DegemGG .o. DegemZZ ;
 
-define WProthese [0 -> w || .#. _ u];
+define WProthese [w -> 0 || .#. _ u];
 define SamlandI [0 -> i || s t s _ .#.];
 
 ! Nom-Sg-Variante der i-Stämme: pawīstis → pawīsts (YT-Korpus)
@@ -24,6 +24,14 @@ define ISynkope [i (->) 0 || t _ s .#.];
 ! Diphthong-Schreibvariante ohne Makron: aī → ai (niaīnunts → niainunts)
 define DiphAI [ī (->) i || a _ ];
 
-regex DegemAll .o. WProthese .o. SamlandI .o. ISynkope .o. DiphAI ;
+! Generelle Makron-Verlust: ī → i (Korpusschreibung ohne Längenzeichen)
+define MacronLoss [ī (->) i];
+
+! Infinitiv-Endungsvariante: -twei ↔ -tun (dialektal, historisch)
+! Achtung: {…} nötig — nacktes `twei` wäre in xfst-Regex EIN Multichar-Symbol
+! und würde in der Komposition nie gegen die Einzelzeichen von base.fst matchen.
+define InfTunTwei [{twei} (->) {tun} || _ .#.];
+
+regex DegemAll .o. WProthese .o. SamlandI .o. ISynkope .o. DiphAI .o. MacronLoss .o. InfTunTwei ;
 save stack build/norm.hfst
 quit

@@ -12,6 +12,7 @@ Multichar_Symbols
   +SCnj ! subordinating conjunction
   +Pcl  ! particle
   +IJ   ! interjection
+  +PropN ! proper noun (Eigenname — Orts-/Personenname)
 
   +Sg   ! singular
   +Pl   ! plural
