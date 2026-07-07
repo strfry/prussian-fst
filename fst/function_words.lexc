@@ -39,6 +39,9 @@ LEXICON FunctionWords
   ! Konjunktionen
   be+Cnj:be            # ; ! „und" (homonym zu be+Prp+GovAkk „ohne")
   kāi+SCnj:kāi         # ; ! „dass, damit"
+  ! ka: moderne Sprech-Variante von kāi „dass/ob" (YT-Korpus; Enchiridion
+  ! nur kāi). Homonym zu kas+Pron+Neut; per CG nach Verba dicendi gewählt.
+  ka+SCnj:ka           # ; ! „dass, ob"
   kaddan+SCnj:kaddan   # ; ! „wenn, als"
   ik+SCnj:ik           # ; ! „wenn, falls"
   ikkai+Cnj:ikkai      # ; ! „wenn, solange"

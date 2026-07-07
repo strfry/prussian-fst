@@ -70,6 +70,11 @@ LIST Copula = "būtwei" "pastātwei" ;
 # Auxiliare der analytischen Tempora (§11–§14): Partizip danach ist
 # prädikativ und wird von den NG-Agreement-Filtern ausgenommen
 LIST Aux = "būtwei" "pastātwei" "wīrstwei" ;
+# Verba dicendi/sentiendi/cognition: leiten Komplementsätze ein und
+# lizenzieren „ka" als Komplementierer „dass/ob" (statt Pronomen).
+LIST SayVerb = "waīstun" "mēritun" "mēritwei" "bilītun" "dirītun" "dirītwei"
+               "kīrdītun" "klausītun" "prasītun" "kwaitītun" "madlītun"
+               "zentlitun" "paprestun" "widātun" "perwaidīntun" "gremtun" ;
 # Numeral-Substantive und Maßnomen regieren nachgestellten Genitiv
 # (§22 "dwiddesimts sunnin", §28 pussis + Gen)
 LIST MeasureN = "dessimts" "dwiddesimts" "trīsdesimts" "ketturdesimts"
@@ -264,6 +269,30 @@ SECTION
 SELECT (Pcl) IF (0 Adv) (0 Pcl) (-1 BOS) ;
 SELECT (Pcl) IF (0 Adv) (0 Pcl) (-1 CLB OR PUNCT) ;
 SELECT (Adv) IF (0 Adv) (0 Pcl) ;
+
+
+# ============================================================ #
+# SECTION 2d — ka: Komplementierer „dass/ob" vs. Pronomen       #
+# ============================================================ #
+# Der moderne Korpus nutzt „ka" wie „kāi" (Enchiridion). Als
+# Komplementierer steht es nach einem Verbum dicendi/sentiendi und
+# leitet eine vollständige Klausel ein (eigenes finites Verb rechts);
+# als Pronomen füllt es selbst eine Argumentstelle. „ka nika …" ist
+# das Indefinitum („irgendetwas") und bleibt Pronomen.
+
+SECTION
+
+# Komplementierer-Kontext: nächstes finites Verb links ist Verbum
+# dicendi UND rechts folgt eine eigene Klausel → SCnj (Pronomen weg).
+SELECT (SCnj) IF (0 SCnj)
+    (-1*C FiniteVerb BARRIER ClauseBoundary LINK 0 SayVerb)
+    (1* FiniteVerb BARRIER RightCB) ;
+# Sonst ist „ka" das Pronomen: SCnj-Lesart entfernen (kein Verbum
+# dicendi links oder keine Folgeklausel rechts).
+REMOVE (SCnj) IF (0 Pron)
+    (NEGATE -1*C FiniteVerb BARRIER ClauseBoundary LINK 0 SayVerb) ;
+REMOVE (SCnj) IF (0 Pron)
+    (NEGATE 1* FiniteVerb BARRIER RightCB) ;
 
 
 # ==================================================== #
