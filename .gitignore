@@ -10,6 +10,19 @@ data/external/twanksta_entries.json
 data/external/prusaspira_entries.json
 data/external/prussian_corpus_*.tar.zst
 data/reports/
+# generierte Lookup-Tabellen (make gen aus twanksta_entries.json);
+# handgepflegt und versioniert bleiben nur function_words/proper_nouns/
+# root/symbols/pronouns.lexc
+fst/adjectives.lexc
+fst/adverbs.lexc
+fst/conjunctions.lexc
+fst/interjections.lexc
+fst/nouns.lexc
+fst/numerals.lexc
+fst/particles.lexc
+fst/prepositions.lexc
+fst/proper_nouns_auto.lexc
+fst/verbs.lexc
 .env
 Untitled.ipynb
 .ipynb_checkpoints/
