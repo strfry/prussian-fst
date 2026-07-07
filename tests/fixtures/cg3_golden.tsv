@@ -56,6 +56,11 @@ Be as ni waīda.	waīda	waīstun+V+Ind+Pres+P1+Sg|waīstun+V+Ind+Pret+P1+Sg
 Tāns turri buttan.	turri	turītun+V+Ind+Pres+P3+Sg
 # R5: Numerus vom Nomen-Subjekt (ast Sg|Pl → Pl)
 Wīrai ast stwi.	ast	būtwei+V+Ind+Pres+P3+Pl
+# R5b: Prädikatsnomen rechts der Kopula liefert den Numerus (sta ambig)
+Sta ast skuttis.	ast	būtwei+V+Ind+Pres+P3+Sg
+Sta ast zangjāi.	ast	būtwei+V+Ind+Pres+P3+Pl
+# R5b: numerus-eindeutiges Nom-Subjekt links trotz Kasus-Ambiguität (bētan)
+Adder bētan ast spārts labban.	ast	būtwei+V+Ind+Pres+P3+Sg
 # SECTION 2c: stwi — mittig = Ortsadverb, satzinitial = präsentative Partikel
 Wīrai ast stwi.	stwi	stwi+Adv
 Stwi ast wīrs.	Stwi	stwi+Pcl

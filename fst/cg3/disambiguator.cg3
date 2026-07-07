@@ -499,6 +499,22 @@ SELECT (P3 Sg) IF (0 (P3 Sg)) (0 (P3 Pl))
 SELECT (P3 Pl) IF (0 (P3 Sg)) (0 (P3 Pl))
     (-1*C P3SubjAny + Nom + Pl BARRIER SubjBarrier) ;
 
+# 3. Person, relaxiert: numerus-eindeutiges Nom-Subjekt LINKS, Kasus darf
+# ambig sein (bētan: Nom|Akk, aber eindeutig Sg → Verb Sg). LINK NOT 0 Pl:
+# das nächste Nom-Nominal links hat keine Pl-Lesart, ist also Sg.
+SELECT (P3 Sg) IF (0 (P3 Sg)) (0 (P3 Pl))
+    (-1* P3SubjAny + Nom BARRIER SubjBarrier LINK NOT 0 Pl) ;
+SELECT (P3 Pl) IF (0 (P3 Sg)) (0 (P3 Pl))
+    (-1* P3SubjAny + Nom BARRIER SubjBarrier LINK NOT 0 Sg) ;
+
+# 3. Person, postponiertes Subjekt / Prädikatsnomen RECHTS: VS-Stellung
+# ("Audāst … Kaupāli") und Kopula-Prädikativ ("Sta ast skuttis/zangjāi").
+# Nur Nom (Akk-Objekte greifen nie); klauselintern via SubjBarrier.
+SELECT (P3 Sg) IF (0 (P3 Sg)) (0 (P3 Pl))
+    (1* P3SubjAny + Nom BARRIER SubjBarrier LINK NOT 0 Pl) ;
+SELECT (P3 Pl) IF (0 (P3 Sg)) (0 (P3 Pl))
+    (1* P3SubjAny + Nom BARRIER SubjBarrier LINK NOT 0 Sg) ;
+
 # 3. Person ohne Numerus-Evidenz: nur P1/P2 abwählen.
 SELECT (P3) IF (0 P12) (0 P3)
     (-1*C P3SubjAny + Nom BARRIER SubjBarrier) ;
