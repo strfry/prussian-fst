@@ -116,6 +116,13 @@ SET Adposition = Prp OR Psp ;
 # Determinierer-Pronomina (stas, kas, …): keine Personal-/Enklitika
 SET DetPron = Pron - (Pron P1) - (Pron P2) - (Pron P3) - (Pron Encl) ;
 
+# Reflexiv-Klitikon: „si" (enklitische Partikel) bzw. „sin"/„sebbei"
+# (Pron+Refl, Akk/Dat).  Lizenziert die +Refl-Lesart reflexiver Verben,
+# deren Klitikon der FST als eigenes Token abtrennt (gen_lexc.py: „ si").
+LIST Refl = Refl ;
+SET ReflMarker = ("si" Pcl) OR (Pron Refl) ;
+SET NonReflV = V - Refl ;                          # nicht-reflexive Verblesart
+
 
 # ============================================================ #
 # BEFORE-SECTIONS — Parent-Relation für kongruente Modifikatoren #
@@ -206,6 +213,14 @@ SELECT (Cnj) IF (0 Prp) (-1 CLB OR PUNCT) ;
 # → Koordination von Klauseln.
 SELECT (Cnj) IF (0 Prp) (1* FiniteVerb BARRIER Nominal) ;
 
+# R4b: „be" = Präposition „ohne" braucht ein Akk-Komplement rechts.
+# Ist in der Klausel kein Akk-NG-Kopf erreichbar (rechts folgt Verb,
+# Präposition, Adverb, Interpunktion …), kann nur die Konjunktion „und"
+# vorliegen.  Fängt die Residualfälle, die die Koordinations- und
+# Diskurs-Regeln oben nicht treffen.
+SELECT (Cnj) IF (0 Prp) (0 Cnj)
+    (NEGATE 1* NGHead + Akk BARRIER ClauseBoundary) ;
+
 
 # ============================================================ #
 # SECTION 2b — Parent-Refresh nach der Prp/Cnj-Auflösung       #
@@ -224,6 +239,20 @@ SECTION
 # nach Diskurs-Konnektor "Be …" ist -1 zwar Cnj, aber kein Konjunkt.
 SETPARENT CongrMod - XPred (NEGATE -1C Cnj LINK -1 CongrMod)
     TO (1* NGHead BARRIER AgrBarrier) ;
+
+
+# ============================================================ #
+# SECTION 2c — Lexikalische POS-Defaults: stwi (Adv|Pcl)       #
+# ============================================================ #
+# „stwi" ist zweideutig: Ortsadverb „hier/dort" (av) vs. präsentative
+# Partikel „siehe, hier ist" (pcl).  Die präsentative Lesart steht am
+# Satz-/Klauselanfang, das Ortsadverb sonst.
+
+SECTION
+
+SELECT (Pcl) IF (0 Adv) (0 Pcl) (-1 BOS) ;
+SELECT (Pcl) IF (0 Adv) (0 Pcl) (-1 CLB OR PUNCT) ;
+SELECT (Adv) IF (0 Adv) (0 Pcl) ;
 
 
 # ==================================================== #
@@ -473,6 +502,28 @@ SELECT (P3 Pl) IF (0 (P3 Sg)) (0 (P3 Pl))
 # 3. Person ohne Numerus-Evidenz: nur P1/P2 abwählen.
 SELECT (P3) IF (0 P12) (0 P3)
     (-1*C P3SubjAny + Nom BARRIER SubjBarrier) ;
+
+
+# ============================================================ #
+# SECTION 7b — Reflexiv-Doubletten (+Refl vs. non-Refl)        #
+# ============================================================ #
+# Der FST liefert für Verben mit reflexivem Homograph beide Lesarten
+# (sergītun+V+Inf und +Inf+Refl).  Die +Refl-Lesart ist nur mit
+# Reflexiv-Klitikon (si/sin/sebbei) in der Klausel lizenziert.
+# Guard (0 NonReflV): nur echte Doubletten anfassen — inhärent
+# reflexive Verben (perwaidinnas: nur +Refl) bleiben unangetastet.
+
+SECTION
+
+# Klitikon in der Klausel → reflexive Lesart wählen.
+SELECT (Refl) IF (0 NonReflV) (0 Refl)
+    (1* ReflMarker BARRIER ClauseBoundary) ;
+SELECT (Refl) IF (0 NonReflV) (0 Refl)
+    (-1* ReflMarker BARRIER ClauseBoundary) ;
+# Kein Klitikon in Reichweite → nicht-reflexive Lesart.
+REMOVE (Refl) IF (0 NonReflV)
+    (NEGATE 1* ReflMarker BARRIER ClauseBoundary)
+    (NEGATE -1* ReflMarker BARRIER ClauseBoundary) ;
 
 
 # ============================================================ #

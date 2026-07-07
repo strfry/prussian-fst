@@ -56,6 +56,9 @@ Be as ni waīda.	waīda	waīstun+V+Ind+Pres+P1+Sg|waīstun+V+Ind+Pret+P1+Sg
 Tāns turri buttan.	turri	turītun+V+Ind+Pres+P3+Sg
 # R5: Numerus vom Nomen-Subjekt (ast Sg|Pl → Pl)
 Wīrai ast stwi.	ast	būtwei+V+Ind+Pres+P3+Pl
+# SECTION 2c: stwi — mittig = Ortsadverb, satzinitial = präsentative Partikel
+Wīrai ast stwi.	stwi	stwi+Adv
+Stwi ast wīrs.	Stwi	stwi+Pcl
 # R4: N vs. V — stāi vor finitem Verb ist Demonstrativum, nicht stātwei
 Stāi wīrai bilāi.	Stāi	stas+Pron+Pl+Nom+Masc
 # Modus relativus (syntax_rules §18, korpusbelegt); per→Prp via R3
@@ -67,8 +70,13 @@ Stesse paggan sta ast brendu.	Stesse	stas+Pron+Pl+Gen+Neut|stas+Pron+Sg+Gen+Masc
 Stesse paggan sta ast brendu.	paggan	paggan+Psp+GovGen
 # R6: di nach finitem Verb ist Subjektersatz → Nominativ
 Tenā gērdaui, bilāi di.	di	di+Pron+P3+Encl+Pl+Nom+Neut|di+Pron+P3+Encl+Sg+Nom+Neut
-# syntax_rules §11: kurzes Neutrum-Partizip nach wīrst (korpusecht)
-Swāikstan wīrst pagaūwus ebwarītun.	pagaūwus	pagaūtun+V+Part+Pret+Neut+Sg+Nom|pagaūtun+V+Part+Pret+Neut+Sg+Nom+Refl
+# syntax_rules §11: kurzes Neutrum-Partizip nach wīrst (korpusecht);
+# +Refl fällt weg — kein Reflexiv-Klitikon (si/sin) in der Klausel (SECTION 7b)
+Swāikstan wīrst pagaūwus ebwarītun.	pagaūwus	pagaūtun+V+Part+Pret+Neut+Sg+Nom
+# SECTION 7b: Reflexiv-Doublette — Klitikon „si" lizenziert +Refl …
+As interessitun si per stan.	interessitun	interessitun+V+Inf+Refl
+# … ohne Klitikon bleibt die nicht-reflexive Lesart
+As sergītun stan.	sergītun	sergītun+V+Inf
 # syntax_rules §4: stēisan + nachgestellter Gen.Pl (korpusecht)
 šlamisnā stēisan lappan	stēisan	stas+Pron+Pl+Gen+Neut
 šlamisnā stēisan lappan	lappan	lappan+N+Pl+Gen+Neut
