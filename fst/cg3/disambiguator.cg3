@@ -128,6 +128,20 @@ LIST Refl = Refl ;
 SET ReflMarker = ("si" Pcl) OR (Pron Refl) ;
 SET NonReflV = V - Refl ;                          # nicht-reflexive Verblesart
 
+# ── Rollenverteilung (SECTION 9/10) ─────────────────────────────
+# Rollen-Tags auf den KASUSLESARTEN der Argument-Nominale: die
+# Nom-Lesart trägt @SUBJ, die Akk-Lesart @OBJ usw.  Eine Rolle zu
+# entfernen heißt, die zugehörige Kasuslesart zu entfernen — die
+# Rollen-Constraints (SECTION 10) disambiguieren so die Morphologie
+# klauselweise (Nom|Akk-Synkretismus, auch in Nebensätzen).
+# dependency.cg3 (Phase 2) übersetzt die Rollen 1:1 in UD-Labels.
+LIST XSubj = (@SUBJ) ;
+LIST XObj = (@OBJ) ;
+LIST XIObj = (@IOBJ) ;
+LIST XGObj = (@GOBJ) ;
+LIST XObl = (@OBL) ;
+SET ArgRole = XSubj OR XObj OR XIObj OR XGObj ;
+
 
 # ============================================================ #
 # BEFORE-SECTIONS — Parent-Relation für kongruente Modifikatoren #
@@ -581,8 +595,7 @@ REMOVE (Refl) IF (0 NonReflV)
 # ============================================================ #
 # SECTION 8 — Dependenzschicht: Syntaxbaum via SETPARENT       #
 # ============================================================ #
-# Läuft als letzte Sektion, wenn die Lesarten weitgehend
-# disambiguiert sind.  Kopf-Konvention UD-nah: das Prädikat
+# Läuft, wenn die Lesarten weitgehend disambiguiert sind.  Kopf-Konvention UD-nah: das Prädikat
 # (finites Verb bzw. @pred nach Aux/Kopula) ist Klauselkopf,
 # Nominale hängen daran, Adpositionen an ihrem Nominal (case),
 # Kopula/Auxiliar am Prädikat (cop/aux).  Unangebundene Cohorts
@@ -658,3 +671,70 @@ SETPARENT Pcl (NOT p (*)) TO (1* ClauseHead BARRIER RightCB) ;
 SETPARENT Pcl (NOT p (*)) TO (-1* ClauseHead BARRIER RightCB) ;
 SETPARENT Inf TO (-1* ClauseHead BARRIER RightCB) ;
 SETPARENT Inf (NOT p (*)) TO (1* ClauseHead BARRIER RightCB) ;
+
+
+# ============================================================ #
+# SECTION 9 — Rollen-Mapping (@SUBJ/@OBJ/@IOBJ/@GOBJ/@OBL)     #
+# ============================================================ #
+# Rollen-Kandidaten für Nominale, die an einem Klauselkopf
+# hängen (Parent aus SECTION 8).  MAP vergibt pro Lesart genau
+# EINE Rolle (weitere MAP-Regeln überspringen gemappte Lesarten;
+# ein zweites ADD auf dieselbe Lesart würde dagegen oszillieren).
+# Kasuslesart und Rolle sind 1:1 gekoppelt: stirbt die Rolle,
+# stirbt die Lesart — SECTION 10 nutzt das zur klauselweisen
+# Disambiguierung.  Nominale ohne ClauseHead-Parent (verblose
+# Sätze, NG-interne Modifikatoren, Konjunkte) bleiben rollenlos.
+
+SECTION
+
+# PP-Kopf (Adposition als Kind): alle Lesarten sind oblique —
+# blockiert zugleich die Argument-Rollen für diese Lesarten.
+MAP (@OBL) NGHead - XPred IF (c Adposition) (p ClauseHead) ;
+
+# Argument-Rollen kasusweise; @pred-Lesarten (Prädikatsnomen)
+# sind Klauselköpfe, keine Argumente.
+MAP (@SUBJ) NGHead + Nom - XPred IF (p ClauseHead) (NEGATE c Adposition) ;
+MAP (@OBJ) NGHead + Akk - XPred IF (p ClauseHead) (NEGATE c Adposition) ;
+MAP (@IOBJ) NGHead + Dat - XPred IF (p ClauseHead) (NEGATE c Adposition) ;
+MAP (@GOBJ) NGHead + Gen - XPred IF (p ClauseHead) (NEGATE c Adposition) ;
+
+
+# ============================================================ #
+# SECTION 10 — Rollen-Constraints (Uniqueness, Kongruenz)      #
+# ============================================================ #
+# Geschwister (s) = gleiche Klausel (gleicher Klauselkopf-Parent);
+# das partitioniert den Satz auch über Nebensatzgrenzen korrekt,
+# weil SCnj-Klauseln in SECTION 8 ihren eigenen Kopf bekommen.
+# KEINE Valenz-Negativevidenz (nur 18/1714 Verben tragen GovAkk —
+# "kein GovAkk ⇒ kein Objekt" würde fast alle echten Objekte
+# treffen); stattdessen Uniqueness + geschlossene Kopula-Klasse.
+
+SECTION
+
+# Uniqueness-Prinzip: pro Klausel genau ein Subjekt / ein Objekt.
+# Ein eindeutiges Rollen-Geschwister (sC: ALLE Lesarten tragen die
+# Rolle) zieht die konkurrierende Rollen-Lesart hier ab.
+REMOVE SAFE (@SUBJ) IF (sC XSubj) ;
+REMOVE SAFE (@OBJ) IF (sC XObj) ;
+
+# Kopula-Klauseln lizenzieren kein Akkusativobjekt: weder unter
+# būtwei/pastātwei als @fin noch unter einem Prädikatsnomen/-adjektiv
+# (@pred).  Prädikative PARTIZIPIEN bleiben außen vor — periphrastische
+# Formen transitiver Verben regieren ihr Objekt weiter.
+REMOVE SAFE (@OBJ) IF (p FiniteVerb + Copula) ;
+REMOVE SAFE (@OBJ) IF (p XPred - Part) ;
+
+# Subjekt-Verb-Kongruenz im Numerus, Verb → Subjekt: eindeutiger
+# Verbnumerus filtert die Subjektlesart.  Nur P1/P2-Formen tragen
+# überhaupt Numerus (P3 ist numeruslos modelliert) — der Parent muss
+# den Numerus POSITIV haben, sonst bliebe die Regel bei jedem
+# P3-Verb scharf und würde Subjekt-Numeri grundlos streichen.
+REMOVE SAFE XSubj + Pl IF (p FiniteVerb + Sg LINK NOT 0 Pl) ;
+REMOVE SAFE XSubj + Sg IF (p FiniteVerb + Pl LINK NOT 0 Sg) ;
+
+# Subjekt → Verb: eindeutiges @SUBJ-Kind wählt die P3-Lesart —
+# ergänzt SECTION 7 (Links-Scan) um die VS-Stellung.  Wie dort gilt
+# pro-drop: P3 nur bei explizitem Nicht-P1/P2-Subjekt; ein
+# P3-Numerus-Select entfällt, P3 ist numeruslos.
+SELECT (P3) IF (0 P12) (0 P3)
+    (cC XSubj - P1Pron - P2Pron) ;

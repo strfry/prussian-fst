@@ -45,6 +45,14 @@ LIST XPred = (@pred) ;
 LIST XFin = (@fin) ;
 LIST Copula = "būtwei" "pastātwei" ;
 
+# Rollen-Tags aus SECTION 9/10 des Disambiguators (auf Kasuslesarten)
+LIST XSubj = (@SUBJ) ;
+LIST XObj = (@OBJ) ;
+LIST XIObj = (@IOBJ) ;
+LIST XGObj = (@GOBJ) ;
+LIST XObl = (@OBL) ;
+SET AnyRole = XSubj OR XObj OR XIObj OR XGObj OR XObl ;
+
 SET FiniteVerb = V - Inf - Part ;
 SET ClauseHead = XPred OR XFin ;
 SET NGHead = N OR Pron ;
@@ -91,23 +99,31 @@ ADDRELATION (nmod) N + Gen TO (p NGHead) ;
 # Possessivpronomen (māise …): Gen-Pron am Nominalkopf
 ADDRELATION (nmod) Pron + Gen - DetPron TO (p NGHead) ;
 
-# Argumente und Adjunkte am Klauselkopf.  obl vor nsubj/obj/iobj:
-# ein Nominal mit case-Kind (Prp/Psp) ist obliquer PP-Kopf.
+# Argumente und Adjunkte am Klauselkopf: primär 1:1 aus den
+# Rollen-Tags (@SUBJ/@OBJ/…, SECTION 9/10 des Disambiguators).
+# Reihenfolge = Tie-Break bei Restambiguität (unaufgelöste Rollen
+# nach Uniqueness): obl > nsubj > obj > iobj > Genitivobjekt —
+# dieselbe Präferenz wie die alte Kasuslogik.
+ADDRELATION (obl) XObl TO (p ClauseHead) ;
+ADDRELATION (nsubj) XSubj TO (p ClauseHead) ;
+ADDRELATION (obj) XObj (NOT 0 XSubj) TO (p ClauseHead) ;
+ADDRELATION (iobj) XIObj (NOT 0 XSubj OR XObj) TO (p ClauseHead) ;
+ADDRELATION (obj) XGObj (NOT 0 XSubj OR XObj OR XIObj)
+    TO (p ClauseHead) ;
+
+# Kasusbasierter Fallback für Cohorts ganz ohne Rollen-Tag (das
+# Rollen-Mapping greift nur bei ClauseHead-Parent aus Phase 1).
 # NEGATE statt NOT bei den c-Tests: (NOT c X) schlägt bei kinderlosen
 # Cohorts fehl (vgl. vislcg3-Stolperfallen).
-ADDRELATION (obl) NGHead (c Adposition) TO (p ClauseHead) ;
-# Nom|Akk-Synkretismus: hängt am selben Kopf schon ein eindeutiges
-# Nom-Geschwister (das Subjekt), ist das ambige Nominal Objekt.
-ADDRELATION (obj) NGHead + Akk (0 Nom) (NEGATE c Adposition)
-    (sC NGHead + Nom) TO (p ClauseHead) ;
-ADDRELATION (nsubj) NGHead + Nom (NEGATE c Adposition)
-    (NEGATE 0 Akk LINK sC NGHead + Nom) TO (p ClauseHead) ;
-ADDRELATION (obj) NGHead + Akk (NOT 0 Nom) (NEGATE c Adposition)
+ADDRELATION (obl) NGHead (NOT 0 AnyRole) (c Adposition)
     TO (p ClauseHead) ;
-ADDRELATION (iobj) NGHead + Dat (NOT 0 Nom OR Akk) (NEGATE c Adposition)
+ADDRELATION (nsubj) NGHead + Nom (NOT 0 AnyRole) (NEGATE c Adposition)
     TO (p ClauseHead) ;
-# Genitivobjekt (GenVerb / Genitivus negationis)
-ADDRELATION (obj) NGHead + Gen (NOT 0 Nom OR Akk OR Dat)
+ADDRELATION (obj) NGHead + Akk (NOT 0 AnyRole) (NOT 0 Nom)
+    (NEGATE c Adposition) TO (p ClauseHead) ;
+ADDRELATION (iobj) NGHead + Dat (NOT 0 AnyRole) (NOT 0 Nom OR Akk)
+    (NEGATE c Adposition) TO (p ClauseHead) ;
+ADDRELATION (obj) NGHead + Gen (NOT 0 AnyRole) (NOT 0 Nom OR Akk OR Dat)
     (NEGATE c Adposition) TO (p ClauseHead) ;
 
 # Infinitiv als offenes Komplement

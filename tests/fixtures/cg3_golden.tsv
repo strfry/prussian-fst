@@ -97,3 +97,18 @@ Kitā pawīsts.	pawīsts	pawīstis+N+Pl+Nom+Fem|pawīstis+N+Sg+Nom+Fem
 As wīda dēiwan.	dēiwan	Dēiws+N+Sg+Akk+Masc
 # Kurzform-Adverb kwei → kwēi (Funktionswort-Kurzformtabelle)
 Kwei tū ēisei?	Kwei	kwēi+Adv
+# Rollen-Uniqueness (SECTION 9/10): eindeutiges Nom-Subjekt macht das
+# Nom|Akk-ambige Nominal zum Objekt — nur die Akk-Lesart überlebt
+Wīrs turri buttan.	Wīrs	wīrs+N+Sg+Nom+Masc
+Wīrs turri buttan.	buttan	buttan+N+Sg+Akk+Neut
+# … auch im kāi-Nebensatz: Uniqueness wirkt klauselweise (Geschwister
+# am selben Klauselkopf), das Matrixsubjekt zählt nicht mit
+Tāns wīda, kāi wīrs turri buttan.	wīrs	wīrs+N+Sg+Nom+Masc
+Tāns wīda, kāi wīrs turri buttan.	turri	turītun+V+Ind+Pres+P3
+Tāns wīda, kāi wīrs turri buttan.	buttan	buttan+N+Sg+Akk+Neut
+# Kopula-Klausel lizenziert kein Akkusativobjekt: Subjekt wird Nom
+Sta ast labban.	Sta	stas+Pron+Nom+Neut
+# VS-Stellung: postverbales @SUBJ-Kind wählt die P3-Lesart (P3 ist
+# numeruslos, Tempus bleibt mangels Evidenz offen)
+Buwinna kurmjai pa zemmei.	Buwinna	buwīntwei+V+Ind+Pres+P3|buwīntwei+V+Ind+Pret+P3
+Buwinna kurmjai pa zemmei.	kurmjai	kurmis+N+Pl+Nom+Masc

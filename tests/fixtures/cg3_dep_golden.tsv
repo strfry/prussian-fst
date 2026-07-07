@@ -60,3 +60,15 @@ Swāikstan wīrst pagaūwus ebwarītun.	pagaūwus	0	root
 Swāikstan wīrst pagaūwus ebwarītun.	wīrst	pagaūwus	aux
 Swāikstan wīrst pagaūwus ebwarītun.	Swāikstan	pagaūwus	nsubj
 Swāikstan wīrst pagaūwus ebwarītun.	ebwarītun	pagaūwus	xcomp
+# kāi-Nebensatz: mark an der Subjunktion, advcl am Matrixverb,
+# Argumente klauselweise über Rollen-Tags (buttan = obj im Nebensatz)
+Tāns wīda, kāi wīrs turri buttan.	Tāns	wīda	nsubj
+Tāns wīda, kāi wīrs turri buttan.	wīda	0	root
+Tāns wīda, kāi wīrs turri buttan.	kāi	turri	mark
+Tāns wīda, kāi wīrs turri buttan.	wīrs	turri	nsubj
+Tāns wīda, kāi wīrs turri buttan.	turri	wīda	advcl
+Tāns wīda, kāi wīrs turri buttan.	buttan	turri	obj
+# VS-Stellung: postverbales Subjekt, PP als obl
+Buwinna kurmjai pa zemmei.	Buwinna	0	root
+Buwinna kurmjai pa zemmei.	kurmjai	Buwinna	nsubj
+Buwinna kurmjai pa zemmei.	zemmei	Buwinna	obl
