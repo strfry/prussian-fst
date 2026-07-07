@@ -56,14 +56,10 @@ LEXICON Pronouns
 ! ─── Enclitic pronouns — 3rd person (+P3+Encl) ─────────────────── ─
 
   ! di — 3sg/pl encl neut (es) — Neut-Form ist invariabel "di"
-  di+Pron+P3+Encl+Sg+Nom+Neut:di  # ;
-  di+Pron+P3+Encl+Sg+Gen+Neut:di  # ;
-  di+Pron+P3+Encl+Sg+Dat+Neut:di  # ;
-  di+Pron+P3+Encl+Sg+Akk+Neut:di  # ;
-  di+Pron+P3+Encl+Pl+Nom+Neut:di  # ;
-  di+Pron+P3+Encl+Pl+Gen+Neut:di  # ;
-  di+Pron+P3+Encl+Pl+Dat+Neut:di  # ;
-  di+Pron+P3+Encl+Pl+Akk+Neut:di  # ;
+  di+Pron+P3+Encl+Nom+Neut:di  # ;
+  di+Pron+P3+Encl+Gen+Neut:di  # ;
+  di+Pron+P3+Encl+Dat+Neut:di  # ;
+  di+Pron+P3+Encl+Akk+Neut:di  # ;
 
   ! dis — 3sg/pl encl masc/fem (er/sie) — Neut-Form "di" via Lemma di
   dis+Pron+P3+Encl+Sg+Nom+Masc:dis  # ;
@@ -131,17 +127,13 @@ LEXICON Pronouns
   nūss+Pron+P1+Pl+Dat+Fem:nusēimans  # ;
   nūss+Pron+P1+Sg+Akk+Fem:nūsan  # ;
   nūss+Pron+P1+Pl+Akk+Fem:nūsans  # ;
-  nūss+Pron+P1+Sg+Nom+Neut:nūsan  # ;
-  nūss+Pron+P1+Pl+Nom+Neut:nūsan  # ;
+  nūss+Pron+P1+Nom+Neut:nūsan  # ;
   nūss+Pron+P1+Pl+Nom+Neut:nusāi  # ;
-  nūss+Pron+P1+Sg+Gen+Neut:nūse  # ;
-  nūss+Pron+P1+Pl+Gen+Neut:nūse  # ;
+  nūss+Pron+P1+Gen+Neut:nūse  # ;
   nūss+Pron+P1+Pl+Gen+Neut:nusēisan  # ;
-  nūss+Pron+P1+Sg+Dat+Neut:nūsmu  # ;
-  nūss+Pron+P1+Pl+Dat+Neut:nūsmu  # ;
+  nūss+Pron+P1+Dat+Neut:nūsmu  # ;
   nūss+Pron+P1+Pl+Dat+Neut:nusēimans  # ;
-  nūss+Pron+P1+Sg+Akk+Neut:nūsan  # ;
-  nūss+Pron+P1+Pl+Akk+Neut:nūsan  # ;
+  nūss+Pron+P1+Akk+Neut:nūsan  # ;
   nūss+Pron+P1+Pl+Akk+Neut:nūsans  # ;
 
 ! ─── Possessive pronouns — 2nd person (+P2) ────────────────────── ─
@@ -189,17 +181,13 @@ LEXICON Pronouns
   jūss+Pron+P2+Pl+Dat+Fem:jusēimans  # ;
   jūss+Pron+P2+Sg+Akk+Fem:jūsan  # ;
   jūss+Pron+P2+Pl+Akk+Fem:jūsans  # ;
-  jūss+Pron+P2+Sg+Nom+Neut:jūsan  # ;
-  jūss+Pron+P2+Pl+Nom+Neut:jūsan  # ;
+  jūss+Pron+P2+Nom+Neut:jūsan  # ;
   jūss+Pron+P2+Pl+Nom+Neut:jusāi  # ;
-  jūss+Pron+P2+Sg+Gen+Neut:jūse  # ;
-  jūss+Pron+P2+Pl+Gen+Neut:jūse  # ;
+  jūss+Pron+P2+Gen+Neut:jūse  # ;
   jūss+Pron+P2+Pl+Gen+Neut:jusēisan  # ;
-  jūss+Pron+P2+Sg+Dat+Neut:jūsmu  # ;
-  jūss+Pron+P2+Pl+Dat+Neut:jūsmu  # ;
+  jūss+Pron+P2+Dat+Neut:jūsmu  # ;
   jūss+Pron+P2+Pl+Dat+Neut:jusēimans  # ;
-  jūss+Pron+P2+Sg+Akk+Neut:jūsan  # ;
-  jūss+Pron+P2+Pl+Akk+Neut:jūsan  # ;
+  jūss+Pron+P2+Akk+Neut:jūsan  # ;
   jūss+Pron+P2+Pl+Akk+Neut:jūsans  # ;
 
 ! ─── Possessive pronouns — 3rd person reflexive (+P3) ──────────── ─
@@ -249,19 +237,15 @@ LEXICON Pronouns
   stas+Pron+Pl+Dat+Fem:stēimans  # ;
   stas+Pron+Sg+Akk+Fem:stan  # ;
   stas+Pron+Pl+Akk+Fem:stans  # ;
-  stas+Pron+Sg+Nom+Neut:sta  # ;
+  stas+Pron+Nom+Neut:sta  # ;
   stas+Pron+Sg+Nom+Neut:stan  # ;
-  stas+Pron+Pl+Nom+Neut:sta  # ;
   stas+Pron+Pl+Nom+Neut:stāi  # ;
-  stas+Pron+Sg+Gen+Neut:stesse  # ;
-  stas+Pron+Pl+Gen+Neut:stesse  # ;
+  stas+Pron+Gen+Neut:stesse  # ;
   stas+Pron+Pl+Gen+Neut:stēisan  # ;
-  stas+Pron+Sg+Dat+Neut:stesmu  # ;
-  stas+Pron+Pl+Dat+Neut:stesmu  # ;
+  stas+Pron+Dat+Neut:stesmu  # ;
   stas+Pron+Pl+Dat+Neut:stēimans  # ;
-  stas+Pron+Sg+Akk+Neut:sta  # ;
+  stas+Pron+Akk+Neut:sta  # ;
   stas+Pron+Sg+Akk+Neut:stan  # ;
-  stas+Pron+Pl+Akk+Neut:sta  # ;
   stas+Pron+Pl+Akk+Neut:stans  # ;
 
   ! šis — dieser (dem, near)
@@ -307,17 +291,13 @@ LEXICON Pronouns
   subs+Pron+Pl+Dat+Fem:subbeimans  # ;
   subs+Pron+Sg+Akk+Fem:subban  # ;
   subs+Pron+Pl+Akk+Fem:subbans  # ;
-  subs+Pron+Sg+Nom+Neut:subban  # ;
-  subs+Pron+Pl+Nom+Neut:subban  # ;
+  subs+Pron+Nom+Neut:subban  # ;
   subs+Pron+Pl+Nom+Neut:subbai  # ;
-  subs+Pron+Sg+Gen+Neut:subse  # ;
-  subs+Pron+Pl+Gen+Neut:subse  # ;
+  subs+Pron+Gen+Neut:subse  # ;
   subs+Pron+Pl+Gen+Neut:subbeisan  # ;
-  subs+Pron+Sg+Dat+Neut:subsmu  # ;
-  subs+Pron+Pl+Dat+Neut:subsmu  # ;
+  subs+Pron+Dat+Neut:subsmu  # ;
   subs+Pron+Pl+Dat+Neut:subbeimans  # ;
-  subs+Pron+Sg+Akk+Neut:subban  # ;
-  subs+Pron+Pl+Akk+Neut:subban  # ;
+  subs+Pron+Akk+Neut:subban  # ;
   subs+Pron+Pl+Akk+Neut:subbans  # ;
 
 ! ─── Interrogative pronouns ────────────────────────────────────── ─
@@ -339,40 +319,24 @@ LEXICON Pronouns
   kas+Pron+Pl+Dat+Fem:kwēimans  # ;
   kas+Pron+Sg+Akk+Fem:kan  # ;
   kas+Pron+Pl+Akk+Fem:kans  # ;
-  kas+Pron+Sg+Nom+Neut:ka  # ;
-  kas+Pron+Pl+Nom+Neut:ka  # ;
-  kas+Pron+Sg+Gen+Neut:kasse  # ;
-  kas+Pron+Pl+Gen+Neut:kasse  # ;
-  kas+Pron+Sg+Dat+Neut:kasmu  # ;
-  kas+Pron+Pl+Dat+Neut:kasmu  # ;
-  kas+Pron+Sg+Akk+Neut:ka  # ;
-  kas+Pron+Pl+Akk+Neut:ka  # ;
+  kas+Pron+Nom+Neut:ka  # ;
+  kas+Pron+Gen+Neut:kasse  # ;
+  kas+Pron+Dat+Neut:kasmu  # ;
+  kas+Pron+Akk+Neut:ka  # ;
 
   ! nika — nichts (ni+ka)
-  nika+Pron+Sg+Nom+Masc:nika  # ;
-  nika+Pron+Pl+Nom+Masc:nika  # ;
-  nika+Pron+Sg+Gen+Masc:nikasse  # ;
-  nika+Pron+Pl+Gen+Masc:nikasse  # ;
-  nika+Pron+Sg+Dat+Masc:nikasmu  # ;
-  nika+Pron+Pl+Dat+Masc:nikasmu  # ;
-  nika+Pron+Sg+Akk+Masc:nikan  # ;
-  nika+Pron+Pl+Akk+Masc:nikan  # ;
-  nika+Pron+Sg+Nom+Fem:nikwāi  # ;
-  nika+Pron+Pl+Nom+Fem:nikwāi  # ;
-  nika+Pron+Sg+Gen+Fem:nikasses  # ;
-  nika+Pron+Pl+Gen+Fem:nikasses  # ;
-  nika+Pron+Sg+Dat+Fem:nikassei  # ;
-  nika+Pron+Pl+Dat+Fem:nikassei  # ;
-  nika+Pron+Sg+Akk+Fem:nikan  # ;
-  nika+Pron+Pl+Akk+Fem:nikan  # ;
-  nika+Pron+Sg+Nom+Neut:nika  # ;
-  nika+Pron+Pl+Nom+Neut:nika  # ;
-  nika+Pron+Sg+Gen+Neut:nikasse  # ;
-  nika+Pron+Pl+Gen+Neut:nikasse  # ;
-  nika+Pron+Sg+Dat+Neut:nikasmu  # ;
-  nika+Pron+Pl+Dat+Neut:nikasmu  # ;
-  nika+Pron+Sg+Akk+Neut:nika  # ;
-  nika+Pron+Pl+Akk+Neut:nika  # ;
+  nika+Pron+Nom+Masc:nika  # ;
+  nika+Pron+Gen+Masc:nikasse  # ;
+  nika+Pron+Dat+Masc:nikasmu  # ;
+  nika+Pron+Akk+Masc:nikan  # ;
+  nika+Pron+Nom+Fem:nikwāi  # ;
+  nika+Pron+Gen+Fem:nikasses  # ;
+  nika+Pron+Dat+Fem:nikassei  # ;
+  nika+Pron+Akk+Fem:nikan  # ;
+  nika+Pron+Nom+Neut:nika  # ;
+  nika+Pron+Gen+Neut:nikasse  # ;
+  nika+Pron+Dat+Neut:nikasmu  # ;
+  nika+Pron+Akk+Neut:nika  # ;
 
 ! ─── Indefinite pronouns ───────────────────────────────────────── ─
 
@@ -565,16 +529,12 @@ LEXICON Pronouns
   kits+Pron+Pl+Dat+Fem:kitēimans  # ;
   kits+Pron+Sg+Akk+Fem:kittan  # ;
   kits+Pron+Pl+Akk+Fem:kitans  # ;
-  kits+Pron+Sg+Nom+Neut:kittan  # ;
-  kits+Pron+Pl+Nom+Neut:kittan  # ;
+  kits+Pron+Nom+Neut:kittan  # ;
   kits+Pron+Pl+Nom+Neut:kitāi  # ;
-  kits+Pron+Sg+Gen+Neut:kitse  # ;
-  kits+Pron+Pl+Gen+Neut:kitse  # ;
+  kits+Pron+Gen+Neut:kitse  # ;
   kits+Pron+Pl+Gen+Neut:kitēisan  # ;
-  kits+Pron+Sg+Dat+Neut:kitsmu  # ;
-  kits+Pron+Pl+Dat+Neut:kitsmu  # ;
+  kits+Pron+Dat+Neut:kitsmu  # ;
   kits+Pron+Pl+Dat+Neut:kitēimans  # ;
-  kits+Pron+Sg+Akk+Neut:kittan  # ;
-  kits+Pron+Pl+Akk+Neut:kittan  # ;
+  kits+Pron+Akk+Neut:kittan  # ;
   kits+Pron+Pl+Akk+Neut:kittans  # ;
 

@@ -71,10 +71,11 @@ Tāns astits per gārban.	astits	būtwei+V+Rel+Pres+P3
 Tāns astits per gārban.	per	pēr+Prp+GovAkk
 Tāns astits per gārban.	gārban	gārbs+N+Sg+Akk+Masc
 # Postposition paggan (syntax_rules §4-Umfeld): Gen davor bleibt
-Stesse paggan sta ast brendu.	Stesse	stas+Pron+Pl+Gen+Neut|stas+Pron+Sg+Gen+Masc|stas+Pron+Sg+Gen+Neut
+Stesse paggan sta ast brendu.	Stesse	stas+Pron+Gen+Neut|stas+Pron+Sg+Gen+Masc
 Stesse paggan sta ast brendu.	paggan	paggan+Psp+GovGen
 # R6: di nach finitem Verb ist Subjektersatz → Nominativ
-Tenā gērdaui, bilāi di.	di	di+Pron+P3+Encl+Pl+Nom+Neut|di+Pron+P3+Encl+Sg+Nom+Neut
+# Neutrum-Pronomen numeruslos: di (Encl) hat nur noch eine Lesart
+Tenā gērdaui, bilāi di.	di	di+Pron+P3+Encl+Nom+Neut
 # syntax_rules §11: kurzes Neutrum-Partizip nach wīrst (korpusecht);
 # +Refl fällt weg — kein Reflexiv-Klitikon (si/sin) in der Klausel (SECTION 7b)
 Swāikstan wīrst pagaūwus ebwarītun.	pagaūwus	pagaūtun+V+Part+Pret+Neut+Sg+Nom
