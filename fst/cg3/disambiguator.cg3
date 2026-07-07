@@ -105,6 +105,17 @@ SET HeadBarrier = AgrBarrier OR NonGenHead ;
 # PP-Innenraum: Scan nach links zur regierenden Präposition
 SET PPStop = SCnj OR FiniteVerb OR CLB OR PUNCT OR Cnj OR Pcl OR Adv OR IJ OR Psp OR Unk ;
 
+# ── Dependenzschicht (SECTION 8) ────────────────────────────────
+# Mapping-Tags: @pred = Prädikatskern nach Aux/Kopula (übernimmt in
+# UD-Manier die Kopfrolle der Klausel), @fin = finites Verb als
+# Klauselkopf. Beide werden von dependency.cg3 (Label-Phase) gelesen.
+LIST XPred = (@pred) ;
+LIST XFin = (@fin) ;
+SET ClauseHead = XPred OR XFin ;
+SET Adposition = Prp OR Psp ;
+# Determinierer-Pronomina (stas, kas, …): keine Personal-/Enklitika
+SET DetPron = Pron - (Pron P1) - (Pron P2) - (Pron P3) - (Pron Encl) ;
+
 
 # ============================================================ #
 # BEFORE-SECTIONS — Parent-Relation für kongruente Modifikatoren #
@@ -194,6 +205,25 @@ SELECT (Cnj) IF (0 Prp) (-1 CLB OR PUNCT) ;
 # R2: rechts folgt eine Klausel (finites Verb vor dem nächsten Nominal)
 # → Koordination von Klauseln.
 SELECT (Cnj) IF (0 Prp) (1* FiniteVerb BARRIER Nominal) ;
+
+
+# ============================================================ #
+# SECTION 2b — Parent-Refresh nach der Prp/Cnj-Auflösung       #
+# ============================================================ #
+# Der BEFORE-SECTIONS-SETPARENT läuft nur EINMAL — eine später
+# aufgelöste Prp-Lesart (be → Cnj) hat dort als AgrBarrier den
+# Kopf-Scan blockiert ("gēidras [be] … dēinas").  Dieselbe Regel
+# als Sektionsregel feuert in jedem Durchlauf erneut, sobald sich
+# Lesarten (und damit Barrieren) ändern.  Konjunkte (nach Cnj) sind
+# ausgenommen — die hängt SECTION 8 ans erste Konjunkt (sonst
+# Oszillation zwischen beiden Regeln).
+
+SECTION
+
+# Guard: nur echte Koordination (Cnj MIT linkem Konjunkt) ausnehmen —
+# nach Diskurs-Konnektor "Be …" ist -1 zwar Cnj, aber kein Konjunkt.
+SETPARENT CongrMod - XPred (NEGATE -1C Cnj LINK -1 CongrMod)
+    TO (1* NGHead BARRIER AgrBarrier) ;
 
 
 # ==================================================== #
@@ -313,6 +343,33 @@ REMOVE SAFE CongrMod + Gen IF (0 Nominal - Gen)
 
 
 # ============================================================ #
+# SECTION 4b — Parent-basierte Kasus-/Merkmalsfilter           #
+# ============================================================ #
+# Nutzt die Parent-Relation der kongruenten Modifikatoren: Lesarten,
+# deren Merkmal in KEINER Lesart des Kopfes vorkommt, sind mit dem
+# Kopf inkompatibel und fallen weg.  Deckt insbesondere den
+# gēidras-Fall ab: die N+Gen-Lesart eines Adj/N-Tokens stirbt, wenn
+# der Kopf (dēinas) kein Gen ist — die 27 SELECT-Regeln in SECTION 5
+# greifen dort nicht, solange die Signatur nicht exakt passt.
+
+SECTION
+
+# gēidras-Fall explizit: Adj-Token mit N+Gen-Nebenlesart, Kopf ohne Gen.
+REMOVE SAFE N + Gen IF (0 Adj) (p NGHead LINK NOT 0 Gen) ;
+
+# Verallgemeinerung: Merkmal ohne Gegenstück im Kopf entfernen.
+REMOVE SAFE (Nom)  IF (0 CongrMod) (p NGHead LINK NOT 0 Nom) ;
+REMOVE SAFE (Gen)  IF (0 CongrMod) (p NGHead LINK NOT 0 Gen) ;
+REMOVE SAFE (Dat)  IF (0 CongrMod) (p NGHead LINK NOT 0 Dat) ;
+REMOVE SAFE (Akk)  IF (0 CongrMod) (p NGHead LINK NOT 0 Akk) ;
+REMOVE SAFE (Sg)   IF (0 CongrMod) (p NGHead LINK NOT 0 Sg) ;
+REMOVE SAFE (Pl)   IF (0 CongrMod) (p NGHead LINK NOT 0 Pl) ;
+REMOVE SAFE (Masc) IF (0 CongrMod) (p NGHead LINK NOT 0 Masc) ;
+REMOVE SAFE (Fem)  IF (0 CongrMod) (p NGHead LINK NOT 0 Fem) ;
+REMOVE SAFE (Neut) IF (0 CongrMod) (p NGHead LINK NOT 0 Neut) ;
+
+
+# ============================================================ #
 # SECTION 5 — Agreement-Propagation in der NG (Doc §Agreement) #
 # ============================================================ #
 # Parent-basierte Filter (BEFORE-SECTIONS: SETPARENT CongrMod TO
@@ -416,3 +473,85 @@ SELECT (P3 Pl) IF (0 (P3 Sg)) (0 (P3 Pl))
 # 3. Person ohne Numerus-Evidenz: nur P1/P2 abwählen.
 SELECT (P3) IF (0 P12) (0 P3)
     (-1*C P3SubjAny + Nom BARRIER SubjBarrier) ;
+
+
+# ============================================================ #
+# SECTION 8 — Dependenzschicht: Syntaxbaum via SETPARENT       #
+# ============================================================ #
+# Läuft als letzte Sektion, wenn die Lesarten weitgehend
+# disambiguiert sind.  Kopf-Konvention UD-nah: das Prädikat
+# (finites Verb bzw. @pred nach Aux/Kopula) ist Klauselkopf,
+# Nominale hängen daran, Adpositionen an ihrem Nominal (case),
+# Kopula/Auxiliar am Prädikat (cop/aux).  Unangebundene Cohorts
+# (#n->n) gelten downstream als Wurzel.  Die Label vergibt
+# fst/cg3/dependency.cg3 (zweite Phase, ADDRELATION).
+
+SECTION
+
+# ── Mapping: Klauselköpfe markieren ──
+# @pred: prädikatives Partizip direkt nach Auxiliar (R7-Adjazenz) …
+ADD (@pred) Part IF (-1C FiniteVerb + Aux) ;
+# … oder Prädikatsnomen/-adjektiv im Nom rechts der Kopula (§2/§9).
+ADD (@pred) Nominal + Nom - Part IF (NOT 0 XPred)
+    (-1*C FiniteVerb + Copula BARRIER ClauseBoundary) ;
+# @fin: übrige finite Verben sind selbst Klauselkopf.
+ADD (@fin) FiniteVerb IF (NOT 1C Part + XPred)
+    (NEGATE 0 Copula LINK 1* XPred BARRIER ClauseBoundary) ;
+
+# ── Aux/Kopula → Prädikat ──
+SETPARENT FiniteVerb - XFin TO (1* XPred BARRIER RightCB) ;
+
+# ── Koordination: zweites Konjunkt → erstes, Cnj → zweites ──
+SETPARENT CongrMod - XPred (-1C Cnj) TO (-2 CongrMod) ;
+SETPARENT NGHead - Gen (-1C Cnj) TO (-2 NGHead) ;
+SETPARENT Cnj (-1 Nominal) TO (1 Nominal) ;
+SETPARENT Cnj (NOT p (*)) TO (1* ClauseHead BARRIER CLB) ;
+
+# ── Subjunktion → Kopf der eingeleiteten Klausel; deren Verb
+#    hängt am Matrixverb (advcl) ──
+SETPARENT SCnj TO (1* ClauseHead BARRIER CLB) ;
+SETPARENT ClauseHead (c SCnj) TO (-1* ClauseHead BARRIER CLB) ;
+
+# ── Adpositionen → Kopf-Nominal ihrer Phrase (case) ──
+SETPARENT Prp TO (1* NGHead BARRIER PPStop) ;
+SETPARENT Psp TO (-1* NGHead BARRIER PPStop) ;
+
+# ── Genitiv-Modifikatoren ──
+# Gen-Demonstrativum der stēisan-Periphrase → folgender Gen-Kopf (det)
+SETPARENT GenDet TO (1 NGHead + Gen) ;
+# pränominal: Gen-Modifikator → nächster Nicht-Gen-Kopf rechts (nmod);
+# NEGATE: nur echte GenDet-Periphrasen (stēisan + Gen-Kopf) ausnehmen
+SETPARENT NGHead + Gen - XPred (NEGATE 0 GenDet LINK 1 NGHead + Gen)
+    TO (1* NGHead - Gen BARRIER AgrBarrier) ;
+# postnominal (stēisan-Periphrase): Gen-Kopf → Nominal links (nmod)
+SETPARENT NGHead + Gen - XPred (NOT p (*)) (-1C GenDet)
+    TO (-2* NGHead - Gen BARRIER AgrBarrier) ;
+
+# ── Determinierer-Pronomen → direkt folgender Kopf (det) ──
+SETPARENT DetPron - Gen (NOT 0 XPred) TO (1 NGHead) ;
+
+# ── NG-Köpfe → Klauselkopf (nsubj/obj/iobj/obl, Label in Phase 2);
+#    echte Konjunkte (Cnj mit linkem NG-Konjunkt) und Determinierer
+#    sind schon angebunden ──
+SETPARENT NGHead - Gen - XPred (NEGATE -1C Cnj LINK -1 NGHead)
+    (NEGATE 0 DetPron LINK 1 NGHead)
+    TO (1* ClauseHead BARRIER RightCB) ;
+SETPARENT NGHead - Gen - XPred (NEGATE -1C Cnj LINK -1 NGHead)
+    (NOT p ClauseHead) (NEGATE 0 DetPron LINK 1 NGHead)
+    TO (-1* ClauseHead BARRIER RightCB) ;
+# Gen-Objekte (GenVerb/Genitivus negationis) und obliques Gen+Psp
+# ("stesse paggan"): noch ohne Parent → Klauselkopf, erst links,
+# dann rechts
+SETPARENT NGHead + Gen - XPred (NOT p (*))
+    TO (-1* ClauseHead BARRIER RightCB) ;
+SETPARENT NGHead + Gen - XPred (NOT p (*))
+    TO (1* ClauseHead BARRIER RightCB) ;
+
+# ── Adverbien, Partikeln, Infinitive ──
+SETPARENT Adv TO (-1* ClauseHead BARRIER RightCB) ;
+SETPARENT Adv (NOT p ClauseHead) TO (1* ClauseHead BARRIER RightCB) ;
+SETPARENT Pcl TO (1C AdjAdv) ;
+SETPARENT Pcl (NOT p (*)) TO (1* ClauseHead BARRIER RightCB) ;
+SETPARENT Pcl (NOT p (*)) TO (-1* ClauseHead BARRIER RightCB) ;
+SETPARENT Inf TO (-1* ClauseHead BARRIER RightCB) ;
+SETPARENT Inf (NOT p (*)) TO (1* ClauseHead BARRIER RightCB) ;

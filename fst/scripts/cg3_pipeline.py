@@ -6,14 +6,16 @@ Pipeline:
   2. satzerhaltend tokenisieren (Wörter + Interpunktion als Cohorts)
   3. Types einmalig durch hfst-flookup batchen (Fallback: lowercase)
   4. CG3-Stream emittieren
-  5. optional durch vislcg3 disambiguieren
-  6. optional Ambiguitätsstatistik auf stdout
+  5. optional durch vislcg3 disambiguieren (inkl. Syntaxbaum via SETPARENT)
+  6. optional Dependenz-Labels (dependency.cg3, ADDRELATION) als zweite Phase
+  7. optional Ambiguitätsstatistik bzw. CoNLL-U auf stdout
 
 Beispiele:
   python3 fst/scripts/cg3_pipeline.py --stats            # Vollkorpus, Kennzahlen
   python3 fst/scripts/cg3_pipeline.py --limit 20         # disambiguierter Stream
   python3 fst/scripts/cg3_pipeline.py --no-disamb        # roher CG-Input
-  echo "Labban dēinan!" | python3 fst/scripts/cg3_pipeline.py --text -
+  python3 fst/scripts/cg3_pipeline.py --deps --limit 20  # Stream mit R:label:ID
+  echo "Labban dēinan!" | python3 fst/scripts/cg3_pipeline.py --text - --conllu
 """
 
 import argparse
@@ -30,6 +32,7 @@ DEFAULT_CORPUS = REPO.parent / "prussian-corpus/parsed/youtube_corpus_sentences.
 DEFAULT_FST = FST_DIR / "build/base.fst"
 DEFAULT_LENIENT = FST_DIR / "build/lenient.fst"
 DEFAULT_GRAMMAR = FST_DIR / "cg3/disambiguator.cg3"
+DEFAULT_DEP_GRAMMAR = FST_DIR / "cg3/dependency.cg3"
 
 SKIP_VIDEOS = {"qLwBCWtMuH8"}  # wie delta_review.py
 
@@ -225,19 +228,40 @@ def run_vislcg3(cg_input: str, grammar: Path, trace: bool = False) -> str:
 
 # ── Statistik ──
 
+# Dependenz- und Relations-Annotationen der CG3-Dependenzschicht:
+# "#n->m" (Parent, fensterlokal nummeriert), "ID:n"/"R:label:n"
+# (ADDRELATION, global nummeriert), "@pred"/"@fin" (Mapping-Tags).
+DEP_RE = re.compile(r"#(\d+)->(\d+)$")
+REL_RE = re.compile(r"R:([A-Za-z_]+):(\d+)$")
+RELID_RE = re.compile(r"ID:(\d+)$")
+HIDDEN_TAGS = ("REMOVE:", "SELECT:", "ADD:", "MAP:", "SETPARENT:",
+               "ADDRELATION:", "#", "ID:", "R:", "@")
+
+
 def parse_cg_stream(stream: str) -> list[list[dict]]:
-    """CG3-Stream → Liste von Cohorts: {form, readings:[{lemma,tags}]}."""
+    """CG3-Stream → Liste von Cohorts:
+    {form, readings:[{lemma,tags}], dep:(self,parent)|None, rid, rels}."""
     cohorts = []
     cur = None
     for line in stream.splitlines():
         if line.startswith('"<'):
-            cur = {"form": line[2:line.rfind('>"')], "readings": []}
+            cur = {"form": line[2:line.rfind('>"')], "readings": [],
+                   "dep": None, "rid": None, "rels": []}
             cohorts.append(cur)
         elif line.startswith("\t") and cur is not None:
             m = re.match(r'\t"(.*)" (.*)$', line)
             if m:
-                tags = [t for t in m.group(2).split()
-                        if not t.startswith(("REMOVE:", "SELECT:", "ADD:", "#"))]
+                raw = m.group(2).split()
+                for t in raw:
+                    if md := DEP_RE.match(t):
+                        cur["dep"] = (int(md.group(1)), int(md.group(2)))
+                    elif mi := RELID_RE.match(t):
+                        cur["rid"] = int(mi.group(1))
+                    elif mr := REL_RE.match(t):
+                        rel = (mr.group(1), int(mr.group(2)))
+                        if rel not in cur["rels"]:
+                            cur["rels"].append(rel)
+                tags = [t for t in raw if not t.startswith(HIDDEN_TAGS)]
                 cur["readings"].append({"lemma": m.group(1), "tags": tags})
     return cohorts
 
@@ -371,6 +395,70 @@ def print_errors(errors: list[dict]):
                   f"{' …' if len(e['original']) > 5 else ''}")
 
 
+# ── Top ambige Sätze ──
+
+def top_ambiguous(sentences: list[dict], before: list[dict],
+                  after: list[dict], limit: int = 20) -> list[dict]:
+    """Findet Sätze mit den meisten mehrdeutigen Token nach Disambiguierung.
+
+    Zurück: [{satz, freq, n_ambig, n_unk, n_collapsed, token_details}],
+    sortiert nach n_ambig (absteigend), maximal *limit* Sätze.
+    """
+    results = []
+    idx = 0
+    for s in sentences:
+        n_coh = len(s["tokens"]) + (0 if s["tokens"][-1] in SENT_PUNCT else 1)
+        sent_before = before[idx:idx + n_coh]
+        sent_after = after[idx:idx + n_coh]
+        idx += n_coh
+
+        details = []
+        n_ambig = n_unk = n_collapsed = 0
+        for c_bef, c_aft in zip(sent_before, sent_after):
+            if not is_word(c_aft):
+                continue
+            rs_bef = c_bef["readings"]
+            rs_aft = c_aft["readings"]
+            if not rs_aft:
+                n_collapsed += 1
+                details.append((c_aft["form"], "KOLLABIERT", rs_bef))
+            elif any("Unk" in r["tags"] for r in rs_aft):
+                n_unk += 1
+            elif len(rs_aft) > 1:
+                n_ambig += 1
+                details.append((c_aft["form"], rs_aft, rs_bef))
+
+        if n_ambig + n_collapsed > 0:
+            results.append({
+                "satz": s["text"],
+                "freq": s["frequency"],
+                "n_ambig": n_ambig,
+                "n_unk": n_unk,
+                "n_collapsed": n_collapsed,
+                "details": details,
+            })
+
+    results.sort(key=lambda x: (x["n_ambig"] + x["n_collapsed"]), reverse=True)
+    return results[:limit]
+
+
+def print_top_ambiguous(results: list[dict], top_n: int = 10):
+    for i, r in enumerate(results[:top_n], 1):
+        total = r["n_ambig"] + r["n_collapsed"]
+        print(f"\n── #{i}  ({total} ambig, freq={r['freq']}) ──")
+        print(f"  {r['satz']}")
+        for tok, rs_aft, rs_bef in r["details"]:
+            if rs_aft == "KOLLABIERT":
+                orig = " | ".join(f"{r['lemma']}+{'+'.join(r['tags'])}"
+                                  for r in rs_bef)
+                print(f"  ❌ {tok}  — kollabiert (vorher: {orig})")
+            else:
+                aft = " | ".join(f"{r['lemma']}+{'+'.join(r['tags'])}"
+                                for r in rs_aft)
+                bef = len(rs_bef)
+                print(f"  ⚠ {tok}  → {aft}  ({bef}→{len(rs_aft)})")
+
+
 # ── Main ──
 
 def main():
@@ -381,15 +469,23 @@ def main():
                          "(wiederholbar)")
     ap.add_argument("--fst", type=Path, default=DEFAULT_FST)
     ap.add_argument("--grammar", type=Path, default=DEFAULT_GRAMMAR)
+    ap.add_argument("--dep-grammar", type=Path, default=DEFAULT_DEP_GRAMMAR)
     ap.add_argument("--text", help="Einzeltext statt Korpus ('-' = stdin)")
     ap.add_argument("--limit", type=int, help="nur die ersten N Sätze")
     ap.add_argument("--no-disamb", action="store_true",
                     help="rohen CG-Input ausgeben (ohne vislcg3)")
+    ap.add_argument("--deps", action="store_true",
+                    help="Label-Phase (dependency.cg3) auf den Stream anwenden")
+    ap.add_argument("--conllu", action="store_true",
+                    help="CoNLL-U ausgeben (impliziert --deps)")
     ap.add_argument("--trace", action="store_true", help="vislcg3 --trace")
     ap.add_argument("--stats", action="store_true",
                     help="nur Kennzahlen (vorher/nachher) auf stdout")
     ap.add_argument("--detect-errors", action="store_true",
                     help="Fehlererkennung: Kollaps/Error-Tags pro Satz")
+    ap.add_argument("--top-ambig", type=int, nargs="?", const=20, metavar="N",
+                    help="Top N Sätze mit den meisten ambigen Token anzeigen "
+                         "(Default: 20)")
     args = ap.parse_args()
 
     if args.text is not None:
@@ -413,9 +509,21 @@ def main():
         return
 
     output = run_vislcg3(cg_input, args.grammar, trace=args.trace)
+    if args.deps or args.conllu:
+        output = run_vislcg3(output, args.dep_grammar, trace=args.trace)
 
-    if not args.stats and not args.detect_errors:
-        sys.stdout.write(output)
+    if args.conllu:
+        from export_conllu import sentence_block
+        cohorts = parse_cg_stream(output)
+        blocks = []
+        idx = 0
+        for s in sentences:
+            n_coh = len(s["tokens"]) + (0 if s["tokens"][-1] in SENT_PUNCT else 1)
+            block = sentence_block(s, cohorts[idx:idx + n_coh])
+            idx += n_coh
+            if block is not None:
+                blocks.append(block)
+        sys.stdout.write("\n\n".join(blocks) + "\n\n")
         return
 
     # Gewichte: Cohort → Frequenz seines Satzes
@@ -436,9 +544,16 @@ def main():
         print_stats("vor Disambiguierung", ambiguity_stats(before, weights))
         print_stats("nach Disambiguierung", ambiguity_stats(after, weights))
 
+    if args.top_ambig:
+        top = top_ambiguous(sentences, before, after, args.top_ambig)
+        print_top_ambiguous(top, top_n=min(20, args.top_ambig))
+
     if args.detect_errors:
         errors = detect_errors(sentences, before, after)
         print_errors(errors)
+
+    if not args.stats and not args.top_ambig and not args.detect_errors:
+        sys.stdout.write(output)
 
 
 if __name__ == "__main__":

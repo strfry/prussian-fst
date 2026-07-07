@@ -1,0 +1,117 @@
+# ===================================================== #
+# Altpreußische Dependenz-Labels (Phase 2, ADDRELATION)  #
+# ===================================================== #
+#
+# Läuft NACH disambiguator.cg3 auf dessen Output-Stream: die
+# Parent-Relationen (#n->m, SECTION 8 der Disambiguierung) und die
+# Mapping-Tags @pred/@fin werden aus dem Stream übernommen; hier
+# bekommt jede Kante ihr UD-Label als Relation (R:label:ID).
+#
+# Kopf-Konvention (UD): Prädikat (finites Verb bzw. @pred nach
+# Aux/Kopula) = Klauselkopf; Adposition hängt als case am Nominal;
+# Kopula/Auxiliar als cop/aux am Prädikat.  Unangebundene Cohorts
+# (#n->n) markiert der Export als root bzw. punct/dep.
+#
+# Pipeline: fst/scripts/cg3_pipeline.py --deps/--conllu
+
+DELIMITERS = "<.>" "<!>" "<?>" ;
+
+
+# ============= #
+# Tags und Sets #
+# ============= #
+
+LIST N = N ;
+LIST Adj = Adj ;
+LIST Pron = Pron ;
+LIST Num = Num ;
+LIST V = V ;
+LIST Part = Part ;
+LIST Adv = Adv ;
+LIST Prp = Prp ;
+LIST Psp = Psp ;
+LIST Cnj = Cnj ;
+LIST SCnj = SCnj ;
+LIST Pcl = Pcl ;
+LIST IJ = IJ ;
+LIST Inf = Inf ;
+
+LIST Nom = Nom ;
+LIST Gen = Gen ;
+LIST Dat = Dat ;
+LIST Akk = Akk ;
+
+LIST XPred = (@pred) ;
+LIST XFin = (@fin) ;
+LIST Copula = "būtwei" "pastātwei" ;
+
+SET FiniteVerb = V - Inf - Part ;
+SET ClauseHead = XPred OR XFin ;
+SET NGHead = N OR Pron ;
+SET CongrMod = Adj OR Num OR Part ;
+SET Nominal = N OR Adj OR Pron OR Num OR Part ;
+SET Adposition = Prp OR Psp ;
+# Determinierer-Pronomina (stas, kas, …) wie in SECTION 8 des
+# Disambiguators: keine Personal-/Enklitika-Pronomen
+SET DetPron = Pron - (Pron P1) - (Pron P2) - (Pron P3) - (Pron Encl) ;
+
+
+# ========================================== #
+# SECTION — Kanten-Labels (eine pro Cohort)  #
+# ========================================== #
+# Reihenfolge = Spezifität; die Guards halten die Labels disjunkt,
+# damit jede Kante genau eine Relation bekommt.
+
+SECTION
+
+# Adpositionen und Funktionswörter
+ADDRELATION (case) Adposition TO (p (*)) ;
+ADDRELATION (mark) SCnj TO (p (*)) ;
+ADDRELATION (cc) Cnj TO (p (*)) ;
+ADDRELATION (advmod) Adv TO (p (*)) ;
+ADDRELATION (advmod) Pcl TO (p (*)) ;
+
+# Aux/Kopula → Prädikat
+ADDRELATION (aux) FiniteVerb TO (p Part) ;
+ADDRELATION (cop) FiniteVerb + Copula TO (p XPred - Part) ;
+
+# Subordiniertes Verb (mit SCnj-Kind) am Matrixverb
+ADDRELATION (advcl) ClauseHead (c SCnj) TO (p ClauseHead) ;
+
+# Koordination: zweites Konjunkt → erstes.  Konjunkt-Parents sind
+# Nominale; Argument-Kanten (→ ClauseHead) fallen nicht darunter.
+ADDRELATION (conj) Nominal (-1C Cnj) TO (p Nominal - XPred) ;
+
+# Nominalgruppe.  det nur für Demonstrativ-/Interrogativpronomen —
+# Personalpronomen mit NGHead-Parent sind Argumente eines @pred.
+ADDRELATION (nummod) Num TO (p NGHead) ;
+ADDRELATION (amod) Adj OR Part TO (p NGHead) ;
+ADDRELATION (det) DetPron TO (p NGHead - XPred) ;
+ADDRELATION (nmod) N + Gen TO (p NGHead) ;
+# Possessivpronomen (māise …): Gen-Pron am Nominalkopf
+ADDRELATION (nmod) Pron + Gen - DetPron TO (p NGHead) ;
+
+# Argumente und Adjunkte am Klauselkopf.  obl vor nsubj/obj/iobj:
+# ein Nominal mit case-Kind (Prp/Psp) ist obliquer PP-Kopf.
+# NEGATE statt NOT bei den c-Tests: (NOT c X) schlägt bei kinderlosen
+# Cohorts fehl (vgl. vislcg3-Stolperfallen).
+ADDRELATION (obl) NGHead (c Adposition) TO (p ClauseHead) ;
+# Nom|Akk-Synkretismus: hängt am selben Kopf schon ein eindeutiges
+# Nom-Geschwister (das Subjekt), ist das ambige Nominal Objekt.
+ADDRELATION (obj) NGHead + Akk (0 Nom) (NEGATE c Adposition)
+    (sC NGHead + Nom) TO (p ClauseHead) ;
+ADDRELATION (nsubj) NGHead + Nom (NEGATE c Adposition)
+    (NEGATE 0 Akk LINK sC NGHead + Nom) TO (p ClauseHead) ;
+ADDRELATION (obj) NGHead + Akk (NOT 0 Nom) (NEGATE c Adposition)
+    TO (p ClauseHead) ;
+ADDRELATION (iobj) NGHead + Dat (NOT 0 Nom OR Akk) (NEGATE c Adposition)
+    TO (p ClauseHead) ;
+# Genitivobjekt (GenVerb / Genitivus negationis)
+ADDRELATION (obj) NGHead + Gen (NOT 0 Nom OR Akk OR Dat)
+    (NEGATE c Adposition) TO (p ClauseHead) ;
+
+# Infinitiv als offenes Komplement
+ADDRELATION (xcomp) Inf TO (p ClauseHead) ;
+
+# Interjektion mit Parent (selten): Diskurselement
+ADDRELATION (discourse) IJ TO (p (*)) ;

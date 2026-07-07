@@ -1,0 +1,62 @@
+# Golden-Dependenzen für die CG3-Syntaxschicht (SECTION 8 des
+# Disambiguators + dependency.cg3-Labels).
+# Format: Satz <TAB> Token <TAB> Kopf-Token ("0" = root) <TAB> DEPREL
+#
+# NG: kongruenter Modifikator → Kopf (amod), Kopf = Wurzel im verblosen Satz
+Labban dēinan!	Labban	dēinan	amod
+Labban dēinan!	dēinan	0	root
+# Determinierer und Objekt am Verb
+Stan wīran wīda.	Stan	wīran	det
+Stan wīran wīda.	wīran	wīda	obj
+Stan wīran wīda.	wīda	0	root
+# Subjekt/Objekt; Nom|Akk-Synkretismus → obj bei eindeutigem Nom-Geschwister
+Tāns turri buttan.	Tāns	turri	nsubj
+Tāns turri buttan.	buttan	turri	obj
+# PP: case am Nominal, PP-Kopf als obl am Verb
+Kurmjai buwinna pa zemmei.	Kurmjai	buwinna	nsubj
+Kurmjai buwinna pa zemmei.	pa	zemmei	case
+Kurmjai buwinna pa zemmei.	zemmei	buwinna	obl
+# Kopula-Inversion (UD): Prädikatsnomen ist Wurzel, Kopula cop
+As asma kunnegs.	kunnegs	0	root
+As asma kunnegs.	As	kunnegs	nsubj
+As asma kunnegs.	asma	kunnegs	cop
+# Periphrastisches Futur: Partizip ist Wurzel, wīrst aux
+As wīrst gūbuns en buttan.	gūbuns	0	root
+As wīrst gūbuns en buttan.	wīrst	gūbuns	aux
+As wīrst gūbuns en buttan.	As	gūbuns	nsubj
+As wīrst gūbuns en buttan.	en	buttan	case
+As wīrst gūbuns en buttan.	buttan	gūbuns	obl
+# Koordination: cc am zweiten Konjunkt, conj zum ersten
+Rānkans be prusnans wīda.	Rānkans	wīda	obj
+Rānkans be prusnans wīda.	be	prusnans	cc
+Rānkans be prusnans wīda.	prusnans	Rānkans	conj
+gēidras be sāusas dēinas	gēidras	dēinas	amod
+gēidras be sāusas dēinas	be	sāusas	cc
+gēidras be sāusas dēinas	sāusas	gēidras	conj
+gēidras be sāusas dēinas	dēinas	0	root
+# Genitivus negationis als obj; ni advmod
+Tāns ni turri kōnkretan pawīstin.	ni	turri	advmod
+Tāns ni turri kōnkretan pawīstin.	kōnkretan	pawīstin	amod
+Tāns ni turri kōnkretan pawīstin.	pawīstin	turri	obj
+# Gen-Modifikatoren: Possessivpronomen + pränominaler Gen
+māise prūsiskas billas	māise	billas	nmod
+māise prūsiskas billas	prūsiskas	billas	amod
+māise prūsiskas billas	billas	0	root
+# Diskurs-Konnektor Be: cc an der Klausel, Subjekt bleibt nsubj
+Be as ni waīda.	Be	waīda	cc
+Be as ni waīda.	as	waīda	nsubj
+# stēisan-Periphrase: det + postnominaler Gen als nmod
+Saknis stēisan anzanan.	Saknis	0	root
+Saknis stēisan anzanan.	stēisan	anzanan	det
+Saknis stēisan anzanan.	anzanan	Saknis	nmod
+# Postposition: case, Gen+Psp als obl am Verb
+Stesse paggan sta ast brendu.	Stesse	ast	obl
+Stesse paggan sta ast brendu.	paggan	Stesse	case
+Stesse paggan sta ast brendu.	sta	ast	nsubj
+Stesse paggan sta ast brendu.	brendu	ast	advmod
+Stesse paggan sta ast brendu.	ast	0	root
+# Aux + Partizip + Infinitiv: xcomp am Prädikatskern
+Swāikstan wīrst pagaūwus ebwarītun.	pagaūwus	0	root
+Swāikstan wīrst pagaūwus ebwarītun.	wīrst	pagaūwus	aux
+Swāikstan wīrst pagaūwus ebwarītun.	Swāikstan	pagaūwus	nsubj
+Swāikstan wīrst pagaūwus ebwarītun.	ebwarītun	pagaūwus	xcomp
