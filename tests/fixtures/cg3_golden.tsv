@@ -39,6 +39,9 @@ As wīrst būwuns en buttu.	buttu	buttan+N+Sg+Dat+Neut
 # syntax_rules §1+§8: Kurzform-Präposition (sen→sēn) + Instrumental-Ersatz sēn+Akk
 As pūwa sen laīwan.	sen	sēn+Prp+GovAkk
 As pūwa sen laīwan.	laīwan	laīwan+N+Sg+Akk+Neut
+# PP-Rektion schlägt Genitivus negationis: -an-Nomen in Akk-PP ist Akk,
+# nicht Pl+Gen, auch bei negiertem Verb in der Klausel (kriwwjan/karjaūsnan)
+Ni izbilāi ezze karjaūsnan.	karjaūsnan	karjaūsnā+N+Sg+Akk+Fem
 # syntax_rules §1+§6c+§11: en→ēn dynamisch + Futur wīrst + Partizip
 As wīrst gūbuns en buttan.	buttan	buttan+N+Sg+Akk+Neut
 As wīrst gūbuns en buttan.	gūbuns	ēitwei+V+Part+Pret+Masc+Sg+Nom

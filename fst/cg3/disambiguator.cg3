@@ -171,6 +171,17 @@ REMOVE SAFE Adj + Gen IF (-1C Prp + GovAkk LINK NOT 0 GovDat)
 REMOVE SAFE Adj + Gen IF (-2C Prp + GovAkk LINK NOT 0 GovDat) (-1 PPMid)
     (NEGATE 1* NGHead + Gen BARRIER ClauseBoundary) ;
 
+# Gen-Kopf einer Akk-PP: die Präpositionsrektion schlägt den Genitivus
+# negationis — das PP-Nominal ist kein Verbobjekt der negierten Klausel.
+# Direkt nach GovAkk-Prp und ohne Gen-Kopf rechts (sonst wäre es selbst
+# Gen-Modifikator) ist die -an-Form Akk, nicht Pl+Gen (kriwwjan/karjaūsnan).
+REMOVE SAFE (Gen) IF (0 Nominal)
+    (-1C Prp + GovAkk LINK NOT 0 GovDat)
+    (NEGATE 1* NGHead + Gen BARRIER ClauseBoundary) ;
+REMOVE SAFE (Gen) IF (0 Nominal)
+    (-2C Prp + GovAkk LINK NOT 0 GovDat) (-1 PPMid)
+    (NEGATE 1* NGHead + Gen BARRIER ClauseBoundary) ;
+
 
 # ============================================================ #
 # SECTION 1b — R1: Rektion der Doppel-Präpositionen auflösen   #
