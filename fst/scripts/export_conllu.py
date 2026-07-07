@@ -4,9 +4,11 @@
 Quellen: youtube (Korpus-JSON), awizi + twanksta (Markdown-Artikel aus
 ../prussian-bert/corpus/). Rest-Ambiguität wird nicht geraten, sondern
 unterspezifiziert: exportiert werden nur Merkmale, die ALLE verbleibenden
-Lesarten teilen (V Ind Pres P3 Sg|Pl → Mood/Tense/Person gesetzt, Number
-leer, MISC Ambig=2). Sätze mit >50% unbekannten Wörtern gelten als
-fremdsprachliches Zitat und werden übersprungen.
+Lesarten teilen (N Pl+Gen|Sg+Akk → Number/Case leer, MISC Ambig=2). Die
+3. Person ist numeruslos modelliert (+P3 ohne Sg/Pl, wie im Baltischen) —
+Verben wie „ast" tragen daher schlicht kein Number-Feature, ohne Ambig.
+Sätze mit >50% unbekannten Wörtern gelten als fremdsprachliches Zitat
+und werden übersprungen.
 
   python3 fst/scripts/export_conllu.py --out data/prussian_silver.conllu
 """

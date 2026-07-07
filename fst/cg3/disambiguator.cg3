@@ -473,6 +473,9 @@ SELECT (Pl Akk Neut) IF (0C Pron) (1C NGHead + (Pl Akk Neut)) ;
 # ====================================================== #
 # Pro-drop: OHNE Pronomen bleibt die Personenambiguität stehen
 # (kein P3-Default). Subjekt = nächster eindeutiger Nom-Kopf links.
+# Numerus wird bei der 3. Person NICHT disambiguiert: die apreuß.
+# 3. Person ist morphologisch numeruslos (FST-Tag +P3 ohne Sg/Pl),
+# der Numerus lebt am Subjekt.  Nur P1/P2 tragen einen Numerus.
 
 LIST P1 = P1 ;
 LIST P2 = P2 ;
@@ -493,29 +496,9 @@ SELECT (P2 Sg) IF (0 (P2 Sg))
 SELECT (P2 Pl) IF (0 (P2 Pl))
     (-1*C P2Pron + Nom + Pl BARRIER SubjBarrier) ;
 
-# 3. Person: Numerus vom eindeutigen Subjekt übernehmen (auch N-Subjekte).
-SELECT (P3 Sg) IF (0 (P3 Sg)) (0 (P3 Pl))
-    (-1*C P3SubjAny + Nom + Sg BARRIER SubjBarrier) ;
-SELECT (P3 Pl) IF (0 (P3 Sg)) (0 (P3 Pl))
-    (-1*C P3SubjAny + Nom + Pl BARRIER SubjBarrier) ;
-
-# 3. Person, relaxiert: numerus-eindeutiges Nom-Subjekt LINKS, Kasus darf
-# ambig sein (bētan: Nom|Akk, aber eindeutig Sg → Verb Sg). LINK NOT 0 Pl:
-# das nächste Nom-Nominal links hat keine Pl-Lesart, ist also Sg.
-SELECT (P3 Sg) IF (0 (P3 Sg)) (0 (P3 Pl))
-    (-1* P3SubjAny + Nom BARRIER SubjBarrier LINK NOT 0 Pl) ;
-SELECT (P3 Pl) IF (0 (P3 Sg)) (0 (P3 Pl))
-    (-1* P3SubjAny + Nom BARRIER SubjBarrier LINK NOT 0 Sg) ;
-
-# 3. Person, postponiertes Subjekt / Prädikatsnomen RECHTS: VS-Stellung
-# ("Audāst … Kaupāli") und Kopula-Prädikativ ("Sta ast skuttis/zangjāi").
-# Nur Nom (Akk-Objekte greifen nie); klauselintern via SubjBarrier.
-SELECT (P3 Sg) IF (0 (P3 Sg)) (0 (P3 Pl))
-    (1* P3SubjAny + Nom BARRIER SubjBarrier LINK NOT 0 Pl) ;
-SELECT (P3 Pl) IF (0 (P3 Sg)) (0 (P3 Pl))
-    (1* P3SubjAny + Nom BARRIER SubjBarrier LINK NOT 0 Sg) ;
-
-# 3. Person ohne Numerus-Evidenz: nur P1/P2 abwählen.
+# 3. Person: kein Numerus-Select mehr (P3 ist numeruslos).  Bei
+# Person-Ambiguität (P1|P2|P3) genügt ein 3.-Person-Nom-Subjekt links,
+# um die P3-Lesart zu wählen und P1/P2 abzuwählen.
 SELECT (P3) IF (0 P12) (0 P3)
     (-1*C P3SubjAny + Nom BARRIER SubjBarrier) ;
 

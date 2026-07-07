@@ -43,7 +43,10 @@ GENDER_MAP = {"masc": "+Masc", "m": "+Masc",
                "fem": "+Fem", "f": "+Fem",
                "neut": "+Neut", "n": "+Neut", "": ""}
 
-PERSON_TAGS = ["P1+Sg", "P2+Sg", "P3+Sg", "P1+Pl", "P2+Pl", "P3+Pl"]
+# Die 3. Person markiert im Apreußischen (wie im Baltischen allgemein)
+# keinen Numerus: 3sg und 3pl sind formgleich (Twanksta: 3828/3828 Slots
+# identisch).  Darum bekommt P3 kein +Sg/+Pl — der Numerus lebt am Subjekt.
+PERSON_TAGS = ["P1+Sg", "P2+Sg", "P3", "P1+Pl", "P2+Pl", "P3"]
 
 PRONOUN_MAP = {
     "as": 0, "tū": 1,
@@ -384,7 +387,7 @@ def verb_forms(entry: dict, prep_words: set[str] | None = None) -> tuple[str, di
             f_clean = strip_si(variant.strip())
             if " " in f_clean or "\n" in f_clean:
                 continue
-            results[f"{upper}+V+Opt+P3+Sg{refl}:{lexc_esc(f_clean)}"] = True
+            results[f"{upper}+V+Opt+P3{refl}:{lexc_esc(f_clean)}"] = True
 
     # Imperative
     for sub in forms.get("imperative", []):
