@@ -508,6 +508,19 @@ SELECT (Pl Akk Fem) IF (0C Pron) (1C NGHead + (Pl Akk Fem)) ;
 SELECT (Pl Akk Neut) IF (0C Pron) (1C NGHead + (Pl Akk Neut)) ;
 
 
+# ============================================================ #
+# SECTION 6b — Neutrum-Pronomen Nom|Akk über die Klauselrolle  #
+# ============================================================ #
+# Der Neutrum-Synkretismus Nom=Akk (sta/ka/wissan/…) folgt aus der
+# Rolle.  Sicherster Fall: neben der Kopula (Subjekt davor bzw.
+# Prädikatsnomen danach) ist er Nom — die Kopula regiert keinen Akk.
+
+SECTION
+
+SELECT (Nom) IF (0C Pron) (0 Nom) (0 Akk) (1C Copula) ;
+SELECT (Nom) IF (0C Pron) (0 Nom) (0 Akk) (-1C Copula) ;
+
+
 # ====================================================== #
 # SECTION 7 — R5: Verbperson bei explizitem Subjekt      #
 # ====================================================== #
