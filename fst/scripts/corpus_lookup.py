@@ -129,16 +129,49 @@ class TypeEntry:
     def example_context(self) -> str:
         """One example sentence for display (prefer one with youtube sources)."""
         best = self.pick_best_occurrence()
-        if best and best.sources:
-            return f"[×{best.sentence_frequency}] {best.context}"
-        if self.occurrences:
-            occ = self.occurrences[0]
-            return f"[×{occ.sentence_frequency}] {occ.context}"
+        if best:
+            return best.context
         return ""
+
+    def example_snippet(self, window: int = 40) -> str:
+        """Short excerpt centered on the matched form, not the full sentence
+        — long corpus sentences otherwise blow up the review table."""
+        ctx = self.example_context()
+        if not ctx:
+            return ""
+        idx = ctx.lower().find(self.form.lower())
+        if idx < 0:
+            snippet = ctx
+        else:
+            start = max(0, idx - window)
+            end = min(len(ctx), idx + len(self.form) + window)
+            snippet = ctx[start:end]
+            if start > 0:
+                snippet = "…" + snippet
+            if end < len(ctx):
+                snippet = snippet + "…"
+        return " ".join(snippet.split())
+
+    def translation_hint(self) -> str:
+        """Single most frequent translation, truncated — one hint is enough
+        for manual review, a wall of duplicate translations is not."""
+        counts = defaultdict(int)
+        for occ in self.occurrences:
+            for text, count in occ.translations:
+                if text:
+                    counts[text] += count
+        if not counts:
+            return ""
+        best_text = max(counts.items(), key=lambda kv: kv[1])[0]
+        best_text = " ".join(best_text.split())
+        if len(best_text) > 80:
+            best_text = best_text[:79] + "…"
+        return best_text
 
     def translation_hints(self, n: int = 5) -> list[str]:
         """Aggregated, frequency-sorted translation strings across all
-        occurrences (dedup by text)."""
+        occurrences (dedup by text) — used internally for signal detection,
+        not for display (see translation_hint())."""
         counts = defaultdict(int)
         for occ in self.occurrences:
             for text, count in occ.translations:
@@ -512,6 +545,15 @@ TYPO_FILL = PatternFill(start_color="EDEDED", end_color="EDEDED", fill_type="sol
 SUSP_FILL = PatternFill(start_color="FFF2CC", end_color="FFF2CC", fill_type="solid")
 PROPER_FONT = Font(size=10, color="2F5496")
 
+# Für Spalten, die Glabbis manuell befüllt: klar erkennbar vom Rest abgesetzt.
+INPUT_FILL = PatternFill(start_color="FFFDE7", end_color="FFFDE7", fill_type="solid")
+INPUT_HEADER_FILL = PatternFill(start_color="BF8F00", end_color="BF8F00", fill_type="solid")
+
+
+def style_input_column(ws, col: int, nrows: int):
+    for row in range(2, nrows + 2):
+        ws.cell(row=row, column=col).fill = INPUT_FILL
+
 
 def highlight_form_in_context(context: str, form: str) -> CellRichText:
     """Return CellRichText with the *form* substring in red+bold."""
@@ -532,11 +574,11 @@ def highlight_form_in_context(context: str, form: str) -> CellRichText:
     return CellRichText(*parts)
 
 
-def _style_header(ws, ncols: int):
+def _style_header(ws, ncols: int, input_cols: tuple = ()):
     for col in range(1, ncols + 1):
         cell = ws.cell(row=1, column=col)
         cell.font = HEADER_FONT
-        cell.fill = HEADER_FILL
+        cell.fill = INPUT_HEADER_FILL if col in input_cols else HEADER_FILL
         cell.alignment = Alignment(horizontal="center", vertical="center",
                                     wrap_text=True)
         cell.border = THIN_BORDER

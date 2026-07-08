@@ -43,6 +43,7 @@ from corpus_lookup import (
     fst_lookup_batch, fst_lookup_types, load_dict_forms, check_precondition,
     tokenize_corpus, detect_proper_names,
     HEADER_FONT, HEADER_FILL, THIN_BORDER, TYPO_FILL, SUSP_FILL, PROPER_FONT,
+    INPUT_FILL, style_input_column,
     highlight_form_in_context, _style_header, _style_body, _col_letter,
 )
 
@@ -278,7 +279,7 @@ def run_pipeline() -> dict:
             signal = "Kein Übersetzungssignal"
 
         bucket1_rows.append({
-            "type": td, "signal": signal, "translation_hints": hints,
+            "type": td, "signal": signal,
             "nn_form": nn_form, "nn_lemma": nn_lemma,
         })
 
@@ -294,67 +295,79 @@ def run_pipeline() -> dict:
 
 
 # ── XLSX output ──
+#
+# Konvention für alle drei Sheets: kurzer Kontext-Ausschnitt statt ganzer
+# Sätze (example_snippet), genau ein Übersetzungshinweis statt einer Liste,
+# nur ein YouTube-Link, und am Ende leere, farblich abgesetzte
+# "Glabbis:"-Spalten zum manuellen Ausfüllen.
 
 def write_report(report: dict, path: Path):
     wb = openpyxl.Workbook()
 
     ws1 = wb.active
     ws1.title = "Eigennamen-Neue Wörter"
-    headers1 = ["Form", "Freq", "Signal", "Übersetzungs-Hinweise",
-                "Nächste Dict-Form", "Beispiel", "YouTube-Links"]
+    headers1 = ["Form", "Freq", "Signal", "Übersetzung",
+                "Nächste Dict-Form", "Kontext",
+                "Glabbis: Lemma", "Glabbis: Kommentar", "YouTube"]
     for ci, h in enumerate(headers1, 1):
         ws1.cell(row=1, column=ci, value=h)
-    _style_header(ws1, len(headers1))
+    _style_header(ws1, len(headers1), input_cols=(7, 8))
+    n1 = len(report["bucket1"])
     for ri, row in enumerate(report["bucket1"], 2):
         td = row["type"]
         ws1.cell(row=ri, column=1, value=td.form)
         ws1.cell(row=ri, column=2, value=td.frequency)
         ws1.cell(row=ri, column=3, value=row["signal"])
-        ws1.cell(row=ri, column=4, value="\n".join(row["translation_hints"]))
-        nn = f"{row['nn_form']} (Lemma: {row['nn_lemma']})" if row["nn_form"] else ""
+        ws1.cell(row=ri, column=4, value=td.translation_hint())
+        nn = f"{row['nn_form']} ({row['nn_lemma']})" if row["nn_form"] else ""
         ws1.cell(row=ri, column=5, value=nn)
         ws1.cell(row=ri, column=6,
-                 value=highlight_form_in_context(td.example_context(), td.form))
-        ws1.cell(row=ri, column=7, value=td.top_links(3))
+                 value=highlight_form_in_context(td.example_snippet(), td.form))
+        ws1.cell(row=ri, column=9, value=td.top_links(1))
         if "Eigenname" in row["signal"]:
             ws1.cell(row=ri, column=1).font = PROPER_FONT
-    _style_body(ws1, len(report["bucket1"]), len(headers1))
-    ws1.auto_filter.ref = f"A1:{_col_letter(len(headers1))}{len(report['bucket1']) + 1}"
+    _style_body(ws1, n1, len(headers1))
+    for col in (7, 8):
+        style_input_column(ws1, col, n1)
+    ws1.auto_filter.ref = f"A1:{_col_letter(len(headers1))}{n1 + 1}"
     ws1.freeze_panes = "A2"
-    for i, w in enumerate([22, 8, 40, 45, 30, 55, 40], 1):
+    for i, w in enumerate([18, 7, 32, 26, 22, 42, 20, 26, 26], 1):
         ws1.column_dimensions[_col_letter(i)].width = w
 
     ws2 = wb.create_sheet("Typos")
-    headers2 = ["Form", "Freq", "Dict-Form", "Lemma", "Übersetzung deckt Glosse?",
-                "Glosse", "Beispiel", "YouTube-Links"]
+    headers2 = ["Form", "Freq", "Dict-Form", "Glosse deckt Übersetzung?",
+                "Glosse", "Kontext",
+                "Glabbis: Bestätigt?", "Glabbis: Kommentar", "YouTube"]
     for ci, h in enumerate(headers2, 1):
         ws2.cell(row=1, column=ci, value=h)
-    _style_header(ws2, len(headers2))
+    _style_header(ws2, len(headers2), input_cols=(7, 8))
+    n2 = len(report["bucket2"])
     for ri, row in enumerate(report["bucket2"], 2):
         td = row["type"]
         ws2.cell(row=ri, column=1, value=td.form)
         ws2.cell(row=ri, column=2, value=td.frequency)
-        ws2.cell(row=ri, column=3, value=row["nn_form"])
-        ws2.cell(row=ri, column=4, value=row["nn_lemma"])
-        ws2.cell(row=ri, column=5, value="✓" if row["matches_gloss"] else "")
-        ws2.cell(row=ri, column=6, value=row["gloss"])
-        ws2.cell(row=ri, column=7,
-                 value=highlight_form_in_context(td.example_context(), td.form))
-        ws2.cell(row=ri, column=8, value=td.top_links(3))
-        for col in range(1, len(headers2) + 1):
+        ws2.cell(row=ri, column=3, value=f"{row['nn_form']} ({row['nn_lemma']})")
+        ws2.cell(row=ri, column=4, value="✓" if row["matches_gloss"] else "")
+        ws2.cell(row=ri, column=5, value=row["gloss"])
+        ws2.cell(row=ri, column=6,
+                 value=highlight_form_in_context(td.example_snippet(), td.form))
+        ws2.cell(row=ri, column=9, value=td.top_links(1))
+        for col in (1, 2, 3, 4, 5, 6, 9):
             ws2.cell(row=ri, column=col).fill = TYPO_FILL
-    _style_body(ws2, len(report["bucket2"]), len(headers2))
-    ws2.auto_filter.ref = f"A1:{_col_letter(len(headers2))}{len(report['bucket2']) + 1}"
+    _style_body(ws2, n2, len(headers2))
+    for col in (7, 8):
+        style_input_column(ws2, col, n2)
+    ws2.auto_filter.ref = f"A1:{_col_letter(len(headers2))}{n2 + 1}"
     ws2.freeze_panes = "A2"
-    for i, w in enumerate([22, 8, 20, 20, 22, 40, 55, 40], 1):
+    for i, w in enumerate([18, 7, 24, 20, 30, 42, 16, 26, 26], 1):
         ws2.column_dimensions[_col_letter(i)].width = w
 
     ws3 = wb.create_sheet("Phonologische Fehlerklassen")
-    headers3 = ["Form", "Freq", "Ortho-Regel (FST)", "Dict-Form/Lemma",
-                "Beispiel", "YouTube-Links"]
+    headers3 = ["Form", "Freq", "Ortho-Regel (FST)", "Dict-Form/Lemma", "Kontext",
+                "Glabbis: Kommentar", "YouTube"]
     for ci, h in enumerate(headers3, 1):
         ws3.cell(row=1, column=ci, value=h)
-    _style_header(ws3, len(headers3))
+    _style_header(ws3, len(headers3), input_cols=(6,))
     ri = 2
     grouped = defaultdict(list)
     for row in report["bucket3_single"]:
@@ -376,8 +389,8 @@ def write_report(report: dict, path: Path):
             ws3.cell(row=ri, column=3, value=label)
             ws3.cell(row=ri, column=4, value=row["dict_lemma"])
             ws3.cell(row=ri, column=5,
-                     value=highlight_form_in_context(td.example_context(), td.form))
-            ws3.cell(row=ri, column=6, value=td.top_links(3))
+                     value=highlight_form_in_context(td.example_snippet(), td.form))
+            ws3.cell(row=ri, column=7, value=td.top_links(1))
             ri += 1
 
     if report["bucket3_fallback"]:
@@ -394,17 +407,18 @@ def write_report(report: dict, path: Path):
             ws3.cell(row=ri, column=3, value=row["reason"])
             ws3.cell(row=ri, column=4, value=row["dict_lemma"])
             ws3.cell(row=ri, column=5,
-                     value=highlight_form_in_context(td.example_context(), td.form))
-            ws3.cell(row=ri, column=6, value=td.top_links(3))
-            for col in range(1, len(headers3) + 1):
+                     value=highlight_form_in_context(td.example_snippet(), td.form))
+            ws3.cell(row=ri, column=7, value=td.top_links(1))
+            for col in (1, 2, 3, 4, 5, 7):
                 ws3.cell(row=ri, column=col).fill = SUSP_FILL
             ri += 1
 
     nrows3 = ri - 2
     _style_body(ws3, nrows3, len(headers3))
+    style_input_column(ws3, 6, nrows3)
     ws3.auto_filter.ref = f"A1:{_col_letter(len(headers3))}{nrows3 + 1}"
     ws3.freeze_panes = "A2"
-    for i, w in enumerate([22, 8, 34, 26, 55, 40], 1):
+    for i, w in enumerate([18, 7, 30, 24, 42, 26, 26], 1):
         ws3.column_dimensions[_col_letter(i)].width = w
 
     path.parent.mkdir(parents=True, exist_ok=True)
