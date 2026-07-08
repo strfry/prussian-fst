@@ -32,6 +32,37 @@ define MacronLoss [ī (->) i];
 ! und würde in der Komposition nie gegen die Einzelzeichen von base.fst matchen.
 define InfTunTwei [{twei} (->) {tun} || _ .#.];
 
+! Einzelregeln separat sichern (fuer error_classification.py: welche
+! einzelne Ortho-Regel erklaert eine Korpusform, komponiert mit base.fst
+! in build/rules/<name>.fst, s. Makefile).
+regex DegemAll ;
+save stack build/rules/degem_all.hfst
+clear stack
+
+regex WProthese ;
+save stack build/rules/w_prothese.hfst
+clear stack
+
+regex SamlandI ;
+save stack build/rules/samland_i.hfst
+clear stack
+
+regex ISynkope ;
+save stack build/rules/i_synkope.hfst
+clear stack
+
+regex DiphAI ;
+save stack build/rules/diph_ai.hfst
+clear stack
+
+regex MacronLoss ;
+save stack build/rules/macron_loss.hfst
+clear stack
+
+regex InfTunTwei ;
+save stack build/rules/inf_tun_twei.hfst
+clear stack
+
 regex DegemAll .o. WProthese .o. SamlandI .o. ISynkope .o. DiphAI .o. MacronLoss .o. InfTunTwei ;
 save stack build/norm.hfst
 quit
