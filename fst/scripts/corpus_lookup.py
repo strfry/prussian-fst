@@ -39,12 +39,12 @@ RULES_DIR = FST_DIR / "build/rules"
 # Reihenfolge ist die Prüfreihenfolge, falls mehrere gleichzeitig passen.
 ORTHO_RULES = [
     ("degem_all", "Degemination"),
-    ("w_prothese", "w-Prothese"),
-    ("samland_i", "Samland i-Epenthese"),
-    ("i_synkope", "i-Synkope (Nom.Sg. i-Stämme)"),
-    ("diph_ai", "Diphthong-Vereinfachung aī→ai"),
-    ("macron_loss", "Makronverlust"),
-    ("inf_tun_twei", "Infinitiv -twei/-tun"),
+    ("w_prothese", "w-Prosthesis"),
+    ("samland_i", "Samland i-Epenthesis"),
+    ("i_synkope", "i-Syncope (Nom.Sg. i-stems)"),
+    ("diph_ai", "Diphthong Simplification aī→ai"),
+    ("macron_loss", "Macron Loss"),
+    ("inf_tun_twei", "Infinitive -twei/-tun"),
 ]
 
 SKIP_VIDEOS = {"qLwBCWtMuH8"}

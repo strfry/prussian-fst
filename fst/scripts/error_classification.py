@@ -195,7 +195,7 @@ def run_pipeline() -> dict:
             })
         elif lenient_info:
             bucket3_fallback.append({
-                "type": td, "reason": "lenient.fst (Regelkombination), keine Einzelregel",
+                "type": td, "reason": "lenient.fst (rule combination), no single rule",
                 "dict_lemma": lenient_info[0],
             })
         else:
@@ -203,17 +203,36 @@ def run_pipeline() -> dict:
 
     report["n_bucket3_single"] = len(bucket3_single)
     report["n_bucket3_fallback"] = len(bucket3_fallback)
-    print(f"  {len(bucket3_single)} durch genau eine Ortho-Regel erklärt, "
-          f"{len(bucket3_fallback)} Cluster-Fallback, "
-          f"{len(remaining)} weiterhin unbekannt", file=sys.stderr)
+    print(f"  {len(bucket3_single)} explained by exactly one ortho rule, "
+          f"{len(bucket3_fallback)} cluster fallback, "
+          f"{len(remaining)} still unmatched", file=sys.stderr)
 
-    print("ED1-Typo-Check gegen gut belegte Dict-Formen...", file=sys.stderr)
+    # Manche Formen stehen exakt so im rohen Twanksta-JSON (z.B. "pagaūwuns"),
+    # sind aber nicht in base.fst/lenient.fst/den Ortho-Regeln kompiliert —
+    # meist weil gen_lexc.py "↑"-Verweiseinträge (Partizip-/Flexionsformen,
+    # die im Wörterbuch nur auf ein anderes Stichwort verweisen) überspringt.
+    # Das ist ein FST-Build-Problem, kein neues Wort — verdient eine eigene,
+    # klar getrennte Kategorie statt Bucket 1 zu verunreinigen.
+    known_missing_fst = []
+    truly_unknown = []
+    for td in remaining:
+        if td.folded in forms_dict["all_forms"]:
+            lemma = forms_dict["folded_to_lemma"].get(td.folded, ["?"])[0]
+            known_missing_fst.append({"type": td, "dict_lemma": lemma})
+        else:
+            truly_unknown.append(td)
+    report["n_known_missing_fst"] = len(known_missing_fst)
+    print(f"  {len(known_missing_fst)} already in dictionary JSON but missing "
+          f"from compiled FST (likely ↑-reference entries skipped by "
+          f"gen_lexc.py) — excluded from new-word bucket", file=sys.stderr)
+
+    print("ED1 typo check against well-attested dict forms...", file=sys.stderr)
     dict_form_list = build_dict_form_list(forms_dict)
     type_freq = {te.folded: te.frequency for te in type_list}
 
     bucket2 = []
     bucket1 = []
-    for td in remaining:
+    for td in truly_unknown:
         ftok = td.folded
         if td.frequency <= 2 and len(ftok) >= 3:
             nn_folded, nn_form, nn_lemma, nn_dist = nearest_neighbor(
@@ -238,9 +257,9 @@ def run_pipeline() -> dict:
         bucket1.append(td)
 
     report["n_bucket2"] = len(bucket2)
-    print(f"  {len(bucket2)} Typo-Kandidaten", file=sys.stderr)
+    print(f"  {len(bucket2)} typo candidates", file=sys.stderr)
 
-    print("Übersetzungssignale für Eigennamen/neue Wörter...", file=sys.stderr)
+    print("Translation signals for proper names/new words...", file=sys.stderr)
     bucket1_rows = []
     for td in bucket1:
         nn_folded, nn_form, nn_lemma, nn_dist = nearest_neighbor(
@@ -270,13 +289,13 @@ def run_pipeline() -> dict:
             gloss_overlap = bool(gloss_words & trans_words)
 
         if td.is_proper_name or cap_cognate:
-            signal = "Eigenname (Großschreibung)" if td.is_proper_name else "Eigenname (Übersetzung, Großschreibung)"
+            signal = "Proper name (capitalization)" if td.is_proper_name else "Proper name (translation cognate)"
         elif hints and not gloss_overlap:
-            signal = "Neues Wort (eigene Bedeutung laut Übersetzung)"
+            signal = "New word (own meaning per translation)"
         elif gloss_overlap:
-            signal = f"Hinweis: Übersetzung deckt sich mit Glosse von „{nn_lemma}“ — evtl. Variante/Typo"
+            signal = f"Note: translation matches gloss of \"{nn_lemma}\" — possibly a variant/typo"
         else:
-            signal = "Kein Übersetzungssignal"
+            signal = "No translation signal"
 
         bucket1_rows.append({
             "type": td, "signal": signal,
@@ -284,31 +303,34 @@ def run_pipeline() -> dict:
         })
 
     report["n_bucket1"] = len(bucket1_rows)
-    print(f"  {len(bucket1_rows)} Eigennamen/neue Wörter", file=sys.stderr)
+    print(f"  {len(bucket1_rows)} proper names/new words", file=sys.stderr)
 
     report["bucket1"] = sorted(bucket1_rows, key=lambda r: -r["type"].frequency)
     report["bucket2"] = sorted(bucket2, key=lambda r: -r["type"].frequency)
     report["bucket3_single"] = sorted(bucket3_single, key=lambda r: (r["rule"], -r["type"].frequency))
     report["bucket3_fallback"] = sorted(bucket3_fallback, key=lambda r: -r["type"].frequency)
+    report["known_missing_fst"] = sorted(known_missing_fst, key=lambda r: -r["type"].frequency)
     report["elapsed"] = time.time() - t_start
     return report
 
 
 # ── XLSX output ──
 #
-# Konvention für alle drei Sheets: kurzer Kontext-Ausschnitt statt ganzer
-# Sätze (example_snippet), genau ein Übersetzungshinweis statt einer Liste,
-# nur ein YouTube-Link, und am Ende leere, farblich abgesetzte
-# "Glabbis:"-Spalten zum manuellen Ausfüllen.
+# Alle Spalten-Header/Kategorien sind Englisch (Konvention aus
+# delta_review.py — Glabbis' Review-Workflow ist Englisch, nur
+# Code-Kommentare bleiben Deutsch). Kurzer Kontext-Ausschnitt statt
+# ganzer Sätze (example_snippet), genau ein Übersetzungshinweis statt
+# einer Liste, nur ein YouTube-Link, und am Ende leere, farblich
+# abgesetzte "Glabbis:"-Spalten zum manuellen Ausfüllen.
 
 def write_report(report: dict, path: Path):
     wb = openpyxl.Workbook()
 
     ws1 = wb.active
-    ws1.title = "Eigennamen-Neue Wörter"
-    headers1 = ["Form", "Freq", "Signal", "Übersetzung",
-                "Nächste Dict-Form", "Kontext",
-                "Glabbis: Lemma", "Glabbis: Kommentar", "YouTube"]
+    ws1.title = "Proper Names-New Words"
+    headers1 = ["Form", "Freq", "Signal", "Translation",
+                "Nearest Dict Form", "Context",
+                "Glabbis: Lemma", "Glabbis: Comment", "YouTube"]
     for ci, h in enumerate(headers1, 1):
         ws1.cell(row=1, column=ci, value=h)
     _style_header(ws1, len(headers1), input_cols=(7, 8))
@@ -324,7 +346,7 @@ def write_report(report: dict, path: Path):
         ws1.cell(row=ri, column=6,
                  value=highlight_form_in_context(td.example_snippet(), td.form))
         ws1.cell(row=ri, column=9, value=td.top_links(1))
-        if "Eigenname" in row["signal"]:
+        if "Proper name" in row["signal"]:
             ws1.cell(row=ri, column=1).font = PROPER_FONT
     _style_body(ws1, n1, len(headers1))
     for col in (7, 8):
@@ -335,9 +357,9 @@ def write_report(report: dict, path: Path):
         ws1.column_dimensions[_col_letter(i)].width = w
 
     ws2 = wb.create_sheet("Typos")
-    headers2 = ["Form", "Freq", "Dict-Form", "Glosse deckt Übersetzung?",
-                "Glosse", "Kontext",
-                "Glabbis: Bestätigt?", "Glabbis: Kommentar", "YouTube"]
+    headers2 = ["Form", "Freq", "Dict Form", "Gloss matches translation?",
+                "Gloss", "Context",
+                "Glabbis: Confirmed?", "Glabbis: Comment", "YouTube"]
     for ci, h in enumerate(headers2, 1):
         ws2.cell(row=1, column=ci, value=h)
     _style_header(ws2, len(headers2), input_cols=(7, 8))
@@ -362,9 +384,9 @@ def write_report(report: dict, path: Path):
     for i, w in enumerate([18, 7, 24, 20, 30, 42, 16, 26, 26], 1):
         ws2.column_dimensions[_col_letter(i)].width = w
 
-    ws3 = wb.create_sheet("Phonologische Fehlerklassen")
-    headers3 = ["Form", "Freq", "Ortho-Regel (FST)", "Dict-Form/Lemma", "Kontext",
-                "Glabbis: Kommentar", "YouTube"]
+    ws3 = wb.create_sheet("Phonological Error Classes")
+    headers3 = ["Form", "Freq", "Ortho Rule (FST)", "Dict Form-Lemma", "Context",
+                "Glabbis: Comment", "YouTube"]
     for ci, h in enumerate(headers3, 1):
         ws3.cell(row=1, column=ci, value=h)
     _style_header(ws3, len(headers3), input_cols=(6,))
@@ -377,7 +399,7 @@ def write_report(report: dict, path: Path):
         if not items:
             continue
         ws3.cell(row=ri, column=1,
-                 value=f"▸ {label} ({len(items)} Formen)")
+                 value=f"▸ {label} ({len(items)} forms)")
         for col in range(2, len(headers3) + 1):
             ws3.cell(row=ri, column=col, value="")
         ws3.merge_cells(start_row=ri, start_column=1, end_row=ri, end_column=len(headers3))
@@ -395,7 +417,7 @@ def write_report(report: dict, path: Path):
 
     if report["bucket3_fallback"]:
         ws3.cell(row=ri, column=1,
-                 value=f"▸ Ungeklärt / Cluster-Fallback ({len(report['bucket3_fallback'])} Formen)")
+                 value=f"▸ Unresolved / Cluster Fallback ({len(report['bucket3_fallback'])} forms)")
         for col in range(2, len(headers3) + 1):
             ws3.cell(row=ri, column=col, value="")
         ws3.merge_cells(start_row=ri, start_column=1, end_row=ri, end_column=len(headers3))
@@ -421,6 +443,33 @@ def write_report(report: dict, path: Path):
     for i, w in enumerate([18, 7, 30, 24, 42, 26, 26], 1):
         ws3.column_dimensions[_col_letter(i)].width = w
 
+    # Nicht Teil der 3 inhaltlichen Kategorien: Formen, die exakt so im
+    # rohen Twanksta-JSON stehen, aber nicht in base.fst/lenient.fst/den
+    # Ortho-Regeln kompiliert sind (typ. "↑"-Verweiseinträge, die
+    # gen_lexc.py überspringt). Kein neues Wort, kein Fehler — ein
+    # FST-Build-Lücke. Eigenes Sheet, damit es Bucket 1 nicht verunreinigt.
+    ws4 = wb.create_sheet("Known, Missing from FST")
+    headers4 = ["Form", "Freq", "Dict Lemma", "Context",
+                "Glabbis: Comment", "YouTube"]
+    for ci, h in enumerate(headers4, 1):
+        ws4.cell(row=1, column=ci, value=h)
+    _style_header(ws4, len(headers4), input_cols=(5,))
+    n4 = len(report["known_missing_fst"])
+    for ri4, row in enumerate(report["known_missing_fst"], 2):
+        td = row["type"]
+        ws4.cell(row=ri4, column=1, value=td.form)
+        ws4.cell(row=ri4, column=2, value=td.frequency)
+        ws4.cell(row=ri4, column=3, value=row["dict_lemma"])
+        ws4.cell(row=ri4, column=4,
+                 value=highlight_form_in_context(td.example_snippet(), td.form))
+        ws4.cell(row=ri4, column=6, value=td.top_links(1))
+    _style_body(ws4, n4, len(headers4))
+    style_input_column(ws4, 5, n4)
+    ws4.auto_filter.ref = f"A1:{_col_letter(len(headers4))}{n4 + 1}"
+    ws4.freeze_panes = "A2"
+    for i, w in enumerate([18, 7, 22, 42, 30, 26], 1):
+        ws4.column_dimensions[_col_letter(i)].width = w
+
     path.parent.mkdir(parents=True, exist_ok=True)
     wb.save(path)
     print(f"  📄 {path}", file=sys.stderr)
@@ -437,10 +486,11 @@ def main():
     print(f"  Precondition:            {'PASS' if r['precondition']['all_pass'] else 'FAIL'}", file=sys.stderr)
     print(f"  Types total:             {r['n_types_total']}", file=sys.stderr)
     print(f"  Exact hits (base.fst):   {r['n_exact_hits']}", file=sys.stderr)
-    print(f"  Bucket 3 (1 Regel):      {r['n_bucket3_single']}", file=sys.stderr)
-    print(f"  Bucket 3 (Fallback):     {r['n_bucket3_fallback']}", file=sys.stderr)
-    print(f"  Bucket 2 (Typos):        {r['n_bucket2']}", file=sys.stderr)
-    print(f"  Bucket 1 (Eigenn./neu):  {r['n_bucket1']}", file=sys.stderr)
+    print(f"  Bucket 3 (1 rule):       {r['n_bucket3_single']}", file=sys.stderr)
+    print(f"  Bucket 3 (fallback):     {r['n_bucket3_fallback']}", file=sys.stderr)
+    print(f"  Bucket 2 (typos):        {r['n_bucket2']}", file=sys.stderr)
+    print(f"  Bucket 1 (proper/new):   {r['n_bucket1']}", file=sys.stderr)
+    print(f"  Known, missing FST:      {r['n_known_missing_fst']}", file=sys.stderr)
     print(f"  Elapsed:                 {r['elapsed']:.1f}s", file=sys.stderr)
 
     rule_counts = defaultdict(int)
@@ -459,6 +509,7 @@ def main():
         "n_bucket2_typos": r["n_bucket2"],
         "n_bucket3_ortho_single_rule": r["n_bucket3_single"],
         "n_bucket3_cluster_fallback": r["n_bucket3_fallback"],
+        "n_known_missing_fst": r["n_known_missing_fst"],
         "elapsed_seconds": round(r["elapsed"], 1),
         "output": str(OUT_PATH),
     }
