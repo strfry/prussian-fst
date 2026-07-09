@@ -16,6 +16,10 @@ Beispiele:
   python3 fst/scripts/cg3_pipeline.py --no-disamb        # roher CG-Input
   python3 fst/scripts/cg3_pipeline.py --deps --limit 20  # Stream mit R:label:ID
   echo "Labban dēinan!" | python3 fst/scripts/cg3_pipeline.py --text - --conllu
+  # --conllu --trace: zusätzlich Regel-Provenienz in MISC —
+  # Rule=<name,…> (benannte Grammatikregeln laut --trace) und
+  # AgrParent=<id> (Kongruenz-Ziel der agr-head-Regeln, Lauf bis
+  # SECTION dep-tree).  Signatur fürs MCP-Frontend (fsg_check).
 """
 
 import argparse
@@ -215,15 +219,33 @@ def emit_cg_stream(sentences: list[dict], analyses: dict) -> str:
     return "\n".join(out) + "\n"
 
 
-def run_vislcg3(cg_input: str, grammar: Path, trace: bool = False) -> str:
+def run_vislcg3(cg_input: str, grammar: Path, trace: bool = False,
+                sections: int | None = None) -> str:
     cmd = ["vislcg3", "-g", str(grammar), "--unsafe"]
     if trace:
         cmd.append("--trace")
+    if sections is not None:
+        cmd += ["--sections", str(sections)]
     proc = subprocess.run(cmd, input=cg_input, capture_output=True,
                           text=True, check=True)
     if proc.stderr.strip():
         print(proc.stderr, file=sys.stderr)
     return proc.stdout
+
+
+def sections_before(grammar: Path, name: str = "dep-tree") -> int | None:
+    """Ordinal der letzten Sektion VOR der benannten Sektion (für
+    --sections): Cohort-Parents bis dahin stammen allein aus den
+    agr-head-Regeln (BEFORE-SECTIONS + Refresh), nicht aus der
+    Baumschicht."""
+    n = 0
+    for line in grammar.read_text(encoding="utf-8").splitlines():
+        m = re.match(r"SECTION(?:\s+(\S+)\s*;?)?\s*$", line.strip())
+        if m:
+            if m.group(1) == name:
+                return n
+            n += 1
+    return None
 
 
 # ── Statistik ──
@@ -234,35 +256,48 @@ def run_vislcg3(cg_input: str, grammar: Path, trace: bool = False) -> str:
 DEP_RE = re.compile(r"#(\d+)->(\d+)$")
 REL_RE = re.compile(r"R:([A-Za-z_]+):(\d+)$")
 RELID_RE = re.compile(r"ID:(\d+)$")
+# --trace-Tags: TYPE[(param)]:ZEILE[:NAME] — z. B. "SELECT:573",
+# "ADDRELATION(nsubj):108", "SELECT:305:ka-complementizer".
+TRACE_RE = re.compile(r"([A-Z]+)(\([^)]*\))?:(\d+)(?::(\S+))?$")
 HIDDEN_TAGS = ("REMOVE:", "SELECT:", "ADD:", "MAP:", "SETPARENT:",
-               "ADDRELATION:", "#", "ID:", "R:", "@")
+               "ADDRELATION:", "ADDRELATION(", "#", "ID:", "R:", "@")
 
 
 def parse_cg_stream(stream: str) -> list[list[dict]]:
     """CG3-Stream → Liste von Cohorts:
-    {form, readings:[{lemma,tags}], dep:(self,parent)|None, rid, rels}."""
+    {form, readings:[{lemma,tags}], dep:(self,parent)|None, rid, rels,
+     rules}.  rules: Namen benannter Grammatikregeln (KEYWORD:name),
+    die den Cohort laut --trace berührt haben — auch auf entfernten
+    (";"-)Lesarten, in Feuer-Reihenfolge, dedupliziert."""
     cohorts = []
     cur = None
     for line in stream.splitlines():
         if line.startswith('"<'):
             cur = {"form": line[2:line.rfind('>"')], "readings": [],
-                   "dep": None, "rid": None, "rels": []}
+                   "dep": None, "rid": None, "rels": [], "rules": []}
             cohorts.append(cur)
-        elif line.startswith("\t") and cur is not None:
-            m = re.match(r'\t"(.*)" (.*)$', line)
+        elif line.startswith(("\t", ";\t")) and cur is not None:
+            removed = line.startswith(";")
+            m = re.match(r';?\t"(.*)" (.*)$', line)
             if m:
                 raw = m.group(2).split()
                 for t in raw:
                     if md := DEP_RE.match(t):
-                        cur["dep"] = (int(md.group(1)), int(md.group(2)))
+                        if not removed:
+                            cur["dep"] = (int(md.group(1)), int(md.group(2)))
                     elif mi := RELID_RE.match(t):
-                        cur["rid"] = int(mi.group(1))
+                        if not removed:
+                            cur["rid"] = int(mi.group(1))
                     elif mr := REL_RE.match(t):
                         rel = (mr.group(1), int(mr.group(2)))
-                        if rel not in cur["rels"]:
+                        if not removed and rel not in cur["rels"]:
                             cur["rels"].append(rel)
-                tags = [t for t in raw if not t.startswith(HIDDEN_TAGS)]
-                cur["readings"].append({"lemma": m.group(1), "tags": tags})
+                    elif (mt := TRACE_RE.match(t)) and mt.group(4):
+                        if mt.group(4) not in cur["rules"]:
+                            cur["rules"].append(mt.group(4))
+                if not removed:
+                    tags = [t for t in raw if not t.startswith(HIDDEN_TAGS)]
+                    cur["readings"].append({"lemma": m.group(1), "tags": tags})
     return cohorts
 
 
@@ -478,7 +513,9 @@ def main():
                     help="Label-Phase (dependency.cg3) auf den Stream anwenden")
     ap.add_argument("--conllu", action="store_true",
                     help="CoNLL-U ausgeben (impliziert --deps)")
-    ap.add_argument("--trace", action="store_true", help="vislcg3 --trace")
+    ap.add_argument("--trace", action="store_true",
+                    help="vislcg3 --trace; mit --conllu: Regel-Provenienz "
+                         "(Rule=/AgrParent=) in MISC")
     ap.add_argument("--stats", action="store_true",
                     help="nur Kennzahlen (vorher/nachher) auf stdout")
     ap.add_argument("--detect-errors", action="store_true",
@@ -490,7 +527,16 @@ def main():
 
     if args.text is not None:
         text = sys.stdin.read() if args.text == "-" else args.text
-        sentences = [{"text": text, "tokens": tokenize(text), "frequency": 1}]
+        # An Satzinterpunktion trennen — jeder Satz wird downstream ein
+        # eigener CoNLL-U-Block (wie load_markdown_sentences).
+        sentences = []
+        for i, sent in enumerate(re.split(r"(?<=[.!?])\s+", text.strip()), 1):
+            toks = tokenize(sent)
+            if toks:
+                sentences.append({"text": sent, "tokens": toks,
+                                  "frequency": 1, "sent_id": f"text-{i}"})
+        if not sentences:
+            sys.exit("Kein analysierbarer Text.")
     elif args.corpus_md:
         sentences = [s for d in args.corpus_md for s in load_markdown_sentences(d)]
         if args.limit:
@@ -515,6 +561,21 @@ def main():
     if args.conllu:
         from export_conllu import sentence_block
         cohorts = parse_cg_stream(output)
+        if args.trace:
+            # AgrParent-Provenienz: Zweitlauf, der VOR der Baumschicht
+            # (SECTION dep-tree) abbricht — Parents stammen dort allein
+            # aus den agr-head-Regeln.  Der Ziel-Index wandert als
+            # AgrParent=… nach MISC (export_conllu.token_line).
+            n_pre = sections_before(args.grammar)
+            if n_pre:
+                pre = parse_cg_stream(
+                    run_vislcg3(cg_input, args.grammar, sections=n_pre))
+                assert len(pre) == len(cohorts), \
+                    f"Cohort-Zählung Vorlauf: {len(pre)}/{len(cohorts)}"
+                for c, p in zip(cohorts, pre):
+                    d = p.get("dep")
+                    if d and d[1] not in (0, d[0]):
+                        c["agr_dep"] = d
         blocks = []
         idx = 0
         for s in sentences:

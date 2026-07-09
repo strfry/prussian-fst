@@ -71,3 +71,26 @@ Neben POS/Kasus/Numerus/Genus/Tempus/Person:
 Präpositionsrektion als JSON sowie Best-Effort-Verbvalenz
 (nur die ~140 im Wörterbuch annotierten Verben; unpersönliche
 Verben sind in Twanksta nicht kodiert).
+
+## FSG/CG-Check (CoNLL-U mit Regel-Provenienz)
+
+Der Einzeltext-Modus der Pipeline liefert das Antwortformat für das
+`fsg_check`-MCP-Tool (`prussian-mcp`): CoNLL-U, ein Block pro Satz.
+
+```bash
+echo "Labban dēinan!" | python3 fst/scripts/cg3_pipeline.py --text - --conllu --trace
+```
+
+Mit `--trace` wandert Regel-Provenienz nach MISC:
+
+- `Rule=<name,…>` — benannte Grammatikregeln (`KEYWORD:name` in
+  `disambiguator.cg3`), die den Cohort laut `vislcg3 --trace` berührt
+  haben (auch auf entfernten Lesarten). Eine Regel sichtbar machen =
+  ihr in der Grammatik einen `:namen` geben — kein Zwillingsregel-Patch
+  nötig. Benannt sind bisher u. a. `agr-head`, `ka-complementizer`,
+  `gen-negationis`, `steisan-periphrase`, `r6-di-impersonal`,
+  `r7-pred-participle`, `r8-greeting-adj`.
+- `AgrParent=<id>` — echtes Kongruenz-Ziel der `agr-head`-Regeln
+  (`SETPARENT … BARRIER AgrBarrier`), ermittelt über einen Zweitlauf,
+  der vor der Baumschicht (`SECTION dep-tree`) abbricht — bevor
+  SECTION 8 den Parent ggf. überschreibt (Koordination).

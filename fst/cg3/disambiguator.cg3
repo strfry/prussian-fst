@@ -152,7 +152,11 @@ SET ArgRole = XSubj OR XObj OR XIObj OR XGObj ;
 # (generated-agreement.cg3) für die Merkmals-Abstimmung genutzt.
 
 BEFORE-SECTIONS
-SETPARENT CongrMod TO (1* NGHead BARRIER AgrBarrier) ;
+# Benannte Regeln (KEYWORD:name) tauchen im --trace-Output als
+# TYPE:ZEILE:NAME auf; cg3_pipeline.py --conllu --trace spiegelt die
+# Namen als Rule=… nach MISC (Regel-Provenienz fürs Frontend).
+# Neue Regeln sichtbar machen = einfach einen :namen anhängen.
+SETPARENT:agr-head CongrMod TO (1* NGHead BARRIER AgrBarrier) ;
 
 
 # ========================================== #
@@ -267,7 +271,7 @@ SECTION
 
 # Guard: nur echte Koordination (Cnj MIT linkem Konjunkt) ausnehmen —
 # nach Diskurs-Konnektor "Be …" ist -1 zwar Cnj, aber kein Konjunkt.
-SETPARENT CongrMod - XPred (NEGATE -1C Cnj LINK -1 CongrMod)
+SETPARENT:agr-head CongrMod - XPred (NEGATE -1C Cnj LINK -1 CongrMod)
     TO (1* NGHead BARRIER AgrBarrier) ;
 
 
@@ -298,14 +302,14 @@ SECTION
 
 # Komplementierer-Kontext: nächstes finites Verb links ist Verbum
 # dicendi UND rechts folgt eine eigene Klausel → SCnj (Pronomen weg).
-SELECT (SCnj) IF (0 SCnj)
+SELECT:ka-complementizer (SCnj) IF (0 SCnj)
     (-1*C FiniteVerb BARRIER ClauseBoundary LINK 0 SayVerb)
     (1* FiniteVerb BARRIER RightCB) ;
 # Sonst ist „ka" das Pronomen: SCnj-Lesart entfernen (kein Verbum
 # dicendi links oder keine Folgeklausel rechts).
-REMOVE (SCnj) IF (0 Pron)
+REMOVE:ka-pronoun (SCnj) IF (0 Pron)
     (NEGATE -1*C FiniteVerb BARRIER ClauseBoundary LINK 0 SayVerb) ;
-REMOVE (SCnj) IF (0 Pron)
+REMOVE:ka-pronoun (SCnj) IF (0 Pron)
     (NEGATE 1* FiniteVerb BARRIER RightCB) ;
 
 
@@ -341,13 +345,13 @@ SELECT (N) IF (0 Adj)
 # (Grüße "kaīls!", "kaīls wisēimans!").
 # Der N-Kopf-Scan stoppt an AgrBarrier — ein N jenseits einer Klauselgrenze
 # oder eines finiten Verbs zählt nicht.
-REMOVE SAFE (Adj) IF (0 IJ)
+REMOVE:r8-greeting-adj SAFE (Adj) IF (0 IJ)
     (NEGATE 1* N BARRIER AgrBarrier)
     (NEGATE -1*C Copula BARRIER ClauseBoundary) ;
 
 # R6 — di-Impersonal (syntax_rules §15): di direkt nach finitem Verb
 # ist Subjektersatz → Nominativ ("bilāi di", "mēri di").
-SELECT (Nom) IF (0 Di) (-1C FiniteVerb) ;
+SELECT:r6-di-impersonal (Nom) IF (0 Di) (-1C FiniteVerb) ;
 
 # R3 — pēr: Partikel („zu/allzu", vor Adj/Adv) vs. Präposition (vor Akk-NG).
 SELECT (Prp) IF (0 Pcl) (0 Prp)
@@ -357,11 +361,11 @@ SELECT (Pcl) IF (0 Prp) (0 Pcl) (1C AdjAdv) ;
 # R7 — Prädikatives Partizip direkt nach Auxiliar (§11–§14, periphrastische
 # Tempora) steht im Nominativ: oblique Lesarten der vollen Partizip-
 # Deklination entfernen; Numerus vom unmittelbar davorstehenden Subjekt.
-REMOVE SAFE (Akk) IF (0C Part) (-1C Aux) ;
-REMOVE SAFE (Gen) IF (0C Part) (-1C Aux) ;
-REMOVE SAFE (Dat) IF (0C Part) (-1C Aux) ;
-REMOVE SAFE (Pl) IF (0C Part) (-1C Aux) (-2C NGHead + Sg) ;
-REMOVE SAFE (Sg) IF (0C Part) (-1C Aux) (-2C NGHead + Pl) ;
+REMOVE:r7-pred-participle SAFE (Akk) IF (0C Part) (-1C Aux) ;
+REMOVE:r7-pred-participle SAFE (Gen) IF (0C Part) (-1C Aux) ;
+REMOVE:r7-pred-participle SAFE (Dat) IF (0C Part) (-1C Aux) ;
+REMOVE:r7-pred-participle SAFE (Pl) IF (0C Part) (-1C Aux) (-2C NGHead + Sg) ;
+REMOVE:r7-pred-participle SAFE (Sg) IF (0C Part) (-1C Aux) (-2C NGHead + Pl) ;
 
 
 # ==================================================== #
@@ -391,13 +395,13 @@ SECTION
 
 # Genitivus negationis: nach negiertem finiten Verb ist das Akk/Gen-
 # ambige Objekt Gen (produktive Regel; nicht innerhalb einer PP).
-SELECT (Gen) IF (0 Akk) (0 Gen)
+SELECT:gen-negationis (Gen) IF (0 Akk) (0 Gen)
     (-1* FiniteVerb BARRIER ClauseBoundary LINK -1 Ni)
     (NEGATE -1*C Prp BARRIER PPStop) ;
 
 # stēisan-Konstruktion (syntax_rules §4): nach eindeutigem Gen-Demonstrativum
 # ist die Gen-Lesart des Folgenominals die nachgestellte Genitiv-Periphrase.
-SELECT (Gen) IF (0 Gen) (0 Nominal - Gen) (-1C GenDet) ;
+SELECT:steisan-periphrase (Gen) IF (0 Gen) (0 Nominal - Gen) (-1C GenDet) ;
 
 # Postposition paggan regiert den VORANGESTELLTEN Genitiv: "stesse paggan",
 # "kasse paggan" — direkt vor Psp+GovGen ist die Gen-Lesart die richtige.
@@ -601,8 +605,11 @@ REMOVE (Refl) IF (0 NonReflV)
 # Kopula/Auxiliar am Prädikat (cop/aux).  Unangebundene Cohorts
 # (#n->n) gelten downstream als Wurzel.  Die Label vergibt
 # fst/cg3/dependency.cg3 (zweite Phase, ADDRELATION).
+# Der Sektionsname wird von cg3_pipeline.py benutzt, um für die
+# AgrParent-Provenienz einen Lauf VOR der Baumschicht abzuschneiden
+# (--sections): bis dahin tragen Cohorts nur den agr-head-Parent.
 
-SECTION
+SECTION dep-tree ;
 
 # ── Mapping: Klauselköpfe markieren ──
 # @pred: prädikatives Partizip direkt nach Auxiliar (R7-Adjazenz) …
@@ -634,13 +641,13 @@ SETPARENT Psp TO (-1* NGHead BARRIER PPStop) ;
 
 # ── Genitiv-Modifikatoren ──
 # Gen-Demonstrativum der stēisan-Periphrase → folgender Gen-Kopf (det)
-SETPARENT GenDet TO (1 NGHead + Gen) ;
+SETPARENT:steisan-det GenDet TO (1 NGHead + Gen) ;
 # pränominal: Gen-Modifikator → nächster Nicht-Gen-Kopf rechts (nmod);
 # NEGATE: nur echte GenDet-Periphrasen (stēisan + Gen-Kopf) ausnehmen
 SETPARENT NGHead + Gen - XPred (NEGATE 0 GenDet LINK 1 NGHead + Gen)
     TO (1* NGHead - Gen BARRIER AgrBarrier) ;
 # postnominal (stēisan-Periphrase): Gen-Kopf → Nominal links (nmod)
-SETPARENT NGHead + Gen - XPred (NOT p (*)) (-1C GenDet)
+SETPARENT:steisan-nmod NGHead + Gen - XPred (NOT p (*)) (-1C GenDet)
     TO (-2* NGHead - Gen BARRIER AgrBarrier) ;
 
 # ── Determinierer-Pronomen → direkt folgender Kopf (det) ──

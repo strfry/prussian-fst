@@ -64,24 +64,28 @@ def unique(values: set) -> str:
     return values.pop() if len(values) == 1 else "_"
 
 
+def rel_pos(i: int, dep: tuple[int, int] | None, n: int) -> int | None:
+    """Fensterlokale Dependenznummern (#self->par) → satzlokale
+    1-basierte Position, aufgelöst über die Differenz self−parent
+    (robust gegen satzinterne Fensterneustarts)."""
+    if not dep:
+        return None
+    self_n, par = dep
+    if par in (0, self_n):
+        return None
+    pos = (i + 1) - (self_n - par)
+    return pos if 1 <= pos <= n else None
+
+
 def resolve_deps(cohorts: list[dict]) -> list[tuple[int, str] | None]:
     """(HEAD, DEPREL) pro Cohort aus #n->m und R:label:ID.
 
-    Die Dependenznummern sind fensterlokal — der Parent wird über die
-    Differenz self−parent positionsrelativ aufgelöst (robust gegen
-    satzinterne Fensterneustarts).  Unangebundene Cohorts (#n->n):
-    das erste Wort wird root, der Rest hängt als punct/dep daran."""
+    Unangebundene Cohorts (#n->n): das erste Wort wird root, der Rest
+    hängt als punct/dep daran."""
     n = len(cohorts)
 
     def parent_pos(i: int) -> int | None:
-        d = cohorts[i].get("dep")
-        if not d:
-            return None
-        self_n, par = d
-        if par in (0, self_n):
-            return None
-        pos = (i + 1) - (self_n - par)
-        return pos if 1 <= pos <= n else None
+        return rel_pos(i, cohorts[i].get("dep"), n)
 
     # Wurzel: erstes unangebundenes Verb (Klauselkopf), sonst erstes
     # unangebundenes Wort (verblose Sätze), sonst Cohort 1.  Fenster
@@ -115,7 +119,8 @@ def resolve_deps(cohorts: list[dict]) -> list[tuple[int, str] | None]:
     return result
 
 
-def token_line(idx: int, cohort: dict, dep: tuple[int, str] | None = None) -> str:
+def token_line(idx: int, cohort: dict, dep: tuple[int, str] | None = None,
+               agr_parent: int | None = None) -> str:
     form = cohort["form"]
     readings = cohort["readings"]
     tags0 = readings[0]["tags"]
@@ -139,6 +144,13 @@ def token_line(idx: int, cohort: dict, dep: tuple[int, str] | None = None) -> st
         misc.append(f"Gov={gov.pop()}")
     if len(readings) > 1:
         misc.append(f"Ambig={len(readings)}")
+    # Regel-Provenienz (cg3_pipeline --conllu --trace): benannte
+    # Grammatikregeln, die den Cohort berührt haben, und das echte
+    # Kongruenz-Ziel der agr-head-Regeln (Lauf vor SECTION dep-tree).
+    if cohort.get("rules"):
+        misc.append("Rule=" + ",".join(cohort["rules"]))
+    if agr_parent is not None:
+        misc.append(f"AgrParent={agr_parent}")
     head, deprel = (str(dep[0]), dep[1]) if dep else ("_", "_")
     return "\t".join([str(idx), *cols, head, deprel, "_",
                       "|".join(misc) if misc else "_"])
@@ -156,8 +168,10 @@ def sentence_block(sent: dict, cohorts: list[dict],
     if source is not None:
         lines.append(f"# source = {source}")
     deps = resolve_deps(cohorts)
-    lines += [token_line(i, c, d)
-              for i, (c, d) in enumerate(zip(cohorts, deps), 1)]
+    agr = [rel_pos(i, c.get("agr_dep"), len(cohorts))
+           for i, c in enumerate(cohorts)]
+    lines += [token_line(i, c, d, a)
+              for i, (c, d, a) in enumerate(zip(cohorts, deps, agr), 1)]
     return "\n".join(lines)
 
 
