@@ -48,7 +48,7 @@ Sta ast mussan.	Sta	stas+Pron+Nom+Neut
 Ni izbilāi ezze karjaūsnan.	karjaūsnan	karjaūsnā+N+Sg+Akk+Fem
 # syntax_rules §1+§6c+§11: en→ēn dynamisch + Futur wīrst + Partizip
 As wīrst gūbuns en buttan.	buttan	buttan+N+Sg+Akk+Neut
-As wīrst gūbuns en buttan.	gūbuns	ēitwei+V+Part+Pret+Masc+Sg+Nom
+As wīrst gūbuns en buttan.	gūbuns	ēitwei+V+Part+Pret+Sg+Nom+Masc
 # Regel 4: be zwischen gleichkasigen Konstituenten ist Cnj (Doc-Beispiele)
 Rānkans be prusnans wīda.	be	be+Cnj
 Rānkans be prusnans wīda.	Rānkans	rānkā+N+Pl+Akk+Fem
@@ -82,7 +82,7 @@ Stesse paggan sta ast brendu.	paggan	paggan+Psp+GovGen
 Tenā gērdaui, bilāi di.	di	di+Pron+P3+Encl+Nom+Neut
 # syntax_rules §11: kurzes Neutrum-Partizip nach wīrst (korpusecht);
 # +Refl fällt weg — kein Reflexiv-Klitikon (si/sin) in der Klausel (SECTION 7b)
-Swāikstan wīrst pagaūwus ebwarītun.	pagaūwus	pagaūtun+V+Part+Pret+Neut+Sg+Nom
+Swāikstan wīrst pagaūwus ebwarītun.	pagaūwus	pagaūtun+V+Part+Pret+Sg+Nom+Neut
 # SECTION 7b: Reflexiv-Doublette — Klitikon „si" lizenziert +Refl …
 As interessitun si per stan.	interessitun	interessitun+V+Inf+Refl
 # … ohne Klitikon bleibt die nicht-reflexive Lesart

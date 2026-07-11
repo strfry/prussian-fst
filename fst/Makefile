@@ -20,9 +20,9 @@ LEXC_FILES := symbols.lexc root.lexc function_words.lexc proper_nouns.lexc prope
 
 LEXC_MERGED := build/lexc.merged
 
-.PHONY: all data gen clean cg3-sets cg3-check disambiguate conllu
+.PHONY: all data gen clean cg3-sets cg3-check disambiguate conllu hfstol
 
-all: build/base.fst build/lenient.fst
+all: build/base.hfstol build/lenient.hfstol
 
 data:
 	curl -fsSL "$(TWANKSTA_URL)" -o $(DATA_DIR)/twanksta_entries.json
@@ -39,6 +39,14 @@ $(LEXC_MERGED): $(LEXC_FILES) | build/
 build/base.fst: $(LEXC_MERGED) | build/
 	hfst-lexc -o $@ $(LEXC_MERGED)
 
+# Optimized-lookup transducer für pyhfst (invertiert: surface → analysis)
+# build/base.fst bildet analysis → surface ab, für Lookup brauchen wir
+# surface → analysis, also wird vor dem Format-Export invertiert.
+build/base.hfstol: build/base.fst
+	python3 -c "import hfst; tr = hfst.HfstInputStream('$<').read(); tr.invert(); hfst.HfstOutputStream(filename='$(basename $@)_inv.fst').write(tr);"
+	hfst-fst2fst -f optimized-lookup-unweighted -o $@ $(basename $@)_inv.fst
+	rm -f $(basename $@)_inv.fst
+
 # Korrektur-Layer: orthographische Varianten (Degemination, w-Prothese,
 # i-Synkope …) auf die kanonische Oberfläche komponiert. Nur als
 # Fallback-Analyzer für Formen benutzen, die base.fst nicht kennt.
@@ -48,6 +56,11 @@ build/norm.hfst: norm.regex | build/
 build/lenient.fst: build/base.fst build/norm.hfst
 	hfst-compose -1 build/base.fst -2 build/norm.hfst | hfst-minimize -o $@
 
+build/lenient.hfstol: build/lenient.fst
+	python3 -c "import hfst; tr = hfst.HfstInputStream('$<').read(); tr.invert(); hfst.HfstOutputStream(filename='$(basename $@)_inv.fst').write(tr);"
+	hfst-fst2fst -f optimized-lookup-unweighted -o $@ $(basename $@)_inv.fst
+	rm -f $(basename $@)_inv.fst
+
 cg3-sets:
 	python3 scripts/gen_cg3_sets.py
 
@@ -56,18 +69,18 @@ cg3-check: cg3-sets
 	vislcg3 --grammar-only -g cg3/dependency.cg3
 	vislcg3 --grammar-only -g cg3/validator.cg3
 
-disambiguate: build/base.fst cg3-sets
+disambiguate: build/base.hfstol cg3-sets
 	python3 scripts/cg3_pipeline.py --stats
 
-conllu: build/base.fst build/lenient.fst cg3-sets
+conllu: build/base.hfstol build/lenient.hfstol cg3-sets
 	python3 scripts/export_conllu.py --out ../data/prussian_silver.conllu
 
-detect-errors: build/base.fst cg3-sets
+detect-errors: build/base.hfstol cg3-sets
 	python3 scripts/cg3_pipeline.py --detect-errors --limit 200
 
 # Bulk-Zero-False-Alarm-Regression: Validator über die attestierten
 # Korpora — Flags auf attestiertem Text sind (fast immer) Fehlalarme.
-validate-corpus: build/base.fst cg3-sets
+validate-corpus: build/base.hfstol cg3-sets
 	python3 scripts/cg3_pipeline.py --validate --validate-summary
 	python3 scripts/cg3_pipeline.py --validate --validate-summary \
 	    --corpus-md ../../prussian-corpus/parsed/awizi_articles \

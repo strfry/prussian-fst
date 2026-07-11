@@ -17,12 +17,12 @@ sys.path.insert(0, str(REPO / "fst/scripts"))
 import cg3_pipeline as pipe  # noqa: E402
 import export_conllu as ec  # noqa: E402
 
-FST = REPO / "fst/build/base.fst"
+FST = REPO / "fst/build/base.hfstol"
 GRAMMAR = REPO / "fst/cg3/disambiguator.cg3"
 
 pytestmark = pytest.mark.skipif(
     not (shutil.which("vislcg3") and FST.exists()),
-    reason="vislcg3/base.fst nicht verfügbar",
+    reason="vislcg3/base.hfstol nicht verfügbar",
 )
 
 SENTENCES = [

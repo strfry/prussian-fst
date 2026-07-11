@@ -26,11 +26,11 @@ VAL_FIXTURES = Path(__file__).parent / "fixtures/cg3_validator_golden.tsv"
 GRAMMAR = REPO / "fst/cg3/disambiguator.cg3"
 DEP_GRAMMAR = REPO / "fst/cg3/dependency.cg3"
 VAL_GRAMMAR = REPO / "fst/cg3/validator.cg3"
-FST = REPO / "fst/build/base.fst"
+FST = REPO / "fst/build/base.hfstol"
 
 pytestmark = pytest.mark.skipif(
     not (shutil.which("vislcg3") and FST.exists()),
-    reason="vislcg3/base.fst nicht verfügbar",
+    reason="vislcg3/base.hfstol nicht verfügbar",
 )
 
 
