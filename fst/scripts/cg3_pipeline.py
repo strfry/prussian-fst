@@ -33,7 +33,7 @@ import json
 import re
 import subprocess
 import sys
-from collections import Counter, defaultdict
+from collections import Counter
 from pathlib import Path
 
 FST_DIR = Path(__file__).resolve().parents[1]
@@ -44,6 +44,8 @@ DEFAULT_LENIENT = FST_DIR / "build/lenient.fst"
 DEFAULT_GRAMMAR = FST_DIR / "cg3/disambiguator.cg3"
 DEFAULT_DEP_GRAMMAR = FST_DIR / "cg3/dependency.cg3"
 DEFAULT_VALIDATOR_GRAMMAR = FST_DIR / "cg3/validator.cg3"
+
+from fst_lookup import flookup_batch
 
 SKIP_VIDEOS = {"qLwBCWtMuH8"}  # wie delta_review.py
 
@@ -124,33 +126,6 @@ def load_markdown_sentences(dirpath: Path) -> list[dict]:
 
 
 # ── FST lookup ──
-
-def flookup_batch(forms: list[str], fst_path: Path) -> dict[str, list[tuple[str, list[str]]]]:
-    """Alle Formen einmal durch hfst-flookup; form → [(lemma, tags)]."""
-    if not forms:
-        return {}
-    proc = subprocess.run(
-        ["hfst-flookup", "-q", str(fst_path)],
-        input="\n".join(forms) + "\n",
-        capture_output=True, text=True, check=True,
-    )
-    analyses: dict[str, list[tuple[str, list[str]]]] = defaultdict(list)
-    for line in proc.stdout.splitlines():
-        if not line.strip():
-            continue
-        parts = line.split("\t")
-        if len(parts) < 2:
-            continue
-        form, analysis = parts[0], parts[1]
-        if analysis.endswith("+?"):
-            continue  # unbekannt
-        segs = analysis.split("+")
-        lemma, tags = segs[0], segs[1:]
-        if not tags:
-            continue
-        analyses[form].append((lemma, tags))
-    return dict(analyses)
-
 
 def titlecase(t: str) -> str:
     return t[0].upper() + t[1:]

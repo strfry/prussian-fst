@@ -29,8 +29,8 @@ VAL_GRAMMAR = REPO / "fst/cg3/validator.cg3"
 FST = REPO / "fst/build/base.fst"
 
 pytestmark = pytest.mark.skipif(
-    not (shutil.which("vislcg3") and shutil.which("hfst-flookup") and FST.exists()),
-    reason="vislcg3/hfst-flookup/base.fst nicht verfügbar",
+    not (shutil.which("vislcg3") and FST.exists()),
+    reason="vislcg3/base.fst nicht verfügbar",
 )
 
 

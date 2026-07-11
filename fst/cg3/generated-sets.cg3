@@ -2,5 +2,3 @@
 # Source: fst/valence.json + kuratierte Gen-Verben.
 
 LIST GenVerb = "bijātun" "iĺgitun si" "klausītun" "kwaitītun" "kīnintun si" ;
-LIST DatVerb = "aušaūtun" "dātun" "emprīkibilītwei" "engnessenjan segītun" "majātwei" "mātwei" "paklustwei" "palīkitun si" "preijustwei" "prēitarītwei" "trintautwei" ;
-LIST AkkVerb = "audribbintun" "auwīngtun" "aušaūtun" "aušaūtun si" "bilītun" "bilītun si" "dalljautun" "ebwīlktun" "ensegītun" "enīmtun" "erbilītun" "etgērdautun si" "izmakīntun si" "kōntaktitwei" "minītun" "nadirītun" "padīngautun" "parkautwei" "prabilītun" "preizentlitun" ;
