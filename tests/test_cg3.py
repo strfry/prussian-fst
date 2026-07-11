@@ -22,8 +22,10 @@ from export_conllu import resolve_deps  # noqa: E402
 
 FIXTURES = Path(__file__).parent / "fixtures/cg3_golden.tsv"
 DEP_FIXTURES = Path(__file__).parent / "fixtures/cg3_dep_golden.tsv"
+VAL_FIXTURES = Path(__file__).parent / "fixtures/cg3_validator_golden.tsv"
 GRAMMAR = REPO / "fst/cg3/disambiguator.cg3"
 DEP_GRAMMAR = REPO / "fst/cg3/dependency.cg3"
+VAL_GRAMMAR = REPO / "fst/cg3/validator.cg3"
 FST = REPO / "fst/build/base.fst"
 
 pytestmark = pytest.mark.skipif(
@@ -129,10 +131,76 @@ def test_dep_golden(disambiguated, sent, token, head, deprel):
         f"erhalten {got_head_form}:{got_label}")
 
 
-@pytest.mark.parametrize("grammar", [GRAMMAR, DEP_GRAMMAR],
-                         ids=["disambiguator", "dependency"])
+@pytest.mark.parametrize("grammar", [GRAMMAR, DEP_GRAMMAR, VAL_GRAMMAR],
+                         ids=["disambiguator", "dependency", "validator"])
 def test_grammar_syntax(grammar):
     r = subprocess.run(["vislcg3", "--grammar-only", "-g", str(grammar)],
                        capture_output=True, text=True)
     assert r.returncode == 0, r.stderr
     assert "Error" not in r.stderr, r.stderr
+
+
+# ── Validator (Phase 3): &-Fehler-Tags auf korrumpierten Sätzen ──
+
+def load_validator_golden() -> tuple[list[str], list[tuple[str, str, set[str]]]]:
+    """(Satzliste, [(Satz, Token, erwartete &-Tag-Menge; leer = fehlerfrei)])."""
+    sentences: list[str] = []
+    cases = []
+    for line in VAL_FIXTURES.read_text(encoding="utf-8").splitlines():
+        if not line.strip() or line.startswith("#"):
+            continue
+        sent, token, expected = line.split("\t")
+        if sent not in sentences:
+            sentences.append(sent)
+        tags = set() if expected == "-" else set(expected.split("|"))
+        cases.append((sent, token, tags))
+    return sentences, cases
+
+
+def validate_sentences(sentences: list[str]) -> dict[str, list[dict]]:
+    """Alle Validator-Sätze in EINEM Lauf durch die drei Grammatik-
+    Pässe (Disambiguierung + Dependenz + Validator); Satz → Cohorts."""
+    sent_objs = [{"text": s, "tokens": pipe.tokenize(s), "frequency": 1}
+                 for s in sentences]
+    types = {t for so in sent_objs for t in so["tokens"] if t[0].isalpha()}
+    analyses = pipe.lookup_types(types, FST)
+    cg_input = pipe.emit_cg_stream(sent_objs, analyses)
+    output = pipe.run_vislcg3(cg_input, GRAMMAR)
+    output = pipe.run_vislcg3(output, DEP_GRAMMAR)
+    output = pipe.run_vislcg3(output, VAL_GRAMMAR)
+    cohorts = pipe.parse_cg_stream(output)
+
+    result: dict[str, list[dict]] = {}
+    i = 0
+    for so in sent_objs:
+        n = len(so["tokens"])
+        if so["tokens"][-1] not in pipe.SENT_PUNCT:
+            n += 1
+        result[so["text"]] = cohorts[i:i + n]
+        i += n
+    assert i == len(cohorts)
+    return result
+
+
+@pytest.fixture(scope="module")
+def validated():
+    sentences, _ = load_validator_golden()
+    return validate_sentences(sentences)
+
+
+_, VAL_CASES = load_validator_golden()
+
+
+@pytest.mark.parametrize("sent,token,expected", VAL_CASES,
+                         ids=[f"{s[:20]}…{t}" for s, t, _ in VAL_CASES])
+def test_validator_golden(validated, sent, token, expected):
+    cohorts = validated[sent]
+    got = next((set(c["errtags"]) for c in cohorts if c["form"] == token), None)
+    assert got is not None, f"Token {token!r} nicht im Output gefunden"
+    assert got == expected, (
+        f"{sent!r} / {token}: erwartet {sorted(expected)}, "
+        f"erhalten {sorted(got)}")
+    if not expected:
+        # Fehlalarm-Test: der GANZE Satz muss fehlerfrei sein
+        flags = {c["form"]: c["errtags"] for c in cohorts if c["errtags"]}
+        assert not flags, f"{sent!r}: unerwartete Fehler-Tags {flags}"

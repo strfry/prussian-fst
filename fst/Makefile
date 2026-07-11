@@ -53,6 +53,8 @@ cg3-sets:
 
 cg3-check: cg3-sets
 	vislcg3 --grammar-only -g cg3/disambiguator.cg3
+	vislcg3 --grammar-only -g cg3/dependency.cg3
+	vislcg3 --grammar-only -g cg3/validator.cg3
 
 disambiguate: build/base.fst cg3-sets
 	python3 scripts/cg3_pipeline.py --stats
@@ -62,6 +64,14 @@ conllu: build/base.fst build/lenient.fst cg3-sets
 
 detect-errors: build/base.fst cg3-sets
 	python3 scripts/cg3_pipeline.py --detect-errors --limit 200
+
+# Bulk-Zero-False-Alarm-Regression: Validator über die attestierten
+# Korpora — Flags auf attestiertem Text sind (fast immer) Fehlalarme.
+validate-corpus: build/base.fst cg3-sets
+	python3 scripts/cg3_pipeline.py --validate --validate-summary
+	python3 scripts/cg3_pipeline.py --validate --validate-summary \
+	    --corpus-md ../../prussian-corpus/parsed/awizi_articles \
+	    --corpus-md ../../prussian-corpus/parsed/twanksta_articles
 
 clean:
 	rm -rf build

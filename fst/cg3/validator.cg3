@@ -1,0 +1,251 @@
+# ============================================== #
+# Altpreußischer Grammatik-Validator (Phase 3)   #
+# ============================================== #
+#
+# Läuft NACH disambiguator.cg3 + dependency.cg3 auf deren Output-
+# Stream (Divvun/GiellaLT-Muster: Prüfung getrennt von Disambiguierung).
+# Enthält AUSSCHLIESSLICH ADD-Regeln, die &-Fehler-Tags auf Lesarten
+# setzen — es wird nie eine Lesart entfernt.  Jede Regel ist benannt
+# (ADD:err-id), der Tag-Name ist identisch mit dem Regelnamen; die
+# Pipeline (cg3_pipeline.py --validate) sammelt die &-Tags ein und
+# baut daraus das dreiwertige Ergebnis (violations_found /
+# verified_in_coverage / out_of_coverage).
+#
+# Präzisionsstrategie: beide Seiten jeder Prüfung müssen careful-
+# eindeutig sein (0C/pC/cC) — bei Restambiguität schweigt die Regel.
+# „Kein Fehler-Tag" heißt daher NICHT „korrekt", sondern nur „keine
+# implementierte Regel hat gefeuert" (Coverage-Signal in der Pipeline).
+#
+# Kollaps-Grenze (Stufe 1): der Disambiguator arbeitet fast überall
+# mit REMOVE SAFE — die letzte (falsche) Lesart überlebt und ist hier
+# prüfbar.  Die SELECT-Kaskaden (v. a. SECTION 5, Agreement) können
+# fehlerhafte Cohorts stattdessen auf 0 Lesarten kollabieren lassen;
+# Kollaps meldet die Pipeline als out_of_coverage, nicht als Violation.
+# Stufe-2-Option: --sections-Vorlauf vor SECTION 5 oder SAFE-Varianten
+# der Agreement-SELECTs, um auch diese Fälle als Errtag zu sehen.
+#
+# Regelreferenz: prussian-grammar/syntax_rules.txt (§-Verweise)
+
+DELIMITERS = "<.>" "<!>" "<?>" ;
+
+# Die @-Tags aus Phase 1/2 (@SUBJ/@OBL/@pred/…) kommen als GEMAPPTE
+# Lesarten an — und auf gemappte Lesarten wendet vislcg3 keine
+# ADD-Regeln mehr an (Mapping-Schutz).  Der Validator braucht keine
+# Mapping-Semantik: ein ungenutztes Präfix macht die @-Tags hier zu
+# gewöhnlichen Tags, damit die &-ADDs greifen.
+MAPPING-PREFIX = § ;
+
+
+# ============= #
+# Tags und Sets #
+# ============= #
+
+LIST N = N ;
+LIST Adj = Adj ;
+LIST Pron = Pron ;
+LIST Num = Num ;
+LIST V = V ;
+LIST Part = Part ;
+LIST Prp = Prp ;
+LIST Psp = Psp ;
+LIST Inf = Inf ;
+LIST SCnj = SCnj ;
+LIST CLB = CLB ;
+LIST PUNCT = PUNCT ;
+LIST Unk = Unk ;
+
+# Zeitnomen: adverbiale Akkusative („wissan kērdan", „delli rēizans")
+# hängen im Baum als @OBJ am Verb — für die Objektkasus-Prüfungen
+# (V6/V7) sind sie systematische Fehlalarme.
+LIST TimeN = "dēinā" "dēināi" "kērdā" "rēizs" "mets" "mettan" "mēnss"
+             "sawaīti" "nakts" ;
+
+LIST Nom = Nom ;
+LIST Gen = Gen ;
+LIST Dat = Dat ;
+LIST Akk = Akk ;
+LIST Sg = Sg ;
+LIST Pl = Pl ;
+LIST Masc = Masc ;
+LIST Fem = Fem ;
+LIST Neut = Neut ;
+
+LIST GovAkk = GovAkk ;
+LIST GovDat = GovDat ;
+
+LIST P1 = P1 ;
+LIST P2 = P2 ;
+LIST Ni = "ni" ;
+LIST P1Pron = (Pron P1) ;
+LIST P2Pron = (Pron P2) ;
+LIST Copula = "būtwei" "pastātwei" ;
+LIST GenDet = ("stas" Gen) ;
+
+# Mapping-Tags aus disambiguator.cg3 (SECTION dep-tree / 9)
+LIST XPred = (@pred) ;
+LIST XSubj = (@SUBJ) ;
+LIST XObj = (@OBJ) ;
+
+# GenVerb: kuratierte Genitiv-Verben (valence.json)
+INCLUDE generated-sets.cg3 ;
+
+SET NGHead = N OR Pron ;
+SET FiniteVerb = V - Inf - Part ;
+SET Adposition = Prp OR Psp ;
+# Klausel-linke Scans (Guards): Stopp an Klauselgrenzen und finiten
+# Verben.  Copula ist ausgenommen, wo sie selbst das Suchziel ist.
+SET LeftStop = SCnj OR CLB OR PUNCT OR FiniteVerb ;
+SET RightStop = SCnj OR CLB OR PUNCT ;
+SET NonCopFin = FiniteVerb - Copula ;
+SET LeftStopNonCop = SCnj OR CLB OR PUNCT OR NonCopFin ;
+
+
+# ==================================================== #
+# SECTION — Fehlerdetektion (ADD-only, &-Tags)         #
+# ==================================================== #
+
+SECTION
+
+# ── V1 &prep-akk-dat — Rektion (§6b): rein Akk-regierende Präposition
+#    mit eindeutig dativischem Komplement.  Doppel-Rektierer (ēn/pa/
+#    pō/ezze) sind über NOT 0 GovDat ausgenommen; SECTION 1 des
+#    Disambiguators kann die letzte Dat-Lesart nicht entfernen (SAFE),
+#    die Evidenz überlebt also.  Primär über die Dependenz (Prp hängt
+#    als case-Kind am Nominal), positional als Fallback.
+#    Doppel-Präpositionen „prei/na en X" (Bulk-Regression): regiert
+#    die DIREKT vorangehende Präposition Dativ, ist der Dativ legitim.
+ADD:prep-akk-dat (&prep-akk-dat) NGHead IF (0C Dat)
+    (NEGATE -1 Prp + GovDat)
+    (cC Prp + GovAkk LINK NOT 0 GovDat) ;
+ADD:prep-akk-dat (&prep-akk-dat) NGHead IF (0C Dat)
+    (NOT 0 (&prep-akk-dat))
+    (-1C Prp + GovAkk LINK NOT 0 GovDat) ;
+
+# ── V2 &pp-nom — Invariante aus SECTION 1: innerhalb einer PP gibt
+#    es keinen Nominativ.  Eindeutig nominativisches Nomen mit
+#    Adpositions-Kind (bzw. direkt nach Präposition).  Nur N-Köpfe:
+#    Pronomen nach adverbialen Ordinal-PPs („en āntrai, tū …") sind
+#    keine PP-Komplemente.
+ADD:pp-nom (&pp-nom) N IF (0C Nom) (cC Adposition) ;
+ADD:pp-nom (&pp-nom) N IF (0C Nom) (NOT 0 (&pp-nom)) (-1C Prp) ;
+
+# ── V3–V5 &agr-adj-* — Kongruenz Attributiv-Adjektiv ↔ Kopf über die
+#    agr-head-Parent-Relation (BEFORE-SECTIONS; attributive Adjektive
+#    werden von der Baumschicht nicht umgehängt).  Prädikative sind
+#    über - XPred bzw. fehlenden NGHead-Parent ausgenommen (§9:
+#    Prädikativ-Neutrum ist dort legitim).  Merkmalsweise, damit die
+#    Meldung das verletzte Merkmal benennt.
+#    Guards gegen die drei systematischen Fehlalarm-Quellen der
+#    Bulk-Regression: (a) nur N-Köpfe — der agr-head-Scan landet
+#    sonst auf Pronomen („leītawiskan tū …"); (b) Gen-Köpfe sind
+#    agreement-transparent, ein nicht-Gen-Adjektiv vor Gen-Kopf ist
+#    kein Clash („prūsisks swāikstas dēiws"); (c) kein Kopula-Kontext
+#    links — Prädikative ohne @pred-Tag scannen sonst nach rechts auf
+#    fremde NPs („ast swarewīngi eraīnan minūtin …").
+ADD:agr-adj-case (&agr-adj-case) Adj - XPred IF (0C Nom)
+    (pC N LINK NOT 0 Nom LINK NOT 0 Gen)
+    (NEGATE -1* Copula BARRIER LeftStopNonCop) ;
+ADD:agr-adj-case (&agr-adj-case) Adj - XPred IF (0C Gen)
+    (pC N LINK NOT 0 Gen)
+    (NEGATE -1* Copula BARRIER LeftStopNonCop) ;
+ADD:agr-adj-case (&agr-adj-case) Adj - XPred IF (0C Dat)
+    (pC N LINK NOT 0 Dat LINK NOT 0 Gen)
+    (NEGATE -1* Copula BARRIER LeftStopNonCop) ;
+ADD:agr-adj-case (&agr-adj-case) Adj - XPred IF (0C Akk)
+    (pC N LINK NOT 0 Akk LINK NOT 0 Gen)
+    (NEGATE -1* Copula BARRIER LeftStopNonCop) ;
+
+ADD:agr-adj-num (&agr-adj-num) Adj - XPred IF (0C Sg)
+    (pC N LINK NOT 0 Sg LINK NOT 0 Gen)
+    (NEGATE -1* Copula BARRIER LeftStopNonCop) ;
+ADD:agr-adj-num (&agr-adj-num) Adj - XPred IF (0C Pl)
+    (pC N LINK NOT 0 Pl LINK NOT 0 Gen)
+    (NEGATE -1* Copula BARRIER LeftStopNonCop) ;
+
+ADD:agr-adj-gend (&agr-adj-gend) Adj - XPred IF (0C Masc)
+    (pC N LINK NOT 0 Masc LINK NOT 0 Gen)
+    (NEGATE -1* Copula BARRIER LeftStopNonCop) ;
+ADD:agr-adj-gend (&agr-adj-gend) Adj - XPred IF (0C Fem)
+    (pC N LINK NOT 0 Fem LINK NOT 0 Gen)
+    (NEGATE -1* Copula BARRIER LeftStopNonCop) ;
+ADD:agr-adj-gend (&agr-adj-gend) Adj - XPred IF (0C Neut)
+    (pC N LINK NOT 0 Neut LINK NOT 0 Gen)
+    (NEGATE -1* Copula BARRIER LeftStopNonCop) ;
+
+# ── V6 &pred-nom-akk — Prädikatsnomen unter Kopula muss Nom sein
+#    (§2).  Das Akk-Nominal bekommt kein @pred (das ADD verlangt Nom),
+#    hängt an der @fin-Kopula, und sein @OBJ überlebt REMOVE SAFE als
+#    letzte Lesart.  Rollenprädikate „per kunnegan" (§8) sind über den
+#    Adpositions-Guard ausgenommen.
+#    Guards (Bulk-Regression): der c-Adpositions-Test greift nicht,
+#    wenn die Präposition am Gen-Modifikator/Determinierer hängt
+#    („ezze saūlis warrin", „sen stans zmānins") → zusätzlich
+#    textueller Links-Scan.  Objekte eingebetteter Infinitive/
+#    Partizipien hängen im Baum am finiten Verb („ast etgaiwīntun
+#    sin") → kein Inf/Part zwischen Kopula und Nominal.
+#    Unk-Token zählen in den Scans wie Inf/Part (unbekannte Infinitive
+#    kommen im Korpus vor); Zeitnomen sind adverbiale Akkusative.
+ADD:pred-nom-akk (&pred-nom-akk) NGHead - TimeN IF (0C Akk)
+    (pC FiniteVerb + Copula) (NEGATE c Adposition)
+    (NEGATE -1* Adposition BARRIER LeftStop)
+    (NEGATE -1* Inf BARRIER LeftStop)
+    (NEGATE -1* Part BARRIER LeftStop)
+    (NEGATE -1* Unk BARRIER LeftStop)
+    (NEGATE 1* Inf BARRIER RightStop)
+    (NEGATE 1* Part BARRIER RightStop)
+    (NEGATE 1* Unk BARRIER RightStop) ;
+
+# ── V7 &genverb-akk — Genitiv-Verb mit eindeutig akkusativischem
+#    Objekt (§6a, kuratierte GenVerb-Liste).  Winzige Reichweite
+#    (5 Lemmata), dafür nahezu perfekte Präzision; die häufigen
+#    Gen.Pl|Akk.Sg-Synkretismen (-an) bleiben stumm.
+#    Guards wie bei V6: PP-Zugehörigkeit textuell, und kein Inf
+#    zwischen Verb und Nominal — „kwaitēi gardautun stan pūwjan"
+#    hängt stan am finiten kwaitēi, ist aber Objekt des Infinitivs.
+#    Weitere Guards (Bulk-Regression): hat das Verb ein Inf-Kind, ist
+#    das Nominal meist dessen Objekt („kwaitēi … etrātwei"); ein
+#    Dat-Geschwister zeigt den ditransitiven Wunsch-Rahmen („kwaitēi
+#    wisēimans wippjans"); Unk kann ein unbekannter Infinitiv sein.
+ADD:genverb-akk (&genverb-akk) NGHead + XObj - TimeN IF (0C Akk)
+    (pC FiniteVerb + GenVerb LINK NEGATE c Inf) (NEGATE c Adposition)
+    (NEGATE s NGHead + Dat) (NEGATE c NGHead + Dat)
+    (NEGATE -1* Adposition BARRIER LeftStop)
+    (NEGATE -1* Inf BARRIER LeftStop)
+    (NEGATE -1* Unk BARRIER LeftStop) ;
+
+# ── V8 &agr-subj-verb-pers — Personenkonflikt zwischen eindeutigem
+#    P1/P2-Pronomen-Subjekt und finitem Verb („Tū asma …").  Pro-drop
+#    heißt: der Disambiguator erfindet nie eine Person; P1/P2-Formen
+#    sind morphologisch distinkt, personsynkretische Formen (0C
+#    schlägt fehl) bleiben stumm.
+#    Positional statt über den Dep-Baum (Bulk-Regression: @SUBJ-
+#    Fehlanbindungen über Klauselgrenzen in langen Schachtelsätzen
+#    erzeugten Fehlalarme): Pronomen direkt vor dem Verb (ggf. mit
+#    ni dazwischen).  Detektionsfläche sind Verbformen, denen die
+#    Person des Pronomens FEHLT (asma = nur P1) — hat das Verb die
+#    Person, wählt SECTION 7 des Disambiguators sie ohnehin.
+ADD:agr-subj-verb-pers (&agr-subj-verb-pers) FiniteVerb IF (0C P1)
+    (-1C P2Pron + Nom) ;
+ADD:agr-subj-verb-pers (&agr-subj-verb-pers) FiniteVerb IF (0C P2)
+    (-1C P1Pron + Nom) ;
+ADD:agr-subj-verb-pers (&agr-subj-verb-pers) FiniteVerb IF (0C P1)
+    (NOT 0 (&agr-subj-verb-pers)) (-1 Ni) (-2C P2Pron + Nom) ;
+ADD:agr-subj-verb-pers (&agr-subj-verb-pers) FiniteVerb IF (0C P2)
+    (NOT 0 (&agr-subj-verb-pers)) (-1 Ni) (-2C P1Pron + Nom) ;
+
+# ── V9 &steisan-nongen — stēisan/stesse-Periphrase (§4) verlangt ein
+#    unmittelbar folgendes Gen-Nominal.  „stesse paggan" (Psp) fällt
+#    nicht darunter (1C NGHead schlägt fehl).
+#    Nicht innerhalb einer PP: dort erzwingt die Präpositionsrektion
+#    den Kasus des Folgenominals („ezze stēisan anzanan gīwatans")
+#    und die Periphrase-Lesart ist nicht mehr sauber prüfbar.
+ADD:steisan-nongen (&steisan-nongen) GenDet IF (0C Gen)
+    (NEGATE -1C Prp) (1C NGHead LINK NOT 0 Gen) ;
+
+# ── V10 &pred-adj-gend (EXPERIMENTELL, deaktiviert) — Prädikativ-
+#    Adjektiv nach Kopula muss Neutrum sein (§9).  Erst aktivieren,
+#    wenn die Bulk-Regression (make validate-corpus) zeigt, dass der
+#    moderne Korpus §9 durchgängig einhält — sonst der wahrschein-
+#    lichste Fehlalarm-Generator.
+# ADD:pred-adj-gend (&pred-adj-gend) Adj + XPred IF (0C Masc) ;
+# ADD:pred-adj-gend (&pred-adj-gend) Adj + XPred IF (0C Fem) ;

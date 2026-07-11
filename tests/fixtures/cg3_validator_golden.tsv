@@ -1,0 +1,35 @@
+# Golden-Sätze für den CG3-Validator (validator.cg3, Phase 3).
+# Format: Satz <TAB> Token <TAB> erwartete &-Fehler-Tags (|-getrennt,
+#         exakte Mengengleichheit) bzw. "-" = Token muss fehlerfrei sein.
+# Bei "-"-Zeilen wird zusätzlich geprüft, dass der GANZE Satz keine
+# Fehler-Tags trägt (Fehlalarm-Test auf attestierten/korrekten Sätzen).
+#
+# V1 &prep-akk-dat — Akk-Präposition (sēn) + Dat-Komplement
+As pūwa sen laīwu.	laīwu	&prep-akk-dat
+As pūwa sen laīwan.	laīwan	-
+# V2 &pp-nom — Nominativ in der PP
+As pūwa sen kunnegs.	kunnegs	&pp-nom
+Prūsisks waitjāsenis sēn prūsiskan bebrun.	bebrun	-
+# V3–V5 &agr-adj-* — Adjektiv-Kongruenz (Genus bzw. Kasus+Numerus)
+Labban wīrs pūwa.	Labban	&agr-adj-gend
+Labammans wīrs pūwa.	Labammans	&agr-adj-case|&agr-adj-num
+Labban dēinan!	Labban	-
+# V6 &pred-nom-akk — Prädikatsnomen im Akk statt Nom (§2)
+As asma kunnegan.	kunnegan	&pred-nom-akk
+As asma kunnegs.	kunnegs	-
+# §8-Rollenprädikat (per + Akk) darf V6 nicht auslösen
+Tū būlai per kunnegan.	kunnegan	-
+# V7 &genverb-akk — Genitiv-Verb (bijātun) + Akk-Objekt (§6a)
+Tāns bijja men.	men	&genverb-akk
+# Genitivus negationis darf V7/V6 nicht auslösen
+Tāns ni turri kōnkretan pawīstin.	pawīstin	-
+# V8 &agr-subj-verb-pers — Personenkonflikt Subjektpronomen ↔ Verb
+Tū asma kunnegs.	asma	&agr-subj-verb-pers
+As assei kunnegs.	assei	&agr-subj-verb-pers
+Tū assei kunnegs.	assei	-
+# V9 &steisan-nongen — stēisan-Periphrase ohne Gen-Nominal (§4)
+Saknis stēisan wīru.	stēisan	&steisan-nongen
+Saknis stēisan anzanan.	stēisan	-
+# Doppel-Rektierer (ēn/pa) mit Dat sind legitim (§5c/§7)
+Kurmjai buwinna pa zemmei.	zemmei	-
+As wīrst būwuns en buttu.	buttu	-

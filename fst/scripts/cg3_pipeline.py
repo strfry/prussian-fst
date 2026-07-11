@@ -20,6 +20,12 @@ Beispiele:
   # Rule=<name,…> (benannte Grammatikregeln laut --trace) und
   # AgrParent=<id> (Kongruenz-Ziel der agr-head-Regeln, Lauf bis
   # SECTION dep-tree).  Signatur fürs MCP-Frontend (fsg_check).
+  echo "As pūwa sen laīwu." | python3 fst/scripts/cg3_pipeline.py --text - --validate
+  # --validate: Prüf-Pass (validator.cg3, &-Fehler-Tags) → dreiwertiges
+  # JSON pro Satz: violations_found / verified_in_coverage /
+  # out_of_coverage.  „Kein Fehler-Tag" heißt NICHT „korrekt" —
+  # out_of_coverage (Unbekannte, Kollaps, Restambiguität, keine
+  # anwendbare Prüfregel) ist ein eigener Zustand.
 """
 
 import argparse
@@ -37,6 +43,7 @@ DEFAULT_FST = FST_DIR / "build/base.fst"
 DEFAULT_LENIENT = FST_DIR / "build/lenient.fst"
 DEFAULT_GRAMMAR = FST_DIR / "cg3/disambiguator.cg3"
 DEFAULT_DEP_GRAMMAR = FST_DIR / "cg3/dependency.cg3"
+DEFAULT_VALIDATOR_GRAMMAR = FST_DIR / "cg3/validator.cg3"
 
 SKIP_VIDEOS = {"qLwBCWtMuH8"}  # wie delta_review.py
 
@@ -266,15 +273,19 @@ HIDDEN_TAGS = ("REMOVE:", "SELECT:", "ADD:", "MAP:", "SETPARENT:",
 def parse_cg_stream(stream: str) -> list[list[dict]]:
     """CG3-Stream → Liste von Cohorts:
     {form, readings:[{lemma,tags}], dep:(self,parent)|None, rid, rels,
-     rules}.  rules: Namen benannter Grammatikregeln (KEYWORD:name),
-    die den Cohort laut --trace berührt haben — auch auf entfernten
-    (";"-)Lesarten, in Feuer-Reihenfolge, dedupliziert."""
+     rules, errtags}.  rules: Namen benannter Grammatikregeln
+    (KEYWORD:name), die den Cohort laut --trace berührt haben — auch
+    auf entfernten (";"-)Lesarten, in Feuer-Reihenfolge, dedupliziert.
+    errtags: &-Fehler-Tags des Validator-Passes (validator.cg3),
+    dedupliziert und aus den Lesarten-Tags herausgefiltert (der
+    CoNLL-U-Export bleibt davon unberührt)."""
     cohorts = []
     cur = None
     for line in stream.splitlines():
         if line.startswith('"<'):
             cur = {"form": line[2:line.rfind('>"')], "readings": [],
-                   "dep": None, "rid": None, "rels": [], "rules": []}
+                   "dep": None, "rid": None, "rels": [], "rules": [],
+                   "errtags": []}
             cohorts.append(cur)
         elif line.startswith(("\t", ";\t")) and cur is not None:
             removed = line.startswith(";")
@@ -292,11 +303,15 @@ def parse_cg_stream(stream: str) -> list[list[dict]]:
                         rel = (mr.group(1), int(mr.group(2)))
                         if not removed and rel not in cur["rels"]:
                             cur["rels"].append(rel)
+                    elif t.startswith("&"):
+                        if not removed and t not in cur["errtags"]:
+                            cur["errtags"].append(t)
                     elif (mt := TRACE_RE.match(t)) and mt.group(4):
                         if mt.group(4) not in cur["rules"]:
                             cur["rules"].append(mt.group(4))
                 if not removed:
-                    tags = [t for t in raw if not t.startswith(HIDDEN_TAGS)]
+                    tags = [t for t in raw if not t.startswith(HIDDEN_TAGS)
+                            and not t.startswith("&")]
                     cur["readings"].append({"lemma": m.group(1), "tags": tags})
     return cohorts
 
@@ -367,13 +382,210 @@ def print_stats(label: str, st: dict):
             print(f"    {v:>7}  {k[:90]}")
 
 
-# ── Error Detection ──
+# ── Validierung (validator.cg3, Phase 3) ──
+
+# Fehlertyp (&-Tag ohne Präfix) → menschenlesbare Meldung.
+# §-Verweise: prussian-grammar/syntax_rules.txt
+MESSAGES = {
+    "prep-akk-dat": "Akkusativ-Präposition mit dativischem Komplement (§6b).",
+    "pp-nom": "Nominativ innerhalb einer Präpositionalphrase.",
+    "agr-adj-case": "Adjektiv kongruiert im Kasus nicht mit seinem Kopf.",
+    "agr-adj-num": "Adjektiv kongruiert im Numerus nicht mit seinem Kopf.",
+    "agr-adj-gend": "Adjektiv kongruiert im Genus nicht mit seinem Kopf.",
+    "pred-nom-akk": "Prädikatsnomen unter Kopula steht im Akkusativ "
+                    "statt Nominativ (§2).",
+    "genverb-akk": "Genitiv-Verb mit akkusativischem Objekt (§6a).",
+    "agr-subj-verb-pers": "Person des finiten Verbs widerspricht dem "
+                          "Pronomen-Subjekt.",
+    "steisan-nongen": "stēisan-Periphrase ohne folgendes Genitiv-Nominal (§4).",
+    "pred-adj-gend": "Prädikativ-Adjektiv nach Kopula ist nicht Neutrum (§9).",
+}
+
+# Bulk-Regression: Kongruenz- und PP-Nominativ-Flags entstehen auf
+# attestiertem Text überwiegend durch Paradigmen-Lücken bei Lehn-
+# wörtern (kultūri, interessants, zūpi …) — für Filter-Consumer als
+# warning abgestuft; die Rektions-/Valenzregeln sind error.
+WARN_RULES = {"agr-adj-case", "agr-adj-num", "agr-adj-gend", "pp-nom"}
+
+# Ab diesem Anteil mehrdeutiger Wort-Token gilt die Analyse als zu
+# unsicher für ein „verified"-Urteil (Restambiguität → out_of_coverage).
+AMBIG_MAX = 0.34
+
+COPULA_LEMMAS = {"būtwei", "pastātwei"}
+
+
+def load_genverbs(path: Path = FST_DIR / "cg3/generated-sets.cg3") -> set[str]:
+    """GenVerb-Lemmata aus dem autogenerierten CG3-Set (valence.json)."""
+    m = re.search(r'LIST GenVerb\s*=\s*([^;]+);', path.read_text(encoding="utf-8"))
+    return set(re.findall(r'"([^"]+)"', m.group(1))) if m else set()
+
+
+def relevant_checks(cohorts: list[dict], genverbs: set[str]) -> list[str]:
+    """Grobe Coverage-Heuristik: welche Prüf-Familien hatten in diesem
+    Satz überhaupt eine Ankerstruktur?  Bewusst konservativ — nur wenn
+    mindestens eine Familie anschlägt, kann ein Satz ohne Fehler-Tags
+    als verified_in_coverage gelten."""
+    checks = set()
+    n = len(cohorts)
+    for i, c in enumerate(cohorts):
+        for r in c["readings"]:
+            tags = r["tags"]
+            pos = tags[0] if tags else ""
+            if pos in ("Prp", "Psp"):
+                checks.add("prep-case")
+            if pos == "V" and r["lemma"] in COPULA_LEMMAS \
+                    and "Inf" not in tags and "Part" not in tags:
+                checks.add("pred-nom")
+            if r["lemma"] in genverbs:
+                checks.add("genverb")
+            if r["lemma"] == "stas" and "Gen" in tags:
+                checks.add("steisan")
+            if pos == "Pron" and "@SUBJ" in tags \
+                    and ("P1" in tags or "P2" in tags):
+                checks.add("subj-verb")
+            if pos == "Adj":
+                # Agreement prüfbar, wenn das Adjektiv einen Nominal-
+                # Parent hat (agr-head-Relation, fensterlokal).
+                par = rel_idx(i, c.get("dep"), n)
+                if par is not None and any(
+                        pr["tags"] and pr["tags"][0] in ("N", "Pron")
+                        for pr in cohorts[par]["readings"]):
+                    checks.add("adj-agr")
+    return sorted(checks)
+
+
+def rel_idx(i: int, dep: tuple[int, int] | None, n: int) -> int | None:
+    """Fensterlokale Dependenz (#self->par) → 0-basierter Satz-Index
+    des Parents (None: unangebunden/außerhalb)."""
+    if not dep:
+        return None
+    self_n, par = dep
+    if par in (0, self_n):
+        return None
+    pos = i - (self_n - par)
+    return pos if 0 <= pos < n else None
+
+
+def sentence_status(violations: list[dict], coverage: dict) -> str:
+    """Dreiwertiges Urteil.  Kernprinzip: „kein Fehler-Tag" ist NICHT
+    „korrekt" — ohne anwendbare Prüfregeln, mit unbekannten Wörtern,
+    Kollaps oder hoher Restambiguität lautet das Urteil out_of_coverage."""
+    if violations:
+        return "violations_found"
+    reasons = coverage["reasons"]
+    if coverage["oov"]:
+        reasons.append("oov")
+    if coverage["collapsed"]:
+        reasons.append("collapsed")
+    if not coverage["checks_relevant"]:
+        reasons.append("no_applicable_checks")
+    n = coverage["word_tokens"]
+    if n and len(coverage["ambig"]) / n > AMBIG_MAX:
+        reasons.append("residual_ambiguity")
+    return "out_of_coverage" if reasons else "verified_in_coverage"
+
+
+def validate_sentences(sentences: list[dict],
+                       cohorts: list[dict]) -> list[dict]:
+    """Cohorts (Output des Validator-Passes) satzweise auswerten →
+    ein Ergebnis-Dikt pro Satz (status/violations/coverage)."""
+    genverbs = load_genverbs()
+    results = []
+    idx = 0
+    for s in sentences:
+        n_coh = len(s["tokens"]) + (0 if s["tokens"][-1] in SENT_PUNCT else 1)
+        sent_cohorts = cohorts[idx:idx + n_coh]
+        idx += n_coh
+
+        violations = []
+        oov, collapsed, ambig = [], [], []
+        word_tokens = 0
+        for i, c in enumerate(sent_cohorts, 1):
+            rs = c["readings"]
+            if not rs:
+                # kollabiert (--unsafe): war ein Wort-Cohort
+                word_tokens += 1
+                collapsed.append({"index": i, "form": c["form"]})
+                continue
+            if not is_word(c):
+                continue
+            word_tokens += 1
+            if any("Unk" in r["tags"] for r in rs):
+                oov.append({"index": i, "form": c["form"]})
+                continue
+            if len(rs) > 1:
+                ambig.append({"index": i, "form": c["form"],
+                              "n_readings": len(rs)})
+            for tag in c["errtags"]:
+                rule = tag.lstrip("&")
+                violations.append({
+                    "rule": rule,
+                    "tag": tag,
+                    "index": i,
+                    "form": c["form"],
+                    "severity": "warning" if rule in WARN_RULES else "error",
+                    "reading": " | ".join(
+                        "+".join([r["lemma"]] + r["tags"]) for r in rs),
+                    "message": MESSAGES.get(rule, ""),
+                })
+
+        coverage = {
+            "word_tokens": word_tokens,
+            "oov": oov,
+            "collapsed": collapsed,
+            "ambig": ambig,
+            "checks_relevant": relevant_checks(sent_cohorts, genverbs),
+            "reasons": [],
+        }
+        status = sentence_status(violations, coverage)
+        results.append({
+            "sent_id": s.get("sent_id", "?"),
+            "text": s["text"],
+            "status": status,
+            "violations": violations,
+            "coverage": coverage,
+        })
+    return results
+
+
+def print_validate_summary(results: list[dict]):
+    """Aggregat für die Bulk-Regression (make validate-corpus):
+    Status-Verteilung, Flags pro Regel, Out-of-Coverage-Gründe."""
+    status_counts = Counter(r["status"] for r in results)
+    rule_counts = Counter(v["rule"] for r in results for v in r["violations"])
+    reason_counts = Counter(reason for r in results
+                            for reason in r["coverage"]["reasons"])
+    n = len(results) or 1
+    print(f"Sätze: {len(results)}")
+    for st in ("verified_in_coverage", "out_of_coverage", "violations_found"):
+        print(f"  {st:<22} {status_counts.get(st, 0):>6}"
+              f"  ({100 * status_counts.get(st, 0) / n:.1f}%)")
+    if reason_counts:
+        print("Out-of-Coverage-Gründe:")
+        for reason, cnt in reason_counts.most_common():
+            print(f"  {reason:<22} {cnt:>6}")
+    if rule_counts:
+        print("Flags pro Regel:")
+        for rule, cnt in rule_counts.most_common():
+            print(f"  {rule:<22} {cnt:>6}")
+    else:
+        print("Keine Flags.")
+    # Fehlalarm-Sichtung: die geflaggten Sätze selbst
+    flagged = [r for r in results if r["violations"]]
+    for r in flagged[:50]:
+        rules = ", ".join(v["rule"] + ":" + v["form"] for v in r["violations"])
+        print(f"  ⚑ [{r['sent_id']}] {r['text']}  → {rules}")
+    if len(flagged) > 50:
+        print(f"  … und {len(flagged) - 50} weitere")
+
+
+# ── Error Detection (Kurzreport über errtags/Kollaps) ──
 
 def detect_errors(sentences: list[dict], before: list[dict],
                    after: list[dict]) -> list[dict]:
     """Vergleicht vor/nach-Cohorts und meldet:
     - Zero-Reading-Cohorts (alle Lesarten entfernt)
-    - Cohorts mit Error-Tags (@Error*)
+    - Cohorts mit &-Fehler-Tags (validator.cg3)
 
     Gibt Liste von Diktaten zurück: {satz, token, fehler, original_lesarten}.
     """
@@ -401,17 +613,13 @@ def detect_errors(sentences: list[dict], before: list[dict],
                     "fehler": "kollabiert",
                     "original": orig,
                 })
-            else:
-                # Nach Error-Tags in den überlebenden Lesarten suchen
-                for r in rs_aft:
-                    etags = [t for t in r["tags"] if t.startswith("@Error")]
-                    if etags:
-                        errors.append({
-                            "satz": s["text"],
-                            "token": tok,
-                            "fehler": "+".join(etags),
-                            "original": [],
-                        })
+            for tag in c_aft["errtags"]:
+                errors.append({
+                    "satz": s["text"],
+                    "token": tok,
+                    "fehler": tag,
+                    "original": [],
+                })
 
     return errors
 
@@ -505,6 +713,8 @@ def main():
     ap.add_argument("--fst", type=Path, default=DEFAULT_FST)
     ap.add_argument("--grammar", type=Path, default=DEFAULT_GRAMMAR)
     ap.add_argument("--dep-grammar", type=Path, default=DEFAULT_DEP_GRAMMAR)
+    ap.add_argument("--validator-grammar", type=Path,
+                    default=DEFAULT_VALIDATOR_GRAMMAR)
     ap.add_argument("--text", help="Einzeltext statt Korpus ('-' = stdin)")
     ap.add_argument("--limit", type=int, help="nur die ersten N Sätze")
     ap.add_argument("--no-disamb", action="store_true",
@@ -518,8 +728,17 @@ def main():
                          "(Rule=/AgrParent=) in MISC")
     ap.add_argument("--stats", action="store_true",
                     help="nur Kennzahlen (vorher/nachher) auf stdout")
+    ap.add_argument("--validate", action="store_true",
+                    help="Validator-Pass (validator.cg3) nach der Dependenz-"
+                         "Phase; JSON pro Satz auf stdout (status/violations/"
+                         "coverage).  status=verified_in_coverage NUR bei "
+                         "sauberer, abgedeckter Analyse — out_of_coverage "
+                         "heißt nicht „korrekt“.")
+    ap.add_argument("--validate-summary", action="store_true",
+                    help="mit --validate: Aggregat statt JSON (Status-"
+                         "Verteilung, Flags pro Regel) — Bulk-Regression")
     ap.add_argument("--detect-errors", action="store_true",
-                    help="Fehlererkennung: Kollaps/Error-Tags pro Satz")
+                    help="Fehlererkennung: Kollaps/&-Fehler-Tags pro Satz")
     ap.add_argument("--top-ambig", type=int, nargs="?", const=20, metavar="N",
                     help="Top N Sätze mit den meisten ambigen Token anzeigen "
                          "(Default: 20)")
@@ -555,8 +774,19 @@ def main():
         return
 
     output = run_vislcg3(cg_input, args.grammar, trace=args.trace)
-    if args.deps or args.conllu:
+    if args.deps or args.conllu or args.validate or args.detect_errors:
         output = run_vislcg3(output, args.dep_grammar, trace=args.trace)
+    if args.validate or args.detect_errors:
+        output = run_vislcg3(output, args.validator_grammar, trace=args.trace)
+
+    if args.validate:
+        results = validate_sentences(sentences, parse_cg_stream(output))
+        if args.validate_summary:
+            print_validate_summary(results)
+        else:
+            json.dump(results, sys.stdout, ensure_ascii=False, indent=2)
+            sys.stdout.write("\n")
+        return
 
     if args.conllu:
         from export_conllu import sentence_block
