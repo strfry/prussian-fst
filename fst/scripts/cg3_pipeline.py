@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
-"""Corpus → FST-Analysen → CG3-Stream → vislcg3 → Statistik.
+"""Corpus → FST-Analysen → CG3-Stream → cg-proc → Statistik.
 
 Pipeline:
-  1. Sätze aus dem YouTube-Korpus laden (text_clean)
-  2. satzerhaltend tokenisieren (Wörter + Interpunktion als Cohorts)
-  3. Types einmalig durch hfst-flookup batchen (Fallback: lowercase)
-  4. CG3-Stream emittieren
-  5. optional durch vislcg3 disambiguieren (inkl. Syntaxbaum via SETPARENT)
-  6. optional Dependenz-Labels (dependency.cg3, ADDRELATION) als zweite Phase
-  7. optional Ambiguitätsstatistik bzw. CoNLL-U auf stdout
+   1. Sätze aus dem YouTube-Korpus laden (text_clean)
+   2. satzerhaltend tokenisieren (Wörter + Interpunktion als Cohorts)
+   3. Types einmalig durch hfst-flookup batchen (Fallback: lowercase)
+   4. CG3-Stream emittieren
+   5. optional durch cg-proc disambiguieren (inkl. Syntaxbaum via SETPARENT)
+   6. optional Dependenz-Labels (dependency.cg3, ADDRELATION) als zweite Phase
+   7. optional Ambiguitätsstatistik bzw. CoNLL-U auf stdout
 
 Beispiele:
   python3 fst/scripts/cg3_pipeline.py --stats            # Vollkorpus, Kennzahlen
@@ -44,6 +44,9 @@ DEFAULT_LENIENT = FST_DIR / "build/lenient.hfstol"
 DEFAULT_GRAMMAR = FST_DIR / "cg3/disambiguator.cg3"
 DEFAULT_DEP_GRAMMAR = FST_DIR / "cg3/dependency.cg3"
 DEFAULT_VALIDATOR_GRAMMAR = FST_DIR / "cg3/validator.cg3"
+DEFAULT_GRAMMAR_BIN = FST_DIR / "build/cg3/disambiguator.bin"
+DEFAULT_DEP_GRAMMAR_BIN = FST_DIR / "build/cg3/dependency.bin"
+DEFAULT_VALIDATOR_GRAMMAR_BIN = FST_DIR / "build/cg3/validator.bin"
 
 from fst_lookup import flookup_batch
 
@@ -201,13 +204,23 @@ def emit_cg_stream(sentences: list[dict], analyses: dict) -> str:
     return "\n".join(out) + "\n"
 
 
-def run_vislcg3(cg_input: str, grammar: Path, trace: bool = False,
+def grammar_bin_path(grammar_cg3: Path) -> Path:
+    """Derive compiled binary path from a text .cg3 path:
+    cg3/disambiguator.cg3 → build/cg3/disambiguator.bin"""
+    return FST_DIR / "build" / "cg3" / (grammar_cg3.stem + ".bin")
+
+
+def run_cg_proc(cg_input: str, grammar: Path, trace: bool = False,
                 sections: int | None = None) -> str:
-    cmd = ["vislcg3", "-g", str(grammar), "--unsafe"]
+    cmd = ["cg-proc", "-f", "0"]
     if trace:
-        cmd.append("--trace")
+        cmd.append("-t")
     if sections is not None:
-        cmd += ["--sections", str(sections)]
+        cmd += ["-s", str(sections)]
+    # Accept .cg3 (derive .bin) or .bin directly
+    if grammar.suffix == ".cg3":
+        grammar = grammar_bin_path(grammar)
+    cmd.append(str(grammar))
     proc = subprocess.run(cmd, input=cg_input, capture_output=True,
                           text=True, check=True)
     if proc.stderr.strip():
@@ -235,7 +248,7 @@ def sections_before(grammar: Path, name: str = "dep-tree") -> int | None:
 # Dependenz- und Relations-Annotationen der CG3-Dependenzschicht:
 # "#n->m" (Parent, fensterlokal nummeriert), "ID:n"/"R:label:n"
 # (ADDRELATION, global nummeriert), "@pred"/"@fin" (Mapping-Tags).
-DEP_RE = re.compile(r"#(\d+)->(\d+)$")
+DEP_RE = re.compile(r"#(\d+)(?:->|→)(\d+)$")
 REL_RE = re.compile(r"R:([A-Za-z_]+):(\d+)$")
 RELID_RE = re.compile(r"ID:(\d+)$")
 # --trace-Tags: TYPE[(param)]:ZEILE[:NAME] — z. B. "SELECT:573",
@@ -693,13 +706,13 @@ def main():
     ap.add_argument("--text", help="Einzeltext statt Korpus ('-' = stdin)")
     ap.add_argument("--limit", type=int, help="nur die ersten N Sätze")
     ap.add_argument("--no-disamb", action="store_true",
-                    help="rohen CG-Input ausgeben (ohne vislcg3)")
+                    help="rohen CG-Input ausgeben (ohne cg-proc)")
     ap.add_argument("--deps", action="store_true",
                     help="Label-Phase (dependency.cg3) auf den Stream anwenden")
     ap.add_argument("--conllu", action="store_true",
                     help="CoNLL-U ausgeben (impliziert --deps)")
     ap.add_argument("--trace", action="store_true",
-                    help="vislcg3 --trace; mit --conllu: Regel-Provenienz "
+                    help="cg-proc -t; mit --conllu: Regel-Provenienz "
                          "(Rule=/AgrParent=) in MISC")
     ap.add_argument("--stats", action="store_true",
                     help="nur Kennzahlen (vorher/nachher) auf stdout")
@@ -748,11 +761,11 @@ def main():
         sys.stdout.write(cg_input)
         return
 
-    output = run_vislcg3(cg_input, args.grammar, trace=args.trace)
+    output = run_cg_proc(cg_input, args.grammar, trace=args.trace)
     if args.deps or args.conllu or args.validate or args.detect_errors:
-        output = run_vislcg3(output, args.dep_grammar, trace=args.trace)
+        output = run_cg_proc(output, args.dep_grammar, trace=args.trace)
     if args.validate or args.detect_errors:
-        output = run_vislcg3(output, args.validator_grammar, trace=args.trace)
+        output = run_cg_proc(output, args.validator_grammar, trace=args.trace)
 
     if args.validate:
         results = validate_sentences(sentences, parse_cg_stream(output))
@@ -774,7 +787,7 @@ def main():
             n_pre = sections_before(args.grammar)
             if n_pre:
                 pre = parse_cg_stream(
-                    run_vislcg3(cg_input, args.grammar, sections=n_pre))
+                    run_cg_proc(cg_input, args.grammar, sections=n_pre))
                 assert len(pre) == len(cohorts), \
                     f"Cohort-Zählung Vorlauf: {len(pre)}/{len(cohorts)}"
                 for c, p in zip(cohorts, pre):

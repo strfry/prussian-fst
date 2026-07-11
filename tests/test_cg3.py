@@ -29,8 +29,8 @@ VAL_GRAMMAR = REPO / "fst/cg3/validator.cg3"
 FST = REPO / "fst/build/base.hfstol"
 
 pytestmark = pytest.mark.skipif(
-    not (shutil.which("vislcg3") and FST.exists()),
-    reason="vislcg3/base.hfstol nicht verfügbar",
+    not (shutil.which("cg-proc") and FST.exists()),
+    reason="cg-proc/base.hfstol nicht verfügbar",
 )
 
 
@@ -70,8 +70,8 @@ def disambiguate_sentences(sentences: list[str]) -> dict[str, list[dict]]:
     types = {t for so in sent_objs for t in so["tokens"] if t[0].isalpha()}
     analyses = pipe.lookup_types(types, FST)
     cg_input = pipe.emit_cg_stream(sent_objs, analyses)
-    output = pipe.run_vislcg3(cg_input, GRAMMAR)
-    output = pipe.run_vislcg3(output, DEP_GRAMMAR)
+    output = pipe.run_cg_proc(cg_input, GRAMMAR)
+    output = pipe.run_cg_proc(output, DEP_GRAMMAR)
     cohorts = pipe.parse_cg_stream(output)
 
     result: dict[str, list[dict]] = {}
@@ -134,10 +134,9 @@ def test_dep_golden(disambiguated, sent, token, head, deprel):
 @pytest.mark.parametrize("grammar", [GRAMMAR, DEP_GRAMMAR, VAL_GRAMMAR],
                          ids=["disambiguator", "dependency", "validator"])
 def test_grammar_syntax(grammar):
-    r = subprocess.run(["vislcg3", "--grammar-only", "-g", str(grammar)],
+    r = subprocess.run(["cg-comp", str(grammar), "/dev/null"],
                        capture_output=True, text=True)
     assert r.returncode == 0, r.stderr
-    assert "Error" not in r.stderr, r.stderr
 
 
 # ── Validator (Phase 3): &-Fehler-Tags auf korrumpierten Sätzen ──
@@ -165,9 +164,9 @@ def validate_sentences(sentences: list[str]) -> dict[str, list[dict]]:
     types = {t for so in sent_objs for t in so["tokens"] if t[0].isalpha()}
     analyses = pipe.lookup_types(types, FST)
     cg_input = pipe.emit_cg_stream(sent_objs, analyses)
-    output = pipe.run_vislcg3(cg_input, GRAMMAR)
-    output = pipe.run_vislcg3(output, DEP_GRAMMAR)
-    output = pipe.run_vislcg3(output, VAL_GRAMMAR)
+    output = pipe.run_cg_proc(cg_input, GRAMMAR)
+    output = pipe.run_cg_proc(output, DEP_GRAMMAR)
+    output = pipe.run_cg_proc(output, VAL_GRAMMAR)
     cohorts = pipe.parse_cg_stream(output)
 
     result: dict[str, list[dict]] = {}

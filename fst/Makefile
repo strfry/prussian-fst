@@ -64,23 +64,35 @@ build/lenient.hfstol: build/lenient.fst
 cg3-sets:
 	python3 scripts/gen_cg3_sets.py
 
-cg3-check: cg3-sets
-	vislcg3 --grammar-only -g cg3/disambiguator.cg3
-	vislcg3 --grammar-only -g cg3/dependency.cg3
-	vislcg3 --grammar-only -g cg3/validator.cg3
+build/cg3/:
+	mkdir -p build/cg3
 
-disambiguate: build/base.hfstol cg3-sets
+build/cg3/disambiguator.bin: cg3/disambiguator.cg3 cg3/generated-sets.cg3 | build/cg3/
+	cg-comp cg3/disambiguator.cg3 build/cg3/disambiguator.bin
+
+build/cg3/dependency.bin: cg3/dependency.cg3 | build/cg3/
+	cg-comp cg3/dependency.cg3 build/cg3/dependency.bin
+
+build/cg3/validator.bin: cg3/validator.cg3 | build/cg3/
+	cg-comp cg3/validator.cg3 build/cg3/validator.bin
+
+CG3_BINS = build/cg3/disambiguator.bin build/cg3/dependency.bin build/cg3/validator.bin
+
+cg3-check: cg3-sets $(CG3_BINS)
+	@echo "Alle Grammatiken syntaktisch OK."
+
+disambiguate: build/base.hfstol cg3-sets $(CG3_BINS)
 	python3 scripts/cg3_pipeline.py --stats
 
-conllu: build/base.hfstol build/lenient.hfstol cg3-sets
+conllu: build/base.hfstol build/lenient.hfstol cg3-sets $(CG3_BINS)
 	python3 scripts/export_conllu.py --out ../data/prussian_silver.conllu
 
-detect-errors: build/base.hfstol cg3-sets
+detect-errors: build/base.hfstol cg3-sets $(CG3_BINS)
 	python3 scripts/cg3_pipeline.py --detect-errors --limit 200
 
 # Bulk-Zero-False-Alarm-Regression: Validator über die attestierten
 # Korpora — Flags auf attestiertem Text sind (fast immer) Fehlalarme.
-validate-corpus: build/base.hfstol cg3-sets
+validate-corpus: build/base.hfstol cg3-sets $(CG3_BINS)
 	python3 scripts/cg3_pipeline.py --validate --validate-summary
 	python3 scripts/cg3_pipeline.py --validate --validate-summary \
 	    --corpus-md ../../prussian-corpus/parsed/awizi_articles \

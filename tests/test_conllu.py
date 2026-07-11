@@ -21,8 +21,8 @@ FST = REPO / "fst/build/base.hfstol"
 GRAMMAR = REPO / "fst/cg3/disambiguator.cg3"
 
 pytestmark = pytest.mark.skipif(
-    not (shutil.which("vislcg3") and FST.exists()),
-    reason="vislcg3/base.hfstol nicht verfügbar",
+    not (shutil.which("cg-proc") and FST.exists()),
+    reason="cg-proc/base.hfstol nicht verfügbar",
 )
 
 SENTENCES = [
@@ -40,7 +40,7 @@ def blocks():
     types = {t for s in sents for t in s["tokens"] if t[0].isalpha()}
     analyses = pipe.lookup_types(types, FST)
     cg_input = pipe.emit_cg_stream(sents, analyses)
-    cohorts = pipe.parse_cg_stream(pipe.run_vislcg3(cg_input, GRAMMAR))
+    cohorts = pipe.parse_cg_stream(pipe.run_cg_proc(cg_input, GRAMMAR))
     result = {}
     i = 0
     for s in sents:

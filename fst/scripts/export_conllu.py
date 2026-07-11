@@ -21,7 +21,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from cg3_pipeline import (DEFAULT_CORPUS, DEFAULT_DEP_GRAMMAR, DEFAULT_FST,
                           DEFAULT_GRAMMAR, REPO, SENT_PUNCT, emit_cg_stream,
                           is_word, load_markdown_sentences, load_sentences,
-                          lookup_types, parse_cg_stream, run_vislcg3)
+                          lookup_types, parse_cg_stream, run_cg_proc)
 
 BERT_CORPUS = REPO.parent / "prussian-bert/corpus"
 DEFAULT_OUT = REPO / "data/prussian_silver.conllu"
@@ -181,9 +181,9 @@ def export_source(name: str, sentences: list[dict], fst: Path,
     types = {t for s in sentences for t in s["tokens"] if t[0].isalpha()}
     analyses = lookup_types(types, fst)
     cg_input = emit_cg_stream(sentences, analyses)
-    stream = run_vislcg3(cg_input, grammar)
+    stream = run_cg_proc(cg_input, grammar)
     if dep_grammar is not None:
-        stream = run_vislcg3(stream, dep_grammar)
+        stream = run_cg_proc(stream, dep_grammar)
     cohorts = parse_cg_stream(stream)
 
     blocks = []
