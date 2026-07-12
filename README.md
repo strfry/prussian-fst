@@ -75,7 +75,8 @@ Verben sind in Twanksta nicht kodiert).
 ## FSG/CG-Check (CoNLL-U mit Regel-Provenienz)
 
 Der Einzeltext-Modus der Pipeline liefert das Antwortformat für das
-`fsg_check`-MCP-Tool (`prussian-mcp`): CoNLL-U, ein Block pro Satz.
+`validate_prussian`-MCP-Tool (`prussian-mcp`): dreiwertige Prüfung
+(--validate), optional CoNLL-U (ein Block pro Satz).
 
 ```bash
 echo "Labban dēinan!" | python3 fst/scripts/cg3_pipeline.py --text - --conllu --trace

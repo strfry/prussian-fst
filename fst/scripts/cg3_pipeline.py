@@ -48,7 +48,12 @@ DEFAULT_GRAMMAR_BIN = FST_DIR / "build/cg3/disambiguator.bin"
 DEFAULT_DEP_GRAMMAR_BIN = FST_DIR / "build/cg3/dependency.bin"
 DEFAULT_VALIDATOR_GRAMMAR_BIN = FST_DIR / "build/cg3/validator.bin"
 
-from fst_lookup import flookup_batch
+# Dual-Mode: als Paketmodul (prussian_fst.cg3_pipeline) relativ, als
+# direkt ausgeführtes Skript (sys.path[0] = fst/scripts) flach.
+try:
+    from .fst_lookup import flookup_batch
+except ImportError:
+    from fst_lookup import flookup_batch
 
 SKIP_VIDEOS = {"qLwBCWtMuH8"}  # wie delta_review.py
 
@@ -204,6 +209,30 @@ def emit_cg_stream(sentences: list[dict], analyses: dict) -> str:
     return "\n".join(out) + "\n"
 
 
+def text_to_sentences(text: str) -> list[dict]:
+    """Freitext → Satz-Dikte ({text, tokens, frequency, sent_id}).
+
+    An Satzinterpunktion getrennt — jeder Satz wird downstream ein
+    eigener CoNLL-U-Block bzw. ein eigenes Validierungsergebnis
+    (wie load_markdown_sentences).  ValueError bei leerem Input."""
+    sentences = []
+    for i, sent in enumerate(re.split(r"(?<=[.!?])\s+", text.strip()), 1):
+        toks = tokenize(sent)
+        if toks:
+            sentences.append({"text": sent, "tokens": toks,
+                              "frequency": 1, "sent_id": f"text-{i}"})
+    if not sentences:
+        raise ValueError("Kein analysierbarer Text.")
+    return sentences
+
+
+def build_cg_input(sentences: list[dict], fst_path: Path | None = None) -> str:
+    """Satz-Dikte → FST-Lookup (Types einmalig) → roher CG3-Stream."""
+    types = {t for s in sentences for t in s["tokens"] if t[0].isalpha()}
+    analyses = lookup_types(types, fst_path or DEFAULT_FST)
+    return emit_cg_stream(sentences, analyses)
+
+
 def grammar_bin_path(grammar_cg3: Path) -> Path:
     """Derive compiled binary path from a text .cg3 path:
     cg3/disambiguator.cg3 → build/cg3/disambiguator.bin"""
@@ -211,7 +240,8 @@ def grammar_bin_path(grammar_cg3: Path) -> Path:
 
 
 def run_cg_proc(cg_input: str, grammar: Path, trace: bool = False,
-                sections: int | None = None) -> str:
+                sections: int | None = None,
+                timeout: float | None = None) -> str:
     cmd = ["cg-proc", "-f", "0"]
     if trace:
         cmd.append("-t")
@@ -222,7 +252,7 @@ def run_cg_proc(cg_input: str, grammar: Path, trace: bool = False,
         grammar = grammar_bin_path(grammar)
     cmd.append(str(grammar))
     proc = subprocess.run(cmd, input=cg_input, capture_output=True,
-                          text=True, check=True)
+                          text=True, check=True, timeout=timeout)
     if proc.stderr.strip():
         print(proc.stderr, file=sys.stderr)
     return proc.stdout
@@ -241,6 +271,27 @@ def sections_before(grammar: Path, name: str = "dep-tree") -> int | None:
                 return n
             n += 1
     return None
+
+
+def attach_agr_parents(cg_input: str, cohorts: list[dict],
+                       grammar: Path | None = None,
+                       timeout: float | None = None) -> None:
+    """AgrParent-Provenienz: Zweitlauf, der VOR der Baumschicht
+    (SECTION dep-tree) abbricht — Parents stammen dort allein aus den
+    agr-head-Regeln.  Der Ziel-Index wandert als c["agr_dep"] in die
+    Cohorts (export_conllu.token_line rendert ihn als AgrParent=…)."""
+    grammar = grammar or DEFAULT_GRAMMAR
+    n_pre = sections_before(grammar)
+    if not n_pre:
+        return
+    pre = parse_cg_stream(
+        run_cg_proc(cg_input, grammar, sections=n_pre, timeout=timeout))
+    assert len(pre) == len(cohorts), \
+        f"Cohort-Zählung Vorlauf: {len(pre)}/{len(cohorts)}"
+    for c, p in zip(cohorts, pre):
+        d = p.get("dep")
+        if d and d[1] not in (0, d[0]):
+            c["agr_dep"] = d
 
 
 # ── Statistik ──
@@ -734,16 +785,10 @@ def main():
 
     if args.text is not None:
         text = sys.stdin.read() if args.text == "-" else args.text
-        # An Satzinterpunktion trennen — jeder Satz wird downstream ein
-        # eigener CoNLL-U-Block (wie load_markdown_sentences).
-        sentences = []
-        for i, sent in enumerate(re.split(r"(?<=[.!?])\s+", text.strip()), 1):
-            toks = tokenize(sent)
-            if toks:
-                sentences.append({"text": sent, "tokens": toks,
-                                  "frequency": 1, "sent_id": f"text-{i}"})
-        if not sentences:
-            sys.exit("Kein analysierbarer Text.")
+        try:
+            sentences = text_to_sentences(text)
+        except ValueError as e:
+            sys.exit(str(e))
     elif args.corpus_md:
         sentences = [s for d in args.corpus_md for s in load_markdown_sentences(d)]
         if args.limit:
@@ -753,9 +798,7 @@ def main():
         if args.limit:
             sentences = sentences[:args.limit]
 
-    types = {t for s in sentences for t in s["tokens"] if t[0].isalpha()}
-    analyses = lookup_types(types, args.fst)
-    cg_input = emit_cg_stream(sentences, analyses)
+    cg_input = build_cg_input(sentences, args.fst)
 
     if args.no_disamb:
         sys.stdout.write(cg_input)
@@ -777,32 +820,14 @@ def main():
         return
 
     if args.conllu:
-        from export_conllu import sentence_block
+        try:
+            from .export_conllu import conllu_output
+        except ImportError:
+            from export_conllu import conllu_output
         cohorts = parse_cg_stream(output)
         if args.trace:
-            # AgrParent-Provenienz: Zweitlauf, der VOR der Baumschicht
-            # (SECTION dep-tree) abbricht — Parents stammen dort allein
-            # aus den agr-head-Regeln.  Der Ziel-Index wandert als
-            # AgrParent=… nach MISC (export_conllu.token_line).
-            n_pre = sections_before(args.grammar)
-            if n_pre:
-                pre = parse_cg_stream(
-                    run_cg_proc(cg_input, args.grammar, sections=n_pre))
-                assert len(pre) == len(cohorts), \
-                    f"Cohort-Zählung Vorlauf: {len(pre)}/{len(cohorts)}"
-                for c, p in zip(cohorts, pre):
-                    d = p.get("dep")
-                    if d and d[1] not in (0, d[0]):
-                        c["agr_dep"] = d
-        blocks = []
-        idx = 0
-        for s in sentences:
-            n_coh = len(s["tokens"]) + (0 if s["tokens"][-1] in SENT_PUNCT else 1)
-            block = sentence_block(s, cohorts[idx:idx + n_coh])
-            idx += n_coh
-            if block is not None:
-                blocks.append(block)
-        sys.stdout.write("\n\n".join(blocks) + "\n\n")
+            attach_agr_parents(cg_input, cohorts, args.grammar)
+        sys.stdout.write(conllu_output(sentences, cohorts))
         return
 
     # Gewichte: Cohort → Frequenz seines Satzes

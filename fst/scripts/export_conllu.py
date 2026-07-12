@@ -17,11 +17,21 @@ import argparse
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-from cg3_pipeline import (DEFAULT_CORPUS, DEFAULT_DEP_GRAMMAR, DEFAULT_FST,
-                          DEFAULT_GRAMMAR, REPO, SENT_PUNCT, emit_cg_stream,
-                          is_word, load_markdown_sentences, load_sentences,
-                          lookup_types, parse_cg_stream, run_cg_proc)
+# Dual-Mode: als Paketmodul (prussian_fst.export_conllu) relativ, als
+# direkt ausgeführtes Skript flach (dann fst/scripts auf den Pfad legen).
+try:
+    from .cg3_pipeline import (DEFAULT_CORPUS, DEFAULT_DEP_GRAMMAR,
+                               DEFAULT_FST, DEFAULT_GRAMMAR, REPO,
+                               SENT_PUNCT, emit_cg_stream, is_word,
+                               load_markdown_sentences, load_sentences,
+                               lookup_types, parse_cg_stream, run_cg_proc)
+except ImportError:
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from cg3_pipeline import (DEFAULT_CORPUS, DEFAULT_DEP_GRAMMAR,
+                              DEFAULT_FST, DEFAULT_GRAMMAR, REPO,
+                              SENT_PUNCT, emit_cg_stream, is_word,
+                              load_markdown_sentences, load_sentences,
+                              lookup_types, parse_cg_stream, run_cg_proc)
 
 BERT_CORPUS = REPO.parent / "prussian-bert/corpus"
 DEFAULT_OUT = REPO / "data/prussian_silver.conllu"
@@ -173,6 +183,20 @@ def sentence_block(sent: dict, cohorts: list[dict],
     lines += [token_line(i, c, d, a)
               for i, (c, d, a) in enumerate(zip(cohorts, deps, agr), 1)]
     return "\n".join(lines)
+
+
+def conllu_output(sentences: list[dict], cohorts: list[dict]) -> str:
+    """Satzweise CoNLL-U-Blöcke aus dem geparsten Stream (Slicing über
+    das n_coh-Idiom: erzwungener Satzend-Delimiter zählt mit)."""
+    blocks = []
+    idx = 0
+    for s in sentences:
+        n_coh = len(s["tokens"]) + (0 if s["tokens"][-1] in SENT_PUNCT else 1)
+        block = sentence_block(s, cohorts[idx:idx + n_coh])
+        idx += n_coh
+        if block is not None:
+            blocks.append(block)
+    return "\n\n".join(blocks) + "\n\n"
 
 
 def export_source(name: str, sentences: list[dict], fst: Path,
