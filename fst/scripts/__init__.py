@@ -7,4 +7,4 @@ Wheel würde die Artefakte nicht mitbringen.  Bereitschaft prüfbar via
 prussian_fst.check_artifacts().
 """
 
-from .api import analyze, check_artifacts, conllu, validate  # noqa: F401
+from .api import analyze, check_artifacts, conllu, tags, tokenize, validate  # noqa: F401

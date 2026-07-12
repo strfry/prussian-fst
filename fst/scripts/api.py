@@ -25,8 +25,9 @@ from .cg3_pipeline import (DEFAULT_DEP_GRAMMAR, DEFAULT_DEP_GRAMMAR_BIN,
                            DEFAULT_VALIDATOR_GRAMMAR_BIN, FST_DIR, SENT_PUNCT,
                            attach_agr_parents, build_cg_input,
                            parse_cg_stream, run_cg_proc, text_to_sentences,
-                           validate_sentences)
+                           tokenize, validate_sentences)
 from .export_conllu import conllu_output, sentence_block
+from .fst_lookup import flookup_batch
 
 # Die pyhfst-Transducer werden in einem Modul-Dict gecacht
 # (fst_lookup._transducers) und pyhfst-Lookup ist nicht dokumentiert
@@ -101,6 +102,24 @@ def conllu(text: str, *, trace: bool = True,
         if trace:
             attach_agr_parents(cg_input, cohorts, timeout=timeout)
         return conllu_output(sentences, cohorts)
+
+
+def tags(words: list[str], *,
+         fst_path: Path | None = None,
+         timeout: float | None = None) -> dict[str, dict]:
+    """Nicht-disambiguierte FST-Analysen pro Wort (Exact-Lookup, keine
+    Kaskade).  Rückgabe: {wort: {"analyses": [(lemma, tags)], …}}.
+
+    Analysen sind die rohen pyhfst-Ergebnisse, unabhängig voneinander
+    (keine Disambiguierung).  Der Aufrufer ist für die Kaskade
+    (lowercase/titlecase/lenient) zuständig."""
+    fst = fst_path or DEFAULT_FST
+    with _PIPELINE_LOCK:
+        raw = flookup_batch(words, fst)
+    return {
+        w: {"analyses": raw.get(w, [])}
+        for w in words
+    }
 
 
 def check_artifacts() -> list[str]:
