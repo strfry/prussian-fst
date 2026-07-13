@@ -436,15 +436,23 @@ MESSAGES = {
     "genverb-akk": "Genitiv-Verb mit akkusativischem Objekt (§6a).",
     "agr-subj-verb-pers": "Person des finiten Verbs widerspricht dem "
                           "Pronomen-Subjekt.",
+    "agr-subj-verb-num": "Numerus des finiten Verbs widerspricht dem "
+                         "Pronomen-Subjekt.",
+    "subj-dup": "Zwei Nominativ-Subjekte in derselben Klausel — "
+                "eines wäre als Objekt Akkusativ.",
     "steisan-nongen": "stēisan-Periphrase ohne folgendes Genitiv-Nominal (§4).",
     "pred-adj-gend": "Prädikativ-Adjektiv nach Kopula ist nicht Neutrum (§9).",
+    "akkverb-nom": "Akkusativ-Verb mit nominativischem Objekt.",
 }
 
 # Bulk-Regression: Kongruenz- und PP-Nominativ-Flags entstehen auf
 # attestiertem Text überwiegend durch Paradigmen-Lücken bei Lehn-
 # wörtern (kultūri, interessants, zūpi …) — für Filter-Consumer als
 # warning abgestuft; die Rektions-/Valenzregeln sind error.
-WARN_RULES = {"agr-adj-case", "agr-adj-num", "agr-adj-gend", "pp-nom"}
+# subj-dup startet als warning (Apposition/Asyndese-Restrisiko);
+# auf error promoten, wenn die Bulk-Regression sauber bleibt.
+WARN_RULES = {"agr-adj-case", "agr-adj-num", "agr-adj-gend", "pp-nom",
+              "subj-dup"}
 
 # Ab diesem Anteil mehrdeutiger Wort-Token gilt die Analyse als zu
 # unsicher für ein „verified"-Urteil (Restambiguität → out_of_coverage).
@@ -466,6 +474,11 @@ def relevant_checks(cohorts: list[dict], genverbs: set[str]) -> list[str]:
     als verified_in_coverage gelten."""
     checks = set()
     n = len(cohorts)
+    # Finites Verb im Satz — Anker-Voraussetzung für subj-verb.
+    has_finite = any(
+        r["tags"] and r["tags"][0] == "V"
+        and "Inf" not in r["tags"] and "Part" not in r["tags"]
+        for c in cohorts for r in c["readings"])
     for i, c in enumerate(cohorts):
         for r in c["readings"]:
             tags = r["tags"]
@@ -479,8 +492,11 @@ def relevant_checks(cohorts: list[dict], genverbs: set[str]) -> list[str]:
                 checks.add("genverb")
             if r["lemma"] == "stas" and "Gen" in tags:
                 checks.add("steisan")
-            if pos == "Pron" and "@SUBJ" in tags \
-                    and ("P1" in tags or "P2" in tags):
+            # Nicht über @SUBJ testen: die @-Tags werden beim Parsen
+            # aus den Lesarten gefiltert (HIDDEN_TAGS) — Anker ist das
+            # nominativische P1/P2-Pronomen plus finites Verb im Satz.
+            if pos == "Pron" and "Nom" in tags \
+                    and ("P1" in tags or "P2" in tags) and has_finite:
                 checks.add("subj-verb")
             if pos == "Adj":
                 # Agreement prüfbar, wenn das Adjektiv einen Nominal-
@@ -518,6 +534,8 @@ def sentence_status(violations: list[dict], coverage: dict) -> str:
         reasons.append("collapsed")
     if not coverage["checks_relevant"]:
         reasons.append("no_applicable_checks")
+    if coverage["unlicensed"]:
+        reasons.append("unlicensed_case")
     n = coverage["word_tokens"]
     if n and len(coverage["ambig"]) / n > AMBIG_MAX:
         reasons.append("residual_ambiguity")
@@ -568,11 +586,37 @@ def validate_sentences(sentences: list[dict],
                     "message": MESSAGES.get(rule, ""),
                 })
 
+        # Unlizenzierter Kasus: ein eindeutig disambiguiertes Pronomen,
+        # das die Baumschicht nicht anbinden konnte (self-parented),
+        # während der Satz noch weitere Wort-Wurzeln hat — d. h. der
+        # Baum ist fragmentiert und das Pronomen schwebt ohne kasus-
+        # lizenzierenden Kontext (Verb, Adposition, Kongruenzkopf,
+        # Prädikativ), wie „stan" im Repro „As asma stan autōmatikin
+        # rekōnstruiwuns …".  Bewusst nur Pron: frei stehende N-Wurzeln
+        # sind auf attestiertem Text überwiegend legitime Fragmente
+        # (Titel, verblose Aufzählungen) — N einzubeziehen halbiert
+        # die verified-Quote der Bulk-Regression.  Verblose Einzel-
+        # Wurzel-Sätze („Labban dēinan!") bleiben unberührt.
+        # Degradiert auf out_of_coverage, nie Violation.
+        word_roots = [
+            (i, c) for i, c in enumerate(sent_cohorts, 1)
+            if is_word(c) and c["dep"] and c["dep"][1] in (0, c["dep"][0])
+        ]
+        unlicensed = []
+        if len(word_roots) > 1:
+            unlicensed = [
+                {"index": i, "form": c["form"]}
+                for i, c in word_roots
+                if len(c["readings"]) == 1
+                and c["readings"][0]["tags"][:1] == ["Pron"]
+            ]
+
         coverage = {
             "word_tokens": word_tokens,
             "oov": oov,
             "collapsed": collapsed,
             "ambig": ambig,
+            "unlicensed": unlicensed,
             "checks_relevant": relevant_checks(sent_cohorts, genverbs),
             "reasons": [],
         }

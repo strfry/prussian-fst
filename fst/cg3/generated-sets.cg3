@@ -2,3 +2,4 @@
 # Source: fst/valence.json + kuratierte Gen-Verben.
 
 LIST GenVerb = "bijātun" "iĺgitun si" "klausītun" "kwaitītun" "kīnintun si" ;
+LIST AkkVerb = "audribbintun" "auwīngtun" "aušaūtun" "aušaūtun si" "billītun" "bilītun" "bilītun si" "dalljautun" "ebwīlktun" "ensegītun" "enīmtun" "erbilītun" "etgērdautun si" "gaūtun" "izmakīntun si" "kōntaktitwei" "milītun" "minītun" "nadirītun" "padīngautun" "parkautwei" "pazinātun" "prabilītun" "preizentlitun" "turītun" "waīstun" "widātun" ;

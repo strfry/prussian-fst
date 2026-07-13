@@ -49,6 +49,7 @@ LIST Part = Part ;
 LIST Prp = Prp ;
 LIST Psp = Psp ;
 LIST Inf = Inf ;
+LIST Cnj = Cnj ;
 LIST SCnj = SCnj ;
 LIST CLB = CLB ;
 LIST PUNCT = PUNCT ;
@@ -78,6 +79,8 @@ LIST P2 = P2 ;
 LIST Ni = "ni" ;
 LIST P1Pron = (Pron P1) ;
 LIST P2Pron = (Pron P2) ;
+# Determiner-Pronomen (wie disambiguator.cg3): Pron ohne Person/Enklise
+SET DetPronV = Pron - (Pron P1) - (Pron P2) - (Pron P3) - (Pron Encl) ;
 LIST Copula = "būtwei" "pastātwei" ;
 LIST GenDet = ("stas" Gen) ;
 
@@ -128,6 +131,13 @@ ADD:prep-akk-dat (&prep-akk-dat) NGHead IF (0C Dat)
 #    keine PP-Komplemente.
 ADD:pp-nom (&pp-nom) N IF (0C Nom) (cC Adposition) ;
 ADD:pp-nom (&pp-nom) N IF (0C Nom) (NOT 0 (&pp-nom)) (-1C Prp) ;
+#    Determiner-Pronomen als PP-Einstieg („en stas buttas"): eindeutig
+#    nominativisches Det-Pronomen direkt nach Präposition mit folgendem
+#    N ist Teil des PP-Komplements — feuert lokal, auch wenn OOV
+#    anderswo im Satz die Coverage drückt und die Rektion der
+#    Präposition (GovAkk|GovDat) unaufgelöst bleibt.  Personal-
+#    pronomen sind ausgenommen (adverbiale Ordinal-PPs, s. o.).
+ADD:pp-nom (&pp-nom) DetPronV IF (0C Nom) (-1C Prp) (1 N) ;
 
 # ── V3–V5 &agr-adj-* — Kongruenz Attributiv-Adjektiv ↔ Kopf über die
 #    agr-head-Parent-Relation (BEFORE-SECTIONS; attributive Adjektive
@@ -171,6 +181,32 @@ ADD:agr-adj-gend (&agr-adj-gend) Adj - XPred IF (0C Fem)
 ADD:agr-adj-gend (&agr-adj-gend) Adj - XPred IF (0C Neut)
     (pC N LINK NOT 0 Neut LINK NOT 0 Gen)
     (NEGATE -1* Copula BARRIER LeftStopNonCop) ;
+
+# ── V3b–V5b — Adjazenz-Varianten OHNE Copula-Guard: Adjektiv direkt
+#    vor eindeutig nominativischem N-Kopf ist attributiv (Prädikats-NP
+#    „[Kop] Adj N(Nom)"), auch in Kopula-Klauseln („asma prūsiskas
+#    wīrs").  1C N + Nom heißt: ALLE Kopf-Lesarten sind N und Nom —
+#    Gen-Transparenz entfällt, und bare Prädikative (Folgetoken Pron
+#    oder Nicht-Nom) bleiben stumm.  Kasus-Variante: Nicht-Nominativ-
+#    Adjektiv vor Nom-Kopf ist immer ein Clash.
+ADD:agr-adj-case (&agr-adj-case) Adj - XPred IF (0C Gen)
+    (1C N + Nom) ;
+ADD:agr-adj-case (&agr-adj-case) Adj - XPred IF (0C Dat)
+    (1C N + Nom) ;
+ADD:agr-adj-case (&agr-adj-case) Adj - XPred IF (0C Akk)
+    (1C N + Nom) ;
+
+ADD:agr-adj-num (&agr-adj-num) Adj - XPred IF (0C Sg)
+    (1C N + Nom LINK NOT 0 Sg) ;
+ADD:agr-adj-num (&agr-adj-num) Adj - XPred IF (0C Pl)
+    (1C N + Nom LINK NOT 0 Pl) ;
+
+ADD:agr-adj-gend (&agr-adj-gend) Adj - XPred IF (0C Masc)
+    (1C N + Nom LINK NOT 0 Masc) ;
+ADD:agr-adj-gend (&agr-adj-gend) Adj - XPred IF (0C Fem)
+    (1C N + Nom LINK NOT 0 Fem) ;
+ADD:agr-adj-gend (&agr-adj-gend) Adj - XPred IF (0C Neut)
+    (1C N + Nom LINK NOT 0 Neut) ;
 
 # ── V6 &pred-nom-akk — Prädikatsnomen unter Kopula muss Nom sein
 #    (§2).  Das Akk-Nominal bekommt kein @pred (das ADD verlangt Nom),
@@ -233,6 +269,53 @@ ADD:agr-subj-verb-pers (&agr-subj-verb-pers) FiniteVerb IF (0C P1)
 ADD:agr-subj-verb-pers (&agr-subj-verb-pers) FiniteVerb IF (0C P2)
     (NOT 0 (&agr-subj-verb-pers)) (-1 Ni) (-2C P1Pron + Nom) ;
 
+# ── V8b &agr-subj-verb-num — Numerusclash zwischen P1/P2-Pronomen-
+#    Subjekt und finitem Verb derselben Person („Mes waida …": waida
+#    hat P1 nur als Sg).  Nur P1/P2 — die 3. Person ist numeruslos
+#    modelliert.  Gleiche Adjazenz-Disziplin wie V8 (inkl. ni).
+ADD:agr-subj-verb-num (&agr-subj-verb-num) FiniteVerb IF (0C P1) (0C Sg)
+    (-1C P1Pron + Nom + Pl) ;
+ADD:agr-subj-verb-num (&agr-subj-verb-num) FiniteVerb IF (0C P1) (0C Pl)
+    (-1C P1Pron + Nom + Sg) ;
+ADD:agr-subj-verb-num (&agr-subj-verb-num) FiniteVerb IF (0C P2) (0C Sg)
+    (-1C P2Pron + Nom + Pl) ;
+ADD:agr-subj-verb-num (&agr-subj-verb-num) FiniteVerb IF (0C P2) (0C Pl)
+    (-1C P2Pron + Nom + Sg) ;
+ADD:agr-subj-verb-num (&agr-subj-verb-num) FiniteVerb IF (0C P1) (0C Sg)
+    (NOT 0 (&agr-subj-verb-num)) (-1 Ni) (-2C P1Pron + Nom + Pl) ;
+ADD:agr-subj-verb-num (&agr-subj-verb-num) FiniteVerb IF (0C P1) (0C Pl)
+    (NOT 0 (&agr-subj-verb-num)) (-1 Ni) (-2C P1Pron + Nom + Sg) ;
+ADD:agr-subj-verb-num (&agr-subj-verb-num) FiniteVerb IF (0C P2) (0C Sg)
+    (NOT 0 (&agr-subj-verb-num)) (-1 Ni) (-2C P2Pron + Nom + Pl) ;
+ADD:agr-subj-verb-num (&agr-subj-verb-num) FiniteVerb IF (0C P2) (0C Pl)
+    (NOT 0 (&agr-subj-verb-num)) (-1 Ni) (-2C P2Pron + Nom + Sg) ;
+
+# ── V11 &subj-dup — Uniqueness-Verletzung: zwei eindeutige @SUBJ-
+#    Nominale unter einem kuratierten Akkusativ-Verb („Tū turri stas
+#    wīrs." — turītun lizenziert nur ein Subjekt; das zweite Nom-
+#    Nominal wäre als Objekt Akk).  SECTION 10 des Disambiguators kann
+#    bei zwei single-reading-@SUBJ keines entfernen (REMOVE SAFE) —
+#    genau die Konstellation, die hier prüfbar überlebt.
+#    Bulk-Regression: ohne die AkkVerb-Beschränkung feuert die Regel
+#    massenhaft auf Appositionen, Relativsätze, Quantoren („wis") und
+#    asyndetische Koordination — die Klauselpartition über Geschwister
+#    ist auf attestiertem Text nicht verlässlich.  Deshalb nur Verben
+#    mit bekannter Akk-Valenz (generated-sets.cg3) plus Appositions-/
+#    Koordinations-Guards (kein Nom-Nominal-Nachbar, kein Cnj).
+#    Zusätzliche Span-Disziplin (Bulk-Regression, v. a. unmarkierte
+#    Satzreihungen in Transkripten): das Duplikat muss textuell im
+#    selben SCnj-/interpunktionsfreien Span stehen; Determinierer mit
+#    Nom-Kopf weiter rechts in der NP („Stas wārs pagānisks pīws")
+#    sind Det-Anbindungslücken, keine Zweitsubjekte — ebenso das
+#    Kopfnomen hinter so einem schwebenden Determinierer.
+ADD:subj-dup (&subj-dup) NGHead IF (0C XSubj) (sC XSubj)
+    (pC FiniteVerb + AkkVerb)
+    ((-1*C XSubj BARRIER RightStop) OR (1*C XSubj BARRIER RightStop))
+    (NEGATE 0 DetPronV LINK 1* NGHead + Nom BARRIER RightStop)
+    (NEGATE -1* DetPronV + Nom BARRIER LeftStop)
+    (NEGATE -1 Cnj) (NEGATE 1 Cnj) (NEGATE -1 PUNCT)
+    (NEGATE -1 NGHead + Nom) (NEGATE 1 NGHead + Nom) ;
+
 # ── V9 &steisan-nongen — stēisan/stesse-Periphrase (§4) verlangt ein
 #    unmittelbar folgendes Gen-Nominal.  „stesse paggan" (Psp) fällt
 #    nicht darunter (1C NGHead schlägt fehl).
@@ -249,3 +332,14 @@ ADD:steisan-nongen (&steisan-nongen) GenDet IF (0C Gen)
 #    lichste Fehlalarm-Generator.
 # ADD:pred-adj-gend (&pred-adj-gend) Adj + XPred IF (0C Masc) ;
 # ADD:pred-adj-gend (&pred-adj-gend) Adj + XPred IF (0C Fem) ;
+
+# ── V12 &akkverb-nom (EXPERIMENTELL, deaktiviert) — Akkusativ-Verb
+#    (kuratierte AkkVerb-Liste, generated-sets.cg3) mit eindeutig
+#    nominativischem Objekt.  Nicht aktivierbar, solange die VS-
+#    Stellung nicht zuverlässig erkannt ist: „Turri stas wīrs …" hat
+#    ein legitimes Nom-Subjekt RECHTS vom Verb — Nom nach AkkVerb ist
+#    also keine sichere Negativevidenz (gleiche Begründung wie der
+#    Valenz-Verzicht in disambiguator.cg3 SECTION 10).  Der Repro-Fall
+#    „Tū turri stas wīrs." wird stattdessen von &subj-dup getroffen.
+# ADD:akkverb-nom (&akkverb-nom) NGHead + XSubj IF (0C Nom)
+#     (pC FiniteVerb + AkkVerb) (sC XSubj) ;

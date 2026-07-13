@@ -573,6 +573,21 @@ SELECT (P2 Pl) IF (0 (P2 Pl))
 SELECT (P3) IF (0 P12) (0 P3)
     (-1*C P3SubjAny + Nom BARRIER SubjBarrier) ;
 
+# Subjekt-inkompatible Personen abwählen, auch wenn die SELECTs oben
+# leer ausgehen (Numerus des Pronomens passt zu keiner Verblesart:
+# „Mes waida …" — waida hat P1 nur als Sg).  SAFE + (0 Px)-Guard:
+# es wird nur geprunt, wenn eine subjektkompatible Lesart existiert;
+# der Personenclash selbst bleibt stehen und ist Sache des Validators
+# (&agr-subj-verb-pers/-num).
+REMOVE SAFE (P2) IF (0 FiniteVerb) (0 P1)
+    (-1*C P1Pron + Nom BARRIER SubjBarrier) ;
+REMOVE SAFE (P3) IF (0 FiniteVerb) (0 P1)
+    (-1*C P1Pron + Nom BARRIER SubjBarrier) ;
+REMOVE SAFE (P1) IF (0 FiniteVerb) (0 P2)
+    (-1*C P2Pron + Nom BARRIER SubjBarrier) ;
+REMOVE SAFE (P3) IF (0 FiniteVerb) (0 P2)
+    (-1*C P2Pron + Nom BARRIER SubjBarrier) ;
+
 
 # ============================================================ #
 # SECTION 7b — Reflexiv-Doubletten (+Refl vs. non-Refl)        #
@@ -615,8 +630,13 @@ SECTION dep-tree ;
 # @pred: prädikatives Partizip direkt nach Auxiliar (R7-Adjazenz) …
 ADD (@pred) Part IF (-1C FiniteVerb + Aux) ;
 # … oder Prädikatsnomen/-adjektiv im Nom rechts der Kopula (§2/§9).
+# Attributive Modifikatoren sind ausgenommen: ein CongrMod mit
+# Nom-NGHead rechts in seiner Agreement-Domäne gehört zur Prädikats-NP
+# („asma prūsisks wīrs") — @pred bekommt der Kopf, nicht das Adjektiv
+# (sonst schützt XPred es im Validator vor den agr-adj-Prüfungen).
 ADD (@pred) Nominal + Nom - Part IF (NOT 0 XPred)
-    (-1*C FiniteVerb + Copula BARRIER ClauseBoundary) ;
+    (-1*C FiniteVerb + Copula BARRIER ClauseBoundary)
+    (NEGATE 0 CongrMod LINK 1* NGHead + Nom BARRIER AgrBarrier) ;
 # @fin: übrige finite Verben sind selbst Klauselkopf.
 ADD (@fin) FiniteVerb IF (NOT 1C Part + XPred)
     (NEGATE 0 Copula LINK 1* XPred BARRIER ClauseBoundary) ;
