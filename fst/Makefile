@@ -43,7 +43,7 @@ build/base.fst: $(LEXC_MERGED) | build/
 # build/base.fst bildet analysis → surface ab, für Lookup brauchen wir
 # surface → analysis, also wird vor dem Format-Export invertiert.
 build/base.hfstol: build/base.fst
-	python3 -c "import hfst; tr = hfst.HfstInputStream('$<').read(); tr.invert(); hfst.HfstOutputStream(filename='$(basename $@)_inv.fst').write(tr);"
+	hfst-invert -i $< -o $(basename $@)_inv.fst
 	hfst-fst2fst -f optimized-lookup-unweighted -o $@ $(basename $@)_inv.fst
 	rm -f $(basename $@)_inv.fst
 
@@ -57,7 +57,7 @@ build/lenient.fst: build/base.fst build/norm.hfst
 	hfst-compose -1 build/base.fst -2 build/norm.hfst | hfst-minimize -o $@
 
 build/lenient.hfstol: build/lenient.fst
-	python3 -c "import hfst; tr = hfst.HfstInputStream('$<').read(); tr.invert(); hfst.HfstOutputStream(filename='$(basename $@)_inv.fst').write(tr);"
+	hfst-invert -i $< -o $(basename $@)_inv.fst
 	hfst-fst2fst -f optimized-lookup-unweighted -o $@ $(basename $@)_inv.fst
 	rm -f $(basename $@)_inv.fst
 
