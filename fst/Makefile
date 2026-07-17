@@ -85,7 +85,7 @@ disambiguate: build/base.hfstol cg3-sets $(CG3_BINS)
 	python3 scripts/cg3_pipeline.py --stats
 
 conllu: build/base.hfstol build/lenient.hfstol cg3-sets $(CG3_BINS)
-	python3 scripts/export_conllu.py --out ../data/prussian_silver.conllu
+	uv run python scripts/export_conllu.py --out ../data/prussian_silver.conllu
 
 detect-errors: build/base.hfstol cg3-sets $(CG3_BINS)
 	python3 scripts/cg3_pipeline.py --detect-errors --limit 200
@@ -95,8 +95,8 @@ detect-errors: build/base.hfstol cg3-sets $(CG3_BINS)
 validate-corpus: build/base.hfstol cg3-sets $(CG3_BINS)
 	python3 scripts/cg3_pipeline.py --validate --validate-summary
 	python3 scripts/cg3_pipeline.py --validate --validate-summary \
-	    --corpus-md ../../prussian-corpus/parsed/awizi_articles \
-	    --corpus-md ../../prussian-corpus/parsed/twanksta_articles
+	    --corpus-md ../../corpus/parsed/awizi_articles \
+	    --corpus-md ../../corpus/parsed/twanksta_articles
 
 clean:
 	rm -rf build
