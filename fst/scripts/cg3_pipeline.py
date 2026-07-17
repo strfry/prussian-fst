@@ -38,7 +38,7 @@ from pathlib import Path
 
 FST_DIR = Path(__file__).resolve().parents[1]
 REPO = FST_DIR.parent
-DEFAULT_CORPUS = REPO.parent / "prussian-corpus/parsed/youtube_corpus_sentences.json"
+DEFAULT_CORPUS = REPO.parent / "corpus/parsed/youtube_corpus_sentences.json"
 DEFAULT_FST = FST_DIR / "build/base.hfstol"
 DEFAULT_LENIENT = FST_DIR / "build/lenient.hfstol"
 DEFAULT_GRAMMAR = FST_DIR / "cg3/disambiguator.cg3"
