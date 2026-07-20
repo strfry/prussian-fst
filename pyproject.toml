@@ -7,7 +7,6 @@ requires-python = ">=3.11"
 dependencies = [
     "conllu>=6.0.0",
     "hfst>=3.16.0.1",
-    "pyfoma>=1.1.0",
     "pyhfst>=1.4.0",
 ]
 
