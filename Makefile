@@ -3,26 +3,27 @@
 # Target:
 #   make              — build base.fst from all .lexc files
 #   make data         — download current twanksta_entries.json from GitHub release
+#   make gen          — generiere .lexc-Dateien aus twanksta_entries.json
 #   make cg3-sets     — generierte CG3-Sets/-Regeln aus valence.json
 #   make cg3-check    — Syntaxcheck des CG3-Disambiguators
 #   make disambiguate — Vollkorpus-Lauf mit Ambiguitätsstatistik (stdout)
-#   make conllu       — CoNLL-U-Silberexport aller Korpora nach ../data/
+#   make conllu       — CoNLL-U-Silberexport aller Korpora nach data/
 #   make clean
 
 RELEASE_TAG := $(shell curl -sL "https://api.github.com/repos/strfry/prussian-corpus/releases/latest" | \
                 python3 -c "import json,sys; print(json.load(sys.stdin)['tag_name'])" 2>/dev/null)
-DATA_DIR    := ../data/external
+DATA_DIR    := data/external
 TWANKSTA_URL := https://github.com/strfry/prussian-corpus/releases/download/$(RELEASE_TAG)/twanksta_entries.json
 
-LEXC_FILES := symbols.lexc root.lexc function_words.lexc proper_nouns.lexc proper_nouns_auto.lexc nouns.lexc adjectives.lexc \
-              pronouns.lexc numerals.lexc verbs.lexc adverbs.lexc \
-              prepositions.lexc conjunctions.lexc particles.lexc interjections.lexc
+LEXC_FILES := lexc/symbols.lexc lexc/root.lexc lexc/function_words.lexc lexc/proper_nouns.lexc lexc/proper_nouns_auto.lexc lexc/nouns.lexc lexc/adjectives.lexc \
+              lexc/pronouns.lexc lexc/numerals.lexc lexc/verbs.lexc lexc/adverbs.lexc \
+              lexc/prepositions.lexc lexc/conjunctions.lexc lexc/particles.lexc lexc/interjections.lexc
 
 LEXC_MERGED := build/lexc.merged
 
 .PHONY: all data gen clean cg3-sets cg3-check disambiguate conllu hfstol
 
-all: build/base.hfstol build/lenient.hfstol
+all: build/base.hfstol build/macron.hfstol build/lenient.hfstol
 
 data:
 	curl -fsSL "$(TWANKSTA_URL)" -o $(DATA_DIR)/twanksta_entries.json
@@ -31,7 +32,7 @@ build/:
 	mkdir -p build
 
 gen:
-	python3 scripts/gen_lexc.py
+	python3 src/prussian_fst/gen_lexc.py
 
 $(LEXC_MERGED): $(LEXC_FILES) | build/
 	cat $(LEXC_FILES) > $@
@@ -47,22 +48,30 @@ build/base.hfstol: build/base.fst
 	hfst-fst2fst -f optimized-lookup-unweighted -o $@ $(basename $@)_inv.fst
 	rm -f $(basename $@)_inv.fst
 
-# Korrektur-Layer: orthographische Varianten (Degemination, w-Prothese,
-# i-Synkope …) auf die kanonische Oberfläche komponiert. Nur als
-# Fallback-Analyzer für Formen benutzen, die base.fst nicht kennt.
-build/norm.hfst: norm.regex | build/
-	hfst-xfst -F norm.regex
+# Korrektur-Layer, eine Stufe pro Phänomen (norm/*.regex → build/norm-*.hfst).
+# Auf die kanonische Oberfläche komponiert; nur als Fallback-Analyzer für
+# Formen benutzen, die die strengeren Stufen nicht kennen.
+build/norm-%.hfst: norm/%.regex | build/
+	hfst-xfst -F $<
 
-build/lenient.fst: build/base.fst build/norm.hfst
-	hfst-compose -1 build/base.fst -2 build/norm.hfst | hfst-minimize -o $@
+# Stufe 1: nur Makron-Verlust (ā ē ī ō ū → a e i o u)
+build/macron.fst: build/base.fst build/norm-macron.hfst
+	hfst-compose -1 build/base.fst -2 build/norm-macron.hfst | hfst-minimize -o $@
 
-build/lenient.hfstol: build/lenient.fst
+# Stufe 2: Makron + Degemination + sonstige Orthographie-Varianten
+build/lenient.fst: build/base.fst build/norm-macron.hfst build/norm-degem.hfst build/norm-ortho.hfst
+	hfst-compose -1 build/norm-macron.hfst -2 build/norm-degem.hfst -o build/norm-tmp1.fst
+	hfst-compose -1 build/norm-tmp1.fst -2 build/norm-ortho.hfst -o build/norm-tmp2.fst
+	hfst-compose -1 build/base.fst -2 build/norm-tmp2.fst | hfst-minimize -o $@
+	rm -f build/norm-tmp1.fst build/norm-tmp2.fst
+
+build/macron.hfstol build/lenient.hfstol: build/%.hfstol: build/%.fst
 	hfst-invert -i $< -o $(basename $@)_inv.fst
 	hfst-fst2fst -f optimized-lookup-unweighted -o $@ $(basename $@)_inv.fst
 	rm -f $(basename $@)_inv.fst
 
 cg3-sets:
-	python3 scripts/gen_cg3_sets.py
+	python3 src/prussian_fst/gen_cg3_sets.py
 
 build/cg3/:
 	mkdir -p build/cg3
@@ -82,21 +91,21 @@ cg3-check: cg3-sets $(CG3_BINS)
 	@echo "Alle Grammatiken syntaktisch OK."
 
 disambiguate: build/base.hfstol cg3-sets $(CG3_BINS)
-	python3 scripts/cg3_pipeline.py --stats
+	python3 src/prussian_fst/cg3_pipeline.py --stats
 
 conllu: build/base.hfstol build/lenient.hfstol cg3-sets $(CG3_BINS)
-	uv run python scripts/export_conllu.py --out ../data/prussian_silver.conllu
+	uv run python src/prussian_fst/export_conllu.py --out data/prussian_silver.conllu
 
 detect-errors: build/base.hfstol cg3-sets $(CG3_BINS)
-	python3 scripts/cg3_pipeline.py --detect-errors --limit 200
+	python3 src/prussian_fst/cg3_pipeline.py --detect-errors --limit 200
 
 # Bulk-Zero-False-Alarm-Regression: Validator über die attestierten
 # Korpora — Flags auf attestiertem Text sind (fast immer) Fehlalarme.
 validate-corpus: build/base.hfstol cg3-sets $(CG3_BINS)
-	python3 scripts/cg3_pipeline.py --validate --validate-summary
-	python3 scripts/cg3_pipeline.py --validate --validate-summary \
-	    --corpus-md ../../corpus/parsed/awizi_articles \
-	    --corpus-md ../../corpus/parsed/twanksta_articles
+	python3 src/prussian_fst/cg3_pipeline.py --validate --validate-summary
+	python3 src/prussian_fst/cg3_pipeline.py --validate --validate-summary \
+	    --corpus-md ../corpus/parsed/awizi_articles \
+	    --corpus-md ../corpus/parsed/twanksta_articles
 
 clean:
 	rm -rf build

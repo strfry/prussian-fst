@@ -46,7 +46,7 @@ OUT_OOV = OUT_DIR / "delta_oov.xlsx"
 OUT_BROKEN = OUT_DIR / "delta_broken_lemmas.xlsx"
 OUT_ERR_GROUPS = OUT_DIR / "delta_error_groups.xlsx"
 
-FST_DIR = Path(__file__).resolve().parents[1]
+FST_DIR = Path(__file__).resolve().parents[2]
 BASE_FST = FST_DIR / "build/base.fst"
 LENIENT_FST = FST_DIR / "build/lenient.fst"
 

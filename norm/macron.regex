@@ -1,0 +1,11 @@
+! Makron-Verlust: Korpusschreibung ohne Längenzeichen (optional, alle Langvokale).
+! Deckt auch die Diphthong-Variante aī → ai ab.
+define MacronA [ā (->) a];
+define MacronE [ē (->) e];
+define MacronI [ī (->) i];
+define MacronO [ō (->) o];
+define MacronU [ū (->) u];
+
+regex MacronA .o. MacronE .o. MacronI .o. MacronO .o. MacronU ;
+save stack build/norm-macron.hfst
+quit

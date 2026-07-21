@@ -13,9 +13,8 @@ from pathlib import Path
 import pytest
 
 REPO = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(REPO / "fst/scripts"))
 
-from cg3_pipeline import relevant_checks, sentence_status  # noqa: E402
+from prussian_fst.cg3_pipeline import relevant_checks, sentence_status  # noqa: E402
 
 
 def coverage(word_tokens=4, oov=(), collapsed=(), ambig=(), unlicensed=(),
@@ -154,7 +153,7 @@ def test_relevant_checks_genverb_and_steisan():
 
 import shutil  # noqa: E402
 
-FST_OL = REPO / "fst/build/base.hfstol"
+FST_OL = REPO / "build/base.hfstol"
 needs_pipeline = pytest.mark.skipif(
     not (shutil.which("cg-proc") and FST_OL.exists()),
     reason="cg-proc/base.hfstol nicht verfügbar",

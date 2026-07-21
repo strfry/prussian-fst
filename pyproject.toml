@@ -18,18 +18,11 @@ dev = [
     "pytest>=9.1.1",
 ]
 
-# Editierbar installierbares Paket: prussian_fst → fst/scripts (Quellcode
-# bleibt an Ort und Stelle; die FST_DIR-relative Artefakt-Auflösung
-# funktioniert nur bei EDITABLE-Installation, siehe prussian_fst/__init__).
-# setuptools statt hatchling: das PEP-660-Editable mit abweichendem
-# Verzeichnisnamen erzeugt einen MetaPathFinder mit echten Quellpfaden —
-# hatchlings .pth-Variante würde fst/scripts flach auf sys.path legen
-# (Kollisionsgefahr generischer Modulnamen wie cg3_pipeline).
 [build-system]
 requires = ["setuptools>=69"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
+package-dir = {"" = "src"}
 packages = ["prussian_fst"]
-package-dir = {"prussian_fst" = "fst/scripts"}
 

@@ -11,7 +11,7 @@ from pathlib import Path
 import pytest
 
 REPO = Path(__file__).resolve().parents[1]
-FST = REPO / "fst/build/base.hfstol"
+FST = REPO / "build/base.hfstol"
 
 pytestmark = pytest.mark.skipif(
     not (shutil.which("cg-proc") and FST.exists()),
@@ -62,9 +62,9 @@ def test_conllu_matches_cli():
     """Extraktions-Guard: API-Output == CLI-Output (byte-identisch)."""
     text = "Labban dēinan! As pūwa sen laīwu."
     cli = subprocess.run(
-        [sys.executable, str(REPO / "fst/scripts/cg3_pipeline.py"),
+        [sys.executable, "-m", "prussian_fst.cg3_pipeline",
          "--text", text, "--conllu", "--trace"],
-        capture_output=True, text=True, check=True)
+        capture_output=True, text=True, check=True, cwd=REPO)
     assert api.conllu(text) == cli.stdout
 
 

@@ -1,0 +1,19 @@
+! Degemination: Doppelkonsonant nach Vokal → einfacher Konsonant.
+define Vowel [a|e|i|o|u|ā|ē|ī|ō|ū];
+
+define DegemNN [n (->) 0 || Vowel _ n];
+define DegemMM [m (->) 0 || Vowel _ m];
+define DegemPP [p (->) 0 || Vowel _ p];
+define DegemTT [t (->) 0 || Vowel _ t];
+define DegemDD [d (->) 0 || Vowel _ d];
+define DegemKK [k (->) 0 || Vowel _ k];
+define DegemLL [l (->) 0 || Vowel _ l];
+define DegemRR [r (->) 0 || Vowel _ r];
+define DegemSS [s (->) 0 || Vowel _ s];
+define DegemBB [b (->) 0 || Vowel _ b];
+define DegemGG [g (->) 0 || Vowel _ g];
+define DegemZZ [z (->) 0 || Vowel _ z];
+
+regex DegemNN .o. DegemMM .o. DegemPP .o. DegemTT .o. DegemDD .o. DegemKK .o. DegemLL .o. DegemRR .o. DegemSS .o. DegemBB .o. DegemGG .o. DegemZZ ;
+save stack build/norm-degem.hfst
+quit

@@ -14,16 +14,16 @@ data/reports/
 # generierte Lookup-Tabellen (make gen aus twanksta_entries.json);
 # handgepflegt und versioniert bleiben nur function_words/proper_nouns/
 # root/symbols/pronouns.lexc
-fst/adjectives.lexc
-fst/adverbs.lexc
-fst/conjunctions.lexc
-fst/interjections.lexc
-fst/nouns.lexc
-fst/numerals.lexc
-fst/particles.lexc
-fst/prepositions.lexc
-fst/proper_nouns_auto.lexc
-fst/verbs.lexc
+lexc/adjectives.lexc
+lexc/adverbs.lexc
+lexc/conjunctions.lexc
+lexc/interjections.lexc
+lexc/nouns.lexc
+lexc/numerals.lexc
+lexc/particles.lexc
+lexc/prepositions.lexc
+lexc/proper_nouns_auto.lexc
+lexc/verbs.lexc
 .env
 Untitled.ipynb
 .ipynb_checkpoints/

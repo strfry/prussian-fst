@@ -13,8 +13,9 @@ from collections import defaultdict
 from pathlib import Path
 
 SCRIPT_DIR = Path(__file__).resolve().parent
-TWANKSTA = SCRIPT_DIR / "../../data/external/twanksta_entries.json"
-OUT_DIR = SCRIPT_DIR / ".."
+REPO = SCRIPT_DIR.parents[1]
+TWANKSTA = REPO / "data/external/twanksta_entries.json"
+OUT_DIR = REPO / "lexc"
 
 # Auxiliary verbs in periphrastic Perfect/Future indicative forms.
 # The first word of a multi-word form is stripped when it matches.

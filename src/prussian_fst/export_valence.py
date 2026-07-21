@@ -15,8 +15,8 @@ import json
 import re
 from pathlib import Path
 
-TWANKSTA = Path("../../data/external/twanksta_entries.json")
-OUT = Path("../valence.json")
+TWANKSTA = Path(__file__).resolve().parents[2] / "data/external/twanksta_entries.json"
+OUT = Path(__file__).resolve().parents[2] / "build/valence.json"
 
 CASE_NAMES = {"acc": "Acc", "akk": "Acc", "dat": "Dat", "gen": "Gen"}
 

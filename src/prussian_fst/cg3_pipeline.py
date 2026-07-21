@@ -11,16 +11,16 @@ Pipeline:
    7. optional Ambiguitätsstatistik bzw. CoNLL-U auf stdout
 
 Beispiele:
-  python3 fst/scripts/cg3_pipeline.py --stats            # Vollkorpus, Kennzahlen
-  python3 fst/scripts/cg3_pipeline.py --limit 20         # disambiguierter Stream
-  python3 fst/scripts/cg3_pipeline.py --no-disamb        # roher CG-Input
-  python3 fst/scripts/cg3_pipeline.py --deps --limit 20  # Stream mit R:label:ID
-  echo "Labban dēinan!" | python3 fst/scripts/cg3_pipeline.py --text - --conllu
+  python3 src/prussian_fst/cg3_pipeline.py --stats            # Vollkorpus, Kennzahlen
+  python3 src/prussian_fst/cg3_pipeline.py --limit 20         # disambiguierter Stream
+  python3 src/prussian_fst/cg3_pipeline.py --no-disamb        # roher CG-Input
+  python3 src/prussian_fst/cg3_pipeline.py --deps --limit 20  # Stream mit R:label:ID
+  echo "Labban dēinan!" | python3 src/prussian_fst/cg3_pipeline.py --text - --conllu
   # --conllu --trace: zusätzlich Regel-Provenienz in MISC —
   # Rule=<name,…> (benannte Grammatikregeln laut --trace) und
   # AgrParent=<id> (Kongruenz-Ziel der agr-head-Regeln, Lauf bis
   # SECTION dep-tree).  Signatur fürs MCP-Frontend (fsg_check).
-  echo "As pūwa sen laīwu." | python3 fst/scripts/cg3_pipeline.py --text - --validate
+  echo "As pūwa sen laīwu." | python3 src/prussian_fst/cg3_pipeline.py --text - --validate
   # --validate: Prüf-Pass (validator.cg3, &-Fehler-Tags) → dreiwertiges
   # JSON pro Satz: violations_found / verified_in_coverage /
   # out_of_coverage.  „Kein Fehler-Tag" heißt NICHT „korrekt" —
@@ -36,17 +36,16 @@ import sys
 from collections import Counter
 from pathlib import Path
 
-FST_DIR = Path(__file__).resolve().parents[1]
-REPO = FST_DIR.parent
+REPO = Path(__file__).resolve().parents[2]
 DEFAULT_CORPUS = REPO.parent / "corpus/parsed/youtube_corpus_sentences.json"
-DEFAULT_FST = FST_DIR / "build/base.hfstol"
-DEFAULT_LENIENT = FST_DIR / "build/lenient.hfstol"
-DEFAULT_GRAMMAR = FST_DIR / "cg3/disambiguator.cg3"
-DEFAULT_DEP_GRAMMAR = FST_DIR / "cg3/dependency.cg3"
-DEFAULT_VALIDATOR_GRAMMAR = FST_DIR / "cg3/validator.cg3"
-DEFAULT_GRAMMAR_BIN = FST_DIR / "build/cg3/disambiguator.bin"
-DEFAULT_DEP_GRAMMAR_BIN = FST_DIR / "build/cg3/dependency.bin"
-DEFAULT_VALIDATOR_GRAMMAR_BIN = FST_DIR / "build/cg3/validator.bin"
+DEFAULT_FST = REPO / "build/base.hfstol"
+DEFAULT_LENIENT = REPO / "build/lenient.hfstol"
+DEFAULT_GRAMMAR = REPO / "cg3/disambiguator.cg3"
+DEFAULT_DEP_GRAMMAR = REPO / "cg3/dependency.cg3"
+DEFAULT_VALIDATOR_GRAMMAR = REPO / "cg3/validator.cg3"
+DEFAULT_GRAMMAR_BIN = REPO / "build/cg3/disambiguator.bin"
+DEFAULT_DEP_GRAMMAR_BIN = REPO / "build/cg3/dependency.bin"
+DEFAULT_VALIDATOR_GRAMMAR_BIN = REPO / "build/cg3/validator.bin"
 
 # Dual-Mode: als Paketmodul (prussian_fst.cg3_pipeline) relativ, als
 # direkt ausgeführtes Skript (sys.path[0] = fst/scripts) flach.
@@ -236,7 +235,7 @@ def build_cg_input(sentences: list[dict], fst_path: Path | None = None) -> str:
 def grammar_bin_path(grammar_cg3: Path) -> Path:
     """Derive compiled binary path from a text .cg3 path:
     cg3/disambiguator.cg3 → build/cg3/disambiguator.bin"""
-    return FST_DIR / "build" / "cg3" / (grammar_cg3.stem + ".bin")
+    return REPO / "build" / "cg3" / (grammar_cg3.stem + ".bin")
 
 
 def run_cg_proc(cg_input: str, grammar: Path, trace: bool = False,
@@ -461,7 +460,7 @@ AMBIG_MAX = 0.34
 COPULA_LEMMAS = {"būtwei", "pastātwei"}
 
 
-def load_genverbs(path: Path = FST_DIR / "cg3/generated-sets.cg3") -> set[str]:
+def load_genverbs(path: Path = REPO / "cg3/generated-sets.cg3") -> set[str]:
     """GenVerb-Lemmata aus dem autogenerierten CG3-Set (valence.json)."""
     m = re.search(r'LIST GenVerb\s*=\s*([^;]+);', path.read_text(encoding="utf-8"))
     return set(re.findall(r'"([^"]+)"', m.group(1))) if m else set()

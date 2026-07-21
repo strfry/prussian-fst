@@ -10,7 +10,7 @@ Verben wie „ast" tragen daher schlicht kein Number-Feature, ohne Ambig.
 Sätze mit >50% unbekannten Wörtern gelten als fremdsprachliches Zitat
 und werden übersprungen.
 
-  python3 fst/scripts/export_conllu.py --out data/prussian_silver.conllu
+  python3 src/prussian_fst/export_conllu.py --out data/prussian_silver.conllu
 """
 
 import argparse
@@ -18,7 +18,7 @@ import sys
 from pathlib import Path
 
 # Dual-Mode: als Paketmodul (prussian_fst.export_conllu) relativ, als
-# direkt ausgeführtes Skript flach (dann fst/scripts auf den Pfad legen).
+# direkt ausgeführtes Skript flach (dann src/prussian_fst auf den Pfad legen).
 try:
     from .cg3_pipeline import (DEFAULT_CORPUS, DEFAULT_DEP_GRAMMAR,
                                DEFAULT_FST, DEFAULT_GRAMMAR, REPO,

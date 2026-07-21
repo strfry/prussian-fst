@@ -15,18 +15,17 @@ from pathlib import Path
 import pytest
 
 REPO = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(REPO / "fst/scripts"))
 
-import cg3_pipeline as pipe  # noqa: E402
-from export_conllu import resolve_deps  # noqa: E402
+from prussian_fst import cg3_pipeline as pipe  # noqa: E402
+from prussian_fst.export_conllu import resolve_deps  # noqa: E402
 
 FIXTURES = Path(__file__).parent / "fixtures/cg3_golden.tsv"
 DEP_FIXTURES = Path(__file__).parent / "fixtures/cg3_dep_golden.tsv"
 VAL_FIXTURES = Path(__file__).parent / "fixtures/cg3_validator_golden.tsv"
-GRAMMAR = REPO / "fst/cg3/disambiguator.cg3"
-DEP_GRAMMAR = REPO / "fst/cg3/dependency.cg3"
-VAL_GRAMMAR = REPO / "fst/cg3/validator.cg3"
-FST = REPO / "fst/build/base.hfstol"
+GRAMMAR = REPO / "cg3/disambiguator.cg3"
+DEP_GRAMMAR = REPO / "cg3/dependency.cg3"
+VAL_GRAMMAR = REPO / "cg3/validator.cg3"
+FST = REPO / "build/base.hfstol"
 
 pytestmark = pytest.mark.skipif(
     not (shutil.which("cg-proc") and FST.exists()),

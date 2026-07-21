@@ -1,0 +1,15 @@
+! Sonstige orthographische/dialektale Varianten.
+define WProthese [w (->) 0 || .#. _ u];
+define SamlandI [0 (->) i || s t s _ .#.];
+
+! Nom-Sg-Variante der i-Stämme: pawīstis → pawīsts (YT-Korpus)
+define ISynkope [i (->) 0 || t _ s .#.];
+
+! Infinitiv-Endungsvariante: -twei ↔ -tun (dialektal, historisch)
+! Achtung: {…} nötig — nacktes `twei` wäre in xfst-Regex EIN Multichar-Symbol
+! und würde in der Komposition nie gegen die Einzelzeichen von base.fst matchen.
+define InfTunTwei [{twei} (->) {tun} || _ .#.];
+
+regex WProthese .o. SamlandI .o. ISynkope .o. InfTunTwei ;
+save stack build/norm-ortho.hfst
+quit

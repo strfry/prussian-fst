@@ -22,7 +22,7 @@ from pathlib import Path
 from .cg3_pipeline import (DEFAULT_DEP_GRAMMAR, DEFAULT_DEP_GRAMMAR_BIN,
                            DEFAULT_FST, DEFAULT_GRAMMAR, DEFAULT_GRAMMAR_BIN,
                            DEFAULT_LENIENT, DEFAULT_VALIDATOR_GRAMMAR,
-                           DEFAULT_VALIDATOR_GRAMMAR_BIN, FST_DIR, SENT_PUNCT,
+                           DEFAULT_VALIDATOR_GRAMMAR_BIN, REPO, SENT_PUNCT,
                            attach_agr_parents, build_cg_input,
                            parse_cg_stream, run_cg_proc, text_to_sentences,
                            tokenize, validate_sentences)
@@ -128,12 +128,12 @@ def check_artifacts() -> list[str]:
     if not shutil.which("cg-proc"):
         problems.append("cg-proc nicht im PATH — cg3/Apertium installieren")
     for f, fix in [
-        (DEFAULT_FST, f"make -C {FST_DIR} all"),
-        (DEFAULT_LENIENT, f"make -C {FST_DIR} all"),
-        (FST_DIR / "cg3/generated-sets.cg3", f"make -C {FST_DIR} cg3-sets"),
-        (DEFAULT_GRAMMAR_BIN, f"make -C {FST_DIR} cg3-check"),
-        (DEFAULT_DEP_GRAMMAR_BIN, f"make -C {FST_DIR} cg3-check"),
-        (DEFAULT_VALIDATOR_GRAMMAR_BIN, f"make -C {FST_DIR} cg3-check"),
+        (DEFAULT_FST, f"make all"),
+        (DEFAULT_LENIENT, f"make all"),
+        (REPO / "cg3/generated-sets.cg3", f"make cg3-sets"),
+        (DEFAULT_GRAMMAR_BIN, f"make cg3-check"),
+        (DEFAULT_DEP_GRAMMAR_BIN, f"make cg3-check"),
+        (DEFAULT_VALIDATOR_GRAMMAR_BIN, f"make cg3-check"),
     ]:
         if not f.exists():
             problems.append(f"{f} fehlt — {fix}")

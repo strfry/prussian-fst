@@ -17,36 +17,57 @@ curl -fsSL "$RELEASE/twanksta_entries.json" -o data/external/twanksta_entries.js
 ## Bauen
 
 ```bash
-cd fst && make gen   # .lexc-Dateien aus JSON generieren
-cd fst && make       # hfst-lexc → build/base.fst
+make gen   # .lexc-Dateien aus JSON generieren
+make       # hfst-lexc → build/base.fst
 ```
 
 ## Struktur
 
 ```
-fst/
+.
 ├── Makefile                  # gen → hfst-lexc
-├── scripts/
+├── src/prussian_fst/
+│   ├── __init__.py
 │   ├── gen_lexc.py           # Konsolidierter Generator aus twanksta_entries.json
-│   ├── export_valence.py     # Rektion/Valenz-Export (desc-Feld) → valence.json
+│   ├── export_valence.py     # Rektion/Valenz-Export (desc-Feld) → build/valence.json
+│   ├── linker.py             # desc-Ref-Resolver → build/links.json
+│   ├── cg3_pipeline.py       # CG3-Disambiguator-Pipeline
+│   ├── export_conllu.py      # CoNLL-U-Export
 │   └── delta_review.py       # Korpus-Dict-Abgleich (Handoff für Glabbis)
-├── symbols.lexc
-├── root.lexc
-├── nouns.lexc                # generiert
-├── adjectives.lexc           # generiert
-├── pronouns.lexc             # generiert
-├── numerals.lexc             # generiert
-├── verbs.lexc                # generiert (+ Partizip-Routing)
-├── verb_participles.lexc     # handgeschriebene Partizip-Paradigmen
-├── adverbs.lexc              # generiert
-├── prepositions.lexc         # generiert
-├── conjunctions.lexc         # generiert
-├── particles.lexc            # generiert
-├── interjections.lexc        # generiert
-├── norm.regex                # Normalisierung (lenient)
-├── valence.json              # Rektion/Valenz-Export (generiert)
-└── build/
-    └── base.fst              # kompilierter FST
+├── lexc/
+│   ├── symbols.lexc          # handgepflegt
+│   ├── root.lexc             # handgepflegt
+│   ├── function_words.lexc   # handgepflegt
+│   ├── pronouns.lexc         # handgepflegt
+│   ├── proper_nouns.lexc     # handgepflegt
+│   ├── nouns.lexc            # generiert
+│   ├── adjectives.lexc       # generiert
+│   ├── numerals.lexc         # generiert
+│   ├── verbs.lexc            # generiert
+│   ├── adverbs.lexc          # generiert
+│   ├── prepositions.lexc     # generiert
+│   ├── conjunctions.lexc     # generiert
+│   ├── particles.lexc        # generiert
+│   ├── interjections.lexc    # generiert
+│   └── proper_nouns_auto.lexc # generiert
+├── cg3/
+│   ├── disambiguator.cg3     # Hauptgrammatik
+│   ├── dependency.cg3        # Dependenz-Schicht
+│   ├── validator.cg3         # Validierungs-Regeln
+│   └── generated-sets.cg3    # CG3-Sets (generiert aus valence.json)
+├── norm/                     # Normalisierungs-Stufen (pro Phänomen)
+│   ├── macron.regex          # Makron-Verlust (ā ē ī ō ū → a e i o u)
+│   ├── degem.regex           # Degemination (nn → n …)
+│   └── ortho.regex           # w-Prothese, i-Synkope, twei↔tun …
+└── build/                    # Kompilierte Artefakte
+    ├── base.hfstol           # Lookup-FST (surface → analysis), strikt
+    ├── macron.hfstol         # + Makron-Normalisierung
+    ├── lenient.hfstol        # + Degemination/Ortho (Gesamt-Fallback)
+    ├── valence.json          # Rektion/Valenz-Export (generiert)
+    └── cg3/
+        ├── disambiguator.bin
+        ├── dependency.bin
+        └── validator.bin
 ```
 
 Alle Einträge sind Vollformen (`lemma+POS+Tag:form # ;`), nach
@@ -67,7 +88,7 @@ Neben POS/Kasus/Numerus/Genus/Tempus/Person:
   Twanksta-`desc`-Feld (`prp acc` / `prp dat`); Doppelrektion ergibt
   zwei Einträge (`ēn`, `ezze`, `pa`, `pō`)
 
-`valence.json` (aus `scripts/export_valence.py`) enthält die
+`build/valence.json` (aus `src/prussian_fst/export_valence.py`) enthält die
 Präpositionsrektion als JSON sowie Best-Effort-Verbvalenz
 (nur die ~140 im Wörterbuch annotierten Verben; unpersönliche
 Verben sind in Twanksta nicht kodiert).
@@ -79,7 +100,7 @@ Der Einzeltext-Modus der Pipeline liefert das Antwortformat für das
 (--validate), optional CoNLL-U (ein Block pro Satz).
 
 ```bash
-echo "Labban dēinan!" | python3 fst/scripts/cg3_pipeline.py --text - --conllu --trace
+echo "Labban dēinan!" | python3 src/prussian_fst/cg3_pipeline.py --text - --conllu --trace
 ```
 
 Mit `--trace` wandert Regel-Provenienz nach MISC:

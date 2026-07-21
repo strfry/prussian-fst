@@ -20,9 +20,9 @@ Release tags follow `v{YYYY-MM-DD}`.
 ## Build
 
 ```bash
-cd fst && make data  # download latest twanksta_entries.json from GitHub release
-cd fst && make gen   # regenerate .lexc files from JSON
-cd fst && make       # compile FST
+make data  # download latest twanksta_entries.json from GitHub release
+make gen   # regenerate .lexc files from JSON
+make       # compile FST
 ```
 
 ## Lookup
@@ -30,7 +30,7 @@ cd fst && make       # compile FST
 Use `hfst-flookup` (not `hfst-lookup`) to look up forms:
 
 ```bash
-echo "apperautan" | hfst-flookup fst/build/base.fst
+echo "apperautan" | hfst-flookup build/base.fst
 ```
 
 ## Twanksta API

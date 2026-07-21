@@ -12,13 +12,12 @@ from pathlib import Path
 import pytest
 
 REPO = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(REPO / "fst/scripts"))
 
-import cg3_pipeline as pipe  # noqa: E402
-import export_conllu as ec  # noqa: E402
+from prussian_fst import cg3_pipeline as pipe  # noqa: E402
+from prussian_fst import export_conllu as ec  # noqa: E402
 
-FST = REPO / "fst/build/base.hfstol"
-GRAMMAR = REPO / "fst/cg3/disambiguator.cg3"
+FST = REPO / "build/base.hfstol"
+GRAMMAR = REPO / "cg3/disambiguator.cg3"
 
 pytestmark = pytest.mark.skipif(
     not (shutil.which("cg-proc") and FST.exists()),
