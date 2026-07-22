@@ -10,9 +10,18 @@ Herleitungs-/Belegverweise, oft auf andere preußische Formen
   3. macron  — macron.hfstol (Makron-Verlust), Case-Varianten
   4. lenient — lenient.hfstol (Makron + Degemination + Ortho), Case-Varianten
 
-Genau 1 eindeutiges Lemma → Treffer (method = Stufenname); mehrere →
-ambiguous; keins → gap (erwartbar für die vielen deutschen/litauischen
-Etymologie-Verweise).
+Mindestens 1 Analyse in einer Stufe → Treffer (status "resolved",
+method = Stufenname).  Mehrere Lemmata werden NICHT als Fehler behandelt,
+sondern als Cluster gelinkt (lemmas: [...]): dieselbe Oberflächenform ist
+im Vollform-Lexikon von mehreren Lemmata legitim ableitbar (lexikalisierte
+Ableitung vs. flektiertes Grundwort, tun/twei-Infinitivpaare, Sg-/Pl-tantum-
+Paare, Makron-Minimalpaare).  Regelstufen können solche Fälle nicht trennen;
+Details siehe docs/ambiguities.md.  Keine Analyse → gap (erwartbar für die
+vielen deutschen/litauischen Etymologie-Verweise).
+
+Großgeschriebene Refs (Lemma-Zitierformen) und Formen mit Zeichen außerhalb
+des FST-Alphabets (Fremd-/Lehnwortschreibungen) werden gar nicht erst
+nachgeschlagen — siehe resolve_corpus bzw. den Alphabet-Guard.
 """
 
 from __future__ import annotations
@@ -43,6 +52,19 @@ MARKERS = {"MK", "Nx", "DIA", "drv", "DRV", "E", "GlN", "GrG", "GrA", "GrF",
 
 BRACKET_RE = re.compile(r"\[([^\]]*)\]")
 
+# Zeichen, die der FST kennt: Kleinbuchstaben a-z plus Makron-Vokale.
+# Formen mit anderen Zeichen (ļ ķ v é …) stammen aus fremdsprachigen
+# Etymologie-/Lehnwortschreibungen; sie im FST nachzuschlagen liefert nur
+# Präfix-Müll-Matches (kaļķis → ka).  Leerzeichen/Bindestrich sind für
+# mehrteilige Verweise erlaubt.
+FST_ALPHABET = set("abcdefghijklmnopqrstuvwxyzāēīōū")
+_ALLOWED_EXTRA = set(" -")
+
+
+def _in_alphabet(form: str) -> bool:
+    return all(ch.lower() in FST_ALPHABET or ch in _ALLOWED_EXTRA
+               for ch in form)
+
 
 @dataclass
 class BracketItem:
@@ -65,6 +87,9 @@ def parse_desc(desc: str) -> list[BracketItem]:
             for tok in tokens:
                 if tok.isdigit():
                     source = tok
+                elif "." in tok:
+                    # Sprachkürzel wie "lat." / "lit." — kein preußischer Beleg.
+                    continue
                 elif tok not in MARKERS and tok.strip("+"):
                     words.append(tok.strip("+"))
             if words:
@@ -81,7 +106,17 @@ def _case_variants(form: str) -> list[str]:
 
 
 def resolve_form(form: str, fsts: dict[str, Path]) -> dict:
-    """Kaskade über die Analyzer-Stufen; erste Stufe mit Analysen gewinnt."""
+    """Kaskade über die Analyzer-Stufen; erste Stufe mit Analysen gewinnt.
+
+    Ein oder mehrere Lemmata werden gleich behandelt: status "resolved" mit
+    lemmas als (sortierter) Liste.  Mehrere Lemmata sind kein Fehlerfall,
+    sondern ein Cluster gleichwertiger Analysen derselben Oberflächenform
+    (siehe Modul-Docstring / docs/ambiguities.md).
+    """
+    if not _in_alphabet(form):
+        # Zeichen außerhalb des FST-Alphabets → Nachschlagen liefert nur
+        # Präfix-Müll-Matches; direkt als gap behandeln.
+        return {"status": "gap"}
     stages = [
         ("exact", fsts["base"], [form]),
         ("case", fsts["base"], _case_variants(form)[1:]),
@@ -94,15 +129,11 @@ def resolve_form(form: str, fsts: dict[str, Path]) -> dict:
         analyses = flookup_batch(variants, fst_path)
         pairs = {(lemma, tuple(tags))
                  for hits in analyses.values() for lemma, tags in hits}
-        lemmas = {lemma for lemma, _ in pairs}
-        if len(lemmas) == 1:
-            lemma = next(iter(lemmas))
+        lemmas = sorted({lemma for lemma, _ in pairs})
+        if lemmas:
             tags = sorted({"+".join(t) for _, t in pairs})
-            return {"status": "resolved", "lemma": lemma,
+            return {"status": "resolved", "lemmas": lemmas,
                     "tags": tags, "method": method}
-        if len(lemmas) > 1:
-            return {"status": "ambiguous", "candidates": sorted(lemmas),
-                    "method": method}
     return {"status": "gap"}
 
 
@@ -112,18 +143,20 @@ def resolve_corpus(entries: list[dict], fsts: dict[str, Path]) -> tuple[list, li
     for entry in entries:
         desc = entry.get("desc", "")
         for item in parse_desc(desc):
+            # Großgeschriebene Refs sind Lemma-Zitierformen (E, GrG, eigene
+            # Lemmata …), keine aufzulösenden Flexionsformen → überspringen.
+            if item.form[:1].isupper():
+                continue
             if item.form not in cache:
                 cache[item.form] = resolve_form(item.form, fsts)
             res = cache[item.form]
             record = {"orig_lemma": entry.get("word"), "ref": item.form,
                       "desc": desc, "source": item.source}
             if res["status"] == "resolved":
-                links.append({**record, "lemma": res["lemma"],
+                links.append({**record, "lemmas": res["lemmas"],
                               "tags": res["tags"], "method": res["method"]})
             else:
                 record["status"] = res["status"]
-                if res["status"] == "ambiguous":
-                    record["candidates"] = res["candidates"]
                 unresolved.append(record)
     return links, unresolved
 
@@ -149,10 +182,12 @@ def main() -> None:
     if args.stats:
         methods = Counter(l["method"] for l in links)
         status = Counter(u["status"] for u in unresolved)
+        clusters = sum(1 for l in links if len(l["lemmas"]) > 1)
         total = len(links) + len(unresolved)
         print(f"Verweise gesamt: {total}")
         print(f"aufgelöst: {len(links)} "
               f"({', '.join(f'{m}={n}' for m, n in methods.most_common())})")
+        print(f"  davon Cluster (mehrere Lemmata): {clusters}")
         print(f"offen: {len(unresolved)} "
               f"({', '.join(f'{s}={n}' for s, n in status.most_common())})")
 

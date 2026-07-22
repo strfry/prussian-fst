@@ -9,7 +9,12 @@ from pathlib import Path
 import pytest
 
 from prussian_fst import linker
-from prussian_fst.linker import BracketItem, parse_desc, resolve_form
+from prussian_fst.linker import (
+    BracketItem,
+    parse_desc,
+    resolve_corpus,
+    resolve_form,
+)
 
 REPO = Path(__file__).resolve().parents[1]
 
@@ -47,6 +52,14 @@ def test_parse_desc_empty():
     assert parse_desc("[MK]") == []
 
 
+def test_parse_desc_language_prefix_dropped():
+    # Sprachkürzel ("lat.") verwerfen, echten Beleg behalten.
+    assert parse_desc("[lat. portus MK]") == [BracketItem("portus")]
+    assert parse_desc("[lit. viešėti]") == [BracketItem("viešėti")]
+    # Bleibt nichts übrig, entsteht auch kein Eintrag.
+    assert parse_desc("[gr. MK]") == []
+
+
 # ── Kaskade (synthetische Lookups) ──
 
 FSTS = {"base": Path("base"), "macron": Path("macron"), "lenient": Path("lenient")}
@@ -72,7 +85,7 @@ def test_cascade_exact(patched):
     patched({"base": {"deinan": [("dēinā", ["N", "Sg", "Akk"])]}})
     res = resolve_form("deinan", FSTS)
     assert res["status"] == "resolved"
-    assert res["lemma"] == "dēinā"
+    assert res["lemmas"] == ["dēinā"]
     assert res["method"] == "exact"
 
 
@@ -89,16 +102,54 @@ def test_cascade_macron(patched):
     assert res["method"] == "macron"
 
 
-def test_cascade_ambiguous(patched):
-    patched({"base": {"x": [("a", ["N"]), ("b", ["V"])]}})
-    res = resolve_form("x", FSTS)
-    assert res["status"] == "ambiguous"
-    assert res["candidates"] == ["a", "b"]
+def test_cascade_cluster(patched):
+    # Mehrere Lemmata sind kein Fehler, sondern ein resolved-Cluster.
+    patched({"base": {"labban": [("labban", ["N", "Sg", "Akk"]),
+                                 ("labs", ["Aj", "Sg", "Akk"])]}})
+    res = resolve_form("labban", FSTS)
+    assert res["status"] == "resolved"
+    assert res["lemmas"] == ["labban", "labs"]
+    assert res["method"] == "exact"
 
 
 def test_cascade_gap(patched):
     patched({})
-    assert resolve_form("viešėti", FSTS)["status"] == "gap"
+    assert resolve_form("vieseti", FSTS)["status"] == "gap"
+
+
+def test_alphabet_guard_skips_lookup(patched):
+    # ļ/ķ liegen außerhalb des FST-Alphabets: gar kein Lookup, direkt gap,
+    # auch wenn ein Präfix-Müll-Match in der Tabelle stünde.
+    patched({"base": {"kaļķis": [("ka", ["N"]), ("kas", ["Pron"])]}})
+    res = resolve_form("kaļķis", FSTS)
+    assert res["status"] == "gap"
+    assert "lemmas" not in res
+
+
+def test_alphabet_guard_allows_macron_and_space(patched):
+    patched({"base": {"dāst dais": [("dātun", ["V"])]}})
+    res = resolve_form("dāst dais", FSTS)
+    assert res["status"] == "resolved"
+
+
+# ── resolve_corpus ──
+
+def test_resolve_corpus_cluster_and_skips(patched):
+    patched({"base": {"labban": [("labban", ["N"]), ("labs", ["Aj"])]}})
+    entries = [
+        {"word": "labs", "desc": "[labban MK]"},   # Cluster-Treffer
+        {"word": "Werk", "desc": "[Advent MK]"},   # Großschreibung → skip
+        {"word": "x", "desc": "[kaļķis MK]"},      # Nicht-FST-Zeichen → gap
+    ]
+    links, unresolved = resolve_corpus(entries, FSTS)
+    assert len(links) == 1
+    assert links[0]["ref"] == "labban"
+    assert links[0]["lemmas"] == ["labban", "labs"]
+    assert "lemma" not in links[0]
+    # Advent wird übersprungen (kein Link, kein unresolved-Eintrag);
+    # kaļķis bleibt als gap offen.
+    assert [u["ref"] for u in unresolved] == ["kaļķis"]
+    assert unresolved[0]["status"] == "gap"
 
 
 # ── Smoke-Test gegen gebaute Artefakte ──
