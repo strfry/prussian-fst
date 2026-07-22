@@ -1,4 +1,8 @@
-# Build the Prussian full-form lookup FST (HFST stack).
+# Build the Prussian full-form lookup FST (python-hfst stack).
+#
+# Der FST-Build läuft über das python-`hfst`-Modul (src/prussian_fst/build_fst.py),
+# nicht über die hfst-CLI-Werkzeuge — einzige Build-Abhängigkeit ist damit das
+# pip-Paket `hfst` (bereits in pyproject.toml).  Lookup zur Laufzeit: pyhfst.
 #
 # Target:
 #   make              — build base.fst from all .lexc files
@@ -21,6 +25,9 @@ LEXC_FILES := lexc/symbols.lexc lexc/root.lexc lexc/function_words.lexc lexc/pro
 
 LEXC_MERGED := build/lexc.merged
 
+# Python-Ersatz für die hfst-CLI-Werkzeuge (siehe src/prussian_fst/build_fst.py).
+HFST := python3 src/prussian_fst/build_fst.py
+
 .PHONY: all data gen clean cg3-sets cg3-check disambiguate conllu hfstol
 
 all: build/base.hfstol build/macron.hfstol build/lenient.hfstol
@@ -38,37 +45,33 @@ $(LEXC_MERGED): $(LEXC_FILES) | build/
 	cat $(LEXC_FILES) > $@
 
 build/base.fst: $(LEXC_MERGED) | build/
-	hfst-lexc -o $@ $(LEXC_MERGED)
+	$(HFST) lexc $(LEXC_MERGED) $@
 
-# Optimized-lookup transducer für pyhfst (invertiert: surface → analysis)
+# Optimized-lookup transducer für pyhfst (invertiert: surface → analysis).
 # build/base.fst bildet analysis → surface ab, für Lookup brauchen wir
-# surface → analysis, also wird vor dem Format-Export invertiert.
+# surface → analysis; build_fst.py invertiert vor dem Format-Export.
 build/base.hfstol: build/base.fst
-	hfst-invert -i $< -o $(basename $@)_inv.fst
-	hfst-fst2fst -f optimized-lookup-unweighted -o $@ $(basename $@)_inv.fst
-	rm -f $(basename $@)_inv.fst
+	$(HFST) hfstol $< $@
 
 # Korrektur-Layer, eine Stufe pro Phänomen (norm/*.regex → build/norm-*.hfst).
 # Auf die kanonische Oberfläche komponiert; nur als Fallback-Analyzer für
-# Formen benutzen, die die strengeren Stufen nicht kennen.
+# Formen benutzen, die die strengeren Stufen nicht kennen.  Das xfst-Skript
+# schreibt sein Ergebnis selbst (`save stack build/norm-<phänomen>.hfst`).
 build/norm-%.hfst: norm/%.regex | build/
-	hfst-xfst -F $<
+	$(HFST) xfst $<
 
 # Stufe 1: nur Makron-Verlust (ā ē ī ō ū → a e i o u)
 build/macron.fst: build/base.fst build/norm-macron.hfst
-	hfst-compose -1 build/base.fst -2 build/norm-macron.hfst | hfst-minimize -o $@
+	$(HFST) compose $@ build/base.fst build/norm-macron.hfst
 
-# Stufe 2: Makron + Degemination + sonstige Orthographie-Varianten
+# Stufe 2: Makron + Degemination + sonstige Orthographie-Varianten.
+# Komposition ist assoziativ, daher in einem Rutsch base .o. macron .o. degem
+# .o. ortho, minimiert.
 build/lenient.fst: build/base.fst build/norm-macron.hfst build/norm-degem.hfst build/norm-ortho.hfst
-	hfst-compose -1 build/norm-macron.hfst -2 build/norm-degem.hfst -o build/norm-tmp1.fst
-	hfst-compose -1 build/norm-tmp1.fst -2 build/norm-ortho.hfst -o build/norm-tmp2.fst
-	hfst-compose -1 build/base.fst -2 build/norm-tmp2.fst | hfst-minimize -o $@
-	rm -f build/norm-tmp1.fst build/norm-tmp2.fst
+	$(HFST) compose $@ build/base.fst build/norm-macron.hfst build/norm-degem.hfst build/norm-ortho.hfst
 
 build/macron.hfstol build/lenient.hfstol: build/%.hfstol: build/%.fst
-	hfst-invert -i $< -o $(basename $@)_inv.fst
-	hfst-fst2fst -f optimized-lookup-unweighted -o $@ $(basename $@)_inv.fst
-	rm -f $(basename $@)_inv.fst
+	$(HFST) hfstol $< $@
 
 cg3-sets:
 	python3 src/prussian_fst/gen_cg3_sets.py

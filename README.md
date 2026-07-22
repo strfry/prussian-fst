@@ -16,19 +16,24 @@ curl -fsSL "$RELEASE/twanksta_entries.json" -o data/external/twanksta_entries.js
 
 ## Bauen
 
+Der FST-Build läuft über das python-`hfst`-Modul (Projekt-Abhängigkeit,
+`pip install hfst`), nicht über eine separat installierte hfst-Toolchain;
+Lookup zur Laufzeit über `pyhfst`.
+
 ```bash
 make gen   # .lexc-Dateien aus JSON generieren
-make       # hfst-lexc → build/base.fst
+make       # python-hfst: lexc → build/base.fst → *.hfstol
 ```
 
 ## Struktur
 
 ```
 .
-├── Makefile                  # gen → hfst-lexc
+├── Makefile                  # gen → python-hfst-Build
 ├── src/prussian_fst/
 │   ├── __init__.py
 │   ├── gen_lexc.py           # Konsolidierter Generator aus twanksta_entries.json
+│   ├── build_fst.py          # FST-Build über python-hfst (ersetzt hfst-CLI)
 │   ├── export_valence.py     # Rektion/Valenz-Export (desc-Feld) → build/valence.json
 │   ├── linker.py             # desc-Ref-Resolver → build/links.json
 │   ├── cg3_pipeline.py       # CG3-Disambiguator-Pipeline
