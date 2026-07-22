@@ -163,5 +163,5 @@ def test_resolve_smoke():
             "lenient": REPO / "build/lenient.hfstol"}
     res = resolve_form("niainunts", fsts)
     assert res["status"] == "resolved"
-    assert res["lemma"] == "niaīnunts"
+    assert res["lemmas"] == ["niaīnunts"]
     assert res["method"] == "macron"
