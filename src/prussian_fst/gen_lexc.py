@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate per-POS .lexc files from twanksta_entries.json.
 
-Reads the Twanksta wordlist and outputs full-form lookup-table .lexc
+Reads the Twanksta dictionary entries and outputs full-form lookup-table .lexc
 files grouped by part of speech — one file per word class.
 Participle forms are output as full-form entries (no stem routing).
 Reflexive verbs (`` si``) get ``+Refl`` tag; the `` si`` is split off.
@@ -14,7 +14,8 @@ from pathlib import Path
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 REPO = SCRIPT_DIR.parents[1]
-TWANKSTA = REPO / "data/external/twanksta_entries.json"
+# Kanonisches Dictionary aus dem corpus-Repo (keine Kopie im fst-Repo).
+TWANKSTA = REPO.parent / "corpus" / "parsed" / "twanksta_entries.json"
 OUT_DIR = REPO / "lexc"
 
 # Auxiliary verbs in periphrastic Perfect/Future indicative forms.
@@ -464,6 +465,18 @@ def verb_forms(entry: dict, prep_words: set[str] | None = None) -> tuple[str, di
 #  Main
 # ═══════════════════════════════════════════════════════════════════
 
+def _write_if_changed(path: Path, content: str) -> bool:
+    """Schreibe content nur, wenn er sich von path unterscheidet.
+
+    Mtime-Stabilität ist die Grundlage für den Make-Dependency-Graph:
+    unveränderte .lexc-Dateien lösen keinen FST-Rebuild aus.
+    """
+    if path.exists() and path.read_text(encoding="utf-8") == content:
+        return False
+    path.write_text(content, encoding="utf-8")
+    return True
+
+
 def main():
     raw = json.loads(TWANKSTA.read_text(encoding="utf-8"))
 
@@ -564,8 +577,8 @@ def main():
                     total += 1
 
         lines.append("")
-        out_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
-        print(f"Wrote {out_path}  ({total} form entries)")
+        if _write_if_changed(out_path, "\n".join(lines) + "\n"):
+            print(f"Wrote {out_path}  ({total} form entries)")
 
     # ── Verb file ──
     v_lines = []
@@ -602,8 +615,8 @@ def main():
 
     v_lines.append("")
     v_path = OUT_DIR / "verbs.lexc"
-    v_path.write_text("\n".join(v_lines) + "\n", encoding="utf-8")
-    print(f"Wrote {v_path}  ({len(v_lines)} lines)")
+    if _write_if_changed(v_path, "\n".join(v_lines) + "\n"):
+        print(f"Wrote {v_path}  ({len(v_lines)} lines)")
     print(f"  Verb stats: inf={vstats['inf']} pres={vstats['pres']} pret={vstats['pret']} "
           f"opt={vstats['opt']} imp={vstats['imp']} subj={vstats['subj']} "
           f"part_pres={vstats['part_pres']} part_past={vstats['part_past']} "

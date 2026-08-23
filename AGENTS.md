@@ -7,15 +7,13 @@ Look up Prussian word forms on the Twanksta online dictionary
 
 ## Data file
 
-Requires `twanksta_entries.json` from the
-[`strfry/prussian-corpus`](https://github.com/strfry/prussian-corpus) release:
+Reads `twanksta_entries.json` from the canonical location in the
+sibling [`strfry/prussian-corpus`](https://github.com/strfry/prussian-corpus)
+checkout — no copy in the fst repo:
 
 ```bash
-RELEASE="https://github.com/strfry/prussian-corpus/releases/download/v2026-07-04"
-curl -fsSL "$RELEASE/twanksta_entries.json" -o data/external/twanksta_entries.json
+ls ../corpus/parsed/twanksta_entries.json   # built by corpus scripts/twanksta_parse.py
 ```
-
-Release tags follow `v{YYYY-MM-DD}`.
 
 ## Build
 

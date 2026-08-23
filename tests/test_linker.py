@@ -152,6 +152,21 @@ def test_resolve_corpus_cluster_and_skips(patched):
     assert unresolved[0]["status"] == "gap"
 
 
+def test_resolve_corpus_uppercase_ref_not_casefolded(patched):
+    # Regression (pettalka → pippelka): Großgeschriebene Zitatverweise wie
+    # "[peteliškė, Pippelka]" sind Lemma-Verweise, keine Flexionsformen.
+    # Selbst wenn die kleingeschriebene Form im FST auflösbar wäre, darf
+    # der Ref NICHT per Case-Folding nachgeschlagen und gelinkt werden.
+    patched({"base": {"pippelka": [("pippelka", ["N", "Sg", "Nom"])]}})
+    entries = [{"word": "pettalka", "desc": "[peteliškė, Pippelka]"}]
+    links, unresolved = resolve_corpus(entries, FSTS)
+    assert links == []
+    # peteliškė bleibt als gap offen (Nicht-FST-Zeichen); Pippelka wird
+    # komplett übersprungen — kein Link, kein unresolved-Eintrag.
+    assert [u["ref"] for u in unresolved] == ["peteliškė"]
+    assert unresolved[0]["status"] == "gap"
+
+
 # ── Smoke-Test gegen gebaute Artefakte ──
 
 BASE = REPO / "build/base.hfstol"
@@ -165,3 +180,21 @@ def test_resolve_smoke():
     assert res["status"] == "resolved"
     assert res["lemmas"] == ["niaīnunts"]
     assert res["method"] == "macron"
+
+
+LINKS = REPO / "build/links.json"
+
+
+@pytest.mark.skipif(not LINKS.exists(), reason="make links zuerst")
+def test_links_artifact_no_uppercase_refs():
+    # Artefakt-Invariante: build/links.json darf keine kapitalisierten
+    # Refs enthalten (Zitatverweise werden geskippt).  Ein Verstoß heißt:
+    # das Artefakt stammt von einem älteren Linker-Stand → make links.
+    import json
+
+    records = json.loads(LINKS.read_text())
+    bad = sorted({r["ref"] for r in records if r.get("ref", "")[:1].isupper()})
+    assert not bad, (
+        f"{LINKS} enthält {len(bad)} großgeschriebene Refs "
+        f"(z. B. {bad[:5]}) — stale Artefakt, bitte `make links` erneut ausführen."
+    )

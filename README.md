@@ -7,11 +7,12 @@ lexc-Eintrag (Lookup-Tabelle, keine Stamm-Endung-Zerlegung).
 ## Daten
 
 `twanksta_entries.json` aus dem
-[`strfry/prussian-corpus`](https://github.com/strfry/prussian-corpus)-Release:
+[`strfry/prussian-corpus`](https://github.com/strfry/prussian-corpus)-Checkout
+liegt — keine Kopie im fst-Repo:
 
 ```bash
-RELEASE="https://github.com/strfry/prussian-corpus/releases/download/v2026-07-04"
-curl -fsSL "$RELEASE/twanksta_entries.json" -o data/external/twanksta_entries.json
+# kanonische Quelle (im corpus-Repo bauen: python3 scripts/twanksta_parse.py)
+ls ../corpus/parsed/twanksta_entries.json
 ```
 
 ## Bauen

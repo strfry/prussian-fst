@@ -6,18 +6,15 @@
 #
 # Target:
 #   make              — build base.fst from all .lexc files
-#   make data         — download current twanksta_entries.json from GitHub release
-#   make gen          — generiere .lexc-Dateien aus twanksta_entries.json
+#   make gen          — generiere .lexc-Dateien aus dem Dictionary
+#                       (kanonische Quelle: ../corpus/parsed/twanksta_entries.json)
 #   make cg3-sets     — generierte CG3-Sets/-Regeln aus valence.json
 #   make cg3-check    — Syntaxcheck des CG3-Disambiguators
 #   make disambiguate — Vollkorpus-Lauf mit Ambiguitätsstatistik (stdout)
 #   make conllu       — CoNLL-U-Silberexport aller Korpora nach data/
+#   make links        — desc-Ref-Resolver → build/links.json (Input fürs
+#                       Chunk-Clustering in prussian-embeddings)
 #   make clean
-
-RELEASE_TAG := $(shell curl -sL "https://api.github.com/repos/strfry/prussian-corpus/releases/latest" | \
-                python3 -c "import json,sys; print(json.load(sys.stdin)['tag_name'])" 2>/dev/null)
-DATA_DIR    := data/external
-TWANKSTA_URL := https://github.com/strfry/prussian-corpus/releases/download/$(RELEASE_TAG)/twanksta_entries.json
 
 LEXC_FILES := lexc/symbols.lexc lexc/root.lexc lexc/function_words.lexc lexc/proper_nouns.lexc lexc/proper_nouns_auto.lexc lexc/nouns.lexc lexc/adjectives.lexc \
               lexc/pronouns.lexc lexc/numerals.lexc lexc/verbs.lexc lexc/adverbs.lexc \
@@ -26,14 +23,12 @@ LEXC_FILES := lexc/symbols.lexc lexc/root.lexc lexc/function_words.lexc lexc/pro
 LEXC_MERGED := build/lexc.merged
 
 # Python-Ersatz für die hfst-CLI-Werkzeuge (siehe src/prussian_fst/build_fst.py).
-HFST := python3 src/prussian_fst/build_fst.py
+# uv run = Projekt-Env, damit hfst überall verfügbar ist (auch ohne System-Install).
+HFST := uv run python src/prussian_fst/build_fst.py
 
-.PHONY: all data gen clean cg3-sets cg3-check disambiguate conllu hfstol
+.PHONY: all gen clean cg3-sets cg3-check disambiguate conllu hfstol links
 
 all: build/base.hfstol build/macron.hfstol build/lenient.hfstol
-
-data:
-	curl -fsSL "$(TWANKSTA_URL)" -o $(DATA_DIR)/twanksta_entries.json
 
 build/:
 	mkdir -p build
@@ -101,6 +96,17 @@ conllu: build/base.hfstol build/lenient.hfstol cg3-sets $(CG3_BINS)
 
 detect-errors: build/base.hfstol cg3-sets $(CG3_BINS)
 	python3 src/prussian_fst/cg3_pipeline.py --detect-errors --limit 200
+
+# desc-Ref-Resolver: Verweise in twanksta-descs über die Analyzer-Kaskade
+# auflösen → build/links.json.  Wichtig: nach Änderungen an linker.py neu
+# laufen lassen und die Kette weiterfahren (chunks bauen, Embeddings
+# generieren, MCP-Server neu starten) — siehe ../embeddings/README.md.
+#
+# Die Abhängigkeit von `gen` macht Dictionary-Änderungen für make sichtbar:
+# gen_lexc schreibt nur tatsächlich geänderte .lexc-Dateien, daher läuft die
+# FST-Kette nur an, wenn sich der Inhalt von ../corpus/parsed/... änderte.
+links: gen build/base.hfstol build/macron.hfstol build/lenient.hfstol
+	uv run python -m prussian_fst.linker --stats
 
 # Bulk-Zero-False-Alarm-Regression: Validator über die attestierten
 # Korpora — Flags auf attestiertem Text sind (fast immer) Fehlalarme.

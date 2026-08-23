@@ -42,7 +42,8 @@ REPO = Path(__file__).resolve().parents[2]
 DEFAULT_BASE = REPO / "build/base.hfstol"
 DEFAULT_MACRON = REPO / "build/macron.hfstol"
 DEFAULT_LENIENT = REPO / "build/lenient.hfstol"
-DEFAULT_CORPUS = REPO / "data/external/twanksta_entries.json"
+# Kanonisches Dictionary aus dem corpus-Repo (keine Kopie im fst-Repo).
+DEFAULT_CORPUS = REPO.parent / "corpus" / "parsed" / "twanksta_entries.json"
 
 # Annotations-Marker in Verweisen, keine Wortformen (Quellen-Kürzel,
 # Herleitungstyp).  Großgeschriebene Werke (E, GrG …) nur als ganzes Token.
