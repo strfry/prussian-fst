@@ -33,3 +33,21 @@ def flookup_batch(forms: list[str], fst_path: Path) -> dict[str, list[tuple[str,
                 continue
             analyses[form].append((lemma, tags))
     return dict(analyses)
+
+
+def glookup_batch(queries: list[str], fst_path: Path) -> dict[str, list[str]]:
+    """Generation direction: analysis string (``lemma+Tag+Tag...``) → surface form(s).
+
+    Counterpart to ``flookup_batch``, against an un-inverted
+    optimized-lookup transducer (e.g. ``build/base.gen.hfstol``).
+    Tag order in *queries* must exactly match the lexc build order —
+    the FST matches as a literal string, not a feature bundle.
+    """
+    if not queries:
+        return {}
+    tr = _load_fst(fst_path)
+    out: dict[str, list[str]] = defaultdict(list)
+    for query in queries:
+        for surface, _weight in tr.lookup(query):
+            out[query].append(surface)
+    return dict(out)

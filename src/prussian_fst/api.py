@@ -20,19 +20,19 @@ import threading
 from pathlib import Path
 
 from .cg3_pipeline import (DEFAULT_DEP_GRAMMAR, DEFAULT_DEP_GRAMMAR_BIN,
-                           DEFAULT_FST, DEFAULT_GRAMMAR, DEFAULT_GRAMMAR_BIN,
-                           DEFAULT_LENIENT, DEFAULT_VALIDATOR_GRAMMAR,
+                           DEFAULT_FST, DEFAULT_FST_GEN, DEFAULT_GRAMMAR,
+                           DEFAULT_GRAMMAR_BIN, DEFAULT_LENIENT,
+                           DEFAULT_VALIDATOR_GRAMMAR,
                            DEFAULT_VALIDATOR_GRAMMAR_BIN, REPO, SENT_PUNCT,
                            attach_agr_parents, build_cg_input,
                            parse_cg_stream, run_cg_proc, text_to_sentences,
                            tokenize, validate_sentences)
 from .export_conllu import conllu_output, sentence_block
-from .fst_lookup import flookup_batch
+from .fst_lookup import flookup_batch, glookup_batch
 
-# Die pyhfst-Transducer werden in einem Modul-Dict gecacht
-# (fst_lookup._transducers) und pyhfst-Lookup ist nicht dokumentiert
-# threadsicher; FastMCP führt synchrone Tools in einem Threadpool aus —
-# daher wird die gesamte Pipeline serialisiert.
+# pyhfst transducers are cached in a module dict (fst_lookup._transducers)
+# and pyhfst lookup is not documented as thread-safe; FastMCP runs sync tools
+# in a thread pool, so the entire pipeline is serialized.
 _PIPELINE_LOCK = threading.Lock()
 
 
@@ -122,14 +122,31 @@ def tags(words: list[str], *,
     }
 
 
+def generate(queries: list[str], *,
+             fst_path: Path | None = None) -> dict[str, list[str]]:
+    """Generation direction: analysis string → surface form(s).
+
+    Thin batch wrapper over glookup_batch, counterpart to tags().  No
+    paradigm enumeration here — caller builds *queries* (e.g. via
+    prussian_fst.paradigms) in the tag order used during lexc build.
+    Returns {query: [surface, ...]} — empty list means the tag
+    combination does not exist in the lexicon, not an error.
+    """
+    fst = fst_path or DEFAULT_FST_GEN
+    with _PIPELINE_LOCK:
+        raw = glookup_batch(queries, fst)
+    return {q: raw.get(q, []) for q in queries}
+
+
 def check_artifacts() -> list[str]:
-    """Fehlende Voraussetzungen (leer = bereit), je mit Fix-Kommando."""
+    """Missing prerequisites (empty = ready), each with a fix command."""
     problems = []
     if not shutil.which("cg-proc"):
         problems.append("cg-proc nicht im PATH — cg3/Apertium installieren")
     for f, fix in [
         (DEFAULT_FST, f"make all"),
         (DEFAULT_LENIENT, f"make all"),
+        (DEFAULT_FST_GEN, f"make all"),
         (REPO / "cg3/generated-sets.cg3", f"make cg3-sets"),
         (DEFAULT_GRAMMAR_BIN, f"make cg3-check"),
         (DEFAULT_DEP_GRAMMAR_BIN, f"make cg3-check"),

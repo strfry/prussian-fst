@@ -28,7 +28,7 @@ HFST := uv run python src/prussian_fst/build_fst.py
 
 .PHONY: all gen clean cg3-sets cg3-check disambiguate conllu hfstol links
 
-all: build/base.hfstol build/macron.hfstol build/lenient.hfstol
+all: build/base.hfstol build/macron.hfstol build/lenient.hfstol build/base.gen.hfstol
 
 build/:
 	mkdir -p build
@@ -48,10 +48,16 @@ build/base.fst: $(LEXC_MERGED) | build/
 build/base.hfstol: build/base.fst
 	$(HFST) hfstol $< $@
 
-# Korrektur-Layer, eine Stufe pro Phänomen (norm/*.regex → build/norm-*.hfst).
-# Auf die kanonische Oberfläche komponiert; nur als Fallback-Analyzer für
-# Formen benutzen, die die strengeren Stufen nicht kennen.  Das xfst-Skript
-# schreibt sein Ergebnis selbst (`save stack build/norm-<phänomen>.hfst`).
+# Generation FST (analysis→surface, un-inverted) — counterpart to
+# build/base.hfstol.  Used by api.generate() for paradigm queries
+# (lemma+tags → surface form).
+build/base.gen.hfstol: build/base.fst
+	$(HFST) hfstol-gen $< $@
+
+# Correction layers, one stage per phenomenon (norm/*.regex → build/norm-*.hfst).
+# Composed onto the canonical surface; use only as fallback analyzer for
+# forms not covered by the stricter stages.  The xfst script writes its
+# own output (`save stack build/norm-<phenomenon>.hfst`).
 build/norm-%.hfst: norm/%.regex | build/
 	$(HFST) xfst $<
 

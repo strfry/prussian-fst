@@ -40,6 +40,7 @@ REPO = Path(__file__).resolve().parents[2]
 DEFAULT_CORPUS = REPO.parent / "corpus/parsed/youtube_corpus_sentences.json"
 DEFAULT_FST = REPO / "build/base.hfstol"
 DEFAULT_LENIENT = REPO / "build/lenient.hfstol"
+DEFAULT_FST_GEN = REPO / "build/base.gen.hfstol"
 DEFAULT_GRAMMAR = REPO / "cg3/disambiguator.cg3"
 DEFAULT_DEP_GRAMMAR = REPO / "cg3/dependency.cg3"
 DEFAULT_VALIDATOR_GRAMMAR = REPO / "cg3/validator.cg3"

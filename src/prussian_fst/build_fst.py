@@ -19,6 +19,9 @@ Subkommandos (1:1 zu den bisherigen Makefile-Rezepten):
   hfstol  IN OUT              — hfst-invert | hfst-fst2fst:
                                 invertiert (surface→analysis) und in das
                                 optimized-lookup-Format (unweighted) → OUT
+  hfstol-gen IN OUT           — hfst-fst2fst (no invert): analysis→surface
+                                optimized-lookup format → OUT
+                                (generation direction, counterpart to hfstol)
 """
 
 from __future__ import annotations
@@ -77,6 +80,13 @@ def cmd_hfstol(args: argparse.Namespace) -> None:
     _write(tr, args.output, type=OL_TYPE)
 
 
+def cmd_hfstol_gen(args: argparse.Namespace) -> None:
+    """hfst-fst2fst without invert: generation direction as optimized-lookup."""
+    tr = _read(args.input)
+    tr.convert(OL_TYPE)
+    _write(tr, args.output, type=OL_TYPE)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -99,6 +109,12 @@ def main() -> None:
     p.add_argument("input")
     p.add_argument("output")
     p.set_defaults(func=cmd_hfstol)
+
+    p = sub.add_parser("hfstol-gen",
+                       help="optimized-lookup without invert (generation direction)")
+    p.add_argument("input")
+    p.add_argument("output")
+    p.set_defaults(func=cmd_hfstol_gen)
 
     args = ap.parse_args()
     args.func(args)
