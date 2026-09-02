@@ -1,0 +1,110 @@
+! Handgeschriebener generativer FST — Adjektive (Positiv), drei Genera.
+!
+! Erweiterung des Nomen-Beispiels (gen/astem.lexc) auf Adjektive; teilt sich die
+! Akzentregel gen/accent.regex. Wie bei den Nomen KEIN aus den Daten abgeleiteter
+! Generator, sondern eine von Hand formulierte Hypothese, nicht-zirkulär gegen die
+! Twanksta-Vollformen getestet.
+!
+! Zwei Klassen (vgl. Twanksta-paradigm):
+!   AdjFixed  (Par. 25/27): fester Akzent — Stamm über alle 24 Formen stabil.
+!   AdjMobile (Par. 26/29/31): bewegliche Betonung — in den akzentverschobenen
+!             Slots wird der Stamm leicht (Makron kurz / Geminate einfach) und
+!             die Endung schwer (ā, Gravis à, Geminate mm). Verschobene Slots:
+!             Masc/Neut = Nom.Pl, Dat.Sg, Dat.Pl;  Fem = Nom.Sg, Dat.Pl.
+!
+! Mechanik wie bei den Nomen: die verschobenen Endungen stellen den abstrakten
+! Akzentgrenze-Marker ^ voran; gen/accent.regex reduziert davor das schwere
+! Stammmerkmal und tilgt ^. Der Auslöser ist der Marker, nicht die (schwere)
+! Endung selbst — belarussisks (fest, mit Geminate ss) behält seine ss überall,
+! weil kein ^ gesetzt wird.
+
+Multichar_Symbols +Adj +Masc +Fem +Neut +Sg +Pl +Nom +Gen +Dat +Akk ^
+
+LEXICON Root
+  AdjFixed ;
+  AdjMobile ;
+
+! Lexeme: Lemma (Masc.Nom.Sg.) : Stamm (Masc.Gen.Sg. minus -as).
+LEXICON AdjFixed
+  amērikanisks:amērikanisk  AdjFixedInfl ;
+  arktisks:arktisk          AdjFixedInfl ;
+  belarussisks:belarussisk  AdjFixedInfl ;   ! Geminate ss, aber fest → bleibt
+  instraws:instraw          AdjFixedInfl ;
+
+LEXICON AdjMobile
+  ainadesīmts:ainadesīmt    AdjMobileInfl ;   ! Makron ī
+  astōnadesīmts:astōnadesīmt AdjMobileInfl ;  ! Makron ō
+  lāuks:lāuk                AdjMobileInfl ;    ! Makron ā
+
+! Jedes Lexem verzweigt in alle drei Genera.
+LEXICON AdjFixedInfl
+  AdjFixedMasc ;
+  AdjFixedFem ;
+  AdjFixedNeut ;
+
+LEXICON AdjMobileInfl
+  AdjMobileMasc ;
+  AdjMobileFem ;
+  AdjMobileNeut ;
+
+! ─── Feste Endungen (Par. 25) ──────────────────────────────────────────
+LEXICON AdjFixedMasc
+  +Adj+Masc+Sg+Nom:s       # ;
+  +Adj+Masc+Pl+Nom:ai      # ;
+  +Adj+Masc+Sg+Gen:as      # ;
+  +Adj+Masc+Pl+Gen:an      # ;
+  +Adj+Masc+Sg+Dat:asmu    # ;
+  +Adj+Masc+Pl+Dat:amans   # ;
+  +Adj+Masc+Sg+Akk:an      # ;
+  +Adj+Masc+Pl+Akk:ans     # ;
+
+LEXICON AdjFixedFem
+  +Adj+Fem+Sg+Nom:a        # ;
+  +Adj+Fem+Pl+Nom:as       # ;
+  +Adj+Fem+Sg+Gen:as       # ;
+  +Adj+Fem+Pl+Gen:an       # ;
+  +Adj+Fem+Sg+Dat:ai       # ;
+  +Adj+Fem+Pl+Dat:amans    # ;
+  +Adj+Fem+Sg+Akk:an       # ;
+  +Adj+Fem+Pl+Akk:ans      # ;
+
+LEXICON AdjFixedNeut
+  +Adj+Neut+Sg+Nom:an      # ;
+  +Adj+Neut+Pl+Nom:ai      # ;
+  +Adj+Neut+Sg+Gen:as      # ;
+  +Adj+Neut+Pl+Gen:an      # ;
+  +Adj+Neut+Sg+Dat:asmu    # ;
+  +Adj+Neut+Pl+Dat:amans   # ;
+  +Adj+Neut+Sg+Akk:an      # ;
+  +Adj+Neut+Pl+Akk:ans     # ;
+
+! ─── Mobile Endungen (Par. 26): ^ + schwere Endung in verschobenen Slots ──
+LEXICON AdjMobileMasc
+  +Adj+Masc+Sg+Nom:s        # ;
+  +Adj+Masc+Pl+Nom:%^āi     # ;
+  +Adj+Masc+Sg+Gen:as       # ;
+  +Adj+Masc+Pl+Gen:an       # ;
+  +Adj+Masc+Sg+Dat:%^àsmu   # ;
+  +Adj+Masc+Pl+Dat:%^ammans # ;
+  +Adj+Masc+Sg+Akk:an       # ;
+  +Adj+Masc+Pl+Akk:ans      # ;
+
+LEXICON AdjMobileFem
+  +Adj+Fem+Sg+Nom:%^ā       # ;
+  +Adj+Fem+Pl+Nom:as        # ;
+  +Adj+Fem+Sg+Gen:as        # ;
+  +Adj+Fem+Pl+Gen:an        # ;
+  +Adj+Fem+Sg+Dat:ai        # ;
+  +Adj+Fem+Pl+Dat:%^āmans   # ;
+  +Adj+Fem+Sg+Akk:an        # ;
+  +Adj+Fem+Pl+Akk:ans       # ;
+
+LEXICON AdjMobileNeut
+  +Adj+Neut+Sg+Nom:an       # ;
+  +Adj+Neut+Pl+Nom:%^āi     # ;
+  +Adj+Neut+Sg+Gen:as       # ;
+  +Adj+Neut+Pl+Gen:an       # ;
+  +Adj+Neut+Sg+Dat:%^àsmu   # ;
+  +Adj+Neut+Pl+Dat:%^ammans # ;
+  +Adj+Neut+Sg+Akk:an       # ;
+  +Adj+Neut+Pl+Akk:ans      # ;

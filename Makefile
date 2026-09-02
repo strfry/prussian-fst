@@ -26,7 +26,7 @@ LEXC_MERGED := build/lexc.merged
 # uv run = Projekt-Env, damit hfst überall verfügbar ist (auch ohne System-Install).
 HFST := uv run python src/prussian_fst/build_fst.py
 
-.PHONY: all gen clean cg3-sets cg3-check disambiguate conllu hfstol links astem
+.PHONY: all gen clean cg3-sets cg3-check disambiguate conllu hfstol links astem adj
 
 all: build/base.hfstol build/macron.hfstol build/lenient.hfstol build/base.gen.hfstol
 
@@ -77,6 +77,20 @@ build/gen-astem.composed.fst: build/gen-astem.fst build/gen-accent.hfst
 	$(HFST) compose $@ build/gen-astem.fst build/gen-accent.hfst
 
 build/gen-astem.gen.hfstol: build/gen-astem.composed.fst
+	$(HFST) hfstol-gen $< $@
+
+# Erweiterung auf Adjektive (drei Genera, feste + mobile Klasse); teilt sich
+# die Akzentregel gen/accent.regex mit dem Nomen-Prototyp.
+#   make adj                      # baut build/gen-adj.gen.hfstol
+adj: build/gen-adj.gen.hfstol
+
+build/gen-adj.fst: gen/adj.lexc | build/
+	$(HFST) lexc $< $@
+
+build/gen-adj.composed.fst: build/gen-adj.fst build/gen-accent.hfst
+	$(HFST) compose $@ build/gen-adj.fst build/gen-accent.hfst
+
+build/gen-adj.gen.hfstol: build/gen-adj.composed.fst
 	$(HFST) hfstol-gen $< $@
 
 # Correction layers, one stage per phenomenon (norm/*.regex → build/norm-*.hfst).
