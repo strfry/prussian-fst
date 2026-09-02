@@ -1,0 +1,70 @@
+! Generativer Stammklassen-FST — Nomen, Klasse 1: u-Stämme.
+!
+! Im Unterschied zu lexc/nouns.lexc (Vollform-Lexikon aus Twanksta) wird hier
+! Stamm + Endung generativ verknüpft. Der Nom.Sg. wird je Lexem trotzdem
+! explizit gelistet: die u-Stamm-Nominative zeigen Synkope/Konsonantenwandel
+! gegenüber dem obliquen Stamm (dāngs vs. obliquer Stamm dāngu-), die noch
+! nicht generalisiert regelhaft abgeleitet ist.
+!
+! Betonung: fester vs. beweglicher Akzent wird pro Lexem in der
+! Kontinuationsklasse (Fixed/Mobile) kodiert. Bei beweglichem Akzent trägt
+! der Dat.Pl.-Endungsallomorph "-mmans" (statt "-mans") die
+! Konsonantenverdopplung, die den Akzentwechsel anzeigt; stress.regex
+! (gen/stress.regex) löscht daraufhin ein vorausgehendes Stammmakron.
+
+Multichar_Symbols
+  +N +UStem +Sg +Pl +Nom +Gen +Dat +Akk +Masc
+
+LEXICON Root
+  UStemFixed ;
+  UStemMobile ;
+
+! ─── Fester Akzent — Stammvokal/Makron bleibt über das ganze Paradigma ──
+
+LEXICON UStemFixed
+  bebrus+N+UStem+Sg+Nom+Masc:bebrus  # ;
+  bebrus:bebru  UEndingsFixedRest ;
+
+  kāzus+N+UStem+Sg+Nom+Masc:kāzus  # ;
+  kāzus:kāzu  UEndingsFixedRest ;
+
+  Jēzus+N+UStem+Sg+Nom+Masc:Jēzus  # ;
+  Jēzus:Jēzu  UEndingsFixedRest ;
+
+  Kūbus+N+UStem+Sg+Nom+Masc:Kūbus  # ;
+  Kūbus:Kūbu  UEndingsFixedRest ;
+
+  sparrjus+N+UStem+Sg+Nom+Masc:sparrjus  # ;
+  sparrjus:sparrju  UEndingsFixedRest ;
+
+! ─── Beweglicher Akzent — Dat.Pl. verschiebt Betonung, Stammmakron fällt ──
+
+LEXICON UStemMobile
+  dāngs+N+UStem+Sg+Nom+Masc:dāngs  # ;
+  dāngs:dāngu  UEndingsMobileRest ;
+
+  krūmsts+N+UStem+Sg+Nom+Masc:krūmsts  # ;
+  krūmsts:krūmstu  UEndingsMobileRest ;
+
+  kōmbus+N+UStem+Sg+Nom+Masc:kōmbus  # ;
+  kōmbus:kōmbu  UEndingsMobileRest ;
+
+! ─── Endungen (die übrigen 7 der 8 Formen, oblique Stämme) ──────────────
+
+LEXICON UEndingsFixedRest
+  +N+UStem+Pl+Nom+Masc:s  # ;
+  +N+UStem+Sg+Gen+Masc:s  # ;
+  +N+UStem+Pl+Gen+Masc:n  # ;
+  +N+UStem+Sg+Dat+Masc:0  # ;
+  +N+UStem+Pl+Dat+Masc:mans  # ;
+  +N+UStem+Sg+Akk+Masc:n  # ;
+  +N+UStem+Pl+Akk+Masc:ns  # ;
+
+LEXICON UEndingsMobileRest
+  +N+UStem+Pl+Nom+Masc:s  # ;
+  +N+UStem+Sg+Gen+Masc:s  # ;
+  +N+UStem+Pl+Gen+Masc:n  # ;
+  +N+UStem+Sg+Dat+Masc:0  # ;
+  +N+UStem+Pl+Dat+Masc:mmans  # ;   ! Geminate → stress.regex löscht Stammmakron
+  +N+UStem+Sg+Akk+Masc:n  # ;
+  +N+UStem+Pl+Akk+Masc:ns  # ;

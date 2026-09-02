@@ -1,0 +1,29 @@
+! Akzent-Regelstufe für den generativen Nomen-FST (gen/nouns.lexc).
+!
+! Priorität (aufsteigend, vom User vorgegeben):
+!   1. Silbe mit Endung auf mehr als einen Konsonanten
+!   2. Silbe mit Endkonsonantenverdopplung (Geminate)
+!   3. Makron auf Vokal
+!
+! Erste implementierte Regel (Stufe 2 schlägt Stufe 3): wandert der Akzent
+! bei beweglichen Lexemen auf eine Silbe mit Konsonantenverdopplung (z. B.
+! Dat.Pl.-Endung "-mmans" bei u-Stämmen, siehe UEndingsMobileRest), verliert
+! ein vorausgehendes Stammmakron seine Länge — dāngu+mmans → dangummans.
+!
+! Weitere Prioritätsstufen (Cluster >1 Konsonant vor Makron) folgen, sobald
+! Belegdaten für weitere Stammklassen vorliegen.
+
+define Vowel [a|e|i|o|u|ā|ē|ī|ō|ū];
+define Cons [b|c|d|f|g|h|j|k|l|m|n|p|q|r|s|t|v|w|x|z];
+! Geminate = zwei GLEICHE Konsonanten (nicht irgendein Cons-Cons-Cluster wie
+! "-ns", "-ng" — das wäre die separate, noch nicht implementierte
+! Cluster-Prioritätsstufe 1).
+define Geminate [b b|c c|d d|f f|g g|h h|j j|k k|l l|m m|n n|
+                  p p|q q|r r|s s|t t|v v|w w|x x|z z];
+
+define MacronShift [ā -> a, ē -> e, ī -> i, ō -> o, ū -> u ||
+                     _ [Vowel|Cons]* Geminate];
+
+regex MacronShift;
+save stack build/gen-stress.hfst
+quit
