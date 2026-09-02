@@ -1,0 +1,32 @@
+! Bewegliche-Betonung-Regel für den handgeschriebenen a-Stamm-FST (gen/astem.lexc).
+!
+! Die akzentverschobenen Slots (Nom.Pl., Dat.Pl.) emittieren zwischen Stamm und
+! Endung den abstrakten Akzentgrenze-Marker ^. Wandert die Betonung auf die
+! Endung, verliert der Stamm sein schweres Merkmal:
+!   - ein Makron wird kurz          (ōrigan^āi     → origanāi)
+!   - eine Geminate vereinfacht sich (Mettel^āi    → Metelāi,  Grazazzar^āi → Grazazarāi)
+! Danach wird ^ getilgt.
+!
+! Auslöser ist damit ein morphologischer Marker (^), NICHT eine erfundene
+! Geminate in der Endung wie beim mmans-Hack. Die Regel greift nur, wo ^ steht
+! (also nur bei mobilen Lexemen in diesen zwei Slots) und kann daher nicht auf
+! Voll- oder Festakzentformen lecken. Beide Reduktionen zielen auf den Stamm
+! (links von ^); die Endung rechts von ^ bleibt unangetastet.
+
+define NotBound [? - %^];   ! jedes Symbol außer dem Grenzmarker ^
+
+! Makronkürzung im Stamm vor der Akzentgrenze.
+define Shorten  ā -> a , ē -> e , ī -> i , ō -> o , ū -> u
+                || _ NotBound* %^ ;
+
+! Degemination im Stamm vor der Akzentgrenze (gleicher Doppelkonsonant → einfach).
+define Degem    b b -> b , c c -> c , d d -> d , g g -> g , k k -> k ,
+                l l -> l , m m -> m , n n -> n , p p -> p , r r -> r ,
+                s s -> s , t t -> t , z z -> z
+                || _ NotBound* %^ ;
+
+define DropBound %^ -> 0 ;
+
+regex Shorten .o. Degem .o. DropBound ;
+save stack build/gen-accent.hfst
+quit

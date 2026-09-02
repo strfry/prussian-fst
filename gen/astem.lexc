@@ -1,0 +1,42 @@
+! Handgeschriebener generativer FST — Nomen, bewegliche a-Stämme (Neutrum).
+!
+! Dies ist KEIN aus den Daten abgeleiteter (zirkulärer) Generator, sondern eine
+! von Hand formulierte Hypothese über Paradigma 35: EIN obliquer Stamm + fester
+! Endungssatz + eine Akzentregel. Getestet wird nicht-zirkulär gegen die echten
+! Twanksta-Vollformen (die Endungen/Regeln stehen hier, die Referenz kommt aus
+! ../corpus/parsed/twanksta_entries.json).
+!
+! Bewegliche Betonung: In den akzentverschobenen Slots (Nom.Pl., Dat.Pl.) wandert
+! die Betonung auf die Endung; der Stamm verliert dann sein schweres Merkmal —
+! ein Makron wird kurz (ōrigan → origanāi) ODER eine Geminate vereinfacht sich
+! (Mettel → Metelāi). Beides ist dieselbe Alternation. Ausgelöst wird sie über
+! den abstrakten Akzentgrenze-Marker ^, den nur diese beiden Endungen setzen —
+! nicht über eine erfundene Geminate in der Endung (vgl. den mmans-Hack in
+! gen/nouns.lexc). gen/accent.regex realisiert die Reduktion vor ^ und tilgt ^.
+
+Multichar_Symbols +N +Neut +Sg +Pl +Nom +Gen +Dat +Akk ^
+
+LEXICON Root
+  AStemNeutMobile ;
+
+! Lexeme: Lemma (Nom.Sg.) : obliquer Stamm (trägt das schwere Merkmal).
+! Eine Handvoll realer Paradigma-35-Lexeme, bewusst über die Merkmalstypen
+! gestreut (Makron ō/ā/ē, Geminate tt/zz) — eine Regel muss alle treffen.
+LEXICON AStemNeutMobile
+  ōriganan:ōrigan       NEnd ;   ! Makron ō
+  Dargāinan:Dargāin     NEnd ;   ! Makron ā
+  Grēnlandan:Grēnland   NEnd ;   ! Makron ē
+  Mettelan:Mettel       NEnd ;   ! Geminate tt
+  Grazazzaran:Grazazzar NEnd ;   ! Geminate zz
+
+! Endungen (theme-vokal-tragend). Die akzentverschobenen Slots stellen den
+! Grenzmarker ^ voran, der die Stammreduktion in gen/accent.regex auslöst.
+LEXICON NEnd
+  +N+Neut+Sg+Nom:an        # ;
+  +N+Neut+Sg+Gen:as        # ;
+  +N+Neut+Sg+Dat:u         # ;
+  +N+Neut+Sg+Akk:an        # ;
+  +N+Neut+Pl+Nom:%^āi      # ;   ! Akzent auf Endung → Stamm leicht
+  +N+Neut+Pl+Gen:an        # ;
+  +N+Neut+Pl+Dat:%^ammans  # ;   ! Akzent auf Endung → Stamm leicht
+  +N+Neut+Pl+Akk:ans       # ;

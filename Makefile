@@ -26,7 +26,7 @@ LEXC_MERGED := build/lexc.merged
 # uv run = Projekt-Env, damit hfst überall verfügbar ist (auch ohne System-Install).
 HFST := uv run python src/prussian_fst/build_fst.py
 
-.PHONY: all gen clean cg3-sets cg3-check disambiguate conllu hfstol links
+.PHONY: all gen clean cg3-sets cg3-check disambiguate conllu hfstol links astem
 
 all: build/base.hfstol build/macron.hfstol build/lenient.hfstol build/base.gen.hfstol
 
@@ -52,6 +52,31 @@ build/base.hfstol: build/base.fst
 # build/base.hfstol.  Used by api.generate() for paradigm queries
 # (lemma+tags → surface form).
 build/base.gen.hfstol: build/base.fst
+	$(HFST) hfstol-gen $< $@
+
+# ── Handgeschriebener generativer Prototyp: bewegliche a-Stämme (Neutrum) ──
+# Nicht-zirkuläres Gegenstück zu gen/paradigm_survey.py: eine von Hand
+# formulierte Stammklasse (gen/astem.lexc, Stamm+Endung mit Akzentgrenze ^)
+# komponiert mit der Akzentregel (gen/accent.regex, Makron-/Geminaten-
+# reduktion vor ^) → Generierungs-FST analysis→surface.
+#   make astem                    # baut build/gen-astem.gen.hfstol
+# Test (analysis→surface, nicht-zirkulär gegen Twanksta) z. B. mit:
+#   uv run python -c "import sys; sys.path.insert(0,'src'); \
+#     from prussian_fst.fst_lookup import glookup_batch; \
+#     print(glookup_batch(['ōriganan+N+Neut+Pl+Nom'], 'build/gen-astem.gen.hfstol'))"
+#   → {'ōriganan+N+Neut+Pl+Nom': ['origanāi']}
+astem: build/gen-astem.gen.hfstol
+
+build/gen-astem.fst: gen/astem.lexc | build/
+	$(HFST) lexc $< $@
+
+build/gen-accent.hfst: gen/accent.regex | build/
+	$(HFST) xfst $<
+
+build/gen-astem.composed.fst: build/gen-astem.fst build/gen-accent.hfst
+	$(HFST) compose $@ build/gen-astem.fst build/gen-accent.hfst
+
+build/gen-astem.gen.hfstol: build/gen-astem.composed.fst
 	$(HFST) hfstol-gen $< $@
 
 # Correction layers, one stage per phenomenon (norm/*.regex → build/norm-*.hfst).
