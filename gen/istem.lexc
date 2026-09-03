@@ -1,0 +1,55 @@
+! Handgeschriebener generativer FST — Nomen, i-Stämme.
+!
+! Dritte Stammklasse neben gen/astem.lexc (a-Stamm) und dem u-Stamm-Prototyp;
+! teilt sich die Akzentregel gen/accent.regex. Wie dort eine von Hand
+! formulierte Hypothese, nicht-zirkulär gegen Twanksta getestet — der erweiterte
+! Test gen/coverage_gen.py prüft die hier formulierten Endungen + die Akzentregel
+! gegen ALLE i-Stamm-Einträge (Stämme mechanisch aus Gen.Sg. abgeleitet).
+!
+! Zwei Klassen:
+!   IStemFixed  (Par. 52): fester Akzent — Stamm stabil (auch Geminaten bleiben).
+!   IStemMobile (Par. 53): bewegliche Betonung — in Nom.Sg. und Dat.Pl. wird der
+!               Stamm leicht (Makron kurz bīl→bilē / Geminate einfach nagg→nagē)
+!               und die Endung schwer (-ē, -īmans). Wie beim a-Stamm über den
+!               Akzentgrenze-Marker ^ ausgelöst; gen/accent.regex reduziert davor.
+!
+! Genus ist eine lexikalische Eigenschaft (Tag am Stamm); die Endungen sind
+! genus-agnostisch (i-Stamm-Nomen dekliniert unabhängig vom Genus gleich).
+
+Multichar_Symbols +N +Masc +Fem +Neut +Sg +Pl +Nom +Gen +Dat +Akk ^
+
+LEXICON Root
+  IStemFixed ;
+  IStemMobile ;
+
+! Lexeme: Lemma+N+Genus : Stamm (Gen.Sg. minus -is).
+LEXICON IStemFixed
+  Albi+N+Fem:Alb              IStemFixedInfl ;
+  Alnāsteini+N+Fem:Alnāstein  IStemFixedInfl ;
+  Amellingi+N+Fem:Amelling    IStemFixedInfl ;   ! Geminate ll, aber fest → bleibt
+
+LEXICON IStemMobile
+  bīlē+N+Fem:bīl              IStemMobileInfl ;   ! Makron ī → kurz
+  nagē+N+Fem:nagg            IStemMobileInfl ;    ! Geminate gg → g
+  dumslē+N+Fem:dumsl         IStemMobileInfl ;    ! ohne schweres Merkmal
+
+! >>> ENDUNGEN (ab hier vom erweiterten Test gen/coverage_gen.py wiederverwendet) <<<
+LEXICON IStemFixedInfl
+  +Sg+Nom:i       # ;
+  +Pl+Nom:is      # ;
+  +Sg+Gen:is      # ;
+  +Pl+Gen:in      # ;
+  +Sg+Dat:ei      # ;
+  +Pl+Dat:imans   # ;
+  +Sg+Akk:in      # ;
+  +Pl+Akk:ins     # ;
+
+LEXICON IStemMobileInfl
+  +Sg+Nom:%^ē      # ;   ! Akzent auf Endung → Stamm leicht
+  +Pl+Nom:is       # ;
+  +Sg+Gen:is       # ;
+  +Pl+Gen:in       # ;
+  +Sg+Dat:ei       # ;
+  +Pl+Dat:%^īmans  # ;   ! Akzent auf Endung → Stamm leicht
+  +Sg+Akk:in       # ;
+  +Pl+Akk:ins      # ;

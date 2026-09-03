@@ -20,9 +20,10 @@ define Shorten  ā -> a , ē -> e , ī -> i , ō -> o , ū -> u
                 || _ NotBound* %^ ;
 
 ! Degemination im Stamm vor der Akzentgrenze (gleicher Doppelkonsonant → einfach).
-define Degem    b b -> b , c c -> c , d d -> d , g g -> g , k k -> k ,
-                l l -> l , m m -> m , n n -> n , p p -> p , r r -> r ,
-                s s -> s , t t -> t , z z -> z
+define Degem    b b -> b , c c -> c , d d -> d , f f -> f , g g -> g ,
+                h h -> h , j j -> j , k k -> k , l l -> l , m m -> m ,
+                n n -> n , p p -> p , r r -> r , s s -> s , t t -> t ,
+                v v -> v , w w -> w , z z -> z
                 || _ NotBound* %^ ;
 
 define DropBound %^ -> 0 ;
