@@ -1,55 +1,163 @@
-! Handgeschriebener generativer FST — Nomen, i-Stämme.
+! Handgeschriebener generativer FST — Nomen, i-Stämme (i-Familie).
 !
-! Dritte Stammklasse neben gen/astem.lexc (a-Stamm) und dem u-Stamm-Prototyp;
-! teilt sich die Akzentregel gen/accent.regex. Wie dort eine von Hand
-! formulierte Hypothese, nicht-zirkulär gegen Twanksta getestet — der erweiterte
-! Test gen/coverage_gen.py prüft die hier formulierten Endungen + die Akzentregel
-! gegen ALLE i-Stamm-Einträge (Stämme mechanisch aus Gen.Sg. abgeleitet).
+! i-Familie = Gen.Sg. auf -is; der oblique Stamm ist Gen.Sg. minus -is. Neben
+! gen/astem.lexc (a-Stamm) und gen/adj.lexc (Adjektive); teilt sich die
+! Akzentregel gen/accent.regex. Nicht-zirkulär getestet: gen/coverage_gen.py
+! speist die Stämme ALLER realen i-Stamm-Lexeme in die hier formulierten
+! Endungen + die Akzentregel und misst die Deckung gegen Twanksta.
 !
-! Zwei Klassen:
-!   IStemFixed  (Par. 52): fester Akzent — Stamm stabil (auch Geminaten bleiben).
-!   IStemMobile (Par. 53): bewegliche Betonung — in Nom.Sg. und Dat.Pl. wird der
-!               Stamm leicht (Makron kurz bīl→bilē / Geminate einfach nagg→nagē)
-!               und die Endung schwer (-ē, -īmans). Wie beim a-Stamm über den
-!               Akzentgrenze-Marker ^ ausgelöst; gen/accent.regex reduziert davor.
+! ARCHITEKTUR — eine Endungstabelle PRO TWANKSTA-PARADIGMENNUMMER:
+!   Der Tabellenschlüssel ist die Paradigmennummer (P52 … P60), nicht
+!   (Stammklasse × Genus). Genus ist eine rein lexikalische Eigenschaft: es
+!   steht als Tag am Lemma (+Masc/+Fem) und wird nur ausgegeben — es WÄHLT die
+!   Tabelle nicht aus. Deshalb sind Par.52 (fem) und Par.54 (masc) zwei
+!   Paradigmen mit identischer Endungstabelle, Par.56 (masc) und Par.58 (fem)
+!   dagegen verschiedene Tabellen trotz gleichem Nom.Sg. -s.
 !
-! Genus ist eine lexikalische Eigenschaft (Tag am Stamm); die Endungen sind
-! genus-agnostisch (i-Stamm-Nomen dekliniert unabhängig vom Genus gleich).
+! Die sieben Nomen-Paradigmen der i-Familie (27/29 sind pronominal, Dat.Sg.
+! -ismu → keine Nomen, hier nicht enthalten):
+!
+!   Par  Genus  Nom.Sg Dat.Sg Nom.Pl Dat.Pl   mobil (schwerer Slot, Marker ^)
+!   52   fem    i      ei     is     imans     —
+!   54   masc   i      ei     is     imans     —
+!   58   fem    s      ei     is     imans     —
+!   56   masc   s      i      jai    imans     —
+!   53   fem    ^ē     ei     is     ^īmans    Nom.Sg, Dat.Pl
+!   60   fem    s      ei     is     ^immans   Dat.Pl
+!   57   masc   s      i      es     ^immans   Dat.Pl
+!   (Sg.Gen -is, Sg.Akk -in, Pl.Gen -in, Pl.Akk -ins durchgehend gleich.)
+!
+! Bewegliche Betonung (Par.53/57/60): der akzentverschobene Slot emittiert
+! zwischen Stamm und Endung den Grenzmarker ^; gen/accent.regex kürzt davor ein
+! Makron ODER reduziert eine Geminate im Stamm und tilgt ^. Die schwere Endung
+! rechts von ^ bleibt (schwer = langes ī bzw. Geminate mm: -ē/-īmans/-immans).
+!
+! Bekannte, hier NICHT modellierte Reste (vom Deckungstest beziffert):
+!   - Nom.Sg. -s/-is-Wechsel in Par.58/60 ist lexikalisch, nicht aus dem Stamm
+!     ableitbar (gleiche Auslaute st/kt/nt geben beides) → wir generieren -s.
+!   - Nom.Sg. Degemination/Kürzung vor finalem -s (lukk→luks, Instrāpill→
+!     Instrāpils) ist phonotaktisch (Geminate + Konsonant), kein Akzent → aus
+!     der Akzentregel bewusst herausgehalten.
 
 Multichar_Symbols +N +Masc +Fem +Neut +Sg +Pl +Nom +Gen +Dat +Akk ^
 
 LEXICON Root
-  IStemFixed ;
-  IStemMobile ;
+  P52Stems ;
+  P53Stems ;
+  P54Stems ;
+  P56Stems ;
+  P57Stems ;
+  P58Stems ;
+  P60Stems ;
 
-! Lexeme: Lemma+N+Genus : Stamm (Gen.Sg. minus -is).
-LEXICON IStemFixed
-  Albi+N+Fem:Alb              IStemFixedInfl ;
-  Alnāsteini+N+Fem:Alnāstein  IStemFixedInfl ;
-  Amellingi+N+Fem:Amelling    IStemFixedInfl ;   ! Geminate ll, aber fest → bleibt
+! >>> STÄMME (nur Beispiel-Lexeme für `make istem`; der Deckungstest
+!            gen/coverage_gen.py inventarisiert die Stämme aller realen
+!            Lexeme selbst neu und ersetzt diesen Block) <<<
+! Lexem = Lemma+N+Genus : Stamm (Gen.Sg. minus -is) → Paradigmen-Endungslexikon.
 
-LEXICON IStemMobile
-  bīlē+N+Fem:bīl              IStemMobileInfl ;   ! Makron ī → kurz
-  nagē+N+Fem:nagg            IStemMobileInfl ;    ! Geminate gg → g
-  dumslē+N+Fem:dumsl         IStemMobileInfl ;    ! ohne schweres Merkmal
+LEXICON P52Stems
+  Albi+N+Fem:Alb              P52 ;
+  Alnāsteini+N+Fem:Alnāstein  P52 ;
+  Amellingi+N+Fem:Amelling    P52 ;   ! Geminate ll, fest → bleibt
+
+LEXICON P53Stems
+  dumslē+N+Fem:dumsl          P53 ;
+  bluznē+N+Fem:bluzn          P53 ;
+  nagē+N+Fem:nagg             P53 ;   ! Geminate gg → g im schweren Slot
+
+LEXICON P54Stems
+  Pāuli+N+Masc:Pāul           P54 ;
+  kanibāli+N+Masc:kanibāl     P54 ;
+  ginni+N+Masc:ginn           P54 ;
+
+LEXICON P56Stems
+  Adwēnts+N+Masc:Adwēnt       P56 ;
+  Babilōns+N+Masc:Babilōn     P56 ;
+  agēnts+N+Masc:agēnt         P56 ;
+
+LEXICON P57Stems
+  dānts+N+Masc:dānt           P57 ;
+  autōpints+N+Masc:autōpint   P57 ;
+  luks+N+Masc:lukk            P57 ;   ! Nom.Sg. lukk→luks: phonotaktisch (Rest)
+
+LEXICON P58Stems
+  Antarktis+N+Fem:Antarkt     P58 ;
+  Arktis+N+Fem:Arkt           P58 ;
+  deinānakts+N+Fem:deinānakt  P58 ;
+
+LEXICON P60Stems
+  Mētapils+N+Fem:Mētapill     P60 ;
+  Rāistanpils+N+Fem:Rāistanpill P60 ;
+  Instrāpils+N+Fem:Instrāpill P60 ;   ! Nom.Sg. Instrāpill→Instrāpils (Rest)
 
 ! >>> ENDUNGEN (ab hier vom erweiterten Test gen/coverage_gen.py wiederverwendet) <<<
-LEXICON IStemFixedInfl
+
+LEXICON P52
   +Sg+Nom:i       # ;
-  +Pl+Nom:is      # ;
   +Sg+Gen:is      # ;
-  +Pl+Gen:in      # ;
   +Sg+Dat:ei      # ;
-  +Pl+Dat:imans   # ;
   +Sg+Akk:in      # ;
+  +Pl+Nom:is      # ;
+  +Pl+Gen:in      # ;
+  +Pl+Dat:imans   # ;
   +Pl+Akk:ins     # ;
 
-LEXICON IStemMobileInfl
+LEXICON P54
+  +Sg+Nom:i       # ;
+  +Sg+Gen:is      # ;
+  +Sg+Dat:ei      # ;
+  +Sg+Akk:in      # ;
+  +Pl+Nom:is      # ;
+  +Pl+Gen:in      # ;
+  +Pl+Dat:imans   # ;
+  +Pl+Akk:ins     # ;
+
+LEXICON P58
+  +Sg+Nom:s       # ;
+  +Sg+Gen:is      # ;
+  +Sg+Dat:ei      # ;
+  +Sg+Akk:in      # ;
+  +Pl+Nom:is      # ;
+  +Pl+Gen:in      # ;
+  +Pl+Dat:imans   # ;
+  +Pl+Akk:ins     # ;
+
+LEXICON P56
+  +Sg+Nom:s       # ;
+  +Sg+Gen:is      # ;
+  +Sg+Dat:i       # ;
+  +Sg+Akk:in      # ;
+  +Pl+Nom:jai     # ;
+  +Pl+Gen:in      # ;
+  +Pl+Dat:imans   # ;
+  +Pl+Akk:ins     # ;
+
+LEXICON P53
   +Sg+Nom:%^ē      # ;   ! Akzent auf Endung → Stamm leicht
-  +Pl+Nom:is       # ;
   +Sg+Gen:is       # ;
-  +Pl+Gen:in       # ;
   +Sg+Dat:ei       # ;
-  +Pl+Dat:%^īmans  # ;   ! Akzent auf Endung → Stamm leicht
   +Sg+Akk:in       # ;
+  +Pl+Nom:is       # ;
+  +Pl+Gen:in       # ;
+  +Pl+Dat:%^īmans  # ;   ! Akzent auf Endung → Stamm leicht
+  +Pl+Akk:ins      # ;
+
+LEXICON P60
+  +Sg+Nom:s        # ;
+  +Sg+Gen:is       # ;
+  +Sg+Dat:ei       # ;
+  +Sg+Akk:in       # ;
+  +Pl+Nom:is       # ;
+  +Pl+Gen:in       # ;
+  +Pl+Dat:%^immans # ;   ! Akzent auf Endung → Stamm leicht
+  +Pl+Akk:ins      # ;
+
+LEXICON P57
+  +Sg+Nom:s        # ;
+  +Sg+Gen:is       # ;
+  +Sg+Dat:i        # ;
+  +Sg+Akk:in       # ;
+  +Pl+Nom:es       # ;
+  +Pl+Gen:in       # ;
+  +Pl+Dat:%^immans # ;   ! Akzent auf Endung → Stamm leicht
   +Pl+Akk:ins      # ;

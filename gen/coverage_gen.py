@@ -33,13 +33,20 @@ LEXC = ROOT / "gen" / "istem.lexc"
 ACCENT = ROOT / "build" / "gen-accent.hfst"
 BUILD = ROOT / "build"
 HFST = ["uv", "run", "python", str(ROOT / "src" / "prussian_fst" / "build_fst.py")]
+STEMS_MARKER = "! >>> STÄMME"
 ENDINGS_MARKER = "! >>> ENDUNGEN"
 
-# Ziel-Paradigmen → (Root-Continuation, Klassenendung im Gen.Sg. zum Abtrennen).
+# Ziel-Paradigmen → (Stamm-Lexikon, Endungslexikon, Klassenendung im Gen.Sg.).
 # Der Stamm = Gen.Sg. minus dieser Endung (Gen.Sg. trägt den Grundakzent).
+# Ein Endungslexikon pro Twanksta-Paradigmennummer (siehe gen/istem.lexc).
 TARGETS = {
-    "52": ("IStemFixed", "IStemFixedInfl", "is"),
-    "53": ("IStemMobile", "IStemMobileInfl", "is"),
+    "52": ("P52Stems", "P52", "is"),
+    "53": ("P53Stems", "P53", "is"),
+    "54": ("P54Stems", "P54", "is"),
+    "56": ("P56Stems", "P56", "is"),
+    "57": ("P57Stems", "P57", "is"),
+    "58": ("P58Stems", "P58", "is"),
+    "60": ("P60Stems", "P60", "is"),
 }
 GENDER = {"masc": "Masc", "fem": "Fem", "neut": "Neut"}
 CASES = ["Nom", "Gen", "Dat", "Akk"]
@@ -95,13 +102,13 @@ def load_targets() -> list[dict]:
 def write_lexc(targets: list[dict]) -> Path:
     """Handgeschriebene Endungen + auto-inventarisierte Stämme → build/-lexc."""
     text = LEXC.read_text()
-    preamble = text[: text.index("LEXICON IStemFixed")]
+    preamble = text[: text.index(STEMS_MARKER)]
     endings = text[text.index(ENDINGS_MARKER):]
 
     stems = {name: [] for name, _, _ in TARGETS.values()}
     for t in targets:
-        root_lex, infl, _ = TARGETS[t["para"]]
-        stems[root_lex].append(
+        stem_lex, infl, _ = TARGETS[t["para"]]
+        stems[stem_lex].append(
             f"  {t['lemma']}+N+{t['gender']}:{t['stem']}  {infl} ;")
 
     body = []

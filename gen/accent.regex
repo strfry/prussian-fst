@@ -1,33 +1,63 @@
-! Bewegliche-Betonung-Regel für den handgeschriebenen a-Stamm-FST (gen/astem.lexc).
+! Bewegliche-Betonung-Regel für die handgeschriebenen generativen Stammklassen
+! (gen/astem.lexc, gen/adj.lexc, gen/istem.lexc).
 !
-! Die akzentverschobenen Slots (Nom.Pl., Dat.Pl.) emittieren zwischen Stamm und
-! Endung den abstrakten Akzentgrenze-Marker ^. Wandert die Betonung auf die
-! Endung, verliert der Stamm sein schweres Merkmal:
-!   - ein Makron wird kurz          (ōrigan^āi     → origanāi)
-!   - eine Geminate vereinfacht sich (Mettel^āi    → Metelāi,  Grazazzar^āi → Grazazarāi)
+! Die akzentverschobenen Slots emittieren zwischen Stamm und Endung den
+! abstrakten Akzentgrenze-Marker ^. Wandert die Betonung auf die Endung, verliert
+! die betonte (grenznahe) Stammsilbe ihr schweres Merkmal:
+!   - ein Makron wird kurz          (ōrigan^āi   → origanāi,  bīl^ē → bilē)
+!   - eine Geminate vereinfacht sich (Mettel^āi   → Metelāi,   nagg^ē → nagē)
 ! Danach wird ^ getilgt.
 !
+! NUR DAS RECHTESTE schwere Merkmal reduziert: es alterniert die betonte
+! Stammsilbe am Endungsrand, prätonische Länge bleibt. So reduziert Instrā·pill
+! nur die Geminate ll (→ Instrāpil·immans), nicht das prätonische ā.
+! Shorten läuft VOR Degem, damit die Makronregel die noch intakten Geminaten
+! rechts von sich sieht: ist rechts ein Makron ODER eine Geminate, ist das Makron
+! nicht das rechteste schwere Merkmal und bleibt (Instrā·pill: ā sieht ll → bleibt,
+! danach degeminiert Degem das ll). „Rechtestes schweres Merkmal" = Kontext bis ^
+! enthält kein weiteres solches Merkmal. (Makron- und Geminatenreduktion müssen
+! getrennte Regeln bleiben — xfst erlaubt in EINER parallelen Ersetzung nicht
+! gemischte Ein-/Zwei-Symbol-Ersetzungen.)
+!
 ! Auslöser ist damit ein morphologischer Marker (^), NICHT eine erfundene
-! Geminate in der Endung wie beim mmans-Hack. Die Regel greift nur, wo ^ steht
-! (also nur bei mobilen Lexemen in diesen zwei Slots) und kann daher nicht auf
-! Voll- oder Festakzentformen lecken. Beide Reduktionen zielen auf den Stamm
-! (links von ^); die Endung rechts von ^ bleibt unangetastet.
+! Geminate in der Endung. Die Regel greift nur, wo ^ steht (mobile Lexeme in
+! ihren verschobenen Slots), und kann daher nicht auf Voll- oder Festakzentformen
+! lecken. Die Reduktion zielt auf den Stamm (links von ^); die schwere Endung
+! rechts von ^ (-ē / -īmans / -immans) bleibt unangetastet.
 
-define NotBound [? - %^];   ! jedes Symbol außer dem Grenzmarker ^
+define NotBound [? - %^];            ! jedes Symbol außer dem Grenzmarker ^
+define Macron   [ā | ē | ī | ō | ū];
+define GemPair  [b b | c c | d d | f f | g g | h h | j j | k k | l l | m m |
+                 n n | p p | r r | s s | t t | v v | w w | z z];
 
-! Makronkürzung im Stamm vor der Akzentgrenze.
+! Makronkürzung: nur wenn rechts bis ^ weder Makron noch Geminate steht
+! (→ das rechteste schwere Merkmal). Läuft vor Degem (sieht Geminaten noch).
 define Shorten  ā -> a , ē -> e , ī -> i , ō -> o , ū -> u
-                || _ NotBound* %^ ;
+                || _ [NotBound* & ~$[Macron] & ~$[GemPair]] %^ ;
 
-! Degemination im Stamm vor der Akzentgrenze (gleicher Doppelkonsonant → einfach).
+! Degemination: nur wenn rechts bis ^ keine weitere Geminate steht
+! (→ die rechteste Geminate).
 define Degem    b b -> b , c c -> c , d d -> d , f f -> f , g g -> g ,
                 h h -> h , j j -> j , k k -> k , l l -> l , m m -> m ,
                 n n -> n , p p -> p , r r -> r , s s -> s , t t -> t ,
                 v v -> v , w w -> w , z z -> z
-                || _ NotBound* %^ ;
+                || _ [NotBound* & ~$[GemPair]] %^ ;
 
 define DropBound %^ -> 0 ;
 
-regex Shorten .o. Degem .o. DropBound ;
+! Einsilbenregel / Koda-Vereinfachung: eine Stamm-Geminate vereinfacht sich vor
+! wortfinalem -s (Nom.Sg.). Im Einsilber ist der Akzent eindeutig, die
+! Geminatenschreibung also entbehrlich: lukk+s → luks, pill+s → pils, ass+s → ass.
+! Gilt auch mehrsilbig vor -s (Instrāpill+s → Instrāpils); Makrone bleiben
+! (nur die Geminate fällt). Unabhängig vom Akzentmarker ^ → auf die fertige
+! Oberfläche (nach DropBound). Greift nur bei direkt an den Stamm tretendem -s
+! (Nom.Sg.); alle anderen Endungen haben einen Vokal vor ihrem s.
+define CodaDegem b b -> b , c c -> c , d d -> d , f f -> f , g g -> g ,
+                 h h -> h , j j -> j , k k -> k , l l -> l , m m -> m ,
+                 n n -> n , p p -> p , r r -> r , s s -> s , t t -> t ,
+                 v v -> v , w w -> w , z z -> z
+                 || _ s .#. ;
+
+regex Shorten .o. Degem .o. DropBound .o. CodaDegem ;
 save stack build/gen-accent.hfst
 quit
