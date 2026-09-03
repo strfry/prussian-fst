@@ -1,42 +1,87 @@
-! Handgeschriebener generativer FST — Nomen, bewegliche a-Stämme (Neutrum).
+! Handgeschriebener generativer FST — Nomen, a-Stämme (a-Familie).
 !
-! Dies ist KEIN aus den Daten abgeleiteter (zirkulärer) Generator, sondern eine
-! von Hand formulierte Hypothese über Paradigma 35: EIN obliquer Stamm + fester
-! Endungssatz + eine Akzentregel. Getestet wird nicht-zirkulär gegen die echten
-! Twanksta-Vollformen (die Endungen/Regeln stehen hier, die Referenz kommt aus
-! ../corpus/parsed/twanksta_entries.json).
+! a-Familie = Gen.Sg. auf -as; oblique Stamm = Gen.Sg. minus -as. Parallel zu
+! gen/istem.lexc; teilt sich die Akzentregel gen/accent.regex. Nicht-zirkulär
+! getestet: gen/coverage_gen.py --family astem speist die Stämme ALLER realen
+! a-Stamm-Lexeme in die hier formulierten Endungen + die Akzentregel und misst
+! gegen Twanksta.
 !
-! Bewegliche Betonung: In den akzentverschobenen Slots (Nom.Pl., Dat.Pl.) wandert
-! die Betonung auf die Endung; der Stamm verliert dann sein schweres Merkmal —
-! ein Makron wird kurz (ōrigan → origanāi) ODER eine Geminate vereinfacht sich
-! (Mettel → Metelāi). Beides ist dieselbe Alternation. Ausgelöst wird sie über
-! den abstrakten Akzentgrenze-Marker ^, den nur diese beiden Endungen setzen —
-! nicht über eine erfundene Geminate in der Endung (vgl. den mmans-Hack in
-! gen/nouns.lexc). gen/accent.regex realisiert die Reduktion vor ^ und tilgt ^.
+! ARCHITEKTUR wie beim i-Stamm — eine Endungstabelle PRO TWANKSTA-PARADIGMENNUMMER;
+! Genus ist rein lexikalisch (Tag am Lemma, kein Tabellenselektor). Drei
+! Kern-a-Stamm-Paradigmen (jo-Stämme 37–41 mit Gen.Sg. -jas und ā-Stämme 45/46/50/51
+! fem sind eigene Familien):
+!
+!   Par  Genus  Nom.Sg Dat.Sg Nom.Pl Dat.Pl    mobil (schwerer Slot, Marker ^)
+!   32   masc   s      u      ai     amans     —
+!   36   masc   s      u      ^āi    ^ammans   Nom.Pl, Dat.Pl
+!   35   neut   an     u      ^āi    ^ammans   Nom.Pl, Dat.Pl
+!   (Sg.Gen -as, Sg.Akk -an, Pl.Gen -an, Pl.Akk -ans durchgehend gleich.)
+!
+! a-Stamm-Nomen haben Dat.Sg. -u in ALLEN Genera (auch Maskulinum) — anders als
+! das adjektivische -asmu (gen/adj.lexc): darum sind Nomen- und Adjektivtabellen
+! echte verschiedene Tabellen, nicht dieselbe anders gebunden. 32 und 36 sind
+! identisch bis auf die bewegliche Betonung; 35 unterscheidet sich von 36 nur im
+! Nom.Sg. (-an vs -s) = Neutrum.
+!
+! Bewegliche Betonung (Par.35/36): der verschobene Slot emittiert ^ zwischen Stamm
+! und schwerer Endung; gen/accent.regex reduziert das rechteste schwere Merkmal
+! (Makron ODER Geminate) und tilgt ^. Die Einsilben-/Koda-Regel dort vereinfacht
+! zudem eine Stamm-Geminate vor dem Nom.Sg. -s (kapp+s → kaps).
 
-Multichar_Symbols +N +Neut +Sg +Pl +Nom +Gen +Dat +Akk ^
+Multichar_Symbols +N +Masc +Neut +Sg +Pl +Nom +Gen +Dat +Akk ^
 
 LEXICON Root
-  AStemNeutMobile ;
+  P32Stems ;
+  P35Stems ;
+  P36Stems ;
 
-! Lexeme: Lemma (Nom.Sg.) : obliquer Stamm (trägt das schwere Merkmal).
-! Eine Handvoll realer Paradigma-35-Lexeme, bewusst über die Merkmalstypen
-! gestreut (Makron ō/ā/ē, Geminate tt/zz) — eine Regel muss alle treffen.
-LEXICON AStemNeutMobile
-  ōriganan:ōrigan       NEnd ;   ! Makron ō
-  Dargāinan:Dargāin     NEnd ;   ! Makron ā
-  Grēnlandan:Grēnland   NEnd ;   ! Makron ē
-  Mettelan:Mettel       NEnd ;   ! Geminate tt
-  Grazazzaran:Grazazzar NEnd ;   ! Geminate zz
+! >>> STÄMME (nur Beispiel-Lexeme für `make astem`; der Deckungstest ersetzt
+!            diesen Block durch die Stämme aller realen Lexeme) <<<
+! Lexem = Lemma+N+Genus : Stamm (Gen.Sg. minus -as) → Paradigmen-Endungslexikon.
 
-! Endungen (theme-vokal-tragend). Die akzentverschobenen Slots stellen den
-! Grenzmarker ^ voran, der die Stammreduktion in gen/accent.regex auslöst.
-LEXICON NEnd
-  +N+Neut+Sg+Nom:an        # ;
-  +N+Neut+Sg+Gen:as        # ;
-  +N+Neut+Sg+Dat:u         # ;
-  +N+Neut+Sg+Akk:an        # ;
-  +N+Neut+Pl+Nom:%^āi      # ;   ! Akzent auf Endung → Stamm leicht
-  +N+Neut+Pl+Gen:an        # ;
-  +N+Neut+Pl+Dat:%^ammans  # ;   ! Akzent auf Endung → Stamm leicht
-  +N+Neut+Pl+Akk:ans       # ;
+LEXICON P32Stems
+  Afgānistans+N+Masc:Afgānistan  P32 ;
+  Akkads+N+Masc:Akkad            P32 ;
+  Ambūks+N+Masc:Ambūk            P32 ;
+
+LEXICON P35Stems
+  ōriganan+N+Neut:ōrigan         P35 ;   ! Makron ō
+  belarussiskan+N+Neut:belarussisk P35 ; ! Geminate ss → s im schweren Slot
+  Mettelan+N+Neut:Mettel         P35 ;   ! Geminate tt → t
+
+LEXICON P36Stems
+  Dēiws+N+Masc:Dēiw              P36 ;   ! Makron ē → e im schweren Slot
+  ajjers+N+Masc:ajjer            P36 ;   ! Geminate jj → j
+  kaps+N+Masc:kapp               P36 ;   ! Geminate pp: kapp+s → kaps (Koda) + mobil
+
+! >>> ENDUNGEN (ab hier vom Deckungstest gen/coverage_gen.py wiederverwendet) <<<
+
+LEXICON P32
+  +Sg+Nom:s        # ;
+  +Sg+Gen:as       # ;
+  +Sg+Dat:u        # ;
+  +Sg+Akk:an       # ;
+  +Pl+Nom:ai       # ;
+  +Pl+Gen:an       # ;
+  +Pl+Dat:amans    # ;
+  +Pl+Akk:ans      # ;
+
+LEXICON P36
+  +Sg+Nom:s        # ;
+  +Sg+Gen:as       # ;
+  +Sg+Dat:u        # ;
+  +Sg+Akk:an       # ;
+  +Pl+Nom:%^āi     # ;   ! Akzent auf Endung → Stamm leicht
+  +Pl+Gen:an       # ;
+  +Pl+Dat:%^ammans # ;   ! Akzent auf Endung → Stamm leicht
+  +Pl+Akk:ans      # ;
+
+LEXICON P35
+  +Sg+Nom:an       # ;
+  +Sg+Gen:as       # ;
+  +Sg+Dat:u        # ;
+  +Sg+Akk:an       # ;
+  +Pl+Nom:%^āi     # ;   ! Akzent auf Endung → Stamm leicht
+  +Pl+Gen:an       # ;
+  +Pl+Dat:%^ammans # ;   ! Akzent auf Endung → Stamm leicht
+  +Pl+Akk:ans      # ;

@@ -29,25 +29,37 @@ import json  # noqa: E402
 from prussian_fst.fst_lookup import glookup_batch  # noqa: E402
 
 TWANKSTA = ROOT.parent / "corpus" / "parsed" / "twanksta_entries.json"
-LEXC = ROOT / "gen" / "istem.lexc"
 ACCENT = ROOT / "build" / "gen-accent.hfst"
 BUILD = ROOT / "build"
 HFST = ["uv", "run", "python", str(ROOT / "src" / "prussian_fst" / "build_fst.py")]
 STEMS_MARKER = "! >>> STÄMME"
 ENDINGS_MARKER = "! >>> ENDUNGEN"
 
-# Ziel-Paradigmen → (Stamm-Lexikon, Endungslexikon, Klassenendung im Gen.Sg.).
+# Stammfamilien → lexc-Datei + Ziel-Paradigmen. Je Paradigma:
+# (Stamm-Lexikon, Endungslexikon, Klassenendung im Gen.Sg. zum Abtrennen).
 # Der Stamm = Gen.Sg. minus dieser Endung (Gen.Sg. trägt den Grundakzent).
-# Ein Endungslexikon pro Twanksta-Paradigmennummer (siehe gen/istem.lexc).
-TARGETS = {
-    "52": ("P52Stems", "P52", "is"),
-    "53": ("P53Stems", "P53", "is"),
-    "54": ("P54Stems", "P54", "is"),
-    "56": ("P56Stems", "P56", "is"),
-    "57": ("P57Stems", "P57", "is"),
-    "58": ("P58Stems", "P58", "is"),
-    "60": ("P60Stems", "P60", "is"),
+# Ein Endungslexikon pro Twanksta-Paradigmennummer.
+FAMILIES = {
+    "istem": (ROOT / "gen" / "istem.lexc", {
+        "52": ("P52Stems", "P52", "is"),
+        "53": ("P53Stems", "P53", "is"),
+        "54": ("P54Stems", "P54", "is"),
+        "56": ("P56Stems", "P56", "is"),
+        "57": ("P57Stems", "P57", "is"),
+        "58": ("P58Stems", "P58", "is"),
+        "60": ("P60Stems", "P60", "is"),
+    }),
+    "astem": (ROOT / "gen" / "astem.lexc", {
+        "32": ("P32Stems", "P32", "as"),
+        "35": ("P35Stems", "P35", "as"),
+        "36": ("P36Stems", "P36", "as"),
+    }),
 }
+
+# Werden in main() aus --family gesetzt.
+FAMILY = "istem"
+LEXC = FAMILIES["istem"][0]
+TARGETS = FAMILIES["istem"][1]
 GENDER = {"masc": "Masc", "fem": "Fem", "neut": "Neut"}
 CASES = ["Nom", "Gen", "Dat", "Akk"]
 CA = {"Nominative": "Nom", "Genitive": "Gen", "Dative": "Dat", "Accusative": "Akk"}
@@ -117,15 +129,15 @@ def write_lexc(targets: list[dict]) -> Path:
         body.extend(lines)
         body.append("")
 
-    out = BUILD / "gen-istem-cov.lexc"
+    out = BUILD / f"gen-{FAMILY}-cov.lexc"
     out.write_text(preamble + "\n".join(body) + "\n" + endings)
     return out
 
 
 def build(lexc: Path) -> Path:
-    fst = BUILD / "gen-istem-cov.fst"
-    composed = BUILD / "gen-istem-cov.composed.fst"
-    hfstol = BUILD / "gen-istem-cov.gen.hfstol"
+    fst = BUILD / f"gen-{FAMILY}-cov.fst"
+    composed = BUILD / f"gen-{FAMILY}-cov.composed.fst"
+    hfstol = BUILD / f"gen-{FAMILY}-cov.gen.hfstol"
     if not ACCENT.exists():
         subprocess.run(HFST + ["xfst", str(ROOT / "gen" / "accent.regex")], check=True)
     subprocess.run(HFST + ["lexc", str(lexc), str(fst)], check=True)
@@ -136,8 +148,14 @@ def build(lexc: Path) -> Path:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap.add_argument("--family", choices=sorted(FAMILIES), default="istem",
+                    help="Stammfamilie (istem, astem, …)")
     ap.add_argument("--show", type=int, default=15, help="max. Abweichungen zeigen")
     args = ap.parse_args()
+
+    global FAMILY, LEXC, TARGETS
+    FAMILY = args.family
+    LEXC, TARGETS = FAMILIES[FAMILY]
 
     targets = load_targets()
     hfstol = build(write_lexc(targets))
