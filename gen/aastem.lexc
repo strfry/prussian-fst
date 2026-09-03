@@ -1,0 +1,74 @@
+! Handgeschriebener generativer FST — Nomen, ā/jā/ī-Stämme (feminine ā-Familie).
+!
+! Feminine Deklinationen mit a-/i-Themavokal; teilt sich gen/accent.regex.
+! Test: gen/coverage_gen.py --family aastem.
+!
+!   Par  Typ   Nom.Sg Gen.Sg Dat.Sg Akk.Sg Nom.Pl Gen.Pl Dat.Pl   Akk.Pl  Stamm
+!   45   jā    ∅      s      i      n      s      n      mans     ns      a-final (Gen−s)
+!   46   ā·mob ^ā     as     ai     an     as     an     ^āmans   ans     kons. (Gen−as)
+!   50   ī/jā  i      jas    jai    jan    jas    jan    jamans   jans    kons. (Gen−jas)
+!
+! Par.45 (jā): Stamm ist a-final (= Nom.Sg.), Endungen treten direkt an
+! (Afrika/Afrikas/Afrikai …). Par.50 (ī): konsonantischer Stamm, j in der Endung
+! wie bei den jo-Stämmen, Nom.Sg. -i (amērikanin+i).
+!
+! Par.46 (ā, mobil): konsonantischer Stamm (Gen.Sg. minus -as). Das schwere Thema
+! -ā (Nom.Sg., Dat.Pl.) trägt die Betonung → der Stamm wird leicht (Akzentmarker ^):
+! ein prätonisches Makron kürzt (emprīkistalīsn+^ā → emprikistalisnā) ODER eine
+! Geminate vereinfacht (Piss+^ā → Pisā). Im leichten Thema -a bleibt der Stamm schwer
+! (emprīkistalīsn+as → emprīkistalīsnas). Par.51 (19, gemination-irregulär) ausgespart.
+
+Multichar_Symbols +N +Fem +Sg +Pl +Nom +Gen +Dat +Akk ^
+
+LEXICON Root
+  P45Stems ;
+  P46Stems ;
+  P50Stems ;
+
+! >>> STÄMME (Beispiel-Lexeme für `make aastem`; Deckungstest ersetzt den Block) <<<
+! Lexem = Lemma+N+Fem : Stamm → Paradigmen-Endungslexikon.
+
+LEXICON P45Stems
+  Afrika+N+Fem:Afrika            P45 ;   ! a-finaler Stamm (Gen.Sg. minus -s)
+  Albānija+N+Fem:Albānija        P45 ;
+
+LEXICON P46Stems
+  Alnā+N+Fem:Aln                 P46 ;   ! konsonantischer Stamm (Gen.Sg. minus -as)
+  Greiwā+N+Fem:Greiw             P46 ;
+  Instrā+N+Fem:Instr             P46 ;
+
+LEXICON P50Stems
+  amērikanini+N+Fem:amērikanin   P50 ;   ! konsonantischer Stamm, Nom.Sg. -i
+  Aīstjanmari+N+Fem:Aīstjanmar   P50 ;
+
+! >>> ENDUNGEN (ab hier vom Deckungstest gen/coverage_gen.py wiederverwendet) <<<
+
+LEXICON P45
+  +Sg+Nom:0        # ;   ! Stamm ist a-final → Nom.Sg. = blanker Stamm
+  +Sg+Gen:s        # ;
+  +Sg+Dat:i        # ;
+  +Sg+Akk:n        # ;
+  +Pl+Nom:s        # ;
+  +Pl+Gen:n        # ;
+  +Pl+Dat:mans     # ;
+  +Pl+Akk:ns       # ;
+
+LEXICON P46
+  +Sg+Nom:%^ā      # ;   ! schweres Thema -ā → Betonung auf Endung, Stamm leicht
+  +Sg+Gen:as       # ;
+  +Sg+Dat:ai       # ;
+  +Sg+Akk:an       # ;
+  +Pl+Nom:as       # ;
+  +Pl+Gen:an       # ;
+  +Pl+Dat:%^āmans  # ;   ! schweres Thema -ā → Stamm leicht
+  +Pl+Akk:ans      # ;
+
+LEXICON P50
+  +Sg+Nom:i        # ;
+  +Sg+Gen:jas      # ;
+  +Sg+Dat:jai      # ;
+  +Sg+Akk:jan      # ;
+  +Pl+Nom:jas      # ;
+  +Pl+Gen:jan      # ;
+  +Pl+Dat:jamans   # ;
+  +Pl+Akk:jans     # ;

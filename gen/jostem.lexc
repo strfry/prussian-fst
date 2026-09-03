@@ -1,0 +1,88 @@
+! Handgeschriebener generativer FST — Nomen, jo-Stämme (jo-Familie).
+!
+! jo-Familie = Gen.Sg. auf -jas; oblique Stamm = Gen.Sg. minus -jas (konsonantisch).
+! Das `j` gehört zur ENDUNG, nicht zum Stamm (Projektentscheidung): der Stamm ist
+! konsonantisch (rūs-, Andr-), die obliquen Endungen tragen das j (-jas/-ju/-jan/
+! -jai/-jamans/-jans); nur der Nom.Sg. hat -is (jo-Masc) bzw. -jan (jo-Neut).
+! Teilt sich gen/accent.regex; Test: gen/coverage_gen.py --family jostem.
+!
+!   Par  Genus  Nom.Sg Gen.Sg Dat.Sg Akk.Sg Nom.Pl  Gen.Pl Dat.Pl     Akk.Pl  mobil
+!   40   masc   is     jas    ju     jan    jai     jan    jamans     jans    —
+!   41   masc   is     jas    ju     jan    ^jāi    jan    ^jammans   jans    Nom.Pl, Dat.Pl
+!   37   neut   jan    jas    ju     jan    ^jāi    jan    ^jammans   jans    Nom.Pl, Dat.Pl
+!   38   masc   s      jas    ju     jan    jai     jan    mans       jans    —  (Stamm i-final)
+!
+! Par.38 (klein, 20) hat einen i-/ī-finalen Stamm (Gen.Sg. minus -jas = āudalbi-,
+! idōlmadlī-); Nom.Sg. -s und Dat.Pl. -mans treten daher ohne eigenes j auf.
+! Par.39 (12, stark gemination-irregulär: Rikīs/Rikijjas/Rikkimans) ist hier
+! ausgespart — siehe Datenbericht.
+
+Multichar_Symbols +N +Masc +Neut +Sg +Pl +Nom +Gen +Dat +Akk ^
+
+LEXICON Root
+  P40Stems ;
+  P41Stems ;
+  P37Stems ;
+  P38Stems ;
+
+! >>> STÄMME (Beispiel-Lexeme für `make jostem`; Deckungstest ersetzt den Block) <<<
+! Lexem = Lemma+N+Genus : Stamm (Gen.Sg. minus -jas) → Paradigmen-Endungslexikon.
+
+LEXICON P40Stems
+  albinōzis+N+Masc:albinōz       P40 ;
+  Andris+N+Masc:Andr             P40 ;
+
+LEXICON P41Stems
+  rūsis+N+Masc:rūs               P41 ;   ! Makron ū → u im schweren Slot
+  wilnis+N+Masc:wiln             P41 ;
+
+LEXICON P37Stems
+  Ministeriwāitjan+N+Neut:Ministeriwāit P37 ;   ! Makron ā → a im schweren Slot
+  wārmigarjan+N+Neut:wārmigar    P37 ;
+  pannjan+N+Neut:pann            P37 ;   ! Geminate nn (fest, nicht im schweren Slot)
+
+LEXICON P38Stems
+  āudalbis+N+Masc:āudalbi        P38 ;   ! i-finaler Stamm
+  idōlmadlīs+N+Masc:idōlmadlī    P38 ;   ! ī-finaler Stamm
+
+! >>> ENDUNGEN (ab hier vom Deckungstest gen/coverage_gen.py wiederverwendet) <<<
+
+LEXICON P40
+  +Sg+Nom:is       # ;
+  +Sg+Gen:jas      # ;
+  +Sg+Dat:ju       # ;
+  +Sg+Akk:jan      # ;
+  +Pl+Nom:jai      # ;
+  +Pl+Gen:jan      # ;
+  +Pl+Dat:jamans   # ;
+  +Pl+Akk:jans     # ;
+
+LEXICON P41
+  +Sg+Nom:is       # ;
+  +Sg+Gen:jas      # ;
+  +Sg+Dat:ju       # ;
+  +Sg+Akk:jan      # ;
+  +Pl+Nom:%^jāi    # ;   ! Akzent auf Endung → Stamm leicht
+  +Pl+Gen:jan      # ;
+  +Pl+Dat:%^jammans # ;  ! Akzent auf Endung → Stamm leicht
+  +Pl+Akk:jans     # ;
+
+LEXICON P37
+  +Sg+Nom:jan      # ;
+  +Sg+Gen:jas      # ;
+  +Sg+Dat:ju       # ;
+  +Sg+Akk:jan      # ;
+  +Pl+Nom:%^jāi    # ;   ! Akzent auf Endung → Stamm leicht
+  +Pl+Gen:jan      # ;
+  +Pl+Dat:%^jammans # ;  ! Akzent auf Endung → Stamm leicht
+  +Pl+Akk:jans     # ;
+
+LEXICON P38
+  +Sg+Nom:s        # ;
+  +Sg+Gen:jas      # ;
+  +Sg+Dat:ju       # ;
+  +Sg+Akk:jan      # ;
+  +Pl+Nom:jai      # ;
+  +Pl+Gen:jan      # ;
+  +Pl+Dat:mans     # ;
+  +Pl+Akk:jans     # ;

@@ -127,7 +127,7 @@ def main() -> None:
     grand_t = grand_h = 0
     all_buckets: Counter = Counter()
     all_ex: dict = defaultdict(list)
-    for fam in ("istem", "astem", "ustem"):
+    for fam in ("istem", "astem", "ustem", "jostem", "aastem"):
         t, h, buckets, ex = report_family(fam)
         grand_t += t
         grand_h += h

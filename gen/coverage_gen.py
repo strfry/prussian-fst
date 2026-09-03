@@ -59,6 +59,19 @@ FAMILIES = {
         "43": ("P43Stems", "P43", "us"),
         "44": ("P44Stems", "P44", "us"),
     }),
+    "jostem": (ROOT / "gen" / "jostem.lexc", {
+        "40": ("P40Stems", "P40", "jas"),
+        "41": ("P41Stems", "P41", "jas"),
+        "37": ("P37Stems", "P37", "jas"),
+        "38": ("P38Stems", "P38", "jas"),
+    }),
+    # ā/jā/ī-Familie fem. Par.46 = konsonantischer Stamm, Themavokal-Länge in der
+    # Endung (Nom.Sg./Dat.Pl. -ā, sonst -a) — keine Stammreduktion.
+    "aastem": (ROOT / "gen" / "aastem.lexc", {
+        "45": ("P45Stems", "P45", "s"),
+        "46": ("P46Stems", "P46", "as"),
+        "50": ("P50Stems", "P50", "jas"),
+    }),
 }
 
 # Werden in main() aus --family gesetzt.
@@ -96,15 +109,19 @@ def load_targets() -> list[dict]:
                 continue
             forms[f"Sg+{case}"] = primary(c.get("singular"))
             forms[f"Pl+{case}"] = primary(c.get("plural"))
-        gensg = forms.get("Sg+Gen", "")
-        _, _, gen_end = TARGETS[para]
+        spec = TARGETS[para]
+        gen_end = spec[2]
+        # Optionaler 4. Eintrag: aus welchem Slot der Stamm abgeleitet wird
+        # (Default Gen.Sg.; Par.46 z. B. aus dem schweren Nom.Sg.).
+        source = spec[3] if len(spec) > 3 else "Sg+Gen"
+        srcform = forms.get(source, "")
         # Ausschluss: Mehrwort/Slash (lexc-Symbole ohne Leerzeichen), fehlendes
-        # Genus, unvollständige Formen, oder Gen.Sg. ohne erwartete Klassenendung.
+        # Genus, unvollständige Formen, oder Quellform ohne erwartete Klassenendung.
         if (" " in lemma or "/" in lemma or not gender
-                or len(forms) < 8 or not gensg.endswith(gen_end)):
+                or len(forms) < 8 or not srcform.endswith(gen_end)):
             excluded += 1
             continue
-        stem = gensg[: -len(gen_end)]
+        stem = srcform[: -len(gen_end)] if gen_end else srcform
         key = (lemma, para, stem, gender)
         if key in seen:
             continue
@@ -122,9 +139,9 @@ def write_lexc(targets: list[dict]) -> Path:
     preamble = text[: text.index(STEMS_MARKER)]
     endings = text[text.index(ENDINGS_MARKER):]
 
-    stems = {name: [] for name, _, _ in TARGETS.values()}
+    stems = {spec[0]: [] for spec in TARGETS.values()}
     for t in targets:
-        stem_lex, infl, _ = TARGETS[t["para"]]
+        stem_lex, infl = TARGETS[t["para"]][:2]
         stems[stem_lex].append(
             f"  {t['lemma']}+N+{t['gender']}:{t['stem']}  {infl} ;")
 

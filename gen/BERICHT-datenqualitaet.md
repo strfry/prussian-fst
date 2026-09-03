@@ -15,16 +15,19 @@ stammen **nicht** aus den Daten, sondern aus einer linguistischen Hypothese pro
 Twanksta-Paradigmennummer — der Abgleich ist damit ein echter Deckungstest, keine
 Selbstkonsistenz. Reproduzierbar mit `uv run python gen/data_report.py`.
 
-Modelliert sind bisher die drei größten Stammfamilien:
+Modelliert sind die fünf großen Stammfamilien (Nomen); es fehlen nur wenige kleine
+irreguläre Paradigmen (39, 51) und die Konsonant-/n-Stämme 61/63/68/69:
 
-| Familie | Paradigmen | Lexeme | Formen | Deckung |
-|---|---|---|---|---|
-| i-Stämme | 52/53/54/56/57/58/60 | 1054 | 8432 | 99.4 % |
-| a-Stämme | 32/35/36 | 2123 | 16984 | 99.7 % |
-| u-Stämme | 42/43/44 | 60 | 480 | 97.9 % |
-| **gesamt** | | | **25896** | **99.56 %** |
+| Familie | Paradigmen | Formen | Deckung |
+|---|---|---|---|
+| i-Stämme | 52/53/54/56/57/58/60 | 8432 | 99.4 % |
+| a-Stämme | 32/35/36 | 16984 | 99.7 % |
+| u-Stämme | 42/43/44 | 480 | 97.9 % |
+| jo-Stämme | 40/41/37/38 | 5672 | 99.7 % |
+| ā/jā/ī-Stämme (fem) | 45/46/50 | 11856 | 99.8 % |
+| **gesamt** | | **43424** | **99.64 %** |
 
-Die 115 Abweichungen zerfallen in **echte Datenfehler** (unten, Teil A) und
+Die 156 Abweichungen zerfallen in **echte Datenfehler** (unten, Teil A) und
 **systematische Morphophonologie**, die der Prototyp noch nicht abbildet (Teil B,
 keine Fehler — nur zur Kenntnis bzw. als Konsistenzfrage).
 
@@ -115,16 +118,17 @@ reduzieren (`nagg-` → `nagīmans`). Ebenso die Zahl-Komposita `trillunks`,
 
 ### B4. Gravis-Akzent wird in mobilen Slots getilgt
 
-`ètwartan` → `etwartāi`, `èstiskan` → `estiskāi`: der Gravis (`è`) markiert die
+`ètwartan` → `etwartāi`, `èstiskan` → `estiskāi`, `ensàkninsnā` → `ensakninsnā`,
+`izpiĺninsnā` → `izpilninsnā`: der Gravis (`à`/`è`) bzw. das Akut-`ĺ` markiert die
 Stammbetonung und verschwindet im akzentverschobenen Slot — regulär, vom Prototyp
-noch nicht behandelt.
+noch nicht behandelt (accent.regex kürzt bisher nur Makron/Geminate).
 
 ---
 
 ## Zusammenfassung
 
-Rund **99,6 %** der Formen in den drei größten Stammfamilien sind generativ aus
-Stamm + Paradigma + einer Akzentregel exakt reproduzierbar. Die verbleibenden
+Rund **99,6 %** der Formen (43424) in den fünf großen Stammfamilien sind generativ
+aus Stamm + Paradigma + einer Akzentregel exakt reproduzierbar. Die verbleibenden
 Abweichungen sind größtenteils reguläre Lexik/Morphophonologie (Teil B). An
 **echten Fehlern** fallen v. a. an: ~36 unbefüllte Flexionstabellen (A1), eine
 Wortart-Fehlklassifikation (`izmāitint`, A2), ein Encoding-Schaden (`māršs`, A3)
