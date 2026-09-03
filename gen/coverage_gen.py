@@ -54,6 +54,11 @@ FAMILIES = {
         "35": ("P35Stems", "P35", "as"),
         "36": ("P36Stems", "P36", "as"),
     }),
+    "ustem": (ROOT / "gen" / "ustem.lexc", {
+        "42": ("P42Stems", "P42", "us"),
+        "43": ("P43Stems", "P43", "us"),
+        "44": ("P44Stems", "P44", "us"),
+    }),
 }
 
 # Werden in main() aus --family gesetzt.

@@ -1,0 +1,76 @@
+! Handgeschriebener generativer FST — Nomen, u-Stämme (u-Familie).
+!
+! u-Familie = Gen.Sg. auf -us; oblique Stamm = Gen.Sg. minus -us. Parallel zu
+! gen/istem.lexc und gen/astem.lexc; teilt sich gen/accent.regex. Nicht-zirkulär
+! getestet: gen/coverage_gen.py --family ustem.
+!
+! ARCHITEKTUR wie sonst — eine Endungstabelle PRO TWANKSTA-PARADIGMENNUMMER,
+! Genus als Lemma-Tag:
+!
+!   Par  Genus  Nom.Sg Gen.Sg Dat.Sg Akk.Sg Nom.Pl Gen.Pl Dat.Pl    Akk.Pl  mobil
+!   42   masc   us     us     u      un     us     un     umans     uns     —
+!   43   masc   s      us     u      un     us     un     ^ummans   uns     Dat.Pl
+!   44   neut   u      us     u      u      u      us     u         u       —
+!
+! Par.42 (fest) und Par.43 unterscheiden sich im Nom.Sg. (-us vs -s) und in der
+! beweglichen Betonung (Par.43 Dat.Pl. schwer -ummans, Stamm leicht:
+! dāng+^ummans → dangummans). Par.44 (Neutrum) ist bis auf Gen.Sg./Gen.Pl. -us
+! durchweg -u.
+
+Multichar_Symbols +N +Masc +Neut +Sg +Pl +Nom +Gen +Dat +Akk ^
+
+LEXICON Root
+  P42Stems ;
+  P43Stems ;
+  P44Stems ;
+
+! >>> STÄMME (nur Beispiel-Lexeme für `make ustem`; der Deckungstest ersetzt
+!            diesen Block durch die Stämme aller realen Lexeme) <<<
+! Lexem = Lemma+N+Genus : Stamm (Gen.Sg. minus -us) → Paradigmen-Endungslexikon.
+
+LEXICON P42Stems
+  Jēzus+N+Masc:Jēz               P42 ;
+  Kristus+N+Masc:Krist           P42 ;
+  Kūbus+N+Masc:Kūb               P42 ;
+
+LEXICON P43Stems
+  drasts+N+Masc:drast            P43 ;
+  dāngs+N+Masc:dāng              P43 ;   ! Makron ā → a im schweren Dat.Pl.
+  gints+N+Masc:gint              P43 ;
+
+LEXICON P44Stems
+  Kōngu+N+Neut:Kōng              P44 ;
+  Lasōtu+N+Neut:Lasōt            P44 ;
+  Meksiku+N+Neut:Meksik          P44 ;
+
+! >>> ENDUNGEN (ab hier vom Deckungstest gen/coverage_gen.py wiederverwendet) <<<
+
+LEXICON P42
+  +Sg+Nom:us       # ;
+  +Sg+Gen:us       # ;
+  +Sg+Dat:u        # ;
+  +Sg+Akk:un       # ;
+  +Pl+Nom:us       # ;
+  +Pl+Gen:un       # ;
+  +Pl+Dat:umans    # ;
+  +Pl+Akk:uns      # ;
+
+LEXICON P43
+  +Sg+Nom:s        # ;
+  +Sg+Gen:us       # ;
+  +Sg+Dat:u        # ;
+  +Sg+Akk:un       # ;
+  +Pl+Nom:us       # ;
+  +Pl+Gen:un       # ;
+  +Pl+Dat:%^ummans # ;   ! Akzent auf Endung → Stamm leicht
+  +Pl+Akk:uns      # ;
+
+LEXICON P44
+  +Sg+Nom:u        # ;
+  +Sg+Gen:us       # ;
+  +Sg+Dat:u        # ;
+  +Sg+Akk:u        # ;
+  +Pl+Nom:u        # ;
+  +Pl+Gen:us       # ;
+  +Pl+Dat:u        # ;
+  +Pl+Akk:u        # ;
