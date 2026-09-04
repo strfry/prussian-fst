@@ -18,11 +18,13 @@
 ! Endung selbst — belarussisks (fest, mit Geminate ss) behält seine ss überall,
 ! weil kein ^ gesetzt wird.
 
-Multichar_Symbols +Adj +Masc +Fem +Neut +Sg +Pl +Nom +Gen +Dat +Akk ^
+Multichar_Symbols +Adj +Part +Pass +Act +Masc +Fem +Neut +Sg +Pl +Nom +Gen +Dat +Akk ^
 
 LEXICON Root
   AdjFixed ;
   AdjMobile ;
+  PartPass ;
+  PartAct ;
 
 ! Lexeme: Lemma (Masc.Nom.Sg.) : Stamm (Masc.Gen.Sg. minus -as).
 LEXICON AdjFixed
@@ -108,3 +110,97 @@ LEXICON AdjMobileNeut
   +Adj+Neut+Pl+Dat:%^ammans # ;
   +Adj+Neut+Sg+Akk:an       # ;
   +Adj+Neut+Pl+Akk:ans      # ;
+
+! ═══ PARTIZIPIEN (agieren adjektivisch, drei Genera) ══════════════════════
+!
+! Twanksta-Par.68/69 sind KEINE Nomen, sondern Partizipien mit adjektivischer
+! Deklination (Dat.Sg. -asmu/-jasmu, drei Genusblöcke). Zwei Typen:
+!   PartPass (Par.69): passives Partizip -ts, a-stämmig, semi-mobil. Wie das
+!            mobile Adjektiv, aber Dat.Sg. -asmu ist NICHT mobil (kein Gravis),
+!            und Neut Nom.Pl. -āi bleibt fest. Mobile Slots: Masc Nom.Pl/Dat.Pl,
+!            Fem Nom.Sg/Dat.Pl, Neut Dat.Pl. Stamm = Masc.Gen.Sg. minus -as.
+!   PartAct  (Par.68): aktives Partizip -uns, eigener -us-Stamm, fest. Masc -uns,
+!            Fem -usi, Neut -us; obliquer -us- + jo-artige Endungen (-jas/-jasmu/
+!            -jai/-jamans). Stamm = Masc.Nom.Sg. minus -uns.
+
+LEXICON PartPass
+  ebzignāts:ebzignāt        PartPassInfl ;   ! Makron ā
+  enbilancīts:enbilancīt    PartPassInfl ;   ! Makron ī
+  aulemts:aulemt            PartPassInfl ;    ! ohne schweres Merkmal
+
+LEXICON PartAct
+  ainagimmuns:ainagimm      PartActInfl ;
+  aulaūwuns:aulaūw          PartActInfl ;     ! Makron ū (fest → bleibt)
+  auminīwuns:auminīw        PartActInfl ;
+
+LEXICON PartPassInfl
+  PartPassMasc ;
+  PartPassFem ;
+  PartPassNeut ;
+
+LEXICON PartActInfl
+  PartActMasc ;
+  PartActFem ;
+  PartActNeut ;
+
+! ─── Passives Partizip -ts (Par.69), a-stämmig, semi-mobil ────────────────
+LEXICON PartPassMasc
+  +Part+Pass+Masc+Sg+Nom:s        # ;
+  +Part+Pass+Masc+Pl+Nom:%^āi     # ;   ! mobil
+  +Part+Pass+Masc+Sg+Gen:as       # ;
+  +Part+Pass+Masc+Pl+Gen:an       # ;
+  +Part+Pass+Masc+Sg+Dat:asmu     # ;   ! nicht mobil (anders als Adj-Mobil)
+  +Part+Pass+Masc+Pl+Dat:%^ammans # ;   ! mobil
+  +Part+Pass+Masc+Sg+Akk:an       # ;
+  +Part+Pass+Masc+Pl+Akk:ans      # ;
+
+LEXICON PartPassFem
+  +Part+Pass+Fem+Sg+Nom:%^ā       # ;   ! mobil
+  +Part+Pass+Fem+Pl+Nom:as        # ;
+  +Part+Pass+Fem+Sg+Gen:as        # ;
+  +Part+Pass+Fem+Pl+Gen:an        # ;
+  +Part+Pass+Fem+Sg+Dat:ai        # ;
+  +Part+Pass+Fem+Pl+Dat:%^āmans   # ;   ! mobil
+  +Part+Pass+Fem+Sg+Akk:an        # ;
+  +Part+Pass+Fem+Pl+Akk:ans       # ;
+
+LEXICON PartPassNeut
+  +Part+Pass+Neut+Sg+Nom:an       # ;
+  +Part+Pass+Neut+Pl+Nom:āi       # ;   ! fest (anders als Masc)
+  +Part+Pass+Neut+Sg+Gen:as       # ;
+  +Part+Pass+Neut+Pl+Gen:an       # ;
+  +Part+Pass+Neut+Sg+Dat:asmu     # ;
+  +Part+Pass+Neut+Pl+Dat:%^ammans # ;   ! mobil
+  +Part+Pass+Neut+Sg+Akk:an       # ;
+  +Part+Pass+Neut+Pl+Akk:ans      # ;
+
+! ─── Aktives Partizip -uns (Par.68), -us-Stamm, fest ──────────────────────
+LEXICON PartActMasc
+  +Part+Act+Masc+Sg+Nom:uns       # ;
+  +Part+Act+Masc+Pl+Nom:usis      # ;
+  +Part+Act+Masc+Sg+Gen:usjas     # ;
+  +Part+Act+Masc+Pl+Gen:usin      # ;
+  +Part+Act+Masc+Sg+Dat:usjasmu   # ;
+  +Part+Act+Masc+Pl+Dat:usimans   # ;
+  +Part+Act+Masc+Sg+Akk:usin      # ;
+  +Part+Act+Masc+Pl+Akk:usins     # ;
+
+LEXICON PartActFem
+  +Part+Act+Fem+Sg+Nom:usi        # ;
+  +Part+Act+Fem+Pl+Nom:usjas      # ;
+  +Part+Act+Fem+Sg+Gen:usjas      # ;
+  +Part+Act+Fem+Pl+Gen:usjan      # ;
+  +Part+Act+Fem+Sg+Dat:usjai      # ;
+  +Part+Act+Fem+Pl+Dat:usjamans   # ;
+  +Part+Act+Fem+Sg+Akk:usin       # ;
+  +Part+Act+Fem+Pl+Akk:usjans     # ;
+
+LEXICON PartActNeut
+  +Part+Act+Neut+Sg+Nom:us        # ;
+  +Part+Act+Neut+Pl+Nom:us        # ;
+  +Part+Act+Neut+Sg+Gen:usjas     # ;
+  +Part+Act+Neut+Pl+Gen:usin      # ;
+  +Part+Act+Neut+Sg+Dat:usjasmu   # ;
+  +Part+Act+Neut+Pl+Dat:usimans   # ;
+  +Part+Act+Neut+Sg+Akk:us        # ;
+  +Part+Act+Neut+Pl+Akk:us        # ;

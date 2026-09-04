@@ -18,7 +18,8 @@ Selbstkonsistenz. Reproduzierbar mit `uv run python gen/data_report.py`.
 Modelliert sind die sechs Stammfamilien der Nomen; es fehlen nur zwei kleine
 gemination-irreguläre Paradigmen (39, 51). Par.68/69 sind KEINE Nomen, sondern
 Partizipien (aktiv -uns, passiv -ts) mit adjektivischer Deklination (Dat.Sg. -jasmu
-/-asmu) und gehören zur Adjektiv-Seite:
+/-asmu); sie sind auf der Adjektiv-Seite modelliert (`gen/adj.lexc`, Test
+`gen/coverage_adj.py`: 98.8 %, aktiv 100 %) und hier nicht mitgezählt:
 
 | Familie | Paradigmen | Formen | Deckung |
 |---|---|---|---|
