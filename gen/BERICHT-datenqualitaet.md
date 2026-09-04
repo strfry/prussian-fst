@@ -15,8 +15,10 @@ stammen **nicht** aus den Daten, sondern aus einer linguistischen Hypothese pro
 Twanksta-Paradigmennummer — der Abgleich ist damit ein echter Deckungstest, keine
 Selbstkonsistenz. Reproduzierbar mit `uv run python gen/data_report.py`.
 
-Modelliert sind die fünf großen Stammfamilien (Nomen); es fehlen nur wenige kleine
-irreguläre Paradigmen (39, 51) und die Konsonant-/n-Stämme 61/63/68/69:
+Modelliert sind die sechs Stammfamilien der Nomen; es fehlen nur zwei kleine
+gemination-irreguläre Paradigmen (39, 51). Par.68/69 sind KEINE Nomen, sondern
+Partizipien (aktiv -uns, passiv -ts) mit adjektivischer Deklination (Dat.Sg. -jasmu
+/-asmu) und gehören zur Adjektiv-Seite:
 
 | Familie | Paradigmen | Formen | Deckung |
 |---|---|---|---|
@@ -25,7 +27,8 @@ irreguläre Paradigmen (39, 51) und die Konsonant-/n-Stämme 61/63/68/69:
 | u-Stämme | 42/43/44 | 480 | 97.9 % |
 | jo-Stämme | 40/41/37/38 | 5672 | 99.7 % |
 | ā/jā/ī-Stämme (fem) | 45/46/50 | 11856 | 99.8 % |
-| **gesamt** | | **43424** | **99.64 %** |
+| n-Stämme | 61/63 | 168 | 100 % |
+| **gesamt** | | **43592** | **99.64 %** |
 
 Die 156 Abweichungen zerfallen in **echte Datenfehler** (unten, Teil A) und
 **systematische Morphophonologie**, die der Prototyp noch nicht abbildet (Teil B,
@@ -127,7 +130,7 @@ noch nicht behandelt (accent.regex kürzt bisher nur Makron/Geminate).
 
 ## Zusammenfassung
 
-Rund **99,6 %** der Formen (43424) in den fünf großen Stammfamilien sind generativ
+Rund **99,6 %** der Formen (43592) in den sechs Stammfamilien sind generativ
 aus Stamm + Paradigma + einer Akzentregel exakt reproduzierbar. Die verbleibenden
 Abweichungen sind größtenteils reguläre Lexik/Morphophonologie (Teil B). An
 **echten Fehlern** fallen v. a. an: ~36 unbefüllte Flexionstabellen (A1), eine

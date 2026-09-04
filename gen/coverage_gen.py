@@ -72,6 +72,10 @@ FAMILIES = {
         "46": ("P46Stems", "P46", "as"),
         "50": ("P50Stems", "P50", "jas"),
     }),
+    "nstem": (ROOT / "gen" / "nstem.lexc", {
+        "61": ("P61Stems", "P61", "es"),
+        "63": ("P63Stems", "P63", "es"),
+    }),
 }
 
 # Werden in main() aus --family gesetzt.

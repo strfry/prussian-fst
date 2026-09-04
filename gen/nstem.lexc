@@ -1,0 +1,55 @@
+! Handgeschriebener generativer FST — Nomen, n-Stämme (n-Deklination).
+!
+! Die alte indogermanische n-Deklination: der Stamm endet auf -en/-men (vgl. lat.
+! nōmen/nōmin-is, homō/homin-is). Oblique Stamm = Gen.Sg. minus -es (= der -en/-men-
+! Stamm selbst). Teilt sich gen/accent.regex; Test: gen/coverage_gen.py --family nstem.
+!
+!   Par  Genus  Nom.Sg Gen.Sg Dat.Sg Akk.Sg Nom.Pl Gen.Pl Dat.Pl    Akk.Pl  mobil
+!   61   masc   s      es     i      in     es     in     imans     ins     —
+!   63   neut   ∅      es     i      ∅      es     in     ^immans   ins     Dat.Pl
+!
+! Par.61 (masc, -ens): aūgmens/aūgmenes … — konkatenativer -en-Stamm, feste Endungen.
+! Par.63 (neut, -men): der klassische -men-Typ (nōmen, pēismen 'letter', kanapsemen
+! 'hemp seed'). Nom.Sg. und Akk.Sg. = blanker Stamm (Neutrum); Dat.Pl. mobil, das
+! schwere -immans zieht die Betonung → Stamm leicht (nōmen+^immans → nomenimmans).
+
+Multichar_Symbols +N +Masc +Neut +Sg +Pl +Nom +Gen +Dat +Akk ^
+
+LEXICON Root
+  P61Stems ;
+  P63Stems ;
+
+! >>> STÄMME (Beispiel-Lexeme für `make nstem`; Deckungstest ersetzt den Block) <<<
+! Lexem = Lemma+N+Genus : Stamm (Gen.Sg. minus -es) → Paradigmen-Endungslexikon.
+
+LEXICON P61Stems
+  aūgmens+N+Masc:aūgmen          P61 ;
+  dīmens+N+Masc:dīmen            P61 ;
+  tremmens+N+Masc:tremmen        P61 ;   ! Geminate mm (fest → bleibt)
+
+LEXICON P63Stems
+  nōmen+N+Neut:nōmen             P63 ;   ! Makron ō → o im schweren Dat.Pl.
+  pēismen+N+Neut:pēismen         P63 ;
+  kanapsemen+N+Neut:kanapsemen   P63 ;
+
+! >>> ENDUNGEN (ab hier vom Deckungstest gen/coverage_gen.py wiederverwendet) <<<
+
+LEXICON P61
+  +Sg+Nom:s        # ;
+  +Sg+Gen:es       # ;
+  +Sg+Dat:i        # ;
+  +Sg+Akk:in       # ;
+  +Pl+Nom:es       # ;
+  +Pl+Gen:in       # ;
+  +Pl+Dat:imans    # ;
+  +Pl+Akk:ins      # ;
+
+LEXICON P63
+  +Sg+Nom:0        # ;   ! blanker Stamm (Neutrum)
+  +Sg+Gen:es       # ;
+  +Sg+Dat:i        # ;
+  +Sg+Akk:0        # ;   ! blanker Stamm (Neutrum)
+  +Pl+Nom:es       # ;
+  +Pl+Gen:in       # ;
+  +Pl+Dat:%^immans # ;   ! schwere Endung → Stamm leicht
+  +Pl+Akk:ins      # ;

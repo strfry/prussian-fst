@@ -26,7 +26,7 @@ LEXC_MERGED := build/lexc.merged
 # uv run = Projekt-Env, damit hfst überall verfügbar ist (auch ohne System-Install).
 HFST := uv run python src/prussian_fst/build_fst.py
 
-.PHONY: all gen clean cg3-sets cg3-check disambiguate conllu hfstol links astem adj istem ustem jostem aastem
+.PHONY: all gen clean cg3-sets cg3-check disambiguate conllu hfstol links astem adj istem ustem jostem aastem nstem
 
 all: build/base.hfstol build/macron.hfstol build/lenient.hfstol build/base.gen.hfstol
 
@@ -148,6 +148,20 @@ build/gen-aastem.composed.fst: build/gen-aastem.fst build/gen-accent.hfst
 	$(HFST) compose $@ build/gen-aastem.fst build/gen-accent.hfst
 
 build/gen-aastem.gen.hfstol: build/gen-aastem.composed.fst
+	$(HFST) hfstol-gen $< $@
+
+# n-Stämme (n-Deklination: Par.61 masc -ens fest + Par.63 neut -men, Dat.Pl mobil).
+# Deckungstest: uv run python gen/coverage_gen.py --family nstem
+#   make nstem                    # baut build/gen-nstem.gen.hfstol
+nstem: build/gen-nstem.gen.hfstol
+
+build/gen-nstem.fst: gen/nstem.lexc | build/
+	$(HFST) lexc $< $@
+
+build/gen-nstem.composed.fst: build/gen-nstem.fst build/gen-accent.hfst
+	$(HFST) compose $@ build/gen-nstem.fst build/gen-accent.hfst
+
+build/gen-nstem.gen.hfstol: build/gen-nstem.composed.fst
 	$(HFST) hfstol-gen $< $@
 
 # Correction layers, one stage per phenomenon (norm/*.regex → build/norm-*.hfst).
