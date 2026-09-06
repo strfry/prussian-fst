@@ -14,16 +14,19 @@
 !
 ! Par.38 (klein, 20) hat einen i-/ī-finalen Stamm (Gen.Sg. minus -jas = āudalbi-,
 ! idōlmadlī-); Nom.Sg. -s und Dat.Pl. -mans treten daher ohne eigenes j auf.
-! Par.39 (12, stark gemination-irregulär: Rikīs/Rikijjas/Rikkimans) ist hier
-! ausgespart — siehe Datenbericht.
+! Par.39 (12): Stamm = Gen.Sg. minus -ijjas (Rik-, aitagen-, warbuw-). Sieben Slots
+! konkatenativ (īs/ijjas/ijju/ijjan/ijjai/ijjan/ijjans); nur der Dat.Pl. geminiert
+! den Stammauslaut (Rik>imans → Rikkimans) über den Geminationsmarker > (siehe
+! gen/accent.regex). Rest: einzelne Nom.Sg. mit Zusatz-Makron (aītagenīs).
 
-Multichar_Symbols +N +Masc +Neut +Sg +Pl +Nom +Gen +Dat +Akk ^
+Multichar_Symbols +N +Masc +Neut +Sg +Pl +Nom +Gen +Dat +Akk ^ %>
 
 LEXICON Root
   P40Stems ;
   P41Stems ;
   P37Stems ;
   P38Stems ;
+  P39Stems ;
 
 ! >>> STÄMME (Beispiel-Lexeme für `make jostem`; Deckungstest ersetzt den Block) <<<
 ! Lexem = Lemma+N+Genus : Stamm (Gen.Sg. minus -jas) → Paradigmen-Endungslexikon.
@@ -44,6 +47,11 @@ LEXICON P37Stems
 LEXICON P38Stems
   āudalbis+N+Masc:āudalbi        P38 ;   ! i-finaler Stamm
   idōlmadlīs+N+Masc:idōlmadlī    P38 ;   ! ī-finaler Stamm
+
+LEXICON P39Stems
+  Rikīs+N+Masc:Rik               P39 ;   ! Dat.Pl. geminiert: Rik>imans → Rikkimans
+  warbuwīs+N+Masc:warbuw         P39 ;
+  kraisakīs+N+Masc:kraisak       P39 ;
 
 ! >>> ENDUNGEN (ab hier vom Deckungstest gen/coverage_gen.py wiederverwendet) <<<
 
@@ -86,3 +94,13 @@ LEXICON P38
   +Pl+Gen:jan      # ;
   +Pl+Dat:mans     # ;
   +Pl+Akk:jans     # ;
+
+LEXICON P39
+  +Sg+Nom:īs       # ;
+  +Sg+Gen:ijjas    # ;
+  +Sg+Dat:ijju     # ;
+  +Sg+Akk:ijjan    # ;
+  +Pl+Nom:ijjai    # ;
+  +Pl+Gen:ijjan    # ;
+  +Pl+Dat:%>imans  # ;   ! > geminiert den Stammauslaut: Rik>imans → Rikkimans
+  +Pl+Akk:ijjans   # ;

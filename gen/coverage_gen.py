@@ -64,6 +64,7 @@ FAMILIES = {
         "41": ("P41Stems", "P41", "jas"),
         "37": ("P37Stems", "P37", "jas"),
         "38": ("P38Stems", "P38", "jas"),
+        "39": ("P39Stems", "P39", "ijjas"),
     }),
     # ā/jā/ī-Familie fem. Par.46 = konsonantischer Stamm, Themavokal-Länge in der
     # Endung (Nom.Sg./Dat.Pl. -ā, sonst -a) — keine Stammreduktion.
@@ -71,6 +72,7 @@ FAMILIES = {
         "45": ("P45Stems", "P45", "s"),
         "46": ("P46Stems", "P46", "as"),
         "50": ("P50Stems", "P50", "jas"),
+        "51": ("P51Stems", "P51", "jas"),
     }),
     "nstem": (ROOT / "gen" / "nstem.lexc", {
         "61": ("P61Stems", "P61", "es"),

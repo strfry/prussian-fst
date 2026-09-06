@@ -49,6 +49,17 @@ define CodaDegem b b -> b , c c -> c , d d -> d , f f -> f , g g -> g ,
                  v v -> v , w w -> w , z z -> z
                  || _ s .#. ;
 
-regex Shorten .o. Degem .o. DropBound .o. CodaDegem ;
+! Geminations-Marker > (Spiegel von ^): verdoppelt den unmittelbar davor stehenden
+! Konsonanten, dann wird > getilgt. Nur für die wenigen Paradigmen, deren Dat.Pl.
+! den Stammauslaut geminiert (Twanksta-Par.39: Rik>imans → Rikkimans,
+! aitagen>imans → aitagennimans). Greift nur, wo > gesetzt ist.
+define Geminate  b -> b b , c -> c c , d -> d d , f -> f f , g -> g g ,
+                 h -> h h , j -> j j , k -> k k , l -> l l , m -> m m ,
+                 n -> n n , p -> p p , r -> r r , s -> s s , t -> t t ,
+                 v -> v v , w -> w w , z -> z z
+                 || _ %> ;
+define DropGem   %> -> 0 ;
+
+regex Shorten .o. Degem .o. DropBound .o. CodaDegem .o. Geminate .o. DropGem ;
 save stack build/gen-accent.hfst
 quit

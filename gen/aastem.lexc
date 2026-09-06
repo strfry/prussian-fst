@@ -7,6 +7,7 @@
 !   45   jā    ∅      s      i      n      s      n      mans     ns      a-final (Gen−s)
 !   46   ā·mob ^ā     as     ai     an     as     an     ^āmans   ans     kons. (Gen−as)
 !   50   ī/jā  i      jas    jai    jan    jas    jan    jamans   jans    kons. (Gen−jas)
+!   51   ī·mob ^ī     jas    jai    jan    jas    jan    ^jāmans  jans    kons. (Gen−jas)
 !
 ! Par.45 (jā): Stamm ist a-final (= Nom.Sg.), Endungen treten direkt an
 ! (Afrika/Afrikas/Afrikai …). Par.50 (ī): konsonantischer Stamm, j in der Endung
@@ -24,6 +25,7 @@ LEXICON Root
   P45Stems ;
   P46Stems ;
   P50Stems ;
+  P51Stems ;
 
 ! >>> STÄMME (Beispiel-Lexeme für `make aastem`; Deckungstest ersetzt den Block) <<<
 ! Lexem = Lemma+N+Fem : Stamm → Paradigmen-Endungslexikon.
@@ -40,6 +42,12 @@ LEXICON P46Stems
 LEXICON P50Stems
   amērikanini+N+Fem:amērikanin   P50 ;   ! konsonantischer Stamm, Nom.Sg. -i
   Aīstjanmari+N+Fem:Aīstjanmar   P50 ;
+
+LEXICON P51Stems
+  Rusī+N+Fem:Russ                P51 ;   ! Geminate ss (schwer im Obliquus) → Rusī
+  arī+N+Fem:arr                  P51 ;
+  āldī+N+Fem:āld                 P51 ;    ! Makron ā (schwer im Obliquus) → aldī
+  kekstī+N+Fem:kekst             P51 ;    ! ohne schweres Merkmal
 
 ! >>> ENDUNGEN (ab hier vom Deckungstest gen/coverage_gen.py wiederverwendet) <<<
 
@@ -71,4 +79,17 @@ LEXICON P50
   +Pl+Nom:jas      # ;
   +Pl+Gen:jan      # ;
   +Pl+Dat:jamans   # ;
+  +Pl+Akk:jans     # ;
+
+! Par.51 = mobiler ī-Stamm (Gegenstück zu P50): der Obliquus trägt das schwere
+! Merkmal (Geminate Russ-/arr- oder Makron āld-), Nom.Sg. und Dat.Pl. reduzieren
+! (Russ+^ī → Rusī, āld+^ī → aldī; Russ+^jāmans → Rusjāmans). Stamm = Gen.Sg minus -jas.
+LEXICON P51
+  +Sg+Nom:%^ī      # ;   ! schwerer Obliquus → Nom.Sg. leicht
+  +Sg+Gen:jas      # ;
+  +Sg+Dat:jai      # ;
+  +Sg+Akk:jan      # ;
+  +Pl+Nom:jas      # ;
+  +Pl+Gen:jan      # ;
+  +Pl+Dat:%^jāmans # ;   ! leichter Stamm
   +Pl+Akk:jans     # ;
