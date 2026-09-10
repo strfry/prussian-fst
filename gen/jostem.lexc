@@ -28,32 +28,12 @@ LEXICON Root
   P38Stems ;
   P39Stems ;
 
-! >>> STÄMME (Beispiel-Lexeme für `make jostem`; Deckungstest ersetzt den Block) <<<
-! Lexem = Lemma+N+Genus : Stamm (Gen.Sg. minus -jas) → Paradigmen-Endungslexikon.
+! Hand-geschriebene Grammatik (nur Endungen, KEINE Wörter). LEXICON Root oben
+! verweist auf die PxxStems; deren Einträge (Lemma+N+Genus:Stamm  Pxx ;) kommen
+! aus twanksta, der Build hängt sie an (siehe Makefile):
+!   uv run python gen/coverage_gen.py --family jostem --emit-stems build/gen-jostem-stems.lexc
 
-LEXICON P40Stems
-  albinōzis+N+Masc:albinōz       P40 ;
-  Andris+N+Masc:Andr             P40 ;
-
-LEXICON P41Stems
-  rūsis+N+Masc:rūs               P41 ;   ! Makron ū → u im schweren Slot
-  wilnis+N+Masc:wiln             P41 ;
-
-LEXICON P37Stems
-  Ministeriwāitjan+N+Neut:Ministeriwāit P37 ;   ! Makron ā → a im schweren Slot
-  wārmigarjan+N+Neut:wārmigar    P37 ;
-  pannjan+N+Neut:pann            P37 ;   ! Geminate nn (fest, nicht im schweren Slot)
-
-LEXICON P38Stems
-  āudalbis+N+Masc:āudalbi        P38 ;   ! i-finaler Stamm
-  idōlmadlīs+N+Masc:idōlmadlī    P38 ;   ! ī-finaler Stamm
-
-LEXICON P39Stems
-  Rikīs+N+Masc:Rik               P39 ;   ! Dat.Pl. geminiert: Rik>imans → Rikkimans
-  warbuwīs+N+Masc:warbuw         P39 ;
-  kraisakīs+N+Masc:kraisak       P39 ;
-
-! >>> ENDUNGEN (ab hier vom Deckungstest gen/coverage_gen.py wiederverwendet) <<<
+! >>> ENDUNGEN — je Twanksta-Paradigmennummer eine Endungstabelle <<<
 
 LEXICON P40
   +Sg+Nom:is       # ;

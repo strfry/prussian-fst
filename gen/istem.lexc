@@ -41,6 +41,11 @@
 
 Multichar_Symbols +N +Masc +Fem +Neut +Sg +Pl +Nom +Gen +Dat +Akk ^
 
+! Diese Datei ist die HAND-GESCHRIEBENE Grammatik (Endungen + Nom.Sg.-Ausnahmen)
+! und enthält bewusst KEINE Wörter. LEXICON Root verweist auf die PxxStems; deren
+! Einträge (Lemma+N+Genus:Stamm  Pxx ;) werden aus twanksta generiert:
+!   uv run python gen/coverage_gen.py --family istem --emit-stems build/gen-istem-stems.lexc
+! Der Build hängt diesen generierten Stamm-Block an die Grammatik an (siehe Makefile).
 LEXICON Root
   P52Stems ;
   P53Stems ;
@@ -49,48 +54,9 @@ LEXICON Root
   P57Stems ;
   P58Stems ;
   P60Stems ;
+  NomSg ;         ! hand-gepflegte Nom.Sg.-Ausnahmen (siehe LEXICON NomSg unten)
 
-! >>> STÄMME (nur Beispiel-Lexeme für `make istem`; der Deckungstest
-!            gen/coverage_gen.py inventarisiert die Stämme aller realen
-!            Lexeme selbst neu und ersetzt diesen Block) <<<
-! Lexem = Lemma+N+Genus : Stamm (Gen.Sg. minus -is) → Paradigmen-Endungslexikon.
-
-LEXICON P52Stems
-  Albi+N+Fem:Alb              P52 ;
-  Alnāsteini+N+Fem:Alnāstein  P52 ;
-  Amellingi+N+Fem:Amelling    P52 ;   ! Geminate ll, fest → bleibt
-
-LEXICON P53Stems
-  dumslē+N+Fem:dumsl          P53 ;
-  bluznē+N+Fem:bluzn          P53 ;
-  nagē+N+Fem:nagg             P53 ;   ! Geminate gg → g im schweren Slot
-
-LEXICON P54Stems
-  Pāuli+N+Masc:Pāul           P54 ;
-  kanibāli+N+Masc:kanibāl     P54 ;
-  ginni+N+Masc:ginn           P54 ;
-
-LEXICON P56Stems
-  Adwēnts+N+Masc:Adwēnt       P56 ;
-  Babilōns+N+Masc:Babilōn     P56 ;
-  agēnts+N+Masc:agēnt         P56 ;
-
-LEXICON P57Stems
-  dānts+N+Masc:dānt           P57 ;
-  autōpints+N+Masc:autōpint   P57 ;
-  luks+N+Masc:lukk            P57 ;   ! Nom.Sg. lukk→luks: phonotaktisch (Rest)
-
-LEXICON P58Stems
-  Antarktis+N+Fem:Antarkt     P58 ;
-  Arktis+N+Fem:Arkt           P58 ;
-  deinānakts+N+Fem:deinānakt  P58 ;
-
-LEXICON P60Stems
-  Mētapils+N+Fem:Mētapill     P60 ;
-  Rāistanpils+N+Fem:Rāistanpill P60 ;
-  Instrāpils+N+Fem:Instrāpill P60 ;   ! Nom.Sg. Instrāpill→Instrāpils (Rest)
-
-! >>> ENDUNGEN (ab hier vom erweiterten Test gen/coverage_gen.py wiederverwendet) <<<
+! >>> ENDUNGEN — je Twanksta-Paradigmennummer eine Endungstabelle <<<
 
 LEXICON P52
   +Sg+Nom:i       # ;
@@ -160,4 +126,105 @@ LEXICON P57
   +Pl+Nom:es       # ;
   +Pl+Gen:in       # ;
   +Pl+Dat:%^immans # ;   ! Akzent auf Endung → Stamm leicht
+  +Pl+Akk:ins      # ;
+
+! ===========================================================================
+! Nom.Sg.-AUSNAHMEN — hand-gepflegt
+! ===========================================================================
+! Manche i-Stämme behalten den Themavokal im Nom.Sg. (Arkt+is statt Arkt+s);
+! ob -s oder -is steht, ist lexikalisch (gleiche Auslaute st/kt/nt geben beides)
+! und NICHT aus dem obliquen Stamm ableitbar. Statt einer externen Liste steht
+! die Ausnahme hier im lexc: die fertige Nom.Sg.-Oberfläche in LEXICON NomSg,
+! die restlichen 7 Formen kommen regulär (der Stamm wird in PxxStems auf die
+! -_o-Klasse geleitet, die kein Nom.Sg. emittiert → kein doppelter/falscher Nom).
+!
+! Editieren: eine Zeile pro Ausnahme, "Lemma+N+Genus+Sg+Nom:<Oberfläche>  # ;"
+! (kein Stamm nötig — nur das fertige Wort) und den Stamm in PxxStems auf die
+! zugehörige -_o-Klasse zeigen lassen. Deckt jede Nom.Sg.-Irregularität ab
+! (auch Länge pintīs, Geminate aupallē), nicht nur den -is/-s-Wechsel.
+
+LEXICON NomSg
+  ! Par.56 (masc)
+  Narwis+N+Masc+Sg+Nom:Narwis                 # ;
+  wāsis+N+Masc+Sg+Nom:wāsis                   # ;
+  trustis+N+Masc+Sg+Nom:trustis               # ;
+  ! Par.57 (masc)
+  sasnis+N+Masc+Sg+Nom:sasnis                 # ;
+  skārstis+N+Masc+Sg+Nom:skārstis             # ;
+  ! Par.58 (fem)
+  Antarktis+N+Fem+Sg+Nom:Antarktis            # ;
+  Arktis+N+Fem+Sg+Nom:Arktis                  # ;
+  glāstis+N+Fem+Sg+Nom:glāstis                # ;
+  dimstis+N+Fem+Sg+Nom:dimstis                # ;
+  nietnīstis+N+Fem+Sg+Nom:nietnīstis          # ;
+  etnīstis+N+Fem+Sg+Nom:etnīstis              # ;
+  kāmstis+N+Fem+Sg+Nom:kāmstis                # ;
+  klupstis+N+Fem+Sg+Nom:klupstis              # ;
+  krūmpstis+N+Fem+Sg+Nom:krūmpstis            # ;
+  kuntis+N+Fem+Sg+Nom:kuntis                  # ;
+  kāisnis+N+Fem+Sg+Nom:kāisnis                # ;
+  spellaukstis+N+Fem+Sg+Nom:spellaukstis      # ;
+  lūsis+N+Fem+Sg+Nom:lūsis                    # ;
+  waīstis+N+Fem+Sg+Nom:waīstis                # ;
+  pawīstis+N+Fem+Sg+Nom:pawīstis              # ;
+  pintīs+N+Fem+Sg+Nom:pintīs                  # ;   ! Länge -īs, nicht -is
+  pussis+N+Fem+Sg+Nom:pussis                  # ;
+  sirwis+N+Fem+Sg+Nom:sirwis                  # ;
+  wundaswarstis+N+Fem+Sg+Nom:wundaswarstis    # ;
+  ! Par.60 (fem)
+  anglis+N+Fem+Sg+Nom:anglis                  # ;
+  astis+N+Fem+Sg+Nom:astis                    # ;
+  grānstis+N+Fem+Sg+Nom:grānstis              # ;
+  saknis+N+Fem+Sg+Nom:saknis                  # ;
+  sakstis+N+Fem+Sg+Nom:sakstis                # ;
+  snākstis+N+Fem+Sg+Nom:snākstis              # ;
+  tankis+N+Fem+Sg+Nom:tankis                  # ;
+  ugnis+N+Fem+Sg+Nom:ugnis                    # ;
+  ! Par.53 (fem) — Geminate bleibt (aupallē, nicht aupalē)
+  aupallē+N+Fem+Sg+Nom:aupallē                # ;
+
+! -_o-Klassen: identisch zur Basisklasse, aber OHNE +Sg+Nom (den liefert NomSg).
+LEXICON P56_o
+  +Sg+Gen:is      # ;
+  +Sg+Dat:i       # ;
+  +Sg+Akk:in      # ;
+  +Pl+Nom:jai     # ;
+  +Pl+Gen:in      # ;
+  +Pl+Dat:imans   # ;
+  +Pl+Akk:ins     # ;
+
+LEXICON P57_o
+  +Sg+Gen:is       # ;
+  +Sg+Dat:i        # ;
+  +Sg+Akk:in       # ;
+  +Pl+Nom:es       # ;
+  +Pl+Gen:in       # ;
+  +Pl+Dat:%^immans # ;
+  +Pl+Akk:ins      # ;
+
+LEXICON P58_o
+  +Sg+Gen:is      # ;
+  +Sg+Dat:ei      # ;
+  +Sg+Akk:in      # ;
+  +Pl+Nom:is      # ;
+  +Pl+Gen:in      # ;
+  +Pl+Dat:imans   # ;
+  +Pl+Akk:ins     # ;
+
+LEXICON P60_o
+  +Sg+Gen:is       # ;
+  +Sg+Dat:ei       # ;
+  +Sg+Akk:in       # ;
+  +Pl+Nom:is       # ;
+  +Pl+Gen:in       # ;
+  +Pl+Dat:%^immans # ;
+  +Pl+Akk:ins      # ;
+
+LEXICON P53_o
+  +Sg+Gen:is       # ;
+  +Sg+Dat:ei       # ;
+  +Sg+Akk:in       # ;
+  +Pl+Nom:is       # ;
+  +Pl+Gen:in       # ;
+  +Pl+Dat:%^īmans  # ;
   +Pl+Akk:ins      # ;

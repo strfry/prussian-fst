@@ -57,8 +57,9 @@ def classify(slot: str, want: str, got: str) -> str:
 def report_family(fam: str) -> tuple[int, int, Counter, dict]:
     cov.FAMILY = fam
     cov.LEXC, cov.TARGETS = cov.FAMILIES[fam]
-    targets = cov.load_targets()
-    hfstol = cov.build(cov.write_lexc(targets))
+    targets, _ = cov.load_targets()
+    nom_exc = cov.nom_exception_lemmas()
+    hfstol = cov.build(cov.write_combined(targets, nom_exc))
     queries = [f"{t['lemma']}+N+{t['gender']}+{n}+{c}"
                for t in targets for n in ("Sg", "Pl") for c in cov.CASES]
     gen = glookup_batch(queries, str(hfstol))

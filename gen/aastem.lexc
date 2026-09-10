@@ -27,29 +27,12 @@ LEXICON Root
   P50Stems ;
   P51Stems ;
 
-! >>> STÄMME (Beispiel-Lexeme für `make aastem`; Deckungstest ersetzt den Block) <<<
-! Lexem = Lemma+N+Fem : Stamm → Paradigmen-Endungslexikon.
+! Hand-geschriebene Grammatik (nur Endungen, KEINE Wörter). LEXICON Root oben
+! verweist auf die PxxStems; deren Einträge (Lemma+N+Fem:Stamm  Pxx ;) kommen
+! aus twanksta, der Build hängt sie an (siehe Makefile):
+!   uv run python gen/coverage_gen.py --family aastem --emit-stems build/gen-aastem-stems.lexc
 
-LEXICON P45Stems
-  Afrika+N+Fem:Afrika            P45 ;   ! a-finaler Stamm (Gen.Sg. minus -s)
-  Albānija+N+Fem:Albānija        P45 ;
-
-LEXICON P46Stems
-  Alnā+N+Fem:Aln                 P46 ;   ! konsonantischer Stamm (Gen.Sg. minus -as)
-  Greiwā+N+Fem:Greiw             P46 ;
-  Instrā+N+Fem:Instr             P46 ;
-
-LEXICON P50Stems
-  amērikanini+N+Fem:amērikanin   P50 ;   ! konsonantischer Stamm, Nom.Sg. -i
-  Aīstjanmari+N+Fem:Aīstjanmar   P50 ;
-
-LEXICON P51Stems
-  Rusī+N+Fem:Russ                P51 ;   ! Geminate ss (schwer im Obliquus) → Rusī
-  arī+N+Fem:arr                  P51 ;
-  āldī+N+Fem:āld                 P51 ;    ! Makron ā (schwer im Obliquus) → aldī
-  kekstī+N+Fem:kekst             P51 ;    ! ohne schweres Merkmal
-
-! >>> ENDUNGEN (ab hier vom Deckungstest gen/coverage_gen.py wiederverwendet) <<<
+! >>> ENDUNGEN — je Twanksta-Paradigmennummer eine Endungstabelle <<<
 
 LEXICON P45
   +Sg+Nom:0        # ;   ! Stamm ist a-final → Nom.Sg. = blanker Stamm

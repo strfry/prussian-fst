@@ -19,20 +19,12 @@ LEXICON Root
   P61Stems ;
   P63Stems ;
 
-! >>> STÄMME (Beispiel-Lexeme für `make nstem`; Deckungstest ersetzt den Block) <<<
-! Lexem = Lemma+N+Genus : Stamm (Gen.Sg. minus -es) → Paradigmen-Endungslexikon.
+! Hand-geschriebene Grammatik (nur Endungen, KEINE Wörter). LEXICON Root oben
+! verweist auf die PxxStems; deren Einträge (Lemma+N+Genus:Stamm  Pxx ;) kommen
+! aus twanksta, der Build hängt sie an (siehe Makefile):
+!   uv run python gen/coverage_gen.py --family nstem --emit-stems build/gen-nstem-stems.lexc
 
-LEXICON P61Stems
-  aūgmens+N+Masc:aūgmen          P61 ;
-  dīmens+N+Masc:dīmen            P61 ;
-  tremmens+N+Masc:tremmen        P61 ;   ! Geminate mm (fest → bleibt)
-
-LEXICON P63Stems
-  nōmen+N+Neut:nōmen             P63 ;   ! Makron ō → o im schweren Dat.Pl.
-  pēismen+N+Neut:pēismen         P63 ;
-  kanapsemen+N+Neut:kanapsemen   P63 ;
-
-! >>> ENDUNGEN (ab hier vom Deckungstest gen/coverage_gen.py wiederverwendet) <<<
+! >>> ENDUNGEN — je Twanksta-Paradigmennummer eine Endungstabelle <<<
 
 LEXICON P61
   +Sg+Nom:s        # ;

@@ -54,29 +54,41 @@ build/base.hfstol: build/base.fst
 build/base.gen.hfstol: build/base.fst
 	$(HFST) hfstol-gen $< $@
 
-# ── Handgeschriebener generativer Prototyp: bewegliche a-Stämme (Neutrum) ──
-# Nicht-zirkuläres Gegenstück zu gen/paradigm_survey.py: eine von Hand
-# formulierte Stammklasse (gen/astem.lexc, Stamm+Endung mit Akzentgrenze ^)
-# komponiert mit der Akzentregel (gen/accent.regex, Makron-/Geminaten-
-# reduktion vor ^) → Generierungs-FST analysis→surface.
-#   make astem                    # baut build/gen-astem.gen.hfstol
-# Test (analysis→surface, nicht-zirkulär gegen Twanksta) z. B. mit:
-#   uv run python -c "import sys; sys.path.insert(0,'src'); \
-#     from prussian_fst.fst_lookup import glookup_batch; \
-#     print(glookup_batch(['ōriganan+N+Neut+Pl+Nom'], 'build/gen-astem.gen.hfstol'))"
-#   → {'ōriganan+N+Neut+Pl+Nom': ['origanāi']}
-astem: build/gen-astem.gen.hfstol
+# ── Handgeschriebener generativer Nomen-FST (a/u/i/jo/aa/n-Familien) ──
+# Aufteilung: die HAND-GESCHRIEBENE Grammatik (Endungen + Ausnahmen) steht datenfrei
+# in gen/<fam>.lexc; die Wortliste (Lemma+N+Genus:Stamm  Pxx ;) wird aus twanksta
+# generiert (gen/coverage_gen.py --emit-stems → build/gen-<fam>-stems.lexc). Der Build
+# hängt beides zusammen, kompiliert und komponiert mit der Akzentregel gen/accent.regex
+# (Makron-/Geminaten-Reduktion vor der Akzentgrenze ^) → Generierungs-FST analysis→surface.
+#   make istem                    # baut build/gen-istem.gen.hfstol
+# Nicht-zirkulärer Deckungstest gegen Twanksta:  uv run python gen/coverage_gen.py --family istem
+TWANKSTA_JSON := ../corpus/parsed/twanksta_entries.json
 
-build/gen-astem.fst: gen/astem.lexc | build/
-	$(HFST) lexc $< $@
+astem:  build/gen-astem.gen.hfstol
+ustem:  build/gen-ustem.gen.hfstol
+istem:  build/gen-istem.gen.hfstol
+jostem: build/gen-jostem.gen.hfstol
+aastem: build/gen-aastem.gen.hfstol
+nstem:  build/gen-nstem.gen.hfstol
 
 build/gen-accent.hfst: gen/accent.regex | build/
 	$(HFST) xfst $<
 
-build/gen-astem.composed.fst: build/gen-astem.fst build/gen-accent.hfst
-	$(HFST) compose $@ build/gen-astem.fst build/gen-accent.hfst
+# Wortliste aus twanksta — NICHT von Hand editieren (Quelle: gen/<fam>.lexc-Grammatik).
+build/gen-%-stems.lexc: gen/%.lexc gen/coverage_gen.py $(TWANKSTA_JSON) | build/
+	uv run python gen/coverage_gen.py --family $* --emit-stems $@
 
-build/gen-astem.gen.hfstol: build/gen-astem.composed.fst
+# Grammatik (Endungen/Ausnahmen) + generierte Stämme → kompilierbares lexc.
+build/gen-%.combined.lexc: gen/%.lexc build/gen-%-stems.lexc | build/
+	cat gen/$*.lexc build/gen-$*-stems.lexc > $@
+
+build/gen-%.fst: build/gen-%.combined.lexc | build/
+	$(HFST) lexc $< $@
+
+build/gen-%.composed.fst: build/gen-%.fst build/gen-accent.hfst
+	$(HFST) compose $@ build/gen-$*.fst build/gen-accent.hfst
+
+build/gen-%.gen.hfstol: build/gen-%.composed.fst
 	$(HFST) hfstol-gen $< $@
 
 # Erweiterung auf Adjektive (drei Genera, feste + mobile Klasse); teilt sich
@@ -91,77 +103,6 @@ build/gen-adj.composed.fst: build/gen-adj.fst build/gen-accent.hfst
 	$(HFST) compose $@ build/gen-adj.fst build/gen-accent.hfst
 
 build/gen-adj.gen.hfstol: build/gen-adj.composed.fst
-	$(HFST) hfstol-gen $< $@
-
-# Dritte Stammklasse: i-Stämme (fest Par.52 + mobil Par.53); teilt sich
-# gen/accent.regex. Erweiterter, nicht-zirkulärer Deckungstest gegen ALLE
-# i-Stamm-Einträge: uv run python gen/coverage_gen.py
-#   make istem                    # baut build/gen-istem.gen.hfstol
-istem: build/gen-istem.gen.hfstol
-
-build/gen-istem.fst: gen/istem.lexc | build/
-	$(HFST) lexc $< $@
-
-build/gen-istem.composed.fst: build/gen-istem.fst build/gen-accent.hfst
-	$(HFST) compose $@ build/gen-istem.fst build/gen-accent.hfst
-
-build/gen-istem.gen.hfstol: build/gen-istem.composed.fst
-	$(HFST) hfstol-gen $< $@
-
-# u-Stämme (fest Par.42 + mobil Par.43 + Neut Par.44); teilt sich gen/accent.regex.
-# Deckungstest: uv run python gen/coverage_gen.py --family ustem
-#   make ustem                    # baut build/gen-ustem.gen.hfstol
-ustem: build/gen-ustem.gen.hfstol
-
-build/gen-ustem.fst: gen/ustem.lexc | build/
-	$(HFST) lexc $< $@
-
-build/gen-ustem.composed.fst: build/gen-ustem.fst build/gen-accent.hfst
-	$(HFST) compose $@ build/gen-ustem.fst build/gen-accent.hfst
-
-build/gen-ustem.gen.hfstol: build/gen-ustem.composed.fst
-	$(HFST) hfstol-gen $< $@
-
-# jo-Stämme (fest Par.40 + mobil Par.41/37 + Par.38); teilt sich gen/accent.regex.
-# Deckungstest: uv run python gen/coverage_gen.py --family jostem
-#   make jostem                   # baut build/gen-jostem.gen.hfstol
-jostem: build/gen-jostem.gen.hfstol
-
-build/gen-jostem.fst: gen/jostem.lexc | build/
-	$(HFST) lexc $< $@
-
-build/gen-jostem.composed.fst: build/gen-jostem.fst build/gen-accent.hfst
-	$(HFST) compose $@ build/gen-jostem.fst build/gen-accent.hfst
-
-build/gen-jostem.gen.hfstol: build/gen-jostem.composed.fst
-	$(HFST) hfstol-gen $< $@
-
-# ā/jā/ī-Stämme fem (Par.45 jā + Par.46 ā mobil + Par.50 ī); teilt gen/accent.regex.
-# Deckungstest: uv run python gen/coverage_gen.py --family aastem
-#   make aastem                   # baut build/gen-aastem.gen.hfstol
-aastem: build/gen-aastem.gen.hfstol
-
-build/gen-aastem.fst: gen/aastem.lexc | build/
-	$(HFST) lexc $< $@
-
-build/gen-aastem.composed.fst: build/gen-aastem.fst build/gen-accent.hfst
-	$(HFST) compose $@ build/gen-aastem.fst build/gen-accent.hfst
-
-build/gen-aastem.gen.hfstol: build/gen-aastem.composed.fst
-	$(HFST) hfstol-gen $< $@
-
-# n-Stämme (n-Deklination: Par.61 masc -ens fest + Par.63 neut -men, Dat.Pl mobil).
-# Deckungstest: uv run python gen/coverage_gen.py --family nstem
-#   make nstem                    # baut build/gen-nstem.gen.hfstol
-nstem: build/gen-nstem.gen.hfstol
-
-build/gen-nstem.fst: gen/nstem.lexc | build/
-	$(HFST) lexc $< $@
-
-build/gen-nstem.composed.fst: build/gen-nstem.fst build/gen-accent.hfst
-	$(HFST) compose $@ build/gen-nstem.fst build/gen-accent.hfst
-
-build/gen-nstem.gen.hfstol: build/gen-nstem.composed.fst
 	$(HFST) hfstol-gen $< $@
 
 # Correction layers, one stage per phenomenon (norm/*.regex → build/norm-*.hfst).
