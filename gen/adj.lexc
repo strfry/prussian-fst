@@ -21,10 +21,13 @@
 Multichar_Symbols +Adj +Part +Pass +Act +Masc +Fem +Neut +Sg +Pl +Nom +Gen +Dat +Akk ^
 
 LEXICON Root
-  AdjFixed ;
-  AdjMobile ;
-  PartPass ;
-  PartAct ;
+  AdjFixed ;       ! Par.25 festes a-Stamm-Adjektiv
+  AdjMobile ;      ! Par.26 mobiles a-Stamm-Adjektiv
+  AdjI ;           ! Par.27 i-/jo-Stamm-Adjektiv (Masc/Neut jo, Fem i), fest
+  AdjIMob ;        ! Par.29 mobiles i-Stamm-Adjektiv
+  AdjUMob ;        ! Par.31 u-Stamm-Adjektiv (w-Gleitlaut), mobil
+  PartPass ;       ! Par.69 passives Partizip
+  PartAct ;        ! Par.68 aktives Partizip
 
 ! Hand-geschriebene Grammatik (nur Endungen, KEINE Wörter). LEXICON Root verweist
 ! auf AdjFixed/AdjMobile/PartPass/PartAct; deren Einträge (Lemma:Stamm  …Infl ;)
@@ -41,6 +44,21 @@ LEXICON AdjMobileInfl
   AdjMobileMasc ;
   AdjMobileFem ;
   AdjMobileNeut ;
+
+LEXICON AdjIInfl
+  AdjIMasc ;
+  AdjIFem ;
+  AdjINeut ;
+
+LEXICON AdjIMobInfl
+  AdjIMobMasc ;
+  AdjIMobFem ;
+  AdjIMobNeut ;
+
+LEXICON AdjUMobInfl
+  AdjUMobMasc ;
+  AdjUMobFem ;
+  AdjUMobNeut ;
 
 ! ─── Feste Endungen (Par. 25) ──────────────────────────────────────────
 LEXICON AdjFixedMasc
@@ -103,6 +121,105 @@ LEXICON AdjMobileNeut
   +Adj+Neut+Pl+Dat:%^ammans # ;
   +Adj+Neut+Sg+Akk:an       # ;
   +Adj+Neut+Pl+Akk:ans      # ;
+
+! ─── Par.27: i-/jo-Stamm-Adjektiv, fest (Masc/Neut jo-Endungen, Fem i-Endungen) ──
+! Stamm = Masc.Gen.Sg. minus -jas (instrawingjas → instrawing). Kein ^: fester Akzent.
+LEXICON AdjIMasc
+  +Adj+Masc+Sg+Nom:is      # ;
+  +Adj+Masc+Sg+Gen:jas     # ;
+  +Adj+Masc+Sg+Dat:jasmu   # ;
+  +Adj+Masc+Sg+Akk:jan     # ;
+  +Adj+Masc+Pl+Nom:jai     # ;
+  +Adj+Masc+Pl+Gen:jan     # ;
+  +Adj+Masc+Pl+Dat:jamans  # ;
+  +Adj+Masc+Pl+Akk:jans    # ;
+
+LEXICON AdjIFem
+  +Adj+Fem+Sg+Nom:i        # ;
+  +Adj+Fem+Sg+Gen:is       # ;
+  +Adj+Fem+Sg+Dat:ei       # ;
+  +Adj+Fem+Sg+Akk:in       # ;
+  +Adj+Fem+Pl+Nom:is       # ;
+  +Adj+Fem+Pl+Gen:in       # ;
+  +Adj+Fem+Pl+Dat:imans    # ;
+  +Adj+Fem+Pl+Akk:ins      # ;
+
+LEXICON AdjINeut
+  +Adj+Neut+Sg+Nom:i       # ;
+  +Adj+Neut+Sg+Gen:jas     # ;
+  +Adj+Neut+Sg+Dat:jasmu   # ;
+  +Adj+Neut+Sg+Akk:i       # ;
+  +Adj+Neut+Pl+Nom:jai     # ;
+  +Adj+Neut+Pl+Gen:jan     # ;
+  +Adj+Neut+Pl+Dat:jamans  # ;
+  +Adj+Neut+Pl+Akk:jans    # ;
+
+! ─── Par.29: mobiles i-Stamm-Adjektiv ──────────────────────────────────────
+! Stamm = Masc.Gen.Sg. minus -is (audijāntis → audijānt). Schwere Slots (^):
+! Masc/Neut Dat.Pl -immans, Fem Nom.Sg -ī, Fem Dat.Pl -jāmans → Stamm leicht.
+LEXICON AdjIMobMasc
+  +Adj+Masc+Sg+Nom:s        # ;
+  +Adj+Masc+Sg+Gen:is       # ;
+  +Adj+Masc+Sg+Dat:ismu     # ;
+  +Adj+Masc+Sg+Akk:in       # ;
+  +Adj+Masc+Pl+Nom:jai      # ;
+  +Adj+Masc+Pl+Gen:in       # ;
+  +Adj+Masc+Pl+Dat:%^immans # ;
+  +Adj+Masc+Pl+Akk:ins      # ;
+
+LEXICON AdjIMobFem
+  +Adj+Fem+Sg+Nom:%^ī       # ;
+  +Adj+Fem+Sg+Gen:jas       # ;
+  +Adj+Fem+Sg+Dat:jai       # ;
+  +Adj+Fem+Sg+Akk:jan       # ;
+  +Adj+Fem+Pl+Nom:jas       # ;
+  +Adj+Fem+Pl+Gen:jan       # ;
+  +Adj+Fem+Pl+Dat:%^jāmans  # ;
+  +Adj+Fem+Pl+Akk:jans      # ;
+
+LEXICON AdjIMobNeut
+  +Adj+Neut+Sg+Nom:i        # ;
+  +Adj+Neut+Sg+Gen:is       # ;
+  +Adj+Neut+Sg+Dat:ismu     # ;
+  +Adj+Neut+Sg+Akk:i        # ;
+  +Adj+Neut+Pl+Nom:jai      # ;
+  +Adj+Neut+Pl+Gen:in       # ;
+  +Adj+Neut+Pl+Dat:%^immans # ;
+  +Adj+Neut+Pl+Akk:ins      # ;
+
+! ─── Par.31: u-Stamm-Adjektiv (w-Gleitlaut), mobil ─────────────────────────
+! Stamm = Masc.Nom.Sg. minus -us (preilāngus → preilāng; der Nom.Sg. trägt den
+! Grundakzent). Schwere Slots (^): die w-Formen -was/-wāi, Dat.Pl -ummans, Fem
+! Nom.Sg -ī, Fem Dat.Pl -jāmans → Stamm leicht (preilāng+^wāi → preilangwāi).
+LEXICON AdjUMobMasc
+  +Adj+Masc+Sg+Nom:us       # ;
+  +Adj+Masc+Sg+Gen:%^was    # ;
+  +Adj+Masc+Sg+Dat:usmu     # ;
+  +Adj+Masc+Sg+Akk:un       # ;
+  +Adj+Masc+Pl+Nom:%^wāi    # ;
+  +Adj+Masc+Pl+Gen:un       # ;
+  +Adj+Masc+Pl+Dat:%^ummans # ;
+  +Adj+Masc+Pl+Akk:uns      # ;
+
+LEXICON AdjUMobFem
+  +Adj+Fem+Sg+Nom:%^ī       # ;
+  +Adj+Fem+Sg+Gen:jas       # ;
+  +Adj+Fem+Sg+Dat:jai       # ;
+  +Adj+Fem+Sg+Akk:jan       # ;
+  +Adj+Fem+Pl+Nom:jas       # ;
+  +Adj+Fem+Pl+Gen:jan       # ;
+  +Adj+Fem+Pl+Dat:%^jāmans  # ;
+  +Adj+Fem+Pl+Akk:jans      # ;
+
+LEXICON AdjUMobNeut
+  +Adj+Neut+Sg+Nom:u        # ;
+  +Adj+Neut+Sg+Gen:%^was    # ;
+  +Adj+Neut+Sg+Dat:usmu     # ;
+  +Adj+Neut+Sg+Akk:u        # ;
+  +Adj+Neut+Pl+Nom:%^wāi    # ;
+  +Adj+Neut+Pl+Gen:un       # ;
+  +Adj+Neut+Pl+Dat:%^ummans # ;
+  +Adj+Neut+Pl+Akk:uns      # ;
 
 ! ═══ PARTIZIPIEN (agieren adjektivisch, drei Genera) ══════════════════════
 !

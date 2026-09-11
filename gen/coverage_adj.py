@@ -39,20 +39,23 @@ HFST = ["uv", "run", "python", str(ROOT / "src" / "prussian_fst" / "build_fst.py
 # minus Klassenendung. Par.25 = festes a-Stamm-Adjektiv, Par.26 = mobiles a-Stamm-
 # Adjektiv, Par.68/69 = Partizipien.
 #
-# NOCH NICHT modelliert (eigene Deklination, kein passendes Endungslexikon in
-# gen/adj.lexc — würden falsch generiert, daher hier ausgelassen):
-#   Par.27  i-/jo-Stamm-Adjektiv  (Fem -i/-is/-ei/-in; z. T. mit jo-Endungen)
-#   Par.29  mobiles i-Stamm-Adjektiv (Gen.Sg -is, Dat.Sg -ismu, ā/mm-mobil)
-#   Par.31  u-Stamm-Adjektiv     (Nom -us, w-Gleitlaut, mobil)
+# Par.27 (i-/jo-Stamm-Adj, fest), 29 (mobiles i-Stamm-Adj), 31 (u-Stamm-Adj, w-Gleit,
+# mobil) haben eigene Endungstabellen (aus den Daten die dominante Flexion gemodellt).
+# Par.31 leitet den Stamm aus dem Masc.Nom.Sg. ab (der trägt den Grundakzent, der
+# Gen.Sg. ist dort mobil), die übrigen aus dem Gen.Sg.
 TARGETS = {
     "25": ("Adj",  "AdjFixed",  "AdjFixedInfl",  "Genitive",   "as"),
     "26": ("Adj",  "AdjMobile", "AdjMobileInfl", "Genitive",   "as"),
+    "27": ("Adj",  "AdjI",      "AdjIInfl",      "Genitive",   "jas"),
+    "29": ("Adj",  "AdjIMob",   "AdjIMobInfl",   "Genitive",   "is"),
+    "31": ("Adj",  "AdjUMob",   "AdjUMobInfl",   "Nominative", "us"),
     "69": ("Pass", "PartPass",  "PartPassInfl",  "Genitive",   "as"),
     "68": ("Act",  "PartAct",   "PartActInfl",   "Nominative", "uns"),
 }
 # Alle Stamm-Lexika, auf die LEXICON Root in gen/adj.lexc verweist — der generierte
 # Block muss sie (ggf. leer) definieren, damit die Referenzen auflösen.
-STEM_LEXICONS = ["AdjFixed", "AdjMobile", "PartPass", "PartAct"]
+STEM_LEXICONS = ["AdjFixed", "AdjMobile", "AdjI", "AdjIMob", "AdjUMob",
+                 "PartPass", "PartAct"]
 GEN = {"m": "Masc", "f": "Fem", "n": "Neut"}
 CASES = ["Nom", "Gen", "Dat", "Akk"]
 CA = {"Nominative": "Nom", "Genitive": "Gen", "Dative": "Dat", "Accusative": "Akk"}
