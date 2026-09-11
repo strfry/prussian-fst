@@ -26,17 +26,10 @@ LEXICON Root
   PartPass ;
   PartAct ;
 
-! Lexeme: Lemma (Masc.Nom.Sg.) : Stamm (Masc.Gen.Sg. minus -as).
-LEXICON AdjFixed
-  amērikanisks:amērikanisk  AdjFixedInfl ;
-  arktisks:arktisk          AdjFixedInfl ;
-  belarussisks:belarussisk  AdjFixedInfl ;   ! Geminate ss, aber fest → bleibt
-  instraws:instraw          AdjFixedInfl ;
-
-LEXICON AdjMobile
-  ainadesīmts:ainadesīmt    AdjMobileInfl ;   ! Makron ī
-  astōnadesīmts:astōnadesīmt AdjMobileInfl ;  ! Makron ō
-  lāuks:lāuk                AdjMobileInfl ;    ! Makron ā
+! Hand-geschriebene Grammatik (nur Endungen, KEINE Wörter). LEXICON Root verweist
+! auf AdjFixed/AdjMobile/PartPass/PartAct; deren Einträge (Lemma:Stamm  …Infl ;)
+! kommen aus twanksta, der Build hängt sie an (siehe Makefile):
+!   uv run python gen/coverage_adj.py --emit-stems build/gen-adj-stems.lexc
 
 ! Jedes Lexem verzweigt in alle drei Genera.
 LEXICON AdjFixedInfl
@@ -122,16 +115,6 @@ LEXICON AdjMobileNeut
 !   PartAct  (Par.68): aktives Partizip -uns, eigener -us-Stamm, fest. Masc -uns,
 !            Fem -usi, Neut -us; obliquer -us- + jo-artige Endungen (-jas/-jasmu/
 !            -jai/-jamans). Stamm = Masc.Nom.Sg. minus -uns.
-
-LEXICON PartPass
-  ebzignāts:ebzignāt        PartPassInfl ;   ! Makron ā
-  enbilancīts:enbilancīt    PartPassInfl ;   ! Makron ī
-  aulemts:aulemt            PartPassInfl ;    ! ohne schweres Merkmal
-
-LEXICON PartAct
-  ainagimmuns:ainagimm      PartActInfl ;
-  aulaūwuns:aulaūw          PartActInfl ;     ! Makron ū (fest → bleibt)
-  auminīwuns:auminīw        PartActInfl ;
 
 LEXICON PartPassInfl
   PartPassMasc ;

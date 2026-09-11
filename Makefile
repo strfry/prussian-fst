@@ -91,19 +91,16 @@ build/gen-%.composed.fst: build/gen-%.fst build/gen-accent.hfst
 build/gen-%.gen.hfstol: build/gen-%.composed.fst
 	$(HFST) hfstol-gen $< $@
 
-# Erweiterung auf Adjektive (drei Genera, feste + mobile Klasse); teilt sich
-# die Akzentregel gen/accent.regex mit dem Nomen-Prototyp.
+# Adjektive + Partizipien (drei Genera): gleiche Aufteilung wie die Nomen —
+# datenfreie Grammatik gen/adj.lexc, Stämme aus twanksta über gen/coverage_adj.py.
+# Die generischen build/gen-%-Regeln oben (combined/fst/composed/hfstol) greifen
+# auch hier; nur die Stammliste kommt aus coverage_adj statt coverage_gen.
 #   make adj                      # baut build/gen-adj.gen.hfstol
+# Deckungstest: uv run python gen/coverage_adj.py
 adj: build/gen-adj.gen.hfstol
 
-build/gen-adj.fst: gen/adj.lexc | build/
-	$(HFST) lexc $< $@
-
-build/gen-adj.composed.fst: build/gen-adj.fst build/gen-accent.hfst
-	$(HFST) compose $@ build/gen-adj.fst build/gen-accent.hfst
-
-build/gen-adj.gen.hfstol: build/gen-adj.composed.fst
-	$(HFST) hfstol-gen $< $@
+build/gen-adj-stems.lexc: gen/adj.lexc gen/coverage_adj.py $(TWANKSTA_JSON) | build/
+	uv run python gen/coverage_adj.py --emit-stems $@
 
 # Correction layers, one stage per phenomenon (norm/*.regex → build/norm-*.hfst).
 # Composed onto the canonical surface; use only as fallback analyzer for

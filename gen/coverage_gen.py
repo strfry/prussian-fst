@@ -87,6 +87,10 @@ GENDER = {"masc": "Masc", "fem": "Fem", "neut": "Neut"}
 CASES = ["Nom", "Gen", "Dat", "Akk"]
 CA = {"Nominative": "Nom", "Genitive": "Gen", "Dative": "Dat", "Accusative": "Akk"}
 
+# Twanksta-Paradigmen-Labels mit Varianten-Suffix (identische Flexion zur
+# Basis-Nummer, geprüft) bzw. Tippfehler auf die Basis normalisiert.
+PARA_ALIAS = {"35a": "35", "40a": "40", "45a": "45", "46,00": "46"}
+
 
 def primary(cell: str) -> str:
     return (cell or "").split(" / ")[0].strip()
@@ -118,7 +122,7 @@ def load_targets() -> tuple[list[dict], list[dict]]:
     data_errors: list[dict] = []
     excluded = 0
     for e in entries:
-        para = e.get("paradigm")
+        para = PARA_ALIAS.get(e.get("paradigm"), e.get("paradigm"))
         if para not in TARGETS:
             continue
         decl = e.get("forms", {}).get("declension")
