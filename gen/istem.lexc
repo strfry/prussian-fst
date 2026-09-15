@@ -39,7 +39,7 @@
 !     Instrāpils) ist phonotaktisch (Geminate + Konsonant), kein Akzent → aus
 !     der Akzentregel bewusst herausgehalten.
 
-Multichar_Symbols +N +Masc +Fem +Neut +Sg +Pl +Nom +Gen +Dat +Akk ^
+Multichar_Symbols +N +Masc +Fem +Neut +Sg +Pl +Nom +Gen +Dat +Akk ^ ~
 
 ! Diese Datei ist die HAND-GESCHRIEBENE Grammatik (Endungen + Nom.Sg.-Ausnahmen)
 ! und enthält bewusst KEINE Wörter. LEXICON Root verweist auf die PxxStems; deren
@@ -180,8 +180,26 @@ LEXICON NomSg
   snākstis+N+Fem+Sg+Nom:snākstis              # ;
   tankis+N+Fem+Sg+Nom:tankis                  # ;
   ugnis+N+Fem+Sg+Nom:ugnis                    # ;
-  ! Par.53 (fem) — Geminate bleibt (aupallē, nicht aupalē)
+
+! ===========================================================================
+! LEXICON GeminateKeep — lexikalische (baked-in) Stamm-Gemination
+! ===========================================================================
+! Diese Lexeme behalten ihre Stamm-Geminate auch im akzentverschobenen Slot
+! (Par.53 Sg.Nom/Pl.Dat, Par.57 Pl.Dat), weil die Gemination ins Grundmorphem
+! eingebacken ist (Ableitung/Kompositum) — anders als die degeminierenden
+! Paradigma-Geschwister (nagg→nagē, lukk→lukimmans). gen/coverage_gen.py liest
+! diese Liste und hängt den Schutzmarker ~ an den (aus twanksta abgeleiteten)
+! Stamm; gen/accent.regex sperrt daraufhin Degem. Kein Nom.Sg.-Eintrag nötig —
+! der Stamm bleibt in der Grundklasse (Par.53 erzeugt aupallē generativ).
+! NICHT von LEXICON Root referenziert: reine Ausnahmeliste (nur Lemma-Quelle).
+LEXICON GeminateKeep
+  ! Par.53 (fem)
   aupallē+N+Fem+Sg+Nom:aupallē                # ;
+  ! Par.57 (masc) — pretonische Geminate aus dem Grundmorphem/Kompositum
+  trillunks+N+Masc+Sg+Nom:trillunks           # ;
+  septinnelunks+N+Masc+Sg+Nom:septinnelunks   # ;
+  ketturjalunks+N+Masc+Sg+Nom:ketturjalunks   # ;
+  snappazwers+N+Masc+Sg+Nom:snappazwers       # ;
 
 ! -_o-Klassen: identisch zur Basisklasse, aber OHNE +Sg+Nom (den liefert NomSg).
 LEXICON P56_o
@@ -220,11 +238,5 @@ LEXICON P60_o
   +Pl+Dat:%^immans # ;
   +Pl+Akk:ins      # ;
 
-LEXICON P53_o
-  +Sg+Gen:is       # ;
-  +Sg+Dat:ei       # ;
-  +Sg+Akk:in       # ;
-  +Pl+Nom:is       # ;
-  +Pl+Gen:in       # ;
-  +Pl+Dat:%^īmans  # ;
-  +Pl+Akk:ins      # ;
+! (kein P53_o mehr: aupallē läuft über die Grundklasse P53 + Schutzmarker ~,
+!  siehe LEXICON GeminateKeep — der einzige frühere P53-NomSg-Fall.)

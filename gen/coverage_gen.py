@@ -110,6 +110,24 @@ def nom_exception_lemmas() -> set[str]:
     return set(re.findall(r"^\s*(\S+?)\+N\+", m.group(1), re.M))
 
 
+def geminate_keep_lemmas() -> set[str]:
+    """Lemmata mit lexikalischer (nicht akzent-beweglicher) Gemination — LEXICON GeminateKeep.
+
+    Ihre Stamm-Gemination ist ins Grundmorphem eingebacken (meist Ableitungen/Komposita:
+    aupallē [Aupaltun drv], assilistjan [Assils drv], trillunks [Trīs+Lunks] …) und darf in den
+    akzentverschobenen Slots NICHT reduziert werden, obwohl die Paradigma-Geschwister dort
+    degeminieren (nagg→nagē, pann→panjāi, lukk→lukimmans). Der emittierte Stamm bekommt den
+    Schutzmarker ~ angehängt; gen/accent.regex sperrt daraufhin Degem für diesen Stamm
+    (die Makronkürzung/Shorten bleibt). LEXICON GeminateKeep wird NICHT von LEXICON Root
+    referenziert — reine Ausnahmeliste, hier nur als Lemma-Quelle gelesen.
+    """
+    text = LEXC.read_text()
+    m = re.search(r"^LEXICON GeminateKeep\b(.*?)(?=^LEXICON |\Z)", text, re.M | re.S)
+    if not m:
+        return set()
+    return set(re.findall(r"^\s*(\S+?)\+N\+", m.group(1), re.M))
+
+
 def load_targets() -> tuple[list[dict], list[dict]]:
     """Lexeme der Ziel-Paradigmen mit abgeleitetem Stamm + Referenzformen.
 
@@ -166,7 +184,8 @@ def load_targets() -> tuple[list[dict], list[dict]]:
     return out, data_errors
 
 
-def stems_block(targets: list[dict], nom_exc: set[str]) -> str:
+def stems_block(targets: list[dict], nom_exc: set[str],
+                gem_keep: set[str] = frozenset()) -> str:
     """Aus twanksta inventarisierte Stämme als LEXICON PxxStems-Block.
 
     Die Grammatik (Endungen, Ausnahmen) steht datenfrei in gen/<fam>.lexc; ihr
@@ -174,15 +193,20 @@ def stems_block(targets: list[dict], nom_exc: set[str]) -> str:
     erzeugt werden — so ist getrennt, was Hand (Grammatik) und was Daten (Stämme)
     ist. Lemmata mit hand-gepflegtem Nom.Sg. (nom_exc, aus LEXICON NomSg) werden
     auf die -_o-Klasse geleitet (obliquer Stamm ohne Nom.Sg.); ihr Nom.Sg. kommt
-    aus NomSg.
+    aus NomSg. Lemmata aus LEXICON GeminateKeep (gem_keep) behalten die
+    Paradigma-Grundklasse, bekommen aber den Schutzmarker ~ an den Stamm — die
+    lexikalische Gemination wird so in den Akzentslots nicht reduziert.
     """
     stems = {spec[0]: [] for spec in TARGETS.values()}
     for t in targets:
         stem_lex, infl = TARGETS[t["para"]][:2]
-        if t["lemma"] in nom_exc:
+        stem = t["stem"]
+        if t["lemma"] in gem_keep:
+            stem += "%~"          # Schutzmarker: sperrt Degem (gen/accent.regex)
+        elif t["lemma"] in nom_exc:
             infl += "_o"
         stems[stem_lex].append(
-            f"  {t['lemma']}+N+{t['gender']}:{t['stem']}  {infl} ;")
+            f"  {t['lemma']}+N+{t['gender']}:{stem}  {infl} ;")
 
     body = ["! === Aus twanksta generierte Stämme — NICHT von Hand editieren ===",
             "! (erzeugt von gen/coverage_gen.py --emit-stems; die Grammatik mit den",
@@ -194,14 +218,15 @@ def stems_block(targets: list[dict], nom_exc: set[str]) -> str:
     return "\n".join(body) + "\n"
 
 
-def write_combined(targets: list[dict], nom_exc: set[str]) -> Path:
+def write_combined(targets: list[dict], nom_exc: set[str],
+                   gem_keep: set[str] = frozenset()) -> Path:
     """Grammatikdatei + generierter Stamm-Block → kompilierbares build/-lexc.
 
     Kein Marker-Splicing mehr: die ganze (datenfreie) Grammatik wird verbatim
     übernommen und der Stamm-Block angehängt. LEXICON Root der Grammatik verweist
     auf die PxxStems, die der angehängte Block definiert (Reihenfolge egal in lexc).
     """
-    combined = LEXC.read_text().rstrip() + "\n\n" + stems_block(targets, nom_exc)
+    combined = LEXC.read_text().rstrip() + "\n\n" + stems_block(targets, nom_exc, gem_keep)
     out = BUILD / f"gen-{FAMILY}-cov.lexc"
     out.write_text(combined)
     return out
@@ -234,14 +259,15 @@ def main() -> None:
     LEXC, TARGETS = FAMILIES[FAMILY]
 
     nom_exc = nom_exception_lemmas()
+    gem_keep = geminate_keep_lemmas()
     targets, data_errors = load_targets()
 
     if args.emit_stems:
-        Path(args.emit_stems).write_text(stems_block(targets, nom_exc))
+        Path(args.emit_stems).write_text(stems_block(targets, nom_exc, gem_keep))
         print(f"Stämme geschrieben: {args.emit_stems} ({len(targets)} Lexeme)")
         return
 
-    hfstol = build(write_combined(targets, nom_exc))
+    hfstol = build(write_combined(targets, nom_exc, gem_keep))
 
     queries = [f"{t['lemma']}+N+{t['gender']}+{n}+{c}"
                for t in targets for n in ("Sg", "Pl") for c in CASES]

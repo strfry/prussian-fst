@@ -19,7 +19,7 @@
 ! den Stammauslaut (Rik>imans → Rikkimans) über den Geminationsmarker > (siehe
 ! gen/accent.regex). Rest: einzelne Nom.Sg. mit Zusatz-Makron (aītagenīs).
 
-Multichar_Symbols +N +Masc +Neut +Sg +Pl +Nom +Gen +Dat +Akk ^ %>
+Multichar_Symbols +N +Masc +Neut +Sg +Pl +Nom +Gen +Dat +Akk ^ %> %~
 
 LEXICON Root
   P40Stems ;
@@ -84,3 +84,20 @@ LEXICON P39
   +Pl+Gen:ijjan    # ;
   +Pl+Dat:%>imans  # ;   ! > geminiert den Stammauslaut: Rik>imans → Rikkimans
   +Pl+Akk:ijjans   # ;
+
+! ===========================================================================
+! LEXICON GeminateKeep — lexikalische (baked-in) Stamm-Gemination
+! ===========================================================================
+! Diese Par.37-Lexeme behalten ihre Stamm-Geminate in den akzentverschobenen
+! Slots (Pl.Nom/Pl.Dat), weil die Gemination ins Grundmorphem eingebacken ist
+! (Ableitung/Kompositum: assilistjan [Assils drv] …) — anders als die
+! degeminierenden Geschwister (pann→panjāi, garr→garjāi). gen/coverage_gen.py
+! liest diese Liste und hängt den Schutzmarker ~ an den aus twanksta abgeleiteten
+! Stamm; gen/accent.regex sperrt daraufhin Degem. NICHT von LEXICON Root
+! referenziert: reine Ausnahmeliste (nur Lemma-Quelle).
+LEXICON GeminateKeep
+  kelljan+N+Neut+Sg+Nom:kelljan               # ;
+  assilistjan+N+Neut+Sg+Nom:assilistjan       # ;
+  kammistjan+N+Neut+Sg+Nom:kammistjan         # ;
+  kattistjan+N+Neut+Sg+Nom:kattistjan         # ;
+  swinnistjan+N+Neut+Sg+Nom:swinnistjan       # ;

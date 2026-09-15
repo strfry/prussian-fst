@@ -17,6 +17,16 @@
 ! Zahlwort astōnadesīmt) behalten die prätonische Länge; das ist die Minderheit
 ! und wird als Rest/Dateninkonsistenz behandelt, nicht per Sonderregel.
 !
+! SCHUTZMARKER ~ (lexikalische Gemination): einige Lexeme behalten ihre Stamm-
+! Geminate auch im verschobenen Slot, weil sie ins Grundmorphem eingebacken ist
+! (Ableitungen/Komposita: aupall~ē → aupallē, assilist~jāi → assilistjāi,
+! trillunk~immans → trillunkimmans), während die Paradigma-Geschwister degeminieren
+! (nagg^ē → nagē, pann^jāi → panjāi). Diese Stämme tragen den Marker ~ hinter dem
+! Stamm (aus LEXICON GeminateKeep, angehängt von gen/coverage_gen.py). ~ steht
+! zwischen Stamm und ^ und sperrt so Degem (dessen Pfad Geminate…^ nicht über ~
+! laufen darf); die Makronkürzung/Shorten bleibt (~ ist für sie transparent).
+! Danach wird ~ getilgt. Greift nur, wo ~ gesetzt ist.
+!
 ! Makron- und Geminatenreduktion müssen getrennte Regeln bleiben: xfst erlaubt in
 ! EINER parallelen Ersetzung keine gemischte Ein-/Zwei-Symbol-Ersetzung, und
 ! eckige Klammern um die Pfeil-Liste scheitern ("Could not define variable").
@@ -28,13 +38,15 @@ define Shorten  ā -> a , ē -> e , ī -> i , ō -> o , ū -> u
                 || _ NotBound* %^ ;
 
 ! Degemination im Stamm vor der Akzentgrenze (gleicher Doppelkonsonant → einfach).
+! Der Schutzmarker ~ blockiert die Regel: liegt ein ~ zwischen Geminate und ^, so
+! greift der Kontext [NotBound - %~]* %^ nicht (lexikalische Gemination bleibt).
 define Degem    b b -> b , c c -> c , d d -> d , f f -> f , g g -> g ,
                 h h -> h , j j -> j , k k -> k , l l -> l , m m -> m ,
                 n n -> n , p p -> p , r r -> r , s s -> s , t t -> t ,
                 v v -> v , w w -> w , z z -> z
-                || _ NotBound* %^ ;
+                || _ [NotBound - %~]* %^ ;
 
-define DropBound %^ -> 0 ;
+define DropBound %^ -> 0 , %~ -> 0 ;
 
 ! Einsilbenregel / Koda-Vereinfachung: eine Stamm-Geminate vereinfacht sich vor
 ! wortfinalem -s (Nom.Sg.). Im Einsilber ist der Akzent eindeutig, die
