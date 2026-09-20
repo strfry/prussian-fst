@@ -26,7 +26,7 @@ LEXC_MERGED := build/lexc.merged
 # uv run = Projekt-Env, damit hfst überall verfügbar ist (auch ohne System-Install).
 HFST := uv run python src/prussian_fst/build_fst.py
 
-.PHONY: all gen clean cg3-sets cg3-check disambiguate conllu hfstol links astem adj istem ustem jostem aastem nstem adverb partpres
+.PHONY: all gen clean cg3-sets cg3-check disambiguate conllu hfstol links astem adj istem ustem jostem aastem nstem adverb partpres verb
 
 all: build/base.hfstol build/macron.hfstol build/lenient.hfstol build/base.gen.hfstol
 
@@ -144,6 +144,28 @@ build/gen-partpres.composed.fst: build/gen-partpres.fst build/gen-accent.hfst
 	$(HFST) compose $@ build/gen-partpres.fst build/gen-accent.hfst
 
 build/gen-partpres.gen.hfstol: build/gen-partpres.composed.fst
+	$(HFST) hfstol-gen $< $@
+
+# Finite Verben (nur synthetische Formen): neue Familie gen/verb.lexc (eine
+# Endungstabelle pro Twanksta-Verb-Paradigma, zwei Stämme je Verb), Stämme aus
+# twanksta über gen/coverage_verb.py, Komposition mit gen/accent.regex.
+#   make verb                      # baut build/gen-verb.gen.hfstol
+# Deckungstest: uv run python gen/coverage_verb.py
+verb: build/gen-verb.gen.hfstol
+
+build/gen-verb-stems.lexc: gen/verb.lexc gen/coverage_verb.py $(TWANKSTA_JSON) | build/
+	uv run python gen/coverage_verb.py --emit-stems $@
+
+build/gen-verb.combined.lexc: gen/verb.lexc build/gen-verb-stems.lexc | build/
+	cat gen/verb.lexc build/gen-verb-stems.lexc > $@
+
+build/gen-verb.fst: build/gen-verb.combined.lexc | build/
+	$(HFST) lexc $< $@
+
+build/gen-verb.composed.fst: build/gen-verb.fst build/gen-accent.hfst
+	$(HFST) compose $@ build/gen-verb.fst build/gen-accent.hfst
+
+build/gen-verb.gen.hfstol: build/gen-verb.composed.fst
 	$(HFST) hfstol-gen $< $@
 
 # Correction layers, one stage per phenomenon (norm/*.regex → build/norm-*.hfst).

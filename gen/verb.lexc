@@ -1,0 +1,195 @@
+! Handgeschriebener generativer FST — finite Verben (nur synthetische Formen).
+!
+! Kein Voll-Inventar-LUT: datenfreie Endungsgrammatik, nicht-zirkulär gegen die
+! Twanksta-Vollformen getestet (gen/coverage_verb.py). Komposition mit
+! gen/accent.regex (für die hier abgedeckten Klassen ein No-Op — Akzent/Gemination
+! ist bereits über die ZWEI abgeleiteten Stämme je Verb eingearbeitet, s. u.).
+!
+! ARCHITEKTUR (wie gen/astem.lexc, aber Verben haben ZWEI Stämme):
+!
+!   fin-Stamm   — endungstragender Stamm der finiten Basis (Präsens/[Imperativ]).
+!                 Abgeleitet aus der Present-P3-Oberfläche minus einer Klassen-
+!                 Endung; trägt so die paradigmen-spezifische Stamm-Allomorphie
+!                 (Gemination, Glide, Ablaut) bereits vorgefertigt.
+!   nonfin-Stamm — Stamm von Optativ/Subjunktiv (und teils Imperativ), abgeleitet
+!                 aus der Subjunktiv-P3-Oberfläche minus -lai.
+!
+! Zwei Stämme statt EINEM + Marker: die Präsens-/Nicht-Präsens-Allomorphie ist
+! teils lexikalisch (Geminations-Blockierung, -īn-Kürzung, -au-/-ā-/-ī--Suffix),
+! keine reine Akzentregel — daher pro Verb zwei mechanisch aus Twanksta
+! abgeleitete Stämme, eine Endungstabelle PRO TWANKSTA-PARADIGMENNUMMER.
+!
+! Abgedeckte Paradigmen (siehe gen/coverage_verb.py PARADIGMS):
+!   85  (-in-/-īn- schwache faktitive Verben, Präs=Pret, präs-geminiert)
+!   132 (-ā- schwache Verben, Präs=Pret)
+!   138 (-i- schwache Verben, Präs=Pret)
+!   134 (-ī-/-ē- Verben, Präs=Pret, ē im Präs / ī in Opt/Subj)
+!   139 (-ī- Verben, Präs=Pret, -ijj- im Präs / -ī- in Opt/Subj/Imp)
+!   143 (-au- Denominativa, Präs ≠ Pret)
+!   131 (-au-/-a- Denominativa, Präs=Pret; Endungstabelle = Par.132)
+!
+! Kanonische Tag-Reihenfolge: +V +Mood [+Tense] +Pers [+Num], P3 ohne Numerus.
+! Reflexivität als optionales +Refl am Wortende (VerbEnd), Oberfläche ohne „ si".
+
+Multichar_Symbols +V +Ind +Pres +Pret +Subj +Opt +Imp +P1 +P2 +P3 +Sg +Pl +Refl
+
+LEXICON Root
+  P85FinStems ;    ! Par.85  Präsent-/Imperativ-Stamm (präs-geminiert)
+  P85SubjStems ;   ! Par.85  Optativ-/Subjunktiv-Stamm
+  P132FinStems ;   ! Par.132 Präsent-/Past-/Imperativ-Stamm
+  P132SubjStems ;  ! Par.132 Optativ-/Subjunktiv-Stamm
+  P138FinStems ;   ! Par.138
+  P138SubjStems ;
+  P134FinStems ;   ! Par.134  Präsent-/Past-/Imperativ-Stamm (ē)
+  P134SubjStems ;  ! Par.134  Optativ-/Subjunktiv-Stamm (ī)
+  P139FinStems ;   ! Par.139  Präsent-/Past-Stamm (-ijj-)
+  P139SubjStems ;  ! Par.139  Optativ-/Imperativ-/Subjunktiv-Stamm (-ī-)
+  P143PresStems ;  ! Par.143  Präsent-Stamm
+  P143PastStems ;  ! Par.143  Past-/Optativ-/Imperativ-/Subjunktiv-Stamm
+
+! Hand-geschriebene Grammatik (nur Endungen, KEINE Wörter). Die Stamm-Lexika oben
+! werden aus twanksta gefüllt (gen/coverage_verb.py --emit-stems), der Build hängt
+! sie an. Jede Endung endet in VerbEnd (optionales +Refl, Oberfläche ohne „ si").
+
+! ─── Par.85: -in-/-īn- Faktitive (Präs=Pret, präs-geminiert) ─────────────────
+LEXICON P85Fin
+  +Ind+Pres+P1+Sg:a    VerbEnd ;
+  +Ind+Pres+P2+Sg:a    VerbEnd ;
+  +Ind+Pres+P3:a       VerbEnd ;
+  +Ind+Pres+P1+Pl:imai VerbEnd ;
+  +Ind+Pres+P2+Pl:itei VerbEnd ;
+  +Ind+Pret+P1+Sg:a    VerbEnd ;
+  +Ind+Pret+P2+Sg:a    VerbEnd ;
+  +Ind+Pret+P3:a       VerbEnd ;
+  +Ind+Pret+P1+Pl:imai VerbEnd ;
+  +Ind+Pret+P2+Pl:itei VerbEnd ;
+  +Imp+P2+Sg:ais       VerbEnd ;
+  +Imp+P2+Pl:aiti      VerbEnd ;
+
+LEXICON P85Subj
+  +Subj+P1+Sg:lai      VerbEnd ;
+  +Subj+P2+Sg:lai      VerbEnd ;
+  +Subj+P3:lai         VerbEnd ;
+  +Subj+P1+Pl:limai    VerbEnd ;
+  +Subj+P2+Pl:litei    VerbEnd ;
+  +Opt+P3:sei          VerbEnd ;
+
+! ─── Par.132: -ā- schwache Verben (Präs=Pret, Präs -i) ──────────────────────
+LEXICON P132Fin
+  +Ind+Pres+P1+Sg:i    VerbEnd ;
+  +Ind+Pres+P2+Sg:i    VerbEnd ;
+  +Ind+Pres+P3:i       VerbEnd ;
+  +Ind+Pres+P1+Pl:imai VerbEnd ;
+  +Ind+Pres+P2+Pl:itei VerbEnd ;
+  +Ind+Pret+P1+Sg:i    VerbEnd ;
+  +Ind+Pret+P2+Sg:i    VerbEnd ;
+  +Ind+Pret+P3:i       VerbEnd ;
+  +Ind+Pret+P1+Pl:imai VerbEnd ;
+  +Ind+Pret+P2+Pl:itei VerbEnd ;
+  +Imp+P2+Sg:is        VerbEnd ;
+  +Imp+P2+Pl:iti       VerbEnd ;
+
+LEXICON P132Subj
+  +Subj+P1+Sg:lai      VerbEnd ;
+  +Subj+P2+Sg:lai      VerbEnd ;
+  +Subj+P3:lai         VerbEnd ;
+  +Subj+P1+Pl:limai    VerbEnd ;
+  +Subj+P2+Pl:litei    VerbEnd ;
+  +Opt+P3:sei          VerbEnd ;
+
+! ─── Par.138: -i- schwache Verben (Präs=Pret) ───────────────────────────────
+LEXICON P138Fin
+  +Ind+Pres+P1+Sg:i    VerbEnd ;
+  +Ind+Pres+P2+Sg:i    VerbEnd ;
+  +Ind+Pres+P3:i       VerbEnd ;
+  +Ind+Pres+P1+Pl:imai VerbEnd ;
+  +Ind+Pres+P2+Pl:itei VerbEnd ;
+  +Ind+Pret+P1+Sg:i    VerbEnd ;
+  +Ind+Pret+P2+Sg:i    VerbEnd ;
+  +Ind+Pret+P3:i       VerbEnd ;
+  +Ind+Pret+P1+Pl:imai VerbEnd ;
+  +Ind+Pret+P2+Pl:itei VerbEnd ;
+  +Imp+P2+Sg:is        VerbEnd ;
+  +Imp+P2+Pl:iti       VerbEnd ;
+
+LEXICON P138Subj
+  +Subj+P1+Sg:lai      VerbEnd ;
+  +Subj+P2+Sg:lai      VerbEnd ;
+  +Subj+P3:lai         VerbEnd ;
+  +Subj+P1+Pl:limai    VerbEnd ;
+  +Subj+P2+Pl:litei    VerbEnd ;
+  +Opt+P3:sei          VerbEnd ;
+
+! ─── Par.134: -ī-/-ē- Verben (Präs=Pret, ē im Präs / ī in Opt/Subj) ─────────
+LEXICON P134Fin
+  +Ind+Pres+P1+Sg:i    VerbEnd ;
+  +Ind+Pres+P2+Sg:i    VerbEnd ;
+  +Ind+Pres+P3:i       VerbEnd ;
+  +Ind+Pres+P1+Pl:imai VerbEnd ;
+  +Ind+Pres+P2+Pl:itei VerbEnd ;
+  +Ind+Pret+P1+Sg:i    VerbEnd ;
+  +Ind+Pret+P2+Sg:i    VerbEnd ;
+  +Ind+Pret+P3:i       VerbEnd ;
+  +Ind+Pret+P1+Pl:imai VerbEnd ;
+  +Ind+Pret+P2+Pl:itei VerbEnd ;
+  +Imp+P2+Sg:is        VerbEnd ;
+  +Imp+P2+Pl:iti       VerbEnd ;
+
+LEXICON P134Subj
+  +Subj+P1+Sg:lai      VerbEnd ;
+  +Subj+P2+Sg:lai      VerbEnd ;
+  +Subj+P3:lai         VerbEnd ;
+  +Subj+P1+Pl:limai    VerbEnd ;
+  +Subj+P2+Pl:litei    VerbEnd ;
+  +Opt+P3:sei          VerbEnd ;
+
+! ─── Par.139: -ī- Verben (Präs -ijj-, Opt/Imp/Subj -ī-) ─────────────────────
+LEXICON P139Fin
+  +Ind+Pres+P1+Sg:a    VerbEnd ;
+  +Ind+Pres+P2+Sg:a    VerbEnd ;
+  +Ind+Pres+P3:a       VerbEnd ;
+  +Ind+Pres+P1+Pl:imai VerbEnd ;
+  +Ind+Pres+P2+Pl:itei VerbEnd ;
+  +Ind+Pret+P1+Sg:a    VerbEnd ;
+  +Ind+Pret+P2+Sg:a    VerbEnd ;
+  +Ind+Pret+P3:a       VerbEnd ;
+  +Ind+Pret+P1+Pl:imai VerbEnd ;
+  +Ind+Pret+P2+Pl:itei VerbEnd ;
+
+LEXICON P139Subj
+  +Subj+P1+Sg:lai      VerbEnd ;
+  +Subj+P2+Sg:lai      VerbEnd ;
+  +Subj+P3:lai         VerbEnd ;
+  +Subj+P1+Pl:limai    VerbEnd ;
+  +Subj+P2+Pl:litei    VerbEnd ;
+  +Opt+P3:sei          VerbEnd ;
+  +Imp+P2+Sg:s         VerbEnd ;
+  +Imp+P2+Pl:ti        VerbEnd ;
+
+! ─── Par.143: -au- Denominativa (Präs ≠ Pret) ───────────────────────────────
+LEXICON P143Pres
+  +Ind+Pres+P1+Sg:ui    VerbEnd ;
+  +Ind+Pres+P2+Sg:ui    VerbEnd ;
+  +Ind+Pres+P3:ui       VerbEnd ;
+  +Ind+Pres+P1+Pl:wimai VerbEnd ;
+  +Ind+Pres+P2+Pl:witei VerbEnd ;
+
+LEXICON P143Past
+  +Ind+Pret+P1+Sg:0     VerbEnd ;
+  +Ind+Pret+P2+Sg:0     VerbEnd ;
+  +Ind+Pret+P3:0        VerbEnd ;
+  +Ind+Pret+P1+Pl:mai   VerbEnd ;
+  +Ind+Pret+P2+Pl:tei   VerbEnd ;
+  +Subj+P1+Sg:lai       VerbEnd ;
+  +Subj+P2+Sg:lai       VerbEnd ;
+  +Subj+P3:lai          VerbEnd ;
+  +Subj+P1+Pl:limai     VerbEnd ;
+  +Subj+P2+Pl:litei     VerbEnd ;
+  +Opt+P3:sei           VerbEnd ;
+  +Imp+P2+Sg:s          VerbEnd ;
+  +Imp+P2+Pl:iti        VerbEnd ;
+
+! ─── Optionales Reflexiv-Suffix (Oberfläche ohne „ si") ─────────────────────
+LEXICON VerbEnd
+  0:0 # ;
+  +Refl:0 # ;
