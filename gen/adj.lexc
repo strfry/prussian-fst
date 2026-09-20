@@ -18,7 +18,7 @@
 ! Endung selbst — belarussisks (fest, mit Geminate ss) behält seine ss überall,
 ! weil kein ^ gesetzt wird.
 
-Multichar_Symbols +Adj +Part +Pass +Past +Adv +Cmp +Sup +Masc +Fem +Neut +Sg +Pl +Nom +Gen +Dat +Acc ^
+Multichar_Symbols +Adj +V +Part +Pres +Pass +Past +Adv +Cmp +Sup +Masc +Fem +Neut +Sg +Pl +Nom +Gen +Dat +Acc ^ ~
 
 LEXICON Root
   AdjFixed ;       ! Par.25 festes a-Stamm-Adjektiv
@@ -28,6 +28,7 @@ LEXICON Root
   AdjUMob ;        ! Par.31 u-Stamm-Adjektiv (w-Gleitlaut), mobil
   PartPass ;       ! Par.69 passives Partizip
   PartAct ;        ! Par.68 aktives Partizip
+  PartPres ;       ! Präsens-Partizip -nts (Stämme aus den Verb-Einträgen)
   AdjCmpStems ;    ! Komparativ-Stämme (i-/jo-Deklination, aus twanksta)
   AdjSupStems ;    ! Superlativ-Stämme (uka- + Komparativ-Stamm)
   AdvExcept ;      ! hand-gepflegte Adverb-Ausnahmen (Suppletiva, siehe unten)
@@ -311,6 +312,84 @@ LEXICON PartActNeut
   +Part+Past+Neut+Pl+Dat:usimans   # ;
   +Part+Past+Neut+Sg+Acc:us        # ;
   +Part+Past+Neut+Pl+Acc:us        # ;
+
+! ─── Präsens-Partizip -nts (mobiles i-Stamm-Muster, drei Genera) ──────────
+! Das Präsens-Partizip deklinert wie Par.29 (mobiles i-Stamm-Adjektiv): schwere
+! Slots (^) Masc/Neut Dat.Pl -immans, Fem Nom.Sg -ī, Fem Dat.Pl -jāmans → Stamm
+! leicht (makron-/geminatenlos). Eine Abweichung vom Par.29-Neutrum: der
+! Ntr.Acc.Sg. ist -in (nicht -i) — entspricht dem Maskulinum.
+!
+! Geteilte Mobilität (anders als Par.29): das Fem-Nom.Sg. -ī trägt ZUSÄTZLICH den
+! Schutzmarker ~ (→ %~%^ī) — es kürzt das Stamm-Makron (Shorten), reduziert aber
+! NICHT die Stamm-Gemination (Degem gesperrt). Beleg: adressītwei → adressintī
+! (ss bleibt), aber Dat.Pl. adresintimmans (ss→s). Der Dat.Pl. (^immans/^jāmans)
+! bleibt voll mobil (Shorten + Degem).
+!
+! Stämme kommen aus den VERB-Einträgen (forms.participles[type=Present].
+! full_declension), nicht aus Adjektiven: Stamm = Masc.Gen.Sg. minus -is
+! (kalbantis → kalbant). Das Tag-Format ist kanonisch V+Part+Pres (wie base.gen).
+! Eine Handvoll Verben (jj/cc-Gemination: auswajjintun, buccautun, …) behält die
+! Geminate auch im Dat.Pl. — gelistet in LEXICON PartPresGemKeep, Stamm + ~.
+LEXICON PartPresInfl
+  PartPresMasc ;
+  PartPresFem ;
+  PartPresNeut ;
+
+LEXICON PartPresMasc
+  +V+Part+Pres+Masc+Sg+Nom:s        # ;
+  +V+Part+Pres+Masc+Sg+Gen:is       # ;
+  +V+Part+Pres+Masc+Sg+Dat:ismu     # ;
+  +V+Part+Pres+Masc+Sg+Acc:in       # ;
+  +V+Part+Pres+Masc+Pl+Nom:jai      # ;
+  +V+Part+Pres+Masc+Pl+Gen:in       # ;
+  +V+Part+Pres+Masc+Pl+Dat:%^immans # ;
+  +V+Part+Pres+Masc+Pl+Acc:ins      # ;
+
+LEXICON PartPresFem
+  +V+Part+Pres+Fem+Sg+Nom:%~%^ī     # ;
+  +V+Part+Pres+Fem+Sg+Gen:jas       # ;
+  +V+Part+Pres+Fem+Sg+Dat:jai       # ;
+  +V+Part+Pres+Fem+Sg+Acc:jan       # ;
+  +V+Part+Pres+Fem+Pl+Nom:jas       # ;
+  +V+Part+Pres+Fem+Pl+Gen:jan       # ;
+  +V+Part+Pres+Fem+Pl+Dat:%^jāmans  # ;
+  +V+Part+Pres+Fem+Pl+Acc:jans      # ;
+
+LEXICON PartPresNeut
+  +V+Part+Pres+Neut+Sg+Nom:i        # ;
+  +V+Part+Pres+Neut+Sg+Gen:is       # ;
+  +V+Part+Pres+Neut+Sg+Dat:ismu     # ;
+  +V+Part+Pres+Neut+Sg+Acc:in       # ;
+  +V+Part+Pres+Neut+Pl+Nom:jai      # ;
+  +V+Part+Pres+Neut+Pl+Gen:in       # ;
+  +V+Part+Pres+Neut+Pl+Dat:%^immans # ;
+  +V+Part+Pres+Neut+Pl+Acc:ins      # ;
+
+! ===========================================================================
+! LEXICON PartPresGemKeep — lexikalische (baked-in) Stamm-Gemination im Dat.Pl.
+! ===========================================================================
+! Diese Verben behalten ihre Stamm-Gemination (jj/cc = palataler/affrikater
+! Doppelkonsonant) auch im akzentverschobenen Dat.Pl. -immans/-jāmans, während
+! die übrigen Geminaten-Verben dort degeminieren (adressints → adresintimmans).
+! gen/coverage_partpres.py liest diese Liste (Lemma-Quelle) und hängt den
+! Schutzmarker ~ an den emittierten Stamm; gen/accent.regex sperrt daraufhin Degem.
+! NICHT von LEXICON Root referenziert — reine Ausnahmeliste (nur Lemma-Quelle).
+LEXICON PartPresGemKeep
+  auswajjintun+V+Part+Pres+Masc+Sg+Nom:auswajjintun     # ;
+  bajjintun+V+Part+Pres+Masc+Sg+Nom:bajjintun           # ;
+  pabajjintun+V+Part+Pres+Masc+Sg+Nom:pabajjintun       # ;
+  dwejjintun+V+Part+Pres+Masc+Sg+Nom:dwejjintun         # ;
+  enskajjintun+V+Part+Pres+Masc+Sg+Nom:enskajjintun     # ;
+  enswajjintun+V+Part+Pres+Masc+Sg+Nom:enswajjintun     # ;
+  etskajjintun+V+Part+Pres+Masc+Sg+Nom:etskajjintun     # ;
+  izskajjintun+V+Part+Pres+Masc+Sg+Nom:izskajjintun     # ;
+  lejjintun+V+Part+Pres+Masc+Sg+Nom:lejjintun            # ;
+  perskajjintun+V+Part+Pres+Masc+Sg+Nom:perskajjintun   # ;
+  praskajjintun+V+Part+Pres+Masc+Sg+Nom:praskajjintun   # ;
+  skajjintun+V+Part+Pres+Masc+Sg+Nom:skajjintun         # ;
+  buccautun+V+Part+Pres+Masc+Sg+Nom:buccautun           # ;
+  enšpriccintun+V+Part+Pres+Masc+Sg+Nom:enšpriccintun   # ;
+  špriccintun+V+Part+Pres+Masc+Sg+Nom:špriccintun       # ;
 
 ! ═══════════════════════════════════════════════════════════════════════════
 ! ADVERBIEN — Gradtafel (Positiv/Komparativ/Superlativ), je EINE Form.

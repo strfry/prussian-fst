@@ -61,7 +61,7 @@ ADV_TARGETS = {
 # beide liefern denselben Adverb-Stamm — beim Abtrennen wird -jas vor -is versucht.
 # Alle Stamm-Lexika, auf die LEXICON Root in gen/adj.lexc verweist (ggf. leer).
 STEM_LEXICONS = ["AdjFixed", "AdjMobile", "AdjI", "AdjIMob", "AdjUMob",
-                 "PartPass", "PartAct", "AdjCmpStems", "AdjSupStems"]
+                 "PartPass", "PartAct", "PartPres", "AdjCmpStems", "AdjSupStems"]
 # Die Komparativ-/Superlativ-Deklination ist i-/jo-stämmig, egal welches
 # Basis-Paradigma: der Komparativ-Stamm = Komparativ Masc.Gen.Sg. minus -jas.
 CMP_INFL = "AdjCmpInfl"

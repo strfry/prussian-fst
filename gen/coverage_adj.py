@@ -56,7 +56,7 @@ TARGETS = {
 # Alle Stamm-Lexika, auf die LEXICON Root in gen/adj.lexc verweist — der generierte
 # Block muss sie (ggf. leer) definieren, damit die Referenzen auflösen.
 STEM_LEXICONS = ["AdjFixed", "AdjMobile", "AdjI", "AdjIMob", "AdjUMob",
-                 "PartPass", "PartAct", "AdjCmpStems", "AdjSupStems"]
+                 "PartPass", "PartAct", "PartPres", "AdjCmpStems", "AdjSupStems"]
 
 # Komparativ/Superlativ: i-/jo-Deklination (fix), unabhängig vom Basis-Paradigma.
 # Der Komparativ-Stamm = Komparativ Masc.Gen.Sg. minus -jas; der Superlativ-Stamm

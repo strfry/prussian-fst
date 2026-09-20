@@ -26,7 +26,7 @@ LEXC_MERGED := build/lexc.merged
 # uv run = Projekt-Env, damit hfst überall verfügbar ist (auch ohne System-Install).
 HFST := uv run python src/prussian_fst/build_fst.py
 
-.PHONY: all gen clean cg3-sets cg3-check disambiguate conllu hfstol links astem adj istem ustem jostem aastem nstem adverb
+.PHONY: all gen clean cg3-sets cg3-check disambiguate conllu hfstol links astem adj istem ustem jostem aastem nstem adverb partpres
 
 all: build/base.hfstol build/macron.hfstol build/lenient.hfstol build/base.gen.hfstol
 
@@ -123,6 +123,27 @@ build/gen-adverb.composed.fst: build/gen-adverb.fst build/gen-accent.hfst
 	$(HFST) compose $@ build/gen-adverb.fst build/gen-accent.hfst
 
 build/gen-adverb.gen.hfstol: build/gen-adverb.composed.fst
+	$(HFST) hfstol-gen $< $@
+
+# Präsens-Partizip (-nts, drei Genera): gleiche Grammatik gen/adj.lexc (PartPres*),
+# Stämme aus den VERB-Einträgen über gen/coverage_partpres.py.
+#   make partpres                 # baut build/gen-partpres.gen.hfstol
+# Deckungstest: uv run python gen/coverage_partpres.py
+partpres: build/gen-partpres.gen.hfstol
+
+build/gen-partpres-stems.lexc: gen/adj.lexc gen/coverage_partpres.py $(TWANKSTA_JSON) | build/
+	uv run python gen/coverage_partpres.py --emit-stems $@
+
+build/gen-partpres.combined.lexc: gen/adj.lexc build/gen-partpres-stems.lexc | build/
+	cat gen/adj.lexc build/gen-partpres-stems.lexc > $@
+
+build/gen-partpres.fst: build/gen-partpres.combined.lexc | build/
+	$(HFST) lexc $< $@
+
+build/gen-partpres.composed.fst: build/gen-partpres.fst build/gen-accent.hfst
+	$(HFST) compose $@ build/gen-partpres.fst build/gen-accent.hfst
+
+build/gen-partpres.gen.hfstol: build/gen-partpres.composed.fst
 	$(HFST) hfstol-gen $< $@
 
 # Correction layers, one stage per phenomenon (norm/*.regex → build/norm-*.hfst).
