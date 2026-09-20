@@ -17,7 +17,7 @@
 ! dāng+^ummans → dangummans). Par.44 (Neutrum) ist bis auf Gen.Sg./Gen.Pl. -us
 ! durchweg -u.
 
-Multichar_Symbols +N +Masc +Neut +Sg +Pl +Nom +Gen +Dat +Akk ^
+Multichar_Symbols +N +Masc +Neut +Sg +Pl +Nom +Gen +Dat +Acc ^
 
 LEXICON Root
   P42Stems ;
@@ -35,28 +35,28 @@ LEXICON P42
   +Sg+Nom:us       # ;
   +Sg+Gen:us       # ;
   +Sg+Dat:u        # ;
-  +Sg+Akk:un       # ;
+  +Sg+Acc:un       # ;
   +Pl+Nom:us       # ;
   +Pl+Gen:un       # ;
   +Pl+Dat:umans    # ;
-  +Pl+Akk:uns      # ;
+  +Pl+Acc:uns      # ;
 
 LEXICON P43
   +Sg+Nom:s        # ;
   +Sg+Gen:us       # ;
   +Sg+Dat:u        # ;
-  +Sg+Akk:un       # ;
+  +Sg+Acc:un       # ;
   +Pl+Nom:us       # ;
   +Pl+Gen:un       # ;
   +Pl+Dat:%^ummans # ;   ! Akzent auf Endung → Stamm leicht
-  +Pl+Akk:uns      # ;
+  +Pl+Acc:uns      # ;
 
 LEXICON P44
   +Sg+Nom:u        # ;
   +Sg+Gen:us       # ;
   +Sg+Dat:u        # ;
-  +Sg+Akk:u        # ;
+  +Sg+Acc:u        # ;
   +Pl+Nom:u        # ;
   +Pl+Gen:us       # ;
   +Pl+Dat:u        # ;
-  +Pl+Akk:u        # ;
+  +Pl+Acc:u        # ;

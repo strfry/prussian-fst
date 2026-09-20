@@ -82,7 +82,7 @@ def patched(monkeypatch):
 
 
 def test_cascade_exact(patched):
-    patched({"base": {"deinan": [("dēinā", ["N", "Sg", "Akk"])]}})
+    patched({"base": {"deinan": [("dēinā", ["N", "Sg", "Acc"])]}})
     res = resolve_form("deinan", FSTS)
     assert res["status"] == "resolved"
     assert res["lemmas"] == ["dēinā"]
@@ -97,15 +97,15 @@ def test_cascade_case(patched):
 
 
 def test_cascade_macron(patched):
-    patched({"macron": {"deinan": [("dēinā", ["N", "Sg", "Akk"])]}})
+    patched({"macron": {"deinan": [("dēinā", ["N", "Sg", "Acc"])]}})
     res = resolve_form("deinan", FSTS)
     assert res["method"] == "macron"
 
 
 def test_cascade_cluster(patched):
     # Mehrere Lemmata sind kein Fehler, sondern ein resolved-Cluster.
-    patched({"base": {"labban": [("labban", ["N", "Sg", "Akk"]),
-                                 ("labs", ["Aj", "Sg", "Akk"])]}})
+    patched({"base": {"labban": [("labban", ["N", "Sg", "Acc"]),
+                                 ("labs", ["Aj", "Sg", "Acc"])]}})
     res = resolve_form("labban", FSTS)
     assert res["status"] == "resolved"
     assert res["lemmas"] == ["labban", "labs"]

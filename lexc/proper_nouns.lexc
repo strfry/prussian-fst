@@ -7,25 +7,25 @@ LEXICON ProperNouns
   Nidda+PropN+Sg+Nom+Fem:Nidda   # ;
   Nidda+PropN+Sg+Gen+Fem:Niddas  # ;
   Nidda+PropN+Sg+Dat+Fem:Niddai  # ;
-  Nidda+PropN+Sg+Akk+Fem:Niddan  # ;
+  Nidda+PropN+Sg+Acc+Fem:Niddan  # ;
 
   ! Kānts — Immanuel Kant (masc. o-Stamm: -s/-as/-u/-an)
   Kānts+PropN+Sg+Nom+Masc:Kānts   # ;
   Kānts+PropN+Sg+Gen+Masc:Kāntas  # ;
   Kānts+PropN+Sg+Dat+Masc:Kāntu   # ;
-  Kānts+PropN+Sg+Akk+Masc:Kāntan  # ;
+  Kānts+PropN+Sg+Acc+Masc:Kāntan  # ;
 
   ! Luīzi — Personenname (fem. ē-Stamm: -i/-is/-ei/-in)
   Luīzi+PropN+Sg+Nom+Fem:Luīzi  # ;
   Luīzi+PropN+Sg+Gen+Fem:Luīzis # ;
   Luīzi+PropN+Sg+Dat+Fem:Luīzei # ;
-  Luīzi+PropN+Sg+Akk+Fem:Luīzin # ;
+  Luīzi+PropN+Sg+Acc+Fem:Luīzin # ;
 
   ! Tilzē — Stadt Tilsit (fem. ē-Stamm: -ē/-es/-ei/-in)
   Tilzē+PropN+Sg+Nom+Fem:Tilzē  # ;
   Tilzē+PropN+Sg+Gen+Fem:Tilzes # ;
   Tilzē+PropN+Sg+Dat+Fem:tilzei  # ;
-  Tilzē+PropN+Sg+Akk+Fem:tilzin  # ;
+  Tilzē+PropN+Sg+Acc+Fem:tilzin  # ;
 
   ! Ālberts — Personenname (masc. o-Stamm)
   Ālberts+PropN+Sg+Nom+Masc:Ālberts  # ;
@@ -34,7 +34,7 @@ LEXICON ProperNouns
   Trīmps+PropN+Sg+Nom+Masc:Trīmps   # ;
   Trīmps+PropN+Sg+Gen+Masc:Trīmpas  # ;
   Trīmps+PropN+Sg+Dat+Masc:Trīmpu   # ;
-  Trīmps+PropN+Sg+Akk+Masc:trīmpan  # ;
+  Trīmps+PropN+Sg+Acc+Masc:trīmpan  # ;
 
   ! Kulakōws — russ./lit. Familienname (masc. o-Stamm)
   Kulakōws+PropN+Sg+Nom+Masc:Kulakōws # ;

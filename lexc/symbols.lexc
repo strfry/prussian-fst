@@ -20,7 +20,7 @@ Multichar_Symbols
   +Nom  ! nominative
   +Gen  ! genitive
   +Dat  ! dative
-  +Akk  ! accusative
+  +Acc  ! accusative
 
   +Masc ! masculine
   +Fem  ! feminine
@@ -35,6 +35,7 @@ Multichar_Symbols
   +Subj ! subjunctive
   +Rel  ! modus relativus (hearsay; only corpus-attested forms, e.g. astits)
   +Pass ! passive (participle)
+  +Past ! past (participle type — verb form, not finite tense)
   +Refl ! reflexive (si-verb)
 
   +P1   ! 1st person

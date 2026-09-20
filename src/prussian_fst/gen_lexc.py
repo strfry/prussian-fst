@@ -38,7 +38,7 @@ PARTICIPLE_PRET_GENDER = {
 
 CASE_MAP = {
     "Nominative": "Nom", "Genitive": "Gen",
-    "Dative": "Dat", "Accusative": "Akk",
+    "Dative": "Dat", "Accusative": "Acc",
 }
 
 GENDER_MAP = {"masc": "+Masc", "m": "+Masc",
@@ -341,7 +341,7 @@ def extract_perfect_participles(indicative: list, upper: str,
                     # Partizip — nie selbst eine Partizipform emittieren
                     if not w or w in AUXILIARIES or w == "si" or " " in w:
                         continue
-                    tag = f"Part+Pret+{gend}+{num}+Nom" if gend else f"Part+Pret+{num}+Nom"
+                    tag = f"Part+Past+{gend}+{num}+Nom" if gend else f"Part+Past+{num}+Nom"
                     results[f"{upper}+V+{tag}{refl}:{lexc_esc(w)}"] = True
     return results
 
@@ -426,7 +426,7 @@ def verb_forms(entry: dict, prep_words: set[str] | None = None) -> tuple[str, di
             continue
 
         if bare.endswith("uns"):
-            tag = "Pret"
+            tag = "Past"
         elif bare.endswith("nts"):
             tag = "Pres"
         elif bare.endswith("ts"):
@@ -595,7 +595,7 @@ def main():
         for line in sorted(vf):
             if "+Part+Pres+" in line:
                 vstats["part_pres"] += 1
-            elif "+Part+Pret+" in line:
+            elif "+Part+Past+" in line:
                 vstats["part_past"] += 1
             elif "+Part+Pass+" in line:
                 vstats["part_pass"] += 1

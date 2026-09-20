@@ -19,7 +19,7 @@
 ! Geminate vereinfacht (Piss+^ā → Pisā). Im leichten Thema -a bleibt der Stamm schwer
 ! (emprīkistalīsn+as → emprīkistalīsnas). Par.51 (19, gemination-irregulär) ausgespart.
 
-Multichar_Symbols +N +Fem +Sg +Pl +Nom +Gen +Dat +Akk ^
+Multichar_Symbols +N +Fem +Sg +Pl +Nom +Gen +Dat +Acc ^
 
 LEXICON Root
   P45Stems ;
@@ -38,31 +38,31 @@ LEXICON P45
   +Sg+Nom:0        # ;   ! Stamm ist a-final → Nom.Sg. = blanker Stamm
   +Sg+Gen:s        # ;
   +Sg+Dat:i        # ;
-  +Sg+Akk:n        # ;
+  +Sg+Acc:n        # ;
   +Pl+Nom:s        # ;
   +Pl+Gen:n        # ;
   +Pl+Dat:mans     # ;
-  +Pl+Akk:ns       # ;
+  +Pl+Acc:ns       # ;
 
 LEXICON P46
   +Sg+Nom:%^ā      # ;   ! schweres Thema -ā → Betonung auf Endung, Stamm leicht
   +Sg+Gen:as       # ;
   +Sg+Dat:ai       # ;
-  +Sg+Akk:an       # ;
+  +Sg+Acc:an       # ;
   +Pl+Nom:as       # ;
   +Pl+Gen:an       # ;
   +Pl+Dat:%^āmans  # ;   ! schweres Thema -ā → Stamm leicht
-  +Pl+Akk:ans      # ;
+  +Pl+Acc:ans      # ;
 
 LEXICON P50
   +Sg+Nom:i        # ;
   +Sg+Gen:jas      # ;
   +Sg+Dat:jai      # ;
-  +Sg+Akk:jan      # ;
+  +Sg+Acc:jan      # ;
   +Pl+Nom:jas      # ;
   +Pl+Gen:jan      # ;
   +Pl+Dat:jamans   # ;
-  +Pl+Akk:jans     # ;
+  +Pl+Acc:jans     # ;
 
 ! Par.51 = mobiler ī-Stamm (Gegenstück zu P50): der Obliquus trägt das schwere
 ! Merkmal (Geminate Russ-/arr- oder Makron āld-), Nom.Sg. und Dat.Pl. reduzieren
@@ -71,8 +71,8 @@ LEXICON P51
   +Sg+Nom:%^ī      # ;   ! schwerer Obliquus → Nom.Sg. leicht
   +Sg+Gen:jas      # ;
   +Sg+Dat:jai      # ;
-  +Sg+Akk:jan      # ;
+  +Sg+Acc:jan      # ;
   +Pl+Nom:jas      # ;
   +Pl+Gen:jan      # ;
   +Pl+Dat:%^jāmans # ;   ! leichter Stamm
-  +Pl+Akk:jans     # ;
+  +Pl+Acc:jans     # ;

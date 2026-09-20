@@ -44,7 +44,7 @@ LIST Unk = Unk ;
 LIST Nom = Nom ;
 LIST Gen = Gen ;
 LIST Dat = Dat ;
-LIST Akk = Akk ;
+LIST Acc = Acc ;
 LIST Sg = Sg ;
 LIST Pl = Pl ;
 LIST Masc = Masc ;
@@ -182,9 +182,9 @@ REMOVE SAFE (Dat) IF (0 Nominal) (-3C Prp + GovAkk LINK NOT 0 GovDat)
     (-2 PPMid) (-1 PPMid) ;
 
 # Rein Dat-regierende Präposition: kein Akkusativ in der PP.
-REMOVE SAFE (Akk) IF (0 Nominal) (-1C Prp + GovDat LINK NOT 0 GovAkk) ;
-REMOVE SAFE (Akk) IF (0 Nominal) (-2C Prp + GovDat LINK NOT 0 GovAkk) (-1 PPMid) ;
-REMOVE SAFE (Akk) IF (0 Nominal) (-3C Prp + GovDat LINK NOT 0 GovAkk)
+REMOVE SAFE (Acc) IF (0 Nominal) (-1C Prp + GovDat LINK NOT 0 GovAkk) ;
+REMOVE SAFE (Acc) IF (0 Nominal) (-2C Prp + GovDat LINK NOT 0 GovAkk) (-1 PPMid) ;
+REMOVE SAFE (Acc) IF (0 Nominal) (-3C Prp + GovDat LINK NOT 0 GovAkk)
     (-2 PPMid) (-1 PPMid) ;
 
 # Kongruente Modifikatoren in einer Akk-PP können nicht Gen sein
@@ -215,12 +215,12 @@ REMOVE SAFE (Gen) IF (0 Nominal)
 SECTION
 
 SELECT (GovDat) IF (0 GovAkk) (1C Nominal + Dat) ;
-SELECT (GovAkk) IF (0 GovDat) (1C Nominal + Akk) ;
+SELECT (GovAkk) IF (0 GovDat) (1C Nominal + Acc) ;
 # mit kongruentem Modifikator dazwischen: Scan auf den NG-Kopf
 SELECT (GovDat) IF (0 GovAkk)
-    (1* NGHead + Dat BARRIER PPStop LINK NOT 0 Akk) ;
+    (1* NGHead + Dat BARRIER PPStop LINK NOT 0 Acc) ;
 SELECT (GovAkk) IF (0 GovDat)
-    (1* NGHead + Akk BARRIER PPStop LINK NOT 0 Dat) ;
+    (1* NGHead + Acc BARRIER PPStop LINK NOT 0 Dat) ;
 
 
 # ========================================================== #
@@ -236,7 +236,7 @@ SECTION
 SELECT (Cnj) IF (0 Prp) (-1 Nominal + Nom) (1 Nominal + Nom) ;
 SELECT (Cnj) IF (0 Prp) (-1 Nominal + Gen) (1 Nominal + Gen) ;
 SELECT (Cnj) IF (0 Prp) (-1 Nominal + Dat) (1 Nominal + Dat) ;
-SELECT (Cnj) IF (0 Prp) (-1 Nominal + Akk) (1 Nominal + Akk) ;
+SELECT (Cnj) IF (0 Prp) (-1 Nominal + Acc) (1 Nominal + Acc) ;
 
 # R2: satzinitiales / nach-Interpunktion stehendes "Be" ist Diskurs-
 # Konnektor, keine Präposition.
@@ -253,7 +253,7 @@ SELECT (Cnj) IF (0 Prp) (1* FiniteVerb BARRIER Nominal) ;
 # vorliegen.  Fängt die Residualfälle, die die Koordinations- und
 # Diskurs-Regeln oben nicht treffen.
 SELECT (Cnj) IF (0 Prp) (0 Cnj)
-    (NEGATE 1* NGHead + Akk BARRIER ClauseBoundary) ;
+    (NEGATE 1* NGHead + Acc BARRIER ClauseBoundary) ;
 
 
 # ============================================================ #
@@ -355,13 +355,13 @@ SELECT:r6-di-impersonal (Nom) IF (0 Di) (-1C FiniteVerb) ;
 
 # R3 — pēr: Partikel („zu/allzu", vor Adj/Adv) vs. Präposition (vor Akk-NG).
 SELECT (Prp) IF (0 Pcl) (0 Prp)
-    (1* NGHead + Akk BARRIER AgrBarrier) ;
+    (1* NGHead + Acc BARRIER AgrBarrier) ;
 SELECT (Pcl) IF (0 Prp) (0 Pcl) (1C AdjAdv) ;
 
 # R7 — Prädikatives Partizip direkt nach Auxiliar (§11–§14, periphrastische
 # Tempora) steht im Nominativ: oblique Lesarten der vollen Partizip-
 # Deklination entfernen; Numerus vom unmittelbar davorstehenden Subjekt.
-REMOVE:r7-pred-participle SAFE (Akk) IF (0C Part) (-1C Aux) ;
+REMOVE:r7-pred-participle SAFE (Acc) IF (0C Part) (-1C Aux) ;
 REMOVE:r7-pred-participle SAFE (Gen) IF (0C Part) (-1C Aux) ;
 REMOVE:r7-pred-participle SAFE (Dat) IF (0C Part) (-1C Aux) ;
 REMOVE:r7-pred-participle SAFE (Pl) IF (0C Part) (-1C Aux) (-2C NGHead + Sg) ;
@@ -395,7 +395,7 @@ SECTION
 
 # Genitivus negationis: nach negiertem finiten Verb ist das Akk/Gen-
 # ambige Objekt Gen (produktive Regel; nicht innerhalb einer PP).
-SELECT:gen-negationis (Gen) IF (0 Akk) (0 Gen)
+SELECT:gen-negationis (Gen) IF (0 Acc) (0 Gen)
     (-1* FiniteVerb BARRIER ClauseBoundary LINK -1 Ni)
     (NEGATE -1*C Prp BARRIER PPStop) ;
 
@@ -448,7 +448,7 @@ REMOVE SAFE N + Gen IF (0 Adj) (p NGHead LINK NOT 0 Gen) ;
 REMOVE SAFE (Nom)  IF (0 CongrMod) (p NGHead LINK NOT 0 Nom) ;
 REMOVE SAFE (Gen)  IF (0 CongrMod) (p NGHead LINK NOT 0 Gen) ;
 REMOVE SAFE (Dat)  IF (0 CongrMod) (p NGHead LINK NOT 0 Dat) ;
-REMOVE SAFE (Akk)  IF (0 CongrMod) (p NGHead LINK NOT 0 Akk) ;
+REMOVE SAFE (Acc)  IF (0 CongrMod) (p NGHead LINK NOT 0 Acc) ;
 REMOVE SAFE (Sg)   IF (0 CongrMod) (p NGHead LINK NOT 0 Sg) ;
 REMOVE SAFE (Pl)   IF (0 CongrMod) (p NGHead LINK NOT 0 Pl) ;
 REMOVE SAFE (Masc) IF (0 CongrMod) (p NGHead LINK NOT 0 Masc) ;
@@ -469,7 +469,7 @@ SELECT (Adj Neut) IF (0 Adj) (p (Neut)) ;
 SELECT (Adj Nom) IF (0 Adj) (p (Nom)) ;
 SELECT (Adj Gen) IF (0 Adj) (p (Gen)) ;
 SELECT (Adj Dat) IF (0 Adj) (p (Dat)) ;
-SELECT (Adj Akk) IF (0 Adj) (p (Akk)) ;
+SELECT (Adj Acc) IF (0 Adj) (p (Acc)) ;
 SELECT (Adj Sg) IF (0 Adj) (p (Sg)) ;
 SELECT (Adj Pl) IF (0 Adj) (p (Pl)) ;
 SELECT (Num Masc) IF (0 Num) (p (Masc)) ;
@@ -478,7 +478,7 @@ SELECT (Num Neut) IF (0 Num) (p (Neut)) ;
 SELECT (Num Nom) IF (0 Num) (p (Nom)) ;
 SELECT (Num Gen) IF (0 Num) (p (Gen)) ;
 SELECT (Num Dat) IF (0 Num) (p (Dat)) ;
-SELECT (Num Akk) IF (0 Num) (p (Akk)) ;
+SELECT (Num Acc) IF (0 Num) (p (Acc)) ;
 SELECT (Num Sg) IF (0 Num) (p (Sg)) ;
 SELECT (Num Pl) IF (0 Num) (p (Pl)) ;
 SELECT (Part Masc) IF (0 Part) (p (Masc)) ;
@@ -487,7 +487,7 @@ SELECT (Part Neut) IF (0 Part) (p (Neut)) ;
 SELECT (Part Nom) IF (0 Part) (p (Nom)) ;
 SELECT (Part Gen) IF (0 Part) (p (Gen)) ;
 SELECT (Part Dat) IF (0 Part) (p (Dat)) ;
-SELECT (Part Akk) IF (0 Part) (p (Akk)) ;
+SELECT (Part Acc) IF (0 Part) (p (Acc)) ;
 SELECT (Part Sg) IF (0 Part) (p (Sg)) ;
 SELECT (Part Pl) IF (0 Part) (p (Pl)) ;
 
@@ -509,9 +509,9 @@ SELECT (Sg Gen Neut) IF (0C Pron) (1C NGHead + (Sg Gen Neut)) ;
 SELECT (Sg Dat Masc) IF (0C Pron) (1C NGHead + (Sg Dat Masc)) ;
 SELECT (Sg Dat Fem) IF (0C Pron) (1C NGHead + (Sg Dat Fem)) ;
 SELECT (Sg Dat Neut) IF (0C Pron) (1C NGHead + (Sg Dat Neut)) ;
-SELECT (Sg Akk Masc) IF (0C Pron) (1C NGHead + (Sg Akk Masc)) ;
-SELECT (Sg Akk Fem) IF (0C Pron) (1C NGHead + (Sg Akk Fem)) ;
-SELECT (Sg Akk Neut) IF (0C Pron) (1C NGHead + (Sg Akk Neut)) ;
+SELECT (Sg Acc Masc) IF (0C Pron) (1C NGHead + (Sg Acc Masc)) ;
+SELECT (Sg Acc Fem) IF (0C Pron) (1C NGHead + (Sg Acc Fem)) ;
+SELECT (Sg Acc Neut) IF (0C Pron) (1C NGHead + (Sg Acc Neut)) ;
 SELECT (Pl Nom Masc) IF (0C Pron) (1C NGHead + (Pl Nom Masc)) ;
 SELECT (Pl Nom Fem) IF (0C Pron) (1C NGHead + (Pl Nom Fem)) ;
 SELECT (Pl Nom Neut) IF (0C Pron) (1C NGHead + (Pl Nom Neut)) ;
@@ -521,9 +521,9 @@ SELECT (Pl Gen Neut) IF (0C Pron) (1C NGHead + (Pl Gen Neut)) ;
 SELECT (Pl Dat Masc) IF (0C Pron) (1C NGHead + (Pl Dat Masc)) ;
 SELECT (Pl Dat Fem) IF (0C Pron) (1C NGHead + (Pl Dat Fem)) ;
 SELECT (Pl Dat Neut) IF (0C Pron) (1C NGHead + (Pl Dat Neut)) ;
-SELECT (Pl Akk Masc) IF (0C Pron) (1C NGHead + (Pl Akk Masc)) ;
-SELECT (Pl Akk Fem) IF (0C Pron) (1C NGHead + (Pl Akk Fem)) ;
-SELECT (Pl Akk Neut) IF (0C Pron) (1C NGHead + (Pl Akk Neut)) ;
+SELECT (Pl Acc Masc) IF (0C Pron) (1C NGHead + (Pl Acc Masc)) ;
+SELECT (Pl Acc Fem) IF (0C Pron) (1C NGHead + (Pl Acc Fem)) ;
+SELECT (Pl Acc Neut) IF (0C Pron) (1C NGHead + (Pl Acc Neut)) ;
 
 
 # ============================================================ #
@@ -535,8 +535,8 @@ SELECT (Pl Akk Neut) IF (0C Pron) (1C NGHead + (Pl Akk Neut)) ;
 
 SECTION
 
-SELECT (Nom) IF (0C Pron) (0 Nom) (0 Akk) (1C Copula) ;
-SELECT (Nom) IF (0C Pron) (0 Nom) (0 Akk) (-1C Copula) ;
+SELECT (Nom) IF (0C Pron) (0 Nom) (0 Acc) (1C Copula) ;
+SELECT (Nom) IF (0C Pron) (0 Nom) (0 Acc) (-1C Copula) ;
 
 
 # ====================================================== #
@@ -721,7 +721,7 @@ MAP (@OBL) NGHead - XPred IF (c Adposition) (p ClauseHead) ;
 # Argument-Rollen kasusweise; @pred-Lesarten (Prädikatsnomen)
 # sind Klauselköpfe, keine Argumente.
 MAP (@SUBJ) NGHead + Nom - XPred IF (p ClauseHead) (NEGATE c Adposition) ;
-MAP (@OBJ) NGHead + Akk - XPred IF (p ClauseHead) (NEGATE c Adposition) ;
+MAP (@OBJ) NGHead + Acc - XPred IF (p ClauseHead) (NEGATE c Adposition) ;
 MAP (@IOBJ) NGHead + Dat - XPred IF (p ClauseHead) (NEGATE c Adposition) ;
 MAP (@GOBJ) NGHead + Gen - XPred IF (p ClauseHead) (NEGATE c Adposition) ;
 

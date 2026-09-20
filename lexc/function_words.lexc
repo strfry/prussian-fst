@@ -107,7 +107,7 @@ LEXICON FunctionWords
   ! Pronomina (indeklinabel)
 
   ! Reflexivpronomina (Twanksta sin/sebbei ohne Formen-Tabelle; zu „Swāise acc/dat")
-  sin+Pron+Refl+Akk:sin     # ; ! reflexiv, Akkusativ („sich")
+  sin+Pron+Refl+Acc:sin     # ; ! reflexiv, Akkusativ („sich")
   sebbei+Pron+Refl+Dat:sebbei # ; ! reflexiv, Dativ („sich")
 
   abbejan+Pron:abbejan # ; ! UNSICHER: „beides" — indekl. Pron oder Num?

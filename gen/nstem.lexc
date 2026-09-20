@@ -13,7 +13,7 @@
 ! 'hemp seed'). Nom.Sg. und Akk.Sg. = blanker Stamm (Neutrum); Dat.Pl. mobil, das
 ! schwere -immans zieht die Betonung → Stamm leicht (nōmen+^immans → nomenimmans).
 
-Multichar_Symbols +N +Masc +Neut +Sg +Pl +Nom +Gen +Dat +Akk ^
+Multichar_Symbols +N +Masc +Neut +Sg +Pl +Nom +Gen +Dat +Acc ^
 
 LEXICON Root
   P61Stems ;
@@ -30,18 +30,18 @@ LEXICON P61
   +Sg+Nom:s        # ;
   +Sg+Gen:es       # ;
   +Sg+Dat:i        # ;
-  +Sg+Akk:in       # ;
+  +Sg+Acc:in       # ;
   +Pl+Nom:es       # ;
   +Pl+Gen:in       # ;
   +Pl+Dat:imans    # ;
-  +Pl+Akk:ins      # ;
+  +Pl+Acc:ins      # ;
 
 LEXICON P63
   +Sg+Nom:0        # ;   ! blanker Stamm (Neutrum)
   +Sg+Gen:es       # ;
   +Sg+Dat:i        # ;
-  +Sg+Akk:0        # ;   ! blanker Stamm (Neutrum)
+  +Sg+Acc:0        # ;   ! blanker Stamm (Neutrum)
   +Pl+Nom:es       # ;
   +Pl+Gen:in       # ;
   +Pl+Dat:%^immans # ;   ! schwere Endung → Stamm leicht
-  +Pl+Akk:ins      # ;
+  +Pl+Acc:ins      # ;

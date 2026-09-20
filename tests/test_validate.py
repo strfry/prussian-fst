@@ -104,7 +104,7 @@ def test_relevant_checks_anchors():
         cohort("As", ("as", "Pron", "P1", "Sg", "Nom"), dep=(1, 2)),
         cohort("pūwa", ("pūtun", "V", "Ind", "Pret", "P1", "Sg"), dep=(2, 2)),
         cohort("sen", ("sēn", "Prp", "GovAkk"), dep=(3, 4)),
-        cohort("laīwan", ("laīwan", "N", "Sg", "Akk", "Neut"), dep=(4, 2)),
+        cohort("laīwan", ("laīwan", "N", "Sg", "Acc", "Neut"), dep=(4, 2)),
     ]
     checks = relevant_checks(cohorts, genverbs=set())
     assert "prep-case" in checks
@@ -124,8 +124,8 @@ def test_relevant_checks_subj_verb_needs_finite_verb():
 def test_relevant_checks_adj_needs_nominal_parent():
     # Adjektiv mit N-Parent → adj-agr anwendbar
     cohorts = [
-        cohort("Labban", ("labs", "Adj", "Sg", "Akk", "Fem"), dep=(1, 2)),
-        cohort("dēinan", ("dēinā", "N", "Sg", "Akk", "Fem"), dep=(2, 2)),
+        cohort("Labban", ("labs", "Adj", "Sg", "Acc", "Fem"), dep=(1, 2)),
+        cohort("dēinan", ("dēinā", "N", "Sg", "Acc", "Fem"), dep=(2, 2)),
     ]
     assert "adj-agr" in relevant_checks(cohorts, genverbs=set())
     # Adverb-aufgelöstes Adjektiv ohne Nominal-Parent → nicht anwendbar

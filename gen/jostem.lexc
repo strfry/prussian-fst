@@ -19,7 +19,7 @@
 ! den Stammauslaut (Rik>imans → Rikkimans) über den Geminationsmarker > (siehe
 ! gen/accent.regex). Rest: einzelne Nom.Sg. mit Zusatz-Makron (aītagenīs).
 
-Multichar_Symbols +N +Masc +Neut +Sg +Pl +Nom +Gen +Dat +Akk ^ %> %~
+Multichar_Symbols +N +Masc +Neut +Sg +Pl +Nom +Gen +Dat +Acc ^ %> %~
 
 LEXICON Root
   P40Stems ;
@@ -39,51 +39,51 @@ LEXICON P40
   +Sg+Nom:is       # ;
   +Sg+Gen:jas      # ;
   +Sg+Dat:ju       # ;
-  +Sg+Akk:jan      # ;
+  +Sg+Acc:jan      # ;
   +Pl+Nom:jai      # ;
   +Pl+Gen:jan      # ;
   +Pl+Dat:jamans   # ;
-  +Pl+Akk:jans     # ;
+  +Pl+Acc:jans     # ;
 
 LEXICON P41
   +Sg+Nom:is       # ;
   +Sg+Gen:jas      # ;
   +Sg+Dat:ju       # ;
-  +Sg+Akk:jan      # ;
+  +Sg+Acc:jan      # ;
   +Pl+Nom:%^jāi    # ;   ! Akzent auf Endung → Stamm leicht
   +Pl+Gen:jan      # ;
   +Pl+Dat:%^jammans # ;  ! Akzent auf Endung → Stamm leicht
-  +Pl+Akk:jans     # ;
+  +Pl+Acc:jans     # ;
 
 LEXICON P37
   +Sg+Nom:jan      # ;
   +Sg+Gen:jas      # ;
   +Sg+Dat:ju       # ;
-  +Sg+Akk:jan      # ;
+  +Sg+Acc:jan      # ;
   +Pl+Nom:%^jāi    # ;   ! Akzent auf Endung → Stamm leicht
   +Pl+Gen:jan      # ;
   +Pl+Dat:%^jammans # ;  ! Akzent auf Endung → Stamm leicht
-  +Pl+Akk:jans     # ;
+  +Pl+Acc:jans     # ;
 
 LEXICON P38
   +Sg+Nom:s        # ;
   +Sg+Gen:jas      # ;
   +Sg+Dat:ju       # ;
-  +Sg+Akk:jan      # ;
+  +Sg+Acc:jan      # ;
   +Pl+Nom:jai      # ;
   +Pl+Gen:jan      # ;
   +Pl+Dat:mans     # ;
-  +Pl+Akk:jans     # ;
+  +Pl+Acc:jans     # ;
 
 LEXICON P39
   +Sg+Nom:īs       # ;
   +Sg+Gen:ijjas    # ;
   +Sg+Dat:ijju     # ;
-  +Sg+Akk:ijjan    # ;
+  +Sg+Acc:ijjan    # ;
   +Pl+Nom:ijjai    # ;
   +Pl+Gen:ijjan    # ;
   +Pl+Dat:%>imans  # ;   ! > geminiert den Stammauslaut: Rik>imans → Rikkimans
-  +Pl+Akk:ijjans   # ;
+  +Pl+Acc:ijjans   # ;
 
 ! ===========================================================================
 ! LEXICON GeminateKeep — lexikalische (baked-in) Stamm-Gemination

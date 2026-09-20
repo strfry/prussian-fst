@@ -28,7 +28,7 @@
 ! (Makron ODER Geminate) und tilgt ^. Die Einsilben-/Koda-Regel dort vereinfacht
 ! zudem eine Stamm-Geminate vor dem Nom.Sg. -s (kapp+s → kaps).
 
-Multichar_Symbols +N +Masc +Neut +Sg +Pl +Nom +Gen +Dat +Akk ^
+Multichar_Symbols +N +Masc +Neut +Sg +Pl +Nom +Gen +Dat +Acc ^
 
 LEXICON Root
   P32Stems ;
@@ -46,28 +46,28 @@ LEXICON P32
   +Sg+Nom:s        # ;
   +Sg+Gen:as       # ;
   +Sg+Dat:u        # ;
-  +Sg+Akk:an       # ;
+  +Sg+Acc:an       # ;
   +Pl+Nom:ai       # ;
   +Pl+Gen:an       # ;
   +Pl+Dat:amans    # ;
-  +Pl+Akk:ans      # ;
+  +Pl+Acc:ans      # ;
 
 LEXICON P36
   +Sg+Nom:s        # ;
   +Sg+Gen:as       # ;
   +Sg+Dat:u        # ;
-  +Sg+Akk:an       # ;
+  +Sg+Acc:an       # ;
   +Pl+Nom:%^āi     # ;   ! Akzent auf Endung → Stamm leicht
   +Pl+Gen:an       # ;
   +Pl+Dat:%^ammans # ;   ! Akzent auf Endung → Stamm leicht
-  +Pl+Akk:ans      # ;
+  +Pl+Acc:ans      # ;
 
 LEXICON P35
   +Sg+Nom:an       # ;
   +Sg+Gen:as       # ;
   +Sg+Dat:u        # ;
-  +Sg+Akk:an       # ;
+  +Sg+Acc:an       # ;
   +Pl+Nom:%^āi     # ;   ! Akzent auf Endung → Stamm leicht
   +Pl+Gen:an       # ;
   +Pl+Dat:%^ammans # ;   ! Akzent auf Endung → Stamm leicht
-  +Pl+Akk:ans      # ;
+  +Pl+Acc:ans      # ;

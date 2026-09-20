@@ -46,7 +46,7 @@ UPOS = {"N": "NOUN", "PropN": "PROPN", "Adj": "ADJ", "Pron": "PRON", "Num": "NUM
 # baltische Renarrativ; Subj → Mood=Cnd (Konditional/Konjunktiv).
 FEAT = {"Sg": ("Number", "Sing"), "Pl": ("Number", "Plur"),
         "Nom": ("Case", "Nom"), "Gen": ("Case", "Gen"),
-        "Dat": ("Case", "Dat"), "Akk": ("Case", "Acc"),
+        "Dat": ("Case", "Dat"), "Acc": ("Case", "Acc"),
         "Masc": ("Gender", "Masc"), "Fem": ("Gender", "Fem"),
         "Neut": ("Gender", "Neut"),
         "Pres": ("Tense", "Pres"), "Pret": ("Tense", "Past"),

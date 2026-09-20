@@ -84,8 +84,8 @@ FAMILY = "istem"
 LEXC = FAMILIES["istem"][0]
 TARGETS = FAMILIES["istem"][1]
 GENDER = {"masc": "Masc", "fem": "Fem", "neut": "Neut"}
-CASES = ["Nom", "Gen", "Dat", "Akk"]
-CA = {"Nominative": "Nom", "Genitive": "Gen", "Dative": "Dat", "Accusative": "Akk"}
+CASES = ["Nom", "Gen", "Dat", "Acc"]
+CA = {"Nominative": "Nom", "Genitive": "Gen", "Dative": "Dat", "Accusative": "Acc"}
 
 # Twanksta-Paradigmen-Labels mit Varianten-Suffix (identische Flexion zur
 # Basis-Nummer, geprüft) bzw. Tippfehler auf die Basis normalisiert.

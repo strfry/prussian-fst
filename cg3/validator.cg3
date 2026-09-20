@@ -64,7 +64,7 @@ LIST TimeN = "dēinā" "dēināi" "kērdā" "rēizs" "mets" "mettan" "mēnss"
 LIST Nom = Nom ;
 LIST Gen = Gen ;
 LIST Dat = Dat ;
-LIST Akk = Akk ;
+LIST Acc = Acc ;
 LIST Sg = Sg ;
 LIST Pl = Pl ;
 LIST Masc = Masc ;
@@ -161,8 +161,8 @@ ADD:agr-adj-case (&agr-adj-case) Adj - XPred IF (0C Gen)
 ADD:agr-adj-case (&agr-adj-case) Adj - XPred IF (0C Dat)
     (pC N LINK NOT 0 Dat LINK NOT 0 Gen)
     (NEGATE -1* Copula BARRIER LeftStopNonCop) ;
-ADD:agr-adj-case (&agr-adj-case) Adj - XPred IF (0C Akk)
-    (pC N LINK NOT 0 Akk LINK NOT 0 Gen)
+ADD:agr-adj-case (&agr-adj-case) Adj - XPred IF (0C Acc)
+    (pC N LINK NOT 0 Acc LINK NOT 0 Gen)
     (NEGATE -1* Copula BARRIER LeftStopNonCop) ;
 
 ADD:agr-adj-num (&agr-adj-num) Adj - XPred IF (0C Sg)
@@ -193,7 +193,7 @@ ADD:agr-adj-case (&agr-adj-case) Adj - XPred IF (0C Gen)
     (1C N + Nom) ;
 ADD:agr-adj-case (&agr-adj-case) Adj - XPred IF (0C Dat)
     (1C N + Nom) ;
-ADD:agr-adj-case (&agr-adj-case) Adj - XPred IF (0C Akk)
+ADD:agr-adj-case (&agr-adj-case) Adj - XPred IF (0C Acc)
     (1C N + Nom) ;
 
 ADD:agr-adj-num (&agr-adj-num) Adj - XPred IF (0C Sg)
@@ -221,7 +221,7 @@ ADD:agr-adj-gend (&agr-adj-gend) Adj - XPred IF (0C Neut)
 #    sin") → kein Inf/Part zwischen Kopula und Nominal.
 #    Unk-Token zählen in den Scans wie Inf/Part (unbekannte Infinitive
 #    kommen im Korpus vor); Zeitnomen sind adverbiale Akkusative.
-ADD:pred-nom-akk (&pred-nom-akk) NGHead - TimeN IF (0C Akk)
+ADD:pred-nom-akk (&pred-nom-akk) NGHead - TimeN IF (0C Acc)
     (pC FiniteVerb + Copula) (NEGATE c Adposition)
     (NEGATE -1* Adposition BARRIER LeftStop)
     (NEGATE -1* Inf BARRIER LeftStop)
@@ -242,7 +242,7 @@ ADD:pred-nom-akk (&pred-nom-akk) NGHead - TimeN IF (0C Akk)
 #    das Nominal meist dessen Objekt („kwaitēi … etrātwei"); ein
 #    Dat-Geschwister zeigt den ditransitiven Wunsch-Rahmen („kwaitēi
 #    wisēimans wippjans"); Unk kann ein unbekannter Infinitiv sein.
-ADD:genverb-akk (&genverb-akk) NGHead + XObj - TimeN IF (0C Akk)
+ADD:genverb-akk (&genverb-akk) NGHead + XObj - TimeN IF (0C Acc)
     (pC FiniteVerb + GenVerb LINK NEGATE c Inf) (NEGATE c Adposition)
     (NEGATE s NGHead + Dat) (NEGATE c NGHead + Dat)
     (NEGATE -1* Adposition BARRIER LeftStop)

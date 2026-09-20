@@ -39,7 +39,7 @@
 !     Instrāpils) ist phonotaktisch (Geminate + Konsonant), kein Akzent → aus
 !     der Akzentregel bewusst herausgehalten.
 
-Multichar_Symbols +N +Masc +Fem +Neut +Sg +Pl +Nom +Gen +Dat +Akk ^ ~
+Multichar_Symbols +N +Masc +Fem +Neut +Sg +Pl +Nom +Gen +Dat +Acc ^ ~
 
 ! Diese Datei ist die HAND-GESCHRIEBENE Grammatik (Endungen + Nom.Sg.-Ausnahmen)
 ! und enthält bewusst KEINE Wörter. LEXICON Root verweist auf die PxxStems; deren
@@ -62,71 +62,71 @@ LEXICON P52
   +Sg+Nom:i       # ;
   +Sg+Gen:is      # ;
   +Sg+Dat:ei      # ;
-  +Sg+Akk:in      # ;
+  +Sg+Acc:in      # ;
   +Pl+Nom:is      # ;
   +Pl+Gen:in      # ;
   +Pl+Dat:imans   # ;
-  +Pl+Akk:ins     # ;
+  +Pl+Acc:ins     # ;
 
 LEXICON P54
   +Sg+Nom:i       # ;
   +Sg+Gen:is      # ;
   +Sg+Dat:ei      # ;
-  +Sg+Akk:in      # ;
+  +Sg+Acc:in      # ;
   +Pl+Nom:is      # ;
   +Pl+Gen:in      # ;
   +Pl+Dat:imans   # ;
-  +Pl+Akk:ins     # ;
+  +Pl+Acc:ins     # ;
 
 LEXICON P58
   +Sg+Nom:s       # ;
   +Sg+Gen:is      # ;
   +Sg+Dat:ei      # ;
-  +Sg+Akk:in      # ;
+  +Sg+Acc:in      # ;
   +Pl+Nom:is      # ;
   +Pl+Gen:in      # ;
   +Pl+Dat:imans   # ;
-  +Pl+Akk:ins     # ;
+  +Pl+Acc:ins     # ;
 
 LEXICON P56
   +Sg+Nom:s       # ;
   +Sg+Gen:is      # ;
   +Sg+Dat:i       # ;
-  +Sg+Akk:in      # ;
+  +Sg+Acc:in      # ;
   +Pl+Nom:jai     # ;
   +Pl+Gen:in      # ;
   +Pl+Dat:imans   # ;
-  +Pl+Akk:ins     # ;
+  +Pl+Acc:ins     # ;
 
 LEXICON P53
   +Sg+Nom:%^ē      # ;   ! Akzent auf Endung → Stamm leicht
   +Sg+Gen:is       # ;
   +Sg+Dat:ei       # ;
-  +Sg+Akk:in       # ;
+  +Sg+Acc:in       # ;
   +Pl+Nom:is       # ;
   +Pl+Gen:in       # ;
   +Pl+Dat:%^īmans  # ;   ! Akzent auf Endung → Stamm leicht
-  +Pl+Akk:ins      # ;
+  +Pl+Acc:ins      # ;
 
 LEXICON P60
   +Sg+Nom:s        # ;
   +Sg+Gen:is       # ;
   +Sg+Dat:ei       # ;
-  +Sg+Akk:in       # ;
+  +Sg+Acc:in       # ;
   +Pl+Nom:is       # ;
   +Pl+Gen:in       # ;
   +Pl+Dat:%^immans # ;   ! Akzent auf Endung → Stamm leicht
-  +Pl+Akk:ins      # ;
+  +Pl+Acc:ins      # ;
 
 LEXICON P57
   +Sg+Nom:s        # ;
   +Sg+Gen:is       # ;
   +Sg+Dat:i        # ;
-  +Sg+Akk:in       # ;
+  +Sg+Acc:in       # ;
   +Pl+Nom:es       # ;
   +Pl+Gen:in       # ;
   +Pl+Dat:%^immans # ;   ! Akzent auf Endung → Stamm leicht
-  +Pl+Akk:ins      # ;
+  +Pl+Acc:ins      # ;
 
 ! ===========================================================================
 ! Nom.Sg.-AUSNAHMEN — hand-gepflegt
@@ -205,38 +205,38 @@ LEXICON GeminateKeep
 LEXICON P56_o
   +Sg+Gen:is      # ;
   +Sg+Dat:i       # ;
-  +Sg+Akk:in      # ;
+  +Sg+Acc:in      # ;
   +Pl+Nom:jai     # ;
   +Pl+Gen:in      # ;
   +Pl+Dat:imans   # ;
-  +Pl+Akk:ins     # ;
+  +Pl+Acc:ins     # ;
 
 LEXICON P57_o
   +Sg+Gen:is       # ;
   +Sg+Dat:i        # ;
-  +Sg+Akk:in       # ;
+  +Sg+Acc:in       # ;
   +Pl+Nom:es       # ;
   +Pl+Gen:in       # ;
   +Pl+Dat:%^immans # ;
-  +Pl+Akk:ins      # ;
+  +Pl+Acc:ins      # ;
 
 LEXICON P58_o
   +Sg+Gen:is      # ;
   +Sg+Dat:ei      # ;
-  +Sg+Akk:in      # ;
+  +Sg+Acc:in      # ;
   +Pl+Nom:is      # ;
   +Pl+Gen:in      # ;
   +Pl+Dat:imans   # ;
-  +Pl+Akk:ins     # ;
+  +Pl+Acc:ins     # ;
 
 LEXICON P60_o
   +Sg+Gen:is       # ;
   +Sg+Dat:ei       # ;
-  +Sg+Akk:in       # ;
+  +Sg+Acc:in       # ;
   +Pl+Nom:is       # ;
   +Pl+Gen:in       # ;
   +Pl+Dat:%^immans # ;
-  +Pl+Akk:ins      # ;
+  +Pl+Acc:ins      # ;
 
 ! (kein P53_o mehr: aupallē läuft über die Grundklasse P53 + Schutzmarker ~,
 !  siehe LEXICON GeminateKeep — der einzige frühere P53-NomSg-Fall.)

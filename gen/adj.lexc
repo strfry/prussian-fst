@@ -18,7 +18,7 @@
 ! Endung selbst — belarussisks (fest, mit Geminate ss) behält seine ss überall,
 ! weil kein ^ gesetzt wird.
 
-Multichar_Symbols +Adj +Part +Pass +Act +Masc +Fem +Neut +Sg +Pl +Nom +Gen +Dat +Akk ^
+Multichar_Symbols +Adj +Part +Pass +Past +Masc +Fem +Neut +Sg +Pl +Nom +Gen +Dat +Acc ^
 
 LEXICON Root
   AdjFixed ;       ! Par.25 festes a-Stamm-Adjektiv
@@ -68,8 +68,8 @@ LEXICON AdjFixedMasc
   +Adj+Masc+Pl+Gen:an      # ;
   +Adj+Masc+Sg+Dat:asmu    # ;
   +Adj+Masc+Pl+Dat:amans   # ;
-  +Adj+Masc+Sg+Akk:an      # ;
-  +Adj+Masc+Pl+Akk:ans     # ;
+  +Adj+Masc+Sg+Acc:an      # ;
+  +Adj+Masc+Pl+Acc:ans     # ;
 
 LEXICON AdjFixedFem
   +Adj+Fem+Sg+Nom:a        # ;
@@ -78,8 +78,8 @@ LEXICON AdjFixedFem
   +Adj+Fem+Pl+Gen:an       # ;
   +Adj+Fem+Sg+Dat:ai       # ;
   +Adj+Fem+Pl+Dat:amans    # ;
-  +Adj+Fem+Sg+Akk:an       # ;
-  +Adj+Fem+Pl+Akk:ans      # ;
+  +Adj+Fem+Sg+Acc:an       # ;
+  +Adj+Fem+Pl+Acc:ans      # ;
 
 LEXICON AdjFixedNeut
   +Adj+Neut+Sg+Nom:an      # ;
@@ -88,8 +88,8 @@ LEXICON AdjFixedNeut
   +Adj+Neut+Pl+Gen:an      # ;
   +Adj+Neut+Sg+Dat:asmu    # ;
   +Adj+Neut+Pl+Dat:amans   # ;
-  +Adj+Neut+Sg+Akk:an      # ;
-  +Adj+Neut+Pl+Akk:ans     # ;
+  +Adj+Neut+Sg+Acc:an      # ;
+  +Adj+Neut+Pl+Acc:ans     # ;
 
 ! ─── Mobile Endungen (Par. 26): ^ + schwere Endung in verschobenen Slots ──
 LEXICON AdjMobileMasc
@@ -99,8 +99,8 @@ LEXICON AdjMobileMasc
   +Adj+Masc+Pl+Gen:an       # ;
   +Adj+Masc+Sg+Dat:%^àsmu   # ;
   +Adj+Masc+Pl+Dat:%^ammans # ;
-  +Adj+Masc+Sg+Akk:an       # ;
-  +Adj+Masc+Pl+Akk:ans      # ;
+  +Adj+Masc+Sg+Acc:an       # ;
+  +Adj+Masc+Pl+Acc:ans      # ;
 
 LEXICON AdjMobileFem
   +Adj+Fem+Sg+Nom:%^ā       # ;
@@ -109,8 +109,8 @@ LEXICON AdjMobileFem
   +Adj+Fem+Pl+Gen:an        # ;
   +Adj+Fem+Sg+Dat:ai        # ;
   +Adj+Fem+Pl+Dat:%^āmans   # ;
-  +Adj+Fem+Sg+Akk:an        # ;
-  +Adj+Fem+Pl+Akk:ans       # ;
+  +Adj+Fem+Sg+Acc:an        # ;
+  +Adj+Fem+Pl+Acc:ans       # ;
 
 LEXICON AdjMobileNeut
   +Adj+Neut+Sg+Nom:an       # ;
@@ -119,8 +119,8 @@ LEXICON AdjMobileNeut
   +Adj+Neut+Pl+Gen:an       # ;
   +Adj+Neut+Sg+Dat:%^àsmu   # ;
   +Adj+Neut+Pl+Dat:%^ammans # ;
-  +Adj+Neut+Sg+Akk:an       # ;
-  +Adj+Neut+Pl+Akk:ans      # ;
+  +Adj+Neut+Sg+Acc:an       # ;
+  +Adj+Neut+Pl+Acc:ans      # ;
 
 ! ─── Par.27: i-/jo-Stamm-Adjektiv, fest (Masc/Neut jo-Endungen, Fem i-Endungen) ──
 ! Stamm = Masc.Gen.Sg. minus -jas (instrawingjas → instrawing). Kein ^: fester Akzent.
@@ -128,31 +128,31 @@ LEXICON AdjIMasc
   +Adj+Masc+Sg+Nom:is      # ;
   +Adj+Masc+Sg+Gen:jas     # ;
   +Adj+Masc+Sg+Dat:jasmu   # ;
-  +Adj+Masc+Sg+Akk:jan     # ;
+  +Adj+Masc+Sg+Acc:jan     # ;
   +Adj+Masc+Pl+Nom:jai     # ;
   +Adj+Masc+Pl+Gen:jan     # ;
   +Adj+Masc+Pl+Dat:jamans  # ;
-  +Adj+Masc+Pl+Akk:jans    # ;
+  +Adj+Masc+Pl+Acc:jans    # ;
 
 LEXICON AdjIFem
   +Adj+Fem+Sg+Nom:i        # ;
   +Adj+Fem+Sg+Gen:is       # ;
   +Adj+Fem+Sg+Dat:ei       # ;
-  +Adj+Fem+Sg+Akk:in       # ;
+  +Adj+Fem+Sg+Acc:in       # ;
   +Adj+Fem+Pl+Nom:is       # ;
   +Adj+Fem+Pl+Gen:in       # ;
   +Adj+Fem+Pl+Dat:imans    # ;
-  +Adj+Fem+Pl+Akk:ins      # ;
+  +Adj+Fem+Pl+Acc:ins      # ;
 
 LEXICON AdjINeut
   +Adj+Neut+Sg+Nom:i       # ;
   +Adj+Neut+Sg+Gen:jas     # ;
   +Adj+Neut+Sg+Dat:jasmu   # ;
-  +Adj+Neut+Sg+Akk:i       # ;
+  +Adj+Neut+Sg+Acc:i       # ;
   +Adj+Neut+Pl+Nom:jai     # ;
   +Adj+Neut+Pl+Gen:jan     # ;
   +Adj+Neut+Pl+Dat:jamans  # ;
-  +Adj+Neut+Pl+Akk:jans    # ;
+  +Adj+Neut+Pl+Acc:jans    # ;
 
 ! ─── Par.29: mobiles i-Stamm-Adjektiv ──────────────────────────────────────
 ! Stamm = Masc.Gen.Sg. minus -is (audijāntis → audijānt). Schwere Slots (^):
@@ -161,31 +161,31 @@ LEXICON AdjIMobMasc
   +Adj+Masc+Sg+Nom:s        # ;
   +Adj+Masc+Sg+Gen:is       # ;
   +Adj+Masc+Sg+Dat:ismu     # ;
-  +Adj+Masc+Sg+Akk:in       # ;
+  +Adj+Masc+Sg+Acc:in       # ;
   +Adj+Masc+Pl+Nom:jai      # ;
   +Adj+Masc+Pl+Gen:in       # ;
   +Adj+Masc+Pl+Dat:%^immans # ;
-  +Adj+Masc+Pl+Akk:ins      # ;
+  +Adj+Masc+Pl+Acc:ins      # ;
 
 LEXICON AdjIMobFem
   +Adj+Fem+Sg+Nom:%^ī       # ;
   +Adj+Fem+Sg+Gen:jas       # ;
   +Adj+Fem+Sg+Dat:jai       # ;
-  +Adj+Fem+Sg+Akk:jan       # ;
+  +Adj+Fem+Sg+Acc:jan       # ;
   +Adj+Fem+Pl+Nom:jas       # ;
   +Adj+Fem+Pl+Gen:jan       # ;
   +Adj+Fem+Pl+Dat:%^jāmans  # ;
-  +Adj+Fem+Pl+Akk:jans      # ;
+  +Adj+Fem+Pl+Acc:jans      # ;
 
 LEXICON AdjIMobNeut
   +Adj+Neut+Sg+Nom:i        # ;
   +Adj+Neut+Sg+Gen:is       # ;
   +Adj+Neut+Sg+Dat:ismu     # ;
-  +Adj+Neut+Sg+Akk:i        # ;
+  +Adj+Neut+Sg+Acc:i        # ;
   +Adj+Neut+Pl+Nom:jai      # ;
   +Adj+Neut+Pl+Gen:in       # ;
   +Adj+Neut+Pl+Dat:%^immans # ;
-  +Adj+Neut+Pl+Akk:ins      # ;
+  +Adj+Neut+Pl+Acc:ins      # ;
 
 ! ─── Par.31: u-Stamm-Adjektiv (w-Gleitlaut), mobil ─────────────────────────
 ! Stamm = Masc.Nom.Sg. minus -us (preilāngus → preilāng; der Nom.Sg. trägt den
@@ -195,31 +195,31 @@ LEXICON AdjUMobMasc
   +Adj+Masc+Sg+Nom:us       # ;
   +Adj+Masc+Sg+Gen:%^was    # ;
   +Adj+Masc+Sg+Dat:usmu     # ;
-  +Adj+Masc+Sg+Akk:un       # ;
+  +Adj+Masc+Sg+Acc:un       # ;
   +Adj+Masc+Pl+Nom:%^wāi    # ;
   +Adj+Masc+Pl+Gen:un       # ;
   +Adj+Masc+Pl+Dat:%^ummans # ;
-  +Adj+Masc+Pl+Akk:uns      # ;
+  +Adj+Masc+Pl+Acc:uns      # ;
 
 LEXICON AdjUMobFem
   +Adj+Fem+Sg+Nom:%^ī       # ;
   +Adj+Fem+Sg+Gen:jas       # ;
   +Adj+Fem+Sg+Dat:jai       # ;
-  +Adj+Fem+Sg+Akk:jan       # ;
+  +Adj+Fem+Sg+Acc:jan       # ;
   +Adj+Fem+Pl+Nom:jas       # ;
   +Adj+Fem+Pl+Gen:jan       # ;
   +Adj+Fem+Pl+Dat:%^jāmans  # ;
-  +Adj+Fem+Pl+Akk:jans      # ;
+  +Adj+Fem+Pl+Acc:jans      # ;
 
 LEXICON AdjUMobNeut
   +Adj+Neut+Sg+Nom:u        # ;
   +Adj+Neut+Sg+Gen:%^was    # ;
   +Adj+Neut+Sg+Dat:usmu     # ;
-  +Adj+Neut+Sg+Akk:u        # ;
+  +Adj+Neut+Sg+Acc:u        # ;
   +Adj+Neut+Pl+Nom:%^wāi    # ;
   +Adj+Neut+Pl+Gen:un       # ;
   +Adj+Neut+Pl+Dat:%^ummans # ;
-  +Adj+Neut+Pl+Akk:uns      # ;
+  +Adj+Neut+Pl+Acc:uns      # ;
 
 ! ═══ PARTIZIPIEN (agieren adjektivisch, drei Genera) ══════════════════════
 !
@@ -251,8 +251,8 @@ LEXICON PartPassMasc
   +Part+Pass+Masc+Pl+Gen:an       # ;
   +Part+Pass+Masc+Sg+Dat:asmu     # ;   ! nicht mobil (anders als Adj-Mobil)
   +Part+Pass+Masc+Pl+Dat:%^ammans # ;   ! mobil
-  +Part+Pass+Masc+Sg+Akk:an       # ;
-  +Part+Pass+Masc+Pl+Akk:ans      # ;
+  +Part+Pass+Masc+Sg+Acc:an       # ;
+  +Part+Pass+Masc+Pl+Acc:ans      # ;
 
 LEXICON PartPassFem
   +Part+Pass+Fem+Sg+Nom:%^ā       # ;   ! mobil
@@ -261,8 +261,8 @@ LEXICON PartPassFem
   +Part+Pass+Fem+Pl+Gen:an        # ;
   +Part+Pass+Fem+Sg+Dat:ai        # ;
   +Part+Pass+Fem+Pl+Dat:%^āmans   # ;   ! mobil
-  +Part+Pass+Fem+Sg+Akk:an        # ;
-  +Part+Pass+Fem+Pl+Akk:ans       # ;
+  +Part+Pass+Fem+Sg+Acc:an        # ;
+  +Part+Pass+Fem+Pl+Acc:ans       # ;
 
 LEXICON PartPassNeut
   +Part+Pass+Neut+Sg+Nom:an       # ;
@@ -271,36 +271,36 @@ LEXICON PartPassNeut
   +Part+Pass+Neut+Pl+Gen:an       # ;
   +Part+Pass+Neut+Sg+Dat:asmu     # ;
   +Part+Pass+Neut+Pl+Dat:%^ammans # ;   ! mobil
-  +Part+Pass+Neut+Sg+Akk:an       # ;
-  +Part+Pass+Neut+Pl+Akk:ans      # ;
+  +Part+Pass+Neut+Sg+Acc:an       # ;
+  +Part+Pass+Neut+Pl+Acc:ans      # ;
 
 ! ─── Aktives Partizip -uns (Par.68), -us-Stamm, fest ──────────────────────
 LEXICON PartActMasc
-  +Part+Act+Masc+Sg+Nom:uns       # ;
-  +Part+Act+Masc+Pl+Nom:usis      # ;
-  +Part+Act+Masc+Sg+Gen:usjas     # ;
-  +Part+Act+Masc+Pl+Gen:usin      # ;
-  +Part+Act+Masc+Sg+Dat:usjasmu   # ;
-  +Part+Act+Masc+Pl+Dat:usimans   # ;
-  +Part+Act+Masc+Sg+Akk:usin      # ;
-  +Part+Act+Masc+Pl+Akk:usins     # ;
+  +Part+Past+Masc+Sg+Nom:uns       # ;
+  +Part+Past+Masc+Pl+Nom:usis      # ;
+  +Part+Past+Masc+Sg+Gen:usjas     # ;
+  +Part+Past+Masc+Pl+Gen:usin      # ;
+  +Part+Past+Masc+Sg+Dat:usjasmu   # ;
+  +Part+Past+Masc+Pl+Dat:usimans   # ;
+  +Part+Past+Masc+Sg+Acc:usin      # ;
+  +Part+Past+Masc+Pl+Acc:usins     # ;
 
 LEXICON PartActFem
-  +Part+Act+Fem+Sg+Nom:usi        # ;
-  +Part+Act+Fem+Pl+Nom:usjas      # ;
-  +Part+Act+Fem+Sg+Gen:usjas      # ;
-  +Part+Act+Fem+Pl+Gen:usjan      # ;
-  +Part+Act+Fem+Sg+Dat:usjai      # ;
-  +Part+Act+Fem+Pl+Dat:usjamans   # ;
-  +Part+Act+Fem+Sg+Akk:usin       # ;
-  +Part+Act+Fem+Pl+Akk:usjans     # ;
+  +Part+Past+Fem+Sg+Nom:usi        # ;
+  +Part+Past+Fem+Pl+Nom:usjas      # ;
+  +Part+Past+Fem+Sg+Gen:usjas      # ;
+  +Part+Past+Fem+Pl+Gen:usjan      # ;
+  +Part+Past+Fem+Sg+Dat:usjai      # ;
+  +Part+Past+Fem+Pl+Dat:usjamans   # ;
+  +Part+Past+Fem+Sg+Acc:usin       # ;
+  +Part+Past+Fem+Pl+Acc:usjans     # ;
 
 LEXICON PartActNeut
-  +Part+Act+Neut+Sg+Nom:us        # ;
-  +Part+Act+Neut+Pl+Nom:us        # ;
-  +Part+Act+Neut+Sg+Gen:usjas     # ;
-  +Part+Act+Neut+Pl+Gen:usin      # ;
-  +Part+Act+Neut+Sg+Dat:usjasmu   # ;
-  +Part+Act+Neut+Pl+Dat:usimans   # ;
-  +Part+Act+Neut+Sg+Akk:us        # ;
-  +Part+Act+Neut+Pl+Akk:us        # ;
+  +Part+Past+Neut+Sg+Nom:us        # ;
+  +Part+Past+Neut+Pl+Nom:us        # ;
+  +Part+Past+Neut+Sg+Gen:usjas     # ;
+  +Part+Past+Neut+Pl+Gen:usin      # ;
+  +Part+Past+Neut+Sg+Dat:usjasmu   # ;
+  +Part+Past+Neut+Pl+Dat:usimans   # ;
+  +Part+Past+Neut+Sg+Acc:us        # ;
+  +Part+Past+Neut+Pl+Acc:us        # ;

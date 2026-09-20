@@ -39,7 +39,7 @@ LIST Inf = Inf ;
 LIST Nom = Nom ;
 LIST Gen = Gen ;
 LIST Dat = Dat ;
-LIST Akk = Akk ;
+LIST Acc = Acc ;
 
 LIST XPred = (@pred) ;
 LIST XFin = (@fin) ;
@@ -119,11 +119,11 @@ ADDRELATION (obl) NGHead (NOT 0 AnyRole) (c Adposition)
     TO (p ClauseHead) ;
 ADDRELATION (nsubj) NGHead + Nom (NOT 0 AnyRole) (NEGATE c Adposition)
     TO (p ClauseHead) ;
-ADDRELATION (obj) NGHead + Akk (NOT 0 AnyRole) (NOT 0 Nom)
+ADDRELATION (obj) NGHead + Acc (NOT 0 AnyRole) (NOT 0 Nom)
     (NEGATE c Adposition) TO (p ClauseHead) ;
-ADDRELATION (iobj) NGHead + Dat (NOT 0 AnyRole) (NOT 0 Nom OR Akk)
+ADDRELATION (iobj) NGHead + Dat (NOT 0 AnyRole) (NOT 0 Nom OR Acc)
     (NEGATE c Adposition) TO (p ClauseHead) ;
-ADDRELATION (obj) NGHead + Gen (NOT 0 AnyRole) (NOT 0 Nom OR Akk OR Dat)
+ADDRELATION (obj) NGHead + Gen (NOT 0 AnyRole) (NOT 0 Nom OR Acc OR Dat)
     (NEGATE c Adposition) TO (p ClauseHead) ;
 
 # Infinitiv als offenes Komplement

@@ -35,7 +35,7 @@ BUILD = ROOT / "build"
 HFST = ["uv", "run", "python", str(ROOT / "src" / "prussian_fst" / "build_fst.py")]
 
 # Paradigma → (Tag-Typ, Stamm-Lexikon, Infl-Lexikon, Masc-Quell-Slot, Klassenendung).
-# Tag-Typ "Adj" → +Adj+…; "Pass"/"Act" → +Part+Pass/Act+…. Stamm = Masc-Quellform
+# Tag-Typ "Adj" → +Adj+…; "Pass"/"Past" → +Part+Pass/Past+…. Stamm = Masc-Quellform
 # minus Klassenendung. Par.25 = festes a-Stamm-Adjektiv, Par.26 = mobiles a-Stamm-
 # Adjektiv, Par.68/69 = Partizipien.
 #
@@ -50,15 +50,15 @@ TARGETS = {
     "29": ("Adj",  "AdjIMob",   "AdjIMobInfl",   "Genitive",   "is"),
     "31": ("Adj",  "AdjUMob",   "AdjUMobInfl",   "Nominative", "us"),
     "69": ("Pass", "PartPass",  "PartPassInfl",  "Genitive",   "as"),
-    "68": ("Act",  "PartAct",   "PartActInfl",   "Nominative", "uns"),
+    "68": ("Past",  "PartAct",   "PartActInfl",   "Nominative", "uns"),
 }
 # Alle Stamm-Lexika, auf die LEXICON Root in gen/adj.lexc verweist — der generierte
 # Block muss sie (ggf. leer) definieren, damit die Referenzen auflösen.
 STEM_LEXICONS = ["AdjFixed", "AdjMobile", "AdjI", "AdjIMob", "AdjUMob",
                  "PartPass", "PartAct"]
 GEN = {"m": "Masc", "f": "Fem", "n": "Neut"}
-CASES = ["Nom", "Gen", "Dat", "Akk"]
-CA = {"Nominative": "Nom", "Genitive": "Gen", "Dative": "Dat", "Accusative": "Akk"}
+CASES = ["Nom", "Gen", "Dat", "Acc"]
+CA = {"Nominative": "Nom", "Genitive": "Gen", "Dative": "Dat", "Accusative": "Acc"}
 
 
 def primary(cell: str) -> str:

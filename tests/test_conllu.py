@@ -59,7 +59,7 @@ def token_cols(block: str, form: str) -> list[str]:
 
 def test_unambiguous_full_row(blocks):
     cols = token_cols(blocks["Labban dēinan!"], "dēinan")
-    assert cols[2:6] == ["dēinā", "NOUN", "N+Fem+Sg+Akk",
+    assert cols[2:6] == ["dēinā", "NOUN", "N+Fem+Sg+Acc",
                          "Case=Acc|Gender=Fem|Number=Sing"]
     assert cols[9] == "_"  # kein Ambig-Marker
 
