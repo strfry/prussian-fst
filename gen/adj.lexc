@@ -18,7 +18,7 @@
 ! Endung selbst — belarussisks (fest, mit Geminate ss) behält seine ss überall,
 ! weil kein ^ gesetzt wird.
 
-Multichar_Symbols +Adj +Part +Pass +Past +Masc +Fem +Neut +Sg +Pl +Nom +Gen +Dat +Acc ^
+Multichar_Symbols +Adj +Part +Pass +Past +Adv +Cmp +Sup +Masc +Fem +Neut +Sg +Pl +Nom +Gen +Dat +Acc ^
 
 LEXICON Root
   AdjFixed ;       ! Par.25 festes a-Stamm-Adjektiv
@@ -28,6 +28,9 @@ LEXICON Root
   AdjUMob ;        ! Par.31 u-Stamm-Adjektiv (w-Gleitlaut), mobil
   PartPass ;       ! Par.69 passives Partizip
   PartAct ;        ! Par.68 aktives Partizip
+  AdjCmpStems ;    ! Komparativ-Stämme (i-/jo-Deklination, aus twanksta)
+  AdjSupStems ;    ! Superlativ-Stämme (uka- + Komparativ-Stamm)
+  AdvExcept ;      ! hand-gepflegte Adverb-Ausnahmen (Suppletiva, siehe unten)
 
 ! Hand-geschriebene Grammatik (nur Endungen, KEINE Wörter). LEXICON Root verweist
 ! auf AdjFixed/AdjMobile/PartPass/PartAct; deren Einträge (Lemma:Stamm  …Infl ;)
@@ -39,16 +42,19 @@ LEXICON AdjFixedInfl
   AdjFixedMasc ;
   AdjFixedFem ;
   AdjFixedNeut ;
+  AdvA ;          ! Adverb positiv (a-Stamm)
 
 LEXICON AdjMobileInfl
   AdjMobileMasc ;
   AdjMobileFem ;
   AdjMobileNeut ;
+  AdvA ;          ! Adverb positiv (a-Stamm)
 
 LEXICON AdjIInfl
   AdjIMasc ;
   AdjIFem ;
   AdjINeut ;
+  AdvI ;          ! Adverb positiv (i-/jo-Stamm)
 
 LEXICON AdjIMobInfl
   AdjIMobMasc ;
@@ -59,6 +65,7 @@ LEXICON AdjUMobInfl
   AdjUMobMasc ;
   AdjUMobFem ;
   AdjUMobNeut ;
+  AdvU ;          ! Adverb positiv (u-Stamm)
 
 ! ─── Feste Endungen (Par. 25) ──────────────────────────────────────────
 LEXICON AdjFixedMasc
@@ -304,3 +311,151 @@ LEXICON PartActNeut
   +Part+Past+Neut+Pl+Dat:usimans   # ;
   +Part+Past+Neut+Sg+Acc:us        # ;
   +Part+Past+Neut+Pl+Acc:us        # ;
+
+! ═══════════════════════════════════════════════════════════════════════════
+! ADVERBIEN — Gradtafel (Positiv/Komparativ/Superlativ), je EINE Form.
+!
+! Twanksta `forms.adverb` = {positive, comparative, superlative}. Die Bildung ist
+! regelhaft (an twanksta verifiziert, n=1019):
+!   Positiv    = Adjektivstamm + Klassensuffix: -ai (a-Stamm Par.25/26),
+!                -jai (i-/jo-Stamm Par.27), -u (u-Stamm Par.30/31).
+!   Komparativ = Positiv + -s (a-/i-/jo-Stamm: -ais/-jais), u-Stamm -uis.
+!   Superlativ = uka- + Komparativ (100 % regelhaft) → uka-Komparativ-Stamm.
+!
+! Architektur: der Positiv hängt am selben (Adjektiv-)Stamm und wird über die
+! Adv{A,I,U}-Endungslexika am Klassen-Infl erzeugt. Komparativ und Superlativ
+! teilen sich mit dem Adjektiv (Phase 2) die i-/jo-Deklination: der Komparativ-
+! Stamm (AdjCmpStems) und der Superlativ-Stamm (AdjSupStems = "uka"+Komparativ-
+! Stamm) werden je einmal aus twanksta emittiert; das Adverb nutzt dieselben
+! Stämme mit leerer Endung (+Adv+Cmp/+Adv+Sup), das Adjektiv dieselben Stämme
+! mit der i-/jo-Endungstabelle. Die uka-Präfix-Mechanik ist also EINMAL gebaut.
+! ═══════════════════════════════════════════════════════════════════════════
+
+LEXICON AdvA
+  +Adv:ai   # ;
+
+LEXICON AdvI
+  +Adv:jai  # ;
+
+LEXICON AdvU
+  +Adv:u    # ;
+
+! ─── Komparativ/Superlativ: gemeinsame i-/jo-Deklination (fix, kein ^) ─────
+! Der Stamm (AdjCmpStems/AdjSupStems) trägt schon den Grad (-ais/-jais/-uis bzw.
+! uka+…); hier nur die Endungen. Aufbau wie Par.27 (jo-Stamm, Masc/Neut) mit
+! Fem-i-Deklination, jedoch Gen.Pl./Dat.Pl. obliqu -in/-imans (eigenes Muster).
+
+LEXICON AdjCmpInfl
+  AdvCmp ;
+  AdjCmpMasc ;
+  AdjCmpFem ;
+  AdjCmpNeut ;
+
+LEXICON AdjSupInfl
+  AdvSup ;
+  AdjSupMasc ;
+  AdjSupFem ;
+  AdjSupNeut ;
+
+LEXICON AdvCmp
+  +Adv+Cmp:0  # ;
+
+LEXICON AdvSup
+  +Adv+Sup:0  # ;
+
+LEXICON AdjCmpMasc
+  +Adj+Cmp+Masc+Sg+Nom:is     # ;
+  +Adj+Cmp+Masc+Sg+Gen:jas    # ;
+  +Adj+Cmp+Masc+Sg+Dat:jasmu  # ;
+  +Adj+Cmp+Masc+Sg+Acc:in     # ;
+  +Adj+Cmp+Masc+Pl+Nom:jai    # ;
+  +Adj+Cmp+Masc+Pl+Gen:in     # ;
+  +Adj+Cmp+Masc+Pl+Dat:imans  # ;
+  +Adj+Cmp+Masc+Pl+Acc:ins    # ;
+
+LEXICON AdjCmpFem
+  +Adj+Cmp+Fem+Sg+Nom:i       # ;
+  +Adj+Cmp+Fem+Sg+Gen:jas     # ;
+  +Adj+Cmp+Fem+Sg+Dat:jai     # ;
+  +Adj+Cmp+Fem+Sg+Acc:jan     # ;
+  +Adj+Cmp+Fem+Pl+Nom:jas     # ;
+  +Adj+Cmp+Fem+Pl+Gen:jan     # ;
+  +Adj+Cmp+Fem+Pl+Dat:jamans  # ;
+  +Adj+Cmp+Fem+Pl+Acc:jans    # ;
+
+LEXICON AdjCmpNeut
+  +Adj+Cmp+Neut+Sg+Nom:i      # ;
+  +Adj+Cmp+Neut+Sg+Gen:jas    # ;
+  +Adj+Cmp+Neut+Sg+Dat:jasmu  # ;
+  +Adj+Cmp+Neut+Sg+Acc:i      # ;
+  +Adj+Cmp+Neut+Pl+Nom:jai    # ;
+  +Adj+Cmp+Neut+Pl+Gen:in     # ;
+  +Adj+Cmp+Neut+Pl+Dat:imans  # ;
+  +Adj+Cmp+Neut+Pl+Acc:ins    # ;
+
+LEXICON AdjSupMasc
+  +Adj+Sup+Masc+Sg+Nom:is     # ;
+  +Adj+Sup+Masc+Sg+Gen:jas    # ;
+  +Adj+Sup+Masc+Sg+Dat:jasmu  # ;
+  +Adj+Sup+Masc+Sg+Acc:in     # ;
+  +Adj+Sup+Masc+Pl+Nom:jai    # ;
+  +Adj+Sup+Masc+Pl+Gen:in     # ;
+  +Adj+Sup+Masc+Pl+Dat:imans  # ;
+  +Adj+Sup+Masc+Pl+Acc:ins    # ;
+
+LEXICON AdjSupFem
+  +Adj+Sup+Fem+Sg+Nom:i       # ;
+  +Adj+Sup+Fem+Sg+Gen:jas     # ;
+  +Adj+Sup+Fem+Sg+Dat:jai     # ;
+  +Adj+Sup+Fem+Sg+Acc:jan     # ;
+  +Adj+Sup+Fem+Pl+Nom:jas     # ;
+  +Adj+Sup+Fem+Pl+Gen:jan     # ;
+  +Adj+Sup+Fem+Pl+Dat:jamans  # ;
+  +Adj+Sup+Fem+Pl+Acc:jans    # ;
+
+LEXICON AdjSupNeut
+  +Adj+Sup+Neut+Sg+Nom:i      # ;
+  +Adj+Sup+Neut+Sg+Gen:jas    # ;
+  +Adj+Sup+Neut+Sg+Dat:jasmu  # ;
+  +Adj+Sup+Neut+Sg+Acc:i      # ;
+  +Adj+Sup+Neut+Pl+Nom:jai    # ;
+  +Adj+Sup+Neut+Pl+Gen:in     # ;
+  +Adj+Sup+Neut+Pl+Dat:imans  # ;
+  +Adj+Sup+Neut+Pl+Acc:ins    # ;
+
+! ===========================================================================
+! LEXICON AdvExcept — hand-gepflegte Adverb-Ausnahmen (regelloser Rest)
+! ===========================================================================
+! Suppletion (labs→walnai, līkuts→mazzan, debīks→tūlan) und Stamm-Irregularität
+! (Geminat-/Stamm-Wahrung: dabbars, timmars, tikkars; auktums, seks) sind per
+! Definition regellos und MÜSSEN gelistet werden — als fertige Gradformen, NICHT
+! als Regel. gen/coverage_adverb.py liest diese Liste (Lemma-Quelle) und rechnet
+! die Lemmata aus der Regel-Deckung heraus; die Formen selbst stehen hier als
+! Mini-LUT für genau den regellosen Rest.
+LEXICON AdvExcept
+  ! Suppletiva
+  labs+Adv:labbai                  # ;
+  labs+Adv+Cmp:walnai              # ;
+  labs+Adv+Sup:ukawalnai           # ;
+  līkuts+Adv:mazzan                # ;
+  līkuts+Adv+Cmp:mazzais           # ;
+  līkuts+Adv+Sup:ukamazzais        # ;
+  debīks+Adv:tūlan                 # ;
+  debīks+Adv+Cmp:tūls              # ;
+  debīks+Adv+Sup:ukatūls           # ;
+  ! Stamm-Irregularität (Geminat wahrung / abweichender Stamm)
+  dabbars+Adv:dabbrai              # ;
+  dabbars+Adv+Cmp:dabbrais         # ;
+  dabbars+Adv+Sup:ukadabbrais      # ;
+  timmars+Adv:timmrai              # ;
+  timmars+Adv+Cmp:timmrais         # ;
+  timmars+Adv+Sup:ukatimmrais      # ;
+  tikkars+Adv:tikkrai              # ;
+  tikkars+Adv+Cmp:tikkrais         # ;
+  tikkars+Adv+Sup:ukatikkrais      # ;
+  auktums+Adv:auktumai             # ;
+  auktums+Adv+Cmp:auktumais        # ;
+  auktums+Adv+Sup:ukaauktumais     # ;
+  seks+Adv:sekku                   # ;
+  seks+Adv+Cmp:sekkuis             # ;
+  seks+Adv+Sup:ukasekkuis          # ;

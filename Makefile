@@ -26,7 +26,7 @@ LEXC_MERGED := build/lexc.merged
 # uv run = Projekt-Env, damit hfst überall verfügbar ist (auch ohne System-Install).
 HFST := uv run python src/prussian_fst/build_fst.py
 
-.PHONY: all gen clean cg3-sets cg3-check disambiguate conllu hfstol links astem adj istem ustem jostem aastem nstem
+.PHONY: all gen clean cg3-sets cg3-check disambiguate conllu hfstol links astem adj istem ustem jostem aastem nstem adverb
 
 all: build/base.hfstol build/macron.hfstol build/lenient.hfstol build/base.gen.hfstol
 
@@ -101,6 +101,29 @@ adj: build/gen-adj.gen.hfstol
 
 build/gen-adj-stems.lexc: gen/adj.lexc gen/coverage_adj.py $(TWANKSTA_JSON) | build/
 	uv run python gen/coverage_adj.py --emit-stems $@
+
+# Adverb-Gradtafel (Positiv/Komparativ/Superlativ): dieselbe Grammatik gen/adj.lexc
+# (Adv{A,I,U} + AdjCmp/AdjSup + LEXICON AdvExcept), Stämme über gen/coverage_adverb.py.
+# Eigene Regeln, weil die Grammatik gen/adj.lexc heißt (nicht gen/adverb.lexc) und
+# die Stammquelle coverage_adverb.py ist (nicht die generischen coverage_gen-Regeln).
+#   make adverb                   # baut build/gen-adverb.gen.hfstol
+# Deckungstest: uv run python gen/coverage_adverb.py
+adverb: build/gen-adverb.gen.hfstol
+
+build/gen-adverb-stems.lexc: gen/adj.lexc gen/coverage_adverb.py $(TWANKSTA_JSON) | build/
+	uv run python gen/coverage_adverb.py --emit-stems $@
+
+build/gen-adverb.combined.lexc: gen/adj.lexc build/gen-adverb-stems.lexc | build/
+	cat gen/adj.lexc build/gen-adverb-stems.lexc > $@
+
+build/gen-adverb.fst: build/gen-adverb.combined.lexc | build/
+	$(HFST) lexc $< $@
+
+build/gen-adverb.composed.fst: build/gen-adverb.fst build/gen-accent.hfst
+	$(HFST) compose $@ build/gen-adverb.fst build/gen-accent.hfst
+
+build/gen-adverb.gen.hfstol: build/gen-adverb.composed.fst
+	$(HFST) hfstol-gen $< $@
 
 # Correction layers, one stage per phenomenon (norm/*.regex → build/norm-*.hfst).
 # Composed onto the canonical surface; use only as fallback analyzer for
