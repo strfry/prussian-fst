@@ -282,7 +282,7 @@ def nominal_forms(entry: dict, pos_tag: str, subtype_tag: str = "") -> list[tupl
                     if form:
                         for variant in form.split(" / "):
                             if " " not in variant:
-                                results.append((f"{pos_tag}{subtype_tag}{deg_tag}+{num_tag}+{c_tag}{g_tag}", variant))
+                                results.append((f"{pos_tag}{subtype_tag}{deg_tag}{g_tag}+{num_tag}+{c_tag}", variant))
     return results
 
 
@@ -450,9 +450,9 @@ def verb_forms(entry: dict, prep_words: set[str] | None = None) -> tuple[str, di
                             for variant in form.split(" / "):
                                 variant = variant.strip()
                                 if variant:
-                                    results[f"{upper}+V+Part+{tag}+{num_tag}+{c_tag}{g_tag}{refl}:{lexc_esc(variant)}"] = True
+                                    results[f"{upper}+V+Part+{tag}{g_tag}+{num_tag}+{c_tag}{refl}:{lexc_esc(variant)}"] = True
         else:
-            results[f"{upper}+V+Part+{tag}+Sg+Nom+Masc{refl}:{lexc_esc(bare)}"] = True
+            results[f"{upper}+V+Part+{tag}+Masc+Sg+Nom{refl}:{lexc_esc(bare)}"] = True
 
     # Extra participles from periphrastic Perfect/Future indicative forms
     results.update(extract_perfect_participles(forms.get("indicative", []),
@@ -562,7 +562,7 @@ def main():
                         total += 1
                 else:
                     gender = GENDER_MAP.get(e.get("gender", ""), "")
-                    lines.append(f"  {lexc_esc(word)}{tag}{subtype}+Sg+Nom{gender}:{lexc_esc(word)}  # ;")
+                    lines.append(f"  {lexc_esc(word)}{tag}{subtype}{gender}+Sg+Nom:{lexc_esc(word)}  # ;")
                     total += 1
             else:
                 for tt, form in forms:
