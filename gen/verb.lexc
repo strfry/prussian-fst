@@ -28,6 +28,18 @@
 !   143 (-au- Denominativa, Präs ≠ Pret)
 !   131 (-au-/-a- Denominativa, Präs=Pret; Endungstabelle = Par.132)
 !
+!   ── Phase 4a (Tier A, reguläre Klassen) ──
+!   144 (-ja-/-wa-, sehr regulär; drei Stämme auf Tier-B-Tafeln)
+!   142 (akzent-mobiles ā, Präs -a / Prät-Opt-Subj -ā-)
+!   136 (ī-Präsens-Klasse, Prät -ēi)
+!   111 (n-Infix -nja-/-wa-)
+!   71  (Geminaten-Alternanz, Präs=geminiert, kein -j-)
+!   75  (Geminaten-Alternanz, -ja-, Präs/Prät geminiert)
+!
+!   ── Phase 4b (Tier B, starke Verben, drei Prinzipalformen) ──
+!   VerbStrongStems: ein Lemma = Infinitiv-/Präsens-/Präteritalstamm auf die
+!   gemeinsamen Tafeln InfSubjOpt / PresImp / PretInd (Ablaut, Nasal-Infix, -st-).
+!
 ! Kanonische Tag-Reihenfolge: +V +Mood [+Tense] +Pers [+Num], P3 ohne Numerus.
 ! Reflexivität als optionales +Refl am Wortende (VerbEnd), Oberfläche ohne „ si".
 
@@ -46,6 +58,22 @@ LEXICON Root
   P139SubjStems ;  ! Par.139  Optativ-/Imperativ-/Subjunktiv-Stamm (-ī-)
   P143PresStems ;  ! Par.143  Präsent-Stamm
   P143PastStems ;  ! Par.143  Past-/Optativ-/Imperativ-/Subjunktiv-Stamm
+  P144InfStems ;   ! Par.144  Infinitiv-/Optativ-/Subjunktiv-Stamm
+  P144PresStems ;  ! Par.144  Präsent-/Imperativ-Stamm (-j-)
+  P144PretStems ;  ! Par.144  Präterit-Stamm (-w-)
+  P142FinStems ;   ! Par.142  Präsent-/Imperativ-Stamm (akzent-mobiles ā)
+  P142NfStems ;    ! Par.142  Prät-/Optativ-/Subjunktiv-Stamm (-ā-)
+  P136FinStems ;   ! Par.136  Präsent-/Imperativ-Stamm (Konsonant)
+  P136PretStems ;  ! Par.136  Präterital-Stamm (-ē-, mobile Kürzung)
+  P136NfStems ;    ! Par.136  Optativ-/Subjunktiv-Stamm (-ī-)
+  P111InfStems ;   ! Par.111  Infinitiv-/Optativ-/Subjunktiv-Stamm
+  P111PresStems ;  ! Par.111  Präsent-/Imperativ-Stamm (n-Infix -nja)
+  P111PretStems ;  ! Par.111  Präterit-Stamm (-w-)
+  P71FinStems ;    ! Par.71   Präsent-/Prät-/Imperativ-Stamm (geminiert)
+  P71NfStems ;     ! Par.71   Optativ-/Subjunktiv-Stamm (un-geminiert)
+  P75FinStems ;    ! Par.75   Präsent-/Prät-Stamm (geminiert, -ja-)
+  P75NfStems ;     ! Par.75   Optativ-/Subjunktiv-/Imperativ-Stamm (un-geminiert)
+  VerbStrongStems ;! Tier B  Drei-Prinzipalformen-Stämme (ein Lemma = drei Stämme)
 
 ! Hand-geschriebene Grammatik (nur Endungen, KEINE Wörter). Die Stamm-Lexika oben
 ! werden aus twanksta gefüllt (gen/coverage_verb.py --emit-stems), der Build hängt
@@ -188,6 +216,113 @@ LEXICON P143Past
   +Opt+P3:sei           VerbEnd ;
   +Imp+P2+Sg:s          VerbEnd ;
   +Imp+P2+Pl:iti        VerbEnd ;
+
+! ─── Tier B — gemeinsame reguläre Endungstafeln (Drei-Prinzipalformen) ──────
+! Ein Lemma liefert drei Stämme (LEXICON VerbStrongStems): Infinitiv-, Präsens-
+! und Präteritalstamm. Jeder Stamm zeigt auf genau eine dieser drei Tafeln. Die
+! Endungen sind regulär; jede Irregularität (Ablaut, Nasal-Infix, -st-) sitzt in
+! genau EINER Prinzipalform, also in EINEM Stamm. Praeteritalstamm wird NICHT aus
+! dem Präsens vorhergesagt, sondern aus der 3.Sg.Praet abgeleitet.
+LEXICON InfSubjOpt
+  +Opt+P3:sei          VerbEnd ;
+  +Subj+P1+Sg:lai      VerbEnd ;
+  +Subj+P2+Sg:lai      VerbEnd ;
+  +Subj+P3:lai         VerbEnd ;
+  +Subj+P1+Pl:limai    VerbEnd ;
+  +Subj+P2+Pl:litei    VerbEnd ;
+
+LEXICON PresImp
+  +Ind+Pres+P1+Sg:a    VerbEnd ;
+  +Ind+Pres+P2+Sg:a    VerbEnd ;
+  +Ind+Pres+P3:a       VerbEnd ;
+  +Ind+Pres+P1+Pl:imai VerbEnd ;
+  +Ind+Pres+P2+Pl:itei VerbEnd ;
+  +Imp+P2+Sg:ais       VerbEnd ;
+  +Imp+P2+Pl:aiti      VerbEnd ;
+
+LEXICON PretInd
+  +Ind+Pret+P1+Sg:a    VerbEnd ;
+  +Ind+Pret+P2+Sg:a    VerbEnd ;
+  +Ind+Pret+P3:a       VerbEnd ;
+  +Ind+Pret+P1+Pl:amai VerbEnd ;
+  +Ind+Pret+P2+Pl:atei VerbEnd ;
+
+! ─── Tier A — reguläre Klassen ───────────────────────────────────────────────
+! Par.144 (-ja/-wa) teilt die Tier-B-Tafeln: InfSubjOpt, PresImp, PretInd.
+! Par.111 (n-Infix, -nja): Präsent/Imperativ mit -j-, sonst wie Tier B.
+LEXICON P111Pres
+  +Ind+Pres+P1+Sg:ja   VerbEnd ;
+  +Ind+Pres+P2+Sg:ja   VerbEnd ;
+  +Ind+Pres+P3:ja      VerbEnd ;
+  +Ind+Pres+P1+Pl:imai VerbEnd ;
+  +Ind+Pres+P2+Pl:itei VerbEnd ;
+  +Imp+P2+Sg:jais      VerbEnd ;
+  +Imp+P2+Pl:jaiti     VerbEnd ;
+
+! Par.142 (akzent-mobiles ā): Prät -i, Opt -sei, Subj -lai auf dem -ā- Stamm.
+LEXICON P142Nonfin
+  +Ind+Pret+P1+Sg:i    VerbEnd ;
+  +Ind+Pret+P2+Sg:i    VerbEnd ;
+  +Ind+Pret+P3:i       VerbEnd ;
+  +Ind+Pret+P1+Pl:imai VerbEnd ;
+  +Ind+Pret+P2+Pl:itei VerbEnd ;
+  +Opt+P3:sei          VerbEnd ;
+  +Subj+P1+Sg:lai      VerbEnd ;
+  +Subj+P2+Sg:lai      VerbEnd ;
+  +Subj+P3:lai         VerbEnd ;
+  +Subj+P1+Pl:limai    VerbEnd ;
+  +Subj+P2+Pl:litei    VerbEnd ;
+
+! Par.136 (ī, Prät -ēi): drei Stämme — der Konsonant-Stamm trägt Präs/Imp
+! (PresImp), der Präterital-Stamm (Prät.P3 minus -i) trägt Prät -i/-imai/-itei,
+! der ī-Stamm trägt Opt/Subj (InfSubjOpt). Der ē-/Vokalkürzungs-Wechsel im Prät
+! sitzt im abgeleiteten Präterital-Stamm (NICHT aus dem Präsens vorhergesagt).
+LEXICON P136Pret
+  +Ind+Pret+P1+Sg:i    VerbEnd ;
+  +Ind+Pret+P2+Sg:i    VerbEnd ;
+  +Ind+Pret+P3:i       VerbEnd ;
+  +Ind+Pret+P1+Pl:imai VerbEnd ;
+  +Ind+Pret+P2+Pl:itei VerbEnd ;
+
+! Par.71 (Geminaten-Alternanz): geminierter fin-Stamm trägt Präs -a/-amai/-atei,
+! Prät -i/-imai/-itei und Imperativ -ais/-aiti.
+LEXICON P71Fin
+  +Ind+Pres+P1+Sg:a    VerbEnd ;
+  +Ind+Pres+P2+Sg:a    VerbEnd ;
+  +Ind+Pres+P3:a       VerbEnd ;
+  +Ind+Pres+P1+Pl:amai VerbEnd ;
+  +Ind+Pres+P2+Pl:atei VerbEnd ;
+  +Ind+Pret+P1+Sg:i    VerbEnd ;
+  +Ind+Pret+P2+Sg:i    VerbEnd ;
+  +Ind+Pret+P3:i       VerbEnd ;
+  +Ind+Pret+P1+Pl:imai VerbEnd ;
+  +Ind+Pret+P2+Pl:itei VerbEnd ;
+  +Imp+P2+Sg:ais       VerbEnd ;
+  +Imp+P2+Pl:aiti      VerbEnd ;
+
+! Par.75 (Geminaten-Alternanz, -ja-): geminierter fin-Stamm trägt Präs -ja/
+! -jamai/-jatei und Prät -i; der un-geminierte Stamm trägt Opt/Subj/Imperativ.
+LEXICON P75Fin
+  +Ind+Pres+P1+Sg:ja   VerbEnd ;
+  +Ind+Pres+P2+Sg:ja   VerbEnd ;
+  +Ind+Pres+P3:ja      VerbEnd ;
+  +Ind+Pres+P1+Pl:jamai VerbEnd ;
+  +Ind+Pres+P2+Pl:jatei VerbEnd ;
+  +Ind+Pret+P1+Sg:i    VerbEnd ;
+  +Ind+Pret+P2+Sg:i    VerbEnd ;
+  +Ind+Pret+P3:i       VerbEnd ;
+  +Ind+Pret+P1+Pl:imai VerbEnd ;
+  +Ind+Pret+P2+Pl:itei VerbEnd ;
+
+LEXICON P75Nonfin
+  +Opt+P3:sei          VerbEnd ;
+  +Subj+P1+Sg:lai      VerbEnd ;
+  +Subj+P2+Sg:lai      VerbEnd ;
+  +Subj+P3:lai         VerbEnd ;
+  +Subj+P1+Pl:limai    VerbEnd ;
+  +Subj+P2+Pl:litei    VerbEnd ;
+  +Imp+P2+Sg:jais      VerbEnd ;
+  +Imp+P2+Pl:jaiti     VerbEnd ;
 
 ! ─── Optionales Reflexiv-Suffix (Oberfläche ohne „ si") ─────────────────────
 LEXICON VerbEnd
