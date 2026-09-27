@@ -16,6 +16,8 @@ Subkommandos (1:1 zu den bisherigen Makefile-Rezepten):
                                 (das Skript schreibt seinen Stack selbst)
   compose OUT IN...           — hfst-compose | hfst-minimize:
                                 IN[0] .o. IN[1] .o. … , minimiert → OUT
+  union   OUT IN...           — hfst-disjunct | hfst-minimize:
+                                IN[0] | IN[1] | … , minimiert → OUT
   hfstol  IN OUT              — hfst-invert | hfst-fst2fst:
                                 invertiert (surface→analysis) und in das
                                 optimized-lookup-Format (unweighted) → OUT
@@ -68,6 +70,15 @@ def cmd_compose(args: argparse.Namespace) -> None:
     _write(result, args.output)
 
 
+def cmd_union(args: argparse.Namespace) -> None:
+    """hfst-disjunct | hfst-minimize: union of transducers → OUT."""
+    result = _read(args.inputs[0])
+    for path in args.inputs[1:]:
+        result.disjunct(_read(path))
+    result.minimize()
+    _write(result, args.output)
+
+
 def cmd_hfstol(args: argparse.Namespace) -> None:
     """hfst-invert | hfst-fst2fst: invertieren und als optimized-lookup schreiben.
 
@@ -104,6 +115,11 @@ def main() -> None:
     p.add_argument("output")
     p.add_argument("inputs", nargs="+")
     p.set_defaults(func=cmd_compose)
+
+    p = sub.add_parser("union", help="Transducer vereinigen + minimieren")
+    p.add_argument("output")
+    p.add_argument("inputs", nargs="+")
+    p.set_defaults(func=cmd_union)
 
     p = sub.add_parser("hfstol", help="invertieren → optimized-lookup")
     p.add_argument("input")

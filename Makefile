@@ -168,6 +168,21 @@ build/gen-verb.composed.fst: build/gen-verb.fst build/gen-accent.hfst
 build/gen-verb.gen.hfstol: build/gen-verb.composed.fst
 	$(HFST) hfstol-gen $< $@
 
+# ── Kombinierter Generator: Union aller Familien → EIN analysis→surface FST ──
+# Ersetzt die twanksta-Vollform-LUT build/base.gen.hfstol als Generierungsquelle
+# des dictionary. Deckungstests: gen/coverage_*.py pro Familie.
+#   make gen-combined              # baut build/gen.hfstol
+GEN_FAMILIES := astem ustem istem jostem aastem nstem adj adverb partpres verb
+GEN_COMPOSED := $(GEN_FAMILIES:%=build/gen-%.composed.fst)
+
+gen-combined: build/gen.hfstol
+
+build/gen.fst: $(GEN_COMPOSED)
+	$(HFST) union $@ $(GEN_COMPOSED)
+
+build/gen.hfstol: build/gen.fst
+	$(HFST) hfstol-gen $< $@
+
 # Correction layers, one stage per phenomenon (norm/*.regex → build/norm-*.hfst).
 # Composed onto the canonical surface; use only as fallback analyzer for
 # forms not covered by the stricter stages.  The xfst script writes its
