@@ -47,85 +47,76 @@ HFST = ["uv", "run", "python", str(ROOT / "src" / "prussian_fst" / "build_fst.py
 # Quellform: "pres" = Present-P3, "subj" = Subjunktiv-P3. Der fin-Stamm trägt
 # die Präsens-Allomorphie schon vorgefertigt (z. B. Par.85 -inn-), der nonfin-
 # Stamm die Optativ-/Subjunktiv-Stammform (z. B. Par.85 -in-, Par.143 -au).
+# Paradigm = list of (stem lexicon, [atoms], source form, ending to strip).
+# One stem is derived from one principal form and emitted once per atom it feeds.
+# VerbStrongStems is just the shared bucket for classes with identical endings.
+_STRONG = [("VerbStrongStems", ["SubjOpt"],            "subj", "lai"),
+           ("VerbStrongStems", ["Pres_A", "Imp_Ais"],  "pres", "a"),
+           ("VerbStrongStems", ["Pret_A"],             "pret", "a")]
 PARADIGMS = {
-    "85":  [("P85FinStems",  "P85Fin",  "pres", "a"),
-            ("P85SubjStems", "P85Subj", "subj", "lai")],
-    "132": [("P132FinStems",  "P132Fin",  "pres", "i"),
-            ("P132SubjStems", "P132Subj", "subj", "lai")],
-    "138": [("P138FinStems",  "P138Fin",  "pres", "i"),
-            ("P138SubjStems", "P138Subj", "subj", "lai")],
-    "134": [("P134FinStems",  "P134Fin",  "pres", "i"),
-            ("P134SubjStems", "P134Subj", "subj", "lai")],
-    "139": [("P139FinStems",  "P139Fin",  "pres", "a"),
-            ("P139SubjStems", "P139Subj", "subj", "lai")],
-    "143": [("P143PresStems", "P143Pres", "pres", "ui"),
-            ("P143PastStems", "P143Past", "subj", "lai")],
-    # Par.131 (-au-/-a- Denominativa, Präs=Pret) teilt die Par.132-Endungstabelle
-    # (Präs -i/-imai/-itei, Opt -sei, Imp -is/-iti, Subj -lai/…); nur die Stämme
-    # kommen aus einem anderen Paradigma. Gleiche Endungen = gleiche Lexikon-Paare.
-    "131": [("P132FinStems",  "P132Fin",  "pres", "i"),
-            ("P132SubjStems", "P132Subj", "subj", "lai")],
-
-    # ── Phase 4a (Tier A, reguläre Klassen) ─────────────────────────────────
-    # Par.144 (-ja-/-wa-): drei Stämme auf den Tier-B-Tafeln.
-    "144": [("P144InfStems",  "InfSubjOpt", "subj", "lai"),
-            ("P144PresStems", "PresImp",     "pres", "a"),
-            ("P144PretStems", "PretInd",     "pret", "a")],
-    # Par.142 (akzent-mobiles ā): Präs/Imp auf akzent-mobilem Stamm,
-    # Prät/Opt/Subj auf dem -ā- Stamm.
-    "142": [("P142FinStems", "PresImp",    "pres", "a"),
-            ("P142NfStems",  "P142Nonfin", "subj", "lai")],
-    # Par.136 (ī-Klasse, Prät -ēi): drei Stämme — Kons-Stamm (Präs/Imp über
-    # PresImp), Präterital-Stamm (Prät -i, mobile Vokalkürzung), ī-Stamm (Opt/Subj).
-    "136": [("P136FinStems",  "PresImp",    "pres", "a"),
-            ("P136PretStems", "P136Pret",   "pret", "i"),
-            ("P136NfStems",   "InfSubjOpt", "subj", "lai")],
-    # Par.111 (n-Infix -nja-/-wa-): Präs -ja- + Imp -j-, Prät -a-/-amai/-atei.
-    "111": [("P111InfStems",  "InfSubjOpt", "subj", "lai"),
-            ("P111PresStems", "P111Pres",   "pres", "ja"),
-            ("P111PretStems", "PretInd",    "pret", "a")],
-    # Par.71 (Geminaten-Alternanz, kein -j-): geminierter fin-Stamm trägt
-    # Präs/Prät/Imp; un-geminierter Stamm trägt Opt/Subj.
-    "71":  [("P71FinStems", "P71Fin",     "pres", "a"),
-            ("P71NfStems",  "InfSubjOpt", "subj", "lai")],
-    # Par.75 (Geminaten-Alternanz, -ja-): geminierter fin-Stamm (Präs -ja-/Prät
-    # -i), un-geminierter Stamm (Opt/Subj/Imp -j-).
-    "75":  [("P75FinStems", "P75Fin",    "pres", "ja"),
-            ("P75NfStems",  "P75Nonfin", "subj", "lai")],
-
-    # ── Phase 4b (Tier B, starke Verben, drei Prinzipalformen) ──────────────
-    # Ein Lemma = drei Stämme (Infinitiv-, Präsens-, Präteritalstamm) auf die
-    # gemeinsamen Tafeln InfSubjOpt / PresImp / PretInd. Ablaut/Nasal-Infix/-st-
-    # sitzen in genau einer Prinzipalform; Prät-Stamm wird NICHT aus dem Präsens
-    # vorhergesagt. Allesamt ein LEXICON VerbStrongStems.
-    "97":  [("VerbStrongStems", "InfSubjOpt", "subj", "lai"),
-            ("VerbStrongStems", "PresImp",     "pres", "a"),
-            ("VerbStrongStems", "PretInd",     "pret", "a")],
-    "89":  [("VerbStrongStems", "InfSubjOpt", "subj", "lai"),
-            ("VerbStrongStems", "PresImp",     "pres", "a"),
-            ("VerbStrongStems", "PretInd",     "pret", "a")],
-    "92":  [("VerbStrongStems", "InfSubjOpt", "subj", "lai"),
-            ("VerbStrongStems", "PresImp",     "pres", "a"),
-            ("VerbStrongStems", "PretInd",     "pret", "a")],
-    "81":  [("VerbStrongStems", "InfSubjOpt", "subj", "lai"),
-            ("VerbStrongStems", "PresImp",     "pres", "a"),
-            ("VerbStrongStems", "PretInd",     "pret", "a")],
-    "87":  [("VerbStrongStems", "InfSubjOpt", "subj", "lai"),
-            ("VerbStrongStems", "PresImp",     "pres", "a"),
-            ("VerbStrongStems", "PretInd",     "pret", "a")],
+    "85":  [("P85PresStems",    ["Pres_A", "Pret_Ai", "Imp_Ais"], "pres", "a"),
+            ("P85NonfinStems",  ["SubjOpt"],                       "subj", "lai")],
+    "132": [("P132PresStems",   ["Pres_I", "Pret_I", "Imp_Is"],   "pres", "i"),
+            ("P132NonfinStems", ["SubjOpt"],                       "subj", "lai")],
+    "138": [("P138PresStems",   ["Pres_I", "Pret_I", "Imp_Is"],   "pres", "i"),
+            ("P138NonfinStems", ["SubjOpt"],                       "subj", "lai")],
+    "134": [("P134PresStems",   ["Pres_I", "Pret_I", "Imp_Is"],   "pres", "i"),
+            ("P134NonfinStems", ["SubjOpt"],                       "subj", "lai")],
+    "139": [("P139PresStems",   ["Pres_A", "Pret_Ai"],            "pres", "a"),
+            ("P139NonfinStems", ["SubjOpt", "Imp_S"],             "subj", "lai")],
+    "143": [("P143PresStems",   ["Pres_Ui"],                       "pres", "ui"),
+            ("P143NonfinStems", ["Pret_0", "SubjOpt", "Imp_Siti"], "subj", "lai")],
+    "131": [("P132PresStems",   ["Pres_I", "Pret_I", "Imp_Is"],   "pres", "i"),
+            ("P132NonfinStems", ["SubjOpt"],                       "subj", "lai")],
+    "144": [("P144NonfinStems", ["SubjOpt"],           "subj", "lai"),
+            ("P144PresStems",   ["Pres_A", "Imp_Ais"], "pres", "a"),
+            ("P144PretStems",   ["Pret_A"],            "pret", "a")],
+    "142": [("P142PresStems",   ["Pres_A", "Imp_Ais"], "pres", "a"),
+            ("P142NonfinStems", ["Pret_I", "SubjOpt"], "subj", "lai")],
+    "136": [("P136PresStems",   ["Pres_A", "Imp_Ais"], "pres", "a"),
+            ("P136PretStems",   ["Pret_I"],            "pret", "i"),
+            ("P136NonfinStems", ["SubjOpt"],           "subj", "lai")],
+    "111": [("P111NonfinStems", ["SubjOpt"],              "subj", "lai"),
+            ("P111PresStems",   ["Pres_Ja", "Imp_Jais"], "pres", "ja"),
+            ("P111PretStems",   ["Pret_A"],              "pret", "a")],
+    "71":  [("P71PresStems",    ["Pres_Aa", "Pret_I", "Imp_Ais"], "pres", "a"),
+            ("P71NonfinStems",  ["SubjOpt"],                       "subj", "lai")],
+    "75":  [("P75PresStems",    ["Pres_Jja", "Pret_I"],  "pres", "ja"),
+            ("P75NonfinStems",  ["SubjOpt", "Imp_Jais"], "subj", "lai")],
+    # Par.81: like Par.75 but with its own ablaut preterite stem (zārja/zēri).
+    "81":  [("VerbStrongStems", ["Pres_Jja", "Imp_Jais"], "pres", "ja"),
+            ("VerbStrongStems", ["Pret_I"],               "pret", "i"),
+            ("VerbStrongStems", ["SubjOpt"],              "subj", "lai")],
+    # Par.87: 87a (stem ends nasal+d) pret -amai, else 87b pret -imai; see _resolve_p87.
+    "87a": [("VerbStrongStems", ["Pres_A", "Pret_A", "Imp_Ais"],  "pres", "a"),
+            ("VerbStrongStems", ["SubjOpt"],                       "subj", "lai")],
+    "87b": [("VerbStrongStems", ["Pres_A", "Pret_Ai", "Imp_Ais"], "pres", "a"),
+            ("VerbStrongStems", ["SubjOpt"],                       "subj", "lai")],
+    "97": _STRONG, "89": _STRONG, "92": _STRONG,
 }
 
-# Weitere Klassen (Ablaut/Nasal-Infix/-st-, teils -ī-/-ū- schwache), die exakt
-# die drei gemeinsamen Tier-B-Tafeln teilen — datenbasiert geprüft (identische
-# Endungen, Präterital-Stamm eigenständig aus der Prät.-P3 abgeleitet).
+# More classes sharing the strong endings (own preterite stem from Past-P3).
 _THREE_STEM_EXTRA = ["88", "90", "91", "93", "94", "96", "99", "100", "102",
                      "106", "107", "108", "109", "113", "122", "141"]
 for _p in _THREE_STEM_EXTRA:
-    PARADIGMS[_p] = [
-        ("VerbStrongStems", "InfSubjOpt", "subj", "lai"),
-        ("VerbStrongStems", "PresImp",     "pres", "a"),
-        ("VerbStrongStems", "PretInd",     "pret", "a"),
-    ]
+    PARADIGMS[_p] = _STRONG
+
+
+def _resolve_p87(e: dict) -> str:
+    """Par.87 → 87a/87b: Prät-Plural -amai nach Nasal+d im Stamm, sonst -imai.
+
+    Der Präsens-/Präteritalstamm (Präs=Prät) endet bei den -amai-Verben auf Nasal+d
+    (kan-d-, brend-, skēnd-), bei den -imai-Verben auf Geminate/-d ohne Nasal
+    (badd-, skrāid-, glād-). Phonologisch bedingt, keine Einzelfälle.
+    """
+    pres3 = ""
+    for t in e.get("forms", {}).get("indicative", []):
+        if t["tense"] == "Present":
+            for s in t["forms"]:
+                if s["pronoun"] == "tāns/tenā/tennan":
+                    pres3 = strip_si(primary(s["form"]))
+    stem = pres3[:-1] if pres3.endswith("a") else pres3
+    return "87a" if stem.endswith("nd") else "87b"
 
 # Twanksta-Paradigmen-Labels mit Varianten-Suffix (identische Flexion zur
 # Basis-Nummer) bzw. Tippfehler auf die Basis normalisiert.
@@ -215,6 +206,8 @@ def load_targets() -> tuple[list[dict], int, list[dict]]:
     residuum: list[dict] = []
     for e in entries:
         para = PARA_ALIAS.get(e.get("paradigm"), e.get("paradigm"))
+        if para == "87":
+            para = _resolve_p87(e)   # 87a (Nasal+d, -amai) vs. 87b (-imai)
         if para not in PARADIGMS:
             continue
         word = e.get("word", "")
@@ -258,7 +251,7 @@ def load_targets() -> tuple[list[dict], int, list[dict]]:
         }
         stems = []
         ok = True
-        for stem_lex, infl, src, strip in PARADIGMS[para]:
+        for stem_lex, atoms, src, strip in PARADIGMS[para]:
             srcform = strip_si(srcmap[src])
             if not srcform.endswith(strip):
                 ok = False
@@ -267,7 +260,9 @@ def load_targets() -> tuple[list[dict], int, list[dict]]:
                     "want": f"…{strip}", "got": srcform or "∅",
                 })
                 break
-            stems.append((stem_lex, infl, srcform[: -len(strip)]))
+            stem = srcform[: -len(strip)] if strip else srcform
+            for atom in atoms:
+                stems.append((stem_lex, atom, stem))
         if not ok:
             continue
 
