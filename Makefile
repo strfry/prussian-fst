@@ -6,6 +6,7 @@
 #
 # Target:
 #   make              — build base.fst from all .lexc files
+#   make atoms        — datenfreie Atome des Kern-Generators (gen/atom_fst.py)
 #   make gen          — generiere .lexc-Dateien aus dem Dictionary
 #                       (kanonische Quelle: ../corpus/parsed/twanksta_entries.json)
 #   make cg3-sets     — generierte CG3-Sets/-Regeln aus valence.json
@@ -26,7 +27,7 @@ LEXC_MERGED := build/lexc.merged
 # uv run = Projekt-Env, damit hfst überall verfügbar ist (auch ohne System-Install).
 HFST := uv run python src/prussian_fst/build_fst.py
 
-.PHONY: all gen clean cg3-sets cg3-check disambiguate conllu hfstol links astem adj istem ustem jostem aastem nstem adverb partpres verb
+.PHONY: all gen clean cg3-sets cg3-check disambiguate conllu hfstol links astem adj istem ustem jostem aastem nstem adverb partpres verb atoms atom
 
 all: build/base.hfstol build/macron.hfstol build/lenient.hfstol build/base.gen.hfstol
 
@@ -168,6 +169,24 @@ build/gen-verb.composed.fst: build/gen-verb.fst build/gen-accent.hfst
 build/gen-verb.gen.hfstol: build/gen-verb.composed.fst
 	$(HFST) hfstol-gen $< $@
 
+# ── Datenfreie Atome: der Kern-Generator (kein twanksta, keine Wortliste) ──
+# gen/generator.py kennt nur die HAND-geschriebenen Grammatiken. Jedes Atom ist
+# eine Endungstabelle (gen/<fam>.lexc, gen/verb.lexc) mit zyklischem Stamm-
+# Kopierer ("STEM* + tag"), komponiert mit gen/accent.hfst und als OL exportiert:
+#   build/gen-<family>-<paradigm>[-<role>].hfstol
+# Genau das liest der Generator zur Laufzeit (pyhfst.lookup(stem + tag)) — die
+# Atome sind der einzige Build-Output des Kern-Generators. Ein hfst.compile_lexc_file
+# funktioniert pro Prozess nur einmal, deshalb baut --all je Atom einen Subprozess.
+#   make atoms                                       # alle 245 Atome
+#   make atom POS=verb PARADIGM=132 ROLE=nonfin      # ein einzelnes
+atoms: build/gen-accent.hfst
+	uv run python gen/atom_fst.py --all -j$$(nproc)
+
+atom: build/gen-accent.hfst
+	@test -n "$(POS)" -a -n "$(PARADIGM)" -a -n "$(ROLE)" || \
+	    { echo "Aufruf: make atom POS=noun PARADIGM=53 ROLE=obl"; exit 1; }
+	uv run python gen/atom_fst.py $(POS) $(PARADIGM) $(ROLE)
+
 # ── Kombinierter Generator: Union aller Familien → EIN analysis→surface FST ──
 # Ersetzt die twanksta-Vollform-LUT build/base.gen.hfstol als Generierungsquelle
 # des dictionary. Deckungstests: gen/coverage_*.py pro Familie.
@@ -177,8 +196,9 @@ GEN_COMPOSED := $(GEN_FAMILIES:%=build/gen-%.composed.fst)
 
 gen-combined: build/gen.hfstol
 
+# Regel-Union der Familien (Datengrammatik) → EIN analysis→surface FST.
 build/gen.fst: $(GEN_COMPOSED)
-	$(HFST) union $@ $(GEN_COMPOSED)
+	$(HFST) union $@ $^
 
 build/gen.hfstol: build/gen.fst
 	$(HFST) hfstol-gen $< $@
