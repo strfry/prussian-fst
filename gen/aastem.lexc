@@ -1,7 +1,6 @@
 ! Handgeschriebener generativer FST — Nomen, ā/jā/ī-Stämme (feminine ā-Familie).
 !
 ! Feminine Deklinationen mit a-/i-Themavokal; teilt sich gen/accent.regex.
-! Test: gen/coverage_gen.py --family aastem.
 !
 !   Par  Typ   Nom.Sg Gen.Sg Dat.Sg Akk.Sg Nom.Pl Gen.Pl Dat.Pl   Akk.Pl  Stamm
 !   45   jā    ∅      s      i      n      s      n      mans     ns      a-final (Gen−s)
@@ -30,49 +29,48 @@ LEXICON Root
 ! Hand-geschriebene Grammatik (nur Endungen, KEINE Wörter). LEXICON Root oben
 ! verweist auf die PxxStems; deren Einträge (Lemma+N+Fem:Stamm  Pxx ;) kommen
 ! aus twanksta, der Build hängt sie an (siehe Makefile):
-!   uv run python gen/coverage_gen.py --family aastem --emit-stems build/gen-aastem-stems.lexc
 
 ! >>> ENDUNGEN — je Twanksta-Paradigmennummer eine Endungstabelle <<<
 
 LEXICON P45
-  +Sg+Nom:0        # ;   ! Stamm ist a-final → Nom.Sg. = blanker Stamm
-  +Sg+Gen:s        # ;
-  +Sg+Dat:i        # ;
-  +Sg+Acc:n        # ;
-  +Pl+Nom:s        # ;
-  +Pl+Gen:n        # ;
-  +Pl+Dat:mans     # ;
-  +Pl+Acc:ns       # ;
+  +N+Sg+Nom:0        # ;   ! Stamm ist a-final → Nom.Sg. = blanker Stamm
+  +N+Sg+Gen:s        # ;
+  +N+Sg+Dat:i        # ;
+  +N+Sg+Acc:n        # ;
+  +N+Pl+Nom:s        # ;
+  +N+Pl+Gen:n        # ;
+  +N+Pl+Dat:mans     # ;
+  +N+Pl+Acc:ns       # ;
 
 LEXICON P46
-  +Sg+Nom:%^ā      # ;   ! schweres Thema -ā → Betonung auf Endung, Stamm leicht
-  +Sg+Gen:as       # ;
-  +Sg+Dat:ai       # ;
-  +Sg+Acc:an       # ;
-  +Pl+Nom:as       # ;
-  +Pl+Gen:an       # ;
-  +Pl+Dat:%^āmans  # ;   ! schweres Thema -ā → Stamm leicht
-  +Pl+Acc:ans      # ;
+  +N+Sg+Nom:%^ā      # ;   ! schweres Thema -ā → Betonung auf Endung, Stamm leicht
+  +N+Sg+Gen:as       # ;
+  +N+Sg+Dat:ai       # ;
+  +N+Sg+Acc:an       # ;
+  +N+Pl+Nom:as       # ;
+  +N+Pl+Gen:an       # ;
+  +N+Pl+Dat:%^āmans  # ;   ! schweres Thema -ā → Stamm leicht
+  +N+Pl+Acc:ans      # ;
 
 LEXICON P50
-  +Sg+Nom:i        # ;
-  +Sg+Gen:jas      # ;
-  +Sg+Dat:jai      # ;
-  +Sg+Acc:jan      # ;
-  +Pl+Nom:jas      # ;
-  +Pl+Gen:jan      # ;
-  +Pl+Dat:jamans   # ;
-  +Pl+Acc:jans     # ;
+  +N+Sg+Nom:i        # ;
+  +N+Sg+Gen:jas      # ;
+  +N+Sg+Dat:jai      # ;
+  +N+Sg+Acc:jan      # ;
+  +N+Pl+Nom:jas      # ;
+  +N+Pl+Gen:jan      # ;
+  +N+Pl+Dat:jamans   # ;
+  +N+Pl+Acc:jans     # ;
 
 ! Par.51 = mobiler ī-Stamm (Gegenstück zu P50): der Obliquus trägt das schwere
 ! Merkmal (Geminate Russ-/arr- oder Makron āld-), Nom.Sg. und Dat.Pl. reduzieren
 ! (Russ+^ī → Rusī, āld+^ī → aldī; Russ+^jāmans → Rusjāmans). Stamm = Gen.Sg minus -jas.
 LEXICON P51
-  +Sg+Nom:%^ī      # ;   ! schwerer Obliquus → Nom.Sg. leicht
-  +Sg+Gen:jas      # ;
-  +Sg+Dat:jai      # ;
-  +Sg+Acc:jan      # ;
-  +Pl+Nom:jas      # ;
-  +Pl+Gen:jan      # ;
-  +Pl+Dat:%^jāmans # ;   ! leichter Stamm
-  +Pl+Acc:jans     # ;
+  +N+Sg+Nom:%^ī      # ;   ! schwerer Obliquus → Nom.Sg. leicht
+  +N+Sg+Gen:jas      # ;
+  +N+Sg+Dat:jai      # ;
+  +N+Sg+Acc:jan      # ;
+  +N+Pl+Nom:jas      # ;
+  +N+Pl+Gen:jan      # ;
+  +N+Pl+Dat:%^jāmans # ;   ! leichter Stamm
+  +N+Pl+Acc:jans     # ;

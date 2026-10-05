@@ -37,22 +37,31 @@ Wert ohne `" si"`; Varianten = mehrere `inflectedForm` mit gleichem `tag`.
 0.3 **Kanonisches Slot-Vokabular = `corpus/MAPPING.md` §4.2 (`inflectedFormTags`),
 POS-übergreifend.** Auszug:
 - Nomen: `sg.nom … pl.acc`.
-- Adjektiv: `masc.sg.nom … neut.pl.acc`, `cmp.*`, `sup.*`; Adverb `adv`, `adv.cmp`, `adv.sup`.
-- Verb: `pres.<p>` `past.<p>` `subj.<p>` (p ∈ `p1.sg,p2.sg,p3,p1.pl,p2.pl`; P3 numeruslos),
-  `opt`, `imp.sg`, `imp.pl`.
-- Partizip: `part.{pres,past,pass}.<gender>.<num>.<case>`.
+- Adjektiv: `msc.sg.nom … neu.pl.acc`, `comp.<g>.<n>.<c>`, `superl.<g>.<n>.<c>`; Adverb
+  `adv`, `adv.comp`, `adv.superl`.
+- Verb: `prs.<pn>` `prt.<pn>` `subj.<pn>` (pn ∈ `sg1,sg2,sp3,pl1,pl2`; SP3 = numerus-
+  fusionierte 3. Person), `opt`, `imprt.sg2`, `imprt.pl2`.
+- Partizip: `part.prs.act.<g>.<n>.<c>`, `part.prf.act.<g>.<n>.<c>`, `part.prf.pss.<g>.<n>.<c>`
+  (Genus-Komponente <g> ∈ `msc/fem/neu`; Passiv = PrcTyp `prf` + Voice `pss`).
+
+Die Slot-Keys sind **Giella-FST-Komponenten**: Person/Num ist fusioniert und in
+Giella-Reihenfolge (`sg1 sg2 sp3 pl1 pl2`), POS-Marker steht nicht im Key. Genus ist beim
+Nomen ein **Entry-Fakt** (`gender: masc|fem|neut`, voll ausgeschrieben) und steht dort
+deshalb nicht im Slot — nur die Slot-Key-Komponente heißt `msc/neu`.
 
 **Seed-Slots je Familie (= heutige `srcmap`/Stammlogik):**
 - Nomen (z. B. i-Stamm): `sg.gen` → obliquer Stamm (Header `istem.lexc`: „obliquer Stamm
   = Gen.Sg. minus -is"); `sg.nom` = Lemma.
-- Verb: `pres.p3`, `past.p3`, `subj.p3`; Partizip-Seeds `part.{pres,past,pass}.masc.sg.nom`.
-- Adjektiv/Adverb analog aus der jeweiligen Familienlogik.
+- Verb: `prs.sp3`, `prt.sp3`, `subj.sp3`; Partizip-Seeds `part.prs.act.msc.sg.nom`,
+  `part.prf.act.msc.sg.nom`, `part.prf.pss.msc.sg.nom`.
+- Adjektiv/Adverb analog aus der jeweiligen Familienlogik (Adj-Positiv: `msc.sg.gen` →
+  obliquer Stamm).
 
 0.4 **Stufenmodell (Stage 0–2), generalisiert.**
 - **Stufe 0** — nur Lemma + Paradigma: Stamm/Stämme per **Default-Regel aus dem Lemma**
   je Paradigma. Deckt die reguläre Mehrheit (Nomen ~99,6 %; Verben ~84 %).
 - **Stufe 1** — Seed-`inflectedForm`(s) in der NVH, wo die Default-Regel fehlgeht
-  (Verb: `pres.p3`/`past.p3`; Nomen: irregulärer obliquer Stamm).
+  (Verb: `prs.sp3`/`prt.sp3`; Nomen: irregulärer obliquer Stamm).
 - **Stufe 2** — seltene Zusatz-/Suppletiv-Stämme (Verb: Partizip-Seeds/Suppletiva).
 - **Stufe 3** — Rest-Overrides (Nicht-Seed-Slots): in **diesem** Arbeitspaket nur gezählt;
   FST-Verdrahtung ist separat (§6).

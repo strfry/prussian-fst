@@ -54,30 +54,89 @@ def atoms():
 # ── reine Tabellen: Slot-Key → lexc-Tag ─────────────────────────────────────
 
 @pytest.mark.parametrize("slot, tag", [
-    ("sg.nom", "+Sg+Nom"), ("pl.dat", "+Pl+Dat"),
-    ("masc.sg.nom", "+Adj+Masc+Sg+Nom"), ("neut.pl.acc", "+Adj+Neut+Pl+Acc"),
-    ("cmp.masc.sg.nom", "+Adj+Cmp+Masc+Sg+Nom"), ("sup.neut.sg.dat", "+Adj+Sup+Neut+Sg+Dat"),
-    ("adv", "+Adv"), ("adv.cmp", "+Adv+Cmp"), ("adv.sup", "+Adv+Sup"),
-    ("pres.p1.sg", "+Ind+Pres+P1+Sg"), ("pres.p3", "+Ind+Pres+P3"),
-    ("past.p2.pl", "+Ind+Pret+P2+Pl"), ("subj.p1.sg", "+Subj+P1+Sg"),
-    ("subj.p3", "+Subj+P3"), ("opt", "+Opt+P3"),
-    ("imp.sg", "+Imp+P2+Sg"), ("imp.pl", "+Imp+P2+Pl"),
-    ("part.pres.masc.sg.nom", "+V+Part+Pres+Masc+Sg+Nom"),
-    # PartAct/PartPass tragen in gen/adj.lexc kein +V (so fragt coverage_adj.py ab).
-    ("part.past.masc.sg.nom", "+Part+Past+Masc+Sg+Nom"),
-    ("part.pass.neut.pl.gen", "+Part+Pass+Neut+Pl+Gen"),
+    ("sg.nom", "+N+Sg+Nom"), ("pl.dat", "+N+Pl+Dat"),
+    ("msc.sg.nom", "+A+Msc+Sg+Nom"), ("neu.pl.acc", "+A+Neu+Pl+Acc"),
+    ("comp.msc.sg.nom", "+A+Comp+Msc+Sg+Nom"), ("superl.neu.sg.dat", "+A+Superl+Neu+Sg+Dat"),
+    ("adv", "+Adv"), ("adv.comp", "+Adv+Comp"), ("adv.superl", "+Adv+Superl"),
+    ("prs.sg1", "+V+Ind+Prs+Sg1"), ("prs.sp3", "+V+Ind+Prs+SP3"),
+    ("prt.pl2", "+V+Ind+Prt+Pl2"), ("subj.sg1", "+V+Subj+Sg1"),
+    ("subj.sp3", "+V+Subj+SP3"), ("opt", "+V+Opt+SP3"),
+    ("imprt.sg2", "+V+Imprt+Sg2"), ("imprt.pl2", "+V+Imprt+Pl2"),
+    ("part.prs.act.msc.sg.nom", "+V+PrsPrc+Act+Msc+Sg+Nom"),
+    ("part.prf.act.msc.sg.nom", "+V+PrfPrc+Act+Msc+Sg+Nom"),
+    ("part.prf.pss.neu.pl.gen", "+V+PrfPrc+Pss+Neu+Pl+Gen"),
 ])
 def test_slot_tag(slot, tag):
-    v_prefix = not slot.startswith(("part.past", "part.pass"))
-    assert gen.slot_tag(slot, v_prefix) == tag
+    assert gen.slot_tag(slot) == tag
 
 
 @pytest.mark.parametrize("bad", [
-    "sg", "sg.loc", "cmp.sg.nom", "pres.p4", "pres.p3.pl", "nonsense", "sg.nom.x",
+    "sg", "sg.loc", "comp.msc.nom", "prs.p4", "prs.sp3.pl", "nonsense", "sg.nom.x",
 ])
 def test_slot_tag_rejects_unknown(bad):
     with pytest.raises(ValueError):
         gen.slot_tag(bad)
+
+
+# ── Round-Trip: Slot-Key → FST-Tag → Slot-Key (bijektiv je POS) ────────────
+
+def _tag_to_slot(tag: str) -> str:
+    """FST-Tag → NVH-Slot-Key (Umkehr von ``generator.slot_tag``)."""
+    pos, *rest = tag.lstrip("+").split("+")
+    if pos == "N":
+        number, case = rest
+        return f"{number.lower()}.{case.lower()}"
+    if pos == "Adv":
+        return "adv" if not rest else f"adv.{rest[0].lower()}"
+    if pos == "A":
+        degree = rest[0].lower() if rest[0] in ("Comp", "Superl") else ""
+        gender, number, case = rest[-3:]
+        tail = (degree, gender.lower(), number.lower(), case.lower())
+        return ".".join(p for p in tail if p)
+    if pos == "V":
+        if rest[0] in ("PrsPrc", "PrfPrc"):
+            _, voice, gender, number, case = rest
+            tense = "prs" if rest[0] == "PrsPrc" else "prf"
+            tail = (tense, voice.lower(), gender.lower(), number.lower(), case.lower())
+            return "part." + ".".join(tail)
+        mood = rest[0]
+        if mood == "Opt":
+            return "opt"
+        if mood == "Subj":
+            return f"subj.{rest[1].lower()}"
+        if mood == "Imprt":
+            return f"imprt.{rest[1].lower()}"
+        tense, persnum = rest[1], rest[2]
+        return f"{tense.lower()}.{persnum.lower()}"
+    raise AssertionError(f"unbekannter POS-Marker {pos!r}")
+
+
+ROUNDTRIP_SLOTS = [
+    # Nomen
+    gen.NOUN_SLOTS[0], gen.NOUN_SLOTS[-1],
+    # Adjektiv (Positiv / comp / superl / Adverb)
+    gen.ADJ_POS_SLOTS[0], gen.ADJ_POS_SLOTS[-1],
+    gen.ADJ_CMP_SLOTS[0], gen.ADJ_SUP_SLOTS[-1],
+    gen.ADVERB_SLOTS[0], gen.ADVERB_SLOTS[-1],
+    # Verb finit (alle Modus-/Tempusklassen)
+    gen.VERB_PRES_SLOTS[0], gen.VERB_PRES_SLOTS[2],
+    gen.VERB_PAST_SLOTS[0], gen.VERB_SUBJ_SLOTS[-1],
+    gen.VERB_OPT_SLOTS[0], gen.IMP_SLOTS[0], gen.IMP_SLOTS[-1],
+    # Partizipien (alle Prc-Typ/Voice-Kombinationen)
+    gen.PART_PRES_SLOTS[0], gen.PART_PAST_SLOTS[-1], gen.PART_PASS_SLOTS[3],
+]
+
+
+@pytest.mark.parametrize("slot", ROUNDTRIP_SLOTS)
+def test_slot_tag_roundtrip(slot):
+    """key → slot_tag → key: bijektiv (ein Slot je POS-Vertretung)."""
+    assert _tag_to_slot(gen.slot_tag(slot)) == slot
+
+
+def test_slot_tag_roundtrip_is_injective():
+    """Verschiedene Slots dürfen nie denselben Tag ergeben."""
+    tags = {slot: gen.slot_tag(slot) for slot in ROUNDTRIP_SLOTS}
+    assert len(set(tags.values())) == len(tags), tags
 
 
 # ── Metadaten: jeder Atom-Name muss in der Grammatik existieren ─────────────
@@ -120,31 +179,102 @@ def test_atom_names_are_unique_and_245():
                              "sup": "ukawilnjais"}),
     ("adj", "31", "tangus", {"pos": "tang", "adv": "tang", "cmp": "tanguis",
                              "sup": "ukatanguis"}),
-    # Verben führen zusätzlich die Partiziprollen; nonfin = Infinitivstamm.
+    # Verben führen zusätzlich die Partiziprollen; nonfin = Infinitivstamm, und die
+    # Partizipien sind es auch — nur mit eigener Endung (Gleit -w-, -nt, -t).
     ("verb", "132", "auwaitjātun", {"pres": "auwaitjā", "nonfin": "auwaitjā",
-                                     "partact": "auwaitjā", "partpass": "auwaitjā",
+                                     "partact": "auwaitjāw", "partpass": "auwaitjāt",
                                      "partpres": "auwaitjānt"}),
     ("verb", "138", "absōrbitun", {"pres": "absōrb", "nonfin": "absōrbi",
-                                   "partact": "absōrbi", "partpass": "absōrbi",
+                                   "partact": "absōrbiw", "partpass": "absōrbit",
                                    "partpres": "absōrbint"}),
+    # Klasse -taw-: au → aw, im Präsens au → a (der Infinitiv behält das -au).
     ("verb", "143", "alkautwei", {"pres": "alka", "nonfin": "alkau",
-                                   "partact": "alkau", "partpass": "alkau",
+                                   "partact": "alkaw", "partpass": "alkaut",
                                    "partpres": "alkawint"}),
     ("verb", "85", "appautwei", {"pres": "appau", "nonfin": "appau",
-                                 "partpres": "appawint", "partact": "appau",
-                                 "partpass": "appau"}),
+                                 "partpres": "appawint", "partact": "appaw",
+                                 "partpass": "appaut"}),
 ])
 def test_default_stems(pos, paradigm, lemma, stems):
     assert gen.default_stems(pos, paradigm, lemma=lemma) == stems
 
 
-def test_seed_wins_over_lemma():
-    """Stufe 1: eine attestierte Prinzipalform schlägt den Lemma-Stamm."""
-    assert gen.default_stems("noun", "53", lemma="dumslē",
-                             seeds={"sg.gen": "dumslis"})["obl"] == "dumsl"
-    # -na-Stamm: der Seed trägt die Genus-Endung, nicht der Lemma-Abzug.
-    assert gen.default_stems("noun", "61", lemma="woks",
-                             seeds={"sg.gen": "wokes"})["obl"] == "wok"
+def test_default_stems_without_lemma_is_empty():
+    """Ohne Lemma gibt es keinen Stamm zu raten — Stufe 0 liefert dann nichts."""
+    assert gen.default_stems("noun", "53") == {}
+    assert gen.default_stems("verb", "85") == {}
+
+
+def test_delivered_stem_overrides_the_rule(atoms):
+    """Stufe 1: ein gelieferter Stamm ist der Rollen-Stamm, verbatim."""
+    assert gen.generate("noun", "53", lemma="dumslē",
+                        stems={"obl": "wok"})["sg.gen"] == ("wokis",)
+    assert gen.generate("verb", "85", lemma="ainapreslintun",
+                        stems={"partpres": "ainapreslinānt"})[
+                            "part.prs.act.msc.sg.nom"] == ("ainapreslinānts",)
+
+
+# ── Stamm aus einer belegten Form: die Grammatik ist das Messgerät ──────────
+
+@pytest.mark.parametrize("pos, paradigm, role, slot, form, stem", [
+    ("noun", "53", "obl", "sg.gen", "dumslis", "dumsl"),
+    ("noun", "53", "obl", "pl.acc", "dumslins", "dumsl"),
+    ("noun", "32", "obl", "pl.dat", "Patallamans", "Patall"),
+    ("adj", "27", "pos", "msc.sg.gen", "wilnjas", "wiln"),
+    ("adj", "27", "adv", "adv", "wilnjai", "wiln"),
+    ("verb", "136", "pret", "prt.sp3", "kalbēi", "kalbē"),
+    ("verb", "132", "partact", "part.prf.act.msc.sg.nom", "mitāwuns", "mitāw"),
+    ("verb", "132", "partpres", "part.prs.act.msc.sg.nom", "mitānts", "mitānt"),
+    ("verb", "132", "partpass", "part.prf.pss.msc.sg.nom", "mitāts", "mitāt"),
+])
+def test_stem_from_form(atoms, pos, paradigm, role, slot, form, stem):
+    """Endung abziehen heißt: die Grammatik fragen, nicht eine Liste pflegen."""
+    assert gen.stem_from_form(pos, paradigm, role, slot, form) == stem
+
+
+def test_stem_from_form_reproduces_the_form(atoms):
+    """Der zurückgewonnene Stamm muss die Belegform wiederherstellen."""
+    for pos, paradigm, role, slot, form in (
+            ("noun", "53", "obl", "pl.acc", "dumslins"),
+            ("verb", "132", "partact", "part.prf.act.msc.sg.nom", "mitāwuns")):
+        stem = gen.stem_from_form(pos, paradigm, role, slot, form)
+        assert form in gen.generate(pos, paradigm, stems={role: stem})[slot]
+
+
+def test_stem_from_form_rejects_a_foreign_ending(atoms):
+    with pytest.raises(ValueError, match="endet nicht auf die Endung"):
+        gen.stem_from_form("noun", "53", "obl", "sg.gen", "dumslē")
+
+
+def test_stem_from_form_rejects_a_foreign_slot(atoms):
+    with pytest.raises(ValueError, match="gehört nicht zur Rolle"):
+        gen.stem_from_form("noun", "53", "obl", "prs.sp3", "dumslis")
+
+
+def test_slot_ending_is_measured_through_the_grammar(atoms):
+    """Die Endung kommt aus dem Atom, inklusive Akzentgrenze und Markern."""
+    assert gen.slot_ending("noun", "53", "obl", "sg.gen") == "is"
+    assert gen.slot_ending("noun", "53", "obl", "pl.dat") == "īmans"
+    # Der Gleitlaut steckt im Stamm (mitāw), nicht in der Endung des -uns-Partizips.
+    assert gen.slot_ending("verb", "132", "partact",
+                           "part.prf.act.msc.sg.nom") == "uns"
+
+
+def test_sentinel_survives_every_atom(atoms):
+    """Das Mess-Sentinel muss durch *jedes* Atom unversehindert laufen.
+
+    Sonst wäre eine gemessene Endung still falsch (Doppelkonsonante, Makrone vor
+    der Akzentgrenze, Geminate). Der Test läuft über alle Slots aller Paradigmen,
+    die der Generator kennt.
+    """
+    for (pos, paradigm), par in gen.PARADIGMS.items():
+        key = gen.resolve_paradigm(pos, paradigm, "dumslē")
+        for role, spec in par.roles.items():
+            for slot in spec.slots:
+                out = gen.generate(pos, key, stems={role: gen._SENTINEL_STEM})[slot]
+                assert len(out) == 1, (pos, paradigm, role, slot, out)
+                assert out[0].startswith(gen._SENTINEL_STEM), (pos, paradigm, role,
+                                                               slot, out)
 
 
 def test_verb_variant_87():
@@ -155,8 +285,9 @@ def test_verb_variant_87():
 
 
 def test_gender_is_pass_through_only():
-    with_g = gen.generate("noun", "53", lemma="dumslē", gender="fem")
-    assert with_g == gen.generate("noun", "53", lemma="dumslē")
+    plain = gen.generate("noun", "53", lemma="dumslē")
+    for entry_gender in ("fem", "masc", "neut"):
+        assert gen.generate("noun", "53", lemma="dumslē", gender=entry_gender) == plain
     with pytest.raises(ValueError):
         gen.generate("noun", "53", lemma="dumslē", gender="n")
 
@@ -184,31 +315,33 @@ def test_stem_alphabet_is_enforced():
         "pl.nom": "wokes", "pl.gen": "wokin", "pl.dat": "wokimans", "pl.acc": "wokins"}),
     # gen/adj.lexc AdjIInfl + AdvI + AdjCmp/AdjSup, Komparativ -jais, Superlativ uka+
     ("adj", "27", "wilnis", {
-        "masc.sg.nom": "wilnis", "masc.sg.gen": "wilnjas", "neut.sg.nom": "wilni",
-        "fem.pl.dat": "wilnimans", "adv": "wilnjai", "adv.cmp": "wilnjais",
-        "cmp.masc.sg.nom": "wilnjaisis", "sup.masc.sg.nom": "ukawilnjaisis"}),
+        "msc.sg.nom": "wilnis", "msc.sg.gen": "wilnjas", "neu.sg.nom": "wilni",
+        "fem.pl.dat": "wilnimans", "adv": "wilnjai", "adv.comp": "wilnjais",
+        "comp.msc.sg.nom": "wilnjaisis", "superl.msc.sg.nom": "ukawilnjaisis"}),
     # gen/adj.lexc AdjUMobInfl (w-Gleit: Gen.Sg. -was) + AdvU
     ("adj", "31", "tangus", {
-        "masc.sg.nom": "tangus", "masc.sg.gen": "tangwas", "adv": "tangu",
-        "adv.cmp": "tanguis", "cmp.masc.sg.nom": "tanguisis",
-        "sup.masc.sg.nom": "ukatanguisis"}),
+        "msc.sg.nom": "tangus", "msc.sg.gen": "tangwas", "adv": "tangu",
+        "adv.comp": "tanguis", "comp.msc.sg.nom": "tanguisis",
+        "superl.msc.sg.nom": "ukatanguisis"}),
     # Par.30 = reines u-Adverb (keine Deklination)
     ("adj", "30", "sengus", {
-        "adv": "sengu", "adv.cmp": "senguis", "adv.sup": "ukasenguis",
-        "cmp.masc.sg.nom": "senguisis", "sup.masc.sg.nom": "ukasenguisis"}),
+        "adv": "sengu", "adv.comp": "senguis", "adv.superl": "ukasenguis",
+        "comp.msc.sg.nom": "senguisis", "superl.msc.sg.nom": "ukasenguisis"}),
     # gen/verb.lexc Par.132: Pres_I/Pret_I/Imp_Is + SubjOpt, Stamm = Infinitivstamm
     ("verb", "132", "auwaitjātun", {
-        "pres.p1.sg": "auwaitjāi", "pres.p3": "auwaitjāi", "past.p3": "auwaitjāi",
-        "subj.p3": "auwaitjālai", "opt": "auwaitjāsei", "imp.sg": "auwaitjāis",
-        "imp.pl": "auwaitjāiti"}),
+        "prs.sg1": "auwaitjāi", "prs.sp3": "auwaitjāi", "prt.sp3": "auwaitjāi",
+        "subj.sp3": "auwaitjālai", "opt": "auwaitjāsei", "imprt.sg2": "auwaitjāis",
+        "imprt.pl2": "auwaitjāiti"}),
     # Par.143: Präs. -ui auf Stamm -a (alkaut → alka), Nonfin auf alkau (Pret_0/Imp_Siti)
     ("verb", "143", "alkautwei", {
-        "pres.p1.sg": "alkaui", "pres.p3": "alkaui", "past.p3": "alkau",
-        "subj.p3": "alkaulai", "imp.sg": "alkaus"}),
-    # Partizipien aus gen/adj.lexc: -wints (Klasse -taw-), -uns, -s
+        "prs.sg1": "alkaui", "prs.sp3": "alkaui", "prt.sp3": "alkau",
+        "subj.sp3": "alkaulai", "imprt.sg2": "alkaus"}),
+    # Partizipien aus gen/adj.lexc: -wints (Klasse -taw-), -wuns (Gleit -w- vor
+    # -uns), -ts (Stamm -t). Der Fem.Sg.Acc. des -uns-Partizips bleibt eine Lücke
+    # der Grammatik (-usjan), der Neut.Pl.Nom. des -ts-Partizips ebenso (-ai).
     ("verb", "85", "appautwei", {
-        "part.pres.masc.sg.nom": "appawints", "part.pres.fem.sg.nom": "appawintī",
-        "part.past.masc.sg.nom": "appauuns", "part.pass.masc.sg.nom": "appaus"}),
+        "part.prs.act.msc.sg.nom": "appawints", "part.prs.act.fem.sg.nom": "appawintī",
+        "part.prf.act.msc.sg.nom": "appawuns", "part.prf.pss.msc.sg.nom": "appauts"}),
 ])
 def test_forms(atoms, pos, paradigm, lemma, forms):
     out = gen.generate(pos, paradigm, lemma=lemma)
@@ -216,10 +349,39 @@ def test_forms(atoms, pos, paradigm, lemma, forms):
         assert out[slot] == (want,), f"{pos}/{paradigm} {lemma} {slot}: {out[slot]} ≠ {want}"
 
 
-def test_stem_override_is_stufe_2(atoms):
-    """Stufe 2 überschreibt den Rollen-Stamm; die Endungen bleiben dieselben."""
+def test_participle_roles_all_start_from_the_nonfin_stem(atoms):
+    """Der Nonfin-Stamm ist der Ausgangspunkt; nur die Endung unterscheidet sich."""
+    out = gen.generate("verb", "132", lemma="auwaitjātun")
+    assert out["subj.sp3"] == ("auwaitjālai",)
+    assert out["part.prf.act.msc.sg.nom"] == ("auwaitjāwuns",)   # + Gleit -w-
+    assert out["part.prf.pss.msc.sg.nom"] == ("auwaitjāts",)     # + -t
+    assert out["part.prs.act.msc.sg.nom"] == ("auwaitjānts",)     # + -nt
+
+
+def test_participle_glide_only_after_a_vowel(atoms):
+    """Nach Konsonant kein Gleitlaut (audeguns), nach Vokal einer (mitāwuns)."""
+    consonant = gen.generate("verb", "85", lemma="akkinantwei")
+    vowel = gen.generate("verb", "132", lemma="auwaitjātun")
+    assert consonant["part.prf.act.msc.sg.nom"][0].endswith("uns")
+    assert not consonant["part.prf.act.msc.sg.nom"][0].endswith("wuns")
+    assert vowel["part.prf.act.msc.sg.nom"] == ("auwaitjāwuns",)
+
+
+def test_delivered_stem_wins_over_the_participle_rule(atoms):
+    """Der thematische -in-Stamm ist lexikalisch: geliefert, nicht geregelt."""
+    out = gen.generate("verb", "85", lemma="ainapreslintun")
+    assert out["part.prs.act.msc.sg.nom"] == ("ainapreslinnts",)   # Regel-Fehler
+    fixed = gen.generate("verb", "85", lemma="ainapreslintun",
+                         stems={"partpres": "ainapreslinānt"})
+    assert fixed["part.prs.act.msc.sg.nom"] == ("ainapreslinānts",)
+    # Die Partiziprollen sind getrennt: partpass behält seinen eigenen Regelstamm.
+    assert fixed["part.prf.pss.msc.sg.nom"] == ("ainapreslints",)
+
+
+def test_stem_override_is_stufe_1(atoms):
+    """Ein gelieferter Stamm überschreibt den Rollen-Stamm; die Endungen bleiben."""
     out = gen.generate("noun", "53", lemma="dumslē", stems={"obl": "dumslē"})
-    # Der Override-Stamm ist wörtlich der Stamm — nur die Endung wird angehängt.
+    # Der gelieferte Stamm ist wörtlich der Stamm — nur die Endung wird angehängt.
     assert out["sg.gen"] == ("dumslēis",)
     assert out["pl.acc"] == ("dumslēins",)
     # %^ē / %^īmans in sg.nom und pl.dat lassen die Akzentgrenze den Stammvokal
@@ -229,8 +391,9 @@ def test_stem_override_is_stufe_2(atoms):
 
 
 def test_missing_lemma_yields_nothing(atoms):
-    """Ohne Lemma und ohne Seed gibt es keine Formen — kein Rateversuch."""
+    """Ohne Lemma und ohne gelieferten Stamm gibt es keine Formen."""
     assert gen.generate("noun", "53") == {}
+    assert gen.generate("noun", "53", stems={"obl": "dumsl"})["sg.gen"] == ("dumslis",)
 
 
 def test_long_stem_with_markers(atoms):

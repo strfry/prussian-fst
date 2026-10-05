@@ -4,7 +4,7 @@
 ! Das `j` gehört zur ENDUNG, nicht zum Stamm (Projektentscheidung): der Stamm ist
 ! konsonantisch (rūs-, Andr-), die obliquen Endungen tragen das j (-jas/-ju/-jan/
 ! -jai/-jamans/-jans); nur der Nom.Sg. hat -is (jo-Masc) bzw. -jan (jo-Neut).
-! Teilt sich gen/accent.regex; Test: gen/coverage_gen.py --family jostem.
+! Teilt sich gen/accent.regex.
 !
 !   Par  Genus  Nom.Sg Gen.Sg Dat.Sg Akk.Sg Nom.Pl  Gen.Pl Dat.Pl     Akk.Pl  mobil
 !   40   masc   is     jas    ju     jan    jai     jan    jamans     jans    —
@@ -19,7 +19,7 @@
 ! den Stammauslaut (Rik>imans → Rikkimans) über den Geminationsmarker > (siehe
 ! gen/accent.regex). Rest: einzelne Nom.Sg. mit Zusatz-Makron (aītagenīs).
 
-Multichar_Symbols +N +Masc +Neut +Sg +Pl +Nom +Gen +Dat +Acc ^ %> %~
+Multichar_Symbols +N +Msc +Neu +Sg +Pl +Nom +Gen +Dat +Acc ^ %> %~
 
 LEXICON Root
   P40Stems ;
@@ -31,59 +31,58 @@ LEXICON Root
 ! Hand-geschriebene Grammatik (nur Endungen, KEINE Wörter). LEXICON Root oben
 ! verweist auf die PxxStems; deren Einträge (Lemma+N+Genus:Stamm  Pxx ;) kommen
 ! aus twanksta, der Build hängt sie an (siehe Makefile):
-!   uv run python gen/coverage_gen.py --family jostem --emit-stems build/gen-jostem-stems.lexc
 
 ! >>> ENDUNGEN — je Twanksta-Paradigmennummer eine Endungstabelle <<<
 
 LEXICON P40
-  +Sg+Nom:is       # ;
-  +Sg+Gen:jas      # ;
-  +Sg+Dat:ju       # ;
-  +Sg+Acc:jan      # ;
-  +Pl+Nom:jai      # ;
-  +Pl+Gen:jan      # ;
-  +Pl+Dat:jamans   # ;
-  +Pl+Acc:jans     # ;
+  +N+Sg+Nom:is       # ;
+  +N+Sg+Gen:jas      # ;
+  +N+Sg+Dat:ju       # ;
+  +N+Sg+Acc:jan      # ;
+  +N+Pl+Nom:jai      # ;
+  +N+Pl+Gen:jan      # ;
+  +N+Pl+Dat:jamans   # ;
+  +N+Pl+Acc:jans     # ;
 
 LEXICON P41
-  +Sg+Nom:is       # ;
-  +Sg+Gen:jas      # ;
-  +Sg+Dat:ju       # ;
-  +Sg+Acc:jan      # ;
-  +Pl+Nom:%^jāi    # ;   ! Akzent auf Endung → Stamm leicht
-  +Pl+Gen:jan      # ;
-  +Pl+Dat:%^jammans # ;  ! Akzent auf Endung → Stamm leicht
-  +Pl+Acc:jans     # ;
+  +N+Sg+Nom:is       # ;
+  +N+Sg+Gen:jas      # ;
+  +N+Sg+Dat:ju       # ;
+  +N+Sg+Acc:jan      # ;
+  +N+Pl+Nom:%^jāi    # ;   ! Akzent auf Endung → Stamm leicht
+  +N+Pl+Gen:jan      # ;
+  +N+Pl+Dat:%^jammans # ;  ! Akzent auf Endung → Stamm leicht
+  +N+Pl+Acc:jans     # ;
 
 LEXICON P37
-  +Sg+Nom:jan      # ;
-  +Sg+Gen:jas      # ;
-  +Sg+Dat:ju       # ;
-  +Sg+Acc:jan      # ;
-  +Pl+Nom:%^jāi    # ;   ! Akzent auf Endung → Stamm leicht
-  +Pl+Gen:jan      # ;
-  +Pl+Dat:%^jammans # ;  ! Akzent auf Endung → Stamm leicht
-  +Pl+Acc:jans     # ;
+  +N+Sg+Nom:jan      # ;
+  +N+Sg+Gen:jas      # ;
+  +N+Sg+Dat:ju       # ;
+  +N+Sg+Acc:jan      # ;
+  +N+Pl+Nom:%^jāi    # ;   ! Akzent auf Endung → Stamm leicht
+  +N+Pl+Gen:jan      # ;
+  +N+Pl+Dat:%^jammans # ;  ! Akzent auf Endung → Stamm leicht
+  +N+Pl+Acc:jans     # ;
 
 LEXICON P38
-  +Sg+Nom:s        # ;
-  +Sg+Gen:jas      # ;
-  +Sg+Dat:ju       # ;
-  +Sg+Acc:jan      # ;
-  +Pl+Nom:jai      # ;
-  +Pl+Gen:jan      # ;
-  +Pl+Dat:mans     # ;
-  +Pl+Acc:jans     # ;
+  +N+Sg+Nom:s        # ;
+  +N+Sg+Gen:jas      # ;
+  +N+Sg+Dat:ju       # ;
+  +N+Sg+Acc:jan      # ;
+  +N+Pl+Nom:jai      # ;
+  +N+Pl+Gen:jan      # ;
+  +N+Pl+Dat:mans     # ;
+  +N+Pl+Acc:jans     # ;
 
 LEXICON P39
-  +Sg+Nom:īs       # ;
-  +Sg+Gen:ijjas    # ;
-  +Sg+Dat:ijju     # ;
-  +Sg+Acc:ijjan    # ;
-  +Pl+Nom:ijjai    # ;
-  +Pl+Gen:ijjan    # ;
-  +Pl+Dat:%>imans  # ;   ! > geminiert den Stammauslaut: Rik>imans → Rikkimans
-  +Pl+Acc:ijjans   # ;
+  +N+Sg+Nom:īs       # ;
+  +N+Sg+Gen:ijjas    # ;
+  +N+Sg+Dat:ijju     # ;
+  +N+Sg+Acc:ijjan    # ;
+  +N+Pl+Nom:ijjai    # ;
+  +N+Pl+Gen:ijjan    # ;
+  +N+Pl+Dat:%>imans  # ;   ! > geminiert den Stammauslaut: Rik>imans → Rikkimans
+  +N+Pl+Acc:ijjans   # ;
 
 ! ===========================================================================
 ! LEXICON GeminateKeep — lexikalische (baked-in) Stamm-Gemination
@@ -91,13 +90,13 @@ LEXICON P39
 ! Diese Par.37-Lexeme behalten ihre Stamm-Geminate in den akzentverschobenen
 ! Slots (Pl.Nom/Pl.Dat), weil die Gemination ins Grundmorphem eingebacken ist
 ! (Ableitung/Kompositum: assilistjan [Assils drv] …) — anders als die
-! degeminierenden Geschwister (pann→panjāi, garr→garjāi). gen/coverage_gen.py
+! degeminierenden Geschwister (pann→panjāi, garr→garjāi).
 ! liest diese Liste und hängt den Schutzmarker ~ an den aus twanksta abgeleiteten
 ! Stamm; gen/accent.regex sperrt daraufhin Degem. NICHT von LEXICON Root
 ! referenziert: reine Ausnahmeliste (nur Lemma-Quelle).
 LEXICON GeminateKeep
-  kelljan+N+Neut+Sg+Nom:kelljan               # ;
-  assilistjan+N+Neut+Sg+Nom:assilistjan       # ;
-  kammistjan+N+Neut+Sg+Nom:kammistjan         # ;
-  kattistjan+N+Neut+Sg+Nom:kattistjan         # ;
-  swinnistjan+N+Neut+Sg+Nom:swinnistjan       # ;
+  kelljan+N+Neu+Sg+Nom:kelljan               # ;
+  assilistjan+N+Neu+Sg+Nom:assilistjan       # ;
+  kammistjan+N+Neu+Sg+Nom:kammistjan         # ;
+  kattistjan+N+Neu+Sg+Nom:kattistjan         # ;
+  swinnistjan+N+Neu+Sg+Nom:swinnistjan       # ;

@@ -27,7 +27,7 @@ LEXC_MERGED := build/lexc.merged
 # uv run = Projekt-Env, damit hfst überall verfügbar ist (auch ohne System-Install).
 HFST := uv run python src/prussian_fst/build_fst.py
 
-.PHONY: all gen clean cg3-sets cg3-check disambiguate conllu hfstol links astem adj istem ustem jostem aastem nstem adverb partpres verb atoms atom
+.PHONY: all gen clean cg3-sets cg3-check disambiguate conllu hfstol links atoms atom
 
 all: build/base.hfstol build/macron.hfstol build/lenient.hfstol build/base.gen.hfstol
 
@@ -55,125 +55,15 @@ build/base.hfstol: build/base.fst
 build/base.gen.hfstol: build/base.fst
 	$(HFST) hfstol-gen $< $@
 
-# ── Handgeschriebener generativer Nomen-FST (a/u/i/jo/aa/n-Familien) ──
-# Aufteilung: die HAND-GESCHRIEBENE Grammatik (Endungen + Ausnahmen) steht datenfrei
-# in gen/<fam>.lexc; die Wortliste (Lemma+N+Genus:Stamm  Pxx ;) wird aus twanksta
-# generiert (gen/coverage_gen.py --emit-stems → build/gen-<fam>-stems.lexc). Der Build
-# hängt beides zusammen, kompiliert und komponiert mit der Akzentregel gen/accent.regex
-# (Makron-/Geminaten-Reduktion vor der Akzentgrenze ^) → Generierungs-FST analysis→surface.
-#   make istem                    # baut build/gen-istem.gen.hfstol
-# Nicht-zirkulärer Deckungstest gegen Twanksta:  uv run python gen/coverage_gen.py --family istem
-TWANKSTA_JSON := ../corpus/parsed/twanksta_entries.json
-
-astem:  build/gen-astem.gen.hfstol
-ustem:  build/gen-ustem.gen.hfstol
-istem:  build/gen-istem.gen.hfstol
-jostem: build/gen-jostem.gen.hfstol
-aastem: build/gen-aastem.gen.hfstol
-nstem:  build/gen-nstem.gen.hfstol
-
+# ── Generativer FST: datenfreie Atome (kein twanksta, keine Wortliste) ──
+# Die datenfreie Kern des Generators: gen/generator.py kennt nur die HAND-
+# geschriebenen Grammatiken gen/*.lexc. Jedes Atom ist eine Endungstabelle
+# (gen/<fam>.lexc, gen/adj.lexc, gen/verb.lexc) mit zyklischem Stamm-Kopierer
+# ("STEM* + tag"), komponiert mit gen/accent.hfst und als OL exportiert:
+#   build/gen-<family>-<paradigm>[-<role>].hfstol
 build/gen-accent.hfst: gen/accent.regex | build/
 	$(HFST) xfst $<
 
-# Wortliste aus twanksta — NICHT von Hand editieren (Quelle: gen/<fam>.lexc-Grammatik).
-build/gen-%-stems.lexc: gen/%.lexc gen/coverage_gen.py $(TWANKSTA_JSON) | build/
-	uv run python gen/coverage_gen.py --family $* --emit-stems $@
-
-# Grammatik (Endungen/Ausnahmen) + generierte Stämme → kompilierbares lexc.
-build/gen-%.combined.lexc: gen/%.lexc build/gen-%-stems.lexc | build/
-	cat gen/$*.lexc build/gen-$*-stems.lexc > $@
-
-build/gen-%.fst: build/gen-%.combined.lexc | build/
-	$(HFST) lexc $< $@
-
-build/gen-%.composed.fst: build/gen-%.fst build/gen-accent.hfst
-	$(HFST) compose $@ build/gen-$*.fst build/gen-accent.hfst
-
-build/gen-%.gen.hfstol: build/gen-%.composed.fst
-	$(HFST) hfstol-gen $< $@
-
-# Adjektive + Partizipien (drei Genera): gleiche Aufteilung wie die Nomen —
-# datenfreie Grammatik gen/adj.lexc, Stämme aus twanksta über gen/coverage_adj.py.
-# Die generischen build/gen-%-Regeln oben (combined/fst/composed/hfstol) greifen
-# auch hier; nur die Stammliste kommt aus coverage_adj statt coverage_gen.
-#   make adj                      # baut build/gen-adj.gen.hfstol
-# Deckungstest: uv run python gen/coverage_adj.py
-adj: build/gen-adj.gen.hfstol
-
-build/gen-adj-stems.lexc: gen/adj.lexc gen/coverage_adj.py $(TWANKSTA_JSON) | build/
-	uv run python gen/coverage_adj.py --emit-stems $@
-
-# Adverb-Gradtafel (Positiv/Komparativ/Superlativ): dieselbe Grammatik gen/adj.lexc
-# (Adv{A,I,U} + AdjCmp/AdjSup + LEXICON AdvExcept), Stämme über gen/coverage_adverb.py.
-# Eigene Regeln, weil die Grammatik gen/adj.lexc heißt (nicht gen/adverb.lexc) und
-# die Stammquelle coverage_adverb.py ist (nicht die generischen coverage_gen-Regeln).
-#   make adverb                   # baut build/gen-adverb.gen.hfstol
-# Deckungstest: uv run python gen/coverage_adverb.py
-adverb: build/gen-adverb.gen.hfstol
-
-build/gen-adverb-stems.lexc: gen/adj.lexc gen/coverage_adverb.py $(TWANKSTA_JSON) | build/
-	uv run python gen/coverage_adverb.py --emit-stems $@
-
-build/gen-adverb.combined.lexc: gen/adj.lexc build/gen-adverb-stems.lexc | build/
-	cat gen/adj.lexc build/gen-adverb-stems.lexc > $@
-
-build/gen-adverb.fst: build/gen-adverb.combined.lexc | build/
-	$(HFST) lexc $< $@
-
-build/gen-adverb.composed.fst: build/gen-adverb.fst build/gen-accent.hfst
-	$(HFST) compose $@ build/gen-adverb.fst build/gen-accent.hfst
-
-build/gen-adverb.gen.hfstol: build/gen-adverb.composed.fst
-	$(HFST) hfstol-gen $< $@
-
-# Präsens-Partizip (-nts, drei Genera): gleiche Grammatik gen/adj.lexc (PartPres*),
-# Stämme aus den VERB-Einträgen über gen/coverage_partpres.py.
-#   make partpres                 # baut build/gen-partpres.gen.hfstol
-# Deckungstest: uv run python gen/coverage_partpres.py
-partpres: build/gen-partpres.gen.hfstol
-
-build/gen-partpres-stems.lexc: gen/adj.lexc gen/coverage_partpres.py $(TWANKSTA_JSON) | build/
-	uv run python gen/coverage_partpres.py --emit-stems $@
-
-build/gen-partpres.combined.lexc: gen/adj.lexc build/gen-partpres-stems.lexc | build/
-	cat gen/adj.lexc build/gen-partpres-stems.lexc > $@
-
-build/gen-partpres.fst: build/gen-partpres.combined.lexc | build/
-	$(HFST) lexc $< $@
-
-build/gen-partpres.composed.fst: build/gen-partpres.fst build/gen-accent.hfst
-	$(HFST) compose $@ build/gen-partpres.fst build/gen-accent.hfst
-
-build/gen-partpres.gen.hfstol: build/gen-partpres.composed.fst
-	$(HFST) hfstol-gen $< $@
-
-# Finite Verben (nur synthetische Formen): neue Familie gen/verb.lexc (eine
-# Endungstabelle pro Twanksta-Verb-Paradigma, zwei Stämme je Verb), Stämme aus
-# twanksta über gen/coverage_verb.py, Komposition mit gen/accent.regex.
-#   make verb                      # baut build/gen-verb.gen.hfstol
-# Deckungstest: uv run python gen/coverage_verb.py
-verb: build/gen-verb.gen.hfstol
-
-build/gen-verb-stems.lexc: gen/verb.lexc gen/coverage_verb.py $(TWANKSTA_JSON) | build/
-	uv run python gen/coverage_verb.py --emit-stems $@
-
-build/gen-verb.combined.lexc: gen/verb.lexc build/gen-verb-stems.lexc | build/
-	cat gen/verb.lexc build/gen-verb-stems.lexc > $@
-
-build/gen-verb.fst: build/gen-verb.combined.lexc | build/
-	$(HFST) lexc $< $@
-
-build/gen-verb.composed.fst: build/gen-verb.fst build/gen-accent.hfst
-	$(HFST) compose $@ build/gen-verb.fst build/gen-accent.hfst
-
-build/gen-verb.gen.hfstol: build/gen-verb.composed.fst
-	$(HFST) hfstol-gen $< $@
-
-# ── Datenfreie Atome: der Kern-Generator (kein twanksta, keine Wortliste) ──
-# gen/generator.py kennt nur die HAND-geschriebenen Grammatiken. Jedes Atom ist
-# eine Endungstabelle (gen/<fam>.lexc, gen/verb.lexc) mit zyklischem Stamm-
-# Kopierer ("STEM* + tag"), komponiert mit gen/accent.hfst und als OL exportiert:
-#   build/gen-<family>-<paradigm>[-<role>].hfstol
 # Genau das liest der Generator zur Laufzeit (pyhfst.lookup(stem + tag)) — die
 # Atome sind der einzige Build-Output des Kern-Generators. Ein hfst.compile_lexc_file
 # funktioniert pro Prozess nur einmal, deshalb baut --all je Atom einen Subprozess.
@@ -186,22 +76,6 @@ atom: build/gen-accent.hfst
 	@test -n "$(POS)" -a -n "$(PARADIGM)" -a -n "$(ROLE)" || \
 	    { echo "Aufruf: make atom POS=noun PARADIGM=53 ROLE=obl"; exit 1; }
 	uv run python gen/atom_fst.py $(POS) $(PARADIGM) $(ROLE)
-
-# ── Kombinierter Generator: Union aller Familien → EIN analysis→surface FST ──
-# Ersetzt die twanksta-Vollform-LUT build/base.gen.hfstol als Generierungsquelle
-# des dictionary. Deckungstests: gen/coverage_*.py pro Familie.
-#   make gen-combined              # baut build/gen.hfstol
-GEN_FAMILIES := astem ustem istem jostem aastem nstem adj adverb partpres verb
-GEN_COMPOSED := $(GEN_FAMILIES:%=build/gen-%.composed.fst)
-
-gen-combined: build/gen.hfstol
-
-# Regel-Union der Familien (Datengrammatik) → EIN analysis→surface FST.
-build/gen.fst: $(GEN_COMPOSED)
-	$(HFST) union $@ $^
-
-build/gen.hfstol: build/gen.fst
-	$(HFST) hfstol-gen $< $@
 
 # Correction layers, one stage per phenomenon (norm/*.regex → build/norm-*.hfst).
 # Composed onto the canonical surface; use only as fallback analyzer for

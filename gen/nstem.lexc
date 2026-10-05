@@ -2,7 +2,7 @@
 !
 ! Die alte indogermanische n-Deklination: der Stamm endet auf -en/-men (vgl. lat.
 ! nōmen/nōmin-is, homō/homin-is). Oblique Stamm = Gen.Sg. minus -es (= der -en/-men-
-! Stamm selbst). Teilt sich gen/accent.regex; Test: gen/coverage_gen.py --family nstem.
+! Stamm selbst). Teilt sich gen/accent.regex.
 !
 !   Par  Genus  Nom.Sg Gen.Sg Dat.Sg Akk.Sg Nom.Pl Gen.Pl Dat.Pl    Akk.Pl  mobil
 !   61   masc   s      es     i      in     es     in     imans     ins     —
@@ -13,7 +13,7 @@
 ! 'hemp seed'). Nom.Sg. und Akk.Sg. = blanker Stamm (Neutrum); Dat.Pl. mobil, das
 ! schwere -immans zieht die Betonung → Stamm leicht (nōmen+^immans → nomenimmans).
 
-Multichar_Symbols +N +Masc +Neut +Sg +Pl +Nom +Gen +Dat +Acc ^
+Multichar_Symbols +N +Msc +Neu +Sg +Pl +Nom +Gen +Dat +Acc ^
 
 LEXICON Root
   P61Stems ;
@@ -22,26 +22,25 @@ LEXICON Root
 ! Hand-geschriebene Grammatik (nur Endungen, KEINE Wörter). LEXICON Root oben
 ! verweist auf die PxxStems; deren Einträge (Lemma+N+Genus:Stamm  Pxx ;) kommen
 ! aus twanksta, der Build hängt sie an (siehe Makefile):
-!   uv run python gen/coverage_gen.py --family nstem --emit-stems build/gen-nstem-stems.lexc
 
 ! >>> ENDUNGEN — je Twanksta-Paradigmennummer eine Endungstabelle <<<
 
 LEXICON P61
-  +Sg+Nom:s        # ;
-  +Sg+Gen:es       # ;
-  +Sg+Dat:i        # ;
-  +Sg+Acc:in       # ;
-  +Pl+Nom:es       # ;
-  +Pl+Gen:in       # ;
-  +Pl+Dat:imans    # ;
-  +Pl+Acc:ins      # ;
+  +N+Sg+Nom:s        # ;
+  +N+Sg+Gen:es       # ;
+  +N+Sg+Dat:i        # ;
+  +N+Sg+Acc:in       # ;
+  +N+Pl+Nom:es       # ;
+  +N+Pl+Gen:in       # ;
+  +N+Pl+Dat:imans    # ;
+  +N+Pl+Acc:ins      # ;
 
 LEXICON P63
-  +Sg+Nom:0        # ;   ! blanker Stamm (Neutrum)
-  +Sg+Gen:es       # ;
-  +Sg+Dat:i        # ;
-  +Sg+Acc:0        # ;   ! blanker Stamm (Neutrum)
-  +Pl+Nom:es       # ;
-  +Pl+Gen:in       # ;
-  +Pl+Dat:%^immans # ;   ! schwere Endung → Stamm leicht
-  +Pl+Acc:ins      # ;
+  +N+Sg+Nom:0        # ;   ! blanker Stamm (Neutrum)
+  +N+Sg+Gen:es       # ;
+  +N+Sg+Dat:i        # ;
+  +N+Sg+Acc:0        # ;   ! blanker Stamm (Neutrum)
+  +N+Pl+Nom:es       # ;
+  +N+Pl+Gen:in       # ;
+  +N+Pl+Dat:%^immans # ;   ! schwere Endung → Stamm leicht
+  +N+Pl+Acc:ins      # ;

@@ -18,7 +18,7 @@
 ! Endung selbst — belarussisks (fest, mit Geminate ss) behält seine ss überall,
 ! weil kein ^ gesetzt wird.
 
-Multichar_Symbols +Adj +V +Part +Pres +Pass +Past +Adv +Cmp +Sup +Masc +Fem +Neut +Sg +Pl +Nom +Gen +Dat +Acc ^ ~
+Multichar_Symbols +A +V +PrsPrc +PrfPrc +Act +Pss +Adv +Comp +Superl +Msc +Fem +Neu +Sg +Pl +Nom +Gen +Dat +Acc ^ ~
 
 LEXICON Root
   AdjFixed ;       ! Par.25 festes a-Stamm-Adjektiv
@@ -34,9 +34,9 @@ LEXICON Root
   AdvExcept ;      ! hand-gepflegte Adverb-Ausnahmen (Suppletiva, siehe unten)
 
 ! Hand-geschriebene Grammatik (nur Endungen, KEINE Wörter). LEXICON Root verweist
-! auf AdjFixed/AdjMobile/PartPass/PartAct; deren Einträge (Lemma:Stamm  …Infl ;)
-! kommen aus twanksta, der Build hängt sie an (siehe Makefile):
-!   uv run python gen/coverage_adj.py --emit-stems build/gen-adj-stems.lexc
+! auf AdjFixed/AdjMobile/PartPass/PartAct; der Build ersetzt den Root durch die
+! Infl-Lexikone des jeweiligen Atoms (gen/atom_fst.py) — sonst bleibt die
+! Wortliste in gen/*.lexc unberührt.
 
 ! Jedes Lexem verzweigt in alle drei Genera.
 LEXICON AdjFixedInfl
@@ -70,164 +70,164 @@ LEXICON AdjUMobInfl
 
 ! ─── Feste Endungen (Par. 25) ──────────────────────────────────────────
 LEXICON AdjFixedMasc
-  +Adj+Masc+Sg+Nom:s       # ;
-  +Adj+Masc+Pl+Nom:ai      # ;
-  +Adj+Masc+Sg+Gen:as      # ;
-  +Adj+Masc+Pl+Gen:an      # ;
-  +Adj+Masc+Sg+Dat:asmu    # ;
-  +Adj+Masc+Pl+Dat:amans   # ;
-  +Adj+Masc+Sg+Acc:an      # ;
-  +Adj+Masc+Pl+Acc:ans     # ;
+  +A+Msc+Sg+Nom:s       # ;
+  +A+Msc+Pl+Nom:ai      # ;
+  +A+Msc+Sg+Gen:as      # ;
+  +A+Msc+Pl+Gen:an      # ;
+  +A+Msc+Sg+Dat:asmu    # ;
+  +A+Msc+Pl+Dat:amans   # ;
+  +A+Msc+Sg+Acc:an      # ;
+  +A+Msc+Pl+Acc:ans     # ;
 
 LEXICON AdjFixedFem
-  +Adj+Fem+Sg+Nom:a        # ;
-  +Adj+Fem+Pl+Nom:as       # ;
-  +Adj+Fem+Sg+Gen:as       # ;
-  +Adj+Fem+Pl+Gen:an       # ;
-  +Adj+Fem+Sg+Dat:ai       # ;
-  +Adj+Fem+Pl+Dat:amans    # ;
-  +Adj+Fem+Sg+Acc:an       # ;
-  +Adj+Fem+Pl+Acc:ans      # ;
+  +A+Fem+Sg+Nom:a        # ;
+  +A+Fem+Pl+Nom:as       # ;
+  +A+Fem+Sg+Gen:as       # ;
+  +A+Fem+Pl+Gen:an       # ;
+  +A+Fem+Sg+Dat:ai       # ;
+  +A+Fem+Pl+Dat:amans    # ;
+  +A+Fem+Sg+Acc:an       # ;
+  +A+Fem+Pl+Acc:ans      # ;
 
 LEXICON AdjFixedNeut
-  +Adj+Neut+Sg+Nom:an      # ;
-  +Adj+Neut+Pl+Nom:ai      # ;
-  +Adj+Neut+Sg+Gen:as      # ;
-  +Adj+Neut+Pl+Gen:an      # ;
-  +Adj+Neut+Sg+Dat:asmu    # ;
-  +Adj+Neut+Pl+Dat:amans   # ;
-  +Adj+Neut+Sg+Acc:an      # ;
-  +Adj+Neut+Pl+Acc:ans     # ;
+  +A+Neu+Sg+Nom:an      # ;
+  +A+Neu+Pl+Nom:ai      # ;
+  +A+Neu+Sg+Gen:as      # ;
+  +A+Neu+Pl+Gen:an      # ;
+  +A+Neu+Sg+Dat:asmu    # ;
+  +A+Neu+Pl+Dat:amans   # ;
+  +A+Neu+Sg+Acc:an      # ;
+  +A+Neu+Pl+Acc:ans     # ;
 
 ! ─── Mobile Endungen (Par. 26): ^ + schwere Endung in verschobenen Slots ──
 LEXICON AdjMobileMasc
-  +Adj+Masc+Sg+Nom:s        # ;
-  +Adj+Masc+Pl+Nom:%^āi     # ;
-  +Adj+Masc+Sg+Gen:as       # ;
-  +Adj+Masc+Pl+Gen:an       # ;
-  +Adj+Masc+Sg+Dat:%^àsmu   # ;
-  +Adj+Masc+Pl+Dat:%^ammans # ;
-  +Adj+Masc+Sg+Acc:an       # ;
-  +Adj+Masc+Pl+Acc:ans      # ;
+  +A+Msc+Sg+Nom:s        # ;
+  +A+Msc+Pl+Nom:%^āi     # ;
+  +A+Msc+Sg+Gen:as       # ;
+  +A+Msc+Pl+Gen:an       # ;
+  +A+Msc+Sg+Dat:%^àsmu   # ;
+  +A+Msc+Pl+Dat:%^ammans # ;
+  +A+Msc+Sg+Acc:an       # ;
+  +A+Msc+Pl+Acc:ans      # ;
 
 LEXICON AdjMobileFem
-  +Adj+Fem+Sg+Nom:%^ā       # ;
-  +Adj+Fem+Pl+Nom:as        # ;
-  +Adj+Fem+Sg+Gen:as        # ;
-  +Adj+Fem+Pl+Gen:an        # ;
-  +Adj+Fem+Sg+Dat:ai        # ;
-  +Adj+Fem+Pl+Dat:%^āmans   # ;
-  +Adj+Fem+Sg+Acc:an        # ;
-  +Adj+Fem+Pl+Acc:ans       # ;
+  +A+Fem+Sg+Nom:%^ā       # ;
+  +A+Fem+Pl+Nom:as        # ;
+  +A+Fem+Sg+Gen:as        # ;
+  +A+Fem+Pl+Gen:an        # ;
+  +A+Fem+Sg+Dat:ai        # ;
+  +A+Fem+Pl+Dat:%^āmans   # ;
+  +A+Fem+Sg+Acc:an        # ;
+  +A+Fem+Pl+Acc:ans       # ;
 
 LEXICON AdjMobileNeut
-  +Adj+Neut+Sg+Nom:an       # ;
-  +Adj+Neut+Pl+Nom:%^āi     # ;
-  +Adj+Neut+Sg+Gen:as       # ;
-  +Adj+Neut+Pl+Gen:an       # ;
-  +Adj+Neut+Sg+Dat:%^àsmu   # ;
-  +Adj+Neut+Pl+Dat:%^ammans # ;
-  +Adj+Neut+Sg+Acc:an       # ;
-  +Adj+Neut+Pl+Acc:ans      # ;
+  +A+Neu+Sg+Nom:an       # ;
+  +A+Neu+Pl+Nom:%^āi     # ;
+  +A+Neu+Sg+Gen:as       # ;
+  +A+Neu+Pl+Gen:an       # ;
+  +A+Neu+Sg+Dat:%^àsmu   # ;
+  +A+Neu+Pl+Dat:%^ammans # ;
+  +A+Neu+Sg+Acc:an       # ;
+  +A+Neu+Pl+Acc:ans      # ;
 
 ! ─── Par.27: i-/jo-Stamm-Adjektiv, fest (Masc/Neut jo-Endungen, Fem i-Endungen) ──
 ! Stamm = Masc.Gen.Sg. minus -jas (instrawingjas → instrawing). Kein ^: fester Akzent.
 LEXICON AdjIMasc
-  +Adj+Masc+Sg+Nom:is      # ;
-  +Adj+Masc+Sg+Gen:jas     # ;
-  +Adj+Masc+Sg+Dat:jasmu   # ;
-  +Adj+Masc+Sg+Acc:jan     # ;
-  +Adj+Masc+Pl+Nom:jai     # ;
-  +Adj+Masc+Pl+Gen:jan     # ;
-  +Adj+Masc+Pl+Dat:jamans  # ;
-  +Adj+Masc+Pl+Acc:jans    # ;
+  +A+Msc+Sg+Nom:is      # ;
+  +A+Msc+Sg+Gen:jas     # ;
+  +A+Msc+Sg+Dat:jasmu   # ;
+  +A+Msc+Sg+Acc:jan     # ;
+  +A+Msc+Pl+Nom:jai     # ;
+  +A+Msc+Pl+Gen:jan     # ;
+  +A+Msc+Pl+Dat:jamans  # ;
+  +A+Msc+Pl+Acc:jans    # ;
 
 LEXICON AdjIFem
-  +Adj+Fem+Sg+Nom:i        # ;
-  +Adj+Fem+Sg+Gen:is       # ;
-  +Adj+Fem+Sg+Dat:ei       # ;
-  +Adj+Fem+Sg+Acc:in       # ;
-  +Adj+Fem+Pl+Nom:is       # ;
-  +Adj+Fem+Pl+Gen:in       # ;
-  +Adj+Fem+Pl+Dat:imans    # ;
-  +Adj+Fem+Pl+Acc:ins      # ;
+  +A+Fem+Sg+Nom:i        # ;
+  +A+Fem+Sg+Gen:is       # ;
+  +A+Fem+Sg+Dat:ei       # ;
+  +A+Fem+Sg+Acc:in       # ;
+  +A+Fem+Pl+Nom:is       # ;
+  +A+Fem+Pl+Gen:in       # ;
+  +A+Fem+Pl+Dat:imans    # ;
+  +A+Fem+Pl+Acc:ins      # ;
 
 LEXICON AdjINeut
-  +Adj+Neut+Sg+Nom:i       # ;
-  +Adj+Neut+Sg+Gen:jas     # ;
-  +Adj+Neut+Sg+Dat:jasmu   # ;
-  +Adj+Neut+Sg+Acc:i       # ;
-  +Adj+Neut+Pl+Nom:jai     # ;
-  +Adj+Neut+Pl+Gen:jan     # ;
-  +Adj+Neut+Pl+Dat:jamans  # ;
-  +Adj+Neut+Pl+Acc:jans    # ;
+  +A+Neu+Sg+Nom:i       # ;
+  +A+Neu+Sg+Gen:jas     # ;
+  +A+Neu+Sg+Dat:jasmu   # ;
+  +A+Neu+Sg+Acc:i       # ;
+  +A+Neu+Pl+Nom:jai     # ;
+  +A+Neu+Pl+Gen:jan     # ;
+  +A+Neu+Pl+Dat:jamans  # ;
+  +A+Neu+Pl+Acc:jans    # ;
 
 ! ─── Par.29: mobiles i-Stamm-Adjektiv ──────────────────────────────────────
 ! Stamm = Masc.Gen.Sg. minus -is (audijāntis → audijānt). Schwere Slots (^):
 ! Masc/Neut Dat.Pl -immans, Fem Nom.Sg -ī, Fem Dat.Pl -jāmans → Stamm leicht.
 LEXICON AdjIMobMasc
-  +Adj+Masc+Sg+Nom:s        # ;
-  +Adj+Masc+Sg+Gen:is       # ;
-  +Adj+Masc+Sg+Dat:ismu     # ;
-  +Adj+Masc+Sg+Acc:in       # ;
-  +Adj+Masc+Pl+Nom:jai      # ;
-  +Adj+Masc+Pl+Gen:in       # ;
-  +Adj+Masc+Pl+Dat:%^immans # ;
-  +Adj+Masc+Pl+Acc:ins      # ;
+  +A+Msc+Sg+Nom:s        # ;
+  +A+Msc+Sg+Gen:is       # ;
+  +A+Msc+Sg+Dat:ismu     # ;
+  +A+Msc+Sg+Acc:in       # ;
+  +A+Msc+Pl+Nom:jai      # ;
+  +A+Msc+Pl+Gen:in       # ;
+  +A+Msc+Pl+Dat:%^immans # ;
+  +A+Msc+Pl+Acc:ins      # ;
 
 LEXICON AdjIMobFem
-  +Adj+Fem+Sg+Nom:%^ī       # ;
-  +Adj+Fem+Sg+Gen:jas       # ;
-  +Adj+Fem+Sg+Dat:jai       # ;
-  +Adj+Fem+Sg+Acc:jan       # ;
-  +Adj+Fem+Pl+Nom:jas       # ;
-  +Adj+Fem+Pl+Gen:jan       # ;
-  +Adj+Fem+Pl+Dat:%^jāmans  # ;
-  +Adj+Fem+Pl+Acc:jans      # ;
+  +A+Fem+Sg+Nom:%^ī       # ;
+  +A+Fem+Sg+Gen:jas       # ;
+  +A+Fem+Sg+Dat:jai       # ;
+  +A+Fem+Sg+Acc:jan       # ;
+  +A+Fem+Pl+Nom:jas       # ;
+  +A+Fem+Pl+Gen:jan       # ;
+  +A+Fem+Pl+Dat:%^jāmans  # ;
+  +A+Fem+Pl+Acc:jans      # ;
 
 LEXICON AdjIMobNeut
-  +Adj+Neut+Sg+Nom:i        # ;
-  +Adj+Neut+Sg+Gen:is       # ;
-  +Adj+Neut+Sg+Dat:ismu     # ;
-  +Adj+Neut+Sg+Acc:i        # ;
-  +Adj+Neut+Pl+Nom:jai      # ;
-  +Adj+Neut+Pl+Gen:in       # ;
-  +Adj+Neut+Pl+Dat:%^immans # ;
-  +Adj+Neut+Pl+Acc:ins      # ;
+  +A+Neu+Sg+Nom:i        # ;
+  +A+Neu+Sg+Gen:is       # ;
+  +A+Neu+Sg+Dat:ismu     # ;
+  +A+Neu+Sg+Acc:i        # ;
+  +A+Neu+Pl+Nom:jai      # ;
+  +A+Neu+Pl+Gen:in       # ;
+  +A+Neu+Pl+Dat:%^immans # ;
+  +A+Neu+Pl+Acc:ins      # ;
 
 ! ─── Par.31: u-Stamm-Adjektiv (w-Gleitlaut), mobil ─────────────────────────
 ! Stamm = Masc.Nom.Sg. minus -us (preilāngus → preilāng; der Nom.Sg. trägt den
 ! Grundakzent). Schwere Slots (^): die w-Formen -was/-wāi, Dat.Pl -ummans, Fem
 ! Nom.Sg -ī, Fem Dat.Pl -jāmans → Stamm leicht (preilāng+^wāi → preilangwāi).
 LEXICON AdjUMobMasc
-  +Adj+Masc+Sg+Nom:us       # ;
-  +Adj+Masc+Sg+Gen:%^was    # ;
-  +Adj+Masc+Sg+Dat:usmu     # ;
-  +Adj+Masc+Sg+Acc:un       # ;
-  +Adj+Masc+Pl+Nom:%^wāi    # ;
-  +Adj+Masc+Pl+Gen:un       # ;
-  +Adj+Masc+Pl+Dat:%^ummans # ;
-  +Adj+Masc+Pl+Acc:uns      # ;
+  +A+Msc+Sg+Nom:us       # ;
+  +A+Msc+Sg+Gen:%^was    # ;
+  +A+Msc+Sg+Dat:usmu     # ;
+  +A+Msc+Sg+Acc:un       # ;
+  +A+Msc+Pl+Nom:%^wāi    # ;
+  +A+Msc+Pl+Gen:un       # ;
+  +A+Msc+Pl+Dat:%^ummans # ;
+  +A+Msc+Pl+Acc:uns      # ;
 
 LEXICON AdjUMobFem
-  +Adj+Fem+Sg+Nom:%^ī       # ;
-  +Adj+Fem+Sg+Gen:jas       # ;
-  +Adj+Fem+Sg+Dat:jai       # ;
-  +Adj+Fem+Sg+Acc:jan       # ;
-  +Adj+Fem+Pl+Nom:jas       # ;
-  +Adj+Fem+Pl+Gen:jan       # ;
-  +Adj+Fem+Pl+Dat:%^jāmans  # ;
-  +Adj+Fem+Pl+Acc:jans      # ;
+  +A+Fem+Sg+Nom:%^ī       # ;
+  +A+Fem+Sg+Gen:jas       # ;
+  +A+Fem+Sg+Dat:jai       # ;
+  +A+Fem+Sg+Acc:jan       # ;
+  +A+Fem+Pl+Nom:jas       # ;
+  +A+Fem+Pl+Gen:jan       # ;
+  +A+Fem+Pl+Dat:%^jāmans  # ;
+  +A+Fem+Pl+Acc:jans      # ;
 
 LEXICON AdjUMobNeut
-  +Adj+Neut+Sg+Nom:u        # ;
-  +Adj+Neut+Sg+Gen:%^was    # ;
-  +Adj+Neut+Sg+Dat:usmu     # ;
-  +Adj+Neut+Sg+Acc:u        # ;
-  +Adj+Neut+Pl+Nom:%^wāi    # ;
-  +Adj+Neut+Pl+Gen:un       # ;
-  +Adj+Neut+Pl+Dat:%^ummans # ;
-  +Adj+Neut+Pl+Acc:uns      # ;
+  +A+Neu+Sg+Nom:u        # ;
+  +A+Neu+Sg+Gen:%^was    # ;
+  +A+Neu+Sg+Dat:usmu     # ;
+  +A+Neu+Sg+Acc:u        # ;
+  +A+Neu+Pl+Nom:%^wāi    # ;
+  +A+Neu+Pl+Gen:un       # ;
+  +A+Neu+Pl+Dat:%^ummans # ;
+  +A+Neu+Pl+Acc:uns      # ;
 
 ! ═══ PARTIZIPIEN (agieren adjektivisch, drei Genera) ══════════════════════
 !
@@ -253,65 +253,65 @@ LEXICON PartActInfl
 
 ! ─── Passives Partizip -ts (Par.69), a-stämmig, semi-mobil ────────────────
 LEXICON PartPassMasc
-  +Part+Pass+Masc+Sg+Nom:s        # ;
-  +Part+Pass+Masc+Pl+Nom:%^āi     # ;   ! mobil
-  +Part+Pass+Masc+Sg+Gen:as       # ;
-  +Part+Pass+Masc+Pl+Gen:an       # ;
-  +Part+Pass+Masc+Sg+Dat:asmu     # ;   ! nicht mobil (anders als Adj-Mobil)
-  +Part+Pass+Masc+Pl+Dat:%^ammans # ;   ! mobil
-  +Part+Pass+Masc+Sg+Acc:an       # ;
-  +Part+Pass+Masc+Pl+Acc:ans      # ;
+  +V+PrfPrc+Pss+Msc+Sg+Nom:s        # ;
+  +V+PrfPrc+Pss+Msc+Pl+Nom:%^āi     # ;   ! mobil
+  +V+PrfPrc+Pss+Msc+Sg+Gen:as       # ;
+  +V+PrfPrc+Pss+Msc+Pl+Gen:an       # ;
+  +V+PrfPrc+Pss+Msc+Sg+Dat:asmu     # ;   ! nicht mobil (anders als Adj-Mobil)
+  +V+PrfPrc+Pss+Msc+Pl+Dat:%^ammans # ;   ! mobil
+  +V+PrfPrc+Pss+Msc+Sg+Acc:an       # ;
+  +V+PrfPrc+Pss+Msc+Pl+Acc:ans      # ;
 
 LEXICON PartPassFem
-  +Part+Pass+Fem+Sg+Nom:%^ā       # ;   ! mobil
-  +Part+Pass+Fem+Pl+Nom:as        # ;
-  +Part+Pass+Fem+Sg+Gen:as        # ;
-  +Part+Pass+Fem+Pl+Gen:an        # ;
-  +Part+Pass+Fem+Sg+Dat:ai        # ;
-  +Part+Pass+Fem+Pl+Dat:%^āmans   # ;   ! mobil
-  +Part+Pass+Fem+Sg+Acc:an        # ;
-  +Part+Pass+Fem+Pl+Acc:ans       # ;
+  +V+PrfPrc+Pss+Fem+Sg+Nom:%^ā       # ;   ! mobil
+  +V+PrfPrc+Pss+Fem+Pl+Nom:as        # ;
+  +V+PrfPrc+Pss+Fem+Sg+Gen:as        # ;
+  +V+PrfPrc+Pss+Fem+Pl+Gen:an        # ;
+  +V+PrfPrc+Pss+Fem+Sg+Dat:ai        # ;
+  +V+PrfPrc+Pss+Fem+Pl+Dat:%^āmans   # ;   ! mobil
+  +V+PrfPrc+Pss+Fem+Sg+Acc:an        # ;
+  +V+PrfPrc+Pss+Fem+Pl+Acc:ans       # ;
 
 LEXICON PartPassNeut
-  +Part+Pass+Neut+Sg+Nom:an       # ;
-  +Part+Pass+Neut+Pl+Nom:āi       # ;   ! fest (anders als Masc)
-  +Part+Pass+Neut+Sg+Gen:as       # ;
-  +Part+Pass+Neut+Pl+Gen:an       # ;
-  +Part+Pass+Neut+Sg+Dat:asmu     # ;
-  +Part+Pass+Neut+Pl+Dat:%^ammans # ;   ! mobil
-  +Part+Pass+Neut+Sg+Acc:an       # ;
-  +Part+Pass+Neut+Pl+Acc:ans      # ;
+  +V+PrfPrc+Pss+Neu+Sg+Nom:an       # ;
+  +V+PrfPrc+Pss+Neu+Pl+Nom:āi       # ;   ! fest (anders als Masc)
+  +V+PrfPrc+Pss+Neu+Sg+Gen:as       # ;
+  +V+PrfPrc+Pss+Neu+Pl+Gen:an       # ;
+  +V+PrfPrc+Pss+Neu+Sg+Dat:asmu     # ;
+  +V+PrfPrc+Pss+Neu+Pl+Dat:%^ammans # ;   ! mobil
+  +V+PrfPrc+Pss+Neu+Sg+Acc:an       # ;
+  +V+PrfPrc+Pss+Neu+Pl+Acc:ans      # ;
 
 ! ─── Aktives Partizip -uns (Par.68), -us-Stamm, fest ──────────────────────
 LEXICON PartActMasc
-  +Part+Past+Masc+Sg+Nom:uns       # ;
-  +Part+Past+Masc+Pl+Nom:usis      # ;
-  +Part+Past+Masc+Sg+Gen:usjas     # ;
-  +Part+Past+Masc+Pl+Gen:usin      # ;
-  +Part+Past+Masc+Sg+Dat:usjasmu   # ;
-  +Part+Past+Masc+Pl+Dat:usimans   # ;
-  +Part+Past+Masc+Sg+Acc:usin      # ;
-  +Part+Past+Masc+Pl+Acc:usins     # ;
+  +V+PrfPrc+Act+Msc+Sg+Nom:uns       # ;
+  +V+PrfPrc+Act+Msc+Pl+Nom:usis      # ;
+  +V+PrfPrc+Act+Msc+Sg+Gen:usjas     # ;
+  +V+PrfPrc+Act+Msc+Pl+Gen:usin      # ;
+  +V+PrfPrc+Act+Msc+Sg+Dat:usjasmu   # ;
+  +V+PrfPrc+Act+Msc+Pl+Dat:usimans   # ;
+  +V+PrfPrc+Act+Msc+Sg+Acc:usin      # ;
+  +V+PrfPrc+Act+Msc+Pl+Acc:usins     # ;
 
 LEXICON PartActFem
-  +Part+Past+Fem+Sg+Nom:usi        # ;
-  +Part+Past+Fem+Pl+Nom:usjas      # ;
-  +Part+Past+Fem+Sg+Gen:usjas      # ;
-  +Part+Past+Fem+Pl+Gen:usjan      # ;
-  +Part+Past+Fem+Sg+Dat:usjai      # ;
-  +Part+Past+Fem+Pl+Dat:usjamans   # ;
-  +Part+Past+Fem+Sg+Acc:usin       # ;
-  +Part+Past+Fem+Pl+Acc:usjans     # ;
+  +V+PrfPrc+Act+Fem+Sg+Nom:usi        # ;
+  +V+PrfPrc+Act+Fem+Pl+Nom:usjas      # ;
+  +V+PrfPrc+Act+Fem+Sg+Gen:usjas      # ;
+  +V+PrfPrc+Act+Fem+Pl+Gen:usjan      # ;
+  +V+PrfPrc+Act+Fem+Sg+Dat:usjai      # ;
+  +V+PrfPrc+Act+Fem+Pl+Dat:usjamans   # ;
+  +V+PrfPrc+Act+Fem+Sg+Acc:usin       # ;
+  +V+PrfPrc+Act+Fem+Pl+Acc:usjans     # ;
 
 LEXICON PartActNeut
-  +Part+Past+Neut+Sg+Nom:us        # ;
-  +Part+Past+Neut+Pl+Nom:us        # ;
-  +Part+Past+Neut+Sg+Gen:usjas     # ;
-  +Part+Past+Neut+Pl+Gen:usin      # ;
-  +Part+Past+Neut+Sg+Dat:usjasmu   # ;
-  +Part+Past+Neut+Pl+Dat:usimans   # ;
-  +Part+Past+Neut+Sg+Acc:us        # ;
-  +Part+Past+Neut+Pl+Acc:us        # ;
+  +V+PrfPrc+Act+Neu+Sg+Nom:us        # ;
+  +V+PrfPrc+Act+Neu+Pl+Nom:us        # ;
+  +V+PrfPrc+Act+Neu+Sg+Gen:usjas     # ;
+  +V+PrfPrc+Act+Neu+Pl+Gen:usin      # ;
+  +V+PrfPrc+Act+Neu+Sg+Dat:usjasmu   # ;
+  +V+PrfPrc+Act+Neu+Pl+Dat:usimans   # ;
+  +V+PrfPrc+Act+Neu+Sg+Acc:us        # ;
+  +V+PrfPrc+Act+Neu+Pl+Acc:us        # ;
 
 ! ─── Präsens-Partizip -nts (mobiles i-Stamm-Muster, drei Genera) ──────────
 ! Das Präsens-Partizip deklinert wie Par.29 (mobiles i-Stamm-Adjektiv): schwere
@@ -336,34 +336,34 @@ LEXICON PartPresInfl
   PartPresNeut ;
 
 LEXICON PartPresMasc
-  +V+Part+Pres+Masc+Sg+Nom:s        # ;
-  +V+Part+Pres+Masc+Sg+Gen:is       # ;
-  +V+Part+Pres+Masc+Sg+Dat:ismu     # ;
-  +V+Part+Pres+Masc+Sg+Acc:in       # ;
-  +V+Part+Pres+Masc+Pl+Nom:jai      # ;
-  +V+Part+Pres+Masc+Pl+Gen:in       # ;
-  +V+Part+Pres+Masc+Pl+Dat:%^immans # ;
-  +V+Part+Pres+Masc+Pl+Acc:ins      # ;
+  +V+PrsPrc+Act+Msc+Sg+Nom:s        # ;
+  +V+PrsPrc+Act+Msc+Sg+Gen:is       # ;
+  +V+PrsPrc+Act+Msc+Sg+Dat:ismu     # ;
+  +V+PrsPrc+Act+Msc+Sg+Acc:in       # ;
+  +V+PrsPrc+Act+Msc+Pl+Nom:jai      # ;
+  +V+PrsPrc+Act+Msc+Pl+Gen:in       # ;
+  +V+PrsPrc+Act+Msc+Pl+Dat:%^immans # ;
+  +V+PrsPrc+Act+Msc+Pl+Acc:ins      # ;
 
 LEXICON PartPresFem
-  +V+Part+Pres+Fem+Sg+Nom:%~%^ī     # ;
-  +V+Part+Pres+Fem+Sg+Gen:jas       # ;
-  +V+Part+Pres+Fem+Sg+Dat:jai       # ;
-  +V+Part+Pres+Fem+Sg+Acc:jan       # ;
-  +V+Part+Pres+Fem+Pl+Nom:jas       # ;
-  +V+Part+Pres+Fem+Pl+Gen:jan       # ;
-  +V+Part+Pres+Fem+Pl+Dat:%^jāmans  # ;
-  +V+Part+Pres+Fem+Pl+Acc:jans      # ;
+  +V+PrsPrc+Act+Fem+Sg+Nom:%~%^ī     # ;
+  +V+PrsPrc+Act+Fem+Sg+Gen:jas       # ;
+  +V+PrsPrc+Act+Fem+Sg+Dat:jai       # ;
+  +V+PrsPrc+Act+Fem+Sg+Acc:jan       # ;
+  +V+PrsPrc+Act+Fem+Pl+Nom:jas       # ;
+  +V+PrsPrc+Act+Fem+Pl+Gen:jan       # ;
+  +V+PrsPrc+Act+Fem+Pl+Dat:%^jāmans  # ;
+  +V+PrsPrc+Act+Fem+Pl+Acc:jans      # ;
 
 LEXICON PartPresNeut
-  +V+Part+Pres+Neut+Sg+Nom:i        # ;
-  +V+Part+Pres+Neut+Sg+Gen:is       # ;
-  +V+Part+Pres+Neut+Sg+Dat:ismu     # ;
-  +V+Part+Pres+Neut+Sg+Acc:in       # ;
-  +V+Part+Pres+Neut+Pl+Nom:jai      # ;
-  +V+Part+Pres+Neut+Pl+Gen:in       # ;
-  +V+Part+Pres+Neut+Pl+Dat:%^immans # ;
-  +V+Part+Pres+Neut+Pl+Acc:ins      # ;
+  +V+PrsPrc+Act+Neu+Sg+Nom:i        # ;
+  +V+PrsPrc+Act+Neu+Sg+Gen:is       # ;
+  +V+PrsPrc+Act+Neu+Sg+Dat:ismu     # ;
+  +V+PrsPrc+Act+Neu+Sg+Acc:in       # ;
+  +V+PrsPrc+Act+Neu+Pl+Nom:jai      # ;
+  +V+PrsPrc+Act+Neu+Pl+Gen:in       # ;
+  +V+PrsPrc+Act+Neu+Pl+Dat:%^immans # ;
+  +V+PrsPrc+Act+Neu+Pl+Acc:ins      # ;
 
 ! ===========================================================================
 ! LEXICON PartPresGemKeep — lexikalische (baked-in) Stamm-Gemination im Dat.Pl.
@@ -371,25 +371,25 @@ LEXICON PartPresNeut
 ! Diese Verben behalten ihre Stamm-Gemination (jj/cc = palataler/affrikater
 ! Doppelkonsonant) auch im akzentverschobenen Dat.Pl. -immans/-jāmans, während
 ! die übrigen Geminaten-Verben dort degeminieren (adressints → adresintimmans).
-! gen/coverage_partpres.py liest diese Liste (Lemma-Quelle) und hängt den
-! Schutzmarker ~ an den emittierten Stamm; gen/accent.regex sperrt daraufhin Degem.
-! NICHT von LEXICON Root referenziert — reine Ausnahmeliste (nur Lemma-Quelle).
+! Der Schutzmarker ~ steht hier bereits am Stamm; gen/accent.regex sperrt
+! daraufhin die Degemination. NICHT von LEXICON Root referenziert — reine
+! Ausnahmeliste (nur Lemma-Quelle).
 LEXICON PartPresGemKeep
-  auswajjintun+V+Part+Pres+Masc+Sg+Nom:auswajjintun     # ;
-  bajjintun+V+Part+Pres+Masc+Sg+Nom:bajjintun           # ;
-  pabajjintun+V+Part+Pres+Masc+Sg+Nom:pabajjintun       # ;
-  dwejjintun+V+Part+Pres+Masc+Sg+Nom:dwejjintun         # ;
-  enskajjintun+V+Part+Pres+Masc+Sg+Nom:enskajjintun     # ;
-  enswajjintun+V+Part+Pres+Masc+Sg+Nom:enswajjintun     # ;
-  etskajjintun+V+Part+Pres+Masc+Sg+Nom:etskajjintun     # ;
-  izskajjintun+V+Part+Pres+Masc+Sg+Nom:izskajjintun     # ;
-  lejjintun+V+Part+Pres+Masc+Sg+Nom:lejjintun            # ;
-  perskajjintun+V+Part+Pres+Masc+Sg+Nom:perskajjintun   # ;
-  praskajjintun+V+Part+Pres+Masc+Sg+Nom:praskajjintun   # ;
-  skajjintun+V+Part+Pres+Masc+Sg+Nom:skajjintun         # ;
-  buccautun+V+Part+Pres+Masc+Sg+Nom:buccautun           # ;
-  enšpriccintun+V+Part+Pres+Masc+Sg+Nom:enšpriccintun   # ;
-  špriccintun+V+Part+Pres+Masc+Sg+Nom:špriccintun       # ;
+  auswajjintun+V+PrsPrc+Act+Msc+Sg+Nom:auswajjintun     # ;
+  bajjintun+V+PrsPrc+Act+Msc+Sg+Nom:bajjintun           # ;
+  pabajjintun+V+PrsPrc+Act+Msc+Sg+Nom:pabajjintun       # ;
+  dwejjintun+V+PrsPrc+Act+Msc+Sg+Nom:dwejjintun         # ;
+  enskajjintun+V+PrsPrc+Act+Msc+Sg+Nom:enskajjintun     # ;
+  enswajjintun+V+PrsPrc+Act+Msc+Sg+Nom:enswajjintun     # ;
+  etskajjintun+V+PrsPrc+Act+Msc+Sg+Nom:etskajjintun     # ;
+  izskajjintun+V+PrsPrc+Act+Msc+Sg+Nom:izskajjintun     # ;
+  lejjintun+V+PrsPrc+Act+Msc+Sg+Nom:lejjintun            # ;
+  perskajjintun+V+PrsPrc+Act+Msc+Sg+Nom:perskajjintun   # ;
+  praskajjintun+V+PrsPrc+Act+Msc+Sg+Nom:praskajjintun   # ;
+  skajjintun+V+PrsPrc+Act+Msc+Sg+Nom:skajjintun         # ;
+  buccautun+V+PrsPrc+Act+Msc+Sg+Nom:buccautun           # ;
+  enšpriccintun+V+PrsPrc+Act+Msc+Sg+Nom:enšpriccintun   # ;
+  špriccintun+V+PrsPrc+Act+Msc+Sg+Nom:špriccintun       # ;
 
 ! ═══════════════════════════════════════════════════════════════════════════
 ! ADVERBIEN — Gradtafel (Positiv/Komparativ/Superlativ), je EINE Form.
@@ -406,7 +406,7 @@ LEXICON PartPresGemKeep
 ! teilen sich mit dem Adjektiv (Phase 2) die i-/jo-Deklination: der Komparativ-
 ! Stamm (AdjCmpStems) und der Superlativ-Stamm (AdjSupStems = "uka"+Komparativ-
 ! Stamm) werden je einmal aus twanksta emittiert; das Adverb nutzt dieselben
-! Stämme mit leerer Endung (+Adv+Cmp/+Adv+Sup), das Adjektiv dieselben Stämme
+! Stämme mit leerer Endung (+Adv+Comp/+Adv+Superl), das Adjektiv dieselben Stämme
 ! mit der i-/jo-Endungstabelle. Die uka-Präfix-Mechanik ist also EINMAL gebaut.
 ! ═══════════════════════════════════════════════════════════════════════════
 
@@ -437,70 +437,70 @@ LEXICON AdjSupInfl
   AdjSupNeut ;
 
 LEXICON AdvCmp
-  +Adv+Cmp:0  # ;
+  +Adv+Comp:0  # ;
 
 LEXICON AdvSup
-  +Adv+Sup:0  # ;
+  +Adv+Superl:0  # ;
 
 LEXICON AdjCmpMasc
-  +Adj+Cmp+Masc+Sg+Nom:is     # ;
-  +Adj+Cmp+Masc+Sg+Gen:jas    # ;
-  +Adj+Cmp+Masc+Sg+Dat:jasmu  # ;
-  +Adj+Cmp+Masc+Sg+Acc:in     # ;
-  +Adj+Cmp+Masc+Pl+Nom:jai    # ;
-  +Adj+Cmp+Masc+Pl+Gen:in     # ;
-  +Adj+Cmp+Masc+Pl+Dat:imans  # ;
-  +Adj+Cmp+Masc+Pl+Acc:ins    # ;
+  +A+Comp+Msc+Sg+Nom:is     # ;
+  +A+Comp+Msc+Sg+Gen:jas    # ;
+  +A+Comp+Msc+Sg+Dat:jasmu  # ;
+  +A+Comp+Msc+Sg+Acc:in     # ;
+  +A+Comp+Msc+Pl+Nom:jai    # ;
+  +A+Comp+Msc+Pl+Gen:in     # ;
+  +A+Comp+Msc+Pl+Dat:imans  # ;
+  +A+Comp+Msc+Pl+Acc:ins    # ;
 
 LEXICON AdjCmpFem
-  +Adj+Cmp+Fem+Sg+Nom:i       # ;
-  +Adj+Cmp+Fem+Sg+Gen:jas     # ;
-  +Adj+Cmp+Fem+Sg+Dat:jai     # ;
-  +Adj+Cmp+Fem+Sg+Acc:jan     # ;
-  +Adj+Cmp+Fem+Pl+Nom:jas     # ;
-  +Adj+Cmp+Fem+Pl+Gen:jan     # ;
-  +Adj+Cmp+Fem+Pl+Dat:jamans  # ;
-  +Adj+Cmp+Fem+Pl+Acc:jans    # ;
+  +A+Comp+Fem+Sg+Nom:i       # ;
+  +A+Comp+Fem+Sg+Gen:jas     # ;
+  +A+Comp+Fem+Sg+Dat:jai     # ;
+  +A+Comp+Fem+Sg+Acc:jan     # ;
+  +A+Comp+Fem+Pl+Nom:jas     # ;
+  +A+Comp+Fem+Pl+Gen:jan     # ;
+  +A+Comp+Fem+Pl+Dat:jamans  # ;
+  +A+Comp+Fem+Pl+Acc:jans    # ;
 
 LEXICON AdjCmpNeut
-  +Adj+Cmp+Neut+Sg+Nom:i      # ;
-  +Adj+Cmp+Neut+Sg+Gen:jas    # ;
-  +Adj+Cmp+Neut+Sg+Dat:jasmu  # ;
-  +Adj+Cmp+Neut+Sg+Acc:i      # ;
-  +Adj+Cmp+Neut+Pl+Nom:jai    # ;
-  +Adj+Cmp+Neut+Pl+Gen:in     # ;
-  +Adj+Cmp+Neut+Pl+Dat:imans  # ;
-  +Adj+Cmp+Neut+Pl+Acc:ins    # ;
+  +A+Comp+Neu+Sg+Nom:i      # ;
+  +A+Comp+Neu+Sg+Gen:jas    # ;
+  +A+Comp+Neu+Sg+Dat:jasmu  # ;
+  +A+Comp+Neu+Sg+Acc:i      # ;
+  +A+Comp+Neu+Pl+Nom:jai    # ;
+  +A+Comp+Neu+Pl+Gen:in     # ;
+  +A+Comp+Neu+Pl+Dat:imans  # ;
+  +A+Comp+Neu+Pl+Acc:ins    # ;
 
 LEXICON AdjSupMasc
-  +Adj+Sup+Masc+Sg+Nom:is     # ;
-  +Adj+Sup+Masc+Sg+Gen:jas    # ;
-  +Adj+Sup+Masc+Sg+Dat:jasmu  # ;
-  +Adj+Sup+Masc+Sg+Acc:in     # ;
-  +Adj+Sup+Masc+Pl+Nom:jai    # ;
-  +Adj+Sup+Masc+Pl+Gen:in     # ;
-  +Adj+Sup+Masc+Pl+Dat:imans  # ;
-  +Adj+Sup+Masc+Pl+Acc:ins    # ;
+  +A+Superl+Msc+Sg+Nom:is     # ;
+  +A+Superl+Msc+Sg+Gen:jas    # ;
+  +A+Superl+Msc+Sg+Dat:jasmu  # ;
+  +A+Superl+Msc+Sg+Acc:in     # ;
+  +A+Superl+Msc+Pl+Nom:jai    # ;
+  +A+Superl+Msc+Pl+Gen:in     # ;
+  +A+Superl+Msc+Pl+Dat:imans  # ;
+  +A+Superl+Msc+Pl+Acc:ins    # ;
 
 LEXICON AdjSupFem
-  +Adj+Sup+Fem+Sg+Nom:i       # ;
-  +Adj+Sup+Fem+Sg+Gen:jas     # ;
-  +Adj+Sup+Fem+Sg+Dat:jai     # ;
-  +Adj+Sup+Fem+Sg+Acc:jan     # ;
-  +Adj+Sup+Fem+Pl+Nom:jas     # ;
-  +Adj+Sup+Fem+Pl+Gen:jan     # ;
-  +Adj+Sup+Fem+Pl+Dat:jamans  # ;
-  +Adj+Sup+Fem+Pl+Acc:jans    # ;
+  +A+Superl+Fem+Sg+Nom:i       # ;
+  +A+Superl+Fem+Sg+Gen:jas     # ;
+  +A+Superl+Fem+Sg+Dat:jai     # ;
+  +A+Superl+Fem+Sg+Acc:jan     # ;
+  +A+Superl+Fem+Pl+Nom:jas     # ;
+  +A+Superl+Fem+Pl+Gen:jan     # ;
+  +A+Superl+Fem+Pl+Dat:jamans  # ;
+  +A+Superl+Fem+Pl+Acc:jans    # ;
 
 LEXICON AdjSupNeut
-  +Adj+Sup+Neut+Sg+Nom:i      # ;
-  +Adj+Sup+Neut+Sg+Gen:jas    # ;
-  +Adj+Sup+Neut+Sg+Dat:jasmu  # ;
-  +Adj+Sup+Neut+Sg+Acc:i      # ;
-  +Adj+Sup+Neut+Pl+Nom:jai    # ;
-  +Adj+Sup+Neut+Pl+Gen:in     # ;
-  +Adj+Sup+Neut+Pl+Dat:imans  # ;
-  +Adj+Sup+Neut+Pl+Acc:ins    # ;
+  +A+Superl+Neu+Sg+Nom:i      # ;
+  +A+Superl+Neu+Sg+Gen:jas    # ;
+  +A+Superl+Neu+Sg+Dat:jasmu  # ;
+  +A+Superl+Neu+Sg+Acc:i      # ;
+  +A+Superl+Neu+Pl+Nom:jai    # ;
+  +A+Superl+Neu+Pl+Gen:in     # ;
+  +A+Superl+Neu+Pl+Dat:imans  # ;
+  +A+Superl+Neu+Pl+Acc:ins    # ;
 
 ! ===========================================================================
 ! LEXICON AdvExcept — hand-gepflegte Adverb-Ausnahmen (regelloser Rest)
@@ -508,33 +508,31 @@ LEXICON AdjSupNeut
 ! Suppletion (labs→walnai, līkuts→mazzan, debīks→tūlan) und Stamm-Irregularität
 ! (Geminat-/Stamm-Wahrung: dabbars, timmars, tikkars; auktums, seks) sind per
 ! Definition regellos und MÜSSEN gelistet werden — als fertige Gradformen, NICHT
-! als Regel. gen/coverage_adverb.py liest diese Liste (Lemma-Quelle) und rechnet
-! die Lemmata aus der Regel-Deckung heraus; die Formen selbst stehen hier als
-! Mini-LUT für genau den regellosen Rest.
+! als Regel. Die Formen stehen hier als Mini-LUT für genau den regellosen Rest.
 LEXICON AdvExcept
   ! Suppletiva
   labs+Adv:labbai                  # ;
-  labs+Adv+Cmp:walnai              # ;
-  labs+Adv+Sup:ukawalnai           # ;
+  labs+Adv+Comp:walnai              # ;
+  labs+Adv+Superl:ukawalnai           # ;
   līkuts+Adv:mazzan                # ;
-  līkuts+Adv+Cmp:mazzais           # ;
-  līkuts+Adv+Sup:ukamazzais        # ;
+  līkuts+Adv+Comp:mazzais           # ;
+  līkuts+Adv+Superl:ukamazzais        # ;
   debīks+Adv:tūlan                 # ;
-  debīks+Adv+Cmp:tūls              # ;
-  debīks+Adv+Sup:ukatūls           # ;
+  debīks+Adv+Comp:tūls              # ;
+  debīks+Adv+Superl:ukatūls           # ;
   ! Stamm-Irregularität (Geminat wahrung / abweichender Stamm)
   dabbars+Adv:dabbrai              # ;
-  dabbars+Adv+Cmp:dabbrais         # ;
-  dabbars+Adv+Sup:ukadabbrais      # ;
+  dabbars+Adv+Comp:dabbrais         # ;
+  dabbars+Adv+Superl:ukadabbrais      # ;
   timmars+Adv:timmrai              # ;
-  timmars+Adv+Cmp:timmrais         # ;
-  timmars+Adv+Sup:ukatimmrais      # ;
+  timmars+Adv+Comp:timmrais         # ;
+  timmars+Adv+Superl:ukatimmrais      # ;
   tikkars+Adv:tikkrai              # ;
-  tikkars+Adv+Cmp:tikkrais         # ;
-  tikkars+Adv+Sup:ukatikkrais      # ;
+  tikkars+Adv+Comp:tikkrais         # ;
+  tikkars+Adv+Superl:ukatikkrais      # ;
   auktums+Adv:auktumai             # ;
-  auktums+Adv+Cmp:auktumais        # ;
-  auktums+Adv+Sup:ukaauktumais     # ;
+  auktums+Adv+Comp:auktumais        # ;
+  auktums+Adv+Superl:ukaauktumais     # ;
   seks+Adv:sekku                   # ;
-  seks+Adv+Cmp:sekkuis             # ;
-  seks+Adv+Sup:ukasekkuis          # ;
+  seks+Adv+Comp:sekkuis             # ;
+  seks+Adv+Superl:ukasekkuis          # ;

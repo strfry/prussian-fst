@@ -145,7 +145,7 @@ def build_atom(pos: str, paradigm: str, role: str, verbose: bool = True,
     _check_alphabet(atom, name)
 
     probe = "Teststam"
-    empty = [slot for slot in spec.slots if not full.lookup(probe + slot_tag(slot, spec.v_prefix))]
+    empty = [slot for slot in spec.slots if not full.lookup(probe + slot_tag(slot))]
     if empty:
         raise SystemExit(
             f"{name}: {len(empty)} Slots ohne Pfad (Atom {spec.atoms} in "

@@ -10,11 +10,12 @@ Eingabe ist der NVH-Eintragsschema-Ausschnitt:
 ``legacy.*`` (desc/article/veraltetes paradigm) wird nicht gelesen.
 
 Ausgabe ist ``{NVH-Slot-Key: (Form, …)}`` im dotted ``tag:``-Format (``sg.nom``,
-``pl.acc``, ``cmp.masc.sg.nom``, ``sup.masc.sg.nom``, ``part.pres.masc.sg.nom``,
-``pres.p1.sg``, ``p3`` ohne Numerus, ``opt``, ``imp.sg``/``imp.pl``). Die
-gender-Komponente ist reines Durchreich-Tag: getrieben wird sie nicht — das Atom
-liefert alle Genusblöcke, die das Paradigma hat. Für Nomen ohne bekanntes Genus wird
-nichts erfunden.
+``pl.acc``, ``comp.msc.sg.nom``, ``superl.neu.sg.nom``,
+``part.prs.act.msc.sg.nom``, ``prs.sg1``, ``prt.sp3``, ``subj.sp3``, ``opt``,
+``imprt.sg2``/``imprt.pl2``). Die gender-Komponente ist reines Durchreich-Tag:
+getrieben wird sie nicht — das Atom liefert alle Genusblöcke, die das Paradigma hat.
+Für Nomen ohne bekanntes Genus wird nichts erfunden (Nomen emittieren kein Genus —
+es ist ein Entry-Fakt, kein Slot).
 
 KEINE KORPUSQUELLE. Die einzige Datenquelle sind die zur Build-Zeit kompilierten,
 datenfreien Atom-FSTs ``build/gen-<family>-<paradigm>[-<role>].hfstol``, die aus den
@@ -24,10 +25,10 @@ handgeschriebenen Grammatiken ``gen/*.lexc`` + ``gen/accent.regex`` stammen
 
 Stufen:
 
-  0   Lemma → Basisstamm (Paradigma-Abzug) → alle Rollen regelhaft
-  1   Prinzipalform(en) → Stamm (Seed-Abzug je Rolle)
-  2   explizite Rollen-Stämme (Override)
-  3   Slot-Overrides — nicht in diesem Paket (PLAN_generation.md)
+  0   Regel: Stamm je Rolle aus Lemma + Paradigma (``RoleSpec.rules``)
+  1   gelieferter Stamm: je Rolle, überschreibt die Regel (``generate(stems=…)``)
+  2   Override: fertige Form für Zellen, die Stamm + Paradigma nicht hergeben
+      (im NVH-Kompressor, gen/compress_forms.py)
 
 Beispiel::
 
@@ -72,17 +73,24 @@ STEM_ALPHABET = (
 STEM_ALPHABET_SET = frozenset(STEM_ALPHABET)
 
 # ── Slot-Vokabular (NVH tag:, dotted) ───────────────────────────────────────
-_GENDERS = ("masc", "fem", "neut")
+_GENDERS = ("msc", "fem", "neu")
 _NUMBERS = ("sg", "pl")
 _CASES = ("nom", "gen", "dat", "acc")
 
-_GENDER = {"masc": "Masc", "fem": "Fem", "neut": "Neut"}
+# Genus im NVH-Slot-Key und im FST-Tag
+_GENDER = {"msc": "Msc", "fem": "Fem", "neu": "Neu"}
+# Genus als ENTRY-Feld (nur Nomen, nicht im Slot) — unabhängig von der Slot-Schreibweise
+_ENTRY_GENDERS = frozenset({"masc", "fem", "neut"})
 _NUMBER = {"sg": "Sg", "pl": "Pl"}
 _CASE = {"nom": "Nom", "gen": "Gen", "dat": "Dat", "acc": "Acc"}
-_DEGREE = {"cmp": "Cmp", "sup": "Sup"}
-_PART = {"pres": "Pres", "past": "Past", "pass": "Pass"}
-_FINITE = {"pres": "Pres", "past": "Pret", "subj": "Subj"}
-_PERSON = {"p1": "P1", "p2": "P2", "p3": "P3"}
+_DEGREE = {"comp": "Comp", "superl": "Superl"}
+# Partizip: tense.voice → Prc-Typ + Voice
+_PART_TENSE = {"prs": "Prs", "prf": "Prf"}
+_PART_VOICE = {"act": "Act", "pss": "Pss"}
+# Indikativ-Tempus (im NVH-Key implizit, im FST-Tag explizit)
+_FINITE_TENSE = {"prs": "Prs", "prt": "Prt"}
+# Fusion Person/Num: sg1/sp3/pl2 …
+_PERSNUM = {"sg1": "Sg1", "sg2": "Sg2", "sp3": "SP3", "pl1": "Pl1", "pl2": "Pl2"}
 
 
 def _declined(genders: Iterable[str] = ()) -> tuple[str, ...]:
@@ -102,76 +110,71 @@ def _declined(genders: Iterable[str] = ()) -> tuple[str, ...]:
 NOUN_SLOTS = _declined()
 _GENDERED = _declined(_GENDERS)
 ADJ_POS_SLOTS = _GENDERED
-ADJ_CMP_SLOTS = tuple(f"cmp.{s}" for s in _GENDERED)
-ADJ_SUP_SLOTS = tuple(f"sup.{s}" for s in _GENDERED)
-ADJ_SLOTS = ADJ_POS_SLOTS + ADJ_CMP_SLOTS + ADJ_SUP_SLOTS + ("adv", "adv.cmp", "adv.sup")
-ADVERB_SLOTS = ("adv", "adv.cmp", "adv.sup")
-IMP_SLOTS = ("imp.sg", "imp.pl")
-VERB_PRES_SLOTS = ("pres.p1.sg", "pres.p2.sg", "pres.p3", "pres.p1.pl", "pres.p2.pl")
-VERB_PAST_SLOTS = ("past.p1.sg", "past.p2.sg", "past.p3", "past.p1.pl", "past.p2.pl")
-VERB_SUBJ_SLOTS = ("subj.p1.sg", "subj.p2.sg", "subj.p3", "subj.p1.pl", "subj.p2.pl")
+ADJ_CMP_SLOTS = tuple(f"comp.{s}" for s in _GENDERED)
+ADJ_SUP_SLOTS = tuple(f"superl.{s}" for s in _GENDERED)
+ADJ_SLOTS = (ADJ_POS_SLOTS + ADJ_CMP_SLOTS + ADJ_SUP_SLOTS
+             + ("adv", "adv.comp", "adv.superl"))
+ADVERB_SLOTS = ("adv", "adv.comp", "adv.superl")
+IMP_SLOTS = ("imprt.sg2", "imprt.pl2")
+VERB_PRES_SLOTS = ("prs.sg1", "prs.sg2", "prs.sp3", "prs.pl1", "prs.pl2")
+VERB_PAST_SLOTS = ("prt.sg1", "prt.sg2", "prt.sp3", "prt.pl1", "prt.pl2")
+VERB_SUBJ_SLOTS = ("subj.sg1", "subj.sg2", "subj.sp3", "subj.pl1", "subj.pl2")
 VERB_OPT_SLOTS = ("opt",)
-VERB_SLOTS = VERB_PRES_SLOTS + VERB_PAST_SLOTS + VERB_SUBJ_SLOTS + VERB_OPT_SLOTS + IMP_SLOTS
-PART_PRES_SLOTS = tuple(f"part.pres.{s}" for s in _GENDERED)
-PART_PAST_SLOTS = tuple(f"part.past.{s}" for s in _GENDERED)
-PART_PASS_SLOTS = tuple(f"part.pass.{s}" for s in _GENDERED)
+VERB_SLOTS = (VERB_PRES_SLOTS + VERB_PAST_SLOTS + VERB_SUBJ_SLOTS
+             + VERB_OPT_SLOTS + IMP_SLOTS)
+PART_PRES_SLOTS = tuple(f"part.prs.act.{s}" for s in _GENDERED)
+PART_PAST_SLOTS = tuple(f"part.prf.act.{s}" for s in _GENDERED)
+PART_PASS_SLOTS = tuple(f"part.prf.pss.{s}" for s in _GENDERED)
 
 
-def slot_tag(slot: str, v_prefix: bool = True) -> str:
-    """NVH-Slot-Key → lexc-Abfragetag (``sg.nom`` → ``+Sg+Nom``).
+def slot_tag(slot: str) -> str:
+    """NVH-Slot-Key → lexc-Abfragetag (``sg.nom`` → ``+N+Sg+Nom``).
 
     Eine Funktion für alle Wortarten: die Slot-Keys sind disjoint, die Heads
-    (``sg``/``pl`` Nomen, ``cmp``/``sup`` Grad, ``adv``, ``part``, ``pres``/
-    ``past``/``subj``, ``opt``, ``imp``) sind disambiguiiert.
+    (``sg``/``pl`` Nomen, ``comp``/``superl`` Grad, ``adv``, ``part``, ``prs``/
+    ``prt``/``subj``, ``opt``, ``imprt``) sind disambiguiiert.
 
-    ``v_prefix=False`` unterdrückt das ``+V`` der Partizip-Tags. Die Grammatik
-    ist hier uneinheitlich und der Generator folgt ihr: ``PartPresInfl`` in
-    ``gen/adj.lexc`` taggt ``+V+Part+Pres+…``, ``PartActInfl``/``PartPassInfl``
-    dagegen ``+Part+Past+…``/``+Part+Pass+…`` (so fragt auch gen/coverage_adj.py
-    ab). Die Rolle entscheidet also, nicht der Slot-Key allein — siehe
-    ``RoleSpec.v_prefix``.
+    Der POS-Marker steht im FST-Tag vorn (``+N``/``+V``/``+A``/``+Adv``). Genus
+    steht beim Nomen nicht im Slot (Entry-Fakt) und wird dort auch nicht emittiert.
     """
     parts = slot.split(".")
     head = parts[0]
-    if head in _NUMBER:
+    if head in _NUMBER:                                        # Nomen
         _expect(slot, parts, ("number", "case"))
-        return f"+{_val(_NUMBER, head, slot)}+{_val(_CASE, parts[1], slot)}"
-    if head in _DEGREE:
+        return f"+N+{_val(_NUMBER, head, slot)}+{_val(_CASE, parts[1], slot)}"
+    if head in _DEGREE:                                        # Adj. comp/superl
         _expect(slot, parts, ("degree", "gender", "number", "case"))
-        return (f"+Adj+{_val(_DEGREE, head, slot)}+{_val(_GENDER, parts[1], slot)}"
+        return (f"+A+{_val(_DEGREE, head, slot)}+{_val(_GENDER, parts[1], slot)}"
                 f"+{_val(_NUMBER, parts[2], slot)}+{_val(_CASE, parts[3], slot)}")
-    if head in _GENDER:
-        # Positiv ohne Grad-Präfix (NVH: masc.sg.nom, nicht pos.masc.sg.nom).
+    if head in _GENDERS:                                       # Adj. Positiv
+        # Positiv ohne Grad-Präfix (NVH: msc.sg.nom, nicht pos.msc.sg.nom).
         _expect(slot, parts, ("gender", "number", "case"))
-        return (f"+Adj+{_val(_GENDER, head, slot)}+{_val(_NUMBER, parts[1], slot)}"
+        return (f"+A+{_val(_GENDER, head, slot)}+{_val(_NUMBER, parts[1], slot)}"
                 f"+{_val(_CASE, parts[2], slot)}")
-    if head == "adv":
+    if head == "adv":                                          # Adverb
         if len(parts) == 1:
             return "+Adv"
         _expect(slot, parts, ("adverb", "degree"))
         return f"+Adv+{_val(_DEGREE, parts[1], slot)}"
-    if head == "part":
-        _expect(slot, parts, ("participle", "tense", "gender", "number", "case"))
-        return (("+V" if v_prefix else "") + f"+Part+{_val(_PART, parts[1], slot)}"
-                f"+{_val(_GENDER, parts[2], slot)}+{_val(_NUMBER, parts[3], slot)}"
-                f"+{_val(_CASE, parts[4], slot)}")
-    if head in _FINITE:
-        # p3 trägt keinen Numerus (3. Person unterscheidet ihn nie) — p1/p2
-        # umgekehrt immer: die Grammatik kennt kein +Ind+Pres+P1 ohne Numerus.
-        person = _val(_PERSON, parts[1] if len(parts) > 1 else "", slot)
-        if person == "P3":
-            _expect(slot, parts, ("tense", "p3"))
-        else:
-            _expect(slot, parts, ("tense", person.lower(), "number"))
-        mood = "+Subj" if head == "subj" else f"+Ind+{_FINITE[head]}"
-        tag = f"{mood}+{person}"
-        return tag if person == "P3" else tag + f"+{_val(_NUMBER, parts[2], slot)}"
+    if head == "part":                                         # Partizip
+        _expect(slot, parts, ("participle", "tense", "voice", "gender", "number", "case"))
+        return (f"+V+{_val(_PART_TENSE, parts[1], slot)}Prc"
+                f"+{_val(_PART_VOICE, parts[2], slot)}"
+                f"+{_val(_GENDER, parts[3], slot)}+{_val(_NUMBER, parts[4], slot)}"
+                f"+{_val(_CASE, parts[5], slot)}")
+    if head in ("prs", "prt"):                                 # Verb finit, Ind.
+        _expect(slot, parts, ("tense", "person.number"))
+        return (f"+V+Ind+{_val(_FINITE_TENSE, head, slot)}"
+                f"+{_val(_PERSNUM, parts[1], slot)}")
+    if head == "subj":
+        _expect(slot, parts, ("mood", "person.number"))
+        return f"+V+Subj+{_val(_PERSNUM, parts[1], slot)}"
     if head == "opt":
         _expect(slot, parts, ("optative",))
-        return "+Opt+P3"
-    if head == "imp":
-        _expect(slot, parts, ("imperative", "number"))
-        return f"+Imp+P2+{_val(_NUMBER, parts[1], slot)}"
+        return "+V+Opt+SP3"
+    if head == "imprt":
+        _expect(slot, parts, ("imperative", "person.number"))
+        return f"+V+Imprt+{_val(_PERSNUM, parts[1], slot)}"
     raise ValueError(f"unbekannter Slot-Key: {slot!r}")
 
 
@@ -193,19 +196,31 @@ def _val(mapping: Mapping[str, str], key: str, slot: str) -> str:
 
 @dataclass(frozen=True)
 class StemRule:
-    """Stufe-0-Regel einer Rolle: ``stem = prefix + (Basisstamm − strip) + suffix``.
+    """Stufe-0-Regel einer Rolle: ``stem = prefix + (Basisstamm − strip) + glide + suffix``.
 
     ``strip`` ist eine Kandidatenliste (erster Treffer gewinnt). Eine Regel greift,
     wenn eine ihrer Endungen passt; eine leere Liste passt immer. Die erste passende
     Regel in ``RoleSpec.rules`` gewinnt, die letzte ist der Fallback.
+
+    ``after`` schränkt die Regel zusätzlich auf Basisstämme ein, die mit einer der
+    aufgeführten Endungen enden — der Kontext wird dabei **nicht** abgezogen (anders
+    als ``strip``). ``glide`` ist ein Übergangslaut zwischen Stamm und ``suffix``
+    (der Gleitlaut -w- vor dem -uns-Partizip).
     """
 
     strip: tuple[str, ...] = ()
     prefix: str = ""
     suffix: str = ""
+    after: tuple[str, ...] = ()
+    glide: str = ""
 
     def matches(self, base: str) -> bool:
+        if self.after and not base.endswith(self.after):
+            return False
         return not any(self.strip) or any(base.endswith(e) for e in self.strip if e)
+
+    def apply(self, base: str) -> str:
+        return self.prefix + _drop(base, self.strip) + self.glide + self.suffix
 
 
 def _apply(base: str, rules: tuple[StemRule, ...]) -> str:
@@ -213,10 +228,9 @@ def _apply(base: str, rules: tuple[StemRule, ...]) -> str:
         return base                     # Rolle ohne Stufe-0-Regel (z. B. Nomen)
     for rule in rules:
         if rule.matches(base):
-            return rule.prefix + _drop(base, rule.strip) + rule.suffix
+            return rule.apply(base)
     # Letzte Regel = Fallback (z. B. der Themenvokal der Klasse -taw- fällt weg).
-    fallback = rules[-1]
-    return fallback.prefix + _drop(base, fallback.strip) + fallback.suffix
+    return rules[-1].apply(base)
 
 
 @dataclass(frozen=True)
@@ -232,24 +246,18 @@ class RoleSpec:
     Stufe 0: ``rules`` ist eine geordnete Regeliste (siehe ``StemRule``), angewandt
     auf den Basisstamm aus ``Paradigm.strip`` (Lemma bzw. Infinitiv).
 
-    Stufe 1: ``seed_slot`` ist die Prinzipalform (attestierte Oberfläche),
-    ``seed_strip`` wird davon abgezogen. Der Seed-Pfad wendet keine Stufe-0-Regel an —
-    die Prinzipalform ist bereits der Rollen-Stamm.
+    Stufe 1 ist ein **gelieferter Stamm** je Rolle (``generate(stems=…)``): er ist
+    bereits der Rollen-Stamm und wird nicht aus einer Form zurückgewonnen. Wer einen
+    Stamm aus einer belegten Form braucht, benutzt ``stem_from_form``.
     """
 
     lexc: str
     atoms: tuple[str, ...]
     slots: tuple[str, ...]
     rules: tuple[StemRule, ...] = ()
-    seed_slot: str | None = None
-    seed_strip: tuple[str, ...] = ()
-    v_prefix: bool = True
 
     def stem_from(self, base: str) -> str:
         return _apply(base, self.rules)
-
-    def stem_from_seed(self, form: str) -> str:
-        return _drop(form, self.seed_strip)
 
 
 @dataclass(frozen=True)
@@ -279,91 +287,82 @@ PARADIGMS: dict[tuple[str, str], Paradigm] = {}
 
 
 # ── Nomen ───────────────────────────────────────────────────────────────────
-# family → {Twanksta-Paradigma: (Nom.Sg.-Endungen, Gen.Sg.-Klassenendung)}
-# Die Nom.Sg.-Endungen sind der Stufe-0-Abzug vom Lemma (die Basisform), die
-# Gen.Sg.-Klassenendung der Stufe-1-Abzug von der Prinzipalform sg.gen. Die
-# Nom-Kandidaten sind eine Liste, weil das Zitationslemma je nach Genus eine
-# andere Endung trägt (a-Stamm: Neut. -an / Masc. -as; ī-Stamm: -i / -s) — Reihenfolge
-# = Häufigkeit, erster Treffer gewinnt. Belegt an den twanksta-Lemmata selbst:
-# `gen/coverage_gen.py --family <fam> --emit-stems build/gen-<fam>-stems.lexc` liefert
-# Lemma:Stem-Paare, daraus je Paradigma/Genus die Abzugsliste (z. B. P32 's':1318).
+# family → {Twanksta-Paradigma: Nom.Sg.-Endungen}
+# Die Nom.Sg.-Endungen sind der Stufe-0-Abzug vom Lemma (die Basisform). Sie
+# sind eine Liste, weil das Zitationslemma je nach Genus eine andere Endung trägt
+# (a-Stamm: Neut. -an / Masc. -as; ī-Stamm: -i / -s) — Reihenfolge = Häufigkeit,
+# erster Treffer gewinnt. Die Listen sind an den twanksta-Lemmata selbst abgeglichen
+# (Lemma:Stem-Paare je Paradigma/Genus, z. B. P32 's': 1318).
 # "0" (blanker Stamm, P45/P63) wird als "" geführt.
-_NOUNS: dict[str, dict[str, tuple[tuple[str, ...], str]]] = {
-    "istem": {"52": (("i", "s"), "is"), "53": (("ē",), "is"), "54": (("i", "s"), "is"),
-              "56": (("s", "is"), "is"), "57": (("s", "is"), "is"),
-              "58": (("s", "is", "īs"), "is"), "60": (("s", "is"), "is")},
-    "astem": {"32": (("s", "as"), "as"), "35": (("an", "as"), "as"),
-              "36": (("s", "as"), "as")},
-    "ustem": {"42": (("us",), "us"), "43": (("s", "us"), "us"), "44": (("u",), "us")},
-    "jostem": {"37": (("jan",), "jas"), "38": (("s",), "jas"),
-               "39": (("īs",), "ijjas"),
-               "40": (("is",), "jas"), "41": (("is",), "jas")},
-    "aastem": {"45": (("",), "s"), "46": (("ā", "as"), "as"),
-               "50": (("i", "ī"), "jas"), "51": (("ī",), "jas")},
-    "nstem": {"61": (("s",), "es"), "63": (("",), "es")},
+# Die Gen.Sg.-Endungen der Klassen stehen NICHT mehr hier: ein aus einer belegten
+# Form gewonnener Stamm liest seine Endung aus der Grammatik (stem_from_form).
+_NOUNS: dict[str, dict[str, tuple[str, ...]]] = {
+    "istem": {"52": ("i", "s"), "53": ("ē",), "54": ("i", "s"),
+              "56": ("s", "is"), "57": ("s", "is"),
+              "58": ("s", "is", "īs"), "60": ("s", "is")},
+    "astem": {"32": ("s", "as"), "35": ("an", "as"),
+              "36": ("s", "as")},
+    "ustem": {"42": ("us",), "43": ("s", "us"), "44": ("u",)},
+    "jostem": {"37": ("jan",), "38": ("s",),
+               "39": ("īs",),
+               "40": ("is",), "41": ("is",)},
+    "aastem": {"45": ("",), "46": ("ā", "as"),
+               "50": ("i", "ī"), "51": ("ī",)},
+    "nstem": {"61": ("s",), "63": ("",)},
 }
 
 for _family, _table in _NOUNS.items():
     _lexc = f"gen/{_family}.lexc"
-    for _paradigm, (_nom, _gen) in _table.items():
+    for _paradigm, _nom in _table.items():
         PARADIGMS[("noun", _paradigm)] = Paradigm(
             family=_family, lexc=_lexc, pos="noun",
             strip=tuple(n for n in _nom if n),
             roles={"obl": RoleSpec(
-                lexc=_lexc, atoms=(f"P{_paradigm}",), slots=NOUN_SLOTS,
-                seed_slot="sg.gen", seed_strip=(_gen,) if _gen else ())},
+                lexc=_lexc, atoms=(f"P{_paradigm}",), slots=NOUN_SLOTS)},
         )
 
 # ── Adjektive + Adverbien ───────────────────────────────────────────────────
 # Ein Paradigma, Rollen je Wortart/Grad:
 #   pos   Adj*Infl → 24 Genusblöcke
 #   adv   Adv{A,I,U} → der Adverb-Positiv (Endung steckt im Lexikon)
-#   cmp   AdjCmpInfl → cmp.* (24) + adv.cmp
-#   sup   AdjSupInfl → sup.* (24) + adv.sup, Stamm = "uka" + Komparativstamm
+#   cmp   AdjCmpInfl → comp.* (24) + adv.comp
+#   sup   AdjSupInfl → superl.* (24) + adv.superl, Stamm = "uka" + Komparativstamm
 # Der Komparativ-/Superlativstamm ist regelhaft: Positivstamm + Grad-Suffix
 # (a-Stamm -ais, i-/jo-Stamm -jais, u-Stamm -uis).
-_ADJ: dict[str, tuple[str | None, str, str, str, str]] = {
-    # paradigm: (pos-Atom, Adv-Atom, Nom.Sg.-Abzug, cmp-Suffix, Gen.Sg.-Seed-Abzug)
-    "25": ("AdjFixedInfl", "AdvA", "s", "ais", "as"),
-    "26": ("AdjMobileInfl", "AdvA", "s", "ais", "as"),
-    "27": ("AdjIInfl", "AdvI", "is", "jais", "jas"),
-    "29": ("AdjIMobInfl", "AdvI", "s", "jais", "is"),
-    # Par.30 = reines u-Adverb (keine Deklination in gen/coverage_adj.py; Stamm wie
-    # Par.31 aus dem Nom.Sg. minus -us, Adverb -u, Grad -uis).
-    "30": (None, "AdvU", "us", "uis", "was"),
-    "31": ("AdjUMobInfl", "AdvU", "us", "uis", "was"),
+_ADJ: dict[str, tuple[str | None, str, str, str]] = {
+    # paradigm: (pos-Atom, Adv-Atom, Nom.Sg.-Abzug, cmp-Suffix)
+    "25": ("AdjFixedInfl", "AdvA", "s", "ais"),
+    "26": ("AdjMobileInfl", "AdvA", "s", "ais"),
+    "27": ("AdjIInfl", "AdvI", "is", "jais"),
+    "29": ("AdjIMobInfl", "AdvI", "s", "jais"),
+    # Par.30 = reines u-Adverb (keine Deklination; Stamm wie Par.31 aus dem
+    # Nom.Sg. minus -us, Adverb -u, Grad -uis).
+    "30": (None, "AdvU", "us", "uis"),
+    "31": ("AdjUMobInfl", "AdvU", "us", "uis"),
 }
 
-for _paradigm, (_pos_atom, _adv_atom, _nom, _cmp_suffix, _seed) in _ADJ.items():
+for _paradigm, (_pos_atom, _adv_atom, _nom, _cmp_suffix) in _ADJ.items():
     _lexc = "gen/adj.lexc"
     _roles: dict[str, RoleSpec] = {}
-    if _pos_atom:                                    # Par.30 hat keine Deklension
-        _roles["pos"] = RoleSpec(
-            lexc=_lexc, atoms=(_pos_atom,), slots=ADJ_POS_SLOTS,
-            seed_slot="masc.sg.gen", seed_strip=(_seed,))
+    if _pos_atom:                                    # Par.30 hat keine Deklination
+        _roles["pos"] = RoleSpec(lexc=_lexc, atoms=(_pos_atom,), slots=ADJ_POS_SLOTS)
+
     _roles["adv"] = RoleSpec(lexc=_lexc, atoms=(_adv_atom,), slots=("adv",))
     _roles["cmp"] = RoleSpec(
-        lexc=_lexc, atoms=("AdjCmpInfl",), slots=ADJ_CMP_SLOTS + ("adv.cmp",),
+        lexc=_lexc, atoms=("AdjCmpInfl",), slots=ADJ_CMP_SLOTS + ("adv.comp",),
         rules=(StemRule(suffix=_cmp_suffix),))
     _roles["sup"] = RoleSpec(
-        lexc=_lexc, atoms=("AdjSupInfl",), slots=ADJ_SUP_SLOTS + ("adv.sup",),
+        lexc=_lexc, atoms=("AdjSupInfl",), slots=ADJ_SUP_SLOTS + ("adv.superl",),
         rules=(StemRule(prefix="uka", suffix=_cmp_suffix),))
     PARADIGMS[("adj", _paradigm)] = Paradigm(
         family="adj", lexc=_lexc, pos="adj",
         strip=(_nom,) if _nom else (), roles=_roles)
 
 # ── Verben (finite) ─────────────────────────────────────────────────────────
-# role → (Infl-Lexikone, Seed-Abzug von pres.p3/past.p3/subj.p3)
 # Der Präteritumstamm kommt NIE aus dem Präsens: er ist eine eigene Rolle
-# (seed_slot past.p3) dort, wo die Grammatik ihn aus einem -pret-Stamm speist.
-# Wo die Grammatik das Präteritum aus dem Präsens- bzw. Nonfin-Stamm speist
+# (``pret``) dort, wo die Grammatik ihn aus einem -prt-Stamm speist. Wo die
+# Grammatik das Präteritum aus dem Präsens- bzw. Nonfin-Stamm speist
 # (Pret_Ai / Pret_0), trägt die jeweilige Rolle das Atomsymbol mit.
-_FINITE_ROLES: dict[str, tuple[tuple[str, ...], str]] = {
-    "pres": (("Pres_A", "Pres_I", "Pres_Aa", "Pres_Ja", "Pres_Jja", "Pres_Ui"),
-             "a"),
-    "pret": (("Pret_A", "Pret_Ai", "Pret_I", "Pret_0"), "a"),
-    "nonfin": (("SubjOpt",), "lai"),
-}
 _IMPERATIVE_ATOMS = ("Imp_Ais", "Imp_Is", "Imp_S", "Imp_Siti", "Imp_Jais")
 
 def _atom_slots(atom: str) -> tuple[str, ...]:
@@ -379,72 +378,77 @@ def _atom_slots(atom: str) -> tuple[str, ...]:
     raise KeyError(f"unbekanntes Infl-Lexikon: {atom!r}")
 
 
-# Ein Bucket = ein Stamm + die Infl-Lexikone, die ihn speisen — dieselbe
-# Einteilung wie in gen/coverage_verb.py (P85PresStems / P85NonfinStems /
-# VerbStrongStems).  Wert: (Infl-Lexikone, Seed-Abzug, Stufe-0-Abzug vom
-# Basisstamm = Infinitiv − tun/twei).
+# Ein Bucket = die Infl-Lexikone, die die Rolle speisen, + ihre Stufe-0-Regel auf
+# dem Basisstamm (Infinitiv − tun/twei).
 #
-# Stufe 0 ist ehrlich bescheiden: der NONFIN-Bucket ist der Infinitivstamm
-# selbst (deckt 132/138/139/136/142 zu 100 %), der PRES-Bucket zieht den
-# Themenvokal der Klasse ab (138 -i, 143 -u, 85 -a/-ā …).  Was eine reine
-# Suffix-Regel nicht leistet — Gemination (-ipp-, -ijj-, -āss-), n-Insertion
-# (-ūn- im Präs. v. 111), j-Insertion (Präs. v. 144) und vor allem der
-# ABLAUT-Präteritumstamm —, läuft über Stufe 1 (attestierte Prinzipalform) oder
-# Stufe 2 (Stamm-Override); ein Default, der danebenliegt, ist kein Fehler,
-# sondern die Aufforderung, einen Seed zu setzen.
-_VERBS: dict[str, dict[str, tuple[tuple[str, ...], str, tuple[str, ...]]]] = {
-    "85": {"pres": (("Pres_A", "Pret_Ai", "Imp_Ais"), "a", ("a", "ā")),
-           "nonfin": (("SubjOpt",), "lai", ())},
-    "132": {"pres": (("Pres_I", "Pret_I", "Imp_Is"), "i", ()),
-            "nonfin": (("SubjOpt",), "lai", ())},
-    "138": {"pres": (("Pres_I", "Pret_I", "Imp_Is"), "i", ("i",)),
-            "nonfin": (("SubjOpt",), "lai", ())},
-    "134": {"pres": (("Pres_I", "Pret_I", "Imp_Is"), "i", ()),
-            "nonfin": (("SubjOpt",), "lai", ())},
-    "139": {"pres": (("Pres_A", "Pret_Ai"), "a", ()),
-            "nonfin": (("SubjOpt", "Imp_S"), "lai", ())},
-    "143": {"pres": (("Pres_Ui",), "ui", ("u",)),
-            "nonfin": (("Pret_0", "SubjOpt", "Imp_Siti"), "lai", ())},
-    "144": {"pres": (("Pres_A", "Imp_Ais"), "a", ()),
-            "pret": (("Pret_A",), "a", ()),
-            "nonfin": (("SubjOpt",), "lai", ())},
-    "142": {"pres": (("Pres_A", "Imp_Ais"), "a", ("ā", "a")),
-            "nonfin": (("Pret_I", "SubjOpt"), "lai", ())},
-    "136": {"pres": (("Pres_A", "Imp_Ais"), "a", ("ī",)),
-            "pret": (("Pret_I",), "i", ()),
-            "nonfin": (("SubjOpt",), "lai", ())},
-    "111": {"pres": (("Pres_Ja", "Imp_Jais"), "ja", ()),
-            "pret": (("Pret_A",), "a", ()),
-            "nonfin": (("SubjOpt",), "lai", ())},
-    "71": {"pres": (("Pres_Aa", "Pret_I", "Imp_Ais"), "a", ()),
-           "nonfin": (("SubjOpt",), "lai", ())},
-    "75": {"pres": (("Pres_Jja", "Pret_I"), "ja", ()),
-           "nonfin": (("SubjOpt", "Imp_Jais"), "lai", ())},
-    "81": {"pres": (("Pres_Jja", "Imp_Jais"), "ja", ()),
-           "pret": (("Pret_I",), "i", ()),
-           "nonfin": (("SubjOpt",), "lai", ())},
-    "87a": {"pres": (("Pres_A", "Pret_A", "Imp_Ais"), "a", ("a", "ā")),
-            "nonfin": (("SubjOpt",), "lai", ())},
-    "87b": {"pres": (("Pres_A", "Pret_Ai", "Imp_Ais"), "a", ("a", "ā")),
-            "nonfin": (("SubjOpt",), "lai", ())},
-    "131": {"pres": (("Pres_I", "Pret_I", "Imp_Is"), "i", ()),
-            "nonfin": (("SubjOpt",), "lai", ())},
+# Stufe 0 ist ehrlich besessen: der NONFIN-Bucket ist der Infinitivstamm selbst
+# (deckt 132/138/139/136/142 zu 100 %), der PRES-Bucket zieht den Themenvokal der
+# Klasse ab (138 -i, 143 -u, 85 -a/-ā …). Was eine reine Suffix-Regel nicht leistet
+# — Gemination (-ipp-, -ijj-, -āss-), n-Insertion (-ūn- im Präs. v. 111), j-Insertion
+# (Präs. v. 144) und vor allem der ABLAUT-Präteritumstamm —, läuft über einen
+# gelieferten Stamm (Stufe 1); ein Default, der danebenliegt, ist kein Fehler,
+# sondern die Aufforderung, den Stamm zu liefern.
+_VERBS: dict[str, dict[str, tuple[tuple[str, ...], tuple[str, ...]]]] = {
+    "85": {"pres": (("Pres_A", "Pret_Ai", "Imp_Ais"), ("a", "ā")),
+           "nonfin": (("SubjOpt",), ())},
+    "132": {"pres": (("Pres_I", "Pret_I", "Imp_Is"), ()),
+            "nonfin": (("SubjOpt",), ())},
+    "138": {"pres": (("Pres_I", "Pret_I", "Imp_Is"), ("i",)),
+            "nonfin": (("SubjOpt",), ())},
+    "134": {"pres": (("Pres_I", "Pret_I", "Imp_Is"), ()),
+            "nonfin": (("SubjOpt",), ())},
+    "139": {"pres": (("Pres_A", "Pret_Ai"), ()),
+            "nonfin": (("SubjOpt", "Imp_S"), ())},
+    "143": {"pres": (("Pres_Ui",), ("u",)),
+            "nonfin": (("Pret_0", "SubjOpt", "Imp_Siti"), ())},
+    "144": {"pres": (("Pres_A", "Imp_Ais"), ()),
+            "pret": (("Pret_A",), ()),
+            "nonfin": (("SubjOpt",), ())},
+    "142": {"pres": (("Pres_A", "Imp_Ais"), ("ā", "a")),
+            "nonfin": (("Pret_I", "SubjOpt"), ())},
+    "136": {"pres": (("Pres_A", "Imp_Ais"), ("ī",)),
+            "pret": (("Pret_I",), ()),
+            "nonfin": (("SubjOpt",), ())},
+    "111": {"pres": (("Pres_Ja", "Imp_Jais"), ()),
+            "pret": (("Pret_A",), ()),
+            "nonfin": (("SubjOpt",), ())},
+    "71": {"pres": (("Pres_Aa", "Pret_I", "Imp_Ais"), ()),
+           "nonfin": (("SubjOpt",), ())},
+    "75": {"pres": (("Pres_Jja", "Pret_I"), ()),
+           "nonfin": (("SubjOpt", "Imp_Jais"), ())},
+    "81": {"pres": (("Pres_Jja", "Imp_Jais"), ()),
+           "pret": (("Pret_I",), ()),
+           "nonfin": (("SubjOpt",), ())},
+    "87a": {"pres": (("Pres_A", "Pret_A", "Imp_Ais"), ("a", "ā")),
+            "nonfin": (("SubjOpt",), ())},
+    "87b": {"pres": (("Pres_A", "Pret_Ai", "Imp_Ais"), ("a", "ā")),
+            "nonfin": (("SubjOpt",), ())},
+    "131": {"pres": (("Pres_I", "Pret_I", "Imp_Is"), ()),
+            "nonfin": (("SubjOpt",), ())},
 }
 # Starke Verben: identische Endungen, eigenes Präteritum-Lexikon (Ablaut).
 for _paradigm in ("88", "89", "90", "91", "92", "93", "94", "96", "97", "99", "100",
                   "102", "106", "107", "108", "109", "113", "122", "141"):
-    _VERBS[_paradigm] = {"pres": (("Pres_A", "Imp_Ais"), "a", ("a", "ā")),
-                          "pret": (("Pret_A",), "a", ()),
-                          "nonfin": (("SubjOpt",), "lai", ())}
+    _VERBS[_paradigm] = {"pres": (("Pres_A", "Imp_Ais"), ("a", "ā")),
+                          "pret": (("Pret_A",), ()),
+                          "nonfin": (("SubjOpt",), ())}
 
 # ── Verben (Partizipien) ────────────────────────────────────────────────────
-# Regel-Default, nicht Seed (der attestierte Masc.Gen.Sg.-Seed des
-# Wegschmeißen-Codes ist KEIN Grundmechanismus). Drei Regeln auf dem Verb-Infinitiv:
-#   partpres  -(Basisstamm − t) + nt        (-nts-Partizip, -tun-Klassen)
-#   partact   Basisstamm − at               (-uns-Partizip)
-#   partpass  Basisstamm − at               (-ts-Partizip)
-# Der Rest (Klasse-2 -int, die twei-Klasse mit i/a-Wechsel) läuft über
-# Stamm-Overrides (Stufe 2) bzw. Slot-Overrides (Stufe 3).
+# Alle drei Rollen WIEDERVERWENDEN den Nonfin-Stamm (Infinitiv − tun/twei); nur
+# die Endung unterscheidet sich. Der belegte Masc.Sg.Nom. ergibt:
+#
+#   partpass  mitā   → mitāts        PartPassMasc/Sg/Nom hängt -s an den Stamm
+#   partact   mitā   → mitāwuns      PartActMasc/Sg/Nom hängt -uns an → Gleitlaut
+#   partpres  mitā   → mitānts       PartPresMasc/Sg/Nom hängt -s an, Stamm -nt
+#   partact   audeg  → audeguns      nach Konsonant kein Gleitlaut
+#   partact   perbartau → perbartawuns    Klasse -taw-: au → aw  (wie partpres)
+#
+# Empirisch am belegten Raster (msc.sg.nom, 1421 einwortige Verbeinträge):
+# partpass base+t 1419/1446 · partact base+w 503, base 514, u→w 128 · partpres
+# base+nt 398 (Paradigmen 131/132/134/138/139 zu 100 %), u→wint 128 (Par.143).
+# Der Rest ist lexikalisch (Gemination, j-Insertion, Ablaut, -ānt/-ant/-int) und
+# kommt als gelieferter Stamm (Stufe 1) bzw. als Override (Stufe 2).
+_VOWELS = tuple("aeiouāēīōū")
 _PARTICIPLE_ROLES: dict[str, RoleSpec] = {
     "partpres": RoleSpec(
         lexc="gen/adj.lexc", atoms=("PartPresInfl",), slots=PART_PRES_SLOTS,
@@ -452,17 +456,18 @@ _PARTICIPLE_ROLES: dict[str, RoleSpec] = {
                StemRule(suffix="nt"))),
     "partact": RoleSpec(
         lexc="gen/adj.lexc", atoms=("PartActInfl",), slots=PART_PAST_SLOTS,
-        rules=(StemRule(strip=("a",)),), v_prefix=False),  # Basisstamm − athema
+        rules=(StemRule(strip=("u",), suffix="w"),       # Klasse -taw-: au → aw
+               StemRule(after=_VOWELS, glide="w"),      # Nonfin-Stamm + Gleit -w-
+               StemRule())),                             # sonst: Nonfin-Stamm
     "partpass": RoleSpec(
         lexc="gen/adj.lexc", atoms=("PartPassInfl",), slots=PART_PASS_SLOTS,
-        rules=(StemRule(strip=("a",)),), v_prefix=False),
+        rules=(StemRule(suffix="t"),)),                 # Nonfin-Stamm + -t
 }
 
 _VERB_LEXC = "gen/verb.lexc"
-_SEED_SLOT = {"pres": "pres.p3", "pret": "past.p3", "nonfin": "subj.p3"}
 for _paradigm, _role_table in _VERBS.items():
     _roles: dict[str, RoleSpec] = {}
-    for _role, (_atoms, _seed_strip, _strip) in _role_table.items():
+    for _role, (_atoms, _strip) in _role_table.items():
         _slots: list[str] = []
         for _atom in _atoms:
             for _slot in _atom_slots(_atom):
@@ -470,8 +475,7 @@ for _paradigm, _role_table in _VERBS.items():
                     _slots.append(_slot)
         _roles[_role] = RoleSpec(
             lexc=_VERB_LEXC, atoms=tuple(_atoms), slots=tuple(_slots),
-            rules=(StemRule(strip=_strip),),
-            seed_slot=_SEED_SLOT[_role], seed_strip=(_seed_strip,))
+            rules=(StemRule(strip=_strip),))
     _roles.update(_PARTICIPLE_ROLES)
     PARADIGMS[("verb", _paradigm)] = Paradigm(
         family="verb", lexc=_VERB_LEXC, pos="verb",
@@ -573,29 +577,22 @@ def _atom(pos: str, paradigm: str, role: str):
     return pyhfst.HfstInputStream(str(path)).read()
 
 
-# ── Stufen 0/1/2 ────────────────────────────────────────────────────────────
+# ── Stufe 0 (Regel) / Stufe 1 (gelieferter Stamm) ───────────────────────────
 
 
-def default_stems(pos: str, paradigm: str | int, lemma: str | None = None,
-                  seeds: Mapping[str, str] | None = None) -> dict[str, str]:
-    """Stamm je Rolle: Stufe 0 (Lemma) und Stufe 1 (Prinzipalformen).
+def default_stems(pos: str, paradigm: str | int, lemma: str | None = None
+                  ) -> dict[str, str]:
+    """Stufe-0-Stamm je Rolle: die Regel aus Lemma + Paradigma (``RoleSpec.rules``).
 
-    ``seeds`` bildet Slot-Key → attestierte Oberfläche ab (``{"sg.gen": "dumslis"}``
-    für Nomen, ``{"pres.p3": "ainagimmat", "subj.p3": "ainagimmatlai"}`` für Verben).
-    Ein Seed gilt für die Rolle, deren ``seed_slot`` er ist; Rollen ohne Seed
-    fallen auf den Lemma-Stamm zurück. Priorität: Seed > Lemma.
+    Ohne Lemma liefert die Funktion nichts — es gibt keinen Stamm zu raten. Will man
+    einen Rollen-Stamm überschreiben, ist das ein **gelieferter Stamm**
+    (``generate(stems=…)``), keine zweite Stufe im Generator.
     """
     par = _paradigm(pos, paradigm, lemma or "")
-    base = _drop(_norm(lemma), par.strip) if lemma else ""
-    seeds = seeds or {}
-    out: dict[str, str] = {}
-    for role, spec in par.roles.items():
-        form = seeds.get(spec.seed_slot) if spec.seed_slot else None
-        if form:
-            out[role] = spec.stem_from_seed(_norm(form))
-        elif base:
-            out[role] = spec.stem_from(base)
-    return out
+    if not lemma:
+        return {}
+    base = _drop(_norm(lemma), par.strip)
+    return {role: spec.stem_from(base) for role, spec in par.roles.items()}
 
 
 def check_stem(stem: str, role: str = "") -> str:
@@ -612,42 +609,105 @@ def check_stem(stem: str, role: str = "") -> str:
 
 def generate(pos: str, paradigm: str | int, lemma: str | None = None,
              stems: Mapping[str, str] | None = None,
-             seeds: Mapping[str, str] | None = None,
              gender: str | None = None) -> dict[str, tuple[str, ...]]:
     """Wortformen erzeugen: ``(pos, Twanksta-Paradigma, Lemma)`` → Slot → Formen.
 
     ``pos`` ist ``noun``/``adj``/``verb``, ``paradigm`` die Twanksta-Nummer,
-    ``lemma`` die Basisform (Nom.Sg. / Infinitiv / Masc.Nom.Sg.). ``stems``
-    (Stufe 2) überschreibt einzelne Rollen-Stämme, ``seeds`` (Stufe 1) liefert
-    attestierte Prinzipalformen je Slot. ``gender`` wird nicht gebraucht — die
-    Genus-Dimension ist reines Durchreich-Tag in den Slot-Keys; bei Nomen ohne
-    bekanntes Genus wird nichts erfunden.
+    ``lemma`` die Basisform (Nom.Sg. / Infinitiv / Masc.Nom.Sg.). ``stems`` ist
+    der **gelieferte Stamm** je Rolle und überschreibt die Stufe-0-Regel
+    (``{"obl": "Patall"}``, ``{"partpres": "ainapreslinān"}``). ``gender`` wird nicht
+    gebraucht — die Genus-Dimension ist reines Durchreich-Tag in den Slot-Keys; bei
+    Nomen ohne bekanntes Genus wird nichts erfunden.
 
     Ein Slot mit leerem Tupel heißt: das Paradigma hat diese Form nicht (z. B.
     Part.Pl.Dat. ohne Geminate) — kein Fehler, aber auch keine Form.
     """
     par = _paradigm(pos, paradigm, lemma or "")
-    resolved = default_stems(pos, paradigm, lemma=lemma, seeds=seeds)
+    resolved = default_stems(pos, paradigm, lemma=lemma)
     for role, stem in (stems or {}).items():
         if role not in par.roles:
             raise KeyError(f"unbekannte Rolle {role!r} für {pos}/{paradigm} "
                            f"(bekannt: {sorted(par.roles)})")
         resolved[role] = stem
-    if gender is not None and gender not in _GENDER:
+    if gender is not None and gender not in _ENTRY_GENDERS:
         raise ValueError(f"unbekanntes gender {gender!r} (masc|fem|neut)")
     key_paradigm = _paradigm_key(pos, paradigm, lemma or "")
     out: dict[str, tuple[str, ...]] = {}
     for role in par.roles:
         stem = resolved.get(role)
         if stem is None:
-            continue                      # weder Lemma noch Seed → nichts zu tun
+            continue                      # weder Lemma noch Stamm → nichts zu tun
         check_stem(_norm(stem), role)
         spec = par.roles[role]
         tr = _atom(pos, key_paradigm, role)
         for slot in spec.slots:
             out[slot] = tuple(sorted({surface for surface, _w in tr.lookup(
-                _norm(stem) + slot_tag(slot, spec.v_prefix))}))
+                _norm(stem) + slot_tag(slot))}))
     return out
+
+
+# ── Stamm aus einer belegten Form (die Grammatik ist das_lineare Messgerät) ──
+#
+# Die Endung eines Slots steht in der Grammatik (gen/*.lexc), nicht in einer Tabelle
+# hier. Deshalb wird sie gemessen: ein Sentinel-Stamm durchläuft dasselbe
+# ``generate``-Rollenatom wie ein echter Stamm; was hinter dem Sentinel
+# herauskommt, ist die Endung des Slots — inklusive Akzentgrenze ``^``, Schutzmarker
+# ``~`` und Geminations-Marker ``>``, weil der Lookup diese Zeichen mitkopiert.
+#
+# Drei Bedingungen an das Sentinel, jede aus gen/accent.regex begründet:
+#   keine Makrone            (Shorten verkürzt sie vor ^)
+#   keine Doppelkonsonanten   (Degem vor ^, CodaDegem vor wortfinalem -s)
+#   Vokal am Ende            (keine Geminate-Regel, kein ^ unmittelbar davor)
+_SENTINEL_STEM = "stuba"
+
+
+@lru_cache(maxsize=None)
+def slot_ending(pos: str, paradigm: str, role: str, slot: str) -> str:
+    """Endung, die die Grammatik des Atoms an ``slot`` an einen Stamm hängt."""
+    surfaces = generate(pos, paradigm, stems={role: _SENTINEL_STEM}).get(slot, ())
+    if len(surfaces) != 1:
+        raise ValueError(
+            f"Endung {pos}/{paradigm}/{role} an {slot!r} nicht messbar: "
+            f"Sentinel {_SENTINEL_STEM!r} ergibt {len(surfaces)} Oberflächen "
+            f"{surfaces} (erwartet: genau eine)")
+    surface = surfaces[0]
+    if not surface.startswith(_SENTINEL_STEM):
+        raise ValueError(
+            f"Endung {pos}/{paradigm}/{role} an {slot!r} nicht messbar: "
+            f"Sentinel {_SENTINEL_STEM!r} kam als {surface!r} zurück — die "
+            f"Akzentregel hat das Sentinel verändert")
+    return surface[len(_SENTINEL_STEM):]
+
+
+def stem_from_form(pos: str, paradigm: str | int, role: str, slot: str,
+                   form: str, lemma: str | None = None) -> str:
+    """Rollen-Stamm aus einer belegten Oberfläche an ``slot`` zurückgewinnen.
+
+    Das Gegenstück zu ``default_stems``: statt das Lemma per Regel umzudeuten wird
+    eine **belegte Form** (irgendein Slot der Rolle) genommen und die Endung
+    abgezogen, die die Grammatik dort anhängt (``slot_ending``). Ergebnis ist der
+    gelieferte Stamm (Stufe 1) — ``generate(stems={role: stem})`` muss die Form
+    wiederherstellen; der Aufrufer prüft das.
+
+    ``lemma`` wird nur für die Paradigmen-Auflösung gebraucht (Verb 87 → 87a/87b).
+    Eine Form, die nicht mit der gemessenen Endung endet, ist kein Stamm für diesen
+    Slot — dann ``ValueError`` (der Aufrufer probiert den nächsten Kandidaten).
+    """
+    par = _paradigm(pos, paradigm, lemma or "")
+    if role not in par.roles:
+        raise KeyError(f"unbekannte Rolle {role!r} für {pos}/{paradigm} "
+                       f"(bekannt: {sorted(par.roles)})")
+    if slot not in par.roles[role].slots:
+        raise ValueError(f"Slot {slot!r} gehört nicht zur Rolle {role!r} "
+                         f"(Slots: {', '.join(par.roles[role].slots)})")
+    ending = slot_ending(pos, _paradigm_key(pos, paradigm, lemma or ""), role, slot)
+    form = _norm(form)
+    if not form.endswith(ending):
+        raise ValueError(
+            f"{form!r} endet nicht auf die Endung {ending!r} des Slots {slot!r} "
+            f"(Rolle {role!r}, {pos}/{paradigm}) — daraus lässt sich kein Stamm "
+            f"gewinnen")
+    return form[:-len(ending)] if ending else form
 
 
 def _main(argv: list[str]) -> int:
@@ -662,9 +722,8 @@ def _main(argv: list[str]) -> int:
     gen.add_argument("paradigm")
     gen.add_argument("lemma")
     gen.add_argument("--stem", action="append", default=[],
-                     metavar="ROLE=STEM", help="Stufe-2-Stamm-Override")
-    gen.add_argument("--seed", action="append", default=[],
-                     metavar="SLOT=FORM", help="Stufe-1-Prinzipalform")
+                     metavar="ROLE=STEM",
+                     help="gelieferter Stamm je Rolle (überschreibt Stufe 0)")
     gen.add_argument("--gender", choices=["masc", "fem", "neut"])
     args = parser.parse_args(argv)
 
@@ -674,10 +733,9 @@ def _main(argv: list[str]) -> int:
                 continue
             print(f"{pos:5} {paradigm:5} {role:9} {path.name}")
         return 0
-    seeds = dict(kv.split("=", 1) for kv in args.seed)
     stems = dict(kv.split("=", 1) for kv in args.stem)
     result = generate(args.pos, args.paradigm, lemma=args.lemma, stems=stems,
-                      seeds=seeds, gender=args.gender)
+                      gender=args.gender)
     for slot, forms in result.items():
         print(f"{slot:28} {' | '.join(forms)}")
     return 0

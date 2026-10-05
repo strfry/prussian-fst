@@ -2,9 +2,7 @@
 !
 ! i-Familie = Gen.Sg. auf -is; der oblique Stamm ist Gen.Sg. minus -is. Neben
 ! gen/astem.lexc (a-Stamm) und gen/adj.lexc (Adjektive); teilt sich die
-! Akzentregel gen/accent.regex. Nicht-zirkulär getestet: gen/coverage_gen.py
-! speist die Stämme ALLER realen i-Stamm-Lexeme in die hier formulierten
-! Endungen + die Akzentregel und misst die Deckung gegen Twanksta.
+! Akzentregel gen/accent.regex.
 !
 ! ARCHITEKTUR — eine Endungstabelle PRO TWANKSTA-PARADIGMENNUMMER:
 !   Der Tabellenschlüssel ist die Paradigmennummer (P52 … P60), nicht
@@ -39,12 +37,11 @@
 !     Instrāpils) ist phonotaktisch (Geminate + Konsonant), kein Akzent → aus
 !     der Akzentregel bewusst herausgehalten.
 
-Multichar_Symbols +N +Masc +Fem +Neut +Sg +Pl +Nom +Gen +Dat +Acc ^ ~
+Multichar_Symbols +N +Msc +Fem +Neu +Sg +Pl +Nom +Gen +Dat +Acc ^ ~
 
 ! Diese Datei ist die HAND-GESCHRIEBENE Grammatik (Endungen + Nom.Sg.-Ausnahmen)
 ! und enthält bewusst KEINE Wörter. LEXICON Root verweist auf die PxxStems; deren
 ! Einträge (Lemma+N+Genus:Stamm  Pxx ;) werden aus twanksta generiert:
-!   uv run python gen/coverage_gen.py --family istem --emit-stems build/gen-istem-stems.lexc
 ! Der Build hängt diesen generierten Stamm-Block an die Grammatik an (siehe Makefile).
 LEXICON Root
   P52Stems ;
@@ -59,74 +56,74 @@ LEXICON Root
 ! >>> ENDUNGEN — je Twanksta-Paradigmennummer eine Endungstabelle <<<
 
 LEXICON P52
-  +Sg+Nom:i       # ;
-  +Sg+Gen:is      # ;
-  +Sg+Dat:ei      # ;
-  +Sg+Acc:in      # ;
-  +Pl+Nom:is      # ;
-  +Pl+Gen:in      # ;
-  +Pl+Dat:imans   # ;
-  +Pl+Acc:ins     # ;
+  +N+Sg+Nom:i       # ;
+  +N+Sg+Gen:is      # ;
+  +N+Sg+Dat:ei      # ;
+  +N+Sg+Acc:in      # ;
+  +N+Pl+Nom:is      # ;
+  +N+Pl+Gen:in      # ;
+  +N+Pl+Dat:imans   # ;
+  +N+Pl+Acc:ins     # ;
 
 LEXICON P54
-  +Sg+Nom:i       # ;
-  +Sg+Gen:is      # ;
-  +Sg+Dat:ei      # ;
-  +Sg+Acc:in      # ;
-  +Pl+Nom:is      # ;
-  +Pl+Gen:in      # ;
-  +Pl+Dat:imans   # ;
-  +Pl+Acc:ins     # ;
+  +N+Sg+Nom:i       # ;
+  +N+Sg+Gen:is      # ;
+  +N+Sg+Dat:ei      # ;
+  +N+Sg+Acc:in      # ;
+  +N+Pl+Nom:is      # ;
+  +N+Pl+Gen:in      # ;
+  +N+Pl+Dat:imans   # ;
+  +N+Pl+Acc:ins     # ;
 
 LEXICON P58
-  +Sg+Nom:s       # ;
-  +Sg+Gen:is      # ;
-  +Sg+Dat:ei      # ;
-  +Sg+Acc:in      # ;
-  +Pl+Nom:is      # ;
-  +Pl+Gen:in      # ;
-  +Pl+Dat:imans   # ;
-  +Pl+Acc:ins     # ;
+  +N+Sg+Nom:s       # ;
+  +N+Sg+Gen:is      # ;
+  +N+Sg+Dat:ei      # ;
+  +N+Sg+Acc:in      # ;
+  +N+Pl+Nom:is      # ;
+  +N+Pl+Gen:in      # ;
+  +N+Pl+Dat:imans   # ;
+  +N+Pl+Acc:ins     # ;
 
 LEXICON P56
-  +Sg+Nom:s       # ;
-  +Sg+Gen:is      # ;
-  +Sg+Dat:i       # ;
-  +Sg+Acc:in      # ;
-  +Pl+Nom:jai     # ;
-  +Pl+Gen:in      # ;
-  +Pl+Dat:imans   # ;
-  +Pl+Acc:ins     # ;
+  +N+Sg+Nom:s       # ;
+  +N+Sg+Gen:is      # ;
+  +N+Sg+Dat:i       # ;
+  +N+Sg+Acc:in      # ;
+  +N+Pl+Nom:jai     # ;
+  +N+Pl+Gen:in      # ;
+  +N+Pl+Dat:imans   # ;
+  +N+Pl+Acc:ins     # ;
 
 LEXICON P53
-  +Sg+Nom:%^ē      # ;   ! Akzent auf Endung → Stamm leicht
-  +Sg+Gen:is       # ;
-  +Sg+Dat:ei       # ;
-  +Sg+Acc:in       # ;
-  +Pl+Nom:is       # ;
-  +Pl+Gen:in       # ;
-  +Pl+Dat:%^īmans  # ;   ! Akzent auf Endung → Stamm leicht
-  +Pl+Acc:ins      # ;
+  +N+Sg+Nom:%^ē      # ;   ! Akzent auf Endung → Stamm leicht
+  +N+Sg+Gen:is       # ;
+  +N+Sg+Dat:ei       # ;
+  +N+Sg+Acc:in       # ;
+  +N+Pl+Nom:is       # ;
+  +N+Pl+Gen:in       # ;
+  +N+Pl+Dat:%^īmans  # ;   ! Akzent auf Endung → Stamm leicht
+  +N+Pl+Acc:ins      # ;
 
 LEXICON P60
-  +Sg+Nom:s        # ;
-  +Sg+Gen:is       # ;
-  +Sg+Dat:ei       # ;
-  +Sg+Acc:in       # ;
-  +Pl+Nom:is       # ;
-  +Pl+Gen:in       # ;
-  +Pl+Dat:%^immans # ;   ! Akzent auf Endung → Stamm leicht
-  +Pl+Acc:ins      # ;
+  +N+Sg+Nom:s        # ;
+  +N+Sg+Gen:is       # ;
+  +N+Sg+Dat:ei       # ;
+  +N+Sg+Acc:in       # ;
+  +N+Pl+Nom:is       # ;
+  +N+Pl+Gen:in       # ;
+  +N+Pl+Dat:%^immans # ;   ! Akzent auf Endung → Stamm leicht
+  +N+Pl+Acc:ins      # ;
 
 LEXICON P57
-  +Sg+Nom:s        # ;
-  +Sg+Gen:is       # ;
-  +Sg+Dat:i        # ;
-  +Sg+Acc:in       # ;
-  +Pl+Nom:es       # ;
-  +Pl+Gen:in       # ;
-  +Pl+Dat:%^immans # ;   ! Akzent auf Endung → Stamm leicht
-  +Pl+Acc:ins      # ;
+  +N+Sg+Nom:s        # ;
+  +N+Sg+Gen:is       # ;
+  +N+Sg+Dat:i        # ;
+  +N+Sg+Acc:in       # ;
+  +N+Pl+Nom:es       # ;
+  +N+Pl+Gen:in       # ;
+  +N+Pl+Dat:%^immans # ;   ! Akzent auf Endung → Stamm leicht
+  +N+Pl+Acc:ins      # ;
 
 ! ===========================================================================
 ! Nom.Sg.-AUSNAHMEN — hand-gepflegt
@@ -145,12 +142,12 @@ LEXICON P57
 
 LEXICON NomSg
   ! Par.56 (masc)
-  Narwis+N+Masc+Sg+Nom:Narwis                 # ;
-  wāsis+N+Masc+Sg+Nom:wāsis                   # ;
-  trustis+N+Masc+Sg+Nom:trustis               # ;
+  Narwis+N+Msc+Sg+Nom:Narwis                 # ;
+  wāsis+N+Msc+Sg+Nom:wāsis                   # ;
+  trustis+N+Msc+Sg+Nom:trustis               # ;
   ! Par.57 (masc)
-  sasnis+N+Masc+Sg+Nom:sasnis                 # ;
-  skārstis+N+Masc+Sg+Nom:skārstis             # ;
+  sasnis+N+Msc+Sg+Nom:sasnis                 # ;
+  skārstis+N+Msc+Sg+Nom:skārstis             # ;
   ! Par.58 (fem)
   Antarktis+N+Fem+Sg+Nom:Antarktis            # ;
   Arktis+N+Fem+Sg+Nom:Arktis                  # ;
@@ -187,7 +184,7 @@ LEXICON NomSg
 ! Diese Lexeme behalten ihre Stamm-Geminate auch im akzentverschobenen Slot
 ! (Par.53 Sg.Nom/Pl.Dat, Par.57 Pl.Dat), weil die Gemination ins Grundmorphem
 ! eingebacken ist (Ableitung/Kompositum) — anders als die degeminierenden
-! Paradigma-Geschwister (nagg→nagē, lukk→lukimmans). gen/coverage_gen.py liest
+! Paradigma-Geschwister (nagg→nagē, lukk→lukimmans).
 ! diese Liste und hängt den Schutzmarker ~ an den (aus twanksta abgeleiteten)
 ! Stamm; gen/accent.regex sperrt daraufhin Degem. Kein Nom.Sg.-Eintrag nötig —
 ! der Stamm bleibt in der Grundklasse (Par.53 erzeugt aupallē generativ).
@@ -196,47 +193,47 @@ LEXICON GeminateKeep
   ! Par.53 (fem)
   aupallē+N+Fem+Sg+Nom:aupallē                # ;
   ! Par.57 (masc) — pretonische Geminate aus dem Grundmorphem/Kompositum
-  trillunks+N+Masc+Sg+Nom:trillunks           # ;
-  septinnelunks+N+Masc+Sg+Nom:septinnelunks   # ;
-  ketturjalunks+N+Masc+Sg+Nom:ketturjalunks   # ;
-  snappazwers+N+Masc+Sg+Nom:snappazwers       # ;
+  trillunks+N+Msc+Sg+Nom:trillunks           # ;
+  septinnelunks+N+Msc+Sg+Nom:septinnelunks   # ;
+  ketturjalunks+N+Msc+Sg+Nom:ketturjalunks   # ;
+  snappazwers+N+Msc+Sg+Nom:snappazwers       # ;
 
 ! -_o-Klassen: identisch zur Basisklasse, aber OHNE +Sg+Nom (den liefert NomSg).
 LEXICON P56_o
-  +Sg+Gen:is      # ;
-  +Sg+Dat:i       # ;
-  +Sg+Acc:in      # ;
-  +Pl+Nom:jai     # ;
-  +Pl+Gen:in      # ;
-  +Pl+Dat:imans   # ;
-  +Pl+Acc:ins     # ;
+  +N+Sg+Gen:is      # ;
+  +N+Sg+Dat:i       # ;
+  +N+Sg+Acc:in      # ;
+  +N+Pl+Nom:jai     # ;
+  +N+Pl+Gen:in      # ;
+  +N+Pl+Dat:imans   # ;
+  +N+Pl+Acc:ins     # ;
 
 LEXICON P57_o
-  +Sg+Gen:is       # ;
-  +Sg+Dat:i        # ;
-  +Sg+Acc:in       # ;
-  +Pl+Nom:es       # ;
-  +Pl+Gen:in       # ;
-  +Pl+Dat:%^immans # ;
-  +Pl+Acc:ins      # ;
+  +N+Sg+Gen:is       # ;
+  +N+Sg+Dat:i        # ;
+  +N+Sg+Acc:in       # ;
+  +N+Pl+Nom:es       # ;
+  +N+Pl+Gen:in       # ;
+  +N+Pl+Dat:%^immans # ;
+  +N+Pl+Acc:ins      # ;
 
 LEXICON P58_o
-  +Sg+Gen:is      # ;
-  +Sg+Dat:ei      # ;
-  +Sg+Acc:in      # ;
-  +Pl+Nom:is      # ;
-  +Pl+Gen:in      # ;
-  +Pl+Dat:imans   # ;
-  +Pl+Acc:ins     # ;
+  +N+Sg+Gen:is      # ;
+  +N+Sg+Dat:ei      # ;
+  +N+Sg+Acc:in      # ;
+  +N+Pl+Nom:is      # ;
+  +N+Pl+Gen:in      # ;
+  +N+Pl+Dat:imans   # ;
+  +N+Pl+Acc:ins     # ;
 
 LEXICON P60_o
-  +Sg+Gen:is       # ;
-  +Sg+Dat:ei       # ;
-  +Sg+Acc:in       # ;
-  +Pl+Nom:is       # ;
-  +Pl+Gen:in       # ;
-  +Pl+Dat:%^immans # ;
-  +Pl+Acc:ins      # ;
+  +N+Sg+Gen:is       # ;
+  +N+Sg+Dat:ei       # ;
+  +N+Sg+Acc:in       # ;
+  +N+Pl+Nom:is       # ;
+  +N+Pl+Gen:in       # ;
+  +N+Pl+Dat:%^immans # ;
+  +N+Pl+Acc:ins      # ;
 
 ! (kein P53_o mehr: aupallē läuft über die Grundklasse P53 + Schutzmarker ~,
 !  siehe LEXICON GeminateKeep — der einzige frühere P53-NomSg-Fall.)

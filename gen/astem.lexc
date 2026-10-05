@@ -2,9 +2,6 @@
 !
 ! a-Familie = Gen.Sg. auf -as; oblique Stamm = Gen.Sg. minus -as. Parallel zu
 ! gen/istem.lexc; teilt sich die Akzentregel gen/accent.regex. Nicht-zirkulär
-! getestet: gen/coverage_gen.py --family astem speist die Stämme ALLER realen
-! a-Stamm-Lexeme in die hier formulierten Endungen + die Akzentregel und misst
-! gegen Twanksta.
 !
 ! ARCHITEKTUR wie beim i-Stamm — eine Endungstabelle PRO TWANKSTA-PARADIGMENNUMMER;
 ! Genus ist rein lexikalisch (Tag am Lemma, kein Tabellenselektor). Drei
@@ -28,7 +25,7 @@
 ! (Makron ODER Geminate) und tilgt ^. Die Einsilben-/Koda-Regel dort vereinfacht
 ! zudem eine Stamm-Geminate vor dem Nom.Sg. -s (kapp+s → kaps).
 
-Multichar_Symbols +N +Masc +Neut +Sg +Pl +Nom +Gen +Dat +Acc ^
+Multichar_Symbols +N +Msc +Neu +Sg +Pl +Nom +Gen +Dat +Acc ^
 
 LEXICON Root
   P32Stems ;
@@ -38,36 +35,35 @@ LEXICON Root
 ! Hand-geschriebene Grammatik (nur Endungen, KEINE Wörter). LEXICON Root oben
 ! verweist auf die PxxStems; deren Einträge (Lemma+N+Genus:Stamm  Pxx ;) kommen
 ! aus twanksta, der Build hängt sie an (siehe Makefile):
-!   uv run python gen/coverage_gen.py --family astem --emit-stems build/gen-astem-stems.lexc
 
 ! >>> ENDUNGEN — je Twanksta-Paradigmennummer eine Endungstabelle <<<
 
 LEXICON P32
-  +Sg+Nom:s        # ;
-  +Sg+Gen:as       # ;
-  +Sg+Dat:u        # ;
-  +Sg+Acc:an       # ;
-  +Pl+Nom:ai       # ;
-  +Pl+Gen:an       # ;
-  +Pl+Dat:amans    # ;
-  +Pl+Acc:ans      # ;
+  +N+Sg+Nom:s        # ;
+  +N+Sg+Gen:as       # ;
+  +N+Sg+Dat:u        # ;
+  +N+Sg+Acc:an       # ;
+  +N+Pl+Nom:ai       # ;
+  +N+Pl+Gen:an       # ;
+  +N+Pl+Dat:amans    # ;
+  +N+Pl+Acc:ans      # ;
 
 LEXICON P36
-  +Sg+Nom:s        # ;
-  +Sg+Gen:as       # ;
-  +Sg+Dat:u        # ;
-  +Sg+Acc:an       # ;
-  +Pl+Nom:%^āi     # ;   ! Akzent auf Endung → Stamm leicht
-  +Pl+Gen:an       # ;
-  +Pl+Dat:%^ammans # ;   ! Akzent auf Endung → Stamm leicht
-  +Pl+Acc:ans      # ;
+  +N+Sg+Nom:s        # ;
+  +N+Sg+Gen:as       # ;
+  +N+Sg+Dat:u        # ;
+  +N+Sg+Acc:an       # ;
+  +N+Pl+Nom:%^āi     # ;   ! Akzent auf Endung → Stamm leicht
+  +N+Pl+Gen:an       # ;
+  +N+Pl+Dat:%^ammans # ;   ! Akzent auf Endung → Stamm leicht
+  +N+Pl+Acc:ans      # ;
 
 LEXICON P35
-  +Sg+Nom:an       # ;
-  +Sg+Gen:as       # ;
-  +Sg+Dat:u        # ;
-  +Sg+Acc:an       # ;
-  +Pl+Nom:%^āi     # ;   ! Akzent auf Endung → Stamm leicht
-  +Pl+Gen:an       # ;
-  +Pl+Dat:%^ammans # ;   ! Akzent auf Endung → Stamm leicht
-  +Pl+Acc:ans      # ;
+  +N+Sg+Nom:an       # ;
+  +N+Sg+Gen:as       # ;
+  +N+Sg+Dat:u        # ;
+  +N+Sg+Acc:an       # ;
+  +N+Pl+Nom:%^āi     # ;   ! Akzent auf Endung → Stamm leicht
+  +N+Pl+Gen:an       # ;
+  +N+Pl+Dat:%^ammans # ;   ! Akzent auf Endung → Stamm leicht
+  +N+Pl+Acc:ans      # ;

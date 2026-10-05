@@ -1,10 +1,9 @@
-! Generative FST for finite verbs (synthetic forms only). Data-free ending grammar,
-! tested non-circularly against twanksta (gen/coverage_verb.py). Stems are emitted
-! from twanksta (--emit-stems) into the P*Stems / VerbStrongStems lexicons below;
-! each stem entry continues into one atom. Atoms are defined once. Tag order:
-! +V +Mood [+Tense] +Pers [+Num] (P3 has no number). +Refl optional (surface drops " si").
+! Generative FST for finite verbs (synthetic forms only). Data-free ending grammar.
+! Atoms are defined once; each stem entry continues into one atom. Tag order:
+! +V +Modus [+Tempus] +Person/Num (fusioniert: +Sg1 +Sg2 +SP3 +Pl1 +Pl2).
+! +Refl optional (surface drops " si").
 
-Multichar_Symbols +V +Ind +Pres +Pret +Subj +Opt +Imp +P1 +P2 +P3 +Sg +Pl +Refl
+Multichar_Symbols +V +Ind +Subj +Opt +Prs +Prt +Imprt +Sg1 +Sg2 +SP3 +Pl1 +Pl2 +Refl
 
 LEXICON Root
   P85PresStems ;
@@ -38,105 +37,105 @@ LEXICON Root
 
 ! ── Present indicative ──
 LEXICON Pres_A          ! a/a/a/imai/itei
-  +Ind+Pres+P1+Sg:a    VerbEnd ;
-  +Ind+Pres+P2+Sg:a    VerbEnd ;
-  +Ind+Pres+P3:a       VerbEnd ;
-  +Ind+Pres+P1+Pl:imai VerbEnd ;
-  +Ind+Pres+P2+Pl:itei VerbEnd ;
+  +V+Ind+Prs+Sg1:a    VerbEnd ;
+  +V+Ind+Prs+Sg2:a    VerbEnd ;
+  +V+Ind+Prs+SP3:a       VerbEnd ;
+  +V+Ind+Prs+Pl1:imai VerbEnd ;
+  +V+Ind+Prs+Pl2:itei VerbEnd ;
 
 LEXICON Pres_I          ! i/i/i/imai/itei
-  +Ind+Pres+P1+Sg:i    VerbEnd ;
-  +Ind+Pres+P2+Sg:i    VerbEnd ;
-  +Ind+Pres+P3:i       VerbEnd ;
-  +Ind+Pres+P1+Pl:imai VerbEnd ;
-  +Ind+Pres+P2+Pl:itei VerbEnd ;
+  +V+Ind+Prs+Sg1:i    VerbEnd ;
+  +V+Ind+Prs+Sg2:i    VerbEnd ;
+  +V+Ind+Prs+SP3:i       VerbEnd ;
+  +V+Ind+Prs+Pl1:imai VerbEnd ;
+  +V+Ind+Prs+Pl2:itei VerbEnd ;
 
 LEXICON Pres_Aa         ! a/a/a/amai/atei
-  +Ind+Pres+P1+Sg:a    VerbEnd ;
-  +Ind+Pres+P2+Sg:a    VerbEnd ;
-  +Ind+Pres+P3:a       VerbEnd ;
-  +Ind+Pres+P1+Pl:amai VerbEnd ;
-  +Ind+Pres+P2+Pl:atei VerbEnd ;
+  +V+Ind+Prs+Sg1:a    VerbEnd ;
+  +V+Ind+Prs+Sg2:a    VerbEnd ;
+  +V+Ind+Prs+SP3:a       VerbEnd ;
+  +V+Ind+Prs+Pl1:amai VerbEnd ;
+  +V+Ind+Prs+Pl2:atei VerbEnd ;
 
 LEXICON Pres_Ja         ! ja/ja/ja/imai/itei
-  +Ind+Pres+P1+Sg:ja   VerbEnd ;
-  +Ind+Pres+P2+Sg:ja   VerbEnd ;
-  +Ind+Pres+P3:ja      VerbEnd ;
-  +Ind+Pres+P1+Pl:imai VerbEnd ;
-  +Ind+Pres+P2+Pl:itei VerbEnd ;
+  +V+Ind+Prs+Sg1:ja   VerbEnd ;
+  +V+Ind+Prs+Sg2:ja   VerbEnd ;
+  +V+Ind+Prs+SP3:ja      VerbEnd ;
+  +V+Ind+Prs+Pl1:imai VerbEnd ;
+  +V+Ind+Prs+Pl2:itei VerbEnd ;
 
 LEXICON Pres_Jja        ! ja/ja/ja/jamai/jatei
-  +Ind+Pres+P1+Sg:ja    VerbEnd ;
-  +Ind+Pres+P2+Sg:ja    VerbEnd ;
-  +Ind+Pres+P3:ja       VerbEnd ;
-  +Ind+Pres+P1+Pl:jamai VerbEnd ;
-  +Ind+Pres+P2+Pl:jatei VerbEnd ;
+  +V+Ind+Prs+Sg1:ja    VerbEnd ;
+  +V+Ind+Prs+Sg2:ja    VerbEnd ;
+  +V+Ind+Prs+SP3:ja       VerbEnd ;
+  +V+Ind+Prs+Pl1:jamai VerbEnd ;
+  +V+Ind+Prs+Pl2:jatei VerbEnd ;
 
 LEXICON Pres_Ui         ! ui/ui/ui/wimai/witei
-  +Ind+Pres+P1+Sg:ui    VerbEnd ;
-  +Ind+Pres+P2+Sg:ui    VerbEnd ;
-  +Ind+Pres+P3:ui       VerbEnd ;
-  +Ind+Pres+P1+Pl:wimai VerbEnd ;
-  +Ind+Pres+P2+Pl:witei VerbEnd ;
+  +V+Ind+Prs+Sg1:ui    VerbEnd ;
+  +V+Ind+Prs+Sg2:ui    VerbEnd ;
+  +V+Ind+Prs+SP3:ui       VerbEnd ;
+  +V+Ind+Prs+Pl1:wimai VerbEnd ;
+  +V+Ind+Prs+Pl2:witei VerbEnd ;
 
 ! ── Preterite indicative ──
 LEXICON Pret_A          ! a/a/a/amai/atei
-  +Ind+Pret+P1+Sg:a    VerbEnd ;
-  +Ind+Pret+P2+Sg:a    VerbEnd ;
-  +Ind+Pret+P3:a       VerbEnd ;
-  +Ind+Pret+P1+Pl:amai VerbEnd ;
-  +Ind+Pret+P2+Pl:atei VerbEnd ;
+  +V+Ind+Prt+Sg1:a    VerbEnd ;
+  +V+Ind+Prt+Sg2:a    VerbEnd ;
+  +V+Ind+Prt+SP3:a       VerbEnd ;
+  +V+Ind+Prt+Pl1:amai VerbEnd ;
+  +V+Ind+Prt+Pl2:atei VerbEnd ;
 
 LEXICON Pret_Ai         ! a/a/a/imai/itei
-  +Ind+Pret+P1+Sg:a    VerbEnd ;
-  +Ind+Pret+P2+Sg:a    VerbEnd ;
-  +Ind+Pret+P3:a       VerbEnd ;
-  +Ind+Pret+P1+Pl:imai VerbEnd ;
-  +Ind+Pret+P2+Pl:itei VerbEnd ;
+  +V+Ind+Prt+Sg1:a    VerbEnd ;
+  +V+Ind+Prt+Sg2:a    VerbEnd ;
+  +V+Ind+Prt+SP3:a       VerbEnd ;
+  +V+Ind+Prt+Pl1:imai VerbEnd ;
+  +V+Ind+Prt+Pl2:itei VerbEnd ;
 
 LEXICON Pret_I          ! i/i/i/imai/itei
-  +Ind+Pret+P1+Sg:i    VerbEnd ;
-  +Ind+Pret+P2+Sg:i    VerbEnd ;
-  +Ind+Pret+P3:i       VerbEnd ;
-  +Ind+Pret+P1+Pl:imai VerbEnd ;
-  +Ind+Pret+P2+Pl:itei VerbEnd ;
+  +V+Ind+Prt+Sg1:i    VerbEnd ;
+  +V+Ind+Prt+Sg2:i    VerbEnd ;
+  +V+Ind+Prt+SP3:i       VerbEnd ;
+  +V+Ind+Prt+Pl1:imai VerbEnd ;
+  +V+Ind+Prt+Pl2:itei VerbEnd ;
 
 LEXICON Pret_0          ! 0/0/0/mai/tei
-  +Ind+Pret+P1+Sg:0    VerbEnd ;
-  +Ind+Pret+P2+Sg:0    VerbEnd ;
-  +Ind+Pret+P3:0       VerbEnd ;
-  +Ind+Pret+P1+Pl:mai  VerbEnd ;
-  +Ind+Pret+P2+Pl:tei  VerbEnd ;
+  +V+Ind+Prt+Sg1:0    VerbEnd ;
+  +V+Ind+Prt+Sg2:0    VerbEnd ;
+  +V+Ind+Prt+SP3:0       VerbEnd ;
+  +V+Ind+Prt+Pl1:mai  VerbEnd ;
+  +V+Ind+Prt+Pl2:tei  VerbEnd ;
 
 ! ── Subjunctive + optative ──
 LEXICON SubjOpt         ! sei + lai/lai/lai/limai/litei
-  +Opt+P3:sei          VerbEnd ;
-  +Subj+P1+Sg:lai      VerbEnd ;
-  +Subj+P2+Sg:lai      VerbEnd ;
-  +Subj+P3:lai         VerbEnd ;
-  +Subj+P1+Pl:limai    VerbEnd ;
-  +Subj+P2+Pl:litei    VerbEnd ;
+  +V+Opt+SP3:sei          VerbEnd ;
+  +V+Subj+Sg1:lai      VerbEnd ;
+  +V+Subj+Sg2:lai      VerbEnd ;
+  +V+Subj+SP3:lai         VerbEnd ;
+  +V+Subj+Pl1:limai    VerbEnd ;
+  +V+Subj+Pl2:litei    VerbEnd ;
 
 ! ── Imperative ──
 LEXICON Imp_Ais         ! ais/aiti
-  +Imp+P2+Sg:ais       VerbEnd ;
-  +Imp+P2+Pl:aiti      VerbEnd ;
+  +V+Imprt+Sg2:ais       VerbEnd ;
+  +V+Imprt+Pl2:aiti      VerbEnd ;
 
 LEXICON Imp_Is          ! is/iti
-  +Imp+P2+Sg:is        VerbEnd ;
-  +Imp+P2+Pl:iti       VerbEnd ;
+  +V+Imprt+Sg2:is        VerbEnd ;
+  +V+Imprt+Pl2:iti       VerbEnd ;
 
 LEXICON Imp_S           ! s/ti
-  +Imp+P2+Sg:s         VerbEnd ;
-  +Imp+P2+Pl:ti        VerbEnd ;
+  +V+Imprt+Sg2:s         VerbEnd ;
+  +V+Imprt+Pl2:ti        VerbEnd ;
 
 LEXICON Imp_Siti        ! s/iti
-  +Imp+P2+Sg:s         VerbEnd ;
-  +Imp+P2+Pl:iti       VerbEnd ;
+  +V+Imprt+Sg2:s         VerbEnd ;
+  +V+Imprt+Pl2:iti       VerbEnd ;
 
 LEXICON Imp_Jais        ! jais/jaiti
-  +Imp+P2+Sg:jais      VerbEnd ;
-  +Imp+P2+Pl:jaiti     VerbEnd ;
+  +V+Imprt+Sg2:jais      VerbEnd ;
+  +V+Imprt+Pl2:jaiti     VerbEnd ;
 
 ! ── Optional reflexive suffix (surface drops " si") ──
 LEXICON VerbEnd
