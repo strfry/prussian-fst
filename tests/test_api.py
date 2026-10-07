@@ -11,14 +11,14 @@ from pathlib import Path
 import pytest
 
 REPO = Path(__file__).resolve().parents[1]
-FST = REPO / "build/base.hfstol"
+
+from prussian_fst import api  # noqa: E402
+from prussian_fst.cg3_pipeline import DEFAULT_FST as FST  # noqa: E402
 
 pytestmark = pytest.mark.skipif(
     not (shutil.which("cg-proc") and FST.exists()),
-    reason="cg-proc/base.hfstol nicht verfügbar",
+    reason="cg-proc/DEFAULT_FST nicht verfügbar",
 )
-
-from prussian_fst import api  # noqa: E402
 
 
 def test_check_artifacts_ready():

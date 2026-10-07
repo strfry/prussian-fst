@@ -14,7 +14,9 @@ import pytest
 
 REPO = Path(__file__).resolve().parents[1]
 
-from prussian_fst.cg3_pipeline import relevant_checks, sentence_status  # noqa: E402
+from prussian_fst.cg3_pipeline import (  # noqa: E402
+    DEFAULT_FST, relevant_checks, sentence_status)
+
 
 
 def coverage(word_tokens=4, oov=(), collapsed=(), ambig=(), unlicensed=(),
@@ -31,7 +33,7 @@ def coverage(word_tokens=4, oov=(), collapsed=(), ambig=(), unlicensed=(),
 
 
 VIOLATION = [{"rule": "prep-akk-dat", "tag": "&prep-akk-dat", "index": 4,
-              "form": "laīwu", "reading": "laīwan+N+Neut+Sg+Dat",
+              "form": "laīwu", "reading": "laīwan+N+Neu+Sg+Dat",
               "message": ""}]
 
 
@@ -102,9 +104,9 @@ def test_relevant_checks_anchors():
     # das Nom-P1/P2-Pronomen plus finites Verb im Satz.
     cohorts = [
         cohort("As", ("as", "Pron", "P1", "Sg", "Nom"), dep=(1, 2)),
-        cohort("pūwa", ("pūtun", "V", "Ind", "Pret", "P1", "Sg"), dep=(2, 2)),
-        cohort("sen", ("sēn", "Prp", "GovAkk"), dep=(3, 4)),
-        cohort("laīwan", ("laīwan", "N", "Sg", "Acc", "Neut"), dep=(4, 2)),
+        cohort("pūwa", ("pūtun", "V", "Ind", "Prt", "Sg1"), dep=(2, 2)),
+        cohort("sen", ("sēn", "Pr"), dep=(3, 4)),
+        cohort("laīwan", ("laīwan", "N", "Sg", "Acc", "Neu"), dep=(4, 2)),
     ]
     checks = relevant_checks(cohorts, genverbs=set())
     assert "prep-case" in checks
@@ -124,13 +126,13 @@ def test_relevant_checks_subj_verb_needs_finite_verb():
 def test_relevant_checks_adj_needs_nominal_parent():
     # Adjektiv mit N-Parent → adj-agr anwendbar
     cohorts = [
-        cohort("Labban", ("labs", "Adj", "Sg", "Acc", "Fem"), dep=(1, 2)),
+        cohort("Labban", ("labs", "A", "Sg", "Acc", "Fem"), dep=(1, 2)),
         cohort("dēinan", ("dēinā", "N", "Sg", "Acc", "Fem"), dep=(2, 2)),
     ]
     assert "adj-agr" in relevant_checks(cohorts, genverbs=set())
     # Adverb-aufgelöstes Adjektiv ohne Nominal-Parent → nicht anwendbar
     cohorts = [
-        cohort("Bilāimai", ("bilītun", "V", "Ind", "Pres", "P1", "Pl")),
+        cohort("Bilāimai", ("bilītun", "V", "Ind", "Prs", "Pl1")),
         cohort("prūsiskai", ("prūsiskai", "Adv")),
     ]
     assert "adj-agr" not in relevant_checks(cohorts, genverbs=set())
@@ -138,9 +140,9 @@ def test_relevant_checks_adj_needs_nominal_parent():
 
 def test_relevant_checks_genverb_and_steisan():
     cohorts = [
-        cohort("Tāns", ("tāns", "Pron", "P3", "Sg", "Nom", "Masc")),
-        cohort("bijja", ("bijātun", "V", "Ind", "Pres", "P3")),
-        cohort("stēisan", ("stas", "Pron", "Pl", "Gen", "Masc")),
+        cohort("Tāns", ("tāns", "Pron", "P3", "Sg", "Nom", "Msc")),
+        cohort("bijja", ("bijātun", "V", "Ind", "Prs", "SP3")),
+        cohort("stēisan", ("stas", "Pron", "Pl", "Gen", "Msc")),
     ]
     checks = relevant_checks(cohorts, genverbs={"bijātun"})
     assert "genverb" in checks
@@ -153,7 +155,7 @@ def test_relevant_checks_genverb_and_steisan():
 
 import shutil  # noqa: E402
 
-FST_OL = REPO / "build/base.hfstol"
+FST_OL = DEFAULT_FST
 needs_pipeline = pytest.mark.skipif(
     not (shutil.which("cg-proc") and FST_OL.exists()),
     reason="cg-proc/base.hfstol nicht verfügbar",

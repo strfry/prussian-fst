@@ -27,13 +27,13 @@ AUXILIARIES = {"asma", "assei", "ast", "asmai", "astei",
 # `` / ``-separated participle variants in Perfect/Future forms.
 # The variant index maps directly to the pronoun sub-parts.
 PARTICIPLE_PRET_GENDER = {
-    "as":           [("Masc", "Sg"), ("Fem", "Sg")],
-    "tū":           [("Masc", "Sg"), ("Fem", "Sg")],
-    "tāns/tenā":    [("Masc", "Sg"), ("Fem", "Sg")],
-    "tennan":       [("Neut", "Sg")],
-    "mes":          [("Masc", "Pl"), ("Fem", "Pl")],
-    "jūs":          [("Masc", "Pl"), ("Fem", "Pl")],
-    "tenēi/tennas": [("Masc", "Pl"), ("Fem", "Pl")],
+    "as":           [("Msc", "Sg"), ("Fem", "Sg")],
+    "tū":           [("Msc", "Sg"), ("Fem", "Sg")],
+    "tāns/tenā":    [("Msc", "Sg"), ("Fem", "Sg")],
+    "tennan":       [("Neu", "Sg")],
+    "mes":          [("Msc", "Pl"), ("Fem", "Pl")],
+    "jūs":          [("Msc", "Pl"), ("Fem", "Pl")],
+    "tenēi/tennas": [("Msc", "Pl"), ("Fem", "Pl")],
 }
 
 CASE_MAP = {
@@ -41,14 +41,15 @@ CASE_MAP = {
     "Dative": "Dat", "Accusative": "Acc",
 }
 
-GENDER_MAP = {"masc": "+Masc", "m": "+Masc",
+GENDER_MAP = {"masc": "+Msc", "m": "+Msc",
                "fem": "+Fem", "f": "+Fem",
-               "neut": "+Neut", "n": "+Neut", "": ""}
+               "neut": "+Neu", "n": "+Neu", "": ""}
 
 # Die 3. Person markiert im Apreußischen (wie im Baltischen allgemein)
 # keinen Numerus: 3sg und 3pl sind formgleich (Twanksta: 3828/3828 Slots
-# identisch).  Darum bekommt P3 kein +Sg/+Pl — der Numerus lebt am Subjekt.
-PERSON_TAGS = ["P1+Sg", "P2+Sg", "P3", "P1+Pl", "P2+Pl", "P3"]
+# identisch).  Darum ist Person/Numerus fusioniert und SP3 trägt kein
+# Sg/Pl — der Numerus lebt am Subjekt.
+PERSON_TAGS = ["Sg1", "Sg2", "SP3", "Pl1", "Pl2", "SP3"]
 
 PRONOUN_MAP = {
     "as": 0, "tū": 1,
@@ -72,14 +73,14 @@ LEXICON_NAMES = {
 
 POS_TAGS = {
     "noun": "+N",
-    "proper_noun": "+PropN",
-    "adjective": "+Adj",
+    "proper_noun": "+N+Prop",
+    "adjective": "+A",
     "numeral": "+Num",
     "adverb": "+Adv",
-    "preposition": "+Prp",
-    "conjunction": "+Cnj",
-    "particle": "+Pcl",
-    "interjection": "+IJ",
+    "preposition": "+Pr",
+    "conjunction": "+CC",
+    "particle": "+Pcle",
+    "interjection": "+Interj",
 }
 
 
@@ -102,79 +103,6 @@ def paradigm_int(par: str) -> int | None:
 def desc_gram(desc: str) -> str:
     """Grammatical part of the desc field (source refs ``[...]`` stripped)."""
     return re.sub(r"\[.*?\]", "", desc).strip()
-
-
-def prep_gov_tags(desc: str) -> list[str]:
-    """Governed-case tags for a preposition, from ``prp acc`` / ``prp dat`` desc."""
-    g = desc_gram(desc)
-    if not g.startswith("prp"):
-        return []
-    tags = []
-    if re.search(r"\bacc\b", g):
-        tags.append("+GovAkk")
-    if re.search(r"\bdat\b", g):
-        tags.append("+GovDat")
-    return tags
-
-
-# Preposition lemmas that appear in verb descs without macrons (unmacroned →
-# macroned form matching the actual preposition entry).
-PREP_NORMALIZE = {
-    "en": "ēn",
-    "per": "pēr",
-    "prei": "prēi",
-    "sen": "sēn",
-    "zurgi": "zūrgi",
-}
-
-CASE_NAMES = {"acc": "Acc", "akk": "Acc", "dat": "Dat", "gen": "Gen"}
-
-# Matches "(prep +? case)" patterns in verb desc grammatical part.
-_PREP_RECTION_RE = re.compile(
-    r"\(?\s*([\wĀ-ſ]+)\s*\+?\s*(acc|akk|dat|gen)\s*\)?", re.I)
-
-
-def verb_valence_tags(desc: str, prep_words: set[str]) -> list[str]:
-    """Parse valence tags directly from a verb's ``desc`` field.
-
-    Returns a list of lexc tags:
-    - ``+GovAkk`` / ``+GovDat`` for bare-case objects (Gen is skipped)
-    - ``+PP<prep>`` for prepositional objects (e.g. ``+PPēn``, ``+PPsen``)
-
-    *prep_words* is the set of known preposition lemmas (to filter false
-    positives from the regex).
-    """
-    g = desc_gram(desc)
-    if not g:
-        return []
-
-    # Collect prep-rection matches and strip them from remaining text
-    rest = g
-    tags = []
-    for m in _PREP_RECTION_RE.finditer(g):
-        prep = m.group(1).lower()
-        case = CASE_NAMES.get(m.group(2).lower())
-        if case is None:
-            continue
-        prep = PREP_NORMALIZE.get(prep, prep)
-        if prep not in prep_words:
-            continue
-        if case == "Gen":
-            continue  # Gen verbs skipped per user request
-        tags.append(f"+PP{prep}")
-        rest = rest.replace(m.group(0), " ")
-
-    # Remaining bare case keywords → +GovAkk / +GovDat (Gen skipped)
-    for m in re.finditer(r"\b(acc|akk|dat)\b", rest, re.I):
-        name = CASE_NAMES[m.group(1).lower()]
-        if name == "Acc":
-            gov = "+GovAkk"
-        else:
-            gov = f"+Gov{name}"
-        if gov not in tags:
-            tags.append(gov)
-
-    return tags
 
 
 def is_proper_noun(desc: str) -> bool:
@@ -269,8 +197,8 @@ def strip_si(form: str) -> str:
 
 def nominal_forms(entry: dict, pos_tag: str, subtype_tag: str = "") -> list[tuple[str, str]]:
     results = []
-    for decl_key, deg_tag in [("declension", ""), ("comparative", "+Cmp"),
-                              ("superlative", "+Sup")]:
+    for decl_key, deg_tag in [("declension", ""), ("comparative", "+Comp"),
+                              ("superlative", "+Superl")]:
         for gen_decl in entry.get("forms", {}).get(decl_key, []):
             g = gen_decl.get("gender", "masc")
             g_tag = GENDER_MAP.get(g, "")
@@ -300,8 +228,8 @@ def adverb_forms(entry: dict) -> list[str]:
     if not lemma or " " in lemma:
         return []
     lines = []
-    for key, deg_tag in [("positive", ""), ("comparative", "+Cmp"),
-                         ("superlative", "+Sup")]:
+    for key, deg_tag in [("positive", ""), ("comparative", "+Comp"),
+                         ("superlative", "+Superl")]:
         form = (adv.get(key) or "").strip()
         for variant in form.split(" / "):
             variant = variant.strip()
@@ -341,12 +269,13 @@ def extract_perfect_participles(indicative: list, upper: str,
                     # Partizip — nie selbst eine Partizipform emittieren
                     if not w or w in AUXILIARIES or w == "si" or " " in w:
                         continue
-                    tag = f"Part+Past+{gend}+{num}+Nom" if gend else f"Part+Past+{num}+Nom"
+                    tag = (f"PrfPrc+Act+{gend}+{num}+Nom" if gend
+                           else f"PrfPrc+Act+{num}+Nom")
                     results[f"{upper}+V+{tag}{refl}:{lexc_esc(w)}"] = True
     return results
 
 
-def verb_forms(entry: dict, prep_words: set[str] | None = None) -> tuple[str, dict]:
+def verb_forms(entry: dict) -> tuple[str, dict]:
     """Extract verb inflectional forms and participle full forms.
 
     Returns ``(base_word, {full_line: True})`` where *base_word* is
@@ -356,9 +285,8 @@ def verb_forms(entry: dict, prep_words: set[str] | None = None) -> tuple[str, di
     forms = entry.get("forms", {})
     base, refl = refl_tag(word)
     upper = lexc_esc(base)
-    # Valenz-Tags aus desc direkt geparst (+GovAkk/+GovDat/+PP<prep>)
-    val_tags = "".join(verb_valence_tags(entry.get("desc", ""), prep_words or set()))
-    refl = f"{val_tags}{refl}"
+    # Valenz ist KEINE Morphologie (GiellaLT-verifiziert): sie lebt in der
+    # CG-Schicht (Lemma-Listen), nicht im FST-Tag-Inventar.
     results = {}
 
     # Infinitive
@@ -368,7 +296,7 @@ def verb_forms(entry: dict, prep_words: set[str] | None = None) -> tuple[str, di
     # Indicative (present / past / perfect / future)
     for tense_entry in forms.get("indicative", []):
         tname = tense_entry.get("tense", "")
-        tense = "Pres" if tname == "Present" else "Pret" if tname == "Past" else None
+        tense = "Prs" if tname == "Present" else "Prt" if tname == "Past" else None
         if not tense:
             continue
         for sub in tense_entry.get("forms", []):
@@ -389,7 +317,7 @@ def verb_forms(entry: dict, prep_words: set[str] | None = None) -> tuple[str, di
             f_clean = strip_si(variant.strip())
             if " " in f_clean or "\n" in f_clean:
                 continue
-            results[f"{upper}+V+Opt+P3{refl}:{lexc_esc(f_clean)}"] = True
+            results[f"{upper}+V+Opt+SP3{refl}:{lexc_esc(f_clean)}"] = True
 
     # Imperative
     for sub in forms.get("imperative", []):
@@ -402,8 +330,8 @@ def verb_forms(entry: dict, prep_words: set[str] | None = None) -> tuple[str, di
                 idx = PRONOUN_MAP.get(sub.get("pronoun", ""))
                 if idx is None or idx not in (1, 4):
                     continue
-                tag = "P2+Sg" if idx == 1 else "P2+Pl"
-                results[f"{upper}+V+Imp+{tag}{refl}:{lexc_esc(f_clean)}"] = True
+                tag = "Sg2" if idx == 1 else "Pl2"
+                results[f"{upper}+V+Imprt+{tag}{refl}:{lexc_esc(f_clean)}"] = True
 
     # Subjunctive
     for sub in forms.get("subjunctive", []):
@@ -426,13 +354,13 @@ def verb_forms(entry: dict, prep_words: set[str] | None = None) -> tuple[str, di
             continue
 
         if bare.endswith("uns"):
-            tag = "Past"
+            part_tag = "PrfPrc+Act"
         elif bare.endswith("nts"):
-            tag = "Pres"
+            part_tag = "PrsPrc+Act"
         elif bare.endswith("ts"):
-            tag = "Pass"
+            part_tag = "PrfPrc+Pss"
         elif bare.endswith("s") and len(bare) > 3:
-            tag = "Pres"
+            part_tag = "PrsPrc+Act"
         else:
             continue
 
@@ -450,9 +378,9 @@ def verb_forms(entry: dict, prep_words: set[str] | None = None) -> tuple[str, di
                             for variant in form.split(" / "):
                                 variant = variant.strip()
                                 if variant:
-                                    results[f"{upper}+V+Part+{tag}{g_tag}+{num_tag}+{c_tag}{refl}:{lexc_esc(variant)}"] = True
+                                    results[f"{upper}+V+{part_tag}{g_tag}+{num_tag}+{c_tag}{refl}:{lexc_esc(variant)}"] = True
         else:
-            results[f"{upper}+V+Part+{tag}+Masc+Sg+Nom{refl}:{lexc_esc(bare)}"] = True
+            results[f"{upper}+V+{part_tag}+Msc+Sg+Nom{refl}:{lexc_esc(bare)}"] = True
 
     # Extra participles from periphrastic Perfect/Future indicative forms
     results.update(extract_perfect_participles(forms.get("indicative", []),
@@ -485,16 +413,6 @@ def main():
     verb_data = {}  # orig_word -> (base_word, {line: True})
     seen_bases = set()
 
-    # Preposition lemmas (for verb valence prep validation)
-    prep_words = set()
-    for e in raw:
-        g = desc_gram(e.get("desc", ""))
-        if g.startswith("prp"):
-            w = e.get("word", "")
-            if w:
-                prep_words.add(w.lower())
-    prep_words.update(PREP_NORMALIZE.keys())
-
     for e in raw:
         word = e.get("word", "")
         if not word or "/" in word:
@@ -511,7 +429,7 @@ def main():
         stats[pos] += 1
 
         if pos == "verb":
-            base_w, vf = verb_forms(e, prep_words)
+            base_w, vf = verb_forms(e)
             if vf:
                 key = word
                 verb_data[key] = (base_w, vf)
@@ -546,15 +464,7 @@ def main():
             subtype = numeral_subtype(e.get("desc", "")) if pos == "numeral" else ""
             forms = nominal_forms(e, tag, subtype)
             if not forms:
-                if pos == "preposition":
-                    gov_tags = prep_gov_tags(e.get("desc", "")) or [""]
-                    for gov in gov_tags:
-                        body = f"{lexc_esc(word)}{tag}{gov}:{lexc_esc(word)}"
-                        if body not in seen_bodies:
-                            seen_bodies.add(body)
-                            lines.append(f"  {body}  # ;")
-                            total += 1
-                elif invariable:
+                if invariable:
                     body = f"{lexc_esc(word)}{tag}:{lexc_esc(word)}"
                     if body not in seen_bodies:
                         seen_bodies.add(body)
@@ -593,21 +503,21 @@ def main():
     for _key in sorted(verb_data):
         _base, vf = verb_data[_key]
         for line in sorted(vf):
-            if "+Part+Pres+" in line:
+            if "+PrsPrc+" in line:
                 vstats["part_pres"] += 1
-            elif "+Part+Past+" in line:
+            elif "+PrfPrc+Act+" in line:
                 vstats["part_past"] += 1
-            elif "+Part+Pass+" in line:
+            elif "+PrfPrc+Pss+" in line:
                 vstats["part_pass"] += 1
             elif "+Inf:" in line:
                 vstats["inf"] += 1
-            elif "+Pres+" in line:
+            elif "+Prs+" in line:
                 vstats["pres"] += 1
-            elif "+Pret+" in line:
+            elif "+Prt+" in line:
                 vstats["pret"] += 1
             elif "+Opt+" in line:
                 vstats["opt"] += 1
-            elif "+Imp+" in line:
+            elif "+Imprt+" in line:
                 vstats["imp"] += 1
             elif "+Subj+" in line:
                 vstats["subj"] += 1

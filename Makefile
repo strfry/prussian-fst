@@ -27,7 +27,7 @@ LEXC_MERGED := build/lexc.merged
 # uv run = Projekt-Env, damit hfst überall verfügbar ist (auch ohne System-Install).
 HFST := uv run python src/prussian_fst/build_fst.py
 
-.PHONY: all gen clean cg3-sets cg3-check disambiguate conllu hfstol links atoms atom
+.PHONY: all gen clean cg3-sets cg3-check disambiguate conllu hfstol links atoms atom analyzer analyzer-parity
 
 all: build/base.hfstol build/macron.hfstol build/lenient.hfstol build/base.gen.hfstol
 
@@ -71,6 +71,20 @@ build/gen-accent.hfst: gen/accent.regex | build/
 #   make atom POS=verb PARADIGM=132 ROLE=nonfin      # ein einzelnes
 atoms: build/gen-accent.hfst
 	uv run python gen/atom_fst.py --all -j$$(nproc)
+
+# ── Option B: gebackener, lemma-fähiger Giella-Analyzer ──
+# Open-Class-Morphologie aus gen/*.lexc, Stämme/Overrides aus der lean NVH
+# (Twanksta-DMLex).  Default-Analyzer bleibt base.hfstol, bis das B-Gate
+# (Deckungsparität) erfüllt ist; umschalten mit PRUSSIAN_FST=build/analyzer.hfstol.
+LEAN_NVH := ../corpus/parsed/twanksta_dmlex.nvh
+
+build/analyzer.hfstol: gen gen/build_analyzer.py gen/*.lexc $(LEAN_NVH) | build/
+	uv run python gen/build_analyzer.py
+
+analyzer: build/analyzer.hfstol
+
+analyzer-parity: gen/build_analyzer.py $(LEAN_NVH)
+	uv run python gen/build_analyzer.py --parity
 
 atom: build/gen-accent.hfst
 	@test -n "$(POS)" -a -n "$(PARADIGM)" -a -n "$(ROLE)" || \

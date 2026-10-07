@@ -265,6 +265,47 @@ def test_bad_gender_is_rejected():
         cf.derive_minimal("noun", "56", "Adwēnts", "männlich", {"sg.nom": ("Adwēnts",)})
 
 
+# ── Dumper-Artefakte (Lemma+Paradigmennummer geklebt) ───────────────────────
+
+DUMPER_NVH = (
+    "entry: federācija\n"
+    "  pos: noun\n"
+    "  paradigm: 52\n"
+    "  inflectedForm: federācija52\n"
+    "    tag: sg.nom\n"
+    "  inflectedForm: federācija\n"
+    "    tag: sg.nom\n"
+    "entry: izpilninamins\n"
+    "  pos: adj\n"
+    "  paradigm: 27\n"
+    "  inflectedForm: ukaizpilninamins27\n"
+    "    tag: adv.superl\n"
+    "  inflectedForm: izpilninamins27is\n"
+    "    tag: comp.msc.sg.nom\n"
+    "  inflectedForm: wilnis\n"
+    "    tag: msc.sg.nom\n"
+)
+
+
+def test_dumper_artifact_is_detected():
+    assert cf.is_dumper_artifact("federācija", "52", "federācija52")
+    assert cf.is_dumper_artifact("izpilninamins", "27", "ukaizpilninamins27")
+    assert cf.is_dumper_artifact("izpilninamins", "27", "izpilninamins27is")
+    assert not cf.is_dumper_artifact("federācija", "52", "federācija")
+    assert not cf.is_dumper_artifact("wilnis", "27", "wilnis")
+
+
+def test_drop_dumper_artifacts_removes_cells_and_reviews_them():
+    entries = cf.parse_nvh(DUMPER_NVH)
+    clean, review = cf.drop_dumper_artifacts(entries)
+    assert clean[0].attested["sg.nom"] == ("federācija",)
+    assert clean[1].attested == {"msc.sg.nom": ("wilnis",)}
+    assert ("federācija", "52", "sg.nom") in review
+    assert ("izpilninamins", "27", "adv.superl") in review
+    assert ("izpilninamins", "27", "comp.msc.sg.nom") in review
+    assert len(review) == 3
+
+
 # ── Die neun Fixture-Lexeme ─────────────────────────────────────────────────
 
 # (pos, paradigm, lemma, gender, attestierte Zellen, erwartete Stämme,

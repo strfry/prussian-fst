@@ -4,40 +4,40 @@
 LEXICON ProperNouns
 
   ! Nidda — Fluss/Stadt (fem. ā-Stamm: -a/-as/-ai/-an)
-  Nidda+PropN+Sg+Nom+Fem:Nidda   # ;
-  Nidda+PropN+Sg+Gen+Fem:Niddas  # ;
-  Nidda+PropN+Sg+Dat+Fem:Niddai  # ;
-  Nidda+PropN+Sg+Acc+Fem:Niddan  # ;
+  Nidda+N+Prop+Sg+Nom+Fem:Nidda   # ;
+  Nidda+N+Prop+Sg+Gen+Fem:Niddas  # ;
+  Nidda+N+Prop+Sg+Dat+Fem:Niddai  # ;
+  Nidda+N+Prop+Sg+Acc+Fem:Niddan  # ;
 
   ! Kānts — Immanuel Kant (masc. o-Stamm: -s/-as/-u/-an)
-  Kānts+PropN+Sg+Nom+Masc:Kānts   # ;
-  Kānts+PropN+Sg+Gen+Masc:Kāntas  # ;
-  Kānts+PropN+Sg+Dat+Masc:Kāntu   # ;
-  Kānts+PropN+Sg+Acc+Masc:Kāntan  # ;
+  Kānts+N+Prop+Sg+Nom+Msc:Kānts   # ;
+  Kānts+N+Prop+Sg+Gen+Msc:Kāntas  # ;
+  Kānts+N+Prop+Sg+Dat+Msc:Kāntu   # ;
+  Kānts+N+Prop+Sg+Acc+Msc:Kāntan  # ;
 
   ! Luīzi — Personenname (fem. ē-Stamm: -i/-is/-ei/-in)
-  Luīzi+PropN+Sg+Nom+Fem:Luīzi  # ;
-  Luīzi+PropN+Sg+Gen+Fem:Luīzis # ;
-  Luīzi+PropN+Sg+Dat+Fem:Luīzei # ;
-  Luīzi+PropN+Sg+Acc+Fem:Luīzin # ;
+  Luīzi+N+Prop+Sg+Nom+Fem:Luīzi  # ;
+  Luīzi+N+Prop+Sg+Gen+Fem:Luīzis # ;
+  Luīzi+N+Prop+Sg+Dat+Fem:Luīzei # ;
+  Luīzi+N+Prop+Sg+Acc+Fem:Luīzin # ;
 
   ! Tilzē — Stadt Tilsit (fem. ē-Stamm: -ē/-es/-ei/-in)
-  Tilzē+PropN+Sg+Nom+Fem:Tilzē  # ;
-  Tilzē+PropN+Sg+Gen+Fem:Tilzes # ;
-  Tilzē+PropN+Sg+Dat+Fem:tilzei  # ;
-  Tilzē+PropN+Sg+Acc+Fem:tilzin  # ;
+  Tilzē+N+Prop+Sg+Nom+Fem:Tilzē  # ;
+  Tilzē+N+Prop+Sg+Gen+Fem:Tilzes # ;
+  Tilzē+N+Prop+Sg+Dat+Fem:tilzei  # ;
+  Tilzē+N+Prop+Sg+Acc+Fem:tilzin  # ;
 
   ! Ālberts — Personenname (masc. o-Stamm)
-  Ālberts+PropN+Sg+Nom+Masc:Ālberts  # ;
+  Ālberts+N+Prop+Sg+Nom+Msc:Ālberts  # ;
 
   ! Trīmps — Name (masc. o-Stamm)
-  Trīmps+PropN+Sg+Nom+Masc:Trīmps   # ;
-  Trīmps+PropN+Sg+Gen+Masc:Trīmpas  # ;
-  Trīmps+PropN+Sg+Dat+Masc:Trīmpu   # ;
-  Trīmps+PropN+Sg+Acc+Masc:trīmpan  # ;
+  Trīmps+N+Prop+Sg+Nom+Msc:Trīmps   # ;
+  Trīmps+N+Prop+Sg+Gen+Msc:Trīmpas  # ;
+  Trīmps+N+Prop+Sg+Dat+Msc:Trīmpu   # ;
+  Trīmps+N+Prop+Sg+Acc+Msc:trīmpan  # ;
 
   ! Kulakōws — russ./lit. Familienname (masc. o-Stamm)
-  Kulakōws+PropN+Sg+Nom+Masc:Kulakōws # ;
+  Kulakōws+N+Prop+Sg+Nom+Msc:Kulakōws # ;
 
   ! waraprūsai — „Altpreußen" (Pluraletantum, PlNom)
-  waraprūsai+PropN+Pl+Nom+Masc:waraprūsai # ;
+  waraprūsai+N+Prop+Pl+Nom+Msc:waraprūsai # ;

@@ -169,7 +169,7 @@ def test_resolve_corpus_uppercase_ref_not_casefolded(patched):
 
 # ── Smoke-Test gegen gebaute Artefakte ──
 
-BASE = REPO / "build/base.hfstol"
+from prussian_fst.cg3_pipeline import DEFAULT_FST as BASE  # noqa: E402
 
 
 @pytest.mark.skipif(not BASE.exists(), reason="make all zuerst")

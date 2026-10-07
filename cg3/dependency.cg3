@@ -22,18 +22,20 @@ DELIMITERS = "<.>" "<!>" "<?>" ;
 # ============= #
 
 LIST N = N ;
-LIST Adj = Adj ;
+LIST A = A ;
 LIST Pron = Pron ;
 LIST Num = Num ;
 LIST V = V ;
-LIST Part = Part ;
+LIST PrsPrc = PrsPrc ;
+LIST PrfPrc = PrfPrc ;
+SET Part = PrsPrc OR PrfPrc ;
 LIST Adv = Adv ;
-LIST Prp = Prp ;
-LIST Psp = Psp ;
-LIST Cnj = Cnj ;
-LIST SCnj = SCnj ;
-LIST Pcl = Pcl ;
-LIST IJ = IJ ;
+LIST Pr = Pr ;
+LIST Po = Po ;
+LIST CC = CC ;
+LIST CS = CS ;
+LIST Pcle = Pcle ;
+LIST Interj = Interj ;
 LIST Inf = Inf ;
 
 LIST Nom = Nom ;
@@ -56,9 +58,9 @@ SET AnyRole = XSubj OR XObj OR XIObj OR XGObj OR XObl ;
 SET FiniteVerb = V - Inf - Part ;
 SET ClauseHead = XPred OR XFin ;
 SET NGHead = N OR Pron ;
-SET CongrMod = Adj OR Num OR Part ;
-SET Nominal = N OR Adj OR Pron OR Num OR Part ;
-SET Adposition = Prp OR Psp ;
+SET CongrMod = A OR Num OR Part ;
+SET Nominal = N OR A OR Pron OR Num OR Part ;
+SET Adposition = Pr OR Po ;
 # Determinierer-Pronomina (stas, kas, …) wie in SECTION 8 des
 # Disambiguators: keine Personal-/Enklitika-Pronomen
 SET DetPron = Pron - (Pron P1) - (Pron P2) - (Pron P3) - (Pron Encl) ;
@@ -74,26 +76,26 @@ SECTION
 
 # Adpositionen und Funktionswörter
 ADDRELATION (case) Adposition TO (p (*)) ;
-ADDRELATION (mark) SCnj TO (p (*)) ;
-ADDRELATION (cc) Cnj TO (p (*)) ;
+ADDRELATION (mark) CS TO (p (*)) ;
+ADDRELATION (cc) CC TO (p (*)) ;
 ADDRELATION (advmod) Adv TO (p (*)) ;
-ADDRELATION (advmod) Pcl TO (p (*)) ;
+ADDRELATION (advmod) Pcle TO (p (*)) ;
 
 # Aux/Kopula → Prädikat
 ADDRELATION (aux) FiniteVerb TO (p Part) ;
 ADDRELATION (cop) FiniteVerb + Copula TO (p XPred - Part) ;
 
-# Subordiniertes Verb (mit SCnj-Kind) am Matrixverb
-ADDRELATION (advcl) ClauseHead (c SCnj) TO (p ClauseHead) ;
+# Subordiniertes Verb (mit CS-Kind) am Matrixverb
+ADDRELATION (advcl) ClauseHead (c CS) TO (p ClauseHead) ;
 
 # Koordination: zweites Konjunkt → erstes.  Konjunkt-Parents sind
 # Nominale; Argument-Kanten (→ ClauseHead) fallen nicht darunter.
-ADDRELATION (conj) Nominal (-1C Cnj) TO (p Nominal - XPred) ;
+ADDRELATION (conj) Nominal (-1C CC) TO (p Nominal - XPred) ;
 
 # Nominalgruppe.  det nur für Demonstrativ-/Interrogativpronomen —
 # Personalpronomen mit NGHead-Parent sind Argumente eines @pred.
 ADDRELATION (nummod) Num TO (p NGHead) ;
-ADDRELATION (amod) Adj OR Part TO (p NGHead) ;
+ADDRELATION (amod) A OR Part TO (p NGHead) ;
 ADDRELATION (det) DetPron TO (p NGHead - XPred) ;
 ADDRELATION (nmod) N + Gen TO (p NGHead) ;
 # Possessivpronomen (māise …): Gen-Pron am Nominalkopf
@@ -130,4 +132,4 @@ ADDRELATION (obj) NGHead + Gen (NOT 0 AnyRole) (NOT 0 Nom OR Acc OR Dat)
 ADDRELATION (xcomp) Inf TO (p ClauseHead) ;
 
 # Interjektion mit Parent (selten): Diskurselement
-ADDRELATION (discourse) IJ TO (p (*)) ;
+ADDRELATION (discourse) Interj TO (p (*)) ;

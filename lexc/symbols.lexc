@@ -1,18 +1,18 @@
 Multichar_Symbols
   +N    ! noun
-  +Adj  ! adjective
+  +A    ! adjective
   +Pron ! pronoun
   +Num  ! numeral
   +V    ! verb
-  +Part ! participle
   +Adv  ! adverb
-  +Prp  ! preposition
-  +Psp  ! postposition (Twanksta desc "psp"; paggan — governs preceding genitive)
-  +Cnj  ! coordinating conjunction
-  +SCnj ! subordinating conjunction
-  +Pcl  ! particle
-  +IJ   ! interjection
-  +PropN ! proper noun (Eigenname — Orts-/Personenname)
+  +Pr   ! preposition
+  +Adp  ! adposition (umbrella; +Po für Postposition)
+  +Po   ! postposition (Twanksta desc "psp"; paggan — governs preceding genitive)
+  +CC   ! coordinating conjunction
+  +CS   ! subordinating conjunction
+  +Pcle ! particle
+  +Interj ! interjection
+  +Prop ! proper-noun sub-POS (N+Prop — Eigenname, Orts-/Personenname)
 
   +Sg   ! singular
   +Pl   ! plural
@@ -22,40 +22,33 @@ Multichar_Symbols
   +Dat  ! dative
   +Acc  ! accusative
 
-  +Masc ! masculine
+  +Msc  ! masculine
   +Fem  ! feminine
-  +Neut ! neuter
+  +Neu  ! neuter
 
-  +Pres ! present tense
-  +Pret ! preterite tense
+  +Prs  ! present tense
+  +Prt  ! preterite tense
   +Inf  ! infinitive
   +Ind  ! indicative mood
   +Opt  ! optative
-  +Imp  ! imperative
+  +Imprt ! imperative
   +Subj ! subjunctive
   +Rel  ! modus relativus (hearsay; only corpus-attested forms, e.g. astits)
-  +Pass ! passive (participle)
-  +Past ! past (participle type — verb form, not finite tense)
   +Refl ! reflexive (si-verb)
 
-  +P1   ! 1st person
-  +P2   ! 2nd person
-  +P3   ! 3rd person
+  ! Finite Person/Numerus fusioniert (Giella-Stil): sg1/sg2/sp3/pl1/pl2.
+  ! Die 3. Person ist im Apreußischen numeruslos (3sg = 3pl, Twanksta
+  ! 3828/3828 identisch), darum +SP3 ohne Sg/Pl.
+  +Sg1  +Sg2  +SP3  +Pl1  +Pl2
 
-  +Cmp  ! comparative degree
-  +Sup  ! superlative degree
+  ! Partizipien: TYP (PrsPrc/PrfPrc) + Voice (Act/Pss) + Genus/Numerus/Kasus.
+  +PrsPrc +PrfPrc +Act +Pss
+
+  +Comp ! comparative degree
+  +Superl ! superlative degree
   +Card ! cardinal numeral (one, two, three…)
   +Ord  ! ordinal numeral (first, second, third…)
   +Encl ! enclitic pronoun (di, dis, din — proclitic subject replacement)
-
-  ! Case government (prepositions from Twanksta desc; verbs from desc)
-  +GovAkk ! governs accusative
-  +GovDat ! governs dative
-  +GovGen ! governs genitive (postposition paggan: Gen precedes)
-
-  ! Prepositional object tags on verbs (from Twanksta verb desc)
-  +PPezze +PPiz +PPkīrsa +PPna +PPpa +PPpas +PPpra +PPprēi
-  +PPprīki +PPpēr +PPsirzdau +PPsēn +PPzūrgi +PPēn
 
   ! Morphophonology trigger: deaccent (mobile stem under a strong participle
   ! ending). Sits on the surface tape at the stem|ending boundary; stress.twolc

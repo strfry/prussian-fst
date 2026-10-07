@@ -16,7 +16,7 @@ REPO = Path(__file__).resolve().parents[1]
 from prussian_fst import cg3_pipeline as pipe  # noqa: E402
 from prussian_fst import export_conllu as ec  # noqa: E402
 
-FST = REPO / "build/base.hfstol"
+FST = pipe.DEFAULT_FST
 GRAMMAR = REPO / "cg3/disambiguator.cg3"
 
 pytestmark = pytest.mark.skipif(

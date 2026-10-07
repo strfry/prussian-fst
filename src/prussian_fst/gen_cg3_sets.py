@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """Generate CG3 sets for the disambiguator.
 
-Outputs (INCLUDEd by fst/cg3/disambiguator.cg3):
-  fst/cg3/generated-sets.cg3 — GenVerb LIST aus valence.json
+Outputs (INCLUDEd by fst/cg3/disambiguator.cg3 + validator.cg3):
+  fst/cg3/generated-sets.cg3 — Präp→Kasus-Listen (AkkPrep/DatPrep) aus
+  valence.json sowie Verbvalenz-Lemmalisten (GenVerb/AkkVerb).
 
-Akk/Dat-Valenz ist tag-basiert (+GovAkk/+GovDat auf dem Verb, aus
-gen_lexc.py). Agreement-Filter sind inline in disambiguator.cg3.
+Valenz ist KEINE Morphologie (GiellaLT-verifiziert): die FST-Tags tragen
+keine +Gov*/+PP*-Merkmale; Rektion lebt als Lemma-Liste in der CG-Schicht.
+Agreement-Filter sind inline in disambiguator.cg3.
 """
 
 import json
@@ -16,6 +18,9 @@ VALENCE_PATH = REPO / "build/valence.json"
 CG3_DIR = REPO / "cg3"
 
 CURATED_GEN_VERBS = ["bijātun", "klausītun", "kwaitītun"]
+# Hand-gepflegte Präpositionen, die nicht als Twanksta-"prp"-Eintrag mit
+# Rektionsangabe vorliegen (function_words.lexc: dīnkun = „dank" + Dat).
+CURATED_DAT_PREPS = ["dīnkun"]
 
 # Kuratierte Akkusativ-Verben des Kernwortschatzes (Arbeitsauftrag P3):
 # geschlossene Liste, ergänzt die spärlichen Twanksta-Valenzhinweise
@@ -40,6 +45,25 @@ def verb_lists(valence: dict) -> dict[str, list[str]]:
     return {k: sorted(v) for k, v in by_case.items()}
 
 
+def prep_lists(valence: dict) -> dict[str, list[str]]:
+    """Präp→Kasus in vier Sichten.
+
+    - ``Akk``/``Dat``: rein akk-/rein dat-regierend (Rektions-Removal).
+    - ``AccAny``/``DatAny``: irgendeine Lesart regiert Akk/Dat (mit
+      Doppel-Rektierern ēn/pa/pō/ezze) — für den Genitivus-negationis-
+      bzw. Dativ-Vorbedingungs-Check, der an der *Lesart* hängt.
+    """
+    preps = valence.get("prepositions", {})
+    akk = {w for w, cases in preps.items() if cases == ["Acc"]}
+    dat = {w for w, cases in preps.items() if cases == ["Dat"]}
+    dat |= set(CURATED_DAT_PREPS)
+    acc_any = {w for w, cases in preps.items() if "Acc" in cases}
+    dat_any = {w for w, cases in preps.items() if "Dat" in cases}
+    dat_any |= set(CURATED_DAT_PREPS)
+    return {"Akk": sorted(akk), "Dat": sorted(dat),
+            "AccAny": sorted(acc_any), "DatAny": sorted(dat_any)}
+
+
 def fmt_list(name: str, lemmas: list[str]) -> str:
     if not lemmas:
         return f'LIST {name} = "__none__" ;\n'
@@ -49,22 +73,30 @@ def fmt_list(name: str, lemmas: list[str]) -> str:
 
 def write_sets(valence: dict):
     lists = verb_lists(valence)
+    preps = prep_lists(valence)
     out = [
         HEADER,
         "# Source: build/valence.json + kuratierte Gen-Verben.\n\n",
+        "# Präpositionsrektion (lemma-basiert, kein FST-Tag):\n",
+        fmt_list("AkkPrep", preps["Akk"]),
+        fmt_list("DatPrep", preps["Dat"]),
+        fmt_list("AccAnyPrep", preps["AccAny"]),
+        fmt_list("DatAnyPrep", preps["DatAny"]),
+        "\n# Verbvalenz (lemma-basiert):\n",
         fmt_list("GenVerb", lists["Gen"]),
         fmt_list("AkkVerb", lists["Acc"]),
     ]
     (CG3_DIR / "generated-sets.cg3").write_text("".join(out), encoding="utf-8")
-    return lists
+    return lists, preps
 
 
 def main():
     valence = json.loads(VALENCE_PATH.read_text(encoding="utf-8"))
     CG3_DIR.mkdir(parents=True, exist_ok=True)
-    lists = write_sets(valence)
+    lists, preps = write_sets(valence)
     print(f"wrote {CG3_DIR}/generated-sets.cg3 "
-          f"(GenVerb: {len(lists['Gen'])}, AkkVerb: {len(lists['Acc'])})")
+          f"(AkkPrep: {len(preps['Akk'])}, DatPrep: {len(preps['Dat'])}, "
+          f"GenVerb: {len(lists['Gen'])}, AkkVerb: {len(lists['Acc'])})")
 
 
 if __name__ == "__main__":

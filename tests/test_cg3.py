@@ -25,7 +25,7 @@ VAL_FIXTURES = Path(__file__).parent / "fixtures/cg3_validator_golden.tsv"
 GRAMMAR = REPO / "cg3/disambiguator.cg3"
 DEP_GRAMMAR = REPO / "cg3/dependency.cg3"
 VAL_GRAMMAR = REPO / "cg3/validator.cg3"
-FST = REPO / "build/base.hfstol"
+FST = pipe.DEFAULT_FST
 
 pytestmark = pytest.mark.skipif(
     not (shutil.which("cg-proc") and FST.exists()),

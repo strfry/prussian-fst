@@ -4,111 +4,111 @@
 #         (|-getrennt, exakte Mengengleichheit; Lesart = lemma+Tag+Tag…)
 #
 # NG-Agreement: Adj/N-Entscheidung + Signatur-Übernahme vom Kopf
-Labban dēinan!	Labban	labs+Adj+Fem+Sg+Acc
+Labban dēinan!	Labban	labs+A+Fem+Sg+Acc
 Labban dēinan!	dēinan	dēinā+N+Fem+Sg+Acc
 # Adj vs. Adv: kein Kopf rechts → Adverb
 Bilāimai prūsiskai!	prūsiskai	prūsiskai+Adv
 # Präpositionsrektion (sēn + Akk) und Agreement in der PP
-Prūsisks waitjāsenis sēn prūsiskan bebrun.	Prūsisks	prūsisks+Adj+Masc+Sg+Nom
-Prūsisks waitjāsenis sēn prūsiskan bebrun.	waitjāsenis	waitjāsenis+N+Masc+Sg+Nom
-Prūsisks waitjāsenis sēn prūsiskan bebrun.	prūsiskan	prūsisks+Adj+Masc+Sg+Acc
-Prūsisks waitjāsenis sēn prūsiskan bebrun.	bebrun	bebrus+N+Masc+Sg+Acc
+Prūsisks waitjāsenis sēn prūsiskan bebrun.	Prūsisks	prūsisks+A+Msc+Sg+Nom
+Prūsisks waitjāsenis sēn prūsiskan bebrun.	waitjāsenis	waitjāsenis+N+Msc+Sg+Nom
+Prūsisks waitjāsenis sēn prūsiskan bebrun.	prūsiskan	prūsisks+A+Msc+Sg+Acc
+Prūsisks waitjāsenis sēn prūsiskan bebrun.	bebrun	bebrus+N+Msc+Sg+Acc
 # Genitivus negationis (Doc-Beispiel, Regel 5)
-Tāns ni turri kōnkretan pawīstin.	kōnkretan	kōnkrets+Adj+Fem+Pl+Gen
+Tāns ni turri kōnkretan pawīstin.	kōnkretan	kōnkrets+A+Fem+Pl+Gen
 Tāns ni turri kōnkretan pawīstin.	pawīstin	pawīstis+N+Fem+Pl+Gen
 # Gen-Modifikator vor der NG bleibt lizenziert (Doc-Beispiel)
-māise prūsiskas billas	māise	as+Pron+P1+Sg+Gen|majs+Pron+P1+Sg+Gen+Masc|majs+Pron+P1+Sg+Gen+Neut
-māise prūsiskas billas	prūsiskas	prūsisks+Adj+Fem+Pl+Nom
+māise prūsiskas billas	māise	as+Pron+P1+Sg+Gen|majs+Pron+P1+Sg+Gen+Msc|majs+Pron+P1+Sg+Gen+Neu
+māise prūsiskas billas	prūsiskas	prūsisks+A+Fem+Pl+Nom
 māise prūsiskas billas	billas	bilā+N+Fem+Pl+Nom
 # Determinierer kongruiert mit dem Kopf; unlizenzierter Gen entfernt
-Stan wīran wīda.	Stan	stas+Pron+Sg+Acc+Masc
-Stan wīran wīda.	wīran	wīrs+N+Masc+Sg+Acc
+Stan wīran wīda.	Stan	stas+Pron+Sg+Acc+Msc
+Stan wīran wīda.	wīran	wīrs+N+Msc+Sg+Acc
 # Prädikativ nach Kopula: kurze Neutrum-Form ist Adj (Nom/Akk bleibt offen)
-Sta ast labban.	labban	labs+Adj+Neut+Sg+Acc|labs+Adj+Neut+Sg+Nom
+Sta ast labban.	labban	labs+A+Neu+Sg+Acc|labs+A+Neu+Sg+Nom
 # syntax_rules §2: Prädikatsnomen im Nominativ
-As asma kunnegs.	kunnegs	kunnegs+N+Masc+Sg+Nom
+As asma kunnegs.	kunnegs	kunnegs+N+Msc+Sg+Nom
 # syntax_rules §4: stēisan + nachgestellter Gen (Pl-Gen = Sg-Akk-Synkretismus)
-Saknis stēisan anzanan.	stēisan	stas+Pron+Pl+Gen+Masc
-Saknis stēisan anzanan.	anzanan	anzans+N+Masc+Pl+Gen
+Saknis stēisan anzanan.	stēisan	stas+Pron+Pl+Gen+Msc
+Saknis stēisan anzanan.	anzanan	anzans+N+Msc+Pl+Gen
 # syntax_rules §5c: pa + Dativ (statisch) bleibt erhalten; R1 löst Rektion
 Kurmjai buwinna pa zemmei.	zemmei	zemē+N+Fem+Sg+Dat
-Kurmjai buwinna pa zemmei.	pa	pa+Prp+GovDat
+Kurmjai buwinna pa zemmei.	pa	pa+Pr
 # R1: ēn + Dat (statisch) — Kasus des PP-Nominals löst GovAkk|GovDat
-As wīrst būwuns en buttu.	en	ēn+Prp+GovDat
-As wīrst būwuns en buttu.	buttu	buttan+N+Neut+Sg+Dat
+As wīrst būwuns en buttu.	en	ēn+Pr
+As wīrst būwuns en buttu.	buttu	buttan+N+Neu+Sg+Dat
 # syntax_rules §1+§8: Kurzform-Präposition (sen→sēn) + Instrumental-Ersatz sēn+Acc
-As pūwa sen laīwan.	sen	sēn+Prp+GovAkk
-As pūwa sen laīwan.	laīwan	laīwan+N+Neut+Sg+Acc
+As pūwa sen laīwan.	sen	sēn+Pr
+As pūwa sen laīwan.	laīwan	laīwan+N+Neu+Sg+Acc
 # SECTION 2d: ka als Komplementierer „dass" nach Verbum dicendi (mēri)
-Tēt as wis mēri ka sta ast per pawīsts.	ka	ka+SCnj
+Tēt as wis mēri ka sta ast per pawīsts.	ka	ka+CS
 # SECTION 6b: Neutrum-Pron neben Kopula ist Nom (Subjekt), nicht Akk
-Sta ast mussan.	Sta	stas+Pron+Nom+Neut
+Sta ast mussan.	Sta	stas+Pron+Nom+Neu
 # PP-Rektion schlägt Genitivus negationis: -an-Nomen in Akk-PP ist Akk,
 # nicht Pl+Gen, auch bei negiertem Verb in der Klausel (kriwwjan/karjaūsnan)
 Ni izbilāi ezze karjaūsnan.	karjaūsnan	karjaūsnā+N+Fem+Sg+Acc
 # syntax_rules §1+§6c+§11: en→ēn dynamisch + Futur wīrst + Partizip
-As wīrst gūbuns en buttan.	buttan	buttan+N+Neut+Sg+Acc
-As wīrst gūbuns en buttan.	gūbuns	gūbuns+Adj+Sg+Nom|ēitwei+V+Part+Past+Masc+Sg+Nom
+As wīrst gūbuns en buttan.	buttan	buttan+N+Neu+Sg+Acc
+As wīrst gūbuns en buttan.	gūbuns	gūbuns+A+Sg+Nom|ēitwei+V+PrfPrc+Act+Msc+Sg+Nom
 # Regel 4: be zwischen gleichkasigen Konstituenten ist Cnj (Doc-Beispiele)
-Rānkans be prusnans wīda.	be	be+Cnj
+Rānkans be prusnans wīda.	be	be+CC
 Rānkans be prusnans wīda.	Rānkans	rānkā+N+Fem+Pl+Acc
 Rānkans be prusnans wīda.	prusnans	prusna+N+Fem+Pl+Acc
-gēidras be sāusas dēinas	gēidras	gēidars+Adj+Fem+Pl+Nom
-gēidras be sāusas dēinas	sāusas	sāuss+Adj+Fem+Pl+Nom
+gēidras be sāusas dēinas	gēidras	gēidars+A+Fem+Pl+Nom
+gēidras be sāusas dēinas	sāusas	sāuss+A+Fem+Pl+Nom
 gēidras be sāusas dēinas	dēinas	dēinā+N+Fem+Pl+Nom
 # R2: satzinitiales Be ist Diskurs-Konnektor, keine Präposition
-Be as ni waīda.	Be	be+Cnj
+Be as ni waīda.	Be	be+CC
 # R5: Verbperson nur bei explizitem Pronomen (as → P1 Sg; Pres|Pret bleibt)
-Be as ni waīda.	waīda	waīstun+V+Ind+Pres+P1+Sg|waīstun+V+Ind+Pret+P1+Sg
+Be as ni waīda.	waīda	waīstun+V+Ind+Prs+Sg1|waīstun+V+Ind+Prt+Sg1
 # 3. Person ist numeruslos: eine einzige +P3-Lesart, kein Sg|Pl
-Tāns turri buttan.	turri	turītun+V+Ind+Pres+P3
-Wīrai ast stwi.	ast	būtwei+V+Ind+Pres+P3
-Sta ast skuttis.	ast	būtwei+V+Ind+Pres+P3
-Sta ast zangjāi.	ast	būtwei+V+Ind+Pres+P3
+Tāns turri buttan.	turri	turītun+V+Ind+Prs+SP3
+Wīrai ast stwi.	ast	būtwei+V+Ind+Prs+SP3
+Sta ast skuttis.	ast	būtwei+V+Ind+Prs+SP3
+Sta ast zangjāi.	ast	būtwei+V+Ind+Prs+SP3
 # SECTION 2c: stwi — mittig = Ortsadverb, satzinitial = präsentative Partikel
 Wīrai ast stwi.	stwi	stwi+Adv
-Stwi ast wīrs.	Stwi	stwi+Pcl
+Stwi ast wīrs.	Stwi	stwi+Pcle
 # R4: N vs. V — stāi vor finitem Verb ist Demonstrativum, nicht stātwei
-Stāi wīrai bilāi.	Stāi	stas+Pron+Pl+Nom+Masc
+Stāi wīrai bilāi.	Stāi	stas+Pron+Pl+Nom+Msc
 # Modus relativus (syntax_rules §18, korpusbelegt); per→Prp via R3
-Tāns astits per gārban.	astits	būtwei+V+Rel+Pres+P3
-Tāns astits per gārban.	per	pēr+Prp+GovAkk
-Tāns astits per gārban.	gārban	gārbs+N+Masc+Sg+Acc
+Tāns astits per gārban.	astits	būtwei+V+Rel+Prs+SP3
+Tāns astits per gārban.	per	pēr+Pr
+Tāns astits per gārban.	gārban	gārbs+N+Msc+Sg+Acc
 # Postposition paggan (syntax_rules §4-Umfeld): Gen davor bleibt
-Stesse paggan sta ast brendu.	Stesse	stas+Pron+Gen+Neut|stas+Pron+Sg+Gen+Masc
-Stesse paggan sta ast brendu.	paggan	paggan+Psp+GovGen
+Stesse paggan sta ast brendu.	Stesse	stas+Pron+Gen+Neu|stas+Pron+Sg+Gen+Msc
+Stesse paggan sta ast brendu.	paggan	paggan+Adp+Po
 # R6: di nach finitem Verb ist Subjektersatz → Nominativ
 # Neutrum-Pronomen numeruslos: di (Encl) hat nur noch eine Lesart
-Tenā gērdaui, bilāi di.	di	di+Pron+P3+Encl+Nom+Neut
+Tenā gērdaui, bilāi di.	di	di+Pron+P3+Encl+Nom+Neu
 # syntax_rules §11: kurzes Neutrum-Partizip nach wīrst (korpusecht);
 # +Refl fällt weg — kein Reflexiv-Klitikon (si/sin) in der Klausel (SECTION 7b)
-Swāikstan wīrst pagaūwus ebwarītun.	pagaūwus	pagaūtun+V+Part+Past+Neut+Sg+Nom
+Swāikstan wīrst pagaūwus ebwarītun.	pagaūwus	pagaūtun+V+PrfPrc+Act+Neu+Sg+Nom
 # SECTION 7b: Reflexiv-Doublette — Klitikon „si" lizenziert +Refl …
 As interessitun si per stan.	interessitun	interessitun+V+Inf+Refl
 # … ohne Klitikon bleibt die nicht-reflexive Lesart
 As sergītun stan.	sergītun	sergītun+V+Inf
 # syntax_rules §4: stēisan + nachgestellter Gen.Pl (korpusecht)
-šlamisnā stēisan lappan	stēisan	stas+Pron+Pl+Gen+Neut
-šlamisnā stēisan lappan	lappan	lappan+N+Neut+Pl+Gen
+šlamisnā stēisan lappan	stēisan	stas+Pron+Pl+Gen+Neu
+šlamisnā stēisan lappan	lappan	lappan+N+Neu+Pl+Gen
 # Ortho-Layer (lenient): pawīsts → pawīstis; Numerus bleibt offen
 Kitā pawīsts.	pawīsts	pawīstis+N+Fem+Pl+Nom|pawīstis+N+Fem+Sg+Nom
 # Titlecase-Fallback: kleingeschriebenes dēiwan → Dēiws (FST kennt nur Dēiwan);
 # unlizenzierter Gen fällt weg (Section 4)
-As wīda dēiwan.	dēiwan	Dēiws+N+Masc+Sg+Acc
+As wīda dēiwan.	dēiwan	Dēiws+N+Msc+Sg+Acc
 # Kurzform-Adverb kwei → kwēi (Funktionswort-Kurzformtabelle)
 Kwei tū ēisei?	Kwei	kwēi+Adv
 # Rollen-Uniqueness (SECTION 9/10): eindeutiges Nom-Subjekt macht das
 # Nom|Akk-ambige Nominal zum Objekt — nur die Akk-Lesart überlebt
-Wīrs turri buttan.	Wīrs	wīrs+N+Masc+Sg+Nom
-Wīrs turri buttan.	buttan	buttan+N+Neut+Sg+Acc
+Wīrs turri buttan.	Wīrs	wīrs+N+Msc+Sg+Nom
+Wīrs turri buttan.	buttan	buttan+N+Neu+Sg+Acc
 # … auch im kāi-Nebensatz: Uniqueness wirkt klauselweise (Geschwister
 # am selben Klauselkopf), das Matrixsubjekt zählt nicht mit
-Tāns wīda, kāi wīrs turri buttan.	wīrs	wīrs+N+Masc+Sg+Nom
-Tāns wīda, kāi wīrs turri buttan.	turri	turītun+V+Ind+Pres+P3
-Tāns wīda, kāi wīrs turri buttan.	buttan	buttan+N+Neut+Sg+Acc
+Tāns wīda, kāi wīrs turri buttan.	wīrs	wīrs+N+Msc+Sg+Nom
+Tāns wīda, kāi wīrs turri buttan.	turri	turītun+V+Ind+Prs+SP3
+Tāns wīda, kāi wīrs turri buttan.	buttan	buttan+N+Neu+Sg+Acc
 # Kopula-Klausel lizenziert kein Akkusativobjekt: Subjekt wird Nom
-Sta ast labban.	Sta	stas+Pron+Nom+Neut
+Sta ast labban.	Sta	stas+Pron+Nom+Neu
 # VS-Stellung: postverbales @SUBJ-Kind wählt die P3-Lesart (P3 ist
 # numeruslos, Tempus bleibt mangels Evidenz offen)
-Buwinna kurmjai pa zemmei.	Buwinna	buwīntwei+V+Ind+Pres+P3|buwīntwei+V+Ind+Pret+P3
-Buwinna kurmjai pa zemmei.	kurmjai	kurmis+N+Masc+Pl+Nom
+Buwinna kurmjai pa zemmei.	Buwinna	buwīntwei+V+Ind+Prs+SP3|buwīntwei+V+Ind+Prt+SP3
+Buwinna kurmjai pa zemmei.	kurmjai	kurmis+N+Msc+Pl+Nom

@@ -3,17 +3,17 @@
 
 LEXICON FunctionWords
   ! Particles
-  ni+Pcl:ni            # ;
-  ne+Pcl:ne            # ;
-  te+Pcl:te            # ;
-  uka+Pcl:uka          # ;
+  ni+Pcle:ni            # ;
+  ne+Pcle:ne            # ;
+  te+Pcle:te            # ;
+  uka+Pcle:uka          # ;
 
   ! Conjunctions
-  beggi+Cnj:beggi      # ;
-  adder+Cnj:adder      # ;
-  ei+Cnj:ei            # ;
-  sklāits+Cnj:sklāits  # ;
-  stā+Cnj:stā          # ;
+  beggi+CC:beggi      # ;
+  adder+CC:adder      # ;
+  ei+CC:ei            # ;
+  sklāits+CC:sklāits  # ;
+  stā+CC:stā          # ;
 
   ! Adverbs
   kelli+Adv:kelli      # ;
@@ -23,7 +23,7 @@ LEXICON FunctionWords
   nū+Adv:nū            # ;
 
   ! Interjections
-  kukūk+IJ:kukūk       # ;
+  kukūk+Interj:kukūk       # ;
 
   ! Pronoun forms (paradigms that don't cover this variant)
   stā+Pron+Sg+Nom+Fem:stā  # ;
@@ -37,32 +37,32 @@ LEXICON FunctionWords
   ! ──────────────────────────────────────────────────────────────
 
   ! Konjunktionen
-  be+Cnj:be            # ; ! „und" (homonym zu be+Prp+GovAkk „ohne")
-  kāi+SCnj:kāi         # ; ! „dass, damit"
+  be+CC:be            # ; ! „und" (homonym zu be+Pr „ohne")
+  kāi+CS:kāi         # ; ! „dass, damit"
   ! ka: moderne Sprech-Variante von kāi „dass/ob" (YT-Korpus; Enchiridion
-  ! nur kāi). Homonym zu kas+Pron+Neut; per CG nach Verba dicendi gewählt.
-  ka+SCnj:ka           # ; ! „dass, ob"
-  kaddan+SCnj:kaddan   # ; ! „wenn, als"
-  ik+SCnj:ik           # ; ! „wenn, falls"
-  ikkai+Cnj:ikkai      # ; ! „wenn, solange"
-  anga+Cnj:anga        # ; ! „ob"
-  neggi+Cnj:neggi      # ; ! „weder … noch"
-  nikāi+Cnj:nikāi      # ; ! „als" (nach Komparativ)
-  ikāi+SCnj:ikāi       # ; ! UNSICHER: „ob, obwohl" — SCnj oder Pcl?
-  ikāigi+SCnj:ikāigi   # ; ! UNSICHER: „als ob" — SCnj oder Adv?
-  kāigi+Cnj:kāigi      # ; ! UNSICHER: „wie, als" — Cnj oder Adv (UD: SCONJ/ADV)?
-  kaīgi+Cnj:kaīgi      # ; ! UNSICHER: „wie" — Vokalvarianten-Form von kāigi
+  ! nur kāi). Homonym zu kas+Pron+Neu; per CG nach Verba dicendi gewählt.
+  ka+CS:ka           # ; ! „dass, ob"
+  kaddan+CS:kaddan   # ; ! „wenn, als"
+  ik+CS:ik           # ; ! „wenn, falls"
+  ikkai+CC:ikkai      # ; ! „wenn, solange"
+  anga+CC:anga        # ; ! „ob"
+  neggi+CC:neggi      # ; ! „weder … noch"
+  nikāi+CC:nikāi      # ; ! „als" (nach Komparativ)
+  ikāi+CS:ikāi       # ; ! UNSICHER: „ob, obwohl" — CS oder Pcle?
+  ikāigi+CS:ikāigi   # ; ! UNSICHER: „als ob" — SCnj oder Adv?
+  kāigi+CC:kāigi      # ; ! UNSICHER: „wie, als" — CC oder Adv (UD: CCONJ/ADV)?
+  kaīgi+CC:kaīgi      # ; ! UNSICHER: „wie" — Vokalvarianten-Form von kāigi
 
   ! Präpositionen
-  dīnkun+Prp+GovDat:dīnkun  # ; ! „dank" (+ Dat laut Übersetzungsfeld)
+  dīnkun+Pr:dīnkun  # ; ! „dank" (+ Dat laut Übersetzungsfeld)
 
   ! Partikeln
-  gi+Pcl:gi            # ; ! „doch" (enklitisch)
-  jā+Pcl:jā            # ; ! „ja"
-  pat+Pcl:pat          # ; ! „eben, gerade"
-  madli+Pcl:madli      # ; ! UNSICHER: „bitte" — Pcl oder erstarrte Verbform (3.Sg zu madlītun)?
-  mīnus+Pcl:mīnus      # ; ! UNSICHER: „minus" — Pcl/Cnj/Sym?
-  plūs+Pcl:plūs        # ; ! UNSICHER: „plus" — Pcl/Cnj/Sym?
+  gi+Pcle:gi            # ; ! „doch" (enklitisch)
+  jā+Pcle:jā            # ; ! „ja"
+  pat+Pcle:pat          # ; ! „eben, gerade"
+  madli+Pcle:madli      # ; ! UNSICHER: „bitte" — Pcle oder erstarrte Verbform (3.Sg zu madlītun)?
+  mīnus+Pcle:mīnus      # ; ! UNSICHER: „minus" — Pcle/CC/Sym?
+  plūs+Pcle:plūs        # ; ! UNSICHER: „plus" — Pcle/CC/Sym?
 
   ! Adverbien
   jāu+Adv:jāu          # ; ! „schon"
@@ -98,11 +98,11 @@ LEXICON FunctionWords
   triwārst+Adv:triwārst     # ; ! „dreimal"
   keturwārst+Adv:keturwārst # ; ! „viermal"
   treīsun+Adv:treīsun  # ; ! „zu dritt"
-  nijāu+Adv:nijāu      # ; ! UNSICHER: „nicht mehr" — Adv oder Pcl?
-  līgu+Adv:līgu        # ; ! UNSICHER: „gleich, unentschieden" — Adv oder Adj-Neutrum?
+  nijāu+Adv:nijāu      # ; ! UNSICHER: „nicht mehr" — Adv oder Pcle?
+  līgu+Adv:līgu        # ; ! UNSICHER: „gleich, unentschieden" — Adv oder A-Neutrum?
   telli+Adv:telli      # ; ! UNSICHER: „soviel" — Korrelat zu kelli; Adv oder Pron?
   delli+Adv:delli      # ; ! UNSICHER: „einige, etliche" — Adv oder indekl. Pron?
-  ēntrai+Adv:ēntrai    # ; ! UNSICHER: „innerhalb" — Adv oder Prp (Rektion unbekannt)?
+  ēntrai+Adv:ēntrai    # ; ! UNSICHER: „innerhalb" — Adv oder Pr (Rektion unbekannt)?
 
   ! Pronomina (indeklinabel)
 
@@ -124,9 +124,9 @@ LEXICON FunctionWords
   newīnsimta+Num:newīnsimta     # ; ! „neunhundert"
 
   ! Interjektionen (Ausrufezeichen des Wörterbuch-Lemmas entfernt)
-  kaīls+IJ:kaīls       # ; ! „Heil! hallo!"
-  ērdiw+IJ:ērdiw       # ; ! „tschüß!" (Lemma im Dict: „ērdiw!")
-  deiwūtiskan+IJ:deiwūtiskan # ; ! UNSICHER: „bye-bye!" (Dict: „deiwūtiskan!") — erstarrter Akk?
+  kaīls+Interj:kaīls       # ; ! „Heil! hallo!"
+  ērdiw+Interj:ērdiw       # ; ! „tschüß!" (Lemma im Dict: „ērdiw!")
+  deiwūtiskan+Interj:deiwūtiskan # ; ! UNSICHER: „bye-bye!" (Dict: „deiwūtiskan!") — erstarrter Akk?
 
   ! ──────────────────────────────────────────────────────────────
   ! Nachtrag 2026-07-05: korpusbelegte Formen aus der Prüfung von
@@ -137,23 +137,23 @@ LEXICON FunctionWords
 
   ! Postposition (§4/§3-Umfeld): regiert vorangestellten Genitiv;
   ! Twanksta: „n psp gen". YT-Korpus 55×+, fast immer „stesse paggan".
-  paggan+Psp+GovGen:paggan # ; ! „wegen" (Gen + paggan)
+  paggan+Adp+Po:paggan # ; ! „wegen" (Gen + paggan)
 
   ! Modus relativus (§18): NUR die korpusbelegte Einzelform (2×,
   ! „tāns astits per gārban"); Twanksta: „↑Būtwei mod rel [astits 61 MK]"
   ! — Katechismus-Referenz, aber belegt. KEINE produktive -ts-Reihe!
-  būtwei+V+Rel+Pres+P3:astits # ; ! „sei angeblich"
+  būtwei+V+Rel+Prs+SP3:astits # ; ! „sei angeblich"
 
   ! perwaidinnas = kontrahiertes „perwaidinna si" (Twanksta-Verweis
   ! „[Perwaidīntun si drv]"; YT-Korpus 1×). Spiegelt alle Zellen, in
   ! denen die Vollform „perwaidinna si" lautet.
   ! P3 numeruslos (3sg=3pl, wie im generierten Verblexikon)
-  perwaidīntun+V+Ind+Pres+P1+Sg+Refl:perwaidinnas # ;
-  perwaidīntun+V+Ind+Pres+P2+Sg+Refl:perwaidinnas # ;
-  perwaidīntun+V+Ind+Pres+P3+Refl:perwaidinnas # ;
-  perwaidīntun+V+Ind+Pret+P1+Sg+Refl:perwaidinnas # ;
-  perwaidīntun+V+Ind+Pret+P2+Sg+Refl:perwaidinnas # ;
-  perwaidīntun+V+Ind+Pret+P3+Refl:perwaidinnas # ;
+  perwaidīntun+V+Ind+Prs+Sg1+Refl:perwaidinnas # ;
+  perwaidīntun+V+Ind+Prs+Sg2+Refl:perwaidinnas # ;
+  perwaidīntun+V+Ind+Prs+SP3+Refl:perwaidinnas # ;
+  perwaidīntun+V+Ind+Prt+Sg1+Refl:perwaidinnas # ;
+  perwaidīntun+V+Ind+Prt+Sg2+Refl:perwaidinnas # ;
+  perwaidīntun+V+Ind+Prt+SP3+Refl:perwaidinnas # ;
 
   ! Indeklinable Zehner (syntax_rules §23: bare -t-Form, Nomen trägt
   ! den Kasus; YT-belegt: dwiddesimt, trīsdesimt, ketturdesimt,

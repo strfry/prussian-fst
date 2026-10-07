@@ -1,0 +1,298 @@
+#!/usr/bin/env python3
+"""Gebackener, lemma-fähiger Giella-Analyzer (Option B).
+
+Quelle der Open-Class-Morphologie sind die handgeschriebenen ``gen/*.lexc``
+Grammatiken (native Giella-+Tags). Die Lexem-Stämme kommen aus der **lean NVH**
+(``../corpus/parsed/twanksta_dmlex.nvh``): Stufe 1 als ``stemOverrides: ROLE=STEM``,
+Stufe 3 als ``inflectedForm`` + ``tag``. Der Kompressor hat sie bereits so
+verdichtet, dass ``generate(lemma, stems) ∪ overrides == attestierte Vollformen``
+gilt — deshalb erreicht der gebackene Analyzer dieselbe Oberflächen-Deckung wie
+``base.hfstol``, ohne die Vollform-Expansion.
+
+Aufbau::
+
+    lean NVH  --parse_nvh-->  Entry(lemma, pos, paradigm, gender, stems, attested)
+              --generate(pos, paradigm, lemma, stems)-->  slot → Oberflächen (dotted)
+              --slot_tag(slot)-->  Giella-+Tag           (Nomen: Genus eingefügt)
+              --Overrides (attested) direkt-->           lemma+Tags:surface
+    ∪ Closed-Class-lexc (re-getaggt)  --lexc-Compile, invert-->  build/analyzer.hfstol
+
+``--parity`` vergleicht die Oberflächenmenge mit ``build/lexc.merged`` (den
+Quellen von ``base.hfstol``) und benennt jede verlorene Form.
+"""
+
+from __future__ import annotations
+
+import argparse
+import re
+import sys
+from collections import defaultdict
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+import compress_forms as cf  # noqa: E402
+import generator as gen  # noqa: E402
+
+PARSED = ROOT.parent / "corpus" / "parsed"
+LEAN_NVH = PARSED / "twanksta_dmlex.nvh"
+LEXC_DIR = ROOT / "lexc"
+BUILD = ROOT / "build"
+OPEN_LEXC = BUILD / "analyzer-open.lexc"
+MERGED_LEXC = BUILD / "analyzer.lexc"
+ANALYZER_FST = BUILD / "analyzer.fst"
+ANALYZER_OL = BUILD / "analyzer.hfstol"
+BASE_MERGED = BUILD / "lexc.merged"
+
+GENDER_TAG = {"masc": "Msc", "fem": "Fem", "neut": "Neu"}
+OPEN_POS = {"noun": ("Nouns", "+N"), "adj": ("Adjectives", "+A"),
+            "verb": ("Verbs", "+V")}
+
+# Re-getaggte Closed-Class-Quellen (bleiben unter B bestehen).
+CLOSED_CLASS = [
+    "symbols.lexc", "root.lexc", "function_words.lexc", "proper_nouns.lexc",
+    "proper_nouns_auto.lexc", "pronouns.lexc", "numerals.lexc",
+    "adverbs.lexc", "prepositions.lexc", "conjunctions.lexc",
+    "particles.lexc", "interjections.lexc",
+]
+
+
+def lexc_esc(text: str) -> str:
+    return text.replace(" ", "% ").replace("!", "%!")
+
+
+def split_si(lemma: str) -> tuple[str, bool]:
+    """``"perwaidīntun si"`` → ``("perwaidīntun", True)``."""
+    if lemma.endswith(" si"):
+        return lemma[:-3], True
+    return lemma, False
+
+
+def is_proper(entry: cf.Entry) -> bool:
+    head = "\n".join(entry.head)
+    return "label: Pit" in head or "label: Per" in head
+
+
+def paradigm_int(par: str) -> int | None:
+    num = ""
+    for ch in par:
+        if ch.isdigit():
+            num += ch
+        else:
+            break
+    return int(num) if num else None
+
+
+def classify_entry(entry: cf.Entry) -> str | None:
+    """POS wie in gen_lexc.classify: Paradigmen-Ranges entscheiden.
+
+    Die lean NVH trägt Pronomina/Numeralia teils als ``pos: noun``; über die
+    Paradigmenrange (1–20 Pron, 21–24 Num, 25–31 Adj, ≥32 Nomen) werden sie
+    korrekt zugeordnet.  ``None`` = liegt in der hand-/autogepflegten
+    Closed-Class (Pronouns/Numerals) und wird hier nicht gebacken.
+    """
+    if entry.pos in ("adj", "verb"):
+        return entry.pos
+    if entry.pos != "noun":
+        return None
+    pi = paradigm_int(entry.paradigm)
+    if pi is None:
+        return "noun"
+    if 1 <= pi <= 20:      # Pronomina → pronouns.lexc
+        return None
+    if 21 <= pi <= 24:     # Numeralia → numerals.lexc
+        return None
+    if 25 <= pi <= 31:     # Adjektivparadigmen
+        return "adj"
+    return "noun"
+
+
+def routed_to_auto_proper(entry: cf.Entry) -> bool:
+    """True, wenn gen_lexc den Eintrag als ProperNounsAuto führt (P32–70+Pit/Per).
+
+    Nur die übernimmt die hand-/auto-gepflegte ProperNouns-Liste (+N+Prop);
+    Nomen mit Pit-Label außerhalb der Nominalparadigmen (z. B. P29-Partizipien)
+    klassifiziert gen_lexc als Adjektiv und müssen hier gebacken werden.
+    """
+    if entry.pos != "noun" or not is_proper(entry):
+        return False
+    pi = paradigm_int(entry.paradigm)
+    return pi is not None and 32 <= pi <= 70
+
+
+def analysis_tags(pos: str, gender: str, slot: str) -> str:
+    """Dotted Slot-Key → Giella-+Tag.  Nomen: Genus (Entry-Fakt) einfügen."""
+    tag = gen.slot_tag(slot)
+    if pos == "noun":
+        g = GENDER_TAG.get(gender, "")
+        tag = "+N" + (f"+{g}" if g else "") + tag[len("+N"):]
+    return tag
+
+
+def entry_forms(entry: cf.Entry) -> dict[str, set[str]]:
+    """slot → Oberflächen: Stufe 0/1 (generate) ∪ Stufe 3 (attested)."""
+    cells: dict[str, set[str]] = defaultdict(set)
+    try:
+        generated = cf.regenerate(entry.pos, entry.paradigm, entry.lemma,
+                                  entry.stems)
+        for slot, surfaces in generated.items():
+            cells[slot].update(surfaces)
+    except (KeyError, ValueError) as exc:
+        print(f"  ! generate {entry.pos}/{entry.paradigm} {entry.lemma!r}: {exc}",
+              file=sys.stderr)
+    for slot, surfaces in entry.attested.items():
+        cells[slot].update(surfaces)
+    return cells
+
+
+def bake_open(entries: list[cf.Entry]) -> tuple[str, dict]:
+    """Open-Class-Lexikone aus lean NVH + gen-Grammatiken erzeugen."""
+    by_lexicon: dict[str, list[str]] = {name: [] for name, _ in OPEN_POS.values()}
+    stats = defaultdict(int)
+    skipped_unknown_slot = 0
+    for entry in entries:
+        pos = classify_entry(entry)
+        if pos is None:
+            stats["closedclass"] += 1
+            continue
+        # ProperNounsAuto (P32–70 + Pit/Per) hat +N+Prop und wird nicht
+        # hier gebacken.  Alle übrigen Einträge (auch Pit-Adjektive/
+        # -Partizipien) gehören in die Open-Class-Bäckerei.
+        if pos == "noun" and routed_to_auto_proper(entry):
+            stats["proper(autolist)"] += 1
+            continue
+        base_lemma, refl = split_si(entry.lemma)
+        if " " in base_lemma:
+            stats["multiword"] += 1
+            continue
+        lexicon, _ = OPEN_POS[pos]
+        cells = entry_forms(entry)
+        lemma = lexc_esc(base_lemma)
+        seen: set[str] = set()
+        # Infinitiv ist kein generator-Slot: Lemma selbst, optional +Refl.
+        if pos == "verb" and cells:
+            inf = f"{lemma}+V+Inf{'+Refl' if refl else ''}:{lemma}"
+            seen.add(inf)
+            by_lexicon[lexicon].append(inf)
+        if not cells:
+            stats["leer"] += 1
+            continue
+        junk = entry.lemma + entry.paradigm  # Parse-Artefakt der vollen NVH
+        for slot, surfaces in cells.items():
+            try:
+                tags = analysis_tags(pos, entry.gender, slot)
+            except ValueError:
+                skipped_unknown_slot += 1
+                continue
+            for surface in surfaces:
+                if " " in surface or surface == junk:
+                    continue
+                body = f"{lemma}{tags}:{lexc_esc(surface)}"
+                if body not in seen:
+                    seen.add(body)
+                    by_lexicon[lexicon].append(body)
+        stats[pos] += 1
+    out = ["! analyzer open class — baked from twanksta_dmlex.nvh + gen/*.lexc", ""]
+    for lexicon, _ in OPEN_POS.values():
+        out.append(f"LEXICON {lexicon}")
+        out.extend(f"  {body}  # ;" for body in by_lexicon[lexicon])
+        out.append("")
+    stats["unknown_slot"] = skipped_unknown_slot
+    return "\n".join(out) + "\n", stats
+
+
+def build_merged(open_text: str) -> None:
+    parts = []
+    for name in CLOSED_CLASS:
+        parts.append((LEXC_DIR / name).read_text(encoding="utf-8"))
+    parts.append(open_text)
+    MERGED_LEXC.write_text("".join(parts), encoding="utf-8")
+
+
+def compile_analyzer() -> None:
+    import hfst
+
+    tr = hfst.compile_lexc_file(str(MERGED_LEXC))
+    if tr is None or tr.number_of_states() == 0:
+        raise SystemExit(f"lexc-Compile leer: {MERGED_LEXC}")
+    tr.invert()
+    tr.convert(hfst.ImplementationType.HFST_OL_TYPE)
+    out = hfst.HfstOutputStream(filename=str(ANALYZER_OL),
+                                type=hfst.ImplementationType.HFST_OL_TYPE)
+    out.write(tr)
+    out.flush()
+    out.close()
+
+
+_SURFACE = re.compile(r":\s*([^ \t#]+)")
+
+
+def surfaces_of(path: Path) -> set[str]:
+    """Alle Oberflächen (Lower sides) einer lexc-Datei."""
+    out: set[str] = set()
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.rstrip()
+        if not line or line.lstrip().startswith("!") or line.startswith("LEXICON"):
+            continue
+        m = _SURFACE.search(line)
+        if m:
+            out.add(m.group(1))
+    return out
+
+
+GAPS_REVIEW = BUILD / "review_analyzer_gaps.tsv"
+
+
+def parity() -> int:
+    ref = surfaces_of(BASE_MERGED)
+    got = surfaces_of(MERGED_LEXC)
+    missing = ref - got
+    extra = got - ref
+    print(f"Deckung: {len(ref) - len(missing)}/{len(ref)} "
+          f"({100 * (len(ref) - len(missing)) / max(len(ref), 1):.2f}%) "
+          f"base-Oberflächen; fehlend {len(missing)}, extra {len(extra)}")
+    for surface in sorted(missing)[:40]:
+        print(f"  FEHLT  {surface}")
+    for surface in sorted(extra)[:10]:
+        print(f"  EXTRA  {surface}")
+    # Review: verbleibende Deckungslücken + Analyzer-Extra-Lesarten zum Abgleich.
+    lines = ["# Analysator-Parität vs. base.hfstol (analyzer.lexc vs. lexc.merged)\n",
+             "# FEHLT = in base, nicht im gebackenen Analyzer (Review: Lemma/Daten prüfen)\n",
+             "# EXTRA = im gebackenen Analyzer, nicht in base (Varianten-Lesarten verifizieren)\n",
+             "kategorie\tsurface\n"]
+    lines += [f"FEHLT\t{s}\n" for s in sorted(missing)]
+    lines += [f"EXTRA\t{s}\n" for s in sorted(extra)]
+    GAPS_REVIEW.write_text("".join(lines), encoding="utf-8")
+    print(f"→ {GAPS_REVIEW} ({len(missing)} FEHLT, {len(extra)} EXTRA)")
+    return 1 if missing else 0
+
+
+def main(argv: list[str] | None = None) -> int:
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap.add_argument("--parity", action="store_true",
+                    help="nur Deckung vs. build/lexc.merged messen")
+    ap.add_argument("--no-compile", action="store_true")
+    ap.add_argument("--nvh", type=Path, default=LEAN_NVH,
+                    help="lean NVH (default: %(default)s)")
+    args = ap.parse_args(argv)
+
+    entries = cf.read_nvh(args.nvh)
+    open_text, stats = bake_open(entries)
+    OPEN_LEXC.write_text(open_text, encoding="utf-8")
+    build_merged(open_text)
+    print(f"lean NVH: {len(entries)} Einträge; open-class gebacken: "
+          f"noun={stats['noun']} adj={stats['adj']} verb={stats['verb']} "
+          f"(proper→auto {stats['proper(autolist)']}, "
+          f"closed-class {stats['closedclass']}, multiword {stats['multiword']}, "
+          f"leer {stats['leer']}, unbek. Slot {stats['unknown_slot']})")
+    if not args.no_compile and not args.parity:
+        compile_analyzer()
+        print(f"→ {ANALYZER_OL}")
+    if args.parity:
+        return parity()
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

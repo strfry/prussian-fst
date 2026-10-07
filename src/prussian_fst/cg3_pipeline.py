@@ -30,6 +30,7 @@ Beispiele:
 
 import argparse
 import json
+import os
 import re
 import subprocess
 import sys
@@ -38,7 +39,12 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
 DEFAULT_CORPUS = REPO.parent / "corpus/parsed/youtube_corpus_sentences.json"
-DEFAULT_FST = REPO / "build/base.hfstol"
+# Reference analyzer.  Der gebackene Giella-Analyzer (Option B) liegt als
+# build/analyzer.hfstol daneben; PRUSSIAN_FST=…analyzer.hfstol schaltet ihn
+# ein.  Default bleibt base.hfstol, bis das B-Gate (Deckungsparität)
+# vollständig erfüllt ist.
+DEFAULT_FST = Path(os.environ.get("PRUSSIAN_FST",
+                                  REPO / "build/base.hfstol"))
 DEFAULT_LENIENT = REPO / "build/lenient.hfstol"
 DEFAULT_FST_GEN = REPO / "build/base.gen.hfstol"
 DEFAULT_GRAMMAR = REPO / "cg3/disambiguator.cg3"
@@ -477,16 +483,18 @@ def relevant_checks(cohorts: list[dict], genverbs: set[str]) -> list[str]:
     # Finites Verb im Satz — Anker-Voraussetzung für subj-verb.
     has_finite = any(
         r["tags"] and r["tags"][0] == "V"
-        and "Inf" not in r["tags"] and "Part" not in r["tags"]
+        and "Inf" not in r["tags"]
+        and "PrsPrc" not in r["tags"] and "PrfPrc" not in r["tags"]
         for c in cohorts for r in c["readings"])
     for i, c in enumerate(cohorts):
         for r in c["readings"]:
             tags = r["tags"]
             pos = tags[0] if tags else ""
-            if pos in ("Prp", "Psp"):
+            if pos in ("Pr", "Adp", "Po"):
                 checks.add("prep-case")
             if pos == "V" and r["lemma"] in COPULA_LEMMAS \
-                    and "Inf" not in tags and "Part" not in tags:
+                    and "Inf" not in tags \
+                    and "PrsPrc" not in tags and "PrfPrc" not in tags:
                 checks.add("pred-nom")
             if r["lemma"] in genverbs:
                 checks.add("genverb")
@@ -498,7 +506,7 @@ def relevant_checks(cohorts: list[dict], genverbs: set[str]) -> list[str]:
             if pos == "Pron" and "Nom" in tags \
                     and ("P1" in tags or "P2" in tags) and has_finite:
                 checks.add("subj-verb")
-            if pos == "Adj":
+            if pos == "A":
                 # Agreement prüfbar, wenn das Adjektiv einen Nominal-
                 # Parent hat (agr-head-Relation, fensterlokal).
                 par = rel_idx(i, c.get("dep"), n)

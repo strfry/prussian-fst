@@ -58,7 +58,7 @@ import argparse
 import collections
 import sys
 import unicodedata
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from functools import lru_cache
 from pathlib import Path
 from typing import Iterable, Iterator, Mapping, Sequence
@@ -76,6 +76,64 @@ GENDERS = ("masc", "fem", "neut")
 
 # Die Zeile, die einen gelieferten Stamm je Rolle trägt (Stufe 1 im NVH).
 STEM_OVERRIDES = "stemOverrides"
+
+# Bekannter Twanksta-Dumper-Fehler: in manchen Zellen klebt der Parser die
+# Paradigmennummer ans Lemma (federācija → "federācija52", Burkīna Fasō →
+# "Burkīna Fasō45") bzw. an eine abgeleitete Stammform (Superlativ
+# "ukaizpilninamins27", "aušpānstun73").  Solche Oberflächen sind keine
+# Wortformen — keine echte preußische Wortform endet auf eine Ziffer — und
+# dürfen weder als Override noch als Stamm-Kandidat in die lean NVH.  Sie
+# werden hier verworfen und in eine Review-Liste geschrieben.
+REVIEW_ARTIFACTS = ROOT / "build" / "review_dumper_artifacts.tsv"
+
+
+def is_dumper_artifact(lemma: str, paradigm: str, surface: str) -> bool:
+    """Geklebter Paradigmen-Fehler: irgendeine Ziffer in der Oberfläche.
+
+    Der Dumper klebt die Paradigmennummer an Lemma-Varianten (``federācija52``,
+    ``Burkīna Fasō45``), Ableitungsstämme (``ukaizpilninamins27``) oder mit
+    Endung (``izpilninamins27is``).  Keine echte preußische Wortform enthält
+    eine Ziffer — Ziffernhaltige Zellen sind per Definition Datenfehler.
+    """
+    return any(ch.isdigit() for ch in surface)
+
+
+def drop_dumper_artifacts(
+        entries: Iterable[Entry]) -> tuple[list[Entry], list[tuple[str, str, str]]]:
+    """Geklebte Paradigmen-Artefakte aus ``attested`` entfernen.
+
+    Rückgabe ``(bereinigte Einträge, review)`` mit ``review`` =
+    ``[(lemma, paradigm, slot), …]`` je verworfener Zelle.  Die Zellen sind
+    Datenfehler, keine Wortformen; nach dem Entfernen regeneriert Stufe 0/1
+    die korrekte Form (z. B. ``federācija`` P52 Sg.Nom).
+    """
+    clean: list[Entry] = []
+    review: list[tuple[str, str, str]] = []
+    for entry in entries:
+        if not entry.attested:
+            clean.append(entry)
+            continue
+        kept: dict[str, tuple[str, ...]] = {}
+        for slot, surfaces in entry.attested.items():
+            good = tuple(s for s in surfaces
+                         if not is_dumper_artifact(entry.lemma, entry.paradigm, s))
+            for s in surfaces:
+                if is_dumper_artifact(entry.lemma, entry.paradigm, s):
+                    review.append((entry.lemma, entry.paradigm, slot))
+            if good:
+                kept[slot] = good
+        clean.append(replace(entry, attested=kept))
+    return clean, review
+
+
+def write_review(path: Path, review: Iterable[tuple[str, str, str]]) -> int:
+    """Review-Liste ``lemma<TAB>paradigm<TAB>slot`` schreiben; Anzahl liefern."""
+    rows = list(review)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    lines = ["lemma\tparadigm\tslot\n"]
+    lines += [f"{lemma}\t{paradigm}\t{slot}\n" for lemma, paradigm, slot in rows]
+    path.write_text("".join(lines), encoding="utf-8")
+    return len(rows)
 
 # Eine NVH-Zelle = (Slot, Oberfläche). Mehrere Oberflächen je Slot sind Varianten
 # und zählen einzeln (so liefert die Roh-HTML-Quelle sie, §0.1/0.2 des Plans).
@@ -827,6 +885,10 @@ def _main(argv: list[str] | None = None) -> int:
     parser.add_argument("--limit", type=int, help="nur die ersten N Einträge")
     parser.add_argument("--report", type=Path, help="Statistik hierhin statt stderr")
     parser.add_argument("--no-stats", action="store_true", help="keine Statistik")
+    parser.add_argument("--keep-artifacts", action="store_true",
+                        help="geklebte Paradigmen-Artefakte NICHT verwerfen")
+    parser.add_argument("--review-out", type=Path, default=REVIEW_ARTIFACTS,
+                        help="Review-Liste der Dumper-Artefakte (default: %(default)s)")
     parser.add_argument("--verify-idempotent", action="store_true",
                         help="lean NVH neu einlesen, erneut verdichten, vergleichen")
     args = parser.parse_args(argv)
@@ -834,6 +896,12 @@ def _main(argv: list[str] | None = None) -> int:
     entries = read_nvh(args.source)
     if args.limit:
         entries = entries[:args.limit]
+    if not args.keep_artifacts:
+        entries, review = drop_dumper_artifacts(entries)
+        if review:
+            n = write_review(args.review_out, review)
+            print(f"# Dumper-Artefakte (lemma+paradigm) verworfen: {n} Zellen "
+                  f"→ {args.review_out}", file=sys.stderr)
     stats = Stats()
     done = list(compress(entries, lemma_only=args.lemma_only, dense=args.dense_input,
                          rounds=args.rounds, stats=stats))

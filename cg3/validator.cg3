@@ -41,16 +41,18 @@ MAPPING-PREFIX = § ;
 # ============= #
 
 LIST N = N ;
-LIST Adj = Adj ;
+LIST A = A ;
 LIST Pron = Pron ;
 LIST Num = Num ;
 LIST V = V ;
-LIST Part = Part ;
-LIST Prp = Prp ;
-LIST Psp = Psp ;
+LIST PrsPrc = PrsPrc ;
+LIST PrfPrc = PrfPrc ;
+SET Part = PrsPrc OR PrfPrc ;
+LIST Pr = Pr ;
+LIST Po = Po ;
 LIST Inf = Inf ;
-LIST Cnj = Cnj ;
-LIST SCnj = SCnj ;
+LIST CC = CC ;
+LIST CS = CS ;
 LIST CLB = CLB ;
 LIST PUNCT = PUNCT ;
 LIST Unk = Unk ;
@@ -67,15 +69,21 @@ LIST Dat = Dat ;
 LIST Acc = Acc ;
 LIST Sg = Sg ;
 LIST Pl = Pl ;
-LIST Masc = Masc ;
+LIST Msc = Msc ;
 LIST Fem = Fem ;
-LIST Neut = Neut ;
-
-LIST GovAkk = GovAkk ;
-LIST GovDat = GovDat ;
+LIST Neu = Neu ;
 
 LIST P1 = P1 ;
 LIST P2 = P2 ;
+# Verbseitige Person/Numerus (fusioniert): 1. Person = Sg1/Pl1,
+# 2. Person = Sg2/Pl2.  Die Pronominal-Person bleibt +P1/+P2.
+LIST Sg1 = Sg1 ;
+LIST Sg2 = Sg2 ;
+LIST SP3 = SP3 ;
+LIST Pl1 = Pl1 ;
+LIST Pl2 = Pl2 ;
+SET V1 = Sg1 OR Pl1 ;
+SET V2 = Sg2 OR Pl2 ;
 LIST Ni = "ni" ;
 LIST P1Pron = (Pron P1) ;
 LIST P2Pron = (Pron P2) ;
@@ -94,13 +102,13 @@ INCLUDE generated-sets.cg3 ;
 
 SET NGHead = N OR Pron ;
 SET FiniteVerb = V - Inf - Part ;
-SET Adposition = Prp OR Psp ;
+SET Adposition = Pr OR Po ;
 # Klausel-linke Scans (Guards): Stopp an Klauselgrenzen und finiten
 # Verben.  Copula ist ausgenommen, wo sie selbst das Suchziel ist.
-SET LeftStop = SCnj OR CLB OR PUNCT OR FiniteVerb ;
-SET RightStop = SCnj OR CLB OR PUNCT ;
+SET LeftStop = CS OR CLB OR PUNCT OR FiniteVerb ;
+SET RightStop = CS OR CLB OR PUNCT ;
 SET NonCopFin = FiniteVerb - Copula ;
-SET LeftStopNonCop = SCnj OR CLB OR PUNCT OR NonCopFin ;
+SET LeftStopNonCop = CS OR CLB OR PUNCT OR NonCopFin ;
 
 
 # ==================================================== #
@@ -110,19 +118,20 @@ SET LeftStopNonCop = SCnj OR CLB OR PUNCT OR NonCopFin ;
 SECTION
 
 # ── V1 &prep-akk-dat — Rektion (§6b): rein Akk-regierende Präposition
-#    mit eindeutig dativischem Komplement.  Doppel-Rektierer (ēn/pa/
-#    pō/ezze) sind über NOT 0 GovDat ausgenommen; SECTION 1 des
+#    (Liste AkkPrep, generated-sets.cg3) mit eindeutig dativischem
+#    Komplement.  Doppel-Rektierer (ēn/pa/pō/ezze) stehen in keiner
+#    AkkPrep-Liste und sind damit ausgenommen; SECTION 1 des
 #    Disambiguators kann die letzte Dat-Lesart nicht entfernen (SAFE),
-#    die Evidenz überlebt also.  Primär über die Dependenz (Prp hängt
+#    die Evidenz überlebt also.  Primär über die Dependenz (Pr hängt
 #    als case-Kind am Nominal), positional als Fallback.
 #    Doppel-Präpositionen „prei/na en X" (Bulk-Regression): regiert
 #    die DIREKT vorangehende Präposition Dativ, ist der Dativ legitim.
 ADD:prep-akk-dat (&prep-akk-dat) NGHead IF (0C Dat)
-    (NEGATE -1 Prp + GovDat)
-    (cC Prp + GovAkk LINK NOT 0 GovDat) ;
+    (NEGATE -1 DatAnyPrep)
+    (cC Pr) (cC AkkPrep) ;
 ADD:prep-akk-dat (&prep-akk-dat) NGHead IF (0C Dat)
     (NOT 0 (&prep-akk-dat))
-    (-1C Prp + GovAkk LINK NOT 0 GovDat) ;
+    (-1C Pr) (-1C AkkPrep) ;
 
 # ── V2 &pp-nom — Invariante aus SECTION 1: innerhalb einer PP gibt
 #    es keinen Nominativ.  Eindeutig nominativisches Nomen mit
@@ -130,14 +139,14 @@ ADD:prep-akk-dat (&prep-akk-dat) NGHead IF (0C Dat)
 #    Pronomen nach adverbialen Ordinal-PPs („en āntrai, tū …") sind
 #    keine PP-Komplemente.
 ADD:pp-nom (&pp-nom) N IF (0C Nom) (cC Adposition) ;
-ADD:pp-nom (&pp-nom) N IF (0C Nom) (NOT 0 (&pp-nom)) (-1C Prp) ;
+ADD:pp-nom (&pp-nom) N IF (0C Nom) (NOT 0 (&pp-nom)) (-1C Pr) ;
 #    Determiner-Pronomen als PP-Einstieg („en stas buttas"): eindeutig
 #    nominativisches Det-Pronomen direkt nach Präposition mit folgendem
 #    N ist Teil des PP-Komplements — feuert lokal, auch wenn OOV
 #    anderswo im Satz die Coverage drückt und die Rektion der
 #    Präposition (GovAkk|GovDat) unaufgelöst bleibt.  Personal-
 #    pronomen sind ausgenommen (adverbiale Ordinal-PPs, s. o.).
-ADD:pp-nom (&pp-nom) DetPronV IF (0C Nom) (-1C Prp) (1 N) ;
+ADD:pp-nom (&pp-nom) DetPronV IF (0C Nom) (-1C Pr) (1 N) ;
 
 # ── V3–V5 &agr-adj-* — Kongruenz Attributiv-Adjektiv ↔ Kopf über die
 #    agr-head-Parent-Relation (BEFORE-SECTIONS; attributive Adjektive
@@ -152,61 +161,61 @@ ADD:pp-nom (&pp-nom) DetPronV IF (0C Nom) (-1C Prp) (1 N) ;
 #    kein Clash („prūsisks swāikstas dēiws"); (c) kein Kopula-Kontext
 #    links — Prädikative ohne @pred-Tag scannen sonst nach rechts auf
 #    fremde NPs („ast swarewīngi eraīnan minūtin …").
-ADD:agr-adj-case (&agr-adj-case) Adj - XPred IF (0C Nom)
+ADD:agr-adj-case (&agr-adj-case) A - XPred IF (0C Nom)
     (pC N LINK NOT 0 Nom LINK NOT 0 Gen)
     (NEGATE -1* Copula BARRIER LeftStopNonCop) ;
-ADD:agr-adj-case (&agr-adj-case) Adj - XPred IF (0C Gen)
+ADD:agr-adj-case (&agr-adj-case) A - XPred IF (0C Gen)
     (pC N LINK NOT 0 Gen)
     (NEGATE -1* Copula BARRIER LeftStopNonCop) ;
-ADD:agr-adj-case (&agr-adj-case) Adj - XPred IF (0C Dat)
+ADD:agr-adj-case (&agr-adj-case) A - XPred IF (0C Dat)
     (pC N LINK NOT 0 Dat LINK NOT 0 Gen)
     (NEGATE -1* Copula BARRIER LeftStopNonCop) ;
-ADD:agr-adj-case (&agr-adj-case) Adj - XPred IF (0C Acc)
+ADD:agr-adj-case (&agr-adj-case) A - XPred IF (0C Acc)
     (pC N LINK NOT 0 Acc LINK NOT 0 Gen)
     (NEGATE -1* Copula BARRIER LeftStopNonCop) ;
 
-ADD:agr-adj-num (&agr-adj-num) Adj - XPred IF (0C Sg)
+ADD:agr-adj-num (&agr-adj-num) A - XPred IF (0C Sg)
     (pC N LINK NOT 0 Sg LINK NOT 0 Gen)
     (NEGATE -1* Copula BARRIER LeftStopNonCop) ;
-ADD:agr-adj-num (&agr-adj-num) Adj - XPred IF (0C Pl)
+ADD:agr-adj-num (&agr-adj-num) A - XPred IF (0C Pl)
     (pC N LINK NOT 0 Pl LINK NOT 0 Gen)
     (NEGATE -1* Copula BARRIER LeftStopNonCop) ;
 
-ADD:agr-adj-gend (&agr-adj-gend) Adj - XPred IF (0C Masc)
-    (pC N LINK NOT 0 Masc LINK NOT 0 Gen)
+ADD:agr-adj-gend (&agr-adj-gend) A - XPred IF (0C Msc)
+    (pC N LINK NOT 0 Msc LINK NOT 0 Gen)
     (NEGATE -1* Copula BARRIER LeftStopNonCop) ;
-ADD:agr-adj-gend (&agr-adj-gend) Adj - XPred IF (0C Fem)
+ADD:agr-adj-gend (&agr-adj-gend) A - XPred IF (0C Fem)
     (pC N LINK NOT 0 Fem LINK NOT 0 Gen)
     (NEGATE -1* Copula BARRIER LeftStopNonCop) ;
-ADD:agr-adj-gend (&agr-adj-gend) Adj - XPred IF (0C Neut)
-    (pC N LINK NOT 0 Neut LINK NOT 0 Gen)
+ADD:agr-adj-gend (&agr-adj-gend) A - XPred IF (0C Neu)
+    (pC N LINK NOT 0 Neu LINK NOT 0 Gen)
     (NEGATE -1* Copula BARRIER LeftStopNonCop) ;
 
 # ── V3b–V5b — Adjazenz-Varianten OHNE Copula-Guard: Adjektiv direkt
 #    vor eindeutig nominativischem N-Kopf ist attributiv (Prädikats-NP
-#    „[Kop] Adj N(Nom)"), auch in Kopula-Klauseln („asma prūsiskas
+#    „[Kop] A N(Nom)"), auch in Kopula-Klauseln („asma prūsiskas
 #    wīrs").  1C N + Nom heißt: ALLE Kopf-Lesarten sind N und Nom —
 #    Gen-Transparenz entfällt, und bare Prädikative (Folgetoken Pron
 #    oder Nicht-Nom) bleiben stumm.  Kasus-Variante: Nicht-Nominativ-
 #    Adjektiv vor Nom-Kopf ist immer ein Clash.
-ADD:agr-adj-case (&agr-adj-case) Adj - XPred IF (0C Gen)
+ADD:agr-adj-case (&agr-adj-case) A - XPred IF (0C Gen)
     (1C N + Nom) ;
-ADD:agr-adj-case (&agr-adj-case) Adj - XPred IF (0C Dat)
+ADD:agr-adj-case (&agr-adj-case) A - XPred IF (0C Dat)
     (1C N + Nom) ;
-ADD:agr-adj-case (&agr-adj-case) Adj - XPred IF (0C Acc)
+ADD:agr-adj-case (&agr-adj-case) A - XPred IF (0C Acc)
     (1C N + Nom) ;
 
-ADD:agr-adj-num (&agr-adj-num) Adj - XPred IF (0C Sg)
+ADD:agr-adj-num (&agr-adj-num) A - XPred IF (0C Sg)
     (1C N + Nom LINK NOT 0 Sg) ;
-ADD:agr-adj-num (&agr-adj-num) Adj - XPred IF (0C Pl)
+ADD:agr-adj-num (&agr-adj-num) A - XPred IF (0C Pl)
     (1C N + Nom LINK NOT 0 Pl) ;
 
-ADD:agr-adj-gend (&agr-adj-gend) Adj - XPred IF (0C Masc)
-    (1C N + Nom LINK NOT 0 Masc) ;
-ADD:agr-adj-gend (&agr-adj-gend) Adj - XPred IF (0C Fem)
+ADD:agr-adj-gend (&agr-adj-gend) A - XPred IF (0C Msc)
+    (1C N + Nom LINK NOT 0 Msc) ;
+ADD:agr-adj-gend (&agr-adj-gend) A - XPred IF (0C Fem)
     (1C N + Nom LINK NOT 0 Fem) ;
-ADD:agr-adj-gend (&agr-adj-gend) Adj - XPred IF (0C Neut)
-    (1C N + Nom LINK NOT 0 Neut) ;
+ADD:agr-adj-gend (&agr-adj-gend) A - XPred IF (0C Neu)
+    (1C N + Nom LINK NOT 0 Neu) ;
 
 # ── V6 &pred-nom-akk — Prädikatsnomen unter Kopula muss Nom sein
 #    (§2).  Das Akk-Nominal bekommt kein @pred (das ADD verlangt Nom),
@@ -260,34 +269,34 @@ ADD:genverb-akk (&genverb-akk) NGHead + XObj - TimeN IF (0C Acc)
 #    ni dazwischen).  Detektionsfläche sind Verbformen, denen die
 #    Person des Pronomens FEHLT (asma = nur P1) — hat das Verb die
 #    Person, wählt SECTION 7 des Disambiguators sie ohnehin.
-ADD:agr-subj-verb-pers (&agr-subj-verb-pers) FiniteVerb IF (0C P1)
+ADD:agr-subj-verb-pers (&agr-subj-verb-pers) FiniteVerb IF (0C V1)
     (-1C P2Pron + Nom) ;
-ADD:agr-subj-verb-pers (&agr-subj-verb-pers) FiniteVerb IF (0C P2)
+ADD:agr-subj-verb-pers (&agr-subj-verb-pers) FiniteVerb IF (0C V2)
     (-1C P1Pron + Nom) ;
-ADD:agr-subj-verb-pers (&agr-subj-verb-pers) FiniteVerb IF (0C P1)
+ADD:agr-subj-verb-pers (&agr-subj-verb-pers) FiniteVerb IF (0C V1)
     (NOT 0 (&agr-subj-verb-pers)) (-1 Ni) (-2C P2Pron + Nom) ;
-ADD:agr-subj-verb-pers (&agr-subj-verb-pers) FiniteVerb IF (0C P2)
+ADD:agr-subj-verb-pers (&agr-subj-verb-pers) FiniteVerb IF (0C V2)
     (NOT 0 (&agr-subj-verb-pers)) (-1 Ni) (-2C P1Pron + Nom) ;
 
 # ── V8b &agr-subj-verb-num — Numerusclash zwischen P1/P2-Pronomen-
 #    Subjekt und finitem Verb derselben Person („Mes waida …": waida
 #    hat P1 nur als Sg).  Nur P1/P2 — die 3. Person ist numeruslos
 #    modelliert.  Gleiche Adjazenz-Disziplin wie V8 (inkl. ni).
-ADD:agr-subj-verb-num (&agr-subj-verb-num) FiniteVerb IF (0C P1) (0C Sg)
+ADD:agr-subj-verb-num (&agr-subj-verb-num) FiniteVerb IF (0C Sg1)
     (-1C P1Pron + Nom + Pl) ;
-ADD:agr-subj-verb-num (&agr-subj-verb-num) FiniteVerb IF (0C P1) (0C Pl)
+ADD:agr-subj-verb-num (&agr-subj-verb-num) FiniteVerb IF (0C Pl1)
     (-1C P1Pron + Nom + Sg) ;
-ADD:agr-subj-verb-num (&agr-subj-verb-num) FiniteVerb IF (0C P2) (0C Sg)
+ADD:agr-subj-verb-num (&agr-subj-verb-num) FiniteVerb IF (0C Sg2)
     (-1C P2Pron + Nom + Pl) ;
-ADD:agr-subj-verb-num (&agr-subj-verb-num) FiniteVerb IF (0C P2) (0C Pl)
+ADD:agr-subj-verb-num (&agr-subj-verb-num) FiniteVerb IF (0C Pl2)
     (-1C P2Pron + Nom + Sg) ;
-ADD:agr-subj-verb-num (&agr-subj-verb-num) FiniteVerb IF (0C P1) (0C Sg)
+ADD:agr-subj-verb-num (&agr-subj-verb-num) FiniteVerb IF (0C Sg1)
     (NOT 0 (&agr-subj-verb-num)) (-1 Ni) (-2C P1Pron + Nom + Pl) ;
-ADD:agr-subj-verb-num (&agr-subj-verb-num) FiniteVerb IF (0C P1) (0C Pl)
+ADD:agr-subj-verb-num (&agr-subj-verb-num) FiniteVerb IF (0C Pl1)
     (NOT 0 (&agr-subj-verb-num)) (-1 Ni) (-2C P1Pron + Nom + Sg) ;
-ADD:agr-subj-verb-num (&agr-subj-verb-num) FiniteVerb IF (0C P2) (0C Sg)
+ADD:agr-subj-verb-num (&agr-subj-verb-num) FiniteVerb IF (0C Sg2)
     (NOT 0 (&agr-subj-verb-num)) (-1 Ni) (-2C P2Pron + Nom + Pl) ;
-ADD:agr-subj-verb-num (&agr-subj-verb-num) FiniteVerb IF (0C P2) (0C Pl)
+ADD:agr-subj-verb-num (&agr-subj-verb-num) FiniteVerb IF (0C Pl2)
     (NOT 0 (&agr-subj-verb-num)) (-1 Ni) (-2C P2Pron + Nom + Sg) ;
 
 # ── V11 &subj-dup — Uniqueness-Verletzung: zwei eindeutige @SUBJ-
@@ -301,10 +310,10 @@ ADD:agr-subj-verb-num (&agr-subj-verb-num) FiniteVerb IF (0C P2) (0C Pl)
 #    asyndetische Koordination — die Klauselpartition über Geschwister
 #    ist auf attestiertem Text nicht verlässlich.  Deshalb nur Verben
 #    mit bekannter Akk-Valenz (generated-sets.cg3) plus Appositions-/
-#    Koordinations-Guards (kein Nom-Nominal-Nachbar, kein Cnj).
+#    Koordinations-Guards (kein Nom-Nominal-Nachbar, kein CC).
 #    Zusätzliche Span-Disziplin (Bulk-Regression, v. a. unmarkierte
 #    Satzreihungen in Transkripten): das Duplikat muss textuell im
-#    selben SCnj-/interpunktionsfreien Span stehen; Determinierer mit
+#    selben CS-/interpunktionsfreien Span stehen; Determinierer mit
 #    Nom-Kopf weiter rechts in der NP („Stas wārs pagānisks pīws")
 #    sind Det-Anbindungslücken, keine Zweitsubjekte — ebenso das
 #    Kopfnomen hinter so einem schwebenden Determinierer.
@@ -313,25 +322,25 @@ ADD:subj-dup (&subj-dup) NGHead IF (0C XSubj) (sC XSubj)
     ((-1*C XSubj BARRIER RightStop) OR (1*C XSubj BARRIER RightStop))
     (NEGATE 0 DetPronV LINK 1* NGHead + Nom BARRIER RightStop)
     (NEGATE -1* DetPronV + Nom BARRIER LeftStop)
-    (NEGATE -1 Cnj) (NEGATE 1 Cnj) (NEGATE -1 PUNCT)
+    (NEGATE -1 CC) (NEGATE 1 CC) (NEGATE -1 PUNCT)
     (NEGATE -1 NGHead + Nom) (NEGATE 1 NGHead + Nom) ;
 
 # ── V9 &steisan-nongen — stēisan/stesse-Periphrase (§4) verlangt ein
-#    unmittelbar folgendes Gen-Nominal.  „stesse paggan" (Psp) fällt
+#    unmittelbar folgendes Gen-Nominal.  „stesse paggan" (Po) fällt
 #    nicht darunter (1C NGHead schlägt fehl).
 #    Nicht innerhalb einer PP: dort erzwingt die Präpositionsrektion
 #    den Kasus des Folgenominals („ezze stēisan anzanan gīwatans")
 #    und die Periphrase-Lesart ist nicht mehr sauber prüfbar.
 ADD:steisan-nongen (&steisan-nongen) GenDet IF (0C Gen)
-    (NEGATE -1C Prp) (1C NGHead LINK NOT 0 Gen) ;
+    (NEGATE -1C Pr) (1C NGHead LINK NOT 0 Gen) ;
 
 # ── V10 &pred-adj-gend (EXPERIMENTELL, deaktiviert) — Prädikativ-
 #    Adjektiv nach Kopula muss Neutrum sein (§9).  Erst aktivieren,
 #    wenn die Bulk-Regression (make validate-corpus) zeigt, dass der
 #    moderne Korpus §9 durchgängig einhält — sonst der wahrschein-
 #    lichste Fehlalarm-Generator.
-# ADD:pred-adj-gend (&pred-adj-gend) Adj + XPred IF (0C Masc) ;
-# ADD:pred-adj-gend (&pred-adj-gend) Adj + XPred IF (0C Fem) ;
+# ADD:pred-adj-gend (&pred-adj-gend) A + XPred IF (0C Msc) ;
+# ADD:pred-adj-gend (&pred-adj-gend) A + XPred IF (0C Fem) ;
 
 # ── V12 &akkverb-nom (EXPERIMENTELL, deaktiviert) — Akkusativ-Verb
 #    (kuratierte AkkVerb-Liste, generated-sets.cg3) mit eindeutig

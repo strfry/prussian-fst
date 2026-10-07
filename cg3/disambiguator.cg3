@@ -8,14 +8,15 @@
 #   nie als Artikel-Calque behandeln)
 #   - NG = [Gen-Modifikator] [kongruente Modifikatoren] [Kopf N/Pron]
 #   - Gen-Token sind agreement-transparent
-#   - Klauselgrenzen: SCnj, finite Verben; Cnj/Gen sind KEINE Grenzen
-#   - Präpositionsrektion via FST-Tags GovAkk/GovDat
+#   - Klauselgrenzen: CS, finite Verben; CC/Gen sind KEINE Grenzen
+#   - Präpositionsrektion via Lemma-Listen AkkPrep/DatPrep (generated-sets.cg3)
 #   - Genitivobjekte: lexikalisch (GenVerb) + Genitivus negationis (ni + V)
-#   - Verbvalenz: +GovAkk/+GovDat und +PP<prep> aus desc (gen_lexc.py)
+#   - Valenz (Verb + Adposition) liegt als Lemma-Liste in der CG-Schicht,
+#     nicht als FST-Tag (GiellaLT: indeclinables tragen nur ihr POS-Tag).
 #
 # Input-Stream: fst/scripts/cg3_pipeline.py
 #   "<Labban>"
-#       "labs" Adj Sg Akk Fem
+#       "labs" A Sg Akk Fem
 #   Interpunktion: CLB (./!/?) bzw. PUNCT; unbekannt: Unk
 
 DELIMITERS = "<.>" "<!>" "<?>" ;
@@ -26,17 +27,19 @@ DELIMITERS = "<.>" "<!>" "<?>" ;
 # ============= #
 
 LIST N = N ;
-LIST Adj = Adj ;
+LIST A = A ;
 LIST Pron = Pron ;
 LIST Num = Num ;
 LIST V = V ;
-LIST Part = Part ;
+LIST PrsPrc = PrsPrc ;
+LIST PrfPrc = PrfPrc ;
+SET Part = PrsPrc OR PrfPrc ;
 LIST Adv = Adv ;
-LIST Prp = Prp ;
-LIST Cnj = Cnj ;
-LIST SCnj = SCnj ;
-LIST Pcl = Pcl ;
-LIST IJ = IJ ;
+LIST Pr = Pr ;
+LIST CC = CC ;
+LIST CS = CS ;
+LIST Pcle = Pcle ;
+LIST Interj = Interj ;
 LIST CLB = CLB ;
 LIST PUNCT = PUNCT ;
 LIST Unk = Unk ;
@@ -47,14 +50,13 @@ LIST Dat = Dat ;
 LIST Acc = Acc ;
 LIST Sg = Sg ;
 LIST Pl = Pl ;
-LIST Masc = Masc ;
+LIST Msc = Msc ;
 LIST Fem = Fem ;
-LIST Neut = Neut ;
+LIST Neu = Neu ;
 LIST Inf = Inf ;
-LIST GovAkk = GovAkk ;
-LIST GovDat = GovDat ;
-LIST Psp = Psp ;
-LIST GovGen = GovGen ;
+LIST Po = Po ;
+# Postpositionen (nicht-tag-basierte Rektion, vgl. generated-sets.cg3):
+LIST GenPost = "paggan" ;
 
 LIST Ni = "ni" ;
 LIST BOS = (>>>) ;                                 # Fensteranfang (magisches Tag)
@@ -84,31 +86,31 @@ LIST MeasureN = "dessimts" "dwiddesimts" "trīsdesimts" "ketturdesimts"
 # Genitiv-Periphrase (syntax_rules §4) — lizenzieren Gen am Folgenominal
 LIST GenDet = ("stas" Gen) ;
 
-# GenVerb: kuratierte Liste der Genitiv-Verben (valence.json).
-# Akk/Dat-Valenz ist jetzt tag-basiert (+GovAkk/+GovDat auf dem Verb).
+# Valenzlemma-Listen (GenVerb/AkkVerb) + Präp→Kasus-Listen (AkkPrep/…
+# DatPrep/AccAnyPrep/DatAnyPrep) aus valence.json.
 INCLUDE generated-sets.cg3 ;
 
 SET FiniteVerb = V - Inf - Part ;                 # Ind/Opt/Imp/Subj
-SET ClauseBoundary = SCnj OR FiniteVerb OR CLB OR PUNCT ;
+SET ClauseBoundary = CS OR FiniteVerb OR CLB OR PUNCT ;
 
 SET NGHead = N OR Pron ;
 SET NonGenHead = NGHead - Gen ;                    # Gen-Köpfe sind transparent
-SET CongrMod = Adj OR Num OR Part ;                # kongruente Modifikatoren
-SET Nominal = N OR Adj OR Pron OR Num OR Part ;
+SET CongrMod = A OR Num OR Part ;                # kongruente Modifikatoren
+SET Nominal = N OR A OR Pron OR Num OR Part ;
 SET NAdv = N OR Adv ;
-SET AdjAdv = Adj OR Adv ;
-SET AdjNum = Adj OR Num ;
+SET AdjAdv = A OR Adv ;
+SET AdjNum = A OR Num ;
 SET PPMid = AdjNum OR Part OR Gen ;                # PP-Zwischenglieder
-SET RightCB = SCnj OR CLB OR PUNCT ;               # Klauselgrenze ohne FiniteVerb
+SET RightCB = CS OR CLB OR PUNCT ;               # Klauselgrenze ohne FiniteVerb
 
 # Grenze der Agreement-Domäne beim Kopf-Scan nach rechts.
-# Cnj ist absichtlich NICHT enthalten (transparent bei gleicher Signatur),
+# CC ist absichtlich NICHT enthalten (transparent bei gleicher Signatur),
 # Gen-Köpfe stoppen nicht (NonGenHead via HeadBarrier in den Regeln).
-SET AgrBarrier = SCnj OR FiniteVerb OR Inf OR CLB OR PUNCT OR Prp OR Psp OR Pcl OR Adv OR IJ OR Unk ;
+SET AgrBarrier = CS OR FiniteVerb OR Inf OR CLB OR PUNCT OR Pr OR Po OR Pcle OR Adv OR Interj OR Unk ;
 SET HeadBarrier = AgrBarrier OR NonGenHead ;
 
 # PP-Innenraum: Scan nach links zur regierenden Präposition
-SET PPStop = SCnj OR FiniteVerb OR CLB OR PUNCT OR Cnj OR Pcl OR Adv OR IJ OR Psp OR Unk ;
+SET PPStop = CS OR FiniteVerb OR CLB OR PUNCT OR CC OR Pcle OR Adv OR Interj OR Po OR Unk ;
 
 # ── Dependenzschicht (SECTION 8) ────────────────────────────────
 # Mapping-Tags: @pred = Prädikatskern nach Aux/Kopula (übernimmt in
@@ -117,7 +119,7 @@ SET PPStop = SCnj OR FiniteVerb OR CLB OR PUNCT OR Cnj OR Pcl OR Adv OR IJ OR Ps
 LIST XPred = (@pred) ;
 LIST XFin = (@fin) ;
 SET ClauseHead = XPred OR XFin ;
-SET Adposition = Prp OR Psp ;
+SET Adposition = Pr OR Po ;
 # Determinierer-Pronomina (stas, kas, …): keine Personal-/Enklitika
 SET DetPron = Pron - (Pron P1) - (Pron P2) - (Pron P3) - (Pron Encl) ;
 
@@ -125,7 +127,7 @@ SET DetPron = Pron - (Pron P1) - (Pron P2) - (Pron P3) - (Pron Encl) ;
 # (Pron+Refl, Akk/Dat).  Lizenziert die +Refl-Lesart reflexiver Verben,
 # deren Klitikon der FST als eigenes Token abtrennt (gen_lexc.py: „ si").
 LIST Refl = Refl ;
-SET ReflMarker = ("si" Pcl) OR (Pron Refl) ;
+SET ReflMarker = ("si" Pcle) OR (Pron Refl) ;
 SET NonReflV = V - Refl ;                          # nicht-reflexive Verblesart
 
 # ── Rollenverteilung (SECTION 9/10) ─────────────────────────────
@@ -146,7 +148,7 @@ SET ArgRole = XSubj OR XObj OR XIObj OR XGObj ;
 # ============================================================ #
 # BEFORE-SECTIONS — Parent-Relation für kongruente Modifikatoren #
 # ============================================================ #
-# Jede kongruente Modifikator-Lesart (Adj/Num/Part) bekommt als
+# Jede kongruente Modifikator-Lesart (A/Num/Part) bekommt als
 # Parent den nächsten NGHead rechts innerhalb der Agreement-Domäne.
 # Die Parent-Relation wird in SECTION 5 von den 27 SELECT-Regeln
 # (generated-agreement.cg3) für die Merkmals-Abstimmung genutzt.
@@ -165,118 +167,105 @@ SETPARENT:agr-head CongrMod TO (1* NGHead BARRIER AgrBarrier) ;
 
 SECTION
 
-# PP-Reichweite BEGRENZT auf Prp + max. 2 Zwischenglieder + Kopf:
+# PP-Reichweite BEGRENZT auf Pr + max. 2 Zwischenglieder + Kopf:
 # ein unbegrenzter Links-Scan läuft über den PP-Kopf hinaus und
 # trifft Nachbar-NGs ("[en skūlei] pagaūsenis" → Kollaps).
 # PPMid = was zwischen Präposition und Kopf stehen kann.
 
 # Innerhalb einer PP gibt es keinen Nominativ.
-REMOVE SAFE (Nom) IF (0 Nominal) (-1C Prp) ;
-REMOVE SAFE (Nom) IF (0 Nominal) (-2C Prp) (-1 PPMid) ;
-REMOVE SAFE (Nom) IF (0 Nominal) (-3C Prp) (-2 PPMid) (-1 PPMid) ;
+REMOVE SAFE (Nom) IF (0 Nominal) (-1C Pr) ;
+REMOVE SAFE (Nom) IF (0 Nominal) (-2C Pr) (-1 PPMid) ;
+REMOVE SAFE (Nom) IF (0 Nominal) (-3C Pr) (-2 PPMid) (-1 PPMid) ;
 
-# Rein Akk-regierende Präposition: kein Dativ in der PP.
-REMOVE SAFE (Dat) IF (0 Nominal) (-1C Prp + GovAkk LINK NOT 0 GovDat) ;
-REMOVE SAFE (Dat) IF (0 Nominal) (-2C Prp + GovAkk LINK NOT 0 GovDat) (-1 PPMid) ;
-REMOVE SAFE (Dat) IF (0 Nominal) (-3C Prp + GovAkk LINK NOT 0 GovDat)
+# Rektion über Präp→Kasus-Listen (generated-sets.cg3, aus valence.json):
+# AkkPrep = rein akkusativregierend, DatPrep = rein dativregierend.
+# Doppel-Präpositionen (ēn/pa/ezze/pō) stehen in keiner der beiden Listen
+# und lizenzieren daher beide Kasus — keine eigene Auflösung nötig.
+REMOVE SAFE (Dat) IF (0 Nominal) (-1C Pr) (-1C AkkPrep) ;
+REMOVE SAFE (Dat) IF (0 Nominal) (-2C Pr) (-2C AkkPrep) (-1 PPMid) ;
+REMOVE SAFE (Dat) IF (0 Nominal) (-3C Pr) (-3C AkkPrep)
     (-2 PPMid) (-1 PPMid) ;
 
 # Rein Dat-regierende Präposition: kein Akkusativ in der PP.
-REMOVE SAFE (Acc) IF (0 Nominal) (-1C Prp + GovDat LINK NOT 0 GovAkk) ;
-REMOVE SAFE (Acc) IF (0 Nominal) (-2C Prp + GovDat LINK NOT 0 GovAkk) (-1 PPMid) ;
-REMOVE SAFE (Acc) IF (0 Nominal) (-3C Prp + GovDat LINK NOT 0 GovAkk)
+REMOVE SAFE (Acc) IF (0 Nominal) (-1C Pr) (-1C DatPrep) ;
+REMOVE SAFE (Acc) IF (0 Nominal) (-2C Pr) (-2C DatPrep) (-1 PPMid) ;
+REMOVE SAFE (Acc) IF (0 Nominal) (-3C Pr) (-3C DatPrep)
     (-2 PPMid) (-1 PPMid) ;
 
 # Kongruente Modifikatoren in einer Akk-PP können nicht Gen sein
-# (Gen-Modifikatoren sind N/Pron; Adj-Gen nur bei folgendem Gen-Kopf).
-REMOVE SAFE Adj + Gen IF (-1C Prp + GovAkk LINK NOT 0 GovDat)
+# (Gen-Modifikatoren sind N/Pron; A-Gen nur bei folgendem Gen-Kopf).
+# AccAnyPrep = irgendeine Lesart regiert Akk (auch Doppel-Rektierer).
+REMOVE SAFE A + Gen IF (-1C Pr) (-1C AccAnyPrep)
     (NEGATE 1* NGHead + Gen BARRIER ClauseBoundary) ;
-REMOVE SAFE Adj + Gen IF (-2C Prp + GovAkk LINK NOT 0 GovDat) (-1 PPMid)
+REMOVE SAFE A + Gen IF (-2C Pr) (-2C AccAnyPrep) (-1 PPMid)
     (NEGATE 1* NGHead + Gen BARRIER ClauseBoundary) ;
 
 # Gen-Kopf einer Akk-PP: die Präpositionsrektion schlägt den Genitivus
 # negationis — das PP-Nominal ist kein Verbobjekt der negierten Klausel.
-# Direkt nach GovAkk-Prp und ohne Gen-Kopf rechts (sonst wäre es selbst
-# Gen-Modifikator) ist die -an-Form Akk, nicht Pl+Gen (kriwwjan/karjaūsnan).
+# Direkt nach einer Akk-Präposition und ohne Gen-Kopf rechts (sonst wäre
+# es selbst Gen-Modifikator) ist die -an-Form Akk, nicht Pl+Gen.
 REMOVE SAFE (Gen) IF (0 Nominal)
-    (-1C Prp + GovAkk LINK NOT 0 GovDat)
+    (-1C Pr) (-1C AccAnyPrep)
     (NEGATE 1* NGHead + Gen BARRIER ClauseBoundary) ;
 REMOVE SAFE (Gen) IF (0 Nominal)
-    (-2C Prp + GovAkk LINK NOT 0 GovDat) (-1 PPMid)
+    (-2C Pr) (-2C AccAnyPrep) (-1 PPMid)
     (NEGATE 1* NGHead + Gen BARRIER ClauseBoundary) ;
-
-
-# ============================================================ #
-# SECTION 1b — R1: Rektion der Doppel-Präpositionen auflösen   #
-# ============================================================ #
-# Der Kasus des PP-Nominals disambiguiert GovAkk|GovDat (ēn/pa/
-# ezze/pō) — die Statik/Dynamik-Semantik (§7) ist dafür unnötig.
-
-SECTION
-
-SELECT (GovDat) IF (0 GovAkk) (1C Nominal + Dat) ;
-SELECT (GovAkk) IF (0 GovDat) (1C Nominal + Acc) ;
-# mit kongruentem Modifikator dazwischen: Scan auf den NG-Kopf
-SELECT (GovDat) IF (0 GovAkk)
-    (1* NGHead + Dat BARRIER PPStop LINK NOT 0 Acc) ;
-SELECT (GovAkk) IF (0 GovDat)
-    (1* NGHead + Acc BARRIER PPStop LINK NOT 0 Dat) ;
 
 
 # ========================================================== #
-# SECTION 2 — Regel 4 (be): Prp vs. Cnj                      #
+# SECTION 2 — Regel 4 (be): Pr vs. CC                      #
 # ========================================================== #
-# Muss VOR den Kopf-Scans laufen: eine unaufgelöste Prp-Lesart
+# Muss VOR den Kopf-Scans laufen: eine unaufgelöste Pr-Lesart
 # von "be" wirkt sonst als AgrBarrier und blockiert Regel 1.
 
 SECTION
 
 # Gleicher Kasus unmittelbar links und rechts → Koordination,
-# keine Präposition (Doc: Cnj verbindet Konstituenten gleicher Signatur).
-SELECT (Cnj) IF (0 Prp) (-1 Nominal + Nom) (1 Nominal + Nom) ;
-SELECT (Cnj) IF (0 Prp) (-1 Nominal + Gen) (1 Nominal + Gen) ;
-SELECT (Cnj) IF (0 Prp) (-1 Nominal + Dat) (1 Nominal + Dat) ;
-SELECT (Cnj) IF (0 Prp) (-1 Nominal + Acc) (1 Nominal + Acc) ;
+# keine Präposition (Doc: CC verbindet Konstituenten gleicher Signatur).
+SELECT (CC) IF (0 Pr) (-1 Nominal + Nom) (1 Nominal + Nom) ;
+SELECT (CC) IF (0 Pr) (-1 Nominal + Gen) (1 Nominal + Gen) ;
+SELECT (CC) IF (0 Pr) (-1 Nominal + Dat) (1 Nominal + Dat) ;
+SELECT (CC) IF (0 Pr) (-1 Nominal + Acc) (1 Nominal + Acc) ;
 
 # R2: satzinitiales / nach-Interpunktion stehendes "Be" ist Diskurs-
 # Konnektor, keine Präposition.
-SELECT (Cnj) IF (0 Prp) (-1 BOS) ;
-SELECT (Cnj) IF (0 Prp) (-1 CLB OR PUNCT) ;
+SELECT (CC) IF (0 Pr) (-1 BOS) ;
+SELECT (CC) IF (0 Pr) (-1 CLB OR PUNCT) ;
 
 # R2: rechts folgt eine Klausel (finites Verb vor dem nächsten Nominal)
 # → Koordination von Klauseln.
-SELECT (Cnj) IF (0 Prp) (1* FiniteVerb BARRIER Nominal) ;
+SELECT (CC) IF (0 Pr) (1* FiniteVerb BARRIER Nominal) ;
 
 # R4b: „be" = Präposition „ohne" braucht ein Akk-Komplement rechts.
 # Ist in der Klausel kein Akk-NG-Kopf erreichbar (rechts folgt Verb,
 # Präposition, Adverb, Interpunktion …), kann nur die Konjunktion „und"
 # vorliegen.  Fängt die Residualfälle, die die Koordinations- und
 # Diskurs-Regeln oben nicht treffen.
-SELECT (Cnj) IF (0 Prp) (0 Cnj)
+SELECT (CC) IF (0 Pr) (0 CC)
     (NEGATE 1* NGHead + Acc BARRIER ClauseBoundary) ;
 
 
 # ============================================================ #
-# SECTION 2b — Parent-Refresh nach der Prp/Cnj-Auflösung       #
+# SECTION 2b — Parent-Refresh nach der Pr/CC-Auflösung       #
 # ============================================================ #
 # Der BEFORE-SECTIONS-SETPARENT läuft nur EINMAL — eine später
-# aufgelöste Prp-Lesart (be → Cnj) hat dort als AgrBarrier den
+# aufgelöste Pr-Lesart (be → CC) hat dort als AgrBarrier den
 # Kopf-Scan blockiert ("gēidras [be] … dēinas").  Dieselbe Regel
 # als Sektionsregel feuert in jedem Durchlauf erneut, sobald sich
-# Lesarten (und damit Barrieren) ändern.  Konjunkte (nach Cnj) sind
+# Lesarten (und damit Barrieren) ändern.  Konjunkte (nach CC) sind
 # ausgenommen — die hängt SECTION 8 ans erste Konjunkt (sonst
 # Oszillation zwischen beiden Regeln).
 
 SECTION
 
-# Guard: nur echte Koordination (Cnj MIT linkem Konjunkt) ausnehmen —
-# nach Diskurs-Konnektor "Be …" ist -1 zwar Cnj, aber kein Konjunkt.
-SETPARENT:agr-head CongrMod - XPred (NEGATE -1C Cnj LINK -1 CongrMod)
+# Guard: nur echte Koordination (CC MIT linkem Konjunkt) ausnehmen —
+# nach Diskurs-Konnektor "Be …" ist -1 zwar CC, aber kein Konjunkt.
+SETPARENT:agr-head CongrMod - XPred (NEGATE -1C CC LINK -1 CongrMod)
     TO (1* NGHead BARRIER AgrBarrier) ;
 
 
 # ============================================================ #
-# SECTION 2c — Lexikalische POS-Defaults: stwi (Adv|Pcl)       #
+# SECTION 2c — Lexikalische POS-Defaults: stwi (Adv|Pcle)       #
 # ============================================================ #
 # „stwi" ist zweideutig: Ortsadverb „hier/dort" (av) vs. präsentative
 # Partikel „siehe, hier ist" (pcl).  Die präsentative Lesart steht am
@@ -284,9 +273,9 @@ SETPARENT:agr-head CongrMod - XPred (NEGATE -1C Cnj LINK -1 CongrMod)
 
 SECTION
 
-SELECT (Pcl) IF (0 Adv) (0 Pcl) (-1 BOS) ;
-SELECT (Pcl) IF (0 Adv) (0 Pcl) (-1 CLB OR PUNCT) ;
-SELECT (Adv) IF (0 Adv) (0 Pcl) ;
+SELECT (Pcle) IF (0 Adv) (0 Pcle) (-1 BOS) ;
+SELECT (Pcle) IF (0 Adv) (0 Pcle) (-1 CLB OR PUNCT) ;
+SELECT (Adv) IF (0 Adv) (0 Pcle) ;
 
 
 # ============================================================ #
@@ -301,20 +290,20 @@ SELECT (Adv) IF (0 Adv) (0 Pcl) ;
 SECTION
 
 # Komplementierer-Kontext: nächstes finites Verb links ist Verbum
-# dicendi UND rechts folgt eine eigene Klausel → SCnj (Pronomen weg).
-SELECT:ka-complementizer (SCnj) IF (0 SCnj)
+# dicendi UND rechts folgt eine eigene Klausel → CS (Pronomen weg).
+SELECT:ka-complementizer (CS) IF (0 CS)
     (-1*C FiniteVerb BARRIER ClauseBoundary LINK 0 SayVerb)
     (1* FiniteVerb BARRIER RightCB) ;
-# Sonst ist „ka" das Pronomen: SCnj-Lesart entfernen (kein Verbum
+# Sonst ist „ka" das Pronomen: CS-Lesart entfernen (kein Verbum
 # dicendi links oder keine Folgeklausel rechts).
-REMOVE:ka-pronoun (SCnj) IF (0 Pron)
+REMOVE:ka-pronoun (CS) IF (0 Pron)
     (NEGATE -1*C FiniteVerb BARRIER ClauseBoundary LINK 0 SayVerb) ;
-REMOVE:ka-pronoun (SCnj) IF (0 Pron)
+REMOVE:ka-pronoun (CS) IF (0 Pron)
     (NEGATE 1* FiniteVerb BARRIER RightCB) ;
 
 
 # ==================================================== #
-# SECTION 3a — Regel 1: Adj bei kongruierendem Kopf    #
+# SECTION 3a — Regel 1: A bei kongruierendem Kopf    #
 # ==================================================== #
 
 
@@ -327,25 +316,25 @@ REMOVE:ka-pronoun (SCnj) IF (0 Pron)
 SECTION
 
 # Regel 2: Adv, wenn überhaupt kein Kopf rechts in Reichweite ist …
-SELECT (Adv) IF (0 Adj)
+SELECT (Adv) IF (0 A)
     (NEGATE 1* NGHead BARRIER AgrBarrier) ;
 
-# … und Prädikativ nach Kopula: kurze Neutrum-Sg-Form ist Adj, nicht N.
-SELECT Adj + (Sg Neut) IF (0 N)
+# … und Prädikativ nach Kopula: kurze Neutrum-Sg-Form ist A, nicht N.
+SELECT A + (Sg Neu) IF (0 N)
     (-1*C Copula BARRIER ClauseBoundary)
     (NEGATE 1* NGHead BARRIER AgrBarrier) ;
 
-# Regel 1 Fallback: Adj/N-Token ohne Kopf rechts und ohne Kopula links ist N.
-SELECT (N) IF (0 Adj)
+# Regel 1 Fallback: A/N-Token ohne Kopf rechts und ohne Kopula links ist N.
+SELECT (N) IF (0 A)
     (NEGATE 1* NGHead BARRIER AgrBarrier)
     (NEGATE -1*C Copula BARRIER ClauseBoundary) ;
 
-# R8 — Adj+IJ-Token ohne N-Kopf rechts und ohne Kopula links: Adj entfernen.
-# Adjektiv braucht einen N-Kopf; ohne N-Kopf ist die IJ-Lesart die korrekte
+# R8 — A+Interj-Token ohne N-Kopf rechts und ohne Kopula links: A entfernen.
+# Adjektiv braucht einen N-Kopf; ohne N-Kopf ist die Interj-Lesart die korrekte
 # (Grüße "kaīls!", "kaīls wisēimans!").
 # Der N-Kopf-Scan stoppt an AgrBarrier — ein N jenseits einer Klauselgrenze
 # oder eines finiten Verbs zählt nicht.
-REMOVE:r8-greeting-adj SAFE (Adj) IF (0 IJ)
+REMOVE:r8-greeting-adj SAFE (A) IF (0 Interj)
     (NEGATE 1* N BARRIER AgrBarrier)
     (NEGATE -1*C Copula BARRIER ClauseBoundary) ;
 
@@ -353,10 +342,10 @@ REMOVE:r8-greeting-adj SAFE (Adj) IF (0 IJ)
 # ist Subjektersatz → Nominativ ("bilāi di", "mēri di").
 SELECT:r6-di-impersonal (Nom) IF (0 Di) (-1C FiniteVerb) ;
 
-# R3 — pēr: Partikel („zu/allzu", vor Adj/Adv) vs. Präposition (vor Akk-NG).
-SELECT (Prp) IF (0 Pcl) (0 Prp)
+# R3 — pēr: Partikel („zu/allzu", vor A/Adv) vs. Präposition (vor Akk-NG).
+SELECT (Pr) IF (0 Pcle) (0 Pr)
     (1* NGHead + Acc BARRIER AgrBarrier) ;
-SELECT (Pcl) IF (0 Prp) (0 Pcl) (1C AdjAdv) ;
+SELECT (Pcle) IF (0 Pr) (0 Pcle) (1C AdjAdv) ;
 
 # R7 — Prädikatives Partizip direkt nach Auxiliar (§11–§14, periphrastische
 # Tempora) steht im Nominativ: oblique Lesarten der vollen Partizip-
@@ -397,15 +386,16 @@ SECTION
 # ambige Objekt Gen (produktive Regel; nicht innerhalb einer PP).
 SELECT:gen-negationis (Gen) IF (0 Acc) (0 Gen)
     (-1* FiniteVerb BARRIER ClauseBoundary LINK -1 Ni)
-    (NEGATE -1*C Prp BARRIER PPStop) ;
+    (NEGATE -1*C Pr BARRIER PPStop) ;
 
 # stēisan-Konstruktion (syntax_rules §4): nach eindeutigem Gen-Demonstrativum
 # ist die Gen-Lesart des Folgenominals die nachgestellte Genitiv-Periphrase.
 SELECT:steisan-periphrase (Gen) IF (0 Gen) (0 Nominal - Gen) (-1C GenDet) ;
 
 # Postposition paggan regiert den VORANGESTELLTEN Genitiv: "stesse paggan",
-# "kasse paggan" — direkt vor Psp+GovGen ist die Gen-Lesart die richtige.
-SELECT (Gen) IF (0 Gen) (0 Nominal - Gen) (1C Psp + GovGen) ;
+# "kasse paggan" — direkt vor der GenPost-Lesart (paggan) ist die
+# Gen-Lesart des vorangehenden Nominals die richtige.
+SELECT (Gen) IF (0 Gen) (0 Nominal - Gen) (1C Po) (1C GenPost) ;
 
 # Gen-Lesarten ohne Lizenzierer entfernen: kein NG-Kopf rechts
 # (Gen-Modifikator steht VOR seiner NG), kein Gen-Verb, keine Negation
@@ -419,7 +409,7 @@ REMOVE SAFE (Gen) IF (0 Nominal - Gen)
     (NEGATE -1* FiniteVerb BARRIER ClauseBoundary LINK -1 Ni) ;
 
 # Kongruente Gen-Lesarten brauchen einen Gen-Kopf rechts: Gen-Modifikatoren
-# sind N/Pron; ein Adj/Num/Part im Gen ist nur als Modifikator eines
+# sind N/Pron; ein A/Num/Part im Gen ist nur als Modifikator eines
 # Gen-Kopfs (oder als Gen-Objekt, s. Lizenzierer oben) möglich.
 REMOVE SAFE CongrMod + Gen IF (0 Nominal - Gen)
     (NOT -1 Num) (NOT -1 MeasureN)
@@ -435,14 +425,14 @@ REMOVE SAFE CongrMod + Gen IF (0 Nominal - Gen)
 # Nutzt die Parent-Relation der kongruenten Modifikatoren: Lesarten,
 # deren Merkmal in KEINER Lesart des Kopfes vorkommt, sind mit dem
 # Kopf inkompatibel und fallen weg.  Deckt insbesondere den
-# gēidras-Fall ab: die N+Gen-Lesart eines Adj/N-Tokens stirbt, wenn
+# gēidras-Fall ab: die N+Gen-Lesart eines A/N-Tokens stirbt, wenn
 # der Kopf (dēinas) kein Gen ist — die 27 SELECT-Regeln in SECTION 5
 # greifen dort nicht, solange die Signatur nicht exakt passt.
 
 SECTION
 
-# gēidras-Fall explizit: Adj-Token mit N+Gen-Nebenlesart, Kopf ohne Gen.
-REMOVE SAFE N + Gen IF (0 Adj) (p NGHead LINK NOT 0 Gen) ;
+# gēidras-Fall explizit: A-Token mit N+Gen-Nebenlesart, Kopf ohne Gen.
+REMOVE SAFE N + Gen IF (0 A) (p NGHead LINK NOT 0 Gen) ;
 
 # Verallgemeinerung: Merkmal ohne Gegenstück im Kopf entfernen.
 REMOVE SAFE (Nom)  IF (0 CongrMod) (p NGHead LINK NOT 0 Nom) ;
@@ -451,9 +441,9 @@ REMOVE SAFE (Dat)  IF (0 CongrMod) (p NGHead LINK NOT 0 Dat) ;
 REMOVE SAFE (Acc)  IF (0 CongrMod) (p NGHead LINK NOT 0 Acc) ;
 REMOVE SAFE (Sg)   IF (0 CongrMod) (p NGHead LINK NOT 0 Sg) ;
 REMOVE SAFE (Pl)   IF (0 CongrMod) (p NGHead LINK NOT 0 Pl) ;
-REMOVE SAFE (Masc) IF (0 CongrMod) (p NGHead LINK NOT 0 Masc) ;
+REMOVE SAFE (Msc) IF (0 CongrMod) (p NGHead LINK NOT 0 Msc) ;
 REMOVE SAFE (Fem)  IF (0 CongrMod) (p NGHead LINK NOT 0 Fem) ;
-REMOVE SAFE (Neut) IF (0 CongrMod) (p NGHead LINK NOT 0 Neut) ;
+REMOVE SAFE (Neu) IF (0 CongrMod) (p NGHead LINK NOT 0 Neu) ;
 
 
 # ============================================================ #
@@ -463,27 +453,27 @@ REMOVE SAFE (Neut) IF (0 CongrMod) (p NGHead LINK NOT 0 Neut) ;
 # (1* NGHead BARRIER AgrBarrier)).  9 Merkmale × 3 POS = 27 Regeln.
 
 SECTION
-SELECT (Adj Masc) IF (0 Adj) (p (Masc)) ;
-SELECT (Adj Fem) IF (0 Adj) (p (Fem)) ;
-SELECT (Adj Neut) IF (0 Adj) (p (Neut)) ;
-SELECT (Adj Nom) IF (0 Adj) (p (Nom)) ;
-SELECT (Adj Gen) IF (0 Adj) (p (Gen)) ;
-SELECT (Adj Dat) IF (0 Adj) (p (Dat)) ;
-SELECT (Adj Acc) IF (0 Adj) (p (Acc)) ;
-SELECT (Adj Sg) IF (0 Adj) (p (Sg)) ;
-SELECT (Adj Pl) IF (0 Adj) (p (Pl)) ;
-SELECT (Num Masc) IF (0 Num) (p (Masc)) ;
+SELECT (A Msc) IF (0 A) (p (Msc)) ;
+SELECT (A Fem) IF (0 A) (p (Fem)) ;
+SELECT (A Neu) IF (0 A) (p (Neu)) ;
+SELECT (A Nom) IF (0 A) (p (Nom)) ;
+SELECT (A Gen) IF (0 A) (p (Gen)) ;
+SELECT (A Dat) IF (0 A) (p (Dat)) ;
+SELECT (A Acc) IF (0 A) (p (Acc)) ;
+SELECT (A Sg) IF (0 A) (p (Sg)) ;
+SELECT (A Pl) IF (0 A) (p (Pl)) ;
+SELECT (Num Msc) IF (0 Num) (p (Msc)) ;
 SELECT (Num Fem) IF (0 Num) (p (Fem)) ;
-SELECT (Num Neut) IF (0 Num) (p (Neut)) ;
+SELECT (Num Neu) IF (0 Num) (p (Neu)) ;
 SELECT (Num Nom) IF (0 Num) (p (Nom)) ;
 SELECT (Num Gen) IF (0 Num) (p (Gen)) ;
 SELECT (Num Dat) IF (0 Num) (p (Dat)) ;
 SELECT (Num Acc) IF (0 Num) (p (Acc)) ;
 SELECT (Num Sg) IF (0 Num) (p (Sg)) ;
 SELECT (Num Pl) IF (0 Num) (p (Pl)) ;
-SELECT (Part Masc) IF (0 Part) (p (Masc)) ;
+SELECT (Part Msc) IF (0 Part) (p (Msc)) ;
 SELECT (Part Fem) IF (0 Part) (p (Fem)) ;
-SELECT (Part Neut) IF (0 Part) (p (Neut)) ;
+SELECT (Part Neu) IF (0 Part) (p (Neu)) ;
 SELECT (Part Nom) IF (0 Part) (p (Nom)) ;
 SELECT (Part Gen) IF (0 Part) (p (Gen)) ;
 SELECT (Part Dat) IF (0 Part) (p (Dat)) ;
@@ -500,30 +490,30 @@ SECTION
 
 # Pronomen auf das direkt folgende NGHead abstimmen, ABER nur bei
 # eindeutigem Kopf (1C = alle Lesarten des Kopfes müssen die Signatur haben).
-SELECT (Sg Nom Masc) IF (0C Pron) (1C NGHead + (Sg Nom Masc)) ;
+SELECT (Sg Nom Msc) IF (0C Pron) (1C NGHead + (Sg Nom Msc)) ;
 SELECT (Sg Nom Fem) IF (0C Pron) (1C NGHead + (Sg Nom Fem)) ;
-SELECT (Sg Nom Neut) IF (0C Pron) (1C NGHead + (Sg Nom Neut)) ;
-SELECT (Sg Gen Masc) IF (0C Pron) (1C NGHead + (Sg Gen Masc)) ;
+SELECT (Sg Nom Neu) IF (0C Pron) (1C NGHead + (Sg Nom Neu)) ;
+SELECT (Sg Gen Msc) IF (0C Pron) (1C NGHead + (Sg Gen Msc)) ;
 SELECT (Sg Gen Fem) IF (0C Pron) (1C NGHead + (Sg Gen Fem)) ;
-SELECT (Sg Gen Neut) IF (0C Pron) (1C NGHead + (Sg Gen Neut)) ;
-SELECT (Sg Dat Masc) IF (0C Pron) (1C NGHead + (Sg Dat Masc)) ;
+SELECT (Sg Gen Neu) IF (0C Pron) (1C NGHead + (Sg Gen Neu)) ;
+SELECT (Sg Dat Msc) IF (0C Pron) (1C NGHead + (Sg Dat Msc)) ;
 SELECT (Sg Dat Fem) IF (0C Pron) (1C NGHead + (Sg Dat Fem)) ;
-SELECT (Sg Dat Neut) IF (0C Pron) (1C NGHead + (Sg Dat Neut)) ;
-SELECT (Sg Acc Masc) IF (0C Pron) (1C NGHead + (Sg Acc Masc)) ;
+SELECT (Sg Dat Neu) IF (0C Pron) (1C NGHead + (Sg Dat Neu)) ;
+SELECT (Sg Acc Msc) IF (0C Pron) (1C NGHead + (Sg Acc Msc)) ;
 SELECT (Sg Acc Fem) IF (0C Pron) (1C NGHead + (Sg Acc Fem)) ;
-SELECT (Sg Acc Neut) IF (0C Pron) (1C NGHead + (Sg Acc Neut)) ;
-SELECT (Pl Nom Masc) IF (0C Pron) (1C NGHead + (Pl Nom Masc)) ;
+SELECT (Sg Acc Neu) IF (0C Pron) (1C NGHead + (Sg Acc Neu)) ;
+SELECT (Pl Nom Msc) IF (0C Pron) (1C NGHead + (Pl Nom Msc)) ;
 SELECT (Pl Nom Fem) IF (0C Pron) (1C NGHead + (Pl Nom Fem)) ;
-SELECT (Pl Nom Neut) IF (0C Pron) (1C NGHead + (Pl Nom Neut)) ;
-SELECT (Pl Gen Masc) IF (0C Pron) (1C NGHead + (Pl Gen Masc)) ;
+SELECT (Pl Nom Neu) IF (0C Pron) (1C NGHead + (Pl Nom Neu)) ;
+SELECT (Pl Gen Msc) IF (0C Pron) (1C NGHead + (Pl Gen Msc)) ;
 SELECT (Pl Gen Fem) IF (0C Pron) (1C NGHead + (Pl Gen Fem)) ;
-SELECT (Pl Gen Neut) IF (0C Pron) (1C NGHead + (Pl Gen Neut)) ;
-SELECT (Pl Dat Masc) IF (0C Pron) (1C NGHead + (Pl Dat Masc)) ;
+SELECT (Pl Gen Neu) IF (0C Pron) (1C NGHead + (Pl Gen Neu)) ;
+SELECT (Pl Dat Msc) IF (0C Pron) (1C NGHead + (Pl Dat Msc)) ;
 SELECT (Pl Dat Fem) IF (0C Pron) (1C NGHead + (Pl Dat Fem)) ;
-SELECT (Pl Dat Neut) IF (0C Pron) (1C NGHead + (Pl Dat Neut)) ;
-SELECT (Pl Acc Masc) IF (0C Pron) (1C NGHead + (Pl Acc Masc)) ;
+SELECT (Pl Dat Neu) IF (0C Pron) (1C NGHead + (Pl Dat Neu)) ;
+SELECT (Pl Acc Msc) IF (0C Pron) (1C NGHead + (Pl Acc Msc)) ;
 SELECT (Pl Acc Fem) IF (0C Pron) (1C NGHead + (Pl Acc Fem)) ;
-SELECT (Pl Acc Neut) IF (0C Pron) (1C NGHead + (Pl Acc Neut)) ;
+SELECT (Pl Acc Neu) IF (0C Pron) (1C NGHead + (Pl Acc Neu)) ;
 
 
 # ============================================================ #
@@ -548,44 +538,57 @@ SELECT (Nom) IF (0C Pron) (0 Nom) (0 Acc) (-1C Copula) ;
 # 3. Person ist morphologisch numeruslos (FST-Tag +P3 ohne Sg/Pl),
 # der Numerus lebt am Subjekt.  Nur P1/P2 tragen einen Numerus.
 
+# Pronominal-Person bleibt +P1/+P2/+P3 (P1Pron/P2Pron definiert oben).
+# Verbseitig ist Person/Numerus fusioniert (Sg1/Sg2/SP3/Pl1/Pl2):
+# V1 = 1. Person, V2 = 2. Person, V12 = 1. oder 2. Person.
 LIST P1 = P1 ;
 LIST P2 = P2 ;
 LIST P3 = P3 ;
-# P1Pron/P2Pron oben via FST-Tags definiert (+P1/+P2 auf Pron)
-SET P12 = P1 OR P2 ;
+LIST Sg1 = Sg1 ;
+LIST Sg2 = Sg2 ;
+LIST SP3 = SP3 ;
+LIST Pl1 = Pl1 ;
+LIST Pl2 = Pl2 ;
+SET V1 = Sg1 OR Pl1 ;
+SET V2 = Sg2 OR Pl2 ;
+SET V12 = Sg1 OR Sg2 OR Pl1 OR Pl2 ;
 SET P3SubjAny = NGHead - P1Pron - P2Pron ;
 SET SubjBarrier = ClauseBoundary OR NGHead ;
 
 SECTION
 
-SELECT (P1 Sg) IF (0 (P1 Sg))
+SELECT (Sg1) IF (0 Sg1)
     (-1*C P1Pron + Nom + Sg BARRIER SubjBarrier) ;
-SELECT (P1 Pl) IF (0 (P1 Pl))
+SELECT (Pl1) IF (0 Pl1)
     (-1*C P1Pron + Nom + Pl BARRIER SubjBarrier) ;
-SELECT (P2 Sg) IF (0 (P2 Sg))
+SELECT (Sg2) IF (0 Sg2)
     (-1*C P2Pron + Nom + Sg BARRIER SubjBarrier) ;
-SELECT (P2 Pl) IF (0 (P2 Pl))
+SELECT (Pl2) IF (0 Pl2)
     (-1*C P2Pron + Nom + Pl BARRIER SubjBarrier) ;
 
-# 3. Person: kein Numerus-Select mehr (P3 ist numeruslos).  Bei
-# Person-Ambiguität (P1|P2|P3) genügt ein 3.-Person-Nom-Subjekt links,
-# um die P3-Lesart zu wählen und P1/P2 abzuwählen.
-SELECT (P3) IF (0 P12) (0 P3)
+# 3. Person: kein Numerus-Select mehr (SP3 ist numeruslos).  Bei
+# Person-Ambiguität (1./2./3. Person) genügt ein 3.-Person-Nom-Subjekt
+# links, um die SP3-Lesart zu wählen und 1./2. Person abzuwählen.
+SELECT (SP3) IF (0 V12) (0 SP3)
     (-1*C P3SubjAny + Nom BARRIER SubjBarrier) ;
 
 # Subjekt-inkompatible Personen abwählen, auch wenn die SELECTs oben
 # leer ausgehen (Numerus des Pronomens passt zu keiner Verblesart:
-# „Mes waida …" — waida hat P1 nur als Sg).  SAFE + (0 Px)-Guard:
+# „Mes waida …" — waida hat Sg1 nur als Sg).  SAFE + (0 Vx)-Guard:
 # es wird nur geprunt, wenn eine subjektkompatible Lesart existiert;
 # der Personenclash selbst bleibt stehen und ist Sache des Validators
 # (&agr-subj-verb-pers/-num).
-REMOVE SAFE (P2) IF (0 FiniteVerb) (0 P1)
+REMOVE SAFE (Sg2) IF (0 FiniteVerb) (0 V1)
     (-1*C P1Pron + Nom BARRIER SubjBarrier) ;
-REMOVE SAFE (P3) IF (0 FiniteVerb) (0 P1)
+REMOVE SAFE (Pl2) IF (0 FiniteVerb) (0 V1)
     (-1*C P1Pron + Nom BARRIER SubjBarrier) ;
-REMOVE SAFE (P1) IF (0 FiniteVerb) (0 P2)
+REMOVE SAFE (SP3) IF (0 FiniteVerb) (0 V1)
+    (-1*C P1Pron + Nom BARRIER SubjBarrier) ;
+REMOVE SAFE (Sg1) IF (0 FiniteVerb) (0 V2)
     (-1*C P2Pron + Nom BARRIER SubjBarrier) ;
-REMOVE SAFE (P3) IF (0 FiniteVerb) (0 P2)
+REMOVE SAFE (Pl1) IF (0 FiniteVerb) (0 V2)
+    (-1*C P2Pron + Nom BARRIER SubjBarrier) ;
+REMOVE SAFE (SP3) IF (0 FiniteVerb) (0 V2)
     (-1*C P2Pron + Nom BARRIER SubjBarrier) ;
 
 
@@ -644,20 +647,20 @@ ADD (@fin) FiniteVerb IF (NOT 1C Part + XPred)
 # ── Aux/Kopula → Prädikat ──
 SETPARENT FiniteVerb - XFin TO (1* XPred BARRIER RightCB) ;
 
-# ── Koordination: zweites Konjunkt → erstes, Cnj → zweites ──
-SETPARENT CongrMod - XPred (-1C Cnj) TO (-2 CongrMod) ;
-SETPARENT NGHead - Gen (-1C Cnj) TO (-2 NGHead) ;
-SETPARENT Cnj (-1 Nominal) TO (1 Nominal) ;
-SETPARENT Cnj (NOT p (*)) TO (1* ClauseHead BARRIER CLB) ;
+# ── Koordination: zweites Konjunkt → erstes, CC → zweites ──
+SETPARENT CongrMod - XPred (-1C CC) TO (-2 CongrMod) ;
+SETPARENT NGHead - Gen (-1C CC) TO (-2 NGHead) ;
+SETPARENT CC (-1 Nominal) TO (1 Nominal) ;
+SETPARENT CC (NOT p (*)) TO (1* ClauseHead BARRIER CLB) ;
 
 # ── Subjunktion → Kopf der eingeleiteten Klausel; deren Verb
 #    hängt am Matrixverb (advcl) ──
-SETPARENT SCnj TO (1* ClauseHead BARRIER CLB) ;
-SETPARENT ClauseHead (c SCnj) TO (-1* ClauseHead BARRIER CLB) ;
+SETPARENT CS TO (1* ClauseHead BARRIER CLB) ;
+SETPARENT ClauseHead (c CS) TO (-1* ClauseHead BARRIER CLB) ;
 
 # ── Adpositionen → Kopf-Nominal ihrer Phrase (case) ──
-SETPARENT Prp TO (1* NGHead BARRIER PPStop) ;
-SETPARENT Psp TO (-1* NGHead BARRIER PPStop) ;
+SETPARENT Pr TO (1* NGHead BARRIER PPStop) ;
+SETPARENT Po TO (-1* NGHead BARRIER PPStop) ;
 
 # ── Genitiv-Modifikatoren ──
 # Gen-Demonstrativum der stēisan-Periphrase → folgender Gen-Kopf (det)
@@ -674,15 +677,15 @@ SETPARENT:steisan-nmod NGHead + Gen - XPred (NOT p (*)) (-1C GenDet)
 SETPARENT DetPron - Gen (NOT 0 XPred) TO (1 NGHead) ;
 
 # ── NG-Köpfe → Klauselkopf (nsubj/obj/iobj/obl, Label in Phase 2);
-#    echte Konjunkte (Cnj mit linkem NG-Konjunkt) und Determinierer
+#    echte Konjunkte (CC mit linkem NG-Konjunkt) und Determinierer
 #    sind schon angebunden ──
-SETPARENT NGHead - Gen - XPred (NEGATE -1C Cnj LINK -1 NGHead)
+SETPARENT NGHead - Gen - XPred (NEGATE -1C CC LINK -1 NGHead)
     (NEGATE 0 DetPron LINK 1 NGHead)
     TO (1* ClauseHead BARRIER RightCB) ;
-SETPARENT NGHead - Gen - XPred (NEGATE -1C Cnj LINK -1 NGHead)
+SETPARENT NGHead - Gen - XPred (NEGATE -1C CC LINK -1 NGHead)
     (NOT p ClauseHead) (NEGATE 0 DetPron LINK 1 NGHead)
     TO (-1* ClauseHead BARRIER RightCB) ;
-# Gen-Objekte (GenVerb/Genitivus negationis) und obliques Gen+Psp
+# Gen-Objekte (GenVerb/Genitivus negationis) und obliques Gen+Po
 # ("stesse paggan"): noch ohne Parent → Klauselkopf, erst links,
 # dann rechts
 SETPARENT NGHead + Gen - XPred (NOT p (*))
@@ -693,9 +696,9 @@ SETPARENT NGHead + Gen - XPred (NOT p (*))
 # ── Adverbien, Partikeln, Infinitive ──
 SETPARENT Adv TO (-1* ClauseHead BARRIER RightCB) ;
 SETPARENT Adv (NOT p ClauseHead) TO (1* ClauseHead BARRIER RightCB) ;
-SETPARENT Pcl TO (1C AdjAdv) ;
-SETPARENT Pcl (NOT p (*)) TO (1* ClauseHead BARRIER RightCB) ;
-SETPARENT Pcl (NOT p (*)) TO (-1* ClauseHead BARRIER RightCB) ;
+SETPARENT Pcle TO (1C AdjAdv) ;
+SETPARENT Pcle (NOT p (*)) TO (1* ClauseHead BARRIER RightCB) ;
+SETPARENT Pcle (NOT p (*)) TO (-1* ClauseHead BARRIER RightCB) ;
 SETPARENT Inf TO (-1* ClauseHead BARRIER RightCB) ;
 SETPARENT Inf (NOT p (*)) TO (1* ClauseHead BARRIER RightCB) ;
 
@@ -731,10 +734,11 @@ MAP (@GOBJ) NGHead + Gen - XPred IF (p ClauseHead) (NEGATE c Adposition) ;
 # ============================================================ #
 # Geschwister (s) = gleiche Klausel (gleicher Klauselkopf-Parent);
 # das partitioniert den Satz auch über Nebensatzgrenzen korrekt,
-# weil SCnj-Klauseln in SECTION 8 ihren eigenen Kopf bekommen.
-# KEINE Valenz-Negativevidenz (nur 18/1714 Verben tragen GovAkk —
-# "kein GovAkk ⇒ kein Objekt" würde fast alle echten Objekte
-# treffen); stattdessen Uniqueness + geschlossene Kopula-Klasse.
+# weil CS-Klauseln in SECTION 8 ihren eigenen Kopf bekommen.
+# KEINE Valenz-Negativevidenz (nur wenige Verben tragen eine
+# AkkVerb-Listenzugehörigkeit — "nicht in AkkVerb ⇒ kein Objekt" würde
+# fast alle echten Objekte treffen); stattdessen Uniqueness +
+# geschlossene Kopula-Klasse.
 
 SECTION
 
@@ -756,12 +760,14 @@ REMOVE SAFE (@OBJ) IF (p XPred - Part) ;
 # überhaupt Numerus (P3 ist numeruslos modelliert) — der Parent muss
 # den Numerus POSITIV haben, sonst bliebe die Regel bei jedem
 # P3-Verb scharf und würde Subjekt-Numeri grundlos streichen.
-REMOVE SAFE XSubj + Pl IF (p FiniteVerb + Sg LINK NOT 0 Pl) ;
-REMOVE SAFE XSubj + Sg IF (p FiniteVerb + Pl LINK NOT 0 Sg) ;
+SET VSing = Sg1 OR Sg2 ;
+SET VPlur = Pl1 OR Pl2 ;
+REMOVE SAFE XSubj + Pl IF (p FiniteVerb + VSing LINK NOT 0 VPlur) ;
+REMOVE SAFE XSubj + Sg IF (p FiniteVerb + VPlur LINK NOT 0 VSing) ;
 
-# Subjekt → Verb: eindeutiges @SUBJ-Kind wählt die P3-Lesart —
+# Subjekt → Verb: eindeutiges @SUBJ-Kind wählt die SP3-Lesart —
 # ergänzt SECTION 7 (Links-Scan) um die VS-Stellung.  Wie dort gilt
-# pro-drop: P3 nur bei explizitem Nicht-P1/P2-Subjekt; ein
-# P3-Numerus-Select entfällt, P3 ist numeruslos.
-SELECT (P3) IF (0 P12) (0 P3)
+# pro-drop: SP3 nur bei explizitem Nicht-P1/P2-Subjekt; ein
+# SP3-Numerus-Select entfällt, SP3 ist numeruslos.
+SELECT (SP3) IF (0 V12) (0 SP3)
     (cC XSubj - P1Pron - P2Pron) ;

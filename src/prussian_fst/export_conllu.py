@@ -14,6 +14,7 @@ und werden übersprungen.
 """
 
 import argparse
+import json
 import sys
 from pathlib import Path
 
@@ -37,37 +38,83 @@ BERT_CORPUS = REPO.parent / "prussian-bert/corpus"
 DEFAULT_OUT = REPO / "data/prussian_silver.conllu"
 FOREIGN_UNK_RATIO = 0.5
 
-UPOS = {"N": "NOUN", "PropN": "PROPN", "Adj": "ADJ", "Pron": "PRON", "Num": "NUM",
-        "V": "VERB", "Adv": "ADV", "Prp": "ADP", "Psp": "ADP",
-        "Cnj": "CCONJ", "SCnj": "SCONJ", "Pcl": "PART", "IJ": "INTJ",
+UPOS = {"N": "NOUN", "Prop": "PROPN", "A": "ADJ", "Pron": "PRON", "Num": "NUM",
+        "V": "VERB", "Adv": "ADV", "Pr": "ADP", "Adp": "ADP", "Po": "ADP",
+        "CC": "CCONJ", "CS": "SCONJ", "Pcle": "PART", "Interj": "INTJ",
         "Unk": "X"}
 
 # internes Tag → UD-Feature. Rel (Modus relativus) → Mood=Qot wie der
 # baltische Renarrativ; Subj → Mood=Cnd (Konditional/Konjunktiv).
+# Person/Numerus ist am Verb fusioniert (Sg1/Sg2/SP3/Pl1/Pl2); SP3 trägt
+# keinen Numerus (3. Person ist im Apreußischen numeruslos).
 FEAT = {"Sg": ("Number", "Sing"), "Pl": ("Number", "Plur"),
         "Nom": ("Case", "Nom"), "Gen": ("Case", "Gen"),
         "Dat": ("Case", "Dat"), "Acc": ("Case", "Acc"),
-        "Masc": ("Gender", "Masc"), "Fem": ("Gender", "Fem"),
-        "Neut": ("Gender", "Neut"),
-        "Pres": ("Tense", "Pres"), "Pret": ("Tense", "Past"),
-        "Ind": ("Mood", "Ind"), "Imp": ("Mood", "Imp"),
+        "Msc": ("Gender", "Masc"), "Fem": ("Gender", "Fem"),
+        "Neu": ("Gender", "Neut"),
+        "Prs": ("Tense", "Pres"), "Prt": ("Tense", "Past"),
+        "Ind": ("Mood", "Ind"), "Imprt": ("Mood", "Imp"),
         "Opt": ("Mood", "Opt"), "Subj": ("Mood", "Cnd"),
         "Rel": ("Mood", "Qot"),
+        # Pronominal-Person (bleibt +P1/+P2/+P3)
         "P1": ("Person", "1"), "P2": ("Person", "2"), "P3": ("Person", "3"),
-        "Inf": ("VerbForm", "Inf"), "Part": ("VerbForm", "Part"),
-        "Pass": ("Voice", "Pass"), "Refl": ("Reflex", "Yes"),
-        "Cmp": ("Degree", "Cmp"), "Sup": ("Degree", "Sup"),
+        "Inf": ("VerbForm", "Inf"),
+        "PrsPrc": ("VerbForm", "Part"), "PrfPrc": ("VerbForm", "Part"),
+        "Act": ("Voice", "Act"), "Pss": ("Voice", "Pass"),
+        "Refl": ("Reflex", "Yes"),
+        "Comp": ("Degree", "Cmp"), "Superl": ("Degree", "Sup"),
         "Card": ("NumType", "Card"), "Ord": ("NumType", "Ord"),
         "Encl": ("PronType", "Clit")}
 
-GOV = {"GovAkk": "Acc", "GovDat": "Dat", "GovGen": "Gen"}
+# Fusionierte Verb-Person/-Numerus → UD-Feature-Paare.
+FUSED_PERSNUM = {"Sg1": (("Person", "1"), ("Number", "Sing")),
+                 "Sg2": (("Person", "2"), ("Number", "Sing")),
+                 "SP3": (("Person", "3"),),
+                 "Pl1": (("Person", "1"), ("Number", "Plur")),
+                 "Pl2": (("Person", "2"), ("Number", "Plur"))}
 
 
 def reading_feats(tags: list[str]) -> frozenset[str]:
     feats = {f"{k}={v}" for t in tags if (kv := FEAT.get(t)) for k, v in [kv]}
-    if tags[0] == "Psp":
+    for t in tags:
+        for k, v in FUSED_PERSNUM.get(t, ()):
+            feats.add(f"{k}={v}")
+    if "Po" in tags:
         feats.add("AdpType=Post")
     return frozenset(feats)
+
+
+def _prep_government() -> dict[str, str]:
+    """Lemma → Government-Kasus für rein regierende Präpositionen.
+
+    Doppel-Rektierer stehen in keiner Liste und liefern keinen eindeutigen
+    Kasus (Government entfällt — die Disambiguierung hat ihn am Komplement
+    bereits aufgelöst)."""
+    try:
+        from .gen_cg3_sets import VALENCE_PATH, prep_lists
+    except ImportError:
+        from gen_cg3_sets import VALENCE_PATH, prep_lists
+    if not VALENCE_PATH.exists():
+        return {}
+    preps = prep_lists(json.loads(VALENCE_PATH.read_text(encoding="utf-8")))
+    return ({lm: "Acc" for lm in preps["Akk"]}
+            | {lm: "Dat" for lm in preps["Dat"]})
+
+
+GOVERNMENT = _prep_government()
+
+
+def _reading_government(reading: dict, gov_map: dict[str, str]) -> str | None:
+    tags = reading["tags"]
+    if tags[0] not in ("Pr", "Adp", "Po") and "Po" not in tags:
+        return None
+    return gov_map.get(reading["lemma"])
+
+
+def _upos(tags: list[str]) -> str:
+    if tags[0] == "N" and "Prop" in tags:
+        return "PROPN"
+    return UPOS.get(tags[0], "X")
 
 
 def unique(values: set) -> str:
@@ -141,7 +188,7 @@ def token_line(idx: int, cohort: dict, dep: tuple[int, str] | None = None,
         cols = [form, "_", "X", "_", "_"]
     else:
         lemma = unique({r["lemma"] for r in readings})
-        upos = unique({UPOS.get(r["tags"][0], "X") for r in readings})
+        upos = unique({_upos(r["tags"]) for r in readings})
         xpos = unique({"+".join(r["tags"]) for r in readings})
         shared = frozenset.intersection(
             *(reading_feats(r["tags"]) for r in readings))
@@ -149,8 +196,8 @@ def token_line(idx: int, cohort: dict, dep: tuple[int, str] | None = None,
         cols = [form, lemma, upos, xpos, feats]
 
     misc = []
-    gov = {GOV[t] for r in readings for t in r["tags"] if t in GOV}
-    if len(gov) == 1 and all(any(t in GOV for t in r["tags"]) for r in readings):
+    gov = {g for r in readings if (g := _reading_government(r, GOVERNMENT))}
+    if len(gov) == 1 and all(_reading_government(r, GOVERNMENT) for r in readings):
         misc.append(f"Gov={gov.pop()}")
     if len(readings) > 1:
         misc.append(f"Ambig={len(readings)}")
