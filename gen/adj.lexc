@@ -26,15 +26,15 @@ LEXICON Root
   AdjI ;           ! Par.27 i-/jo-Stamm-Adjektiv (Masc/Neut jo, Fem i), fest
   AdjIMob ;        ! Par.29 mobiles i-Stamm-Adjektiv
   AdjUMob ;        ! Par.31 u-Stamm-Adjektiv (w-Gleitlaut), mobil
-  PartPass ;       ! Par.69 passives Partizip
-  PartAct ;        ! Par.68 aktives Partizip
-  PartPres ;       ! Präsens-Partizip -nts (Stämme aus den Verb-Einträgen)
+  PartPerfPass ;   ! Par.69 passives Partizip
+  PartPerfAct ;    ! Par.68 aktives Partizip
+  PartPresAct ;    ! Präsens-Partizip -nts (Stämme aus den Verb-Einträgen)
   AdjCmpStems ;    ! Komparativ-Stämme (i-/jo-Deklination, aus twanksta)
   AdjSupStems ;    ! Superlativ-Stämme (uka- + Komparativ-Stamm)
   AdvExcept ;      ! hand-gepflegte Adverb-Ausnahmen (Suppletiva, siehe unten)
 
 ! Hand-geschriebene Grammatik (nur Endungen, KEINE Wörter). LEXICON Root verweist
-! auf AdjFixed/AdjMobile/PartPass/PartAct; der Build ersetzt den Root durch die
+! auf AdjFixed/AdjMobile/PartPerfPass/PartPerfAct; der Build ersetzt den Root durch die
 ! Infl-Lexikone des jeweiligen Atoms (gen/atom_fst.py) — sonst bleibt die
 ! Wortliste in gen/*.lexc unberührt.
 
@@ -233,26 +233,26 @@ LEXICON AdjUMobNeut
 !
 ! Twanksta-Par.68/69 sind KEINE Nomen, sondern Partizipien mit adjektivischer
 ! Deklination (Dat.Sg. -asmu/-jasmu, drei Genusblöcke). Zwei Typen:
-!   PartPass (Par.69): passives Partizip -ts, a-stämmig, semi-mobil. Wie das
+!   PartPerfPass (Par.69): passives Partizip -ts, a-stämmig, semi-mobil. Wie das
 !            mobile Adjektiv, aber Dat.Sg. -asmu ist NICHT mobil (kein Gravis),
 !            und Neut Nom.Pl. -āi bleibt fest. Mobile Slots: Masc Nom.Pl/Dat.Pl,
 !            Fem Nom.Sg/Dat.Pl, Neut Dat.Pl. Stamm = Masc.Gen.Sg. minus -as.
-!   PartAct  (Par.68): aktives Partizip -uns, eigener -us-Stamm, fest. Masc -uns,
+!   PartPerfAct  (Par.68): aktives Partizip -uns, eigener -us-Stamm, fest. Masc -uns,
 !            Fem -usi, Neut -us; obliquer -us- + jo-artige Endungen (-jas/-jasmu/
 !            -jai/-jamans). Stamm = Masc.Nom.Sg. minus -uns.
 
-LEXICON PartPassInfl
-  PartPassMasc ;
-  PartPassFem ;
-  PartPassNeut ;
+LEXICON PartPerfPassInfl
+  PartPerfPassMasc ;
+  PartPerfPassFem ;
+  PartPerfPassNeut ;
 
-LEXICON PartActInfl
-  PartActMasc ;
-  PartActFem ;
-  PartActNeut ;
+LEXICON PartPerfActInfl
+  PartPerfActMasc ;
+  PartPerfActFem ;
+  PartPerfActNeut ;
 
 ! ─── Passives Partizip -ts (Par.69), a-stämmig, semi-mobil ────────────────
-LEXICON PartPassMasc
+LEXICON PartPerfPassMasc
   +V+PrfPrc+Pss+Msc+Sg+Nom:s        # ;
   +V+PrfPrc+Pss+Msc+Pl+Nom:%^āi     # ;   ! mobil
   +V+PrfPrc+Pss+Msc+Sg+Gen:as       # ;
@@ -262,7 +262,7 @@ LEXICON PartPassMasc
   +V+PrfPrc+Pss+Msc+Sg+Acc:an       # ;
   +V+PrfPrc+Pss+Msc+Pl+Acc:ans      # ;
 
-LEXICON PartPassFem
+LEXICON PartPerfPassFem
   +V+PrfPrc+Pss+Fem+Sg+Nom:%^ā       # ;   ! mobil
   +V+PrfPrc+Pss+Fem+Pl+Nom:as        # ;
   +V+PrfPrc+Pss+Fem+Sg+Gen:as        # ;
@@ -272,7 +272,7 @@ LEXICON PartPassFem
   +V+PrfPrc+Pss+Fem+Sg+Acc:an        # ;
   +V+PrfPrc+Pss+Fem+Pl+Acc:ans       # ;
 
-LEXICON PartPassNeut
+LEXICON PartPerfPassNeut
   +V+PrfPrc+Pss+Neu+Sg+Nom:an       # ;
   +V+PrfPrc+Pss+Neu+Pl+Nom:āi       # ;   ! fest (anders als Masc)
   +V+PrfPrc+Pss+Neu+Sg+Gen:as       # ;
@@ -283,7 +283,7 @@ LEXICON PartPassNeut
   +V+PrfPrc+Pss+Neu+Pl+Acc:ans      # ;
 
 ! ─── Aktives Partizip -uns (Par.68), -us-Stamm, fest ──────────────────────
-LEXICON PartActMasc
+LEXICON PartPerfActMasc
   +V+PrfPrc+Act+Msc+Sg+Nom:uns       # ;
   +V+PrfPrc+Act+Msc+Pl+Nom:usis      # ;
   +V+PrfPrc+Act+Msc+Sg+Gen:usjas     # ;
@@ -293,7 +293,7 @@ LEXICON PartActMasc
   +V+PrfPrc+Act+Msc+Sg+Acc:usin      # ;
   +V+PrfPrc+Act+Msc+Pl+Acc:usins     # ;
 
-LEXICON PartActFem
+LEXICON PartPerfActFem
   +V+PrfPrc+Act+Fem+Sg+Nom:usi        # ;
   +V+PrfPrc+Act+Fem+Pl+Nom:usjas      # ;
   +V+PrfPrc+Act+Fem+Sg+Gen:usjas      # ;
@@ -303,7 +303,7 @@ LEXICON PartActFem
   +V+PrfPrc+Act+Fem+Sg+Acc:usin       # ;
   +V+PrfPrc+Act+Fem+Pl+Acc:usjans     # ;
 
-LEXICON PartActNeut
+LEXICON PartPerfActNeut
   +V+PrfPrc+Act+Neu+Sg+Nom:us        # ;
   +V+PrfPrc+Act+Neu+Pl+Nom:us        # ;
   +V+PrfPrc+Act+Neu+Sg+Gen:usjas     # ;
@@ -329,13 +329,13 @@ LEXICON PartActNeut
 ! full_declension), nicht aus Adjektiven: Stamm = Masc.Gen.Sg. minus -is
 ! (kalbantis → kalbant). Das Tag-Format ist kanonisch V+Part+Pres (wie base.gen).
 ! Eine Handvoll Verben (jj/cc-Gemination: auswajjintun, buccautun, …) behält die
-! Geminate auch im Dat.Pl. — gelistet in LEXICON PartPresGemKeep, Stamm + ~.
-LEXICON PartPresInfl
-  PartPresMasc ;
-  PartPresFem ;
-  PartPresNeut ;
+! Geminate auch im Dat.Pl. — gelistet in LEXICON PartPresActGemKeep, Stamm + ~.
+LEXICON PartPresActInfl
+  PartPresActMasc ;
+  PartPresActFem ;
+  PartPresActNeut ;
 
-LEXICON PartPresMasc
+LEXICON PartPresActMasc
   +V+PrsPrc+Act+Msc+Sg+Nom:s        # ;
   +V+PrsPrc+Act+Msc+Sg+Gen:is       # ;
   +V+PrsPrc+Act+Msc+Sg+Dat:ismu     # ;
@@ -345,7 +345,7 @@ LEXICON PartPresMasc
   +V+PrsPrc+Act+Msc+Pl+Dat:%^immans # ;
   +V+PrsPrc+Act+Msc+Pl+Acc:ins      # ;
 
-LEXICON PartPresFem
+LEXICON PartPresActFem
   +V+PrsPrc+Act+Fem+Sg+Nom:%~%^ī     # ;
   +V+PrsPrc+Act+Fem+Sg+Gen:jas       # ;
   +V+PrsPrc+Act+Fem+Sg+Dat:jai       # ;
@@ -355,7 +355,7 @@ LEXICON PartPresFem
   +V+PrsPrc+Act+Fem+Pl+Dat:%^jāmans  # ;
   +V+PrsPrc+Act+Fem+Pl+Acc:jans      # ;
 
-LEXICON PartPresNeut
+LEXICON PartPresActNeut
   +V+PrsPrc+Act+Neu+Sg+Nom:i        # ;
   +V+PrsPrc+Act+Neu+Sg+Gen:is       # ;
   +V+PrsPrc+Act+Neu+Sg+Dat:ismu     # ;
@@ -366,7 +366,7 @@ LEXICON PartPresNeut
   +V+PrsPrc+Act+Neu+Pl+Acc:ins      # ;
 
 ! ===========================================================================
-! LEXICON PartPresGemKeep — lexikalische (baked-in) Stamm-Gemination im Dat.Pl.
+! LEXICON PartPresActGemKeep — lexikalische (baked-in) Stamm-Gemination im Dat.Pl.
 ! ===========================================================================
 ! Diese Verben behalten ihre Stamm-Gemination (jj/cc = palataler/affrikater
 ! Doppelkonsonant) auch im akzentverschobenen Dat.Pl. -immans/-jāmans, während
@@ -374,7 +374,7 @@ LEXICON PartPresNeut
 ! Der Schutzmarker ~ steht hier bereits am Stamm; gen/accent.regex sperrt
 ! daraufhin die Degemination. NICHT von LEXICON Root referenziert — reine
 ! Ausnahmeliste (nur Lemma-Quelle).
-LEXICON PartPresGemKeep
+LEXICON PartPresActGemKeep
   auswajjintun+V+PrsPrc+Act+Msc+Sg+Nom:auswajjintun     # ;
   bajjintun+V+PrsPrc+Act+Msc+Sg+Nom:bajjintun           # ;
   pabajjintun+V+PrsPrc+Act+Msc+Sg+Nom:pabajjintun       # ;

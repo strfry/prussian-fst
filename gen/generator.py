@@ -122,9 +122,9 @@ VERB_SUBJ_SLOTS = ("subj.sg1", "subj.sg2", "subj.sp3", "subj.pl1", "subj.pl2")
 VERB_OPT_SLOTS = ("opt",)
 VERB_SLOTS = (VERB_PRES_SLOTS + VERB_PAST_SLOTS + VERB_SUBJ_SLOTS
              + VERB_OPT_SLOTS + IMP_SLOTS)
-PART_PRES_SLOTS = tuple(f"part.prs.act.{s}" for s in _GENDERED)
-PART_PAST_SLOTS = tuple(f"part.prf.act.{s}" for s in _GENDERED)
-PART_PASS_SLOTS = tuple(f"part.prf.pss.{s}" for s in _GENDERED)
+PART_PRES_ACT_SLOTS = tuple(f"part.prs.act.{s}" for s in _GENDERED)
+PART_PERF_ACT_SLOTS = tuple(f"part.prf.act.{s}" for s in _GENDERED)
+PART_PERF_PASS_SLOTS = tuple(f"part.prf.pss.{s}" for s in _GENDERED)
 
 
 def slot_tag(slot: str) -> str:
@@ -434,35 +434,63 @@ for _paradigm in ("88", "89", "90", "91", "92", "93", "94", "96", "97", "99", "1
                           "nonfin": (("SubjOpt",), ())}
 
 # ── Verben (Partizipien) ────────────────────────────────────────────────────
-# Alle drei Rollen WIEDERVERWENDEN den Nonfin-Stamm (Infinitiv − tun/twei); nur
-# die Endung unterscheidet sich. Der belegte Masc.Sg.Nom. ergibt:
+# partPerfAct und partPerfPass hängen ihre Endung an den NONFIN-Stamm (Infinitiv −
+# tun/twei); der belegte Masc.Sg.Nom. ergibt:
 #
-#   partpass  mitā   → mitāts        PartPassMasc/Sg/Nom hängt -s an den Stamm
-#   partact   mitā   → mitāwuns      PartActMasc/Sg/Nom hängt -uns an → Gleitlaut
-#   partpres  mitā   → mitānts       PartPresMasc/Sg/Nom hängt -s an, Stamm -nt
-#   partact   audeg  → audeguns      nach Konsonant kein Gleitlaut
-#   partact   perbartau → perbartawuns    Klasse -taw-: au → aw  (wie partpres)
+#   partPerfPass  mitā   → mitāts        PartPerfPassMasc/Sg/Nom hängt -s an den Stamm
+#   partPerfAct   mitā   → mitāwuns      PartPerfActMasc/Sg/Nom hängt -uns an → Gleitlaut
+#   partPerfAct   audeg  → audeguns      nach Konsonant kein Gleitlaut
+#   partPerfAct   perbartau → perbartawuns    Klasse -taw-: au → aw
+#
+# partPresAct dagegen wird vom PRÄSENS-Stamm her gebildet (Nonfin-Stamm + der
+# Themavokal, den die pres-Rolle schon kennt), nicht vom Nonfin-Stamm + -nt:
+#
+#   partPresAct  absōrbi → absōrbint     Basisstamm auf Vokal: Themavokal ist da
+#   partPresAct  appa    → appant        Basisstamm auf Konsonant: Themavokal + -nt
+#   partPresAct  alkau   → alkawint      Klasse -taw-: au → awint (zuerst)
 #
 # Empirisch am belegten Raster (msc.sg.nom, 1421 einwortige Verbeinträge):
-# partpass base+t 1419/1446 · partact base+w 503, base 514, u→w 128 · partpres
-# base+nt 398 (Paradigmen 131/132/134/138/139 zu 100 %), u→wint 128 (Par.143).
-# Der Rest ist lexikalisch (Gemination, j-Insertion, Ablaut, -ānt/-ant/-int) und
-# kommt als gelieferter Stamm (Stufe 1) bzw. als Override (Stufe 2).
+# partPerfPass base+t 1419/1446 · partPerfAct base+w 503, base 514, u→w 128 — am
+# häufigsten steht partPerfAct schlicht auf dem Nonfin-Stamm, deshalb bleibt er dort.
+# partPresAct deckt die Regel mit Themavokal 322 weitere Einträge (Par.85 -ant,
+# Par.88/96 -ant; Verluste: keine, Slot-für-Slot geprüft) und hebt die
+# Stufe-0-Deckung des Partizip-Grids von 62,82 % auf 70,19 %; u→wint 128 (Par.143).
+# Der Rest ist lexikalisch (Gemination, j-Insertion, Ablaut, -ānt statt -ant,
+# Par.136 -ī → -a-) und kommt als gelieferter Stamm (Stufe 1) bzw. Override (2).
 _VOWELS = tuple("aeiouāēīōū")
-_PARTICIPLE_ROLES: dict[str, RoleSpec] = {
-    "partpres": RoleSpec(
-        lexc="gen/adj.lexc", atoms=("PartPresInfl",), slots=PART_PRES_SLOTS,
-        rules=(StemRule(strip=("u",), suffix="wint"),    # Klasse -taw-: au → awint
-               StemRule(suffix="nt"))),
-    "partact": RoleSpec(
-        lexc="gen/adj.lexc", atoms=("PartActInfl",), slots=PART_PAST_SLOTS,
-        rules=(StemRule(strip=("u",), suffix="w"),       # Klasse -taw-: au → aw
-               StemRule(after=_VOWELS, glide="w"),      # Nonfin-Stamm + Gleit -w-
-               StemRule())),                             # sonst: Nonfin-Stamm
-    "partpass": RoleSpec(
-        lexc="gen/adj.lexc", atoms=("PartPassInfl",), slots=PART_PASS_SLOTS,
-        rules=(StemRule(suffix="t"),)),                 # Nonfin-Stamm + -t
-}
+
+
+def _participle_roles(theme: tuple[str, ...]) -> dict[str, RoleSpec]:
+    """Die drei Partiziprollen eines Paradigmas.
+
+    ``theme`` ist der Strip der pres-Rolle des Paradigmas — eben der
+    Themavokal-Kandidat der Klasse (85/87/142 „a/ā“, 138 „i“, 143 „u“; leer bei
+    den athematischen 131/132/134/139/71/75/81/111/144). Er entscheidet, wie
+    partPresAct aus dem Basisstamm gebildet wird: auslautender Vokal zählt als
+    Themavokal, sonst wird der Themavokal angehängt — leeres ``theme`` ergibt die
+    bisherige -nt-Regel.
+    """
+    vowel = theme[0] if theme else ""
+    partpres_rules = [StemRule(strip=("u",), suffix="wint")]   # Klasse -taw-: au → awint
+    if theme:
+        partpres_rules += [
+            StemRule(strip=theme, suffix=vowel + "nt"),        # fremden Vokal ersetzen
+            StemRule(after=_VOWELS, suffix="nt"),              # Vokal = Themavokal
+        ]
+    partpres_rules.append(StemRule(suffix=vowel + "nt"))       # Konsonant: anfügen
+    return {
+        "partPresAct": RoleSpec(
+            lexc="gen/adj.lexc", atoms=("PartPresActInfl",), slots=PART_PRES_ACT_SLOTS,
+            rules=tuple(partpres_rules)),
+        "partPerfAct": RoleSpec(
+            lexc="gen/adj.lexc", atoms=("PartPerfActInfl",), slots=PART_PERF_ACT_SLOTS,
+            rules=(StemRule(strip=("u",), suffix="w"),       # Klasse -taw-: au → aw
+                   StemRule(after=_VOWELS, glide="w"),      # Nonfin-Stamm + Gleit -w-
+                   StemRule())),                             # sonst: Nonfin-Stamm
+        "partPerfPass": RoleSpec(
+            lexc="gen/adj.lexc", atoms=("PartPerfPassInfl",), slots=PART_PERF_PASS_SLOTS,
+            rules=(StemRule(suffix="t"),)),                 # Nonfin-Stamm + -t
+    }
 
 _VERB_LEXC = "gen/verb.lexc"
 for _paradigm, _role_table in _VERBS.items():
@@ -476,7 +504,7 @@ for _paradigm, _role_table in _VERBS.items():
         _roles[_role] = RoleSpec(
             lexc=_VERB_LEXC, atoms=tuple(_atoms), slots=tuple(_slots),
             rules=(StemRule(strip=_strip),))
-    _roles.update(_PARTICIPLE_ROLES)
+    _roles.update(_participle_roles(_role_table["pres"][1]))
     PARADIGMS[("verb", _paradigm)] = Paradigm(
         family="verb", lexc=_VERB_LEXC, pos="verb",
         strip=("tun", "twei"), roles=_roles)
@@ -615,7 +643,7 @@ def generate(pos: str, paradigm: str | int, lemma: str | None = None,
     ``pos`` ist ``noun``/``adj``/``verb``, ``paradigm`` die Twanksta-Nummer,
     ``lemma`` die Basisform (Nom.Sg. / Infinitiv / Masc.Nom.Sg.). ``stems`` ist
     der **gelieferte Stamm** je Rolle und überschreibt die Stufe-0-Regel
-    (``{"obl": "Patall"}``, ``{"partpres": "ainapreslinān"}``). ``gender`` wird nicht
+    (``{"obl": "Patall"}``, ``{"partPresAct": "ainapreslinān"}``). ``gender`` wird nicht
     gebraucht — die Genus-Dimension ist reines Durchreich-Tag in den Slot-Keys; bei
     Nomen ohne bekanntes Genus wird nichts erfunden.
 

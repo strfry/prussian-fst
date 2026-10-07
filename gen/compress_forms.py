@@ -11,7 +11,7 @@ selbst erzeugt:
     Stufe 2   Override: fertige Form je Zelle     → ``inflectedForm`` + ``tag``
 
 Ein **gelieferter Stamm** ist der Rollen-Stamm selbst (``obl``, ``pres``, ``pret``,
-``nonfin``, ``partpres`` …), nicht eine Belegform. Er wird **aus einer belegten
+``nonfin``, ``partPresAct`` …), nicht eine Belegform. Er wird **aus einer belegten
 Form gewonnen** (``generator.stem_from_form``): die Grammatik misst die Endung des
 Slots, der Rest ist der Stamm. Ein **Override** ist jede attestierte Oberfläche,
 die ``generate(stems)`` nicht liefert. Das Paar ist verlustfrei:
@@ -447,7 +447,7 @@ def _derive_once(pos: str, paradigm: str, lemma: str, gender: str,
     die Zellen die **Aussage der Datei** (sie stehen dort als Override) und bleiben
     unangetastet; ein Neuableiten aus ihnen wäre Raten mit weniger Information als
     der erste Lauf — er schlägt die 23 Zellen eines Stufe-0-Partizipstamms für die
-    eine abweichende Nischenform und wirft sie weg (mitātun, partpass 'kalbit').
+    eine abweichende Nischenform und wirft sie weg (mitātun, partPerfPass 'kalbit').
     """
     original = attested if original is None else original
     supplied = dict(supplied or {})
@@ -483,7 +483,7 @@ def _derive_once(pos: str, paradigm: str, lemma: str, gender: str,
             # Gewinn ist also eine Differenz: was der Kandidat neu deckt, minus was
             # der bisherige Stamm deckt und der Kandidat verliert. Sonst gewinnt ein
             # Stamm, der eine einzige Nischenform trifft, während er den Rest der
-            # Rolle wegwirft (mitātun: partpass 'mitat' für die -ai-Form gegen
+            # Rolle wegwirft (mitātun: partPerfPass 'mitat' für die -ai-Form gegen
             # Stufe 0 'mitāt' mit 23 Zellen).
             before = _role_covered(original, generated, spec.slots)
             best_stem: str | None = None

@@ -26,7 +26,7 @@ Laufzeit nur die fertigen Atome.
 
     uv run python gen/atom_fst.py --list
     uv run python gen/atom_fst.py noun 53
-    uv run python gen/atom_fst.py verb 85 partpres
+    uv run python gen/atom_fst.py verb 85 partPresAct
     uv run python gen/atom_fst.py --all -j8
 """
 

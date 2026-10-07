@@ -31,8 +31,8 @@ WANTED = [
     ("adj", "30", "adv"),
     ("verb", "132", "pres"), ("verb", "132", "nonfin"),
     ("verb", "143", "pres"), ("verb", "143", "nonfin"),
-    ("verb", "85", "partpres"), ("verb", "85", "partact"),
-    ("verb", "85", "partpass"),
+    ("verb", "85", "partPresAct"), ("verb", "85", "partPerfAct"),
+    ("verb", "85", "partPerfPass"),
 ]
 
 
@@ -123,7 +123,7 @@ ROUNDTRIP_SLOTS = [
     gen.VERB_PAST_SLOTS[0], gen.VERB_SUBJ_SLOTS[-1],
     gen.VERB_OPT_SLOTS[0], gen.IMP_SLOTS[0], gen.IMP_SLOTS[-1],
     # Partizipien (alle Prc-Typ/Voice-Kombinationen)
-    gen.PART_PRES_SLOTS[0], gen.PART_PAST_SLOTS[-1], gen.PART_PASS_SLOTS[3],
+    gen.PART_PRES_ACT_SLOTS[0], gen.PART_PERF_ACT_SLOTS[-1], gen.PART_PERF_PASS_SLOTS[3],
 ]
 
 
@@ -182,18 +182,18 @@ def test_atom_names_are_unique_and_245():
     # Verben führen zusätzlich die Partiziprollen; nonfin = Infinitivstamm, und die
     # Partizipien sind es auch — nur mit eigener Endung (Gleit -w-, -nt, -t).
     ("verb", "132", "auwaitjātun", {"pres": "auwaitjā", "nonfin": "auwaitjā",
-                                     "partact": "auwaitjāw", "partpass": "auwaitjāt",
-                                     "partpres": "auwaitjānt"}),
+                                     "partPerfAct": "auwaitjāw", "partPerfPass": "auwaitjāt",
+                                     "partPresAct": "auwaitjānt"}),
     ("verb", "138", "absōrbitun", {"pres": "absōrb", "nonfin": "absōrbi",
-                                   "partact": "absōrbiw", "partpass": "absōrbit",
-                                   "partpres": "absōrbint"}),
+                                   "partPerfAct": "absōrbiw", "partPerfPass": "absōrbit",
+                                   "partPresAct": "absōrbint"}),
     # Klasse -taw-: au → aw, im Präsens au → a (der Infinitiv behält das -au).
     ("verb", "143", "alkautwei", {"pres": "alka", "nonfin": "alkau",
-                                   "partact": "alkaw", "partpass": "alkaut",
-                                   "partpres": "alkawint"}),
+                                   "partPerfAct": "alkaw", "partPerfPass": "alkaut",
+                                   "partPresAct": "alkawint"}),
     ("verb", "85", "appautwei", {"pres": "appau", "nonfin": "appau",
-                                 "partpres": "appawint", "partact": "appaw",
-                                 "partpass": "appaut"}),
+                                 "partPresAct": "appawint", "partPerfAct": "appaw",
+                                 "partPerfPass": "appaut"}),
 ])
 def test_default_stems(pos, paradigm, lemma, stems):
     assert gen.default_stems(pos, paradigm, lemma=lemma) == stems
@@ -210,7 +210,7 @@ def test_delivered_stem_overrides_the_rule(atoms):
     assert gen.generate("noun", "53", lemma="dumslē",
                         stems={"obl": "wok"})["sg.gen"] == ("wokis",)
     assert gen.generate("verb", "85", lemma="ainapreslintun",
-                        stems={"partpres": "ainapreslinānt"})[
+                        stems={"partPresAct": "ainapreslinānt"})[
                             "part.prs.act.msc.sg.nom"] == ("ainapreslinānts",)
 
 
@@ -223,9 +223,9 @@ def test_delivered_stem_overrides_the_rule(atoms):
     ("adj", "27", "pos", "msc.sg.gen", "wilnjas", "wiln"),
     ("adj", "27", "adv", "adv", "wilnjai", "wiln"),
     ("verb", "136", "pret", "prt.sp3", "kalbēi", "kalbē"),
-    ("verb", "132", "partact", "part.prf.act.msc.sg.nom", "mitāwuns", "mitāw"),
-    ("verb", "132", "partpres", "part.prs.act.msc.sg.nom", "mitānts", "mitānt"),
-    ("verb", "132", "partpass", "part.prf.pss.msc.sg.nom", "mitāts", "mitāt"),
+    ("verb", "132", "partPerfAct", "part.prf.act.msc.sg.nom", "mitāwuns", "mitāw"),
+    ("verb", "132", "partPresAct", "part.prs.act.msc.sg.nom", "mitānts", "mitānt"),
+    ("verb", "132", "partPerfPass", "part.prf.pss.msc.sg.nom", "mitāts", "mitāt"),
 ])
 def test_stem_from_form(atoms, pos, paradigm, role, slot, form, stem):
     """Endung abziehen heißt: die Grammatik fragen, nicht eine Liste pflegen."""
@@ -236,7 +236,7 @@ def test_stem_from_form_reproduces_the_form(atoms):
     """Der zurückgewonnene Stamm muss die Belegform wiederherstellen."""
     for pos, paradigm, role, slot, form in (
             ("noun", "53", "obl", "pl.acc", "dumslins"),
-            ("verb", "132", "partact", "part.prf.act.msc.sg.nom", "mitāwuns")):
+            ("verb", "132", "partPerfAct", "part.prf.act.msc.sg.nom", "mitāwuns")):
         stem = gen.stem_from_form(pos, paradigm, role, slot, form)
         assert form in gen.generate(pos, paradigm, stems={role: stem})[slot]
 
@@ -256,7 +256,7 @@ def test_slot_ending_is_measured_through_the_grammar(atoms):
     assert gen.slot_ending("noun", "53", "obl", "sg.gen") == "is"
     assert gen.slot_ending("noun", "53", "obl", "pl.dat") == "īmans"
     # Der Gleitlaut steckt im Stamm (mitāw), nicht in der Endung des -uns-Partizips.
-    assert gen.slot_ending("verb", "132", "partact",
+    assert gen.slot_ending("verb", "132", "partPerfAct",
                            "part.prf.act.msc.sg.nom") == "uns"
 
 
@@ -370,9 +370,11 @@ def test_participle_glide_only_after_a_vowel(atoms):
 def test_delivered_stem_wins_over_the_participle_rule(atoms):
     """Der thematische -in-Stamm ist lexikalisch: geliefert, nicht geregelt."""
     out = gen.generate("verb", "85", lemma="ainapreslintun")
-    assert out["part.prs.act.msc.sg.nom"] == ("ainapreslinnts",)   # Regel-Fehler
+    # Die Regel liefert den Themavokal der Klasse (ainapreslinant), das -ā- bleibt
+    # lexikalisch — deshalb wird der Stamm geliefert, nicht geregelt.
+    assert out["part.prs.act.msc.sg.nom"] == ("ainapreslinants",)
     fixed = gen.generate("verb", "85", lemma="ainapreslintun",
-                         stems={"partpres": "ainapreslinānt"})
+                         stems={"partPresAct": "ainapreslinānt"})
     assert fixed["part.prs.act.msc.sg.nom"] == ("ainapreslinānts",)
     # Die Partiziprollen sind getrennt: partpass behält seinen eigenen Regelstamm.
     assert fixed["part.prf.pss.msc.sg.nom"] == ("ainapreslints",)
@@ -412,7 +414,7 @@ def test_long_stem_with_markers(atoms):
 
 def test_unknown_role_is_rejected(atoms):
     with pytest.raises(KeyError, match="unbekannte Rolle"):
-        gen.generate("noun", "53", lemma="dumslē", stems={"partpres": "dumsl"})
+        gen.generate("noun", "53", lemma="dumslē", stems={"partPresAct": "dumsl"})
 
 
 # ── Der Build selbst ────────────────────────────────────────────────────────

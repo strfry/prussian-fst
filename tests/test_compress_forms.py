@@ -39,7 +39,7 @@ import generator as gen  # noqa: E402
 
 NOUN_ROLES = ("obl",)
 ADJ_ROLES = ("pos", "adv", "cmp", "sup")
-VERB_ROLES = ("pres", "nonfin", "partpres", "partact", "partpass")
+VERB_ROLES = ("pres", "nonfin", "partPresAct", "partPerfAct", "partPerfPass")
 WANTED = (
     [("noun", paradigm, role, "") for paradigm in ("32", "56", "61") for role in NOUN_ROLES]
     + [("adj", paradigm, role, "") for paradigm in ("25", "27") for role in ADJ_ROLES]
@@ -338,7 +338,7 @@ FIXTURES = [
       "opt": ("kalbisei",), "imprt.sg2": ("kalbais",), "imprt.pl2": ("kalbaiti",),
       "part.prs.act.msc.sg.nom": ("kalbants",), "part.prf.act.msc.sg.nom": ("kalbīwuns",),
       "part.prf.pss.msc.sg.nom": ("kalbīts",)},
-     {"pret": "kalbē", "partpres": "kalbant"},
+     {"pret": "kalbē", "partPresAct": "kalbant"},
      {"opt": ("kalbisei",)}),
 ]
 
