@@ -81,9 +81,12 @@ STEM_OVERRIDES = "stemOverrides"
 # Paradigmennummer ans Lemma (federācija → "federācija52", Burkīna Fasō →
 # "Burkīna Fasō45") bzw. an eine abgeleitete Stammform (Superlativ
 # "ukaizpilninamins27", "aušpānstun73").  Solche Oberflächen sind keine
-# Wortformen — keine echte preußische Wortform endet auf eine Ziffer — und
-# dürfen weder als Override noch als Stamm-Kandidat in die lean NVH.  Sie
-# werden hier verworfen und in eine Review-Liste geschrieben.
+# Wortformen — keine echte preußische Wortform enthält eine Ziffer — aber sie
+# sind REPARIERBAR: die Ziffern entfernen ergibt die attestierte Form.  Darum
+# werden sie hier repariert (statt verworfen) und in eine Review-Liste
+# geschrieben; so bleibt z. B. der irreguläre Sg.Nom `Dānija` (von Stufe 0 nicht
+# ableitbar) als Override erhalten, statt durch die falsche Regelform `Dānijai`
+# ersetzt zu werden.
 REVIEW_ARTIFACTS = ROOT / "build" / "review_dumper_artifacts.tsv"
 
 
@@ -98,14 +101,24 @@ def is_dumper_artifact(lemma: str, paradigm: str, surface: str) -> bool:
     return any(ch.isdigit() for ch in surface)
 
 
-def drop_dumper_artifacts(
-        entries: Iterable[Entry]) -> tuple[list[Entry], list[tuple[str, str, str]]]:
-    """Geklebte Paradigmen-Artefakte aus ``attested`` entfernen.
+def repair_surface(surface: str) -> str:
+    """Geklebte Ziffern (Paradigmennummer) aus der Oberfläche entfernen.
 
-    Rückgabe ``(bereinigte Einträge, review)`` mit ``review`` =
-    ``[(lemma, paradigm, slot), …]`` je verworfener Zelle.  Die Zellen sind
-    Datenfehler, keine Wortformen; nach dem Entfernen regeneriert Stufe 0/1
-    die korrekte Form (z. B. ``federācija`` P52 Sg.Nom).
+    ``Dānija52`` → ``Dānija``; ``izpilninamins27is`` → ``izpilninaminsis``.
+    Keine echte Wortform enthält Ziffern, darum ist das Entfernen verlustfrei.
+    """
+    return "".join(ch for ch in surface if not ch.isdigit())
+
+
+def repair_dumper_artifacts(
+        entries: Iterable[Entry]) -> tuple[list[Entry], list[tuple[str, str, str]]]:
+    """Geklebte Paradigmen-Artefakte in ``attested`` REPARIEREN (Ziffern raus).
+
+    Rückgabe ``(reparierte Einträge, review)`` mit ``review`` =
+    ``[(lemma, paradigm, slot), …]`` je reparierter Zelle (Datenfehler, zum
+    Review).  Reparieren statt Verwerfen: irreguläre Formen (z. B. ``Dānija``
+    Sg.Nom, von Stufe 0 nicht ableitbar) bleiben als Override erhalten; Verwerfen
+    hätte sie durch die falsche Regelform (``Dānijai``) ersetzt.
     """
     clean: list[Entry] = []
     review: list[tuple[str, str, str]] = []
@@ -113,16 +126,18 @@ def drop_dumper_artifacts(
         if not entry.attested:
             clean.append(entry)
             continue
-        kept: dict[str, tuple[str, ...]] = {}
+        repaired: dict[str, tuple[str, ...]] = {}
         for slot, surfaces in entry.attested.items():
-            good = tuple(s for s in surfaces
-                         if not is_dumper_artifact(entry.lemma, entry.paradigm, s))
+            out: list[str] = []
             for s in surfaces:
                 if is_dumper_artifact(entry.lemma, entry.paradigm, s):
                     review.append((entry.lemma, entry.paradigm, slot))
-            if good:
-                kept[slot] = good
-        clean.append(replace(entry, attested=kept))
+                    s = repair_surface(s)
+                if s and s not in out:
+                    out.append(s)
+            if out:
+                repaired[slot] = tuple(out)
+        clean.append(replace(entry, attested=repaired))
     return clean, review
 
 
@@ -897,10 +912,10 @@ def _main(argv: list[str] | None = None) -> int:
     if args.limit:
         entries = entries[:args.limit]
     if not args.keep_artifacts:
-        entries, review = drop_dumper_artifacts(entries)
+        entries, review = repair_dumper_artifacts(entries)
         if review:
             n = write_review(args.review_out, review)
-            print(f"# Dumper-Artefakte (lemma+paradigm) verworfen: {n} Zellen "
+            print(f"# Dumper-Artefakte (lemma+paradigm) repariert: {n} Zellen "
                   f"→ {args.review_out}", file=sys.stderr)
     stats = Stats()
     done = list(compress(entries, lemma_only=args.lemma_only, dense=args.dense_input,

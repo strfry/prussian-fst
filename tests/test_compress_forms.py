@@ -295,11 +295,18 @@ def test_dumper_artifact_is_detected():
     assert not cf.is_dumper_artifact("wilnis", "27", "wilnis")
 
 
-def test_drop_dumper_artifacts_removes_cells_and_reviews_them():
+def test_repair_dumper_artifacts_fixes_cells_and_reviews_them():
     entries = cf.parse_nvh(DUMPER_NVH)
-    clean, review = cf.drop_dumper_artifacts(entries)
+    clean, review = cf.repair_dumper_artifacts(entries)
+    # Reparieren = Ziffern entfernen; die reparierte Form ist die attestierte.
+    # federācija52 → federācija (dedupliziert mit der schon sauberen Variante).
     assert clean[0].attested["sg.nom"] == ("federācija",)
-    assert clean[1].attested == {"msc.sg.nom": ("wilnis",)}
+    # izpilninamins: beide Artefaktzellen repariert, saubere Zelle bleibt.
+    assert clean[1].attested == {
+        "adv.superl": ("ukaizpilninamins",),
+        "comp.msc.sg.nom": ("izpilninaminsis",),
+        "msc.sg.nom": ("wilnis",),
+    }
     assert ("federācija", "52", "sg.nom") in review
     assert ("izpilninamins", "27", "adv.superl") in review
     assert ("izpilninamins", "27", "comp.msc.sg.nom") in review
