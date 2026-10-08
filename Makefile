@@ -37,11 +37,21 @@ build/:
 gen:
 	python3 src/prussian_fst/gen_lexc.py
 
+# Altes twanksta-Vollform-Merge (gen_lexc). NICHT mehr Quelle von base.fst (WS0) —
+# nur noch zum Nachregenerieren des eingefrorenen Golds (tests/gold/twanksta_surfaces.txt).
 $(LEXC_MERGED): $(LEXC_FILES) | build/
 	cat $(LEXC_FILES) > $@
 
-build/base.fst: $(LEXC_MERGED) | build/
-	$(HFST) lexc $(LEXC_MERGED) $@
+# WS0: base.fst wird aus der gebackenen Merged-Lexc kompiliert — Atom-Generator
+# (gen/*.lexc) + lean NVH (Stämme/Overrides) + handgeschriebene Closed-Class —, NICHT
+# mehr aus den gen_lexc-Vollform-Open-Class-Lexc. Damit ist base.hfstol (invert) der
+# gebackene Analyzer und base.gen.hfstol (non-invert) der Generator aus EINER Quelle.
+# Deckung gegen das eingefrorene twanksta-Gold: `make analyzer-parity`.
+build/analyzer.lexc: gen gen/build_analyzer.py gen/*.lexc $(LEAN_NVH) | build/
+	uv run python gen/build_analyzer.py --no-compile
+
+build/base.fst: build/analyzer.lexc | build/
+	$(HFST) lexc $< $@
 
 # Optimized-lookup transducer für pyhfst (invertiert: surface → analysis).
 # build/base.fst bildet analysis → surface ab, für Lookup brauchen wir

@@ -242,10 +242,22 @@ def surfaces_of(path: Path) -> set[str]:
 
 
 GAPS_REVIEW = BUILD / "review_analyzer_gaps.tsv"
+# Eingefrorenes, non-circular Gold (WS0): die twanksta-Oberflächen des alten
+# gen_lexc-Vollform-Builds, einmal nach tests/gold/ eingefroren, bevor base.fst auf
+# die Atom-Bäckerei umgestellt wurde. Eine Oberfläche je Zeile (kein lexc).
+GOLD = ROOT / "tests" / "gold" / "twanksta_surfaces.txt"
+
+
+def gold_surfaces() -> set[str]:
+    """Die eingefrorenen Gold-Oberflächen; Fallback auf live build/lexc.merged,
+    solange die Gold-Datei fehlt (= gen_lexc-Open-Class noch vorhanden)."""
+    if GOLD.exists():
+        return {ln for ln in GOLD.read_text(encoding="utf-8").splitlines() if ln}
+    return surfaces_of(BASE_MERGED)
 
 
 def parity() -> int:
-    ref = surfaces_of(BASE_MERGED)
+    ref = gold_surfaces()
     got = surfaces_of(MERGED_LEXC)
     missing = ref - got
     extra = got - ref
@@ -257,9 +269,9 @@ def parity() -> int:
     for surface in sorted(extra)[:10]:
         print(f"  EXTRA  {surface}")
     # Review: verbleibende Deckungslücken + Analyzer-Extra-Lesarten zum Abgleich.
-    lines = ["# Analysator-Parität vs. base.hfstol (analyzer.lexc vs. lexc.merged)\n",
-             "# FEHLT = in base, nicht im gebackenen Analyzer (Review: Lemma/Daten prüfen)\n",
-             "# EXTRA = im gebackenen Analyzer, nicht in base (Varianten-Lesarten verifizieren)\n",
+    lines = ["# Analysator-Parität vs. eingefrorenem twanksta-Gold (tests/gold/twanksta_surfaces.txt)\n",
+             "# FEHLT = im Gold, nicht im gebackenen Analyzer (Review: Lemma/Daten prüfen)\n",
+             "# EXTRA = im gebackenen Analyzer, nicht im Gold (Varianten-Lesarten verifizieren)\n",
              "kategorie\tsurface\n"]
     lines += [f"FEHLT\t{s}\n" for s in sorted(missing)]
     lines += [f"EXTRA\t{s}\n" for s in sorted(extra)]
