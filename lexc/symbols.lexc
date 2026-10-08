@@ -48,6 +48,7 @@ Multichar_Symbols
   +Superl ! superlative degree
   +Card ! cardinal numeral (one, two, three…)
   +Ord  ! ordinal numeral (first, second, third…)
+  +P1 +P2 +P3 ! pronoun person (personal/possessive pronouns)
   +Encl ! enclitic pronoun (di, dis, din — proclitic subject replacement)
 
   ! Morphophonology trigger: deaccent (mobile stem under a strong participle

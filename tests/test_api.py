@@ -71,3 +71,11 @@ def test_conllu_matches_cli():
 def test_empty_text_raises():
     with pytest.raises(ValueError):
         api.validate("   ")
+
+
+def test_generate_person_pronouns():
+    # +P1/+P2/+P3 müssen Multichar-Symbole sein — sonst zerfallen sie in
+    # `+`,`P`,`1` und die Generierung von Personalpronomen liefert [].
+    out = api.generate(["as+Pron+P1+Sg+Gen", "tū+Pron+P2+Sg+Nom"])
+    assert out["as+Pron+P1+Sg+Gen"] == ["māise"]
+    assert out["tū+Pron+P2+Sg+Nom"] == ["tū"]
