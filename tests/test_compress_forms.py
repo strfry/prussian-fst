@@ -7,7 +7,7 @@ ein override-pflichtiges Lexem:
 
     noun  Adwēnts P56   Stufe 0 deckt alles
     noun  Patals  P32   obliquer Stamm mit -ll-: gelieferter Stamm obl=Patall
-    noun  aūgmens P61   Pl.Nom. -jai statt -es: Override (zwei Varianten am Slot)
+    noun  aūgmens P61   Pl.Nom. -jai neben -es: der ganze Slot wird Override
     adj   amērikanisks P25  Stufe 0 deckt das ganze Raster
     adj   auktums P25   obliquer Stamm mit -mm-: Stamm pos=auktumm + ein Override
     adj   wilnis  P27   jo-Stamm im Paradigma 27: 3 Overrides
@@ -331,12 +331,13 @@ FIXTURES = [
       "pl.dat": ("Patallamans",), "pl.acc": ("Patallans",)},
      {"obl": "Patall"}, {}),
     # Nomen — Override-pflichtig: Pl.Nom. -jai neben -es; der Slot trägt zwei
-    # Varianten, nur die -es-Form generiert der Stamm.
+    # Varianten, nur die -es-Form generiert der Stamm. Der Override ersetzt den
+    # Slot, also steht er vollständig da (auch die generierbare -es-Form).
     ("noun", "61", "aūgmens", "masc",
      {"sg.nom": ("aūgmens",), "sg.gen": ("aūgmenes",), "sg.dat": ("aūgmeni",),
       "sg.acc": ("aūgmenin",), "pl.nom": ("aūgmenes", "aūgmenjai"), "pl.gen": ("aūgmenin",),
       "pl.dat": ("aūgmenimans",), "pl.acc": ("aūgmenins",)},
-     {}, {"pl.nom": ("aūgmenjai",)}),
+     {}, {"pl.nom": ("aūgmenes", "aūgmenjai")}),
     # Adjektiv — regulär: Stufe 0 deckt Positiv, Komparativ, Superlativ, Adverb.
     ("adj", "25", "amērikanisks", "",
      {"msc.sg.nom": ("amērikanisks",), "msc.sg.gen": ("amērikaniskas",),
@@ -402,21 +403,51 @@ def test_fixture_derivation(atoms, fixture):
 
 
 @pytest.mark.parametrize("fixture", FIXTURES, ids=IDS)
-def test_fixture_is_lossless(atoms, fixture):
-    """``generate(stems) ∪ overrides == attested`` — zellweise, alle POS."""
+def test_fixture_is_exact(atoms, fixture):
+    """``generate(stems) ⊕ overrides == Twanksta-Zellen`` — zellweise, alle POS,
+    in beide Richtungen: keine fehlende Form, keine Fremdform."""
     pos, paradigm, lemma, gender, attested, *_ = fixture
     derivation = cf.derive_entry(pos, paradigm, lemma, gender, attested)
-    assert derivation.missing == {}
+    assert derivation.missing == {} and derivation.extra == {}
     for slot, surfaces in attested.items():
-        assert set(surfaces) <= derivation.expanded[slot], slot
+        assert set(surfaces) == derivation.expanded[slot], slot
 
 
 @pytest.mark.parametrize("fixture", FIXTURES, ids=IDS)
-def test_fixture_overrides_are_not_generable(atoms, fixture):
+def test_fixture_overrides_are_not_the_rule_cell(atoms, fixture):
+    """Ein Override steht nur dort, wo die Regel den Slot nicht exakt trifft."""
     pos, paradigm, lemma, gender, attested, stems, overrides = fixture
     generated = cf.regenerate(pos, paradigm, lemma, stems)
     for slot, surfaces in overrides.items():
-        assert not set(surfaces) & set(generated.get(slot, ())), slot
+        assert set(surfaces) != set(generated.get(slot, ())), slot
+
+
+def test_override_suppresses_a_wrong_rule_form(atoms):
+    """Ersetzung statt Vereinigung: die Regelform des Optativs (``kalbīsei``) ist
+    falsch, der Override ``kalbisei`` verdrängt sie — unter ``∪`` bliebe sie als
+    Falschlesart im Analyzer."""
+    *_, attested, stems, overrides = next(f for f in FIXTURES if f[2] == "kalbītwei")
+    generated = cf.regenerate("verb", "136", "kalbītwei", stems)
+    assert "kalbīsei" in generated["opt"]
+    assert cf._merged(generated, overrides)["opt"] == {"kalbisei"}
+
+
+def test_mismatched_returns_the_full_cell():
+    attested = {"sg.gen": ("Patallas", "Patallax"), "sg.dat": ("Patallu",),
+                "sg.acc": ("Patallan",)}
+    produced = {"sg.gen": ("Patallas",), "sg.dat": ("Patallu",),
+                "sg.acc": ("Patallan", "Patalan")}
+    assert cf.mismatched(attested, produced) == {
+        "sg.gen": ("Patallas", "Patallax"), "sg.acc": ("Patallan",)}
+    assert cf.overgenerated(attested, produced) == {"sg.acc": ("Patalan",)}
+
+
+def test_greedy_counts_exact_slots_not_covered_forms():
+    """Ein Kandidat, der eine Form mehr deckt, aber Fremdformen mitbringt, trifft
+    weniger Slots exakt — unter Ersetzung kostet jeder solche Slot einen Override."""
+    listed = {"a": ("x",), "b": ("y",)}
+    assert cf._role_exact(listed, {"a": ("x",), "b": ("z",)}, ("a", "b")) == {"a"}
+    assert cf._role_exact(listed, {"a": ("x", "q"), "b": ("y", "q")}, ("a", "b")) == set()
 
 
 @pytest.mark.parametrize("fixture", [f for f in FIXTURES if f[5]],
@@ -488,22 +519,23 @@ def test_recompress_of_the_lean_entry_is_stable(atoms, fixture):
     second = cf.derive_entry(lean.pos, lean.paradigm, lean.lemma, lean.gender,
                              lean.attested, supplied=lean.stems, dense=True)
     assert (second.stems, second.overrides) == (first.stems, first.overrides)
-    assert second.missing == {}
+    assert second.exact
 
 
 # ── Varianten, Varianteneinträge, Lint ──────────────────────────────────────
 
 def test_variant_becomes_an_override(atoms):
-    """Ein Stamm deckt je Slot **eine** Oberfläche — die Variante bleibt übrig."""
+    """Ein Stamm deckt je Slot **eine** Oberfläche — der Slot mit Variante wird
+    vollständig Override (Ersetzung), die Regelform steht darin mit."""
     attested = {"sg.nom": ("Patals",), "sg.gen": ("Patallas", "Patallax"),
                 "sg.dat": ("Patallu",), "sg.acc": ("Patallan",), "pl.nom": ("Patallai",),
                 "pl.gen": ("Patallan",), "pl.dat": ("Patallamans",), "pl.acc": ("Patallans",)}
     derivation = cf.derive_entry("noun", "32", "Patals", "masc", attested)
     assert derivation.stems == {"obl": "Patall"}
-    assert derivation.overrides == {"sg.gen": ("Patallax",)}
-    assert derivation.override_variant == 1
-    assert derivation.lint_generable_override == 0
-    assert derivation.missing == {}
+    assert derivation.overrides == {"sg.gen": ("Patallas", "Patallax")}
+    assert derivation.override_variant == 2
+    assert derivation.lint_redundant_override == 0
+    assert derivation.exact
 
 
 def test_variant_without_extra_surface_needs_no_override(atoms):

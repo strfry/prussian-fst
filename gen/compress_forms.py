@@ -13,10 +13,15 @@ selbst erzeugt:
 Ein **gelieferter Stamm** ist der Rollen-Stamm selbst (``obl``, ``pres``, ``pret``,
 ``nonfin``, ``partPresAct`` …), nicht eine Belegform. Er wird **aus einer belegten
 Form gewonnen** (``generator.stem_from_form``): die Grammatik misst die Endung des
-Slots, der Rest ist der Stamm. Ein **Override** ist jede attestierte Oberfläche,
-die ``generate(stems)`` nicht liefert. Das Paar ist verlustfrei:
+Slots, der Rest ist der Stamm. Ein **Override** ist eine gelistete Zelle, die
+``generate(stems)`` nicht **exakt** liefert — sie steht dann vollständig in der lean
+NVH (auch eine generierbare Variante) und **ersetzt** den Slot. Das Paar ist exakt:
 
-    generate(lemma, stems) ∪ overrides == attested          (zellweise)
+    generate(lemma, stems) ⊕ overrides == attested          (zellweise, ⊕ = Ersetzung)
+
+Ersetzung statt Vereinigung, damit ein Override eine falsche Regelform unterdrückt
+(``begalbis`` msc.sg.gen: Regel ``begalbjas``, gelistet ``begalbis``); unter ``∪``
+blieb sie als Falschlesart im Analyzer. Slots ohne gelistete Zelle bleiben generativ.
 
 Drei Zusicherungen, im Code erzwungen statt behauptet:
 
@@ -28,8 +33,9 @@ Drei Zusicherungen, im Code erzwungen statt behauptet:
 * **Fixpunkt/Idempotenz** — ein gelieferter Stamm ist **Eingang**, nicht Ergebnis:
   die lean NVH trägt ihn als ``stemOverrides`` und der zweite Lauf übernimmt ihn
   unverändert. Er läuft nicht ins Leere, weil die fette NVH ihn nicht enthält.
-* **Verlustfreiheit** — jede Runde wird gegen das **ursprüngliche** ``attested``
-  geprüft; eine Ableitung, die Zellen verlöre, wird verworfen und gemeldet.
+* **Exaktheit** — jede Runde wird gegen das **ursprüngliche** ``attested``
+  geprüft; eine Ableitung, die Zellen verlöre (``missing``) oder in gelisteten Slots
+  Fremdformen ausweist (``extra``), wird verworfen und gemeldet.
 
 Was der Generator nicht abdecken kann, bleibt als Override stehen, damit die lean
 NVH dieselben Zellen ausweist wie die fette — verlustfrei by construction:
@@ -38,8 +44,8 @@ NVH dieselben Zellen ausweist wie die fette — verlustfrei by construction:
 * Stamm außerhalb des Kopierer-Alphabets (Leerzeichen in Mehrwort-Lemmata wie
   ``mitātun si``, ``Centralafrikas Republīki``) → die Rolle entfällt, ihre Zellen
   werden Override,
-* Restzellen, die der Stamm nicht deckt (z. B. Neut.Pl.Nom. -ai ohne
-  Makronshortening-Rückweg) → Override je Zelle.
+* Restzellen, die der Stamm nicht exakt trifft (z. B. Neut.Pl.Nom. -ai ohne
+  Makronshortening-Rückweg, oder eine falsche Regelform) → Override je Zelle.
 
 CLI::
 
@@ -365,10 +371,10 @@ def _usable(stem: str) -> bool:
 
 def _merged(generated: Mapping[str, Sequence[str]],
             overrides: Mapping[str, Sequence[str]]) -> dict[str, frozenset[str]]:
-    """``generate(stems) ∪ overrides`` als Zellmengen."""
+    """``generate(stems) ⊕ overrides`` als Zellmengen: ein Override **ersetzt** den Slot."""
     out = {slot: frozenset(forms) for slot, forms in generated.items()}
     for slot, surfaces in overrides.items():
-        out[slot] = out.get(slot, frozenset()) | frozenset(surfaces)
+        out[slot] = frozenset(surfaces)
     return out
 
 
@@ -381,6 +387,28 @@ def uncovered(attested: Mapping[str, Sequence[str]],
         rest = tuple(s for s in surfaces if s not in have)
         if rest:
             out[slot] = rest
+    return out
+
+
+def mismatched(attested: Mapping[str, Sequence[str]],
+               produced: Mapping[str, Sequence[str]]) -> dict[str, tuple[str, ...]]:
+    """Gelistete Slots, die ``produced`` nicht exakt trifft — mit ihrer **vollen** Zelle.
+
+    Das ist die Override-Menge unter Ersetzung: fehlt eine Form oder kommt eine
+    Fremdform dazu, steht der ganze Slot in der lean NVH.
+    """
+    return {slot: tuple(surfaces) for slot, surfaces in attested.items()
+            if frozenset(surfaces) != frozenset(produced.get(slot, ()))}
+
+
+def overgenerated(attested: Mapping[str, Sequence[str]],
+                  produced: Mapping[str, Sequence[str]]) -> dict[str, tuple[str, ...]]:
+    """Formen, die ``produced`` in gelisteten Slots zusätzlich ausweist."""
+    out: dict[str, tuple[str, ...]] = {}
+    for slot, surfaces in attested.items():
+        extra = tuple(sorted(frozenset(produced.get(slot, ())) - frozenset(surfaces)))
+        if extra:
+            out[slot] = extra
     return out
 
 
@@ -479,20 +507,29 @@ class Derivation:
     stem_fields: tuple[str, ...] = ()  # Lint: Stamm == Stufe-0-Stamm (redundant)
     supplied_stems: tuple[str, ...] = ()
     override_variant: int = 0           # Overrides an Slots mit Varianten
-    lint_generable_override: int = 0
+    lint_redundant_override: int = 0    # Override == Regelzelle (Invariante: 0)
     unstable: bool = False
     rounds: int = 1
     attested: Mapping[str, tuple[str, ...]] = field(default_factory=dict, repr=False)
 
     @property
     def expanded(self) -> dict[str, frozenset[str]]:
-        """Die Zellen, die der lean Eintrag ausweist: ``generate ∪ overrides``."""
+        """Die Zellen, die der lean Eintrag ausweist: ``generate ⊕ overrides``."""
         return _merged(self.generated, self.overrides)
 
     @property
     def missing(self) -> dict[str, tuple[str, ...]]:
         """Was der lean Eintrag verlöre (leer = verlustfrei)."""
         return uncovered(self.attested, self.expanded)
+
+    @property
+    def extra(self) -> dict[str, tuple[str, ...]]:
+        """Fremdformen in gelisteten Slots (leer = keine Übergenerierung)."""
+        return overgenerated(self.attested, self.expanded)
+
+    @property
+    def exact(self) -> bool:
+        return not self.missing and not self.extra
 
     @property
     def complete_s0(self) -> bool:
@@ -553,18 +590,20 @@ def _derive_once(pos: str, paradigm: str, lemma: str, gender: str,
             if role in stems:
                 continue
             # Ein gelieferter Stamm **ersetzt** den Stufe-0-Stamm seiner Rolle, der
-            # Gewinn ist also eine Differenz: was der Kandidat neu deckt, minus was
-            # der bisherige Stamm deckt und der Kandidat verliert. Sonst gewinnt ein
-            # Stamm, der eine einzige Nischenform trifft, während er den Rest der
-            # Rolle wegwirft (mitātun: partPerfPass 'mitat' für die -ai-Form gegen
-            # Stufe 0 'mitāt' mit 23 Zellen).
-            before = _role_covered(original, generated, spec.slots)
+            # Gewinn ist also eine Differenz: die Slots, die der Kandidat neu exakt
+            # trifft, minus die, die der bisherige Stamm exakt trifft und der
+            # Kandidat verliert. Sonst gewinnt ein Stamm, der eine einzige
+            # Nischenform trifft, während er den Rest der Rolle wegwirft (mitātun:
+            # partPerfPass 'mitat' für die -ai-Form gegen Stufe 0 'mitāt' mit 23
+            # Zellen). Gezählt wird Exaktheit, nicht Deckung: unter Ersetzung kostet
+            # jeder nicht exakt getroffene Slot einen Override, auch eine Fremdform.
+            before = _role_exact(original, generated, spec.slots)
             best_stem: str | None = None
             best_gain = 0
             for stem, _form in candidate_stems(pos, paradigm, lemma, role, attested):
                 if default.get(role) == stem:
                     continue              # Stufe 0 deckt ihn bereits
-                after = _role_covered(
+                after = _role_exact(
                     original,
                     _dict(_role_forms(pos, paradigm, lemma, role, stem)),
                     spec.slots)
@@ -578,12 +617,14 @@ def _derive_once(pos: str, paradigm: str, lemma: str, gender: str,
                          **_dict(_role_forms(pos, paradigm, lemma, role, best_stem))}
 
     generated = regenerate(pos, paradigm, lemma, stems)
-    overrides = dict(attested) if dense else uncovered(attested, generated)
-    # Lint (b): ein Override, den die Stämme doch liefern, wäre überflüssig. Die
-    # Overrides sind per Konstruktion genau der Rest, also muss die Zahl 0 sein —
-    # der Lint prüft die Invariante, statt sie zu behaupten.
+    # Overrides gegen die **fette** NVH (``original``), auch ab Runde 2: unter
+    # Ersetzung muss jeder gelistete Slot exakt stimmen, nicht nur der Rest.
+    overrides = dict(attested) if dense else mismatched(original, generated)
+    # Lint (b): ein Override, der genau die Regelzelle wiederholt, wäre überflüssig.
+    # Die Overrides sind per Konstruktion die nicht exakten Slots, also muss die
+    # Zahl 0 sein — der Lint prüft die Invariante, statt sie zu behaupten.
     lint = sum(1 for slot, surfaces in overrides.items()
-               for s in surfaces if s in generated.get(slot, ()))
+               if frozenset(surfaces) == frozenset(generated.get(slot, ())))
     variants = sum(len(surfaces) for slot, surfaces in overrides.items()
                    if len(original.get(slot, ())) > 1)
     return Derivation(
@@ -592,7 +633,7 @@ def _derive_once(pos: str, paradigm: str, lemma: str, gender: str,
         covered_s0=covered_cells(original, s0), covered_s1=covered_cells(original, generated),
         status="ok" if usable_stems(pos, paradigm, lemma, stems) else "kein-stamm",
         stem_fields=tuple(redundant), supplied_stems=tuple(sorted(supplied)),
-        override_variant=variants, lint_generable_override=lint,
+        override_variant=variants, lint_redundant_override=lint,
         attested=original)
 
 
@@ -601,20 +642,18 @@ def _dict(pairs: Iterable[tuple[str, Sequence[str]]]
     return {slot: tuple(forms) for slot, forms in pairs}
 
 
-def _role_covered(attested: Mapping[str, Sequence[str]],
-                  produced: Mapping[str, Sequence[str]],
-                  slots: Sequence[str]) -> frozenset[str]:
-    """Attestierte Oberflächen, die ``produced`` an den Slots einer Rolle deckt.
+def _role_exact(attested: Mapping[str, Sequence[str]],
+               produced: Mapping[str, Sequence[str]],
+               slots: Sequence[str]) -> frozenset[str]:
+    """Gelistete Slots einer Rolle, die ``produced`` exakt trifft (Zelle == Zelle).
 
     Für den Greedy-Vergleich zählen nur die Slots der Rolle — die Slots zweier
     Rollen sind disjunkt (``ROLES_ARE_DISJOINT``), ein Kandidat kann also nur
     innerhalb seiner eigenen Rolle gewinnen oder verlieren.
     """
-    out: set[str] = set()
-    for slot in slots:
-        have = frozenset(produced.get(slot, ()))
-        out.update(surface for surface in attested.get(slot, ()) if surface in have)
-    return frozenset(out)
+    return frozenset(
+        slot for slot in slots if slot in attested
+        and frozenset(attested[slot]) == frozenset(produced.get(slot, ())))
 
 
 def _lean_attested(derivation: Derivation) -> dict[str, tuple[str, ...]]:
@@ -647,7 +686,7 @@ def derive_entry(pos: str, paradigm: str, lemma: str, gender: str = "",
         if (nxt.stems, nxt.overrides) == (result.stems, result.overrides):
             result.rounds = round_no
             return result
-        if nxt.missing:                  # Runde verlöre Zellen → zurück zur letzten
+        if not nxt.exact:                # Runde wäre nicht exakt → zurück zur letzten
             result.unstable = True
             return result
         result = nxt
@@ -702,7 +741,7 @@ class Stats:
     class_s1: collections.Counter = field(default_factory=collections.Counter)
     skipped: collections.Counter = field(default_factory=collections.Counter)
     lint_redundant_stem: collections.Counter = field(default_factory=collections.Counter)
-    lint_generable_override: collections.Counter = field(default_factory=collections.Counter)
+    lint_redundant_override: collections.Counter = field(default_factory=collections.Counter)
     unstable: collections.Counter = field(default_factory=collections.Counter)
     rounds: collections.Counter = field(default_factory=collections.Counter)
 
@@ -714,7 +753,7 @@ class Stats:
         self.cells[(entry.pos, "total")] += derivation.cells
         self.rounds[derivation.rounds] += 1
         self.lint_redundant_stem[key] += len(derivation.stem_fields)
-        self.lint_generable_override[key] += derivation.lint_generable_override
+        self.lint_redundant_override[key] += derivation.lint_redundant_override
         if derivation.unstable:
             self.unstable[key] += 1
         for slot, surfaces in derivation.overrides.items():
@@ -808,8 +847,8 @@ class Stats:
         out.append("## Lint / Befunde")
         out.append(f"  redundante Stämme (Stamm == Stufe-0-Stamm):     "
                    f"{sum(self.lint_redundant_stem.values())}")
-        out.append(f"  Overrides, die doch generierbar sind:          "
-                   f"{sum(self.lint_generable_override.values())}")
+        out.append(f"  Overrides == Regelzelle (redundant):          "
+                   f"{sum(self.lint_redundant_override.values())}")
         out.append(f"  Overrides an Varianten-Slots:                 "
                    f"{sum(self.override_variant.values())}")
         for (pos, reason), n in sorted(self.skipped.items()):
@@ -864,18 +903,30 @@ def compress(entries: Iterable[Entry], *, lemma_only: bool = False, rounds: int 
 
 
 def verify(pairs: Sequence[tuple[Entry, Derivation]]) -> list[str]:
-    """Verlustfreiheit zellweise prüfen; liefert eine Liste von Fehlern.
+    """Exaktheit zellweise prüfen; liefert eine Liste von Fehlern.
 
     Geprüft wird gegen ``entry.attested`` — die Zellen der **fette NVH** — und
-    nicht gegen ``derivation.missing``: die Overrides sind per Konstruktion genau
-    der Rest, deshalb wäre die Ableitung als Zeuge ihres eigenen Rechts untauglich.
+    nicht gegen ``derivation.missing``/``extra``: die Overrides sind per Konstruktion
+    genau die nicht exakten Slots, deshalb wäre die Ableitung als Zeuge ihres eigenen
+    Rechts untauglich. Fehler sind fehlende Formen und Fremdformen gelisteter Slots.
     """
     out: list[str] = []
     for entry, derivation in pairs:
-        missing = uncovered(entry.attested, derivation.expanded)
-        if missing:
-            out.append(f"{entry.pos} {entry.paradigm} {entry.lemma}: {missing}")
+        error = _inexact(entry.attested, derivation.expanded)
+        if error:
+            out.append(f"{entry.pos} {entry.paradigm} {entry.lemma}: {error}")
     return out
+
+
+def _inexact(attested: Mapping[str, Sequence[str]],
+             expanded: Mapping[str, Sequence[str]]) -> dict[str, dict]:
+    """``{"fehlt": …, "fremd": …}`` — leer, wenn jeder gelistete Slot exakt stimmt."""
+    error = {}
+    if missing := uncovered(attested, expanded):
+        error["fehlt"] = missing
+    if extra := overgenerated(attested, expanded):
+        error["fremd"] = extra
+    return error
 
 
 # ── CLI ─────────────────────────────────────────────────────────────────────
@@ -932,7 +983,7 @@ def _main(argv: list[str] | None = None) -> int:
         else:
             print(report, file=sys.stderr)
     for problem in problems[:20]:
-        print(f"VERLUST: {problem}", file=sys.stderr)
+        print(f"NICHT EXAKT: {problem}", file=sys.stderr)
 
     if args.dry_run:
         return 1 if problems else 0
@@ -954,11 +1005,11 @@ def _main(argv: list[str] | None = None) -> int:
         # hier nicht vor, ihr Zeugnis ist ``entry.attested`` aus ``done``.
         losses = [f"{e1.pos} {e1.paradigm} {e1.lemma}: {m}"
                   for (e1, _), (_, d2) in zip(done, done2)
-                  for m in [uncovered(e1.attested, d2.expanded)] if m]
+                  for m in [_inexact(e1.attested, d2.expanded)] if m]
         print(f"IDEMPOTENZ: {'ok' if same else 'FEHLGESCHLAGEN'} "
               f"({len(done2)} Einträge)", file=sys.stderr)
         if losses:
-            print(f"VERLUST in Runde 2: {len(losses)} Einträge, "
+            print(f"NICHT EXAKT in Runde 2: {len(losses)} Einträge, "
                   f"z. B. {losses[0]}", file=sys.stderr)
         status = status or (0 if same and not losses else 1)
     return status
