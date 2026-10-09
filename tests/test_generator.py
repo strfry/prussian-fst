@@ -157,14 +157,25 @@ def test_atoms_exist_in_grammar(pos, paradigm):
         assert spec.slots, f"{pos}/{paradigm}/{role}: keine Slots"
 
 
-def test_atom_names_are_unique_and_245():
+def test_atom_names_are_unique_and_249():
     targets = gen.atom_targets()
     paths = [path for *_rest, path in targets]
-    assert len(targets) == len(set(paths)) == 245
+    assert len(targets) == len(set(paths)) == 249          # 245 + P21–24 (WS2b)
     assert all(p.suffix == ".hfstol" and p.parent == gen.ATOM_DIR for p in paths)
     # Ein-Rollen-Atome ohne Rollen-Suffix, Mehr-Rollen-Atome mit.
     assert gen.atom_path("noun", "53", "obl").name == "gen-istem-53.hfstol"
     assert gen.atom_path("adj", "27", "cmp").name == "gen-adj-27-cmp.hfstol"
+    # pos: pron|num mit Formtabelle teilt die adj-Atome (kein eigenes Target).
+    assert gen.atom_path("pron", "21", "pos") == gen.atom_path("adj", "21", "pos")
+    assert gen.atom_path("num", "22", "pos").name == "gen-adj-22.hfstol"
+
+
+def test_numeral_paradigms_have_only_the_positive():
+    """P21–24: kein Adverb/Grad; P22–24 Pluralia tantum (nur Pl-Slots)."""
+    assert set(gen.paradigm_spec("adj", "21").roles) == {"pos"}
+    assert gen.paradigm_spec("adj", "21").roles["pos"].slots == gen.ADJ_POS_SLOTS
+    assert gen.paradigm_spec("num", "22").roles["pos"].slots == gen.ADJ_POS_PL_SLOTS
+    assert len(gen.ADJ_POS_PL_SLOTS) == 12
 
 
 # ── Stammregeln Stufe 0 (Lemma → Stamm) ────────────────────────────────────

@@ -103,3 +103,20 @@ skrabtwei, rjaūgitwei, preijustwei` (+ `perwīlktun si kāigi`, MWE).
 2. **C + B** — gegen Quellen prüfen; wenn Daten-Artefakt, Override-Liste (21 + 19).
 3. **D/E/F/G** — Einzel-Overrides, wenn die Formen im Dictionary gebraucht werden.
 4. **H** — twanksta-Issue.
+
+---
+
+## Anhang: Numeralia / pronominale Adjektive P21–24 (WS2b) — *Override*
+
+Kein eigenes Lexikon: P21 (`aīns`, `eraīns`, `niaīns`) über AdjMobile, P22–24
+(`abbai`, `dwāi`, `trīs`, Pluralia tantum) über AdjFixed auf den Pl-Slots. Was die
+Regel nicht exakt trifft, ist Override und **ersetzt** den Slot (WS1b):
+
+- P21 pronominales Sg.Gen/Dat `-asse`/`-asmu`/`-asses`/`-assei` (wie `stas`/`kits`),
+  Neu.Sg `aīnase`/`aīnasmu` ohne Akzentverschiebung.
+- **Offene Datenfrage:** P21-Neutrum-Plural trägt Doppelformen aus dem Singular
+  (`aīnan` in neu.pl.nom/acc, `ainasse` in neu.pl.gen, `ainasmu` in neu.pl.dat) —
+  Absicht oder Twanksta-Fehler? Bis zur Klärung als Override übernommen (Lesart
+  `ainasse` → auch `+Neu+Pl+Gen`).
+- P23/24 `dwāi`/`trīs`: Regel trifft nichts; Stufe-1-Stamm (`dwejj`/`trijj`) +
+  Overrides.

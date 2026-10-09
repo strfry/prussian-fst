@@ -207,6 +207,7 @@ class Entry:
     pos: str = ""
     paradigm: str = ""
     gender: str = ""
+    numtype: str = ""                  # card | ord (Numeralia, K2) — nur Tag-Fakt
     attested: Mapping[str, tuple[str, ...]] = field(default_factory=dict)
     stems: Mapping[str, str] = field(default_factory=dict)
     head: tuple[str, ...] = ()
@@ -232,7 +233,7 @@ def _split_pos(value: str) -> tuple[str, str]:
 def parse_nvh(text: str) -> list[Entry]:
     """NVH-Text → Einträge (eingerücktes ``key: value``).
 
-    Gelesen werden genau die Felder des Auftrags: ``pos``, ``gender``,
+    Gelesen werden genau die Felder des Auftrags: ``pos``, ``gender``, ``numtype``,
     ``paradigm`` (top-level), ``stemOverrides`` (Stufe 1) und ``inflectedForm`` +
     ``tag`` (Stufe 2 bzw. die fette NVH). Alle übrigen Zeilen — inklusive der
     tieferen ``sense``-/``legacy``-/``relation``-Blöcke — wandern unverändert nach
@@ -241,7 +242,7 @@ def parse_nvh(text: str) -> list[Entry]:
     """
     entries: list[Entry] = []
     lemma: str | None = None
-    pos = paradigm = gender = ""
+    pos = paradigm = gender = numtype = ""
     forms: dict[str, set[str]] = {}
     stems: dict[str, str] = {}
     head: list[str] = []
@@ -250,12 +251,12 @@ def parse_nvh(text: str) -> list[Entry]:
     form: str | None = None
 
     def flush() -> None:
-        nonlocal lemma, pos, paradigm, gender, forms, stems, head, tail
+        nonlocal lemma, pos, paradigm, gender, numtype, forms, stems, head, tail
         nonlocal saw_form, form
         if lemma is None:
             return
         entries.append(Entry(
-            lemma=lemma, pos=pos, paradigm=paradigm, gender=gender,
+            lemma=lemma, pos=pos, paradigm=paradigm, gender=gender, numtype=numtype,
             attested={slot: tuple(sorted(surfaces))
                       for slot, surfaces in sorted(forms.items())},
             stems=dict(sorted(stems.items())),
@@ -272,7 +273,7 @@ def parse_nvh(text: str) -> list[Entry]:
         if indent == 0:
             flush()
             lemma = value
-            pos = paradigm = gender = ""
+            pos = paradigm = gender = numtype = ""
             forms, stems, head, tail = {}, {}, [], []
             saw_form, form = False, None
             continue
@@ -292,6 +293,8 @@ def parse_nvh(text: str) -> list[Entry]:
                 gender = value
             elif key == "paradigm":
                 paradigm = value
+            elif key == "numtype":
+                numtype = value
             (tail if saw_form else head).append(line)
             continue
         if form is not None and key == "tag":

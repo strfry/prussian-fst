@@ -5,8 +5,8 @@ WS0-Cleanup: die OFFENEN Klassen (noun/adjective/verb) werden NICHT mehr hier al
 Vollform-lexc erzeugt — ``base.fst`` bäckt sie aus den datenfreien Atomen (gen/*.lexc)
 + lean NVH (gen/build_analyzer.py). Dieses Skript schreibt nur noch die geschlossenen
 Klassen, die ``build_analyzer`` verbatim als CLOSED_CLASS einliest: proper_nouns_auto
-sowie die invariablen numerals/adverbs/prepositions/conjunctions/particles/interjections.
-(Eigennamen und Invariable wandern in WS2a/WS3 weiter in die Atome bzw. die NVH.)
+sowie die invariablen adverbs/prepositions/conjunctions/particles/interjections.
+(Eigennamen: WS2a, Numeralia: WS2b — gebacken; die übrigen Invariablen folgen in WS3.)
 Reflexive verbs (`` si``) get ``+Refl`` tag; the `` si`` is split off.
 """
 
@@ -446,8 +446,9 @@ def main():
     # emittiert — base.fst bäckt sie aus den Atomen + lean NVH (großgeschriebene Nomen
     # → +N+Prop). gen_lexc erzeugt nur noch die (noch) nicht gebackenen invariablen
     # geschlossenen Klassen. pronoun ist hand-geschrieben (pronouns.lexc).
-    for pos in ["numeral",
-                "adverb", "preposition", "conjunction", "particle", "interjection"]:
+    # WS2b: numerals ebenfalls nicht mehr — Numeralia werden aus den adj-/noun-Atomen
+    # + lean NVH gebacken (pos/numtype → +Num/+Pron), invariable als NumeralsInvar.
+    for pos in ["adverb", "preposition", "conjunction", "particle", "interjection"]:
         entries = by_pos.get(pos, [])
         tag = POS_TAGS[pos]
         lex_name = LEXICON_NAMES[pos]

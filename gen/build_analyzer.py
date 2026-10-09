@@ -48,12 +48,13 @@ BASE_MERGED = BUILD / "lexc.merged"
 
 GENDER_TAG = {"masc": "Msc", "fem": "Fem", "neut": "Neu"}
 OPEN_POS = {"noun": ("Nouns", "+N"), "adj": ("Adjectives", "+A"),
-            "verb": ("Verbs", "+V")}
+            "verb": ("Verbs", "+V"), "invar": ("NumeralsInvar", "+Num")}
+NUMTYPE_TAG = {"card": "+Card", "ord": "+Ord"}
 
 # Re-getaggte Closed-Class-Quellen (bleiben unter B bestehen).
 CLOSED_CLASS = [
     "symbols.lexc", "root.lexc", "function_words.lexc",
-    "pronouns.lexc", "numerals.lexc",
+    "pronouns.lexc",
     "adverbs.lexc", "prepositions.lexc", "conjunctions.lexc",
     "particles.lexc", "interjections.lexc",
 ]
@@ -88,15 +89,20 @@ def paradigm_int(par: str) -> int | None:
 
 
 def classify_entry(entry: cf.Entry) -> str | None:
-    """POS wie in gen_lexc.classify: Paradigmen-Ranges entscheiden.
+    """Flexionsfamilie des Eintrags: ``noun``/``adj``/``verb``/``invar`` oder ``None``.
 
-    Die lean NVH trägt Pronomina/Numeralia teils als ``pos: noun``; über die
-    Paradigmenrange (1–20 Pron, 21–24 Num, 25–31 Adj, ≥32 Nomen) werden sie
-    korrekt zugeordnet.  ``None`` = liegt in der hand-/autogepflegten
-    Closed-Class (Pronouns/Numerals) und wird hier nicht gebacken.
+    Die Wortart steht in der NVH (``pos``, ggf. per Hand-Tabelle); die Familie sagt
+    nur, über welche Atome/welches Lexikon gebacken wird. Pronomina/Numeralia mit
+    Formtabelle (P21–24: ``pos: pron|num``) flektieren adjektivisch, invariable
+    Numeralia (``pos: num`` ohne Paradigma) werden ``invar``. Nomen-Range 1–20
+    (Pronomina) liegt in der Hand-lexc → ``None``.
     """
     if entry.pos in ("adj", "verb"):
         return entry.pos
+    if entry.pos in ("pron", "num"):
+        if entry.paradigm:
+            return "adj"
+        return "invar" if entry.pos == "num" else None
     if entry.pos != "noun":
         return None
     pi = paradigm_int(entry.paradigm)
@@ -104,21 +110,42 @@ def classify_entry(entry: cf.Entry) -> str | None:
         return "noun"
     if 1 <= pi <= 20:      # Pronomina → pronouns.lexc
         return None
-    if 21 <= pi <= 24:     # Numeralia → numerals.lexc
-        return None
     if 25 <= pi <= 31:     # Adjektivparadigmen
         return "adj"
     return "noun"
 
 
-def analysis_tags(pos: str, gender: str, slot: str, proper: bool = False) -> str:
+def pos_head(entry: cf.Entry) -> str | None:
+    """Tag-Kopf aus der NVH-Wortart, ``None`` = der der Familie (+N/+A).
+
+    ``numtype`` (card|ord) macht jedes Lexem zum Numerale (Ordinalia-Adjektive,
+    Kardinalia-Nomen); sonst ``pos: num`` → ``+Num``, ``pos: pron`` → ``+Pron``.
+    """
+    if entry.numtype:
+        return "+Num" + NUMTYPE_TAG[entry.numtype]
+    if entry.pos == "num":
+        return "+Num"
+    if entry.pos == "pron":
+        return "+Pron"
+    return None
+
+
+def analysis_tags(pos: str, gender: str, slot: str, proper: bool = False,
+                  head: str | None = None) -> str:
     """Dotted Slot-Key → Giella-+Tag.  Nomen: Genus (Entry-Fakt) einfügen; Eigennamen
-    zusätzlich +Prop direkt nach +N (Giella, wie das alte proper_nouns_auto.lexc)."""
+    zusätzlich +Prop direkt nach +N (Giella, wie das alte proper_nouns_auto.lexc).
+    ``head`` (``pos_head``) ersetzt den Familien-Marker +N/+A: ``sīmtan`` sg.gen →
+    ``+Num+Card+Neu+Sg+Gen``, ``eraīns`` msc.sg.gen → ``+Pron+Msc+Sg+Gen``."""
     tag = gen.slot_tag(slot)
     if pos == "noun":
         g = GENDER_TAG.get(gender, "")
         prop = "+Prop" if proper else ""
         tag = "+N" + prop + (f"+{g}" if g else "") + tag[len("+N"):]
+    if head:
+        for marker in ("+N+", "+A+"):
+            if tag.startswith(marker):
+                return head + tag[len(marker) - 1:]
+        raise ValueError(f"Slot {slot!r} hat keinen +N/+A-Kopf für {head}")
     return tag
 
 
@@ -155,8 +182,19 @@ def bake_open(entries: list[cf.Entry]) -> tuple[str, dict]:
         if proper:
             stats["proper"] += 1
         lexicon, _ = OPEN_POS[pos]
-        cells = entry_forms(entry)
         lemma = lexc_esc(base_lemma)
+        head = pos_head(entry)
+        if pos == "invar":
+            # Invariables Numerale: Lemma selbst, nur Wortart (+ numtype) — WS3-Regel.
+            by_lexicon[lexicon].append(f"{lemma}{head}:{lemma}")
+            stats["num"] += 1
+            continue
+        cells = entry_forms(entry)
+        if head:
+            # Numeralia/Pronomina steigern nicht: nur Positiv- bzw. Nomen-Slots.
+            keep = set(gen.NOUN_SLOTS if pos == "noun" else gen.ADJ_POS_SLOTS)
+            cells = {slot: forms for slot, forms in cells.items() if slot in keep}
+            stats["num" if head.startswith("+Num") else "pron"] += 1
         seen: set[str] = set()
         # Infinitiv ist kein generator-Slot: Lemma selbst, optional +Refl.
         if pos == "verb" and cells:
@@ -169,7 +207,7 @@ def bake_open(entries: list[cf.Entry]) -> tuple[str, dict]:
         junk = entry.lemma + entry.paradigm  # Parse-Artefakt der vollen NVH
         for slot, surfaces in cells.items():
             try:
-                tags = analysis_tags(pos, entry.gender, slot, proper)
+                tags = analysis_tags(pos, entry.gender, slot, proper, head)
             except ValueError:
                 skipped_unknown_slot += 1
                 continue
@@ -283,7 +321,7 @@ def main(argv: list[str] | None = None) -> int:
     build_merged(open_text)
     print(f"lean NVH: {len(entries)} Einträge; open-class gebacken: "
           f"noun={stats['noun']} adj={stats['adj']} verb={stats['verb']} "
-          f"(davon +Prop {stats['proper']}, "
+          f"(davon +Prop {stats['proper']}, +Num {stats['num']}, +Pron {stats['pron']}, "
           f"closed-class {stats['closedclass']}, multiword {stats['multiword']}, "
           f"leer {stats['leer']}, unbek. Slot {stats['unknown_slot']})")
     if not args.no_compile and not args.parity:

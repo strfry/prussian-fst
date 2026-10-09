@@ -110,6 +110,7 @@ def _declined(genders: Iterable[str] = ()) -> tuple[str, ...]:
 NOUN_SLOTS = _declined()
 _GENDERED = _declined(_GENDERS)
 ADJ_POS_SLOTS = _GENDERED
+ADJ_POS_PL_SLOTS = tuple(s for s in _GENDERED if s.split(".")[1] == "pl")
 ADJ_CMP_SLOTS = tuple(f"comp.{s}" for s in _GENDERED)
 ADJ_SUP_SLOTS = tuple(f"superl.{s}" for s in _GENDERED)
 ADJ_SLOTS = (ADJ_POS_SLOTS + ADJ_CMP_SLOTS + ADJ_SUP_SLOTS
@@ -329,8 +330,19 @@ for _family, _table in _NOUNS.items():
 #   sup   AdjSupInfl → superl.* (24) + adv.superl, Stamm = "uka" + Komparativstamm
 # Der Komparativ-/Superlativstamm ist regelhaft: Positivstamm + Grad-Suffix
 # (a-Stamm -ais, i-/jo-Stamm -jais, u-Stamm -uis).
-_ADJ: dict[str, tuple[str | None, str, str, str]] = {
+#
+# Numeralia/pronominale Adjektive (P21–24) haben kein Adverb und keinen Grad
+# (Adv-Atom None → nur Rolle ``pos``) und kein eigenes Lexikon: sie laufen über
+# AdjMobile bzw. AdjFixed, was nicht passt, ist Override (Override ersetzt den Slot):
+#   21  aīns/eraīns/niaīns  AdjMobile; pronominales Sg.Gen/Dat -asse/-asmu/-asses/
+#                           -assei und Neu.Pl-Doppelformen sind Override
+#   22–24 abbai/dwāi/trīs   Pluralia tantum: AdjFixed nur auf den Pl-Slots
+_ADJ: dict[str, tuple[str | None, str | None, str, str | None]] = {
     # paradigm: (pos-Atom, Adv-Atom, Nom.Sg.-Abzug, cmp-Suffix)
+    "21": ("AdjMobileInfl", None, "s", None),
+    "22": ("AdjFixedInfl", None, "ai", None),
+    "23": ("AdjFixedInfl", None, "āi", None),
+    "24": ("AdjFixedInfl", None, "s", None),
     "25": ("AdjFixedInfl", "AdvA", "s", "ais"),
     "26": ("AdjMobileInfl", "AdvA", "s", "ais"),
     "27": ("AdjIInfl", "AdvI", "is", "jais"),
@@ -341,11 +353,19 @@ _ADJ: dict[str, tuple[str | None, str, str, str]] = {
     "31": ("AdjUMobInfl", "AdvU", "us", "uis"),
 }
 
+_PLURALIA_TANTUM = ("22", "23", "24")
+
 for _paradigm, (_pos_atom, _adv_atom, _nom, _cmp_suffix) in _ADJ.items():
     _lexc = "gen/adj.lexc"
     _roles: dict[str, RoleSpec] = {}
     if _pos_atom:                                    # Par.30 hat keine Deklination
-        _roles["pos"] = RoleSpec(lexc=_lexc, atoms=(_pos_atom,), slots=ADJ_POS_SLOTS)
+        _roles["pos"] = RoleSpec(
+            lexc=_lexc, atoms=(_pos_atom,),
+            slots=ADJ_POS_PL_SLOTS if _paradigm in _PLURALIA_TANTUM else ADJ_POS_SLOTS)
+    if _adv_atom is None:                            # Numeralia: kein Adverb/Grad
+        PARADIGMS[("adj", _paradigm)] = Paradigm(
+            family="adj", lexc=_lexc, pos="adj", strip=(_nom,), roles=_roles)
+        continue
 
     _roles["adv"] = RoleSpec(lexc=_lexc, atoms=(_adv_atom,), slots=("adv",))
     _roles["cmp"] = RoleSpec(
@@ -536,8 +556,19 @@ def paradigm_spec(pos: str, paradigm: str | int, lemma: str = "") -> Paradigm:
     return _paradigm(pos, paradigm, lemma)
 
 
-def _paradigm(pos: str, paradigm: str | int, lemma: str = "") -> Paradigm:
+# NVH-Wortart → Flexionsfamilie: Pronomina/Numeralia mit Formtabelle (P21–24, per
+# Hand-Tabelle ``pos: pron|num``) flektieren über die adj-Atome. Der Tag (+Pron/+Num)
+# ist Sache des Analyzers, nicht des Generators.
+POS_FAMILY = {"pron": "adj", "num": "adj"}
+
+
+def _family_pos(pos: str) -> str:
     pos = pos.lower()
+    return POS_FAMILY.get(pos, pos)
+
+
+def _paradigm(pos: str, paradigm: str | int, lemma: str = "") -> Paradigm:
+    pos = _family_pos(pos)
     key = (pos, str(paradigm))
     resolver = _VARIANT_RESOLVERS.get(key)
     if resolver is not None:
@@ -556,7 +587,7 @@ def resolve_paradigm(pos: str, paradigm: str | int, lemma: str = "") -> str:
 
 
 def _paradigm_key(pos: str, paradigm: str | int, lemma: str = "") -> str:
-    key = (pos.lower(), str(paradigm))
+    key = (_family_pos(pos), str(paradigm))
     resolver = _VARIANT_RESOLVERS.get(key)
     return resolver(_norm(lemma)) if resolver is not None else str(paradigm)
 
@@ -667,7 +698,7 @@ def generate(pos: str, paradigm: str | int, lemma: str | None = None,
             continue                      # weder Lemma noch Stamm → nichts zu tun
         check_stem(_norm(stem), role)
         spec = par.roles[role]
-        tr = _atom(pos, key_paradigm, role)
+        tr = _atom(_family_pos(pos), key_paradigm, role)
         for slot in spec.slots:
             out[slot] = tuple(sorted({surface for surface, _w in tr.lookup(
                 _norm(stem) + slot_tag(slot))}))

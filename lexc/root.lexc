@@ -13,5 +13,5 @@ LEXICON Root
   Nouns ;
   Adjectives ;
   Pronouns ;             ! hand-curated (with +P1/+P2/+P3/+Encl)
-  Numerals ;
+  NumeralsInvar ;        ! invariable Numeralia (gebacken); flektierende in Nouns/Adjectives
   Verbs ;
