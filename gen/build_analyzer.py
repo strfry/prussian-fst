@@ -48,15 +48,16 @@ BASE_MERGED = BUILD / "lexc.merged"
 
 GENDER_TAG = {"masc": "Msc", "fem": "Fem", "neut": "Neu"}
 OPEN_POS = {"noun": ("Nouns", "+N"), "adj": ("Adjectives", "+A"),
-            "verb": ("Verbs", "+V"), "invar": ("NumeralsInvar", "+Num")}
+            "verb": ("Verbs", "+V"), "invar": ("Invariables", "")}
 NUMTYPE_TAG = {"card": "+Card", "ord": "+Ord"}
+# Invariable NVH-Wortart (kein Paradigma) → FST-Tag (WS3; Vokabular wie K3).
+INVARIABLE_TAG = {"adv": "+Adv", "prep": "+Pr", "postp": "+Po", "intj": "+Interj",
+                  "part": "+Pcle", "cconj": "+CC", "sconj": "+CS", "num": "+Num",
+                  "pron": "+Pron"}
 
-# Re-getaggte Closed-Class-Quellen (bleiben unter B bestehen).
+# Handgeschriebene Closed-Class-Quellen; alles andere wird aus der NVH gebacken.
 CLOSED_CLASS = [
-    "symbols.lexc", "root.lexc", "function_words.lexc",
-    "pronouns.lexc",
-    "adverbs.lexc", "prepositions.lexc", "conjunctions.lexc",
-    "particles.lexc", "interjections.lexc",
+    "symbols.lexc", "root.lexc", "function_words.lexc", "pronouns.lexc",
 ]
 
 
@@ -93,16 +94,17 @@ def classify_entry(entry: cf.Entry) -> str | None:
 
     Die Wortart steht in der NVH (``pos``, ggf. per Hand-Tabelle); die Familie sagt
     nur, über welche Atome/welches Lexikon gebacken wird. Pronomina/Numeralia mit
-    Formtabelle (P21–24: ``pos: pron|num``) flektieren adjektivisch, invariable
-    Numeralia (``pos: num`` ohne Paradigma) werden ``invar``. Nomen-Range 1–20
-    (Pronomina) liegt in der Hand-lexc → ``None``.
+    Formtabelle (P21–24: ``pos: pron|num``) flektieren adjektivisch. Einträge ohne
+    Paradigma mit invariabler Wortart (``INVARIABLE_TAG``) oder als indeklinables
+    Nomen werden ``invar``. Nomen-Range 1–20 (Pronomina) liegt in der Hand-lexc →
+    ``None``.
     """
+    if not entry.paradigm and (entry.pos in INVARIABLE_TAG or entry.pos == "noun"):
+        return "invar"
     if entry.pos in ("adj", "verb"):
         return entry.pos
     if entry.pos in ("pron", "num"):
-        if entry.paradigm:
-            return "adj"
-        return "invar" if entry.pos == "num" else None
+        return "adj"
     if entry.pos != "noun":
         return None
     pi = paradigm_int(entry.paradigm)
@@ -128,6 +130,39 @@ def pos_head(entry: cf.Entry) -> str | None:
     if entry.pos == "pron":
         return "+Pron"
     return None
+
+
+FORM_RELATIONS = ("relation: attestedFormOf", "relation: variantOf")
+
+
+def entry_id(entry: cf.Entry) -> str:
+    for line in entry.head:
+        if line.startswith("  id: "):
+            return line[len("  id: "):].strip()
+    return entry.lemma
+
+
+def form_of(entry: cf.Entry) -> str | None:
+    """ID des Ziel-Lexems eines Verweis-Eintrags (``attestedFormOf``/``variantOf``,
+    ``member: X role: lemma``) — ``labban-4`` „↑ Labs n (av)“ → ``labs``."""
+    in_relation = False
+    for line in entry.head + entry.tail:
+        if not line.startswith("    "):
+            in_relation = line.strip() in FORM_RELATIONS
+            continue
+        text = line.strip()
+        if in_relation and text.startswith("member: ") and text.endswith(" role: lemma"):
+            return text[len("member: "):-len(" role: lemma")]
+    return None
+
+
+def invariable_tags(entry: cf.Entry) -> str:
+    """Tag eines invariablen Eintrags: Wortart (+ numtype); indeklinables Nomen
+    ``+N(+Prop)(+Genus)`` ohne Numerus/Kasus (``Mālis+N+Prop+Msc``)."""
+    if entry.pos == "noun":
+        g = GENDER_TAG.get(entry.gender, "")
+        return "+N" + ("+Prop" if is_proper(entry) else "") + (f"+{g}" if g else "")
+    return INVARIABLE_TAG[entry.pos] + NUMTYPE_TAG.get(entry.numtype, "")
 
 
 def analysis_tags(pos: str, gender: str, slot: str, proper: bool = False,
@@ -167,12 +202,25 @@ def bake_open(entries: list[cf.Entry]) -> tuple[str, dict]:
     by_lexicon: dict[str, list[str]] = {name: [] for name, _ in OPEN_POS.values()}
     stats = defaultdict(int)
     skipped_unknown_slot = 0
-    for entry in entries:
+    # Adverbien mit eigenem NVH-Eintrag (eigene Senses, z. B. prūsiskai „auf Prußisch“)
+    # sind eigenes Lemma; die gleichlautende Positiv-Form der Adjektivtabelle
+    # (prūsisks+Adv) wird dann nicht zusätzlich gebacken. Grade bleiben am Adjektiv.
+    own_adverbs = {e.lemma for e in entries if e.pos == "adv" and not e.paradigm}
+    # Verweis-Einträge (``attestedFormOf``/``variantOf``) sind Formen eines anderen
+    # Lexems: erzeugt das Ziel dieselbe Oberfläche schon, gehört die Lesart ihm
+    # (labban-4 „↑ Labs n (av)“ = labs+A+Neu…, kein eigenes labban+Adv). Neue
+    # Oberflächen (stu ← stas, pa ← pas) bleiben. Deshalb Invariable zuletzt.
+    surfaces_of_id: dict[str, set[str]] = defaultdict(set)
+    invariable_seen: set[str] = set()
+    ordered = sorted(entries, key=lambda e: classify_entry(e) == "invar")
+    for entry in ordered:
         pos = classify_entry(entry)
         if pos is None:
             stats["closedclass"] += 1
             continue
         base_lemma, refl = split_si(entry.lemma)
+        if pos == "invar" and entry.pos == "intj":
+            base_lemma = base_lemma.rstrip("!")    # Wörterbuch-Lemma „ērdiw!“ → ērdiw
         if " " in base_lemma:
             stats["multiword"] += 1
             continue
@@ -183,12 +231,19 @@ def bake_open(entries: list[cf.Entry]) -> tuple[str, dict]:
             stats["proper"] += 1
         lexicon, _ = OPEN_POS[pos]
         lemma = lexc_esc(base_lemma)
-        head = pos_head(entry)
         if pos == "invar":
-            # Invariables Numerale: Lemma selbst, nur Wortart (+ numtype) — WS3-Regel.
-            by_lexicon[lexicon].append(f"{lemma}{head}:{lemma}")
-            stats["num"] += 1
+            target = form_of(entry)
+            if target and base_lemma in surfaces_of_id.get(target, ()):
+                stats["form_of_known"] += 1
+                continue
+            # Invariable (WS3): Lemma selbst, nur Wortart (+ numtype/Genus).
+            body = f"{lemma}{invariable_tags(entry)}:{lemma}"
+            if body not in invariable_seen:          # Homographen (pa-1, pa-2 …)
+                invariable_seen.add(body)
+                by_lexicon[lexicon].append(body)
+            stats[f"invar.{entry.pos}"] += 1
             continue
+        head = pos_head(entry)
         cells = entry_forms(entry)
         if head:
             # Numeralia/Pronomina steigern nicht: nur Positiv- bzw. Nomen-Slots.
@@ -214,12 +269,16 @@ def bake_open(entries: list[cf.Entry]) -> tuple[str, dict]:
             for surface in surfaces:
                 if " " in surface or surface == junk:
                     continue
+                if pos == "adj" and slot == "adv" and surface in own_adverbs:
+                    stats["adv_own_entry"] += 1
+                    continue
+                surfaces_of_id[entry_id(entry)].add(surface)
                 body = f"{lemma}{tags}:{lexc_esc(surface)}"
                 if body not in seen:
                     seen.add(body)
                     by_lexicon[lexicon].append(body)
         stats[pos] += 1
-    out = ["! analyzer open class — baked from twanksta_dmlex.nvh + gen/*.lexc", ""]
+    out = ["! analyzer — baked from twanksta_dmlex.nvh + gen/*.lexc", ""]
     for lexicon, _ in OPEN_POS.values():
         out.append(f"LEXICON {lexicon}")
         out.extend(f"  {body}  # ;" for body in by_lexicon[lexicon])
@@ -323,7 +382,11 @@ def main(argv: list[str] | None = None) -> int:
           f"noun={stats['noun']} adj={stats['adj']} verb={stats['verb']} "
           f"(davon +Prop {stats['proper']}, +Num {stats['num']}, +Pron {stats['pron']}, "
           f"closed-class {stats['closedclass']}, multiword {stats['multiword']}, "
-          f"leer {stats['leer']}, unbek. Slot {stats['unknown_slot']})")
+          f"leer {stats['leer']}, unbek. Slot {stats['unknown_slot']}, "
+          f"Adv mit eigenem Eintrag {stats['adv_own_entry']}, "
+          f"Verweis auf bekannte Form {stats['form_of_known']}); invariabel: "
+          + " ".join(f"{k[6:]}={v}" for k, v in sorted(stats.items())
+                     if k.startswith("invar.")))
     if not args.no_compile and not args.parity:
         compile_analyzer()
         print(f"→ {ANALYZER_OL}")

@@ -7,8 +7,6 @@
 # Target:
 #   make              — build base.fst from all .lexc files
 #   make atoms        — datenfreie Atome des Kern-Generators (gen/atom_fst.py)
-#   make gen          — generiere .lexc-Dateien aus dem Dictionary
-#                       (kanonische Quelle: ../corpus/parsed/twanksta_entries.json)
 #   make cg3-sets     — generierte CG3-Sets/-Regeln aus valence.json
 #   make cg3-check    — Syntaxcheck des CG3-Disambiguators
 #   make disambiguate — Vollkorpus-Lauf mit Ambiguitätsstatistik (stdout)
@@ -20,23 +18,23 @@
 # Python-Ersatz für die hfst-CLI-Werkzeuge (siehe src/prussian_fst/build_fst.py).
 # uv run = Projekt-Env, damit hfst überall verfügbar ist (auch ohne System-Install).
 HFST := uv run python src/prussian_fst/build_fst.py
+# Lean NVH (Wortliste, Stämme, Overrides, Invariable) — vor den Regeln definiert,
+# weil make Voraussetzungen beim Einlesen expandiert.
+LEAN_NVH := ../corpus/parsed/twanksta_dmlex.nvh
 
-.PHONY: all gen clean cg3-sets cg3-check disambiguate conllu hfstol links atoms atom analyzer analyzer-parity
+.PHONY: all clean cg3-sets cg3-check disambiguate conllu hfstol links atoms atom analyzer analyzer-parity
 
 all: build/base.hfstol build/macron.hfstol build/lenient.hfstol build/base.gen.hfstol
 
 build/:
 	mkdir -p build
 
-gen:
-	python3 src/prussian_fst/gen_lexc.py
-
-# WS0: base.fst wird aus der gebackenen Merged-Lexc kompiliert — Atom-Generator
-# (gen/*.lexc) + lean NVH (Stämme/Overrides) + handgeschriebene Closed-Class —, NICHT
-# mehr aus den gen_lexc-Vollform-Open-Class-Lexc. Damit ist base.hfstol (invert) der
+# base.fst wird aus der gebackenen Merged-Lexc kompiliert — Atom-Generator
+# (gen/*.lexc) + lean NVH (Stämme/Overrides, Invariable) + handgeschriebene
+# Closed-Class (function_words, pronouns). Damit ist base.hfstol (invert) der
 # gebackene Analyzer und base.gen.hfstol (non-invert) der Generator aus EINER Quelle.
 # Deckung gegen das eingefrorene twanksta-Gold: `make analyzer-parity`.
-build/analyzer.lexc: gen gen/build_analyzer.py gen/*.lexc $(LEAN_NVH) | build/
+build/analyzer.lexc: gen/build_analyzer.py lexc/*.lexc gen/*.lexc $(LEAN_NVH) | build/
 	uv run python gen/build_analyzer.py --no-compile
 
 build/base.fst: build/analyzer.lexc | build/
@@ -75,9 +73,7 @@ atoms: build/gen-accent.hfst
 # Open-Class-Morphologie aus gen/*.lexc, Stämme/Overrides aus der lean NVH
 # (Twanksta-DMLex).  Default-Analyzer bleibt base.hfstol, bis das B-Gate
 # (Deckungsparität) erfüllt ist; umschalten mit PRUSSIAN_FST=build/analyzer.hfstol.
-LEAN_NVH := ../corpus/parsed/twanksta_dmlex.nvh
-
-build/analyzer.hfstol: gen gen/build_analyzer.py gen/*.lexc $(LEAN_NVH) | build/
+build/analyzer.hfstol: gen/build_analyzer.py lexc/*.lexc gen/*.lexc $(LEAN_NVH) | build/
 	uv run python gen/build_analyzer.py
 
 analyzer: build/analyzer.hfstol
@@ -144,10 +140,8 @@ detect-errors: build/base.hfstol cg3-sets $(CG3_BINS)
 # laufen lassen und die Kette weiterfahren (chunks bauen, Embeddings
 # generieren, MCP-Server neu starten) — siehe ../embeddings/README.md.
 #
-# Die Abhängigkeit von `gen` macht Dictionary-Änderungen für make sichtbar:
-# gen_lexc schreibt nur tatsächlich geänderte .lexc-Dateien, daher läuft die
-# FST-Kette nur an, wenn sich der Inhalt von ../corpus/parsed/... änderte.
-links: gen build/base.hfstol build/macron.hfstol build/lenient.hfstol
+# Dictionary-Änderungen sieht make über $(LEAN_NVH) (Abhängigkeit von base.fst).
+links: build/base.hfstol build/macron.hfstol build/lenient.hfstol
 	uv run python -m prussian_fst.linker --stats
 
 # Bulk-Zero-False-Alarm-Regression: Validator über die attestierten

@@ -8,6 +8,7 @@ Abweichungen (Wortart jetzt aus der NVH ``pos``/``numtype``):
 * ``eraīns``/``niaīns`` „jeder“/„kein“: ``pos: pron`` (Hand-Tabelle) → ``+Pron``
 * ``dwāi``/``trīs``: ``numtype: card`` in der NVH → ``+Num+Card`` (Gold ohne ``+Card``)
 * invariable Numeralia: ``+Num+Card`` ohne das Gold-Artefakt ``+Sg+Nom``
+* Verweis-Einträge (``tūsimtans``) tragen die Lesart ihres Ziel-Lexems
 
 Die Tests brauchen den Build (``make``) und überspringen sonst.
 """
@@ -31,6 +32,9 @@ DEVIATIONS = {
     "trīs": ("+Num+", "+Num+Card+"),
 }
 INVARIABLE_GOLD_TAGS = "+Num+Card+Sg+Nom"
+# Verweis-Einträge, deren Form das Ziel-Lexem schon erzeugt, tragen dessen Lesart
+# (WS3): tūsimtans „↑ Tūsimts crd acc“ = Akkusativ Plural von tūsimts.
+FORM_OF = {"tūsimtans+Num+Card+Sg+Nom:tūsimtans": "tūsimts+Num+Card+Msc+Pl+Acc:tūsimtans"}
 
 
 def _gold() -> list[str]:
@@ -40,6 +44,8 @@ def _gold() -> list[str]:
 
 def _expected(analysis: str) -> str:
     """Gold-Analyse → erwartete Analyse nach den bewussten Abweichungen."""
+    if analysis in FORM_OF:
+        return FORM_OF[analysis]
     lemma_tags, surface = analysis.rsplit(":", 1)
     lemma, tags = lemma_tags.split("+", 1)
     tags = "+" + tags

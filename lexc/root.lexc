@@ -5,13 +5,8 @@ LEXICON Root
   FunctionWords ;
   ! Eigennamen: großgeschriebene Nomen werden als +N+Prop in Nouns gebacken (WS2a) —
   ! keine separaten ProperNouns/ProperNounsAuto-Lexika mehr.
-  Conjunctions ;
-  Prepositions ;
-  Adverbs ;
-  Particles ;
-  Interjections ;
   Nouns ;
   Adjectives ;
   Pronouns ;             ! hand-curated (with +P1/+P2/+P3/+Encl)
-  NumeralsInvar ;        ! invariable Numeralia (gebacken); flektierende in Nouns/Adjectives
+  Invariables ;          ! invariable Lexeme aus der NVH (Adv/Pr/Po/CC/CS/Pcle/Interj/Num, indekl. N)
   Verbs ;

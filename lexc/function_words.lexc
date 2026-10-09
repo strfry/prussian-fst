@@ -1,153 +1,53 @@
 ! Function words — hand-written override.
 ! Dispatched before Nouns so they take precedence.
+!
+! WS3: Invariable mit NVH-Eintrag (pos adv/prep/postp/intj/part/cconj/sconj/num,
+! indeklinable Nomen) werden aus der lean NVH gebacken (LEXICON Invariables); ihre
+! Wortart pflegt corpus/ids/invariable_pos.tsv. Hier steht NUR, was die NVH nicht
+! als Invariable führt: Lemmata ohne Twanksta-Eintrag bzw. ohne pos, und Einzelformen
+! flektierender Lexeme, die deren Paradigma nicht abdeckt.
+! ACHTUNG: Zeilen mit "UNSICHER" sind nicht abgesicherte Klassifikationen —
+! vor UD-Annotation gegenprüfen.
 
 LEXICON FunctionWords
-  ! Particles
-  ni+Pcle:ni            # ;
+  ! Partikeln
   ne+Pcle:ne            # ;
   te+Pcle:te            # ;
   uka+Pcle:uka          # ;
-
-  ! Conjunctions
-  beggi+CC:beggi      # ;
-  adder+CC:adder      # ;
-  ei+CC:ei            # ;
-  sklāits+CC:sklāits  # ;
-  stā+CC:stā          # ;
-
-  ! Adverbs
-  kelli+Adv:kelli      # ;
-  dabber+Adv:dabber    # ;
-  ēmperi+Adv:ēmperi    # ;
-  mattai+Adv:mattai    # ;
-  nū+Adv:nū            # ;
-
-  ! Interjections
-  kukūk+Interj:kukūk       # ;
-
-  ! Pronoun forms (paradigms that don't cover this variant)
-  stā+Pron+Sg+Nom+Fem:stā  # ;
-
-  ! ──────────────────────────────────────────────────────────────
-  ! Nachtrag 2026-07: Twanksta-Einträge ohne desc-Tag und ohne
-  ! Paradigmentabellen (Bucket "no desc, no forms"), POS von Hand
-  ! anhand der Übersetzungen zugewiesen.
-  ! ACHTUNG: Zeilen mit "UNSICHER" sind nicht abgesicherte
-  ! Klassifikationen — vor UD-Annotation gegenprüfen.
-  ! ──────────────────────────────────────────────────────────────
+  madli+Pcle:madli      # ; ! UNSICHER: „bitte" — Pcle oder erstarrte Verbform (3.Sg zu madlītun)?
 
   ! Konjunktionen
-  be+CC:be            # ; ! „und" (homonym zu be+Pr „ohne")
-  kāi+CS:kāi         # ; ! „dass, damit"
-  ! ka: moderne Sprech-Variante von kāi „dass/ob" (YT-Korpus; Enchiridion
+  ei+CC:ei            # ;
+  stā+CC:stā          # ;
+  ! ka: moderne Sprech-Variante von kāi „dass/ob" (Gebrauchskorpus YT; Enchiridion
   ! nur kāi). Homonym zu kas+Pron+Neu; per CG nach Verba dicendi gewählt.
   ka+CS:ka           # ; ! „dass, ob"
-  kaddan+CS:kaddan   # ; ! „wenn, als"
-  ik+CS:ik           # ; ! „wenn, falls"
-  ikkai+CC:ikkai      # ; ! „wenn, solange"
-  anga+CC:anga        # ; ! „ob"
-  neggi+CC:neggi      # ; ! „weder … noch"
-  nikāi+CC:nikāi      # ; ! „als" (nach Komparativ)
-  ikāi+CS:ikāi       # ; ! UNSICHER: „ob, obwohl" — CS oder Pcle?
-  ikāigi+CS:ikāigi   # ; ! UNSICHER: „als ob" — SCnj oder Adv?
-  kāigi+CC:kāigi      # ; ! UNSICHER: „wie, als" — CC oder Adv (UD: CCONJ/ADV)?
   kaīgi+CC:kaīgi      # ; ! UNSICHER: „wie" — Vokalvarianten-Form von kāigi
 
-  ! Präpositionen
-  dīnkun+Pr:dīnkun  # ; ! „dank" (+ Dat laut Übersetzungsfeld)
-
-  ! Partikeln
-  gi+Pcle:gi            # ; ! „doch" (enklitisch)
-  jā+Pcle:jā            # ; ! „ja"
-  pat+Pcle:pat          # ; ! „eben, gerade"
-  madli+Pcle:madli      # ; ! UNSICHER: „bitte" — Pcle oder erstarrte Verbform (3.Sg zu madlītun)?
-  mīnus+Pcle:mīnus      # ; ! UNSICHER: „minus" — Pcle/CC/Sym?
-  plūs+Pcle:plūs        # ; ! UNSICHER: „plus" — Pcle/CC/Sym?
-
   ! Adverbien
-  jāu+Adv:jāu          # ; ! „schon"
-  dīgi+Adv:dīgi        # ; ! „auch"
-  īr+Adv:īr            # ; ! „sogar"
-  kwēi+Adv:kwēi        # ; ! „wo"
-  nikwēi+Adv:nikwēi    # ; ! „nirgends"
-  nikwēigi+Adv:nikwēigi # ; ! „nie, nirgends"
-  ! (niaīnunts „niemand" kommt aus Twanksta/gen_lexc; die Korpusschreibung
-  !  „niainunts" ohne Makron deckt der Ortho-Layer, s. norm.regex DiphAI)
-
-  ! ni-Komposita
   nikaddan+Adv:nikaddan  # ; ! „niemals"
   nitāli+Adv:nitāli      # ; ! UNSICHER: „nicht so sehr/(so) sehr"?
   nimazīngi+Adv:nimazīngi # ; ! UNSICHER: „ziemlich"?
-
-  wiskwēi+Adv:wiskwēi  # ; ! „überall"
-  tēt+Adv:tēt          # ; ! „so, folglich"
-  kadāi+Adv:kadāi      # ; ! „einst, ehemals"
-  eršandau+Adv:eršandau # ; ! „bisher, bis hierher"
-  ezteinū+Adv:ezteinū  # ; ! „von nun an"
-  atpenti+Adv:atpenti  # ; ! „rückwärts"
-  etwārtai+Adv:etwārtai # ; ! „zurück"
-  izwinandau+Adv:izwinandau # ; ! „von außen"
-  biskin+Adv:biskin    # ; ! „ein bisschen"
-  lāt+Adv:lāt          # ; ! „spät"
-  plakkawingi+Adv:plakkawingi # ; ! „plötzlich"
-  spōradiskai+Adv:spōradiskai # ; ! „sporadisch"
-  rēzewingei+Adv:rēzewingei # ; ! „zeitweise"
-  gratis+Adv:gratis    # ; ! „gratis" (Lehnwort)
-  mazzais+Adv:mazzais  # ; ! UNSICHER: „wenigstens" — auch Komparativ „weniger" (massais)?
-  dwaiwārst+Adv:dwaiwārst   # ; ! „zweimal"
-  triwārst+Adv:triwārst     # ; ! „dreimal"
-  keturwārst+Adv:keturwārst # ; ! „viermal"
-  treīsun+Adv:treīsun  # ; ! „zu dritt"
-  nijāu+Adv:nijāu      # ; ! UNSICHER: „nicht mehr" — Adv oder Pcle?
-  līgu+Adv:līgu        # ; ! UNSICHER: „gleich, unentschieden" — Adv oder A-Neutrum?
-  telli+Adv:telli      # ; ! UNSICHER: „soviel" — Korrelat zu kelli; Adv oder Pron?
   delli+Adv:delli      # ; ! UNSICHER: „einige, etliche" — Adv oder indekl. Pron?
-  ēntrai+Adv:ēntrai    # ; ! UNSICHER: „innerhalb" — Adv oder Pr (Rektion unbekannt)?
 
-  ! Pronomina (indeklinabel)
-
+  ! Pronomen-Formen, die die Paradigmen nicht abdecken
+  stā+Pron+Sg+Nom+Fem:stā  # ;
   ! Reflexivpronomina (Twanksta sin/sebbei ohne Formen-Tabelle; zu „Swāise acc/dat")
   sin+Pron+Refl+Acc:sin     # ; ! reflexiv, Akkusativ („sich")
   sebbei+Pron+Refl+Dat:sebbei # ; ! reflexiv, Dativ („sich")
+  ! Enklitika (K5): Twanksta mi/ti „encl /As/ bzw. /Tū/ dat, acc", ohne pos.
+  as+Pron+P1+Encl+Sg+Dat:mi  # ;
+  as+Pron+P1+Encl+Sg+Acc:mi  # ;
+  tū+Pron+P2+Encl+Sg+Dat:ti  # ;
+  tū+Pron+P2+Encl+Sg+Acc:ti  # ;
 
-  abbejan+Pron:abbejan # ; ! UNSICHER: „beides" — indekl. Pron oder Num?
-
-  ! Numeralia (Hunderter indeklinabel? Formen fehlen im Wörterbuch)
-  dwāinadesimt+Num:dwāinadesimt # ; ! „zwölf"
-  dwissimta+Num:dwissimta       # ; ! „zweihundert"
-  trīsimta+Num:trīsimta         # ; ! „dreihundert"
-  kettursimta+Num:kettursimta   # ; ! „vierhundert"
-  pēnksimta+Num:pēnksimta       # ; ! „fünfhundert"
-  ussimta+Num:ussimta           # ; ! „sechshundert"
-  septīnsimta+Num:septīnsimta   # ; ! „siebenhundert"
-  astōnsimta+Num:astōnsimta     # ; ! „achthundert"
-  newīnsimta+Num:newīnsimta     # ; ! „neunhundert"
-
-  ! Interjektionen (Ausrufezeichen des Wörterbuch-Lemmas entfernt)
-  kaīls+Interj:kaīls       # ; ! „Heil! hallo!"
-  ērdiw+Interj:ērdiw       # ; ! „tschüß!" (Lemma im Dict: „ērdiw!")
-  deiwūtiskan+Interj:deiwūtiskan # ; ! UNSICHER: „bye-bye!" (Dict: „deiwūtiskan!") — erstarrter Akk?
-
-  ! ──────────────────────────────────────────────────────────────
-  ! Nachtrag 2026-07-05: korpusbelegte Formen aus der Prüfung von
-  ! prussian-grammar/syntax_rules.txt gegen das YouTube-Korpus.
-  ! Twanksta-Verweis-Einträge ohne Formen (↑X / [X drv]) fallen in
-  ! gen_lexc.py durch — hier nur die BELEGTEN von Hand.
-  ! ──────────────────────────────────────────────────────────────
-
-  ! Postposition (§4/§3-Umfeld): regiert vorangestellten Genitiv;
-  ! Twanksta: „n psp gen". YT-Korpus 55×+, fast immer „stesse paggan".
-  paggan+Adp+Po:paggan # ; ! „wegen" (Gen + paggan)
-
-  ! Modus relativus (§18): NUR die korpusbelegte Einzelform (2×,
-  ! „tāns astits per gārban"); Twanksta: „↑Būtwei mod rel [astits 61 MK]"
-  ! — Katechismus-Referenz, aber belegt. KEINE produktive -ts-Reihe!
+  ! Modus relativus (§18): NUR die im Gebrauchskorpus verwendete Einzelform (2×,
+  ! „tāns astits per gārban"); Twanksta: „↑Būtwei mod rel [astits 61 MK]".
+  ! KEINE produktive -ts-Reihe!
   būtwei+V+Rel+Prs+SP3:astits # ; ! „sei angeblich"
-
   ! perwaidinnas = kontrahiertes „perwaidinna si" (Twanksta-Verweis
-  ! „[Perwaidīntun si drv]"; YT-Korpus 1×). Spiegelt alle Zellen, in
-  ! denen die Vollform „perwaidinna si" lautet.
-  ! P3 numeruslos (3sg=3pl, wie im generierten Verblexikon)
+  ! „[Perwaidīntun si drv]"; Gebrauchskorpus YT 1×). Spiegelt alle Zellen, in
+  ! denen die Vollform „perwaidinna si" lautet. P3 numeruslos (3sg=3pl).
   perwaidīntun+V+Ind+Prs+Sg1+Refl:perwaidinnas # ;
   perwaidīntun+V+Ind+Prs+Sg2+Refl:perwaidinnas # ;
   perwaidīntun+V+Ind+Prs+SP3+Refl:perwaidinnas # ;
@@ -155,9 +55,9 @@ LEXICON FunctionWords
   perwaidīntun+V+Ind+Prt+Sg2+Refl:perwaidinnas # ;
   perwaidīntun+V+Ind+Prt+SP3+Refl:perwaidinnas # ;
 
-  ! Indeklinable Zehner (syntax_rules §23: bare -t-Form, Nomen trägt
-  ! den Kasus; YT-belegt: dwiddesimt, trīsdesimt, ketturdesimt,
-  ! septinnadesimt, astōnadesimt, desimt→dessimt via norm-Layer)
+  ! Indeklinable Zehner (syntax_rules §23: bare -t-Form, Nomen trägt den Kasus;
+  ! im Gebrauchskorpus YT: dwiddesimt, trīsdesimt, ketturdesimt, septinnadesimt,
+  ! astōnadesimt, desimt→dessimt via norm-Layer). Ohne Twanksta-Eintrag.
   dessimt+Num:dessimt           # ; ! „zehn"
   dwiddesimt+Num:dwiddesimt     # ; ! „zwanzig"
   trīsdesimt+Num:trīsdesimt     # ; ! „dreißig"
@@ -167,6 +67,3 @@ LEXICON FunctionWords
   septīndesimt+Num:septīndesimt # ; ! „siebzig"
   astōndesimt+Num:astōndesimt   # ; ! „achtzig"
   newīndesimt+Num:newīndesimt   # ; ! „neunzig"
-  ! (Teens der aīnadesimt-Reihe kommen bereits aus gen_lexc als +Num+Sg+Nom)
-
-  ! (Teens der aīnadesimt-Reihe kommen bereits aus gen_lexc als +Num+Sg+Nom)

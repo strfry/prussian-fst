@@ -11,19 +11,6 @@ data/external/prusaspira_entries.json
 data/external/prussian_corpus_*.tar.zst
 data/prussian_silver.conllu
 data/reports/
-# generierte Lookup-Tabellen (make gen aus twanksta_entries.json);
-# handgepflegt und versioniert bleiben nur function_words/proper_nouns/
-# root/symbols/pronouns.lexc
-lexc/adjectives.lexc
-lexc/adverbs.lexc
-lexc/conjunctions.lexc
-lexc/interjections.lexc
-lexc/nouns.lexc
-lexc/numerals.lexc
-lexc/particles.lexc
-lexc/prepositions.lexc
-lexc/proper_nouns_auto.lexc
-lexc/verbs.lexc
 .env
 Untitled.ipynb
 .ipynb_checkpoints/
