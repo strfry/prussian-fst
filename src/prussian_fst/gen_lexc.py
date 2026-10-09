@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
-"""Generate per-POS .lexc files from twanksta_entries.json.
+"""Generate the (still) non-baked closed-class .lexc files from twanksta_entries.json.
 
-Reads the Twanksta dictionary entries and outputs full-form lookup-table .lexc
-files grouped by part of speech — one file per word class.
-Participle forms are output as full-form entries (no stem routing).
+WS0-Cleanup: die OFFENEN Klassen (noun/adjective/verb) werden NICHT mehr hier als
+Vollform-lexc erzeugt — ``base.fst`` bäckt sie aus den datenfreien Atomen (gen/*.lexc)
++ lean NVH (gen/build_analyzer.py). Dieses Skript schreibt nur noch die geschlossenen
+Klassen, die ``build_analyzer`` verbatim als CLOSED_CLASS einliest: proper_nouns_auto
+sowie die invariablen numerals/adverbs/prepositions/conjunctions/particles/interjections.
+(Eigennamen und Invariable wandern in WS2a/WS3 weiter in die Atome bzw. die NVH.)
 Reflexive verbs (`` si``) get ``+Refl`` tag; the `` si`` is split off.
 """
 
@@ -410,8 +413,6 @@ def main():
 
     by_pos = defaultdict(list)
     stats = defaultdict(int)
-    verb_data = {}  # orig_word -> (base_word, {line: True})
-    seen_bases = set()
 
     for e in raw:
         word = e.get("word", "")
@@ -429,13 +430,10 @@ def main():
         stats[pos] += 1
 
         if pos == "verb":
-            base_w, vf = verb_forms(e)
-            if vf:
-                key = word
-                verb_data[key] = (base_w, vf)
-                seen_bases.add(base_w)
-        else:
-            by_pos[pos].append((word, e))
+            # WS0-Cleanup: Verben sind offene Klasse → base.fst bäckt sie aus den
+            # Atomen + lean NVH. Keine Vollform-verbs.lexc mehr (nur noch gezählt).
+            continue
+        by_pos[pos].append((word, e))
 
     # Derived adverbs (degree table on adjective entries) → adverbs.lexc
     derived_adverbs = []
@@ -444,8 +442,11 @@ def main():
             derived_adverbs.extend(adverb_forms(e))
 
     # ── Nominal POS files ──
-    # pronoun is hand-written (pronouns.lexc); proper_noun → proper_nouns_auto.lexc
-    for pos in ["noun", "proper_noun", "adjective", "numeral",
+    # WS0-Cleanup: noun/adjective/verb werden NICHT mehr emittiert (offene Klassen →
+    # base.fst bäckt sie aus den Atomen + lean NVH). gen_lexc erzeugt nur noch die
+    # (noch) nicht gebackenen geschlossenen Klassen: proper_nouns_auto + invariable.
+    # pronoun ist hand-geschrieben (pronouns.lexc); proper_noun → proper_nouns_auto.lexc.
+    for pos in ["proper_noun", "numeral",
                 "adverb", "preposition", "conjunction", "particle", "interjection"]:
         entries = by_pos.get(pos, [])
         tag = POS_TAGS[pos]
@@ -490,51 +491,11 @@ def main():
         if _write_if_changed(out_path, "\n".join(lines) + "\n"):
             print(f"Wrote {out_path}  ({total} form entries)")
 
-    # ── Verb file ──
-    v_lines = []
-    v_lines.append("! verbs — generated from Twanksta data")
-    v_lines.append(f"! Source: {TWANKSTA}")
-    v_lines.append("")
-    v_lines.append("LEXICON Verbs")
-
-    vstats = {"inf": 0, "pres": 0, "pret": 0, "opt": 0, "imp": 0, "subj": 0,
-              "part_pres": 0, "part_past": 0, "part_pass": 0}
-
-    for _key in sorted(verb_data):
-        _base, vf = verb_data[_key]
-        for line in sorted(vf):
-            if "+PrsPrc+" in line:
-                vstats["part_pres"] += 1
-            elif "+PrfPrc+Act+" in line:
-                vstats["part_past"] += 1
-            elif "+PrfPrc+Pss+" in line:
-                vstats["part_pass"] += 1
-            elif "+Inf:" in line:
-                vstats["inf"] += 1
-            elif "+Prs+" in line:
-                vstats["pres"] += 1
-            elif "+Prt+" in line:
-                vstats["pret"] += 1
-            elif "+Opt+" in line:
-                vstats["opt"] += 1
-            elif "+Imprt+" in line:
-                vstats["imp"] += 1
-            elif "+Subj+" in line:
-                vstats["subj"] += 1
-            v_lines.append(f"  {line}  # ;")
-
-    v_lines.append("")
-    v_path = OUT_DIR / "verbs.lexc"
-    if _write_if_changed(v_path, "\n".join(v_lines) + "\n"):
-        print(f"Wrote {v_path}  ({len(v_lines)} lines)")
-    print(f"  Verb stats: inf={vstats['inf']} pres={vstats['pres']} pret={vstats['pret']} "
-          f"opt={vstats['opt']} imp={vstats['imp']} subj={vstats['subj']} "
-          f"part_pres={vstats['part_pres']} part_past={vstats['part_past']} "
-          f"part_pass={vstats['part_pass']}")
+    # (verbs.lexc entfällt — offene Klasse, wird aus den Atomen gebacken; WS0-Cleanup)
 
     print(f"\nStats by POS: {dict(sorted((k,v) for k,v in stats.items() if k != 'unknown'))}")
     print(f"Skipped (↑-refs/unclassified): {stats.get('unknown', 0)}")
-    print(f"Total entries: {sum(stats.values()) + len(verb_data)}")
+    print(f"Total entries: {sum(stats.values())}")
 
 
 if __name__ == "__main__":

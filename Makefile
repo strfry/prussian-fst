@@ -17,12 +17,6 @@
 #                       Chunk-Clustering in prussian-embeddings)
 #   make clean
 
-LEXC_FILES := lexc/symbols.lexc lexc/root.lexc lexc/function_words.lexc lexc/proper_nouns.lexc lexc/proper_nouns_auto.lexc lexc/nouns.lexc lexc/adjectives.lexc \
-              lexc/pronouns.lexc lexc/numerals.lexc lexc/verbs.lexc lexc/adverbs.lexc \
-              lexc/prepositions.lexc lexc/conjunctions.lexc lexc/particles.lexc lexc/interjections.lexc
-
-LEXC_MERGED := build/lexc.merged
-
 # Python-Ersatz für die hfst-CLI-Werkzeuge (siehe src/prussian_fst/build_fst.py).
 # uv run = Projekt-Env, damit hfst überall verfügbar ist (auch ohne System-Install).
 HFST := uv run python src/prussian_fst/build_fst.py
@@ -36,11 +30,6 @@ build/:
 
 gen:
 	python3 src/prussian_fst/gen_lexc.py
-
-# Altes twanksta-Vollform-Merge (gen_lexc). NICHT mehr Quelle von base.fst (WS0) —
-# nur noch zum Nachregenerieren des eingefrorenen Golds (tests/gold/twanksta_surfaces.txt).
-$(LEXC_MERGED): $(LEXC_FILES) | build/
-	cat $(LEXC_FILES) > $@
 
 # WS0: base.fst wird aus der gebackenen Merged-Lexc kompiliert — Atom-Generator
 # (gen/*.lexc) + lean NVH (Stämme/Overrides) + handgeschriebene Closed-Class —, NICHT
