@@ -51,8 +51,8 @@ OPEN_POS = {"noun": ("Nouns", "+N"), "adj": ("Adjectives", "+A"),
 
 # Re-getaggte Closed-Class-Quellen (bleiben unter B bestehen).
 CLOSED_CLASS = [
-    "symbols.lexc", "root.lexc", "function_words.lexc", "proper_nouns.lexc",
-    "proper_nouns_auto.lexc", "pronouns.lexc", "numerals.lexc",
+    "symbols.lexc", "root.lexc", "function_words.lexc",
+    "pronouns.lexc", "numerals.lexc",
     "adverbs.lexc", "prepositions.lexc", "conjunctions.lexc",
     "particles.lexc", "interjections.lexc",
 ]
@@ -70,8 +70,10 @@ def split_si(lemma: str) -> tuple[str, bool]:
 
 
 def is_proper(entry: cf.Entry) -> bool:
-    head = "\n".join(entry.head)
-    return "label: Pit" in head or "label: Per" in head
+    """Eigenname = großgeschriebenes Lemma (WS2a). NICHT mehr Pit/Per: Pit markiert
+    modernen Wortschatz (246/363 Pit-Nomen sind Appellative), Per existiert nicht.
+    Großgeschriebene Nomen bekommen beim Backen +N+Prop."""
+    return bool(entry.lemma) and entry.lemma[:1].isupper()
 
 
 def paradigm_int(par: str) -> int | None:
@@ -108,25 +110,14 @@ def classify_entry(entry: cf.Entry) -> str | None:
     return "noun"
 
 
-def routed_to_auto_proper(entry: cf.Entry) -> bool:
-    """True, wenn gen_lexc den Eintrag als ProperNounsAuto führt (P32–70+Pit/Per).
-
-    Nur die übernimmt die hand-/auto-gepflegte ProperNouns-Liste (+N+Prop);
-    Nomen mit Pit-Label außerhalb der Nominalparadigmen (z. B. P29-Partizipien)
-    klassifiziert gen_lexc als Adjektiv und müssen hier gebacken werden.
-    """
-    if entry.pos != "noun" or not is_proper(entry):
-        return False
-    pi = paradigm_int(entry.paradigm)
-    return pi is not None and 32 <= pi <= 70
-
-
-def analysis_tags(pos: str, gender: str, slot: str) -> str:
-    """Dotted Slot-Key → Giella-+Tag.  Nomen: Genus (Entry-Fakt) einfügen."""
+def analysis_tags(pos: str, gender: str, slot: str, proper: bool = False) -> str:
+    """Dotted Slot-Key → Giella-+Tag.  Nomen: Genus (Entry-Fakt) einfügen; Eigennamen
+    zusätzlich +Prop direkt nach +N (Giella, wie das alte proper_nouns_auto.lexc)."""
     tag = gen.slot_tag(slot)
     if pos == "noun":
         g = GENDER_TAG.get(gender, "")
-        tag = "+N" + (f"+{g}" if g else "") + tag[len("+N"):]
+        prop = "+Prop" if proper else ""
+        tag = "+N" + prop + (f"+{g}" if g else "") + tag[len("+N"):]
     return tag
 
 
@@ -156,16 +147,15 @@ def bake_open(entries: list[cf.Entry]) -> tuple[str, dict]:
         if pos is None:
             stats["closedclass"] += 1
             continue
-        # ProperNounsAuto (P32–70 + Pit/Per) hat +N+Prop und wird nicht
-        # hier gebacken.  Alle übrigen Einträge (auch Pit-Adjektive/
-        # -Partizipien) gehören in die Open-Class-Bäckerei.
-        if pos == "noun" and routed_to_auto_proper(entry):
-            stats["proper(autolist)"] += 1
-            continue
         base_lemma, refl = split_si(entry.lemma)
         if " " in base_lemma:
             stats["multiword"] += 1
             continue
+        # WS2a: großgeschriebene Nomen → +N+Prop, direkt aus den Noun-Atomen gebacken
+        # (statt der früheren Frozen-Liste proper_nouns_auto.lexc).
+        proper = pos == "noun" and is_proper(entry)
+        if proper:
+            stats["proper"] += 1
         lexicon, _ = OPEN_POS[pos]
         cells = entry_forms(entry)
         lemma = lexc_esc(base_lemma)
@@ -181,7 +171,7 @@ def bake_open(entries: list[cf.Entry]) -> tuple[str, dict]:
         junk = entry.lemma + entry.paradigm  # Parse-Artefakt der vollen NVH
         for slot, surfaces in cells.items():
             try:
-                tags = analysis_tags(pos, entry.gender, slot)
+                tags = analysis_tags(pos, entry.gender, slot, proper)
             except ValueError:
                 skipped_unknown_slot += 1
                 continue
@@ -295,7 +285,7 @@ def main(argv: list[str] | None = None) -> int:
     build_merged(open_text)
     print(f"lean NVH: {len(entries)} Einträge; open-class gebacken: "
           f"noun={stats['noun']} adj={stats['adj']} verb={stats['verb']} "
-          f"(proper→auto {stats['proper(autolist)']}, "
+          f"(davon +Prop {stats['proper']}, "
           f"closed-class {stats['closedclass']}, multiword {stats['multiword']}, "
           f"leer {stats['leer']}, unbek. Slot {stats['unknown_slot']})")
     if not args.no_compile and not args.parity:

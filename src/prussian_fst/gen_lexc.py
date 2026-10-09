@@ -442,16 +442,16 @@ def main():
             derived_adverbs.extend(adverb_forms(e))
 
     # ── Nominal POS files ──
-    # WS0-Cleanup: noun/adjective/verb werden NICHT mehr emittiert (offene Klassen →
-    # base.fst bäckt sie aus den Atomen + lean NVH). gen_lexc erzeugt nur noch die
-    # (noch) nicht gebackenen geschlossenen Klassen: proper_nouns_auto + invariable.
-    # pronoun ist hand-geschrieben (pronouns.lexc); proper_noun → proper_nouns_auto.lexc.
-    for pos in ["proper_noun", "numeral",
+    # WS0/WS2a-Cleanup: noun/adjective/verb UND Eigennamen werden NICHT mehr hier
+    # emittiert — base.fst bäckt sie aus den Atomen + lean NVH (großgeschriebene Nomen
+    # → +N+Prop). gen_lexc erzeugt nur noch die (noch) nicht gebackenen invariablen
+    # geschlossenen Klassen. pronoun ist hand-geschrieben (pronouns.lexc).
+    for pos in ["numeral",
                 "adverb", "preposition", "conjunction", "particle", "interjection"]:
         entries = by_pos.get(pos, [])
         tag = POS_TAGS[pos]
         lex_name = LEXICON_NAMES[pos]
-        out_path = OUT_DIR / f"{pos}s.lexc" if pos != "proper_noun" else OUT_DIR / "proper_nouns_auto.lexc"
+        out_path = OUT_DIR / f"{pos}s.lexc"
 
         lines = [f"! {pos}s — generated from Twanksta data"]
         lines.append(f"! Source: {TWANKSTA}")

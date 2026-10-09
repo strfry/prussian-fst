@@ -3,8 +3,8 @@
 LEXICON Root
   ! hand-written function-word override (vor Nouns!)
   FunctionWords ;
-  ProperNouns ;          ! hand-curated (Kānts, Nidda, etc.)
-  ProperNounsAuto ;      ! auto-generated from Twanksta Pit/Per entries
+  ! Eigennamen: großgeschriebene Nomen werden als +N+Prop in Nouns gebacken (WS2a) —
+  ! keine separaten ProperNouns/ProperNounsAuto-Lexika mehr.
   Conjunctions ;
   Prepositions ;
   Adverbs ;
