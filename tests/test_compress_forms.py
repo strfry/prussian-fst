@@ -1,7 +1,7 @@
 """Tests für den Kompressor (§3): fette NVH → lean NVH, verlustfrei.
 
 Die erwarteten Oberflächen sind **attestierte twanksta-Zellen** (aus
-``twanksta_dmlex.full.nvh``), nicht Generator-Ausgaben — sonst wäre der
+``twanksta.nvh``), nicht Generator-Ausgaben — sonst wäre der
 Verlustfreiheits-Test zirkulär. Pro POS ein reguläres, ein stamm-pflichtiges und
 ein override-pflichtiges Lexem:
 
@@ -70,7 +70,7 @@ def atoms():
 
 # ── NVH-Leser ───────────────────────────────────────────────────────────────
 
-# Wörtlich aus ../corpus/parsed/twanksta_dmlex.full.nvh (Auszug, ein Eintrag).
+# Wörtlich aus ../corpus/parsed/twanksta.nvh (Auszug, ein Eintrag).
 FAT_SNIPPET = """entry: Adwēnts
   id: Adwēnts|56|[Advent MK]
   pos: noun
@@ -184,7 +184,7 @@ def test_legacy_pos_spelling_carries_gender():
 
 def nvh_text(pos: str, paradigm: str, lemma: str, gender: str,
              attested: dict[str, tuple[str, ...]]) -> str:
-    """Fette-NVH-Text für einen Wortlisteneintrag (wie ``twanksta_dmlex.full.nvh``)."""
+    """Fette-NVH-Text für einen Wortlisteneintrag (wie ``twanksta.nvh``)."""
     lines = [f"entry: {lemma}", f"  id: {lemma}|{paradigm}|[test]"]
     lines += [f"  pos: {pos}"] if pos else []
     lines += [f"  gender: {gender}"] if gender else []

@@ -1,6 +1,6 @@
 """§3 Kompressor: fette NVH → lean NVH (Wortliste + nur das Irreduzible).
 
-Die fette NVH (``twanksta_dmlex.full.nvh``: alle POS, Giella-Tags, top-level
+Die fette NVH (``twanksta.nvh``: alle POS, Giella-Tags, top-level
 ``paradigm``, eigenes ``gender``-Feld) listet **jede** attestierte Zelle als
 ``inflectedForm`` + ``tag``. Der Kompressor verdichtet sie **pro Eintrag** mit dem
 listenlosen Generator (``gen/generator.py``) auf das, was die Grammatik nicht
@@ -75,7 +75,7 @@ import generator as gen  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 PARSED = ROOT.parent / "corpus" / "parsed"
-FULL_NVH = PARSED / "twanksta_dmlex.full.nvh"
+FULL_NVH = PARSED / "twanksta.nvh"
 LEAN_NVH = PARSED / "twanksta_dmlex.nvh"
 
 GENDERS = ("masc", "fem", "neut")

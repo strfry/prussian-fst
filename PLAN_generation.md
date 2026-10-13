@@ -77,7 +77,7 @@ Auflöser); Roh-HTML bleibt Quelle, jederzeit regenerierbar.
 
 0.7 **Datenheimat & Pipeline.** Roh-HTML ist eingefroren; Ableitung immutable.
 - **Fett (corpus, morphologie-frei):** `twanksta_to_dmlex.py` dumpt jede synthetische
-  Einwort-Zelle **aller POS** als `inflectedForm`+`tag` → `twanksta_dmlex.full.nvh`.
+  Einwort-Zelle **aller POS** als `inflectedForm`+`tag` → `twanksta.nvh`.
   (Verb-Teil erledigt, §„Stand".) Kein fst-Import.
 - **Lean (fst, Morphologie):** Kompressor (§3) verdichtet zu `twanksta_dmlex.nvh`
   (Seeds + Rest). Die lean NVH geht in den **NVH-nativen Lexonomy-Dict** (danach Heimat).
@@ -127,7 +127,7 @@ listenlosen Generators — sie gehören zum downstream-Analyzer bzw. zur Overrid
 
 ## 3. Kompressor
 
-`gen/compress_forms.py` (neu): liest `twanksta_dmlex.full.nvh` (alle POS), ruft je Eintrag
+`gen/compress_forms.py` (neu): liest `twanksta.nvh` (alle POS), ruft je Eintrag
 `derive_minimal(family, paradigm, attested)` auf — nutzt den Basis-Generator (§1), um die
 **minimalen Seeds** zu finden, die die attestierten Zellen regenerieren; alles sonst
 Nicht-Regenerierbare bleibt als Nicht-Seed-`inflectedForm` (Rest-Override). Schreibt lean
@@ -175,7 +175,7 @@ construction** (Nicht-Regenerierbares bleibt stehen).
 
 - Fette Verb-NVH erzeugt & verifiziert (opencode/big-pickle): 1917 Verben × 90 Zellen =
   172.530 `inflectedForm`, 12,8 MB, deterministisch; `paradigm` top-level, kein `example`,
-  Perfekt/Futur ausgelassen, Reflexiv ohne `si`, Tests grün. → `twanksta_dmlex.full.nvh`.
+  Perfekt/Futur ausgelassen, Reflexiv ohne `si`, Tests grün. → `twanksta.nvh`.
 - fst von Stufe-3-/Legacy-Cruft befreit (emit_overrides/punion, stale Pläne, gen-vs-base-
   Reports); `coverage_gen.py` (Nomen-Engine) bewahrt; Build auf reine Regel-Union
   vereinfacht.
