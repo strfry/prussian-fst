@@ -11,7 +11,7 @@
 #   make cg3-check    — Syntaxcheck des CG3-Disambiguators
 #   make disambiguate — Vollkorpus-Lauf mit Ambiguitätsstatistik (stdout)
 #   make conllu       — CoNLL-U-Silberexport aller Korpora nach data/
-#   make links        — desc-Ref-Resolver → build/links.json (Input fürs
+#   make links        — ↑-Verweise Form → Grundform → build/links.json (Input fürs
 #                       Chunk-Clustering in prussian-embeddings)
 #   make clean
 
@@ -139,8 +139,8 @@ conllu: build/base.hfstol build/lenient.hfstol cg3-sets $(CG3_BINS)
 detect-errors: build/base.hfstol cg3-sets $(CG3_BINS)
 	python3 src/prussian_fst/cg3_pipeline.py --detect-errors --limit 200
 
-# desc-Ref-Resolver: Verweise in twanksta-descs über die Analyzer-Kaskade
-# auflösen → build/links.json.  Wichtig: nach Änderungen an linker.py neu
+# ↑-Verweise der Formeinträge (Form → Grundform-Eintrag) auflösen
+# → build/links.json.  Wichtig: nach Änderungen an linker.py neu
 # laufen lassen und die Kette weiterfahren (chunks bauen, Embeddings
 # generieren, MCP-Server neu starten) — siehe ../embeddings/README.md.
 #

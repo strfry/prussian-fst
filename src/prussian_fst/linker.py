@@ -1,31 +1,30 @@
-"""Ref-Resolver für Twanksta-desc-Verweise.
+"""Verweis-Resolver für Twanksta-Formeinträge.
 
-Die desc-Felder der lean NVH (twanksta_dmlex.nvh, legacy.desc als Klartext,
-siehe prussian_fst.nvh) enthalten in eckigen Klammern
-Herleitungs-/Belegverweise, oft auf andere preußische Formen
-("[pawargan 63 MK]", "[Grēnztun drv]").  Der Linker löst diese Formen
-über eine Analyzer-Kaskade zunehmender Toleranz auf ein Lemma des FST auf:
+Flektierte Formen stehen in der lean NVH (twanksta_dmlex.nvh, legacy.desc
+als Klartext, siehe prussian_fst.nvh) als eigene Einträge ohne Übersetzung;
+ihre desc beginnt mit einem Pfeil-Verweis auf die Grundform:
 
-  1. exact   — base.hfstol, Form wie geschrieben
-  2. case    — base.hfstol, lower-/Capitalize-Varianten
-  3. macron  — macron.hfstol (Makron-Verlust), Case-Varianten
-  4. lenient — lenient.hfstol (Makron + Degemination + Ortho), Case-Varianten
+  wīrans    ↑ Wīrs acc sg m [Wīrans 93(12)]
+  grēki si  ↑ Grēkitwei ps 3 r [grīkisi 55]
+  klāntamai ↑ Klantītun, ↑ Klantītwei ps 1 sg m [klantemmai 29]
 
-Mindestens 1 Analyse in einer Stufe → Treffer (status "resolved",
-method = Stufenname).  Mehrere Lemmata werden NICHT als Fehler behandelt,
-sondern als Cluster gelinkt (lemmas: [...]): dieselbe Oberflächenform ist
-im Vollform-Lexikon von mehreren Lemmata legitim ableitbar (lexikalisierte
-Ableitung vs. flektiertes Grundwort, tun/twei-Infinitivpaare, Sg-/Pl-tantum-
-Paare, Makron-Minimalpaare).  Regelstufen können solche Fälle nicht trennen;
-Details siehe docs/ambiguities.md.  Keine Analyse → gap (erwartbar für die
-vielen deutschen/litauischen Etymologie-Verweise).
+Der Linker löst das Ziel jedes Pfeils auf NVH-Einträge auf:
 
-Großgeschriebene Refs (Lemma-Zitierformen) und Formen mit Zeichen außerhalb
-des FST-Alphabets (Fremd-/Lehnwortschreibungen) werden gar nicht erst
-nachgeschlagen — siehe resolve_corpus bzw. den Alphabet-Guard.
+  1. headword — längstes Token-Präfix nach dem Pfeil, das ein Stichwort ist
+                (exakte Schreibung vor Groß-/Kleinschreibung-tolerant)
+  2. macron   — dasselbe ohne Makrons (Madlitun → madlītun)
+  3. exact/case/macron/lenient — Analyzer-Kaskade über das erste Token;
+                Lemmata, die Stichwörter sind, gewinnen
+
+Ein Link trägt die Einträge des Zielworts (``target_ids``).  Bei
+Homographen bleiben die, deren NVH-Wortart zu den FST-Tags der Form passt
+(bētas gen → bētan-1 „Abend“, nicht bētan-2 „gestern“); passt keiner oder
+gibt es keine Tags, bleiben alle.  Die eckigen Klammern sind Belegschreibungen
+aus den Quellen, keine Verweise — sie werden nicht ausgewertet.
 
 Jeder Link trägt neben ``orig_lemma`` (Wort) die Eintrags-``orig_id`` der
-NVH (``be-1``/``be-2``), damit Homographen getrennt bleiben.
+NVH (``be-1``/``be-2``), damit Homographen getrennt bleiben, und die
+FST-Tags der Form unter dem Ziel-Lemma (POS-Fallback beim Chunk-Bau).
 """
 
 from __future__ import annotations
@@ -33,8 +32,8 @@ from __future__ import annotations
 import argparse
 import json
 import re
-from collections import Counter
-from dataclasses import dataclass
+import unicodedata
+from collections import Counter, defaultdict
 from pathlib import Path
 
 try:
@@ -49,19 +48,12 @@ DEFAULT_BASE = REPO / "build/base.hfstol"
 DEFAULT_MACRON = REPO / "build/macron.hfstol"
 DEFAULT_LENIENT = REPO / "build/lenient.hfstol"
 
-# Annotations-Marker in Verweisen, keine Wortformen (Quellen-Kürzel,
-# Herleitungstyp).  Großgeschriebene Werke (E, GrG …) nur als ganzes Token.
-MARKERS = {"MK", "Nx", "DIA", "drv", "DRV", "E", "GlN", "GrG", "GrA", "GrF",
-           "JB", "APN", "TN", "ON", "AV", "av", "ptv", "mod", "rel", "cp",
-           "aci", "Riemann"}
-
-BRACKET_RE = re.compile(r"\[([^\]]*)\]")
+# Ein Pfeil-Verweis reicht bis zum nächsten Pfeil, Komma oder Belegteil.
+ARROW_RE = re.compile(r"↑\s*([^↑,\[]*)")
+MAX_TARGET_TOKENS = 4
 
 # Zeichen, die der FST kennt: Kleinbuchstaben a-z plus Makron-Vokale.
-# Formen mit anderen Zeichen (ļ ķ v é …) stammen aus fremdsprachigen
-# Etymologie-/Lehnwortschreibungen; sie im FST nachzuschlagen liefert nur
-# Präfix-Müll-Matches (kaļķis → ka).  Leerzeichen/Bindestrich sind für
-# mehrteilige Verweise erlaubt.
+# Formen mit anderen Zeichen liefern im FST nur Präfix-Müll-Matches.
 FST_ALPHABET = set("abcdefghijklmnopqrstuvwxyzāēīōū")
 _ALLOWED_EXTRA = set(" -")
 
@@ -71,35 +63,15 @@ def _in_alphabet(form: str) -> bool:
                for ch in form)
 
 
-@dataclass
-class BracketItem:
-    form: str
-    source: str | None = None  # Beleg-Nummer, z.B. "63" aus "pawargan 63"
+def strip_macrons(s: str) -> str:
+    return "".join(ch for ch in unicodedata.normalize("NFD", s)
+                   if unicodedata.category(ch) != "Mn")
 
 
-def parse_desc(desc: str) -> list[BracketItem]:
-    """Alle [...]-Verweise einer desc extrahieren.
-
-    Kommagetrennte Einträge, Klammern gestrippt ((grīki)si → grīkisi),
-    nachgestellte Belegnummern abgetrennt, Marker-Tokens entfernt.
-    """
-    items: list[BracketItem] = []
-    for bracket in BRACKET_RE.findall(desc):
-        for chunk in bracket.split(","):
-            tokens = chunk.replace("(", "").replace(")", "").split()
-            source = None
-            words = []
-            for tok in tokens:
-                if tok.isdigit():
-                    source = tok
-                elif "." in tok:
-                    # Sprachkürzel wie "lat." / "lit." — kein preußischer Beleg.
-                    continue
-                elif tok not in MARKERS and tok.strip("+"):
-                    words.append(tok.strip("+"))
-            if words:
-                items.append(BracketItem(form=" ".join(words), source=source))
-    return items
+def parse_arrows(desc: str) -> list[str]:
+    """Text nach jedem ``↑`` (Ziel plus Grammatik-Kürzel), ohne Belegteil."""
+    return [m.group(1).strip() for m in ARROW_RE.finditer(desc)
+            if m.group(1).strip()]
 
 
 def _case_variants(form: str) -> list[str]:
@@ -113,14 +85,10 @@ def _case_variants(form: str) -> list[str]:
 def resolve_form(form: str, fsts: dict[str, Path]) -> dict:
     """Kaskade über die Analyzer-Stufen; erste Stufe mit Analysen gewinnt.
 
-    Ein oder mehrere Lemmata werden gleich behandelt: status "resolved" mit
-    lemmas als (sortierter) Liste.  Mehrere Lemmata sind kein Fehlerfall,
-    sondern ein Cluster gleichwertiger Analysen derselben Oberflächenform
-    (siehe Modul-Docstring / docs/ambiguities.md).
+    Liefert ``{"status": "resolved", "lemmas": [...], "tags": [...],
+    "method": stufe}`` oder ``{"status": "gap"}``.
     """
     if not _in_alphabet(form):
-        # Zeichen außerhalb des FST-Alphabets → Nachschlagen liefert nur
-        # Präfix-Müll-Matches; direkt als gap behandeln.
         return {"status": "gap"}
     stages = [
         ("exact", fsts["base"], [form]),
@@ -142,29 +110,98 @@ def resolve_form(form: str, fsts: dict[str, Path]) -> dict:
     return {"status": "gap"}
 
 
+class Headwords:
+    """Stichwort-Index der NVH: Schreibung → Eintrags-IDs."""
+
+    def __init__(self, entries: list[dict]):
+        self.exact: dict[str, list[str]] = defaultdict(list)
+        self.fold: dict[str, list[str]] = defaultdict(list)
+        self.bare: dict[str, list[str]] = defaultdict(list)
+        self.word: dict[str, str] = {}
+        for e in entries:
+            eid, w = e.get("id", e["word"]), e["word"]
+            self.word[eid] = w
+            self.exact[w].append(eid)
+            self.fold[w.casefold()].append(eid)
+            self.bare[strip_macrons(w).casefold()].append(eid)
+
+    def match(self, form: str, *, macron: bool = False) -> list[str]:
+        if macron:
+            return self.bare.get(strip_macrons(form).casefold(), [])
+        return self.exact.get(form) or self.fold.get(form.casefold(), [])
+
+
+def resolve_target(text: str, heads: Headwords, fsts: dict[str, Path]) -> dict:
+    """Ziel eines Pfeil-Verweises (``"Wīrs acc sg m"``) auf Einträge auflösen."""
+    tokens = text.split()
+    prefixes = [" ".join(tokens[:n])
+                for n in range(min(MAX_TARGET_TOKENS, len(tokens)), 0, -1)]
+    for method, macron in (("headword", False), ("macron", True)):
+        for ref in prefixes:
+            ids = heads.match(ref, macron=macron)
+            if ids:
+                return {"status": "resolved", "ref": ref, "target_ids": ids,
+                        "method": method}
+    if not tokens:
+        return {"status": "gap", "ref": ""}
+    ref = tokens[0]
+    res = resolve_form(ref, fsts)
+    if res["status"] == "resolved":
+        ids = [i for lemma in res["lemmas"] for i in heads.match(lemma)]
+        if ids:
+            return {"status": "resolved", "ref": ref,
+                    "target_ids": list(dict.fromkeys(ids)),
+                    "method": res["method"]}
+    return {"status": "gap", "ref": ref}
+
+
+# Wortart-Tag des FST (erstes Tag) → passende NVH-pos-Werte.
+FST_TO_NVH_POS = {"N": {"noun"}, "V": {"verb"}, "A": {"adj"}, "Adv": {"adv"},
+                  "Num": {"num", "adj"}, "Pron": {"pron"}}
+
+
+def _filter_homographs(link: dict, pos_by_id: dict[str, str]) -> None:
+    """``target_ids`` auf die Homographen mit zur Form passender Wortart."""
+    ids = link["target_ids"]
+    wanted = set().union(*(FST_TO_NVH_POS.get(t.split("+")[0], set())
+                           for t in link["tags"]))
+    kept = [i for i in ids if pos_by_id.get(i) in wanted]
+    if len(ids) > 1 and kept:
+        link["target_ids"] = kept
+
+
+def _form_tags(links: list[dict], fst: Path) -> None:
+    """``tags`` jedes Links: Analysen der Form unter dem Ziel-Lemma."""
+    words = sorted({l["orig_lemma"] for l in links})
+    analyses = flookup_batch(words, fst) if words and fst.exists() else {}
+    for link in links:
+        targets = set(link["lemmas"])
+        link["tags"] = sorted({"+".join(tags)
+                               for lemma, tags in analyses.get(link["orig_lemma"], [])
+                               if lemma in targets})
+
+
 def resolve_corpus(entries: list[dict], fsts: dict[str, Path]) -> tuple[list, list]:
+    heads = Headwords(entries)
+    pos_by_id = {e.get("id", e["word"]): e.get("pos", "") for e in entries}
     links, unresolved = [], []
-    cache: dict[str, dict] = {}
     for entry in entries:
         desc = entry.get("desc", "")
-        for item in parse_desc(desc):
-            # Großgeschriebene Refs sind Lemma-Zitierformen (E, GrG, eigene
-            # Lemmata …), keine aufzulösenden Flexionsformen → überspringen.
-            if item.form[:1].isupper():
-                continue
-            if item.form not in cache:
-                cache[item.form] = resolve_form(item.form, fsts)
-            res = cache[item.form]
+        for text in parse_arrows(desc):
+            res = resolve_target(text, heads, fsts)
             record = {"orig_lemma": entry.get("word"),
                       "orig_id": entry.get("id", entry.get("word")),
-                      "ref": item.form,
-                      "desc": desc, "source": item.source}
+                      "ref": res["ref"], "desc": desc}
             if res["status"] == "resolved":
-                links.append({**record, "lemmas": res["lemmas"],
-                              "tags": res["tags"], "method": res["method"]})
+                ids = res["target_ids"]
+                links.append({**record, "target_ids": ids,
+                              "lemmas": list(dict.fromkeys(heads.word[i] for i in ids)),
+                              "method": res["method"]})
             else:
-                record["status"] = res["status"]
-                unresolved.append(record)
+                unresolved.append({**record, "status": res["status"]})
+    _form_tags(links, fsts["base"])
+    for link in links:
+        _filter_homographs(link, pos_by_id)
     return links, unresolved
 
 
@@ -189,15 +226,13 @@ def main() -> None:
 
     if args.stats:
         methods = Counter(l["method"] for l in links)
-        status = Counter(u["status"] for u in unresolved)
-        clusters = sum(1 for l in links if len(l["lemmas"]) > 1)
+        homographs = sum(1 for l in links if len(l["target_ids"]) > 1)
         total = len(links) + len(unresolved)
         print(f"Verweise gesamt: {total}")
         print(f"aufgelöst: {len(links)} "
               f"({', '.join(f'{m}={n}' for m, n in methods.most_common())})")
-        print(f"  davon Cluster (mehrere Lemmata): {clusters}")
-        print(f"offen: {len(unresolved)} "
-              f"({', '.join(f'{s}={n}' for s, n in status.most_common())})")
+        print(f"  davon auf Homographen (mehrere Einträge): {homographs}")
+        print(f"offen: {len(unresolved)}")
 
 
 if __name__ == "__main__":

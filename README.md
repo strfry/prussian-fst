@@ -20,7 +20,7 @@ nebenan — keine Kopie im fst-Repo:
 |---|---|
 | `twanksta_dmlex.nvh` | **lean NVH** — Build-Eingabe (Lexeme, `stemOverrides`, Override-Zellen, Invariable) |
 | `twanksta.nvh` | fette NVH — jede Twanksta-Zelle; Eingabe des Kompressors |
-| `twanksta_entries.json` | Roh-Export; noch gelesen von `export_valence.py`, `linker.py` |
+| `twanksta_entries.json` | Roh-Export; noch gelesen von `export_valence.py` |
 
 Die lean NVH entsteht aus der fetten über den Kompressor
 (`gen/compress_forms.py`), mit der exakten Zusicherung
@@ -45,7 +45,7 @@ make analyzer-parity   # Oberflächendeckung gegen das eingefrorene Twanksta-Gol
 make cg3-check         # CG3-Sets generieren + Grammatiken kompilieren
 make disambiguate      # Vollkorpus-Lauf mit Ambiguitätsstatistik
 make conllu            # CoNLL-U-Silberexport → data/prussian_silver.conllu
-make links             # desc-Ref-Resolver → build/links.json
+make links             # ↑-Verweis-Resolver (Form → Grundform) → build/links.json
 make validate-corpus   # Validator über die Korpora (Fehlalarm-Regression)
 uv run pytest
 ```
@@ -95,7 +95,7 @@ High-Level-API `prussian_fst.api` (`analyze`, `validate`, `conllu`).
 │   ├── export_conllu.py      # CoNLL-U-Export
 │   ├── export_valence.py     # Rektion/Valenz → build/valence.json
 │   ├── gen_cg3_sets.py       # valence.json → cg3/generated-sets.cg3
-│   └── linker.py             # desc-Ref-Resolver → build/links.json
+│   └── linker.py             # ↑-Verweis-Resolver (Form → Grundform) → build/links.json
 ├── cg3/
 │   ├── disambiguator.cg3     # Hauptgrammatik
 │   ├── dependency.cg3        # Dependenz-Schicht

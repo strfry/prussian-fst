@@ -1,7 +1,7 @@
-"""Tests für den desc-Ref-Resolver (linker.py).
+"""Tests für den Pfeil-Verweis-Resolver (linker.py).
 
-parse_desc und Kaskadenlogik laufen ohne FST (monkeypatched lookup);
-der Smoke-Test braucht die gebauten .hfstol-Artefakte.
+parse_arrows, Stichwort-Matching und Kaskadenlogik laufen ohne FST
+(monkeypatched lookup); der Smoke-Test braucht die gebauten .hfstol-Artefakte.
 """
 
 from pathlib import Path
@@ -10,54 +10,31 @@ import pytest
 
 from prussian_fst import linker
 from prussian_fst.linker import (
-    BracketItem,
-    parse_desc,
+    Headwords,
+    parse_arrows,
     resolve_corpus,
     resolve_form,
+    resolve_target,
 )
 
 REPO = Path(__file__).resolve().parents[1]
 
 
-# ── parse_desc ──
+# ── parse_arrows ──
 
-def test_parse_desc_simple():
-    assert parse_desc("[Advent MK]") == [BracketItem("Advent")]
-
-
-def test_parse_desc_source_number():
-    assert parse_desc("[pawargan 63 MK]") == [BracketItem("pawargan", "63")]
+def test_parse_arrows_single():
+    assert parse_arrows("↑ Wīrs acc sg m [Wīrans 93(12)]") == ["Wīrs acc sg m"]
 
 
-def test_parse_desc_commas_and_markers():
-    items = parse_desc("[ankant, ankants, ankanst DIA Riemann MK]")
-    assert [i.form for i in items] == ["ankant", "ankants", "ankanst"]
+def test_parse_arrows_two_targets():
+    assert parse_arrows("↑ Klantītun, ↑ Klantītwei ps 1 sg m [klantemmai 29]") == [
+        "Klantītun", "Klantītwei ps 1 sg m"]
 
 
-def test_parse_desc_parens_stripped():
-    assert parse_desc("[(grīki)si drv]") == [BracketItem("grīkisi")]
-
-
-def test_parse_desc_outside_brackets_ignored():
-    items = parse_desc("(ēn, prēi acc) [Grēnztun drv]")
-    assert items == [BracketItem("Grēnztun")]
-
-
-def test_parse_desc_multiword():
-    assert parse_desc("[das Zitat MK]") == [BracketItem("das Zitat")]
-
-
-def test_parse_desc_empty():
-    assert parse_desc("") == []
-    assert parse_desc("[MK]") == []
-
-
-def test_parse_desc_language_prefix_dropped():
-    # Sprachkürzel ("lat.") verwerfen, echten Beleg behalten.
-    assert parse_desc("[lat. portus MK]") == [BracketItem("portus")]
-    assert parse_desc("[lit. viešėti]") == [BracketItem("viešėti")]
-    # Bleibt nichts übrig, entsteht auch kein Eintrag.
-    assert parse_desc("[gr. MK]") == []
+def test_parse_arrows_brackets_ignored():
+    # Belegschreibungen in [...] sind keine Verweise.
+    assert parse_arrows("n [bērzi 63 MK]") == []
+    assert parse_arrows("") == []
 
 
 # ── Kaskade (synthetische Lookups) ──
@@ -132,48 +109,97 @@ def test_alphabet_guard_allows_macron_and_space(patched):
     assert res["status"] == "resolved"
 
 
+# ── Stichwort-Auflösung ──
+
+def _heads():
+    return Headwords([
+        {"id": "wīrs", "word": "wīrs"},
+        {"id": "grēkitwei", "word": "grēkitwei"},
+        {"id": "audātun si", "word": "audātun si"},
+        {"id": "madlītun", "word": "madlītun"},
+        {"id": "bilītun-1", "word": "bilītun"},
+        {"id": "bilītun-2", "word": "bilītun"},
+    ])
+
+
+def test_target_headword_case_insensitive(patched):
+    patched({})
+    res = resolve_target("Wīrs acc sg m", _heads(), FSTS)
+    assert (res["target_ids"], res["ref"], res["method"]) == (
+        ["wīrs"], "Wīrs", "headword")
+
+
+def test_target_multiword_headword(patched):
+    patched({})
+    res = resolve_target("Audātun si ps 3", _heads(), FSTS)
+    assert res["target_ids"] == ["audātun si"]
+
+
+def test_target_macron_tolerant(patched):
+    patched({})
+    res = resolve_target("Madlitun ps 1 sg", _heads(), FSTS)
+    assert (res["target_ids"], res["method"]) == (["madlītun"], "macron")
+
+
+def test_target_homographs_all_ids(patched):
+    patched({})
+    assert resolve_target("Bilītun ps 3", _heads(), FSTS)["target_ids"] == [
+        "bilītun-1", "bilītun-2"]
+
+
+def test_target_fst_fallback(patched):
+    # Kein Stichwort: Analyzer-Kaskade, Lemma muss Stichwort sein.
+    patched({"base": {"pirmas": [("wīrs", ["N", "Sg", "Nom"])]}})
+    res = resolve_target("Pirmas m pnl", _heads(), FSTS)
+    assert (res["target_ids"], res["method"]) == (["wīrs"], "case")
+
+
+def test_target_gap(patched):
+    patched({})
+    assert resolve_target("Sīran acc sg", _heads(), FSTS)["status"] == "gap"
+
+
 # ── resolve_corpus ──
 
-def test_resolve_corpus_cluster_and_skips(patched):
-    patched({"base": {"labban": [("labban", ["N"]), ("labs", ["Aj"])]}})
+def test_resolve_corpus_links_and_form_tags(patched):
+    patched({"base": {"wīrans": [("wīrs", ["N", "Msc", "Sg", "Acc"]),
+                                 ("wīrins", ["N", "Msc", "Pl", "Acc"])]}})
     entries = [
-        {"word": "labs", "desc": "[labban MK]"},   # Cluster-Treffer
-        {"word": "Werk", "desc": "[Advent MK]"},   # Großschreibung → skip
-        {"word": "x", "desc": "[kaļķis MK]"},      # Nicht-FST-Zeichen → gap
+        {"id": "wīrs", "word": "wīrs", "desc": "n m"},
+        {"id": "wīrans", "word": "wīrans", "desc": "↑ Wīrs acc sg m [Wīrans 93]"},
+        {"id": "sīru", "word": "sīru", "desc": "↑ Sīran dat sg [siru 115]"},
     ]
     links, unresolved = resolve_corpus(entries, FSTS)
-    assert len(links) == 1
-    assert links[0]["ref"] == "labban"
-    assert links[0]["lemmas"] == ["labban", "labs"]
-    assert "lemma" not in links[0]
-    # Advent wird übersprungen (kein Link, kein unresolved-Eintrag);
-    # kaļķis bleibt als gap offen.
-    assert [u["ref"] for u in unresolved] == ["kaļķis"]
-    assert unresolved[0]["status"] == "gap"
+    assert [(l["orig_id"], l["lemmas"], l["target_ids"], l["tags"])
+            for l in links] == [("wīrans", ["wīrs"], ["wīrs"], ["N+Msc+Sg+Acc"])]
+    assert [(u["orig_id"], u["ref"], u["status"]) for u in unresolved] == [
+        ("sīru", "Sīran", "gap")]
 
 
-def test_resolve_corpus_uppercase_ref_not_casefolded(patched):
-    # Regression (pettalka → pippelka): Großgeschriebene Zitatverweise wie
-    # "[peteliškė, Pippelka]" sind Lemma-Verweise, keine Flexionsformen.
-    # Selbst wenn die kleingeschriebene Form im FST auflösbar wäre, darf
-    # der Ref NICHT per Case-Folding nachgeschlagen und gelinkt werden.
-    patched({"base": {"pippelka": [("pippelka", ["N", "Sg", "Nom"])]}})
-    entries = [{"word": "pettalka", "desc": "[peteliškė, Pippelka]"}]
-    links, unresolved = resolve_corpus(entries, FSTS)
-    assert links == []
-    # peteliškė bleibt als gap offen (Nicht-FST-Zeichen); Pippelka wird
-    # komplett übersprungen — kein Link, kein unresolved-Eintrag.
-    assert [u["ref"] for u in unresolved] == ["peteliškė"]
-    assert unresolved[0]["status"] == "gap"
+def test_resolve_corpus_homographs_filtered_by_pos(patched):
+    patched({"base": {"bētas": [("bētan", ["N", "Neu", "Sg", "Gen"])]}})
+    entries = [
+        {"id": "bētan-1", "word": "bētan", "pos": "noun", "desc": ""},
+        {"id": "bētan-2", "word": "bētan", "pos": "adv", "desc": ""},
+        {"id": "bilītun-1", "word": "bilītun", "pos": "verb", "desc": ""},
+        {"id": "bilītun-2", "word": "bilītun", "pos": "verb", "desc": ""},
+        {"id": "bētas", "word": "bētas", "desc": "↑ Bētan gen [bētas 1]"},
+        # Ohne FST-Tags kein Filter: alle Homographen bleiben.
+        {"id": "bilāi", "word": "bilāi", "desc": "↑ Bilītun"},
+    ]
+    links, _ = resolve_corpus(entries, FSTS)
+    assert [(l["orig_id"], l["target_ids"]) for l in links] == [
+        ("bētas", ["bētan-1"]), ("bilāi", ["bilītun-1", "bilītun-2"])]
 
 
 def test_resolve_corpus_homographs_keep_entry_id(patched):
     # Homographen teilen das Wort, nicht die Eintrags-ID: jeder Link trägt
     # die orig_id seines NVH-Eintrags.
-    patched({"base": {"labban": [("labban", ["N"])]}})
+    patched({})
     entries = [
-        {"id": "be-1", "word": "be", "desc": "[labban MK]"},
-        {"id": "be-2", "word": "be", "desc": "[labban 17]"},
+        {"id": "wīrs", "word": "wīrs", "desc": ""},
+        {"id": "be-1", "word": "be", "desc": "↑ Wīrs"},
+        {"id": "be-2", "word": "be", "desc": "↑ Wīrs acc"},
     ]
     links, _ = resolve_corpus(entries, FSTS)
     assert [(l["orig_lemma"], l["orig_id"]) for l in links] == [
@@ -193,21 +219,3 @@ def test_resolve_smoke():
     assert res["status"] == "resolved"
     assert res["lemmas"] == ["niaīnunts"]
     assert res["method"] == "macron"
-
-
-LINKS = REPO / "build/links.json"
-
-
-@pytest.mark.skipif(not LINKS.exists(), reason="make links zuerst")
-def test_links_artifact_no_uppercase_refs():
-    # Artefakt-Invariante: build/links.json darf keine kapitalisierten
-    # Refs enthalten (Zitatverweise werden geskippt).  Ein Verstoß heißt:
-    # das Artefakt stammt von einem älteren Linker-Stand → make links.
-    import json
-
-    records = json.loads(LINKS.read_text())
-    bad = sorted({r["ref"] for r in records if r.get("ref", "")[:1].isupper()})
-    assert not bad, (
-        f"{LINKS} enthält {len(bad)} großgeschriebene Refs "
-        f"(z. B. {bad[:5]}) — stale Artefakt, bitte `make links` erneut ausführen."
-    )
