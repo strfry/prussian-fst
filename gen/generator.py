@@ -549,6 +549,28 @@ _VARIANT_RESOLVERS: dict[tuple[str, str], Callable[[str], str]] = {
     ("verb", "87"): _resolve_87,
 }
 
+# Twanksta-Nummern ohne eigene Endungstabelle: sie flektieren wie das Ziel-
+# paradigma, nur mit anderen Stämmen (Stufe 1, gelieferter Stamm) bzw. ein, zwei
+# Override-Zellen. Die Buchstabenklassen (81a–c, 134a …) fehlen bei Palmaitis 2006
+# und sind wohl ad hoc bei der Twanksta-Umsetzung für abweichende Stammmuster
+# entstanden. Gemessen mit scratch/paradigm_survey (Rest-Overrides ≤ ~3/Eintrag).
+# Das Paradigma in der NVH bleibt die Twanksta-Nummer; der Alias ist reine
+# Generator-Sache (Atom = das des Ziels).
+PARADIGM_ALIASES: dict[tuple[str, str], str] = {
+    **{("verb", p): "134" for p in ("134a",)},
+    **{("verb", p): "75" for p in ("75b", "79")},
+    **{("verb", p): "81" for p in ("80b", "81b", "81c", "83")},
+    **{("verb", p): "71" for p in ("72",)},
+    **{("verb", p): "136" for p in ("76s", "82a", "110", "137a")},
+    # starkes Verb (Pres_A + Ablaut-Präteritum Pret_A)
+    **{("verb", p): "100" for p in ("75a", "97a", "98", "102a", "106b", "128",
+                                    "86", "95", "104", "112")},
+    **{("noun", p): "35" for p in ("35a",)},
+    **{("noun", p): "40" for p in ("40a",)},
+    **{("noun", p): "45" for p in ("47", "55")},
+    **{("noun", p): "61" for p in ("62", "64")},
+}
+
 
 def family_of(pos: str, paradigm: str | int) -> str:
     """(pos, Twanksta-Paradigma) → Stammfamilie (Teil des Atom-Namens)."""
@@ -573,10 +595,7 @@ def _family_pos(pos: str) -> str:
 
 def _paradigm(pos: str, paradigm: str | int, lemma: str = "") -> Paradigm:
     pos = _family_pos(pos)
-    key = (pos, str(paradigm))
-    resolver = _VARIANT_RESOLVERS.get(key)
-    if resolver is not None:
-        key = (pos, resolver(_norm(lemma)))
+    key = (pos, _paradigm_key(pos, paradigm, lemma))
     try:
         return PARADIGMS[key]
     except KeyError:
@@ -586,14 +605,15 @@ def _paradigm(pos: str, paradigm: str | int, lemma: str = "") -> Paradigm:
 
 
 def resolve_paradigm(pos: str, paradigm: str | int, lemma: str = "") -> str:
-    """Twanksta-Paradigma → Atompfad-Paradigma (87 → 87a/87b)."""
+    """Twanksta-Paradigma → Atompfad-Paradigma (87 → 87a/87b, 134a → 134)."""
     return _paradigm_key(pos, paradigm, lemma)
 
 
 def _paradigm_key(pos: str, paradigm: str | int, lemma: str = "") -> str:
-    key = (_family_pos(pos), str(paradigm))
-    resolver = _VARIANT_RESOLVERS.get(key)
-    return resolver(_norm(lemma)) if resolver is not None else str(paradigm)
+    pos = _family_pos(pos)
+    paradigm = PARADIGM_ALIASES.get((pos, str(paradigm)), str(paradigm))
+    resolver = _VARIANT_RESOLVERS.get((pos, paradigm))
+    return resolver(_norm(lemma)) if resolver is not None else paradigm
 
 
 # ── Atom-FSTs ───────────────────────────────────────────────────────────────

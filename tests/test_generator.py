@@ -466,3 +466,11 @@ def test_rewrite_root_only_touches_root():
 
 def _lexicons_str(text):
     return set(re.findall(r"^LEXICON\s+(\S+)", text, re.MULTILINE))
+
+
+def test_paradigm_aliases_resolve_to_target_atoms():
+    # Alias = Ziel-Paradigma mit anderen Stämmen; Atom ist das des Ziels.
+    assert gen.resolve_paradigm("verb", "134a") == "134"
+    assert gen.atom_path("verb", "81b", "pres") == gen.atom_path("verb", "81", "pres")
+    assert gen.atom_path("noun", "35a", "obl").name == "gen-astem-35.hfstol"
+    assert gen.paradigm_spec("noun", "47") is gen.paradigm_spec("noun", "45")
