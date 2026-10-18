@@ -439,9 +439,12 @@ SELECT (Gen) IF (0 Gen) (0 Nominal - Gen) (1C Po) (1C GenPost) ;
 # (Gen-Modifikator steht VOR seiner NG), kein Gen-Verb, keine Negation
 # und kein Gen-Demonstrativum (stēisan) links in der Klausel; direkt nach
 # Numerale kein Eingriff (Bruchzahlen regieren Gen, syntax_rules §27).
+# Personalpronomen P1/P2 sind kein Kopf eines vorangestellten Genitivs
+# („ankstāinan as turri …": as lizenziert kein Gen-Attribut).
+SET GenHost = NGHead - P1Pron - P2Pron ;
 REMOVE SAFE (Gen) IF (0 Nominal - Gen)
     (NOT -1 Num) (NOT -1 MeasureN)
-    (NEGATE 1* NGHead BARRIER ClauseBoundary)
+    (NEGATE 1* GenHost BARRIER ClauseBoundary)
     (NEGATE -1* GenVerb BARRIER ClauseBoundary)
     (NEGATE -1* GenDet BARRIER ClauseBoundary)
     (NEGATE -1* FiniteVerb BARRIER ClauseBoundary LINK -1 Ni) ;
@@ -780,10 +783,11 @@ SETPARENT DetPronPP + Dat (NOT 0 XPred) (-1C Pr) (NOT 1 NGHead)
 #    echte Konjunkte (CC mit linkem NG-Konjunkt) und Determinierer
 #    sind schon angebunden ──
 SETPARENT NGHead - Gen - XPred (NEGATE -1C CC LINK -1 NGHead)
+    (NOT p Inf)
     (NEGATE 0 DetPron LINK 1 NGHead) (NEGATE 0 DetPron LINK p N)
     TO (1* ClauseHead BARRIER RightCB) ;
 SETPARENT NGHead - Gen - XPred (NEGATE -1C CC LINK -1 NGHead)
-    (NOT p ClauseHead) (NEGATE 0 DetPron LINK 1 NGHead)
+    (NOT p ClauseHead) (NOT p Inf) (NEGATE 0 DetPron LINK 1 NGHead)
     (NEGATE 0 DetPron LINK p N)
     TO (-1* ClauseHead BARRIER RightCB) ;
 # Gen-Objekte (GenVerb/Genitivus negationis) und obliques Gen+Po
@@ -795,13 +799,26 @@ SETPARENT NGHead + Gen - XPred (NOT p (*))
     TO (1* ClauseHead BARRIER RightCB) ;
 
 # ── Adverbien, Partikeln, Infinitive ──
-SETPARENT Adv TO (-1* ClauseHead BARRIER RightCB) ;
-SETPARENT Adv (NOT p ClauseHead) TO (1* ClauseHead BARRIER RightCB) ;
+SETPARENT Adv (NOT p Inf) TO (-1* ClauseHead BARRIER RightCB) ;
+SETPARENT Adv (NOT p ClauseHead) (NOT p Inf)
+    TO (1* ClauseHead BARRIER RightCB) ;
 SETPARENT Pcle TO (1C AdjAdv) ;
 SETPARENT Pcle (NOT p (*)) TO (1* ClauseHead BARRIER RightCB) ;
 SETPARENT Pcle (NOT p (*)) TO (-1* ClauseHead BARRIER RightCB) ;
 SETPARENT Inf TO (-1* ClauseHead BARRIER RightCB) ;
 SETPARENT Inf (NOT p (*)) TO (1* ClauseHead BARRIER RightCB) ;
+
+# ── Infinitiv-Komplement übernimmt die Dependenten ──
+# Hängt ein Infinitiv am finiten Verb (Modal/Kontrollverb, „as turri
+# ēitwei …"), ist dessen Komplementstelle besetzt: alle übrigen
+# Dependenten außer dem Subjekt gehören zum Infinitiv — unabhängig
+# von der Stellung („ankstāinan as turri ēitwei prēi kāupan").
+# Nur Cohorts ohne Nom-Lesart (Subjektkandidaten bleiben am finiten
+# Verb, bis SECTION 10 die Rolle klärt; danach feuert die Regel neu).
+SET InfDep = NGHead OR Adv ;
+SETPARENT:inf-dep InfDep - XPred (NOT 0 Nom)
+    (p FiniteVerb LINK c Inf)
+    TO (p FiniteVerb LINK c Inf) ;
 
 
 # ============================================================ #
@@ -820,14 +837,15 @@ SECTION
 
 # PP-Kopf (Adposition als Kind): alle Lesarten sind oblique —
 # blockiert zugleich die Argument-Rollen für diese Lesarten.
-MAP (@OBL) NGHead - XPred IF (c Adposition) (p ClauseHead) ;
+SET RoleHead = ClauseHead OR Inf ;               # Inf: s. inf-dep
+MAP (@OBL) NGHead - XPred IF (c Adposition) (p RoleHead) ;
 
 # Argument-Rollen kasusweise; @pred-Lesarten (Prädikatsnomen)
 # sind Klauselköpfe, keine Argumente.
-MAP (@SUBJ) NGHead + Nom - XPred IF (p ClauseHead) (NEGATE c Adposition) ;
-MAP (@OBJ) NGHead + Acc - XPred IF (p ClauseHead) (NEGATE c Adposition) ;
-MAP (@IOBJ) NGHead + Dat - XPred IF (p ClauseHead) (NEGATE c Adposition) ;
-MAP (@GOBJ) NGHead + Gen - XPred IF (p ClauseHead) (NEGATE c Adposition) ;
+MAP (@SUBJ) NGHead + Nom - XPred IF (p RoleHead) (NEGATE c Adposition) ;
+MAP (@OBJ) NGHead + Acc - XPred IF (p RoleHead) (NEGATE c Adposition) ;
+MAP (@IOBJ) NGHead + Dat - XPred IF (p RoleHead) (NEGATE c Adposition) ;
+MAP (@GOBJ) NGHead + Gen - XPred IF (p RoleHead) (NEGATE c Adposition) ;
 
 
 # ============================================================ #
@@ -855,6 +873,17 @@ REMOVE SAFE (@OBJ) IF (sC XObj) ;
 # Formen transitiver Verben regieren ihr Objekt weiter.
 REMOVE SAFE (@OBJ) IF (p FiniteVerb + Copula) ;
 REMOVE SAFE (@OBJ) IF (p XPred - Part) ;
+
+# Valenz über die Infinitivendung: Verben auf -twei sind intransitiv
+# (Twanksta: itr/ITR bzw. nur PP-/Dat-Rektion; transitive Partner auf
+# -tun: swiltwei/swiltun, bilancītwei/enbilancītun).  Ausnahme laut
+# valence.json: parkautwei (AKK prei AKK).  pC: alle Lesarten des
+# Kopfes tragen das -twei-Lemma (dirītwei/dirītun-Homographen).
+LIST TweiVerb = ".*twei"r ;
+LIST TransTwei = "parkautwei" ;
+SET IntransV = V + TweiVerb - TransTwei ;
+REMOVE:twei-no-obj SAFE (@OBJ) IF (pC IntransV) (NEGATE c Adposition)
+    (NEGATE -1* Pr BARRIER NonPPMid) ;
 
 # Subjekt-Verb-Kongruenz im Numerus, Verb → Subjekt: eindeutiger
 # Verbnumerus filtert die Subjektlesart.  Nur P1/P2-Formen tragen

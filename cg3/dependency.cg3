@@ -57,6 +57,9 @@ SET AnyRole = XSubj OR XObj OR XIObj OR XGObj OR XObl ;
 
 SET FiniteVerb = V - Inf - Part ;
 SET ClauseHead = XPred OR XFin ;
+# Argument-Köpfe: Klauselkopf oder Infinitiv-Komplement, das die
+# Dependenten des finiten Verbs übernimmt (disambiguator inf-dep)
+SET ArgHead = ClauseHead OR Inf ;
 SET NGHead = N OR Pron ;
 SET CongrMod = A OR Num OR Part ;
 SET Nominal = N OR A OR Pron OR Num OR Part ;
@@ -106,27 +109,27 @@ ADDRELATION (nmod) Pron + Gen - DetPron TO (p NGHead) ;
 # Reihenfolge = Tie-Break bei Restambiguität (unaufgelöste Rollen
 # nach Uniqueness): obl > nsubj > obj > iobj > Genitivobjekt —
 # dieselbe Präferenz wie die alte Kasuslogik.
-ADDRELATION (obl) XObl TO (p ClauseHead) ;
-ADDRELATION (nsubj) XSubj TO (p ClauseHead) ;
-ADDRELATION (obj) XObj (NOT 0 XSubj) TO (p ClauseHead) ;
-ADDRELATION (iobj) XIObj (NOT 0 XSubj OR XObj) TO (p ClauseHead) ;
+ADDRELATION (obl) XObl TO (p ArgHead) ;
+ADDRELATION (nsubj) XSubj TO (p ArgHead) ;
+ADDRELATION (obj) XObj (NOT 0 XSubj) TO (p ArgHead) ;
+ADDRELATION (iobj) XIObj (NOT 0 XSubj OR XObj) TO (p ArgHead) ;
 ADDRELATION (obj) XGObj (NOT 0 XSubj OR XObj OR XIObj)
-    TO (p ClauseHead) ;
+    TO (p ArgHead) ;
 
 # Kasusbasierter Fallback für Cohorts ganz ohne Rollen-Tag (das
 # Rollen-Mapping greift nur bei ClauseHead-Parent aus Phase 1).
 # NEGATE statt NOT bei den c-Tests: (NOT c X) schlägt bei kinderlosen
 # Cohorts fehl (vgl. vislcg3-Stolperfallen).
 ADDRELATION (obl) NGHead (NOT 0 AnyRole) (c Adposition)
-    TO (p ClauseHead) ;
+    TO (p ArgHead) ;
 ADDRELATION (nsubj) NGHead + Nom (NOT 0 AnyRole) (NEGATE c Adposition)
-    TO (p ClauseHead) ;
+    TO (p ArgHead) ;
 ADDRELATION (obj) NGHead + Acc (NOT 0 AnyRole) (NOT 0 Nom)
-    (NEGATE c Adposition) TO (p ClauseHead) ;
+    (NEGATE c Adposition) TO (p ArgHead) ;
 ADDRELATION (iobj) NGHead + Dat (NOT 0 AnyRole) (NOT 0 Nom OR Acc)
-    (NEGATE c Adposition) TO (p ClauseHead) ;
+    (NEGATE c Adposition) TO (p ArgHead) ;
 ADDRELATION (obj) NGHead + Gen (NOT 0 AnyRole) (NOT 0 Nom OR Acc OR Dat)
-    (NEGATE c Adposition) TO (p ClauseHead) ;
+    (NEGATE c Adposition) TO (p ArgHead) ;
 
 # Infinitiv als offenes Komplement
 ADDRELATION (xcomp) Inf TO (p ClauseHead) ;
