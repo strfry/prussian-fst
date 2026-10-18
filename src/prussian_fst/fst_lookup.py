@@ -17,6 +17,17 @@ def _load_fst(fst_path: Path) -> pyhfst.Hfst:
     return _transducers[key]
 
 
+def _known_chars(form: str, tr: pyhfst.Hfst) -> bool:
+    """Alle Zeichen von *form* sind Eingabesymbole des Transducers.
+
+    pyhfst 1.4.0 gibt einem unbekannten Zeichen dieselbe Nummer wie dem
+    Eingabeende (common.py, find_key) und analysiert dann nur das Präfix
+    („labbanx“ → labban). Solche Formen gar nicht erst nachschlagen.
+    """
+    symbols = tr.tr.symbol_map
+    return all(None in symbols.get(ch, {}) for ch in form)
+
+
 def flookup_batch(forms: list[str], fst_path: Path) -> dict[str, list[tuple[str, list[str]]]]:
     """Alle Formen durch pyhfst; form → [(lemma, tags)]."""
     if not forms:
@@ -24,6 +35,8 @@ def flookup_batch(forms: list[str], fst_path: Path) -> dict[str, list[tuple[str,
     tr = _load_fst(fst_path)
     analyses: dict[str, list[tuple[str, list[str]]]] = defaultdict(list)
     for form in forms:
+        if not _known_chars(form, tr):
+            continue
         for analysis, _weight in tr.lookup(form):
             if analysis.endswith("+?"):
                 continue
