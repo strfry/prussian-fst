@@ -47,11 +47,17 @@ LEXICON Pronouns
   tenā+Pron+P3+Sg+Dat+Fem:tenessei  # ;
   tenā+Pron+P3+Sg+Acc+Fem:tennan  # ;
 
-  ! tenēi — 3pl masc (sie)
-  ! WARNING: no forms found for tenēi
+  ! tāns — 3pl masc (sie); tenēi ist bei Twanksta Verweis-Eintrag auf tāns
+  tāns+Pron+P3+Pl+Nom+Msc:tenēi  # ;
+  tāns+Pron+P3+Pl+Gen+Msc:tenēisan  # ;
+  tāns+Pron+P3+Pl+Dat+Msc:tenēimans  # ;
+  tāns+Pron+P3+Pl+Acc+Msc:tennans  # ;
 
-  ! tennas — 3pl fem (sie)
-  ! WARNING: no forms found for tennas
+  ! tenā — 3pl fem (sie)
+  tenā+Pron+P3+Pl+Nom+Fem:tennas  # ;
+  tenā+Pron+P3+Pl+Gen+Fem:tenēisan  # ;
+  tenā+Pron+P3+Pl+Dat+Fem:tenēimans  # ;
+  tenā+Pron+P3+Pl+Acc+Fem:tennans  # ;
 
 ! ─── Enclitic pronouns — 3rd person (+P3+Encl) ─────────────────── ─
 
