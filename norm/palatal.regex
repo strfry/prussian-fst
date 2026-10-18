@@ -1,0 +1,42 @@
+! Palatalnotation: twanksta schreibt Palatalität als Cj+Vokal, die Prusaspira-
+! Konvention (und die Tatoeba-Texte) über den Folgevokal bzw. Diakritika.
+! Abgeleitet aus Zellpaaren gleicher (Lemma, Paradigma, Slot) beider Wörterbücher
+! (src/prussian_fst/prusaspira_pairs.py → build/ps_correspondences.tsv); Zahlen =
+! Paare in den Klassen Nomen/Verb/Adjektiv.  Richtung wie alle norm-Layer: kanonisch → Text.
+! Achtung: {…} nötig für Mehrzeichenfolgen (siehe ortho.regex).
+
+define Cons [b|c|č|d|f|g|h|k|l|m|n|p|r|s|š|t|w|z|ž];
+
+! sj/zj → š/ž  (absōrbiwusjas → absōrbiwušas, 102; Part. 9982)
+! Vor PalA, damit „sja“ nicht zu „se“ wird.
+define Sib [{sj} (->) š , {zj} (->) ž || _ [a|ā|u|ū|o|ō]];
+
+! tj vor ā → ț  (adresintjāmans → adresințāmans, 1395 v.a. Part.)
+define TCedil [{tj} (->) ț || _ ā];
+
+! nj/rj/gj vor u → ņ/ŗ/ģ  (audāsenju → audāseņu 121, Dnisterju → Dnisteŗu 58,
+! Spērdingju → Spērdinģu 7)
+define Cedil [{nj} (->) ņ , {rj} (->) ŗ , {gj} (->) ģ || _ u];
+
+! Cja → Ce/Ci: jai→ei (Adwēntjai → Adwēntei), jan→in (Spērdingjan → Spērdingin),
+! jas→es|is (Pilkalnjas → Pilkalnes, ainarēizewingjas → ainarēizewingis),
+! jam→em|im, ja→e (augaūnja → augaūne).  Zusammen ~5000.
+define PalA [{ja} (->) [e|i] || Cons _ ];
+
+! Cju → Cu  (anzalju → anzalu 66)
+define PalU [j (->) 0 || Cons _ u];
+
+! Palatales l: twanksta „le“/„lan(s)“/„lja“, Prusaspira „la“/„lin(s)“/„la“
+! (Bībelei → Bībelai 118, Angōlan → Angōlin 993, Angōlans → Angōlins,
+! anzaljai → anzalai 227, arelljas → arellas)
+define LE [e (->) a || l _ i];
+define LAN [a (->) i || l _ n (s) .#.];
+define LJ [j (->) 0 || l _ a];
+
+! Akzent im Diphthong auf dem zweiten Glied (enmēigma → enmeīgma; Tatoeba
+! ankstaīnan, pagaūne)
+define DiphAcc [{āi} (->) {aī} , {āu} (->) {aū} , {ēi} (->) {eī}];
+
+regex Sib .o. TCedil .o. Cedil .o. LJ .o. PalA .o. PalU .o. LE .o. LAN .o. DiphAcc ;
+save stack build/norm-palatal.hfst
+quit

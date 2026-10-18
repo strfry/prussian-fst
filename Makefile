@@ -22,9 +22,9 @@ HFST := uv run python src/prussian_fst/build_fst.py
 # weil make Voraussetzungen beim Einlesen expandiert.
 LEAN_NVH := ../corpus/parsed/twanksta_dmlex.nvh
 
-.PHONY: all clean cg3-sets cg3-check disambiguate conllu hfstol links atoms atom analyzer analyzer-parity
+.PHONY: all clean cg3-sets cg3-check disambiguate conllu hfstol links atoms atom analyzer analyzer-parity eval-prusaspira
 
-all: build/base.hfstol build/macron.hfstol build/lenient.hfstol build/base.gen.hfstol
+all: build/base.hfstol build/macron.hfstol build/lenient.hfstol build/prusaspira.hfstol build/base.gen.hfstol
 
 build/:
 	mkdir -p build
@@ -100,11 +100,29 @@ build/macron.fst: build/base.fst build/norm-macron.hfst
 # Stufe 2: Makron + Degemination + sonstige Orthographie-Varianten.
 # Komposition ist assoziativ, daher in einem Rutsch base .o. macron .o. degem
 # .o. ortho, minimiert.
-build/lenient.fst: build/base.fst build/norm-macron.hfst build/norm-degem.hfst build/norm-ortho.hfst
-	$(HFST) compose $@ build/base.fst build/norm-macron.hfst build/norm-degem.hfst build/norm-ortho.hfst
+LENIENT_LAYERS = build/norm-macron.hfst build/norm-degem.hfst build/norm-ortho.hfst
+build/lenient.fst: build/base.fst $(LENIENT_LAYERS)
+	$(HFST) compose $@ build/base.fst $(LENIENT_LAYERS)
 
-build/macron.hfstol build/lenient.hfstol: build/%.hfstol: build/%.fst
+# Stufe 3 (eigene Datei, opt-in): Prusaspira-Konvention auf lenient.  Palatal-
+# notation (sj→š, Cja→Ce/Ci, …) und Gemination sind keine Fehler, sondern eine
+# andere Schreibnorm, teils linguistisch fragwürdig — darum nicht in lenient.
+# Die beiden Layer greifen auf die twanksta-Schreibung (mit Makron) zu und
+# stehen deshalb direkt nach base, vor den lenient-Layern.
+# Messung: `make eval-prusaspira` → build/prusaspira_eval.md.
+PRUSASPIRA_LAYERS = build/norm-palatal.hfst build/norm-length.hfst $(LENIENT_LAYERS)
+build/prusaspira.fst: build/base.fst $(PRUSASPIRA_LAYERS)
+	$(HFST) compose $@ build/base.fst $(PRUSASPIRA_LAYERS)
+
+build/macron.hfstol build/lenient.hfstol build/prusaspira.hfstol: build/%.hfstol: build/%.fst
 	$(HFST) hfstol $< $@
+
+# Paare twanksta↔Prusaspira + Evaluation der Stufen (Regel-Leave-one-out).
+build/ps_pairs.tsv: src/prussian_fst/prusaspira_pairs.py ../corpus/parsed/twanksta.nvh ../corpus/parsed/prusaspira.nvh | build/
+	uv run python src/prussian_fst/prusaspira_pairs.py
+
+eval-prusaspira: build/base.fst build/ps_pairs.tsv $(PRUSASPIRA_LAYERS)
+	uv run python src/prussian_fst/prusaspira_eval.py
 
 cg3-sets:
 	python3 src/prussian_fst/gen_cg3_sets.py

@@ -47,6 +47,7 @@ make disambiguate      # Vollkorpus-Lauf mit Ambiguitätsstatistik
 make conllu            # CoNLL-U-Silberexport → data/prussian_silver.conllu
 make links             # desc-Ref-Resolver → build/links.json
 make validate-corpus   # Validator über die Korpora (Fehlalarm-Regression)
+make eval-prusaspira   # lenient vs. prusaspira, Leave-one-out je Regel → build/prusaspira_eval.md
 uv run pytest
 ```
 
@@ -104,7 +105,9 @@ High-Level-API `prussian_fst.api` (`analyze`, `validate`, `conllu`).
 ├── norm/                     # Normalisierungs-Stufen (pro Phänomen)
 │   ├── macron.regex          # Makron-Verlust (ā ē ī ō ū → a e i o u)
 │   ├── degem.regex           # Degemination (nn → n …)
-│   └── ortho.regex           # w-Prothese, i-Synkope, twei↔tun …
+│   ├── ortho.regex           # w-Prothese, i-Synkope, twei↔tun …
+│   ├── palatal.regex         # Prusaspira: Palatalnotation (sj→š, Cja→Ce/Ci …)
+│   └── length.regex          # Prusaspira: Gemination nach kurzem Vokal
 ├── tests/                    # pytest; gold/ = eingefrorene Twanksta-Oberflächen
 └── build/
     ├── gen-*.hfstol          # Atome (Stamm+Tag → Oberfläche)
@@ -113,6 +116,7 @@ High-Level-API `prussian_fst.api` (`analyze`, `validate`, `conllu`).
     ├── base.gen.hfstol       # Generator (analysis → surface)
     ├── macron.hfstol         # + Makron-Normalisierung
     ├── lenient.hfstol        # + Degemination/Ortho (Gesamt-Fallback)
+    ├── prusaspira.hfstol     # + Prusaspira-Schreibnorm (opt-in, über lenient)
     └── cg3/*.bin
 ```
 

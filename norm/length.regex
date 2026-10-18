@@ -1,0 +1,23 @@
+! Gemination statt Länge: Prusaspira verdoppelt den Konsonanten nach kurzem Vokal,
+! wo twanksta einfach schreibt (Endrikai → Endrikkai 131, aksamitai → aksamittai 46,
+! etkadai → etkaddai 50, baŕbarai → baŕbarrai 45).  Gegenrichtung zu degem.regex.
+! Richtung kanonisch → Text; optional, durch das Lexikon beschränkt.
+
+define Vowel [a|e|i|o|u];
+define AnyVowel [a|e|i|o|u|ā|ē|ī|ō|ū];
+
+define GemK [[..] (->) k || Vowel k _ AnyVowel];
+define GemT [[..] (->) t || Vowel t _ AnyVowel];
+define GemD [[..] (->) d || Vowel d _ AnyVowel];
+define GemR [[..] (->) r || Vowel r _ AnyVowel];
+define GemM [[..] (->) m || Vowel m _ AnyVowel];
+define GemN [[..] (->) n || Vowel n _ AnyVowel];
+define GemL [[..] (->) l || Vowel l _ AnyVowel];
+define GemS [[..] (->) s || Vowel s _ AnyVowel];
+define GemP [[..] (->) p || Vowel p _ AnyVowel];
+define GemB [[..] (->) b || Vowel b _ AnyVowel];
+define GemG [[..] (->) g || Vowel g _ AnyVowel];
+
+regex GemK .o. GemT .o. GemD .o. GemR .o. GemM .o. GemN .o. GemL .o. GemS .o. GemP .o. GemB .o. GemG ;
+save stack build/norm-length.hfst
+quit
