@@ -167,6 +167,19 @@ def test_resolve_corpus_uppercase_ref_not_casefolded(patched):
     assert unresolved[0]["status"] == "gap"
 
 
+def test_resolve_corpus_homographs_keep_entry_id(patched):
+    # Homographen teilen das Wort, nicht die Eintrags-ID: jeder Link trägt
+    # die orig_id seines NVH-Eintrags.
+    patched({"base": {"labban": [("labban", ["N"])]}})
+    entries = [
+        {"id": "be-1", "word": "be", "desc": "[labban MK]"},
+        {"id": "be-2", "word": "be", "desc": "[labban 17]"},
+    ]
+    links, _ = resolve_corpus(entries, FSTS)
+    assert [(l["orig_lemma"], l["orig_id"]) for l in links] == [
+        ("be", "be-1"), ("be", "be-2")]
+
+
 # ── Smoke-Test gegen gebaute Artefakte ──
 
 from prussian_fst.cg3_pipeline import DEFAULT_FST as BASE  # noqa: E402

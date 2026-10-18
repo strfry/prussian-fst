@@ -1,6 +1,7 @@
 """Ref-Resolver für Twanksta-desc-Verweise.
 
-Die desc-Felder von twanksta_entries.json enthalten in eckigen Klammern
+Die desc-Felder der lean NVH (twanksta_dmlex.nvh, legacy.desc als Klartext,
+siehe prussian_fst.nvh) enthalten in eckigen Klammern
 Herleitungs-/Belegverweise, oft auf andere preußische Formen
 ("[pawargan 63 MK]", "[Grēnztun drv]").  Der Linker löst diese Formen
 über eine Analyzer-Kaskade zunehmender Toleranz auf ein Lemma des FST auf:
@@ -22,6 +23,9 @@ vielen deutschen/litauischen Etymologie-Verweise).
 Großgeschriebene Refs (Lemma-Zitierformen) und Formen mit Zeichen außerhalb
 des FST-Alphabets (Fremd-/Lehnwortschreibungen) werden gar nicht erst
 nachgeschlagen — siehe resolve_corpus bzw. den Alphabet-Guard.
+
+Jeder Link trägt neben ``orig_lemma`` (Wort) die Eintrags-``orig_id`` der
+NVH (``be-1``/``be-2``), damit Homographen getrennt bleiben.
 """
 
 from __future__ import annotations
@@ -35,15 +39,15 @@ from pathlib import Path
 
 try:
     from .fst_lookup import flookup_batch
+    from .nvh import DEFAULT_LEAN_NVH, read_entries
 except ImportError:  # Direktaufruf als Skript
     from fst_lookup import flookup_batch
+    from nvh import DEFAULT_LEAN_NVH, read_entries
 
 REPO = Path(__file__).resolve().parents[2]
 DEFAULT_BASE = REPO / "build/base.hfstol"
 DEFAULT_MACRON = REPO / "build/macron.hfstol"
 DEFAULT_LENIENT = REPO / "build/lenient.hfstol"
-# Kanonisches Dictionary aus dem corpus-Repo (keine Kopie im fst-Repo).
-DEFAULT_CORPUS = REPO.parent / "corpus" / "parsed" / "twanksta_entries.json"
 
 # Annotations-Marker in Verweisen, keine Wortformen (Quellen-Kürzel,
 # Herleitungstyp).  Großgeschriebene Werke (E, GrG …) nur als ganzes Token.
@@ -151,7 +155,9 @@ def resolve_corpus(entries: list[dict], fsts: dict[str, Path]) -> tuple[list, li
             if item.form not in cache:
                 cache[item.form] = resolve_form(item.form, fsts)
             res = cache[item.form]
-            record = {"orig_lemma": entry.get("word"), "ref": item.form,
+            record = {"orig_lemma": entry.get("word"),
+                      "orig_id": entry.get("id", entry.get("word")),
+                      "ref": item.form,
                       "desc": desc, "source": item.source}
             if res["status"] == "resolved":
                 links.append({**record, "lemmas": res["lemmas"],
@@ -164,12 +170,13 @@ def resolve_corpus(entries: list[dict], fsts: dict[str, Path]) -> tuple[list, li
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    ap.add_argument("--corpus", type=Path, default=DEFAULT_CORPUS)
+    ap.add_argument("--nvh", type=Path, default=DEFAULT_LEAN_NVH,
+                    help="lean NVH (Default: ../corpus/parsed/twanksta_dmlex.nvh)")
     ap.add_argument("--out-dir", type=Path, default=REPO / "build")
     ap.add_argument("--stats", action="store_true")
     args = ap.parse_args()
 
-    entries = json.loads(args.corpus.read_text())
+    entries = read_entries(args.nvh)
     fsts = {"base": DEFAULT_BASE, "macron": DEFAULT_MACRON,
             "lenient": DEFAULT_LENIENT}
     links, unresolved = resolve_corpus(entries, fsts)
