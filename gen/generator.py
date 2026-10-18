@@ -351,6 +351,10 @@ _ADJ: dict[str, tuple[str | None, str | None, str, str | None]] = {
     # Nom.Sg. minus -us, Adverb -u, Grad -uis).
     "30": (None, "AdvU", "us", "uis"),
     "31": ("AdjUMobInfl", "AdvU", "us", "uis"),
+    # Par.68/69 = adjektivierte Partizipien (Perf. Akt. -uns / Perf. Pass. -ts):
+    # Partizip-Endungen mit +A-Tags, kein Adverb/Grad.
+    "68": ("AdjPartPerfActInfl", None, "uns", None),
+    "69": ("AdjPartPerfPassInfl", None, "s", None),
 }
 
 _PLURALIA_TANTUM = ("22", "23", "24")
@@ -457,8 +461,8 @@ for _paradigm in ("88", "89", "90", "91", "92", "93", "94", "96", "97", "99", "1
 # partPerfAct und partPerfPass hängen ihre Endung an den NONFIN-Stamm (Infinitiv −
 # tun/twei); der belegte Masc.Sg.Nom. ergibt:
 #
-#   partPerfPass  mitā   → mitāts        PartPerfPassMasc/Sg/Nom hängt -s an den Stamm
-#   partPerfAct   mitā   → mitāwuns      PartPerfActMasc/Sg/Nom hängt -uns an → Gleitlaut
+#   partPerfPass  mitā   → mitāts        PartPerfPassSlots Msc/Sg/Nom hängt -s an den Stamm
+#   partPerfAct   mitā   → mitāwuns      PartPerfActSlots Msc/Sg/Nom hängt -uns an → Gleitlaut
 #   partPerfAct   audeg  → audeguns      nach Konsonant kein Gleitlaut
 #   partPerfAct   perbartau → perbartawuns    Klasse -taw-: au → aw
 #

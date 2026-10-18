@@ -157,10 +157,10 @@ def test_atoms_exist_in_grammar(pos, paradigm):
         assert spec.slots, f"{pos}/{paradigm}/{role}: keine Slots"
 
 
-def test_atom_names_are_unique_and_249():
+def test_atom_names_are_unique_and_251():
     targets = gen.atom_targets()
     paths = [path for *_rest, path in targets]
-    assert len(targets) == len(set(paths)) == 249          # 245 + P21–24 (WS2b)
+    assert len(targets) == len(set(paths)) == 251          # 245 + P21–24 + adj 68/69
     assert all(p.suffix == ".hfstol" and p.parent == gen.ATOM_DIR for p in paths)
     # Ein-Rollen-Atome ohne Rollen-Suffix, Mehr-Rollen-Atome mit.
     assert gen.atom_path("noun", "53", "obl").name == "gen-istem-53.hfstol"
@@ -348,11 +348,23 @@ def test_stem_alphabet_is_enforced():
         "prs.sg1": "alkaui", "prs.sp3": "alkaui", "prt.sp3": "alkau",
         "subj.sp3": "alkaulai", "imprt.sg2": "alkaus"}),
     # Partizipien aus gen/adj.lexc: -wints (Klasse -taw-), -wuns (Gleit -w- vor
-    # -uns), -ts (Stamm -t). Der Fem.Sg.Acc. des -uns-Partizips bleibt eine Lücke
-    # der Grammatik (-usjan), der Neut.Pl.Nom. des -ts-Partizips ebenso (-ai).
+    # -uns), -ts (Stamm -t). Fem.Sg.Acc. des -uns-Partizips -usjan, Neut.Pl.Nom.
+    # des -ts-Partizips mobil wie Masc (mitāwusjan, mitatāi; 1903/1917 belegt).
     ("verb", "85", "appautwei", {
         "part.prs.act.msc.sg.nom": "appawints", "part.prs.act.fem.sg.nom": "appawintī",
-        "part.prf.act.msc.sg.nom": "appawuns", "part.prf.pss.msc.sg.nom": "appauts"}),
+        "part.prf.act.msc.sg.nom": "appawuns", "part.prf.pss.msc.sg.nom": "appauts",
+        "part.prf.act.fem.sg.acc": "appawusjan"}),
+    ("verb", "132", "mitātun", {
+        "part.prf.act.fem.sg.acc": "mitāwusjan", "part.prf.pss.neu.pl.nom": "mitatāi"}),
+    # Adj. 68/69 = adjektivierte Partizipien (+A-Tags) mit den Endungen des
+    # Verbpartizips. Twankstas Abweichungen (68 Fem.Sg.Acc -usin, 69 Neut.Pl.Nom
+    # fest -āi) sind Overrides in der lean NVH, nicht Grammatik.
+    ("adj", "68", "ainagimmuns", {
+        "msc.sg.gen": "ainagimmusjas", "fem.sg.acc": "ainagimmusjan",
+        "neu.pl.nom": "ainagimmus"}),
+    ("adj", "69", "enbilancīts", {
+        "msc.pl.nom": "enbilancitāi", "neu.pl.nom": "enbilancitāi",
+        "fem.sg.nom": "enbilancitā"}),
 ])
 def test_forms(atoms, pos, paradigm, lemma, forms):
     out = gen.generate(pos, paradigm, lemma=lemma)

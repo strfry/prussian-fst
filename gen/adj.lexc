@@ -234,84 +234,85 @@ LEXICON AdjUMobNeut
 ! Twanksta-Par.68/69 sind KEINE Nomen, sondern Partizipien mit adjektivischer
 ! Deklination (Dat.Sg. -asmu/-jasmu, drei Genusblöcke). Zwei Typen:
 !   PartPerfPass (Par.69): passives Partizip -ts, a-stämmig, semi-mobil. Wie das
-!            mobile Adjektiv, aber Dat.Sg. -asmu ist NICHT mobil (kein Gravis),
-!            und Neut Nom.Pl. -āi bleibt fest. Mobile Slots: Masc Nom.Pl/Dat.Pl,
-!            Fem Nom.Sg/Dat.Pl, Neut Dat.Pl. Stamm = Masc.Gen.Sg. minus -as.
+!            mobile Adjektiv, aber Dat.Sg. -asmu ist NICHT mobil (kein Gravis).
+!            Mobile Slots: Masc/Neut Nom.Pl/Dat.Pl, Fem Nom.Sg/Dat.Pl.
+!            Stamm = Masc.Gen.Sg. minus -as.
 !   PartPerfAct  (Par.68): aktives Partizip -uns, eigener -us-Stamm, fest. Masc -uns,
 !            Fem -usi, Neut -us; obliquer -us- + jo-artige Endungen (-jas/-jasmu/
 !            -jai/-jamans). Stamm = Masc.Nom.Sg. minus -uns.
 
+! Die Endungstabellen sind tag-neutral (+Genus+Numerus+Kasus); das Präfix steht
+! davor: +V+PrfPrc+Pss/Act beim Verbpartizip, +A bei den adj-Einträgen 68/69
+! (adjektivierte Partizipien, Slots msc.sg.nom → +A+Msc+Sg+Nom). Die adj-Tabellen
+! von Twanksta weichen in je einer Zelle ab (68 Fem Sg.Acc -usin, 69 Neu Pl.Nom
+! -āi fest) — uneinheitlich und gegen 1878/1888 Verbpartizipien, darum Overrides
+! statt Grammatik.
+
 LEXICON PartPerfPassInfl
-  PartPerfPassMasc ;
-  PartPerfPassFem ;
-  PartPerfPassNeut ;
+  +V+PrfPrc+Pss:0  PartPerfPassSlots ;
 
 LEXICON PartPerfActInfl
-  PartPerfActMasc ;
-  PartPerfActFem ;
-  PartPerfActNeut ;
+  +V+PrfPrc+Act:0  PartPerfActSlots ;
+
+LEXICON AdjPartPerfPassInfl
+  +A:0  PartPerfPassSlots ;
+
+LEXICON AdjPartPerfActInfl
+  +A:0  PartPerfActSlots ;
 
 ! ─── Passives Partizip -ts (Par.69), a-stämmig, semi-mobil ────────────────
-LEXICON PartPerfPassMasc
-  +V+PrfPrc+Pss+Msc+Sg+Nom:s        # ;
-  +V+PrfPrc+Pss+Msc+Pl+Nom:%^āi     # ;   ! mobil
-  +V+PrfPrc+Pss+Msc+Sg+Gen:as       # ;
-  +V+PrfPrc+Pss+Msc+Pl+Gen:an       # ;
-  +V+PrfPrc+Pss+Msc+Sg+Dat:asmu     # ;   ! nicht mobil (anders als Adj-Mobil)
-  +V+PrfPrc+Pss+Msc+Pl+Dat:%^ammans # ;   ! mobil
-  +V+PrfPrc+Pss+Msc+Sg+Acc:an       # ;
-  +V+PrfPrc+Pss+Msc+Pl+Acc:ans      # ;
-
-LEXICON PartPerfPassFem
-  +V+PrfPrc+Pss+Fem+Sg+Nom:%^ā       # ;   ! mobil
-  +V+PrfPrc+Pss+Fem+Pl+Nom:as        # ;
-  +V+PrfPrc+Pss+Fem+Sg+Gen:as        # ;
-  +V+PrfPrc+Pss+Fem+Pl+Gen:an        # ;
-  +V+PrfPrc+Pss+Fem+Sg+Dat:ai        # ;
-  +V+PrfPrc+Pss+Fem+Pl+Dat:%^āmans   # ;   ! mobil
-  +V+PrfPrc+Pss+Fem+Sg+Acc:an        # ;
-  +V+PrfPrc+Pss+Fem+Pl+Acc:ans       # ;
-
-LEXICON PartPerfPassNeut
-  +V+PrfPrc+Pss+Neu+Sg+Nom:an       # ;
-  +V+PrfPrc+Pss+Neu+Pl+Nom:āi       # ;   ! fest (anders als Masc)
-  +V+PrfPrc+Pss+Neu+Sg+Gen:as       # ;
-  +V+PrfPrc+Pss+Neu+Pl+Gen:an       # ;
-  +V+PrfPrc+Pss+Neu+Sg+Dat:asmu     # ;
-  +V+PrfPrc+Pss+Neu+Pl+Dat:%^ammans # ;   ! mobil
-  +V+PrfPrc+Pss+Neu+Sg+Acc:an       # ;
-  +V+PrfPrc+Pss+Neu+Pl+Acc:ans      # ;
+LEXICON PartPerfPassSlots
+  +Msc+Sg+Nom:s        # ;
+  +Msc+Pl+Nom:%^āi     # ;   ! mobil
+  +Msc+Sg+Gen:as       # ;
+  +Msc+Pl+Gen:an       # ;
+  +Msc+Sg+Dat:asmu     # ;   ! nicht mobil (anders als Adj-Mobil)
+  +Msc+Pl+Dat:%^ammans # ;   ! mobil
+  +Msc+Sg+Acc:an       # ;
+  +Msc+Pl+Acc:ans      # ;
+  +Fem+Sg+Nom:%^ā      # ;   ! mobil
+  +Fem+Pl+Nom:as       # ;
+  +Fem+Sg+Gen:as       # ;
+  +Fem+Pl+Gen:an       # ;
+  +Fem+Sg+Dat:ai       # ;
+  +Fem+Pl+Dat:%^āmans  # ;   ! mobil
+  +Fem+Sg+Acc:an       # ;
+  +Fem+Pl+Acc:ans      # ;
+  +Neu+Sg+Nom:an       # ;
+  +Neu+Pl+Nom:%^āi     # ;   ! mobil (wie Masc)
+  +Neu+Sg+Gen:as       # ;
+  +Neu+Pl+Gen:an       # ;
+  +Neu+Sg+Dat:asmu     # ;
+  +Neu+Pl+Dat:%^ammans # ;   ! mobil
+  +Neu+Sg+Acc:an       # ;
+  +Neu+Pl+Acc:ans      # ;
 
 ! ─── Aktives Partizip -uns (Par.68), -us-Stamm, fest ──────────────────────
-LEXICON PartPerfActMasc
-  +V+PrfPrc+Act+Msc+Sg+Nom:uns       # ;
-  +V+PrfPrc+Act+Msc+Pl+Nom:usis      # ;
-  +V+PrfPrc+Act+Msc+Sg+Gen:usjas     # ;
-  +V+PrfPrc+Act+Msc+Pl+Gen:usin      # ;
-  +V+PrfPrc+Act+Msc+Sg+Dat:usjasmu   # ;
-  +V+PrfPrc+Act+Msc+Pl+Dat:usimans   # ;
-  +V+PrfPrc+Act+Msc+Sg+Acc:usin      # ;
-  +V+PrfPrc+Act+Msc+Pl+Acc:usins     # ;
-
-LEXICON PartPerfActFem
-  +V+PrfPrc+Act+Fem+Sg+Nom:usi        # ;
-  +V+PrfPrc+Act+Fem+Pl+Nom:usjas      # ;
-  +V+PrfPrc+Act+Fem+Sg+Gen:usjas      # ;
-  +V+PrfPrc+Act+Fem+Pl+Gen:usjan      # ;
-  +V+PrfPrc+Act+Fem+Sg+Dat:usjai      # ;
-  +V+PrfPrc+Act+Fem+Pl+Dat:usjamans   # ;
-  +V+PrfPrc+Act+Fem+Sg+Acc:usin       # ;
-  +V+PrfPrc+Act+Fem+Pl+Acc:usjans     # ;
-
-LEXICON PartPerfActNeut
-  +V+PrfPrc+Act+Neu+Sg+Nom:us        # ;
-  +V+PrfPrc+Act+Neu+Pl+Nom:us        # ;
-  +V+PrfPrc+Act+Neu+Sg+Gen:usjas     # ;
-  +V+PrfPrc+Act+Neu+Pl+Gen:usin      # ;
-  +V+PrfPrc+Act+Neu+Sg+Dat:usjasmu   # ;
-  +V+PrfPrc+Act+Neu+Pl+Dat:usimans   # ;
-  +V+PrfPrc+Act+Neu+Sg+Acc:us        # ;
-  +V+PrfPrc+Act+Neu+Pl+Acc:us        # ;
+LEXICON PartPerfActSlots
+  +Msc+Sg+Nom:uns      # ;
+  +Msc+Pl+Nom:usis     # ;
+  +Msc+Sg+Gen:usjas    # ;
+  +Msc+Pl+Gen:usin     # ;
+  +Msc+Sg+Dat:usjasmu  # ;
+  +Msc+Pl+Dat:usimans  # ;
+  +Msc+Sg+Acc:usin     # ;
+  +Msc+Pl+Acc:usins    # ;
+  +Fem+Sg+Nom:usi      # ;
+  +Fem+Pl+Nom:usjas    # ;
+  +Fem+Sg+Gen:usjas    # ;
+  +Fem+Pl+Gen:usjan    # ;
+  +Fem+Sg+Dat:usjai    # ;
+  +Fem+Pl+Dat:usjamans # ;
+  +Fem+Sg+Acc:usjan    # ;
+  +Fem+Pl+Acc:usjans   # ;
+  +Neu+Sg+Nom:us       # ;
+  +Neu+Pl+Nom:us       # ;
+  +Neu+Sg+Gen:usjas    # ;
+  +Neu+Pl+Gen:usin     # ;
+  +Neu+Sg+Dat:usjasmu  # ;
+  +Neu+Pl+Dat:usimans  # ;
+  +Neu+Sg+Acc:us       # ;
+  +Neu+Pl+Acc:us       # ;
 
 ! ─── Präsens-Partizip -nts (mobiles i-Stamm-Muster, drei Genera) ──────────
 ! Das Präsens-Partizip deklinert wie Par.29 (mobiles i-Stamm-Adjektiv): schwere
