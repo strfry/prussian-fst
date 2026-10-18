@@ -107,12 +107,19 @@ def is_dumper_artifact(lemma: str, paradigm: str, surface: str) -> bool:
     return any(ch.isdigit() for ch in surface)
 
 
-def repair_surface(surface: str) -> str:
-    """Geklebte Ziffern (Paradigmennummer) aus der Oberfläche entfernen.
+def repair_surface(surface: str, paradigm: str = "") -> str:
+    """Geklebte Paradigmennummer aus der Oberfläche entfernen.
 
     ``Dānija52`` → ``Dānija``; ``izpilninamins27is`` → ``izpilninaminsis``.
+    Buchstabenparadigmen kleben samt Buchstabe (``Kirsnagārbija35a``,
+    ``menjū0n``, ``perleītun106d``): steht die Paradigmennummer des Eintrags in
+    der Oberfläche, wird sie als Ganzes entfernt, sonst nur die Ziffern.
     Keine echte Wortform enthält Ziffern, darum ist das Entfernen verlustfrei.
     """
+    if paradigm and not paradigm.isdigit():
+        i = surface.rfind(paradigm)
+        if i >= 0 and (i == 0 or not surface[i - 1].isdigit()):
+            surface = surface[:i] + surface[i + len(paradigm):]
     return "".join(ch for ch in surface if not ch.isdigit())
 
 
@@ -138,7 +145,7 @@ def repair_dumper_artifacts(
             for s in surfaces:
                 if is_dumper_artifact(entry.lemma, entry.paradigm, s):
                     review.append((entry.lemma, entry.paradigm, slot))
-                    s = repair_surface(s)
+                    s = repair_surface(s, entry.paradigm)
                 if s and s not in out:
                     out.append(s)
             if out:

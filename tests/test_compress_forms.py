@@ -313,6 +313,15 @@ def test_repair_dumper_artifacts_fixes_cells_and_reviews_them():
     assert len(review) == 3
 
 
+def test_repair_surface_strips_lettered_paradigm():
+    # Buchstabenparadigmen kleben samt Buchstabe an der Form.
+    assert cf.repair_surface("Kirsnagārbija35a", "35a") == "Kirsnagārbija"
+    assert cf.repair_surface("menjū0n", "0n") == "menjū"
+    assert cf.repair_surface("perleītun106d", "106d") == "perleītun"
+    # Reine Ziffernnummer: Endung hinter der Nummer bleibt.
+    assert cf.repair_surface("izpilninamins27is", "27") == "izpilninaminsis"
+
+
 # ── Die neun Fixture-Lexeme ─────────────────────────────────────────────────
 
 # (pos, paradigm, lemma, gender, attestierte Zellen, erwartete Stämme,
