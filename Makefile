@@ -106,7 +106,11 @@ build/lenient.fst: build/base.fst build/norm-macron.hfst build/norm-degem.hfst b
 build/macron.hfstol build/lenient.hfstol: build/%.hfstol: build/%.fst
 	$(HFST) hfstol $< $@
 
-cg3-sets:
+# Rektion/Valenz aus den Twanksta-descs (Prä-/Postpositionen, Verben).
+build/valence.json: src/prussian_fst/export_valence.py ../corpus/parsed/twanksta_entries.json | build/
+	python3 src/prussian_fst/export_valence.py
+
+cg3-sets: build/valence.json
 	python3 src/prussian_fst/gen_cg3_sets.py
 
 build/cg3/:

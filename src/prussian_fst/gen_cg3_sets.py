@@ -2,8 +2,10 @@
 """Generate CG3 sets for the disambiguator.
 
 Outputs (INCLUDEd by fst/cg3/disambiguator.cg3 + validator.cg3):
-  fst/cg3/generated-sets.cg3 — Präp→Kasus-Listen (AkkPrep/DatPrep) aus
-  valence.json sowie Verbvalenz-Lemmalisten (GenVerb/AkkVerb).
+  fst/cg3/generated-sets.cg3 — Präp→Kasus-Listen (AkkPrep/DatPrep),
+  Postpositionsliste (GenPost), Adpositions-Rektion (GovAccAdp/
+  GovDatAdp/GovGenAdp/GovAdp) aus valence.json sowie Verbvalenz-
+  Lemmalisten (GenVerb/AkkVerb).
 
 Valenz ist KEINE Morphologie (GiellaLT-verifiziert): die FST-Tags tragen
 keine +Gov*/+PP*-Merkmale; Rektion lebt als Lemma-Liste in der CG-Schicht.
@@ -64,6 +66,25 @@ def prep_lists(valence: dict) -> dict[str, list[str]]:
             "AccAny": sorted(acc_any), "DatAny": sorted(dat_any)}
 
 
+def adp_gov_lists(valence: dict) -> dict[str, list[str]]:
+    """Adpositions-Rektion (Prä- und Postpositionen) je Kasus — für die
+    Lizenzprüfung des PP-Kopfes im Validator (&adp-case): ein Kopf ist
+    lizenziert, wenn eine seiner Lesarten einen Kasus trägt, den eine
+    seiner Adpositionen regiert.  ``GenPost``: Gen-Postpositionen für
+    die Gen-Selektion im Disambiguator."""
+    preps = {w: list(c) for w, c in valence.get("prepositions", {}).items()}
+    for w in CURATED_DAT_PREPS:
+        preps.setdefault(w, []).append("Dat")
+    posts = valence.get("postpositions", {})
+    adps = [preps, posts]
+    gov = {case: sorted({w for d in adps for w, cs in d.items() if case in cs})
+           for case in ("Acc", "Dat", "Gen")}
+    return {"GovAccAdp": gov["Acc"], "GovDatAdp": gov["Dat"],
+            "GovGenAdp": gov["Gen"],
+            "GovAdp": sorted(set(preps) | set(posts)),
+            "GenPost": sorted(w for w, cs in posts.items() if "Gen" in cs)}
+
+
 def fmt_list(name: str, lemmas: list[str]) -> str:
     if not lemmas:
         return f'LIST {name} = "__none__" ;\n'
@@ -74,6 +95,7 @@ def fmt_list(name: str, lemmas: list[str]) -> str:
 def write_sets(valence: dict):
     lists = verb_lists(valence)
     preps = prep_lists(valence)
+    gov = adp_gov_lists(valence)
     out = [
         HEADER,
         "# Source: build/valence.json + kuratierte Gen-Verben.\n\n",
@@ -82,6 +104,13 @@ def write_sets(valence: dict):
         fmt_list("DatPrep", preps["Dat"]),
         fmt_list("AccAnyPrep", preps["AccAny"]),
         fmt_list("DatAnyPrep", preps["DatAny"]),
+        "\n# Postpositionen (Rektion des vorangehenden Nominals):\n",
+        fmt_list("GenPost", gov["GenPost"]),
+        "\n# Adpositions-Rektion je Kasus (Prä- + Postpositionen):\n",
+        fmt_list("GovAccAdp", gov["GovAccAdp"]),
+        fmt_list("GovDatAdp", gov["GovDatAdp"]),
+        fmt_list("GovGenAdp", gov["GovGenAdp"]),
+        fmt_list("GovAdp", gov["GovAdp"]),
         "\n# Verbvalenz (lemma-basiert):\n",
         fmt_list("GenVerb", lists["Gen"]),
         fmt_list("AkkVerb", lists["Acc"]),

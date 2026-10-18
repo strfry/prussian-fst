@@ -103,6 +103,8 @@ INCLUDE generated-sets.cg3 ;
 SET NGHead = N OR Pron ;
 SET FiniteVerb = V - Inf - Part ;
 SET Adposition = Pr OR Po ;
+SET CaseAny = Nom OR Gen OR Dat OR Acc ;
+LIST GenChain = (@gchain) ;
 # Klausel-linke Scans (Guards): Stopp an Klauselgrenzen und finiten
 # Verben.  Copula ist ausgenommen, wo sie selbst das Suchziel ist.
 SET LeftStop = CS OR CLB OR PUNCT OR FiniteVerb ;
@@ -117,21 +119,29 @@ SET LeftStopNonCop = CS OR CLB OR PUNCT OR NonCopFin ;
 
 SECTION
 
-# ── V1 &prep-akk-dat — Rektion (§6b): rein Akk-regierende Präposition
-#    (Liste AkkPrep, generated-sets.cg3) mit eindeutig dativischem
-#    Komplement.  Doppel-Rektierer (ēn/pa/pō/ezze) stehen in keiner
-#    AkkPrep-Liste und sind damit ausgenommen; SECTION 1 des
-#    Disambiguators kann die letzte Dat-Lesart nicht entfernen (SAFE),
-#    die Evidenz überlebt also.  Primär über die Dependenz (Pr hängt
-#    als case-Kind am Nominal), positional als Fallback.
-#    Doppel-Präpositionen „prei/na en X" (Bulk-Regression): regiert
-#    die DIREKT vorangehende Präposition Dativ, ist der Dativ legitim.
-ADD:prep-akk-dat (&prep-akk-dat) NGHead IF (0C Dat)
-    (NEGATE -1 DatAnyPrep)
-    (cC Pr) (cC AkkPrep) ;
-ADD:prep-akk-dat (&prep-akk-dat) NGHead IF (0C Dat)
-    (NOT 0 (&prep-akk-dat))
-    (-1C Pr) (-1C AkkPrep) ;
+# ── V1 &adp-case — Rektion (§6b) als Lizenzbedingung am Kopf der
+#    Adpositionalphrase: der Kopf (Nominal mit Pr/Po als case-Kind,
+#    SECTION 8 des Disambiguators) braucht eine Lesart in einem Kasus,
+#    den eine seiner Adpositionen regiert (GovAccAdp/GovDatAdp/
+#    GovGenAdp, generated-sets.cg3 aus valence.json).  Deckt Dat/Gen
+#    nach Akk-Präpositionen ebenso ab wie Akk vor Gen-Postpositionen
+#    („… turman paggan").  Pränominale Gen-Attribute sind keine Köpfe
+#    (nmod), werden also nicht geprüft.  SECTION 1 des Disambiguators
+#    entfernt unlizenzierte Lesarten nur SAFE — bleibt keine lizenzierte
+#    übrig, überlebt die Evidenz.  Doppel-Präpositionen „prei en X"
+#    hängen beide am Kopf; eine lizenzierende genügt.  Adpositionen
+#    ohne Rektionsangabe (nicht in GovAdp) werden nicht geprüft, ebenso
+#    mehrdeutige (Pr|Adv: pirzdau) — die Rektion löst erst der
+#    Disambiguator auf (R3b), Evidenz nur bei eindeutiger Adposition.
+#    Gen-Köpfe nur, wenn kettenfinal (kein @gchain aus SECTION 8:
+#    rechts folgt kein OOV-Kopf, keine Koordination, kein Nominal).
+#    Nominativ-Köpfe meldet V2 (&pp-nom, warning — Paradigmen-Lücken
+#    bei Lehnwörtern); kasuslose Köpfe (Indeklinabilia) sind ausgenommen.
+ADD:adp-case (&adp-case) NGHead IF (0 CaseAny) (NOT 0 Nom) (NOT 0 GenChain)
+    (cC Adposition + GovAdp)
+    (NEGATE 0 Acc LINK c Adposition + GovAccAdp)
+    (NEGATE 0 Dat LINK c Adposition + GovDatAdp)
+    (NEGATE 0 Gen LINK c Adposition + GovGenAdp) ;
 
 # ── V2 &pp-nom — Invariante aus SECTION 1: innerhalb einer PP gibt
 #    es keinen Nominativ.  Eindeutig nominativisches Nomen mit

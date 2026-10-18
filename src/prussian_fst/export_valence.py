@@ -4,6 +4,8 @@
 Best-effort structured export of the free-text ``desc`` field:
 
 - prepositions: governed case(s), full coverage (all 29 entries).
+- postpositions: governed case(s) of the "psp" entries (paggan,
+  ēnilgan — both + Gen).
 - verbs: only ~200 of ~1900 verbs carry any valence hint in ``desc``;
   mostly prepositional rection like ``(en acc)``. The raw desc is
   included in every record so consumers can audit the parse.
@@ -39,6 +41,20 @@ def main():
         cases = prepositions.setdefault(word, [])
         for tok, name in (("acc", "Acc"), ("dat", "Dat")):
             if re.search(rf"\b{tok}\b", g) and name not in cases:
+                cases.append(name)
+
+    # ── Postpositions: desc "n psp gen" / "av, psp + gen" — psp als
+    #    eigene Wortart am Anfang der Grammatikangabe; Verweise in
+    #    Klammern („(paggan psp gen)" bei kīnintun si) zählen nicht ──
+    postpositions: dict[str, list[str]] = {}
+    for e in raw:
+        g = desc_gram(e.get("desc", ""))
+        if not re.match(r"^(?:\w+,?\s+)*psp\b", g):
+            continue
+        cases = postpositions.setdefault(e.get("word", ""), [])
+        for m in re.finditer(r"\b(acc|akk|dat|gen)\b", g):
+            name = CASE_NAMES[m.group(1)]
+            if name not in cases:
                 cases.append(name)
 
     prep_words = set(prepositions)
@@ -94,11 +110,13 @@ def main():
                   "the verbs annotated in the dictionary. Impersonal verbs "
                   "are not encoded in Twanksta at all."),
         "prepositions": dict(sorted(prepositions.items())),
+        "postpositions": dict(sorted(postpositions.items())),
         "verbs": sorted(verbs, key=lambda r: r["lemma"]),
     }
     OUT.write_text(json.dumps(out, ensure_ascii=False, indent=2) + "\n",
                    encoding="utf-8")
     print(f"Wrote {OUT}: {len(prepositions)} prepositions, "
+          f"{len(postpositions)} postpositions, "
           f"{len(verbs)} verbs with valence info")
 
 

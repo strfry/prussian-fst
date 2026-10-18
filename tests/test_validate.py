@@ -32,7 +32,7 @@ def coverage(word_tokens=4, oov=(), collapsed=(), ambig=(), unlicensed=(),
     }
 
 
-VIOLATION = [{"rule": "prep-akk-dat", "tag": "&prep-akk-dat", "index": 4,
+VIOLATION = [{"rule": "adp-case", "tag": "&adp-case", "index": 4,
               "form": "laīwu", "reading": "laīwan+N+Neu+Sg+Dat",
               "message": ""}]
 

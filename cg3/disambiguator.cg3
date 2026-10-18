@@ -55,8 +55,6 @@ LIST Fem = Fem ;
 LIST Neu = Neu ;
 LIST Inf = Inf ;
 LIST Po = Po ;
-# Postpositionen (nicht-tag-basierte Rektion, vgl. generated-sets.cg3):
-LIST GenPost = "paggan" ;
 
 LIST Ni = "ni" ;
 LIST BOS = (>>>) ;                                 # Fensteranfang (magisches Tag)
@@ -87,7 +85,8 @@ LIST MeasureN = "dessimts" "dwiddesimts" "trīsdesimts" "ketturdesimts"
 LIST GenDet = ("stas" Gen) ;
 
 # Valenzlemma-Listen (GenVerb/AkkVerb) + Präp→Kasus-Listen (AkkPrep/…
-# DatPrep/AccAnyPrep/DatAnyPrep) aus valence.json.
+# DatPrep/AccAnyPrep/DatAnyPrep) + Postpositionen (GenPost) und
+# Adpositions-Rektion (GovAccAdp/…) aus valence.json.
 INCLUDE generated-sets.cg3 ;
 
 SET FiniteVerb = V - Inf - Part ;                 # Ind/Opt/Imp/Subj
@@ -101,6 +100,7 @@ SET NAdv = N OR Adv ;
 SET AdjAdv = A OR Adv ;
 SET AdjNum = A OR Num ;
 SET PPMid = AdjNum OR Part OR Gen ;                # PP-Zwischenglieder
+SET NonPPMid = (*) - PPMid ;
 SET RightCB = CS OR CLB OR PUNCT ;               # Klauselgrenze ohne FiniteVerb
 
 # Grenze der Agreement-Domäne beim Kopf-Scan nach rechts.
@@ -118,10 +118,21 @@ SET PPStop = CS OR FiniteVerb OR CLB OR PUNCT OR CC OR Pcle OR Adv OR Interj OR 
 # Klauselkopf. Beide werden von dependency.cg3 (Label-Phase) gelesen.
 LIST XPred = (@pred) ;
 LIST XFin = (@fin) ;
+LIST GenChain = (@gchain) ;                       # Gen-Nominal, nicht kettenfinal
+LIST HardPunct = "," ";" ":" "–" "—" "-" ;
+SET NominalNoPron = Nominal - Pron ;
+SET PronGen = Pron + Gen ;
+SET SoftPunct = PUNCT - HardPunct ;
+SET GenChainNext = NominalNoPron OR PronGen OR Unk OR CC OR SoftPunct ;
 SET ClauseHead = XPred OR XFin ;
 SET Adposition = Pr OR Po ;
 # Determinierer-Pronomina (stas, kas, …): keine Personal-/Enklitika
 SET DetPron = Pron - (Pron P1) - (Pron P2) - (Pron P3) - (Pron Encl) ;
+# Determinierer als PP-Zwischenglied: ohne Relativ-/Interrogativ-
+# pronomen — „na kawīdan undas minisnā …", „en kawīdamans ljūdis …"
+# leiten einen Relativsatz ein, das Folgenomen ist dessen Subjekt.
+LIST RelPron = "kawīds" "kas" "katars" ;
+SET DetPronPP = DetPron - Gen - RelPron ;
 
 # Reflexiv-Klitikon: „si" (enklitische Partikel) bzw. „sin"/„sebbei"
 # (Pron+Refl, Akk/Dat).  Lizenziert die +Refl-Lesart reflexiver Verben,
@@ -176,6 +187,11 @@ SECTION
 REMOVE SAFE (Nom) IF (0 Nominal) (-1C Pr) ;
 REMOVE SAFE (Nom) IF (0 Nominal) (-2C Pr) (-1 PPMid) ;
 REMOVE SAFE (Nom) IF (0 Nominal) (-3C Pr) (-2 PPMid) (-1 PPMid) ;
+# Determinierer als Zwischenglied („iz stan deīktan", „en stan
+# wāran mēstan") — nur mit N-Kopf, damit Pronomenfolgen nach einer
+# kurzen PP („iz stan wissan …") unberührt bleiben.
+REMOVE SAFE (Nom) IF (0 N) (-2C Pr) (-1 DetPronPP) ;
+REMOVE SAFE (Nom) IF (0 N) (-3C Pr) (-2 DetPronPP) (-1 PPMid) ;
 
 # Rektion über Präp→Kasus-Listen (generated-sets.cg3, aus valence.json):
 # AkkPrep = rein akkusativregierend, DatPrep = rein dativregierend.
@@ -185,12 +201,16 @@ REMOVE SAFE (Dat) IF (0 Nominal) (-1C Pr) (-1C AkkPrep) ;
 REMOVE SAFE (Dat) IF (0 Nominal) (-2C Pr) (-2C AkkPrep) (-1 PPMid) ;
 REMOVE SAFE (Dat) IF (0 Nominal) (-3C Pr) (-3C AkkPrep)
     (-2 PPMid) (-1 PPMid) ;
+REMOVE SAFE (Dat) IF (0 N) (-2C Pr) (-2C AkkPrep) (-1 DetPronPP) ;
+REMOVE SAFE (Dat) IF (0 N) (-3C Pr) (-3C AkkPrep) (-2 DetPronPP) (-1 PPMid) ;
 
 # Rein Dat-regierende Präposition: kein Akkusativ in der PP.
 REMOVE SAFE (Acc) IF (0 Nominal) (-1C Pr) (-1C DatPrep) ;
 REMOVE SAFE (Acc) IF (0 Nominal) (-2C Pr) (-2C DatPrep) (-1 PPMid) ;
 REMOVE SAFE (Acc) IF (0 Nominal) (-3C Pr) (-3C DatPrep)
     (-2 PPMid) (-1 PPMid) ;
+REMOVE SAFE (Acc) IF (0 N) (-2C Pr) (-2C DatPrep) (-1 DetPronPP) ;
+REMOVE SAFE (Acc) IF (0 N) (-3C Pr) (-3C DatPrep) (-2 DetPronPP) (-1 PPMid) ;
 
 # Kongruente Modifikatoren in einer Akk-PP können nicht Gen sein
 # (Gen-Modifikatoren sind N/Pron; A-Gen nur bei folgendem Gen-Kopf).
@@ -243,6 +263,12 @@ SELECT (CC) IF (0 Pr) (1* FiniteVerb BARRIER Nominal) ;
 # Diskurs-Regeln oben nicht treffen.
 SELECT (CC) IF (0 Pr) (0 CC)
     (NEGATE 1* NGHead + Acc BARRIER ClauseBoundary) ;
+# R4c: strukturell — der Kopf einer be-PP ist das erste Nicht-Gen-
+# NG rechts (Gen-Attribute davor, vgl. SECTION 8).  Kann dieser Kopf
+# nicht Akk sein („be tenesse deiwammans …", „be kitēimans deīktans"),
+# ist „be" die Konjunktion.
+SELECT (CC) IF (0 Pr) (0 CC)
+    (1* NGHead - Gen BARRIER ClauseBoundary LINK NOT 0 Acc) ;
 
 
 # ============================================================ #
@@ -346,6 +372,18 @@ SELECT:r6-di-impersonal (Nom) IF (0 Di) (-1C FiniteVerb) ;
 SELECT (Pr) IF (0 Pcle) (0 Pr)
     (1* NGHead + Acc BARRIER AgrBarrier) ;
 SELECT (Pcle) IF (0 Pr) (0 Pcle) (1C AdjAdv) ;
+
+# R3b — Präposition vs. Adverb (pirzdau „vor/vorher", sklāits): die
+# Präpositionslesart braucht einen PP-Kopf im regierten Kasus.  Kopf =
+# erstes Nicht-Gen-NG rechts (Gen-Attribute davor, vgl. SECTION 8).
+# „pirzdau stan", „pirzdau sīmtan mettans" → Pr; „pirzdau Pergrubrju
+# perēntjai", „Pirzdau aulaūwusins gintummans" → Adv (der Dativ hängt
+# nicht an der Präposition).  REMOVE statt SELECT: sklāits hat weitere
+# Lesarten (A/CC/Part), die hier nicht entschieden werden.
+REMOVE (Adv) IF (0 Pr) (0 GovAccAdp)
+    (1* NGHead - Gen BARRIER AgrBarrier LINK 0 Acc) ;
+REMOVE (Pr) IF (0 Adv) (0 GovAccAdp)
+    (NEGATE 1* NGHead - Gen BARRIER AgrBarrier LINK 0 Acc) ;
 
 # R7 — Prädikatives Partizip direkt nach Auxiliar (§11–§14, periphrastische
 # Tempora) steht im Nominativ: oblique Lesarten der vollen Partizip-
@@ -659,15 +697,69 @@ SETPARENT CS TO (1* ClauseHead BARRIER CLB) ;
 SETPARENT ClauseHead (c CS) TO (-1* ClauseHead BARRIER CLB) ;
 
 # ── Adpositionen → Kopf-Nominal ihrer Phrase (case) ──
-SETPARENT Pr TO (1* NGHead BARRIER PPStop) ;
+# @gchain: Gen-Nominal, das NICHT sicher kettenfinal ist — rechts folgt
+# ein weiteres Nominal (außer Nicht-Gen-Pronomen: „iz turmas sta …"
+# beginnt eine neue NP), ein OOV-Wort (vermutlich der eigentliche Kopf:
+# „sen karīgis lagzdan"), eine Koordination von Gen-Attributen („prei
+# Prūsijas be Debīkas Lēitawas araīkan") oder Klammer/Anführung.  Nur
+# kettenfinale Gen-Nominale kommen als Gen-Kopf einer PP in Frage; der
+# Validator prüft sie nur dann (&adp-case).
+ADD (@gchain) NGHead + Gen IF (1 GenChainNext) ;
+# Possessiv-/Gen-Pronomen vor Determinierer: „sen tenesses stawīdans
+# akkins", „en swāise stesmu lāisku" — der Kopf folgt erst danach.
+ADD (@gchain) PronGen IF (1 Nominal) ;
+# Postnominale stēisan-Periphrase (§4): das Gen-Nominal nach stēisan/
+# stesse ist Attribut des Nominals davor, nie PP-Kopf.
+ADD (@gchain) NGHead + Gen IF (-1 GenDet) ;
+# Die Regeln schließen sich über den Kontext gegenseitig aus (kein
+# (NOT p (*))-Guard: sie laufen in jeder Sektions-Iteration neu).
+# Determinierer + N, dazwischen nur PP-Zwischenglieder („en stan
+# krēiwan pjāusin") — nach dem Determinierer zählt nur ein im Kasus
+# kongruentes N als Kopf (sonst „prēi stan as kwaitēi" → as,
+# „pēr stan kāims senrīnka" → kāims).
+SETPARENT Pr (1 DetPronPP + Nom) TO (2* N + Nom BARRIER NonPPMid) ;
+SETPARENT Pr (1 DetPronPP + Acc) TO (2* N + Acc BARRIER NonPPMid) ;
+SETPARENT Pr (1 DetPronPP + Dat) TO (2* N + Dat BARRIER NonPPMid) ;
+SETPARENT Pr (NEGATE 1 DetPron - Gen)
+    TO (1* NGHead - Gen - DetPron BARRIER PPStop OR DetPron - Gen) ;
+# Determinierer allein als Kopf („iz stan,", „pēr stan kāims …",
+# Relativpronomen „na kawīdan …")
+SETPARENT Pr (1 DetPron - Gen)
+    (NEGATE 1 DetPronPP + Nom LINK 1* N + Nom BARRIER NonPPMid)
+    (NEGATE 1 DetPronPP + Acc LINK 1* N + Acc BARRIER NonPPMid)
+    (NEGATE 1 DetPronPP + Dat LINK 1* N + Dat BARRIER NonPPMid)
+    TO (1 DetPron - Gen) ;
+# Nur Gen-Nominale: der Kopf ist das letzte der Kette („iz tāliwidasnas
+# turmas" — Rektionsfehler, den der Validator am Kopf meldet).
+# @gchain markiert Gen-Nominale mit Gen-Folgenominal (nicht kettenfinal).
+SETPARENT Pr (NEGATE 1 DetPron - Gen)
+    (NEGATE 1* NGHead - Gen - DetPron BARRIER PPStop OR DetPron - Gen)
+    TO (1* NGHead + Gen - GenChain BARRIER PPStop) ;
+SETPARENT Pr (NOT p (*)) TO (1* NGHead BARRIER PPStop) ;
+# Doppel-Präposition „na en stesmu dēiwas pinti", „prei en X": die
+# äußere Präposition hängt am selben Kopf wie die innere (LINK-Ende
+# ist das Ziel).  Steht zuletzt, damit sie in jeder Iteration gewinnt.
+SETPARENT Pr (1 Pr) TO (1 Pr LINK p NGHead) ;
+# Postposition: Kopf ist das direkt vorangehende Nominal, Gen-Attribute
+# stehen weiter links.
 SETPARENT Po TO (-1* NGHead BARRIER PPStop) ;
 
 # ── Genitiv-Modifikatoren ──
 # Gen-Demonstrativum der stēisan-Periphrase → folgender Gen-Kopf (det)
 SETPARENT:steisan-det GenDet TO (1 NGHead + Gen) ;
-# pränominal: Gen-Modifikator → nächster Nicht-Gen-Kopf rechts (nmod);
+# pränominal: Gen-Modifikator → Gen-Kopf einer Adpositionalphrase
+# rechts („iz tāliwidasnas turmas", „X-Gen Y-Gen paggan"), sonst
+# nächster Nicht-Gen-Kopf rechts (nmod).  Ein Gen-Nominal mit
+# Adpositions-Kind ist selbst PP-Kopf, kein Modifikator.
 # NEGATE: nur echte GenDet-Periphrasen (stēisan + Gen-Kopf) ausnehmen
-SETPARENT NGHead + Gen - XPred (NEGATE 0 GenDet LINK 1 NGHead + Gen)
+# Kein (NOT p (*))-Guard: die Regeln laufen in jeder Sektions-
+# Iteration neu und stellen nmod wieder her; die Gen-PP-Kopf-Variante
+# wird über den Kontext ausgeschlossen.
+SETCHILD NGHead + Gen (c Adposition)
+    TO (-1* NGHead + Gen - XPred BARRIER HeadBarrier) ;
+SETPARENT NGHead + Gen - XPred (NEGATE c Adposition)
+    (NEGATE 1* NGHead + Gen BARRIER HeadBarrier LINK c Adposition)
+    (NEGATE 0 GenDet LINK 1 NGHead + Gen)
     TO (1* NGHead - Gen BARRIER AgrBarrier) ;
 # postnominal (stēisan-Periphrase): Gen-Kopf → Nominal links (nmod)
 SETPARENT:steisan-nmod NGHead + Gen - XPred (NOT p (*)) (-1C GenDet)
@@ -675,15 +767,24 @@ SETPARENT:steisan-nmod NGHead + Gen - XPred (NOT p (*)) (-1C GenDet)
 
 # ── Determinierer-Pronomen → direkt folgender Kopf (det) ──
 SETPARENT DetPron - Gen (NOT 0 XPred) TO (1 NGHead) ;
+# … in der PP auch über Zwischenglieder hinweg („ezze stan krēiwan
+# pjāusin"), passend zur Kopfwahl der Präposition
+SETPARENT DetPronPP + Nom (NOT 0 XPred) (-1C Pr) (NOT 1 NGHead)
+    TO (2* N + Nom BARRIER NonPPMid) ;
+SETPARENT DetPronPP + Acc (NOT 0 XPred) (-1C Pr) (NOT 1 NGHead)
+    TO (2* N + Acc BARRIER NonPPMid) ;
+SETPARENT DetPronPP + Dat (NOT 0 XPred) (-1C Pr) (NOT 1 NGHead)
+    TO (2* N + Dat BARRIER NonPPMid) ;
 
 # ── NG-Köpfe → Klauselkopf (nsubj/obj/iobj/obl, Label in Phase 2);
 #    echte Konjunkte (CC mit linkem NG-Konjunkt) und Determinierer
 #    sind schon angebunden ──
 SETPARENT NGHead - Gen - XPred (NEGATE -1C CC LINK -1 NGHead)
-    (NEGATE 0 DetPron LINK 1 NGHead)
+    (NEGATE 0 DetPron LINK 1 NGHead) (NEGATE 0 DetPron LINK p N)
     TO (1* ClauseHead BARRIER RightCB) ;
 SETPARENT NGHead - Gen - XPred (NEGATE -1C CC LINK -1 NGHead)
     (NOT p ClauseHead) (NEGATE 0 DetPron LINK 1 NGHead)
+    (NEGATE 0 DetPron LINK p N)
     TO (-1* ClauseHead BARRIER RightCB) ;
 # Gen-Objekte (GenVerb/Genitivus negationis) und obliques Gen+Po
 # ("stesse paggan"): noch ohne Parent → Klauselkopf, erst links,

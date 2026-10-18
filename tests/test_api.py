@@ -31,7 +31,7 @@ def test_validate_violation():
     r = results[0]
     assert r["status"] == "violations_found"
     v = r["violations"][0]
-    assert v["rule"] == "prep-akk-dat"
+    assert v["rule"] == "adp-case"
     assert v["severity"] == "error"
     assert v["form"] == "laīwu"
 

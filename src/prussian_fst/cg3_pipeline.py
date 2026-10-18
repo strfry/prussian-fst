@@ -311,7 +311,7 @@ RELID_RE = re.compile(r"ID:(\d+)$")
 # --trace-Tags: TYPE[(param)]:ZEILE[:NAME] — z. B. "SELECT:573",
 # "ADDRELATION(nsubj):108", "SELECT:305:ka-complementizer".
 TRACE_RE = re.compile(r"([A-Z]+)(\([^)]*\))?:(\d+)(?::(\S+))?$")
-HIDDEN_TAGS = ("REMOVE:", "SELECT:", "ADD:", "MAP:", "SETPARENT:",
+HIDDEN_TAGS = ("REMOVE:", "SELECT:", "ADD:", "MAP:", "SETPARENT:", "SETCHILD:",
                "ADDRELATION:", "ADDRELATION(", "#", "ID:", "R:", "@")
 
 
@@ -432,7 +432,8 @@ def print_stats(label: str, st: dict):
 # Fehlertyp (&-Tag ohne Präfix) → menschenlesbare Meldung.
 # §-Verweise: prussian-grammar/syntax_rules.txt
 MESSAGES = {
-    "prep-akk-dat": "Akkusativ-Präposition mit dativischem Komplement (§6b).",
+    "adp-case": "Kasus des Phrasenkopfs wird von der Prä-/Postposition "
+                "nicht regiert (§6b).",
     "pp-nom": "Nominativ innerhalb einer Präpositionalphrase.",
     "agr-adj-case": "Adjektiv kongruiert im Kasus nicht mit seinem Kopf.",
     "agr-adj-num": "Adjektiv kongruiert im Numerus nicht mit seinem Kopf.",

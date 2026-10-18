@@ -49,6 +49,14 @@ Be as ni waīda.	as	waīda	nsubj
 Saknis stēisan anzanan.	Saknis	0	root
 Saknis stēisan anzanan.	stēisan	anzanan	det
 Saknis stēisan anzanan.	anzanan	Saknis	nmod
+# PP mit pränominalem Gen-Attribut: case am Kopf (rechts), Attribut nmod
+iz tāliwidasnas turman sta wissan ast tāli	iz	turman	case
+iz tāliwidasnas turman sta wissan ast tāli	tāliwidasnas	turman	nmod
+iz tāliwidasnas turman sta wissan ast tāli	turman	ast	obl
+# PP mit Determinierer + Adjektiv: case am Nomen, det über das Adjektiv
+As wis mēri ezze stan krēiwan pjāusin.	ezze	pjāusin	case
+As wis mēri ezze stan krēiwan pjāusin.	stan	pjāusin	det
+As wis mēri ezze stan krēiwan pjāusin.	pjāusin	mēri	obl
 # Postposition: case, Gen+Psp als obl am Verb
 Stesse paggan sta ast brendu.	Stesse	ast	obl
 Stesse paggan sta ast brendu.	paggan	Stesse	case

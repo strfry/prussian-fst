@@ -4,9 +4,23 @@
 # Bei "-"-Zeilen wird zusätzlich geprüft, dass der GANZE Satz keine
 # Fehler-Tags trägt (Fehlalarm-Test auf attestierten/korrekten Sätzen).
 #
-# V1 &prep-akk-dat — Akk-Präposition (sēn) + Dat-Komplement
-As pūwa sen laīwu.	laīwu	&prep-akk-dat
+# V1 &adp-case — Kopf der Adpositionalphrase in nicht regiertem Kasus
+As pūwa sen laīwu.	laīwu	&adp-case
 As pūwa sen laīwan.	laīwan	-
+# Gen-Attribut vor dem Kopf: nur der Kopf unterliegt der Rektion
+iz tāliwidasnas turmas sta wissan ast tāli	turmas	&adp-case
+iz tāliwidasnas turman sta wissan ast tāli	turman	-
+As pūwa sen tāliwidasnas turmu.	turmu	&adp-case
+# Gen-Postposition paggan: Gen lizenziert, Akk nicht
+Stesse paggan sta ast brendu.	Stesse	-
+Tāns pūwa tennan paggan.	tennan	&adp-case
+# Doppel-Präposition: die Dat-regierende (en) lizenziert
+As pūwa prei en buttu.	buttu	-
+# pirzdau Pr|Adv: Adverb, wenn kein Akk-Kopf folgt (Dat nicht regiert)
+Dabber pirzdau Pergrubrju perēntjai	Pergrubrju	-
+Pirzdau stan tāns jāu bēi.	stan	-
+# „be" vor Nicht-Akk-PP-Kopf ist die Konjunktion „und", nicht „ohne"
+Tenēi zēidi Prutennju be tenesse deiwammans sklāitewingiskans buttans.	deiwammans	-
 # V2 &pp-nom — Nominativ in der PP
 As pūwa sen kunnegs.	kunnegs	&pp-nom
 Prūsisks waitjāsenis sēn prūsiskan bebrun.	bebrun	-

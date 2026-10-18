@@ -7,6 +7,15 @@ LIST DatPrep = "dīnkun" ;
 LIST AccAnyPrep = "be" "ezze" "iz" "kīrsa" "na" "nō" "pa" "pagār" "pas" "pirzdau" "pra" "prēi" "prīki" "prīkin" "prō" "pēr" "pō" "sirzdau" "sklāit" "sklāits" "sēn" "zūrgi" "ēn" "ēr" "ērgi" ;
 LIST DatAnyPrep = "dīnkun" "ezze" "pa" "pō" "ēn" ;
 
+# Postpositionen (Rektion des vorangehenden Nominals):
+LIST GenPost = "paggan" "ēnilgan" ;
+
+# Adpositions-Rektion je Kasus (Prä- + Postpositionen):
+LIST GovAccAdp = "be" "ezze" "iz" "kīrsa" "na" "nō" "pa" "pagār" "pas" "pirzdau" "pra" "prēi" "prīki" "prīkin" "prō" "pēr" "pō" "sirzdau" "sklāit" "sklāits" "sēn" "zūrgi" "ēn" "ēr" "ērgi" ;
+LIST GovDatAdp = "dīnkun" "ezze" "pa" "pō" "ēn" ;
+LIST GovGenAdp = "paggan" "ēnilgan" ;
+LIST GovAdp = "be" "dīnkun" "ezze" "iz" "kīrsa" "na" "nō" "pa" "paggan" "pagār" "pas" "pirzdau" "pra" "prēi" "prīki" "prīkin" "prō" "pēr" "pō" "sirzdau" "sklāit" "sklāits" "sēn" "zūrgi" "ēn" "ēnilgan" "ēr" "ērgi" ;
+
 # Verbvalenz (lemma-basiert):
 LIST GenVerb = "bijātun" "iĺgitun si" "klausītun" "kwaitītun" "kīnintun si" ;
 LIST AkkVerb = "audribbintun" "auwīngtun" "aušaūtun" "aušaūtun si" "billītun" "bilītun" "bilītun si" "dalljautun" "ebwīlktun" "ensegītun" "enīmtun" "erbilītun" "etgērdautun si" "gaūtun" "izmakīntun si" "kōntaktitwei" "milītun" "minītun" "nadirītun" "padīngautun" "parkautwei" "pazinātun" "prabilītun" "preizentlitun" "turītun" "waīstun" "widātun" ;
