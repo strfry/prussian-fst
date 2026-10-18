@@ -61,7 +61,7 @@ try:
 except ImportError:
     from fst_lookup import flookup_batch
 
-SKIP_VIDEOS = {"qLwBCWtMuH8"}  # wie delta_review.py
+SKIP_VIDEOS = {"qLwBCWtMuH8"}
 
 # Satz-Delimiter (CG3 DELIMITERS) vs. sonstige Interpunktion
 SENT_PUNCT = {".", "!", "?"}

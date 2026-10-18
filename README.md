@@ -1,103 +1,145 @@
-# Prussian Foma FST
+# Prussian FST
 
-Vollform-Lookup-FST fürs Neupreußische, generiert aus
-`twanksta_entries.json`.  Jede flektierte Form ist ein eigener
-lexc-Eintrag (Lookup-Tabelle, keine Stamm-Endung-Zerlegung).
+Morphologischer Analyzer und Generator fürs Neupreußische (HFST, Giella-Tags).
+
+Die Open-Class-Morphologie (Nomen, Adjektive, Verben, Numeralia) ist
+**generativ**: handgeschriebene Endungstabellen (`gen/*.lexc`) plus
+Akzentregel (`gen/accent.regex`) erzeugen aus Lemma + Twanksta-Paradigmennummer
+die Formen.  Die Lexeme kommen aus der **lean NVH** — der Wortliste, die nur
+noch das enthält, was die Grammatik nicht selbst erzeugt (gelieferte Stämme,
+Override-Zellen).  Geschlossene Klassen (Funktionswörter, Pronomen) bleiben
+handgepflegte lexc.
 
 ## Daten
 
-`twanksta_entries.json` aus dem
+Alle Dictionary-Daten liegen im
 [`strfry/prussian-corpus`](https://github.com/strfry/prussian-corpus)-Checkout
-liegt — keine Kopie im fst-Repo:
+nebenan — keine Kopie im fst-Repo:
 
-```bash
-# kanonische Quelle (im corpus-Repo bauen: python3 scripts/twanksta_parse.py)
-ls ../corpus/parsed/twanksta_entries.json
-```
+| Datei (`../corpus/parsed/`) | Rolle |
+|---|---|
+| `twanksta_dmlex.nvh` | **lean NVH** — Build-Eingabe (Lexeme, `stemOverrides`, Override-Zellen, Invariable) |
+| `twanksta.nvh` | fette NVH — jede Twanksta-Zelle; Eingabe des Kompressors |
+| `twanksta_entries.json` | Roh-Export; noch gelesen von `export_valence.py`, `linker.py` |
+
+Die lean NVH entsteht aus der fetten über den Kompressor
+(`gen/compress_forms.py`), mit der exakten Zusicherung
+
+    generate(lemma, stems) ⊕ overrides == Twanksta-Zellen   (⊕ = Override ersetzt den Slot)
 
 ## Bauen
 
-Der FST-Build läuft über das python-`hfst`-Modul (Projekt-Abhängigkeit,
-`pip install hfst`), nicht über eine separat installierte hfst-Toolchain;
-Lookup zur Laufzeit über `pyhfst`.
+Build über das python-`hfst`-Modul (Projekt-Abhängigkeit), keine separate
+hfst-CLI nötig; Lookup zur Laufzeit über `pyhfst`.
 
 ```bash
-make gen   # .lexc-Dateien aus JSON generieren
-make       # python-hfst: lexc → build/base.fst → *.hfstol
+uv sync
+make atoms   # datenfreie Atom-FSTs aus gen/*.lexc → build/gen-*.hfstol
+make         # Atome + lean NVH + lexc/ → build/analyzer.lexc → base.fst → *.hfstol
 ```
+
+Weitere Targets:
+
+```bash
+make analyzer-parity   # Oberflächendeckung gegen das eingefrorene Twanksta-Gold
+make cg3-check         # CG3-Sets generieren + Grammatiken kompilieren
+make disambiguate      # Vollkorpus-Lauf mit Ambiguitätsstatistik
+make conllu            # CoNLL-U-Silberexport → data/prussian_silver.conllu
+make links             # desc-Ref-Resolver → build/links.json
+make validate-corpus   # Validator über die Korpora (Fehlalarm-Regression)
+uv run pytest
+```
+
+Kompressor (fette → lean NVH):
+
+```bash
+uv run python gen/compress_forms.py --stats
+uv run python gen/compress_forms.py --verify-idempotent
+```
+
+## Lookup
+
+Mit der (optionalen) hfst-CLI:
+
+```bash
+echo "dumslis" | hfst-lookup build/base.hfstol     # Analyse
+echo "dumslē+N+Fem+Sg+Gen" | hfst-lookup build/base.gen.hfstol   # Generierung
+```
+
+In Python: `prussian_fst.fst_lookup.flookup_batch` / `glookup_batch`, bzw. die
+High-Level-API `prussian_fst.api` (`analyze`, `validate`, `conllu`).
+`PRUSSIAN_FST=<pfad>` setzt einen anderen Analyzer für die CG3-Pipeline.
 
 ## Struktur
 
 ```
 .
-├── Makefile                  # gen → python-hfst-Build
+├── Makefile
+├── gen/                      # generativer Kern
+│   ├── {a,aa,i,u,jo,n}stem.lexc, adj.lexc, verb.lexc   # Endungstabellen je Familie
+│   ├── accent.regex          # Akzent/Makron/Gemination
+│   ├── atom_fst.py           # gen/*.lexc → build/gen-<fam>-<paradigm>[-<role>].hfstol
+│   ├── generator.py          # datenfreier Generator: Lemma+Paradigma(+Stämme) → Slots
+│   ├── compress_forms.py     # Kompressor: fette NVH → lean NVH
+│   ├── build_analyzer.py     # lean NVH + Atome + lexc/ → build/analyzer.lexc
+│   └── DEVIATIONS.md         # Ledger der Regel-Abweichungen
+├── lexc/                     # handgepflegt
+│   ├── root.lexc, symbols.lexc          # Root + Multichar-Tag-Inventar
+│   ├── function_words.lexc
+│   └── pronouns.lexc
 ├── src/prussian_fst/
-│   ├── __init__.py
-│   ├── gen_lexc.py           # Konsolidierter Generator aus twanksta_entries.json
 │   ├── build_fst.py          # FST-Build über python-hfst (ersetzt hfst-CLI)
-│   ├── export_valence.py     # Rektion/Valenz-Export (desc-Feld) → build/valence.json
-│   ├── linker.py             # desc-Ref-Resolver → build/links.json
-│   ├── cg3_pipeline.py       # CG3-Disambiguator-Pipeline
+│   ├── fst_lookup.py         # pyhfst-Lookup (Analyse/Generierung)
+│   ├── api.py                # In-Process-API für prussian-mcp
+│   ├── cg3_pipeline.py       # CG3-Disambiguator-/Validator-Pipeline
 │   ├── export_conllu.py      # CoNLL-U-Export
-│   └── delta_review.py       # Korpus-Dict-Abgleich (Handoff für Glabbis)
-├── lexc/
-│   ├── symbols.lexc          # handgepflegt
-│   ├── root.lexc             # handgepflegt
-│   ├── function_words.lexc   # handgepflegt
-│   ├── pronouns.lexc         # handgepflegt
-│   ├── proper_nouns.lexc     # handgepflegt
-│   ├── nouns.lexc            # generiert
-│   ├── adjectives.lexc       # generiert
-│   ├── numerals.lexc         # generiert
-│   ├── verbs.lexc            # generiert
-│   ├── adverbs.lexc          # generiert
-│   ├── prepositions.lexc     # generiert
-│   ├── conjunctions.lexc     # generiert
-│   ├── particles.lexc        # generiert
-│   ├── interjections.lexc    # generiert
-│   └── proper_nouns_auto.lexc # generiert
+│   ├── export_valence.py     # Rektion/Valenz → build/valence.json
+│   ├── gen_cg3_sets.py       # valence.json → cg3/generated-sets.cg3
+│   └── linker.py             # desc-Ref-Resolver → build/links.json
 ├── cg3/
 │   ├── disambiguator.cg3     # Hauptgrammatik
 │   ├── dependency.cg3        # Dependenz-Schicht
 │   ├── validator.cg3         # Validierungs-Regeln
-│   └── generated-sets.cg3    # CG3-Sets (generiert aus valence.json)
+│   └── generated-sets.cg3    # generiert
 ├── norm/                     # Normalisierungs-Stufen (pro Phänomen)
 │   ├── macron.regex          # Makron-Verlust (ā ē ī ō ū → a e i o u)
 │   ├── degem.regex           # Degemination (nn → n …)
 │   └── ortho.regex           # w-Prothese, i-Synkope, twei↔tun …
-└── build/                    # Kompilierte Artefakte
-    ├── base.hfstol           # Lookup-FST (surface → analysis), strikt
+├── tests/                    # pytest; gold/ = eingefrorene Twanksta-Oberflächen
+└── build/
+    ├── gen-*.hfstol          # Atome (Stamm+Tag → Oberfläche)
+    ├── analyzer.lexc         # gebackene Merged-lexc (Quelle von base.fst)
+    ├── base.hfstol           # Analyzer (surface → analysis), strikt
+    ├── base.gen.hfstol       # Generator (analysis → surface)
     ├── macron.hfstol         # + Makron-Normalisierung
     ├── lenient.hfstol        # + Degemination/Ortho (Gesamt-Fallback)
-    ├── valence.json          # Rektion/Valenz-Export (generiert)
-    └── cg3/
-        ├── disambiguator.bin
-        ├── dependency.bin
-        └── validator.bin
+    └── cg3/*.bin
 ```
-
-Alle Einträge sind Vollformen (`lemma+POS+Tag:form # ;`), nach
-Wortart in separate Dateien gruppiert (Klassifikation anhand
-`desc`-Feld und Paradigmen-Nummer im Dictionary).
 
 ## Tags
 
-Neben POS/Kasus/Numerus/Genus/Tempus/Person:
+Giella-Inventar (`lexc/symbols.lexc`), Reihenfolge
+`lemma+POS[+Sub]+…`, z. B.:
 
-- `+Ind` — Indikativ, explizit an allen finiten Präsens-/Präteritumformen
-  (`+Opt`/`+Imp`/`+Subj` wie gehabt)
-- `+Cmp` / `+Sup` — Komparativ/Superlativ; volle Adjektivparadigmen aus
-  `forms.comparative`/`forms.superlative`, Steigerung abgeleiteter
-  Adverbien aus `forms.adverb` (Lemma = Positiv-Adverb, z.B.
-  `labbai+Adv+Cmp:walnai`)
-- `+GovAkk` / `+GovDat` — Kasusrektion der Präpositionen aus dem
-  Twanksta-`desc`-Feld (`prp acc` / `prp dat`); Doppelrektion ergibt
-  zwei Einträge (`ēn`, `ezze`, `pa`, `pō`)
+```
+dumslē+N+Fem+Sg+Gen:dumslis
+Adwēnts+N+Prop+Msc+Sg+Nom:Adwēnts
+begalbis+A+Comp+Msc+Sg+Nom:begalbjaisis
+begalbis+Adv+Comp:begalbjais
+perwaidīntun+V+Ind+Prs+Sg1+Refl:perwaidinnas
+```
 
-`build/valence.json` (aus `src/prussian_fst/export_valence.py`) enthält die
-Präpositionsrektion als JSON sowie Best-Effort-Verbvalenz
-(nur die ~140 im Wörterbuch annotierten Verben; unpersönliche
-Verben sind in Twanksta nicht kodiert).
+- POS: `+N` (`+Prop` = großgeschriebenes Nomen), `+A`, `+Adv`, `+V`, `+Num`
+  (`+Card`/`+Ord`), `+Pron`, `+Pr`, `+Po`, `+CC`/`+CS`, `+Pcle`, `+Interj`
+- Nomen tragen das Genus (`+Msc`/`+Fem`/`+Neu`) als Eintragsfakt
+- Verben: `+Ind`/`+Subj`/`+Opt`/`+Imprt`, `+Prs`/`+Prt`, Personen
+  `+Sg1 +Sg2 +SP3 +Pl1 +Pl2`; Partizipien `+PrsPrc`/`+PrfPrc` × `+Act`/`+Pss`
+- Steigerung `+Comp`/`+Superl`, auch an abgeleiteten Adverbien
+
+Präpositionsrektion steht nicht im FST, sondern als Lemma-Liste in der
+CG-Schicht (`build/valence.json` → `cg3/generated-sets.cg3`).
+`valence.json` enthält außerdem Best-Effort-Verbvalenz (nur die im
+Wörterbuch annotierten Verben).
 
 ## FSG/CG-Check (CoNLL-U mit Regel-Provenienz)
 
