@@ -310,6 +310,29 @@ def test_stem_alphabet_is_enforced():
         gen.check_stem("nagg1")                      # Ziffer
     with pytest.raises(ValueError, match="STEM_ALPHABET"):
         gen.check_stem("q")                          # nicht im Kopierer
+    with pytest.raises(ValueError, match="geliefert-Stamm"):
+        gen.generate("verb", "142", lemma="laikātun", stems={"pres": "lāik1"})
+
+
+# ── Reflexiva: Lemma „… si“, Regeln auf der nackten Form ──
+
+def test_split_si():
+    assert gen.split_si("perwaidīntun si") == ("perwaidīntun", True)
+    assert gen.split_si("laikātun") == ("laikātun", False)
+
+
+def test_reflexive_lemma_uses_bare_stem_rules():
+    assert (gen.default_stems("verb", "142", lemma="laikātun si")
+            == gen.default_stems("verb", "142", lemma="laikātun"))
+    # 87 → 87a/87b nach Lemma-Endung — die Partikel darf die Wahl nicht kippen
+    assert gen.resolve_paradigm("verb", "87", "kandātun si") == "87a"
+    assert gen.resolve_paradigm("verb", "87", "dāktun si") == "87b"
+
+
+def test_reflexive_lemma_generates_without_stems():
+    forms = gen.generate("verb", "85", lemma="preistatīntun si")
+    assert forms == gen.generate("verb", "85", lemma="preistatīntun")
+    assert forms["prs.sp3"]
 
 
 # ── Formen: Stamm + Endung + Akzent, von Hand aus den Grammatiken gelesen ──

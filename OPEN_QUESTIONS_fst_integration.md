@@ -242,7 +242,7 @@ Grad `+Comp/+Superl`, `+Refl`-Position, Numeral-Tags aus Q1)?
 
 **TODO**
 1. ~~`+P1 +P2 +P3` in `symbols.lexc`~~ **erledigt 2026-10-08** (+ `tests/test_api.py::test_generate_person_pronouns`).
-2. `bake_open`: `+Refl` an alle Slot-Tags reflexiver Lemmata.
+2. ~~`bake_open`: `+Refl` an alle Slot-Tags reflexiver Lemmata.~~ **erledigt 2026-10-19** (nur Verben; nicht-verbale „… si“-Einträge wie `pattinuns si` P68 offen; Generator rechnet Stufe-0-Stämme auf `split_si`-Basisform; `tests/test_api.py::test_reflexive_verb_cells_carry_refl`). validate-corpus unverändert bis auf residual_ambiguity 826 → 825.
 3. `pronouns.lexc`, `function_words.lexc:29` auf gender-first; `cg3_golden.tsv` + dictionary `queries.go` mitziehen.
 4. Fällt mit Q1-TODO 1 (Konverter-Genusblöcke); bis dahin `analysis_tags` mit klassifizierter POS aufrufen.
 5. Paritätstest: `analysis_tags`-Tokens ⊆ `symbols.lexc` ⊆ `export_conllu`-Mappings + Shape-Check gegen kanonische Reihenfolge.

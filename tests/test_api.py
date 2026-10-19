@@ -79,3 +79,14 @@ def test_generate_person_pronouns():
     out = api.generate(["as+Pron+P1+Sg+Gen", "tū+Pron+P2+Sg+Nom"])
     assert out["as+Pron+P1+Sg+Gen"] == ["māise"]
     assert out["tū+Pron+P2+Sg+Nom"] == ["tū"]
+
+
+def test_reflexive_verb_cells_carry_refl():
+    # „laikātun si“: +Refl an jeder Zelle, nicht nur am Infinitiv — sonst kennt
+    # der Generator die finiten/partizipialen Refl-Zellen nicht.
+    readings = {"+".join(t) for _, t in api.tags(["lāika"])["lāika"]["analyses"]}
+    assert {"V+Ind+Prs+SP3", "V+Ind+Prs+SP3+Refl"} <= readings
+    cells = ["laikātun+V+Ind+Prs+SP3+Refl", "laikātun+V+Opt+SP3+Refl",
+             "preistatīntun+V+PrsPrc+Act+Msc+Sg+Nom+Refl"]
+    out = api.generate(cells)
+    assert [out[c] for c in cells] == [["lāika"], ["laikāsei"], ["preistatinānts"]]

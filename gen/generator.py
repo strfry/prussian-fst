@@ -284,6 +284,22 @@ def _norm(lemma: str) -> str:
     return unicodedata.normalize("NFC", lemma).strip()
 
 
+def split_si(lemma: str) -> tuple[str, bool]:
+    """``"perwaidīntun si"`` → ``("perwaidīntun", True)``.
+
+    Reflexiva tragen die Partikel im Lemma (Twanksta-Kopfwort); Stammregeln und
+    Varianten-Resolver arbeiten auf der nackten Form, die Partikel ist Anzeige.
+    """
+    if lemma.endswith(" si"):
+        return lemma[:-3], True
+    return lemma, False
+
+
+def _base(lemma: str) -> str:
+    """Normalisiertes Lemma ohne Reflexivpartikel — Eingabe der Stufe-0-Regeln."""
+    return split_si(_norm(lemma))[0]
+
+
 PARADIGMS: dict[tuple[str, str], Paradigm] = {}
 
 
@@ -613,7 +629,7 @@ def _paradigm_key(pos: str, paradigm: str | int, lemma: str = "") -> str:
     pos = _family_pos(pos)
     paradigm = PARADIGM_ALIASES.get((pos, str(paradigm)), str(paradigm))
     resolver = _VARIANT_RESOLVERS.get((pos, paradigm))
-    return resolver(_norm(lemma)) if resolver is not None else paradigm
+    return resolver(_base(lemma)) if resolver is not None else paradigm
 
 
 # ── Atom-FSTs ───────────────────────────────────────────────────────────────
@@ -674,17 +690,21 @@ def default_stems(pos: str, paradigm: str | int, lemma: str | None = None
     par = _paradigm(pos, paradigm, lemma or "")
     if not lemma:
         return {}
-    base = _drop(_norm(lemma), par.strip)
+    base = _drop(_base(lemma), par.strip)
     return {role: spec.stem_from(base) for role, spec in par.roles.items()}
 
 
-def check_stem(stem: str, role: str = "") -> str:
-    """Stamm gegen STEM_ALPHABET prüfen (Kopierer-Verlust wäre sonst stumm)."""
+def check_stem(stem: str, role: str = "", source: str = "") -> str:
+    """Stamm gegen STEM_ALPHABET prüfen (Kopierer-Verlust wäre sonst stumm).
+
+    ``source`` (``geliefert``/``Regel``) sagt in der Meldung, woher der Stamm kommt.
+    """
     bad = [c for c in stem if c not in STEM_ALPHABET_SET]
     if bad:
         where = f" für Rolle {role!r}" if role else ""
+        what = f"{source}-Stamm" if source else "Stamm"
         raise ValueError(
-            f"Stamm {stem!r}{where} enthält {len(bad)} Zeichen außerhalb von "
+            f"{what} {stem!r}{where} enthält {len(bad)} Zeichen außerhalb von "
             f"STEM_ALPHABET: {''.join(sorted(set(bad)))!r} "
             f"(NFC-normalisieren oder STEM_ALPHABET erweitern)")
     return stem
@@ -720,7 +740,8 @@ def generate(pos: str, paradigm: str | int, lemma: str | None = None,
         stem = resolved.get(role)
         if stem is None:
             continue                      # weder Lemma noch Stamm → nichts zu tun
-        check_stem(_norm(stem), role)
+        check_stem(_norm(stem), role,
+                   "geliefert" if stems and role in stems else "Regel")
         spec = par.roles[role]
         tr = _atom(_family_pos(pos), key_paradigm, role)
         for slot in spec.slots:

@@ -237,12 +237,20 @@ def test_supplied_stem_replaces_the_default_stem_of_its_role(atoms):
 
 
 def test_unusable_stem_drops_only_that_role(atoms):
-    """Mehrwort-Lemma: der Regelstamm mit Leerzeichen fällt raus, der Rest bleibt."""
-    usable = cf.usable_stems("verb", "132", "guds si", {"pres": "gudse"})
+    """Mehrwort-Lemma: der Regelstamm mit Leerzeichen fällt raus, der Rest bleibt.
+    (Nicht „… si“ — das Reflexivum rechnet mit der nackten Form, siehe unten.)"""
+    usable = cf.usable_stems("verb", "132", "guds sen", {"pres": "gudse"})
     assert "nonfin" not in usable and usable["pres"] == "gudse"
-    out = cf.regenerate("verb", "132", "guds si", {"pres": "gudse"})
+    out = cf.regenerate("verb", "132", "guds sen", {"pres": "gudse"})
     assert out["prs.sp3"] == ("gudsei",)
     assert cf.uncovered({"prs.sp3": ["gudsei"]}, out) == {}
+
+
+
+def test_reflexive_lemma_keeps_all_rule_stems(atoms):
+    """„guds si“: Partikel ist kein Stammteil — alle Rollen wie bei „guds“."""
+    assert (cf.usable_stems("verb", "132", "guds si", {"pres": "gudse"})
+            == cf.usable_stems("verb", "132", "guds", {"pres": "gudse"}))
 
 
 def test_unknown_paradigm_yields_all_cells_as_overrides():

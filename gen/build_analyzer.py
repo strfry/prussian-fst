@@ -65,11 +65,7 @@ def lexc_esc(text: str) -> str:
     return text.replace(" ", "% ").replace("!", "%!")
 
 
-def split_si(lemma: str) -> tuple[str, bool]:
-    """``"perwaidīntun si"`` → ``("perwaidīntun", True)``."""
-    if lemma.endswith(" si"):
-        return lemma[:-3], True
-    return lemma, False
+split_si = gen.split_si    # Reflexivpartikel; wirdeins importiert es von hier
 
 
 def is_proper(entry: cf.Entry) -> bool:
@@ -266,6 +262,8 @@ def bake_open(entries: list[cf.Entry]) -> tuple[str, dict]:
             except ValueError:
                 skipped_unknown_slot += 1
                 continue
+            if pos == "verb" and refl:
+                tags += "+Refl"          # jede Zelle, nicht nur der Infinitiv (CG3 7b)
             for surface in surfaces:
                 if " " in surface or surface == junk:
                     continue
