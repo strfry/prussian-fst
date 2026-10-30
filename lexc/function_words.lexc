@@ -31,7 +31,7 @@ LEXICON FunctionWords
   delli+Adv:delli      # ; ! UNSICHER: „einige, etliche" — Adv oder indekl. Pron?
 
   ! Pronomen-Formen, die die Paradigmen nicht abdecken
-  stā+Pron+Sg+Nom+Fem:stā  # ;
+  stā+Pron+Fem+Sg+Nom:stā  # ;
   ! Reflexivpronomina (Twanksta sin/sebbei ohne Formen-Tabelle; zu „Swāise acc/dat")
   sin+Pron+Refl+Acc:sin     # ; ! reflexiv, Akkusativ („sich")
   sebbei+Pron+Refl+Dat:sebbei # ; ! reflexiv, Dativ („sich")

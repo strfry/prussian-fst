@@ -17,18 +17,18 @@ Prūsisks waitjāsenis sēn prūsiskan bebrun.	bebrun	bebrus+N+Msc+Sg+Acc
 Tāns ni turri kōnkretan pawīstin.	kōnkretan	kōnkrets+A+Fem+Pl+Gen
 Tāns ni turri kōnkretan pawīstin.	pawīstin	pawīstis+N+Fem+Pl+Gen
 # Gen-Modifikator vor der NG bleibt lizenziert (Doc-Beispiel)
-māise prūsiskas billas	māise	as+Pron+P1+Sg+Gen|majs+Pron+P1+Sg+Gen+Msc|majs+Pron+P1+Sg+Gen+Neu
+māise prūsiskas billas	māise	as+Pron+P1+Sg+Gen|majs+Pron+P1+Msc+Sg+Gen|majs+Pron+P1+Neu+Sg+Gen
 māise prūsiskas billas	prūsiskas	prūsisks+A+Fem+Pl+Nom
 māise prūsiskas billas	billas	bilā+N+Fem+Pl+Nom
 # Determinierer kongruiert mit dem Kopf; unlizenzierter Gen entfernt
-Stan wīran wīda.	Stan	stas+Pron+Sg+Acc+Msc
+Stan wīran wīda.	Stan	stas+Pron+Msc+Sg+Acc
 Stan wīran wīda.	wīran	wīrs+N+Msc+Sg+Acc
 # Prädikativ nach Kopula: kurze Neutrum-Form ist Adj (Nom/Akk bleibt offen)
 Sta ast labban.	labban	labs+A+Neu+Sg+Acc|labs+A+Neu+Sg+Nom
 # syntax_rules §2: Prädikatsnomen im Nominativ
 As asma kunnegs.	kunnegs	kunnegs+N+Msc+Sg+Nom
 # syntax_rules §4: stēisan + nachgestellter Gen (Pl-Gen = Sg-Akk-Synkretismus)
-Saknis stēisan anzanan.	stēisan	stas+Pron+Pl+Gen+Msc
+Saknis stēisan anzanan.	stēisan	stas+Pron+Msc+Pl+Gen
 Saknis stēisan anzanan.	anzanan	anzans+N+Msc+Pl+Gen
 # syntax_rules §5c: pa + Dativ (statisch) bleibt erhalten; R1 löst Rektion
 Kurmjai buwinna pa zemmei.	zemmei	zemē+N+Fem+Sg+Dat
@@ -42,7 +42,7 @@ As pūwa sen laīwan.	laīwan	laīwan+N+Neu+Sg+Acc
 # SECTION 2d: ka als Komplementierer „dass" nach Verbum dicendi (mēri)
 Tēt as wis mēri ka sta ast per pawīsts.	ka	ka+CS
 # SECTION 6b: Neutrum-Pron neben Kopula ist Nom (Subjekt), nicht Akk
-Sta ast mussan.	Sta	stas+Pron+Nom+Neu
+Sta ast mussan.	Sta	stas+Pron+Neu+Nom
 # PP-Rektion schlägt Genitivus negationis: -an-Nomen in Akk-PP ist Akk,
 # nicht Pl+Gen, auch bei negiertem Verb in der Klausel (kriwwjan/karjaūsnan)
 Ni izbilāi ezze karjaūsnan.	karjaūsnan	karjaūsnā+N+Fem+Sg+Acc
@@ -69,17 +69,17 @@ Sta ast zangjāi.	ast	būtwei+V+Ind+Prs+SP3
 Wīrai ast stwi.	stwi	stwi+Adv
 Stwi ast wīrs.	Stwi	stwi+Pcle
 # R4: N vs. V — stāi vor finitem Verb ist Demonstrativum, nicht stātwei
-Stāi wīrai bilāi.	Stāi	stas+Pron+Pl+Nom+Msc
+Stāi wīrai bilāi.	Stāi	stas+Pron+Msc+Pl+Nom
 # Modus relativus (syntax_rules §18, korpusbelegt); per→Prp via R3
 Tāns astits per gārban.	astits	būtwei+V+Rel+Prs+SP3
 Tāns astits per gārban.	per	pēr+Pr
 Tāns astits per gārban.	gārban	gārbs+N+Msc+Sg+Acc
 # Postposition paggan (syntax_rules §4-Umfeld): Gen davor bleibt
-Stesse paggan sta ast brendu.	Stesse	stas+Pron+Gen+Neu|stas+Pron+Sg+Gen+Msc
+Stesse paggan sta ast brendu.	Stesse	stas+Pron+Neu+Gen|stas+Pron+Msc+Sg+Gen
 Stesse paggan sta ast brendu.	paggan	paggan+Po
 # R6: di nach finitem Verb ist Subjektersatz → Nominativ
 # Neutrum-Pronomen numeruslos: di (Encl) hat nur noch eine Lesart
-Tenā gērdaui, bilāi di.	di	di+Pron+P3+Encl+Nom+Neu
+Tenā gērdaui, bilāi di.	di	di+Pron+P3+Encl+Neu+Nom
 # syntax_rules §11: kurzes Neutrum-Partizip nach wīrst (korpusecht);
 # +Refl fällt weg — kein Reflexiv-Klitikon (si/sin) in der Klausel (SECTION 7b)
 Swāikstan wīrst pagaūwus ebwarītun.	pagaūwus	pagaūtun+V+PrfPrc+Act+Neu+Sg+Nom
@@ -88,7 +88,7 @@ As interessitun si per stan.	interessitun	interessitun+V+Inf+Refl
 # … ohne Klitikon bleibt die nicht-reflexive Lesart
 As sergītun stan.	sergītun	sergītun+V+Inf
 # syntax_rules §4: stēisan + nachgestellter Gen.Pl (korpusecht)
-šlamisnā stēisan lappan	stēisan	stas+Pron+Pl+Gen+Neu
+šlamisnā stēisan lappan	stēisan	stas+Pron+Neu+Pl+Gen
 šlamisnā stēisan lappan	lappan	lappan+N+Neu+Pl+Gen
 # Ortho-Layer (lenient): pawīsts → pawīstis; Numerus bleibt offen
 Kitā pawīsts.	pawīsts	pawīstis+N+Fem+Pl+Nom|pawīstis+N+Fem+Sg+Nom
@@ -107,7 +107,7 @@ Tāns wīda, kāi wīrs turri buttan.	wīrs	wīrs+N+Msc+Sg+Nom
 Tāns wīda, kāi wīrs turri buttan.	turri	turītun+V+Ind+Prs+SP3
 Tāns wīda, kāi wīrs turri buttan.	buttan	buttan+N+Neu+Sg+Acc
 # Kopula-Klausel lizenziert kein Akkusativobjekt: Subjekt wird Nom
-Sta ast labban.	Sta	stas+Pron+Nom+Neu
+Sta ast labban.	Sta	stas+Pron+Neu+Nom
 # VS-Stellung: postverbales @SUBJ-Kind wählt die P3-Lesart (P3 ist
 # numeruslos, Tempus bleibt mangels Evidenz offen)
 Buwinna kurmjai pa zemmei.	Buwinna	buwīntwei+V+Ind+Prs+SP3|buwīntwei+V+Ind+Prt+SP3
