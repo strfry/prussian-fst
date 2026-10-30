@@ -20,8 +20,9 @@ es ist ein Entry-Fakt, kein Slot).
 KEINE KORPUSQUELLE. Die einzige Datenquelle sind die zur Build-Zeit kompilierten,
 datenfreien Atom-FSTs ``build/gen-<family>-<paradigm>[-<role>].hfstol``, die aus den
 handgeschriebenen Grammatiken ``gen/*.lexc`` + ``gen/accent.regex`` stammen
-(siehe ``gen/atom_fst.py``). Zur Laufzeit genügt ein pyhfst-Lookup pro Slot:
-``Stamm + Tag → Oberfläche``.
+(siehe ``gen/atom_fst.py``). Zur Laufzeit genügen zwei pyhfst-Lookups pro Slot:
+``Stamm + Tag → Zwischenform`` im Atom, dann ``Zwischenform → Oberfläche`` durch
+die Akzentregeln ``build/gen-accent.hfstol``, die alle Atome teilen.
 
 Stufen:
 
@@ -665,6 +666,17 @@ def atom_targets() -> list[tuple[str, str, str, Path]]:
 
 
 @lru_cache(maxsize=None)
+def _accent():
+    """Die Akzentregeln (einmal für alle Atome, siehe gen/atom_fst.build_accent)."""
+    import pyhfst
+
+    path = ATOM_DIR / "gen-accent.hfstol"
+    if not path.exists():
+        raise FileNotFoundError(f"{path} fehlt — bauen mit: make atoms (gen/atom_fst.py)")
+    return pyhfst.HfstInputStream(str(path)).read()
+
+
+@lru_cache(maxsize=None)
 def _atom(pos: str, paradigm: str, role: str):
     """Atom-FST laden (pyhfst, lazy import — der Build braucht kein pyhfst)."""
     import pyhfst
@@ -744,9 +756,12 @@ def generate(pos: str, paradigm: str | int, lemma: str | None = None,
                    "geliefert" if stems and role in stems else "Regel")
         spec = par.roles[role]
         tr = _atom(_family_pos(pos), key_paradigm, role)
+        accent = _accent()
         for slot in spec.slots:
-            out[slot] = tuple(sorted({surface for surface, _w in tr.lookup(
-                _norm(stem) + slot_tag(slot))}))
+            out[slot] = tuple(sorted({
+                surface
+                for mid, _w in tr.lookup(_norm(stem) + slot_tag(slot))
+                for surface, _w2 in accent.lookup(mid)}))
     return out
 
 

@@ -7,14 +7,20 @@ Je (pos, Twanksta-Paradigma, Rolle) entsteht genau ein Atom:
         --hfst.compile_lexc_file-->                          tag ↦ Endung+Marker
     hfst.regex("[<STEM_ALPHABET>]*")                        Stamm-Kopierer
         --concatenate (PRODUKT: Stamm bleibt auf beiden Bändern)-->
-    full = Kopierer ++ Atom .o. gen-accent.hfst --minimize--> --convert(OL)-->
+    Kopierer ++ Atom --minimize--> --convert(OL)-->
         build/gen-<family>-<paradigm>[-<role>].hfstol
 
-Also ``Stamm + Tag → Oberfläche``, z. B. ``dumsl+Sg+Gen → dumslis``:
-``concatenate`` ist das Band-Produkt (der Stamm fließt durch), ``compose`` die
-anschließende Regelkomposition (Akzent/Makron/Gemination). Ein Komponieren statt
-Produktieren liefert nichts — die Komposition verlangt Gleichheit der ganzen
-Zwischenstrings, ein reiner Stamm-Kopierer kann sie nicht herstellen.
+Also ``Stamm + Tag → Zwischenform`` mit den Markern ``^ ~ >``, z. B.
+``dumsl+Sg+Gen → dumslis``. ``concatenate`` ist das Band-Produkt (der Stamm fließt
+durch). Ein Komponieren statt Produktieren liefert nichts — die Komposition
+verlangt Gleichheit der ganzen Zwischenstrings, ein reiner Stamm-Kopierer kann
+sie nicht herstellen.
+
+Die Akzentregeln (Akzent/Makron/Gemination, gen/accent.regex) stecken NICHT im
+Atom, sondern einmal in ``build/gen-accent.hfstol`` (Kopierer .o. gen-accent.hfst);
+der Generator schickt jede Zwischenform hindurch. Das ist dieselbe Relation wie
+``Atom .o. Akzent``, aber die Regelmaschine (~240 KB) liegt einmal statt in jedem
+der ~250 Atome (ein Atom selbst sind wenige KB).
 
 Genau ein lexc-Compile pro Prozess: ``hfst.compile_lexc_file`` liefert ab dem
 zweiten Aufruf im selben Prozess ein leeres Transducer. Deshalb ein Prozess je
@@ -52,6 +58,7 @@ import hfst  # noqa: E402
 
 OL = hfst.ImplementationType.HFST_OL_TYPE
 ACCENT = ROOT / "build" / "gen-accent.hfst"
+ACCENT_OL = ROOT / "build" / "gen-accent.hfstol"   # Lookup-Form, siehe build_accent
 
 # Im hfst.regex sind + ^ ~ > % { } : | ( ) & - $ Sonderzeichen → "%" davor.
 _REGEX_SPECIAL = set("+^~>%{}:|()&-$")
@@ -138,20 +145,20 @@ def build_atom(pos: str, paradigm: str, role: str, verbose: bool = True,
 
     full = hfst.HfstTransducer(hfst.regex(copier_regex()))
     full.concatenate(atom)
-    if not ACCENT.exists():
-        raise SystemExit(f"{ACCENT} fehlt — bauen mit: make gen-accent.hfst")
-    full.compose(hfst.HfstInputStream(str(ACCENT)).read())
     full.minimize()
     _check_alphabet(atom, name)
+    full.convert(OL)                 # Zyklus (Kopierer-Stern) stört OL nicht;
+                                     # erst OL liefert Zwischenformen ohne Epsilon
 
+    accent = hfst.HfstInputStream(str(build_accent())).read()
     probe = "Teststam"
-    empty = [slot for slot in spec.slots if not full.lookup(probe + slot_tag(slot))]
+    empty = [slot for slot in spec.slots
+             if not any(accent.lookup(mid) for mid, _w in full.lookup(probe + slot_tag(slot)))]
     if empty:
         raise SystemExit(
             f"{name}: {len(empty)} Slots ohne Pfad (Atom {spec.atoms} in "
             f"{spec.lexc}): {', '.join(empty[:6])}{' …' if len(empty) > 6 else ''}")
 
-    full.convert(OL)                 # Zyklus (Kopierer-Stern) stört OL nicht
     out = atom_path(pos, paradigm, role, lemma)
     stream = hfst.HfstOutputStream(filename=str(out), type=OL)
     stream.write(full)
@@ -161,6 +168,31 @@ def build_atom(pos: str, paradigm: str, role: str, verbose: bool = True,
         print(f"{out.name:44} {len(spec.slots):2} Slots  {spec.atoms}"
               f"  <- {spec.lexc}")
     return out
+
+
+def build_accent(force: bool = False) -> Path:
+    """``build/gen-accent.hfstol``: die Akzentregeln als Lookup-Transducer.
+
+    Vorgeschaltet ist der Kopierer, damit jedes Zeichen von STEM_ALPHABET explizit
+    im Alphabet steht: in der Komposition ``Atom .o. Akzent`` hätte hfst die
+    unbekannten Symbole der Regeln (``?``) gegen das Atom-Alphabet aufgelöst, ein
+    allein stehender Lookup-Transducer kennt nur, was in ihm steht.
+    """
+    if ACCENT_OL.exists() and not force and ACCENT_OL.stat().st_mtime >= ACCENT.stat().st_mtime:
+        return ACCENT_OL
+    if not ACCENT.exists():
+        raise SystemExit(f"{ACCENT} fehlt — bauen mit: make gen-accent.hfst")
+    rules = hfst.HfstTransducer(hfst.regex(copier_regex()))
+    rules.compose(hfst.HfstInputStream(str(ACCENT)).read())
+    rules.minimize()
+    rules.convert(OL)
+    tmp = ACCENT_OL.with_suffix(f".tmp{os.getpid()}")
+    stream = hfst.HfstOutputStream(filename=str(tmp), type=OL)
+    stream.write(rules)
+    stream.flush()
+    stream.close()
+    tmp.replace(ACCENT_OL)
+    return ACCENT_OL
 
 
 def _one(args: tuple[str, str, str]) -> str:
@@ -177,6 +209,7 @@ def _one(args: tuple[str, str, str]) -> str:
 
 
 def build_all(jobs: int) -> int:
+    build_accent(force=True)
     targets = [(pos, paradigm, role)
                for pos, paradigm, role, _path in atom_targets()]
     targets.sort(key=lambda t: (t[0], len(t[1]), t[1], t[2]))
