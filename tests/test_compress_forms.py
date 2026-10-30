@@ -18,7 +18,7 @@ ein override-pflichtiges Lexem:
 
 Die Tests laufen ohne Korpusdatei; die beiden corpus_tests am Ende prüfen dieselben
 Eigenschaften an einer Stichprobe der echten fette NVH und überspringen sie, wenn
-die Datei fehlt. Atome baut der Test bei Bedarf selbst (``make atoms`` baut alle).
+die Datei fehlt. Fehlt die Endungstabelle, baut der Test sie selbst (``make atoms``).
 """
 
 from __future__ import annotations
@@ -52,20 +52,18 @@ WANTED = (
 
 @pytest.fixture(scope="session")
 def atoms():
-    """Fehlende Atome bauen (Session-Fixture: je Atom ein Subprozess)."""
+    """Endungstabelle + Akzentregeln bauen, falls benötigte Atome fehlen."""
     pytest.importorskip("hfst", reason="hfst-Paket fehlt (make atoms braucht es)")
     if not (REPO / "build/gen-accent.hfst").exists():
         pytest.skip("build/gen-accent.hfst fehlt — make gen-accent.hfst")
-    for pos, paradigm, role, lemma in WANTED:
-        if gen.atom_path(pos, paradigm, role, lemma).exists():
-            continue
-        done = subprocess.run(
-            [sys.executable, str(REPO / "gen/atom_fst.py"), pos, paradigm, role]
-            + (["--lemma", lemma] if lemma else []),
-            capture_output=True, text=True, cwd=REPO)
-        if done.returncode:
-            pytest.fail(f"Atom {pos}/{paradigm}/{role} nicht baubar:\n"
-                        f"{(done.stderr or done.stdout)[-2000:]}")
+    need = {gen.atom_name(pos, paradigm, role, lemma) for pos, paradigm, role, lemma in WANTED}
+    if gen.ACCENT_PATH.exists() and not need & set(gen.missing_atoms()):
+        return
+    done = subprocess.run([sys.executable, str(REPO / "gen/atom_fst.py"), "--all"],
+                          capture_output=True, text=True, cwd=REPO)
+    if done.returncode:
+        pytest.fail(f"Atome nicht baubar:\n{(done.stderr or done.stdout)[-2000:]}")
+    gen._endings_table.cache_clear()
 
 
 # ── NVH-Leser ───────────────────────────────────────────────────────────────

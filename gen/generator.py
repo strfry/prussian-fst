@@ -17,12 +17,16 @@ getrieben wird sie nicht — das Atom liefert alle Genusblöcke, die das Paradig
 Für Nomen ohne bekanntes Genus wird nichts erfunden (Nomen emittieren kein Genus —
 es ist ein Entry-Fakt, kein Slot).
 
-KEINE KORPUSQUELLE. Die einzige Datenquelle sind die zur Build-Zeit kompilierten,
-datenfreien Atom-FSTs ``build/gen-<family>-<paradigm>[-<role>].hfstol``, die aus den
-handgeschriebenen Grammatiken ``gen/*.lexc`` + ``gen/accent.regex`` stammen
-(siehe ``gen/atom_fst.py``). Zur Laufzeit genügen zwei pyhfst-Lookups pro Slot:
-``Stamm + Tag → Zwischenform`` im Atom, dann ``Zwischenform → Oberfläche`` durch
-die Akzentregeln ``build/gen-accent.hfstol``, die alle Atome teilen.
+KEINE KORPUSQUELLE. Die einzigen Datenquellen sind zwei Build-Produkte aus den
+handgeschriebenen Grammatiken (siehe ``gen/atom_fst.py``):
+
+  build/gen-endings.json   je Atom (Paradigma + Rolle) und Slot die Endungen mit
+                           den Markern ^ ~ >, aus ``gen/*.lexc``
+  build/gen-accent.hfstol  die Akzentregeln aus ``gen/accent.regex``
+
+Eine Form ist ``Stamm + Endung``, geschickt durch die Akzentregeln (ein pyhfst-
+Lookup pro Form). Die Endungen hängen nicht vom einzelnen Stamm ab, nur von
+Paradigma und Rolle; die Phonologie an der Grenze steckt allein in den Regeln.
 
 Stufen:
 
@@ -43,6 +47,7 @@ Lese-Abhängigkeit zur Laufzeit sind die gebauten Atom-FSTs.
 
 from __future__ import annotations
 
+import json
 import re
 import sys
 import unicodedata
@@ -633,11 +638,11 @@ def _paradigm_key(pos: str, paradigm: str | int, lemma: str = "") -> str:
     return resolver(_base(lemma)) if resolver is not None else paradigm
 
 
-# ── Atom-FSTs ───────────────────────────────────────────────────────────────
+# ── Atome: Endungstabelle + Akzentregeln ─────────────────────────────────────
 
 
 def atom_name(pos: str, paradigm: str | int, role: str, lemma: str = "") -> str:
-    """Atom-Dateiname (ohne Pfad): ``gen-<family>-<paradigm>[-<role>]``.
+    """Atom-Name (Schlüssel in ``gen-endings.json``): ``gen-<family>-<paradigm>[-<role>]``.
 
     ``lemma`` löst Varianten auf (Verb 87a/87b); ohne Lemma muss die konkrete
     Nummer stehen, sonst greift die Default-Auflösung der Variante.
@@ -652,17 +657,26 @@ def atom_name(pos: str, paradigm: str | int, role: str, lemma: str = "") -> str:
     return f"gen-{par.family}-{key}-{role}"
 
 
-def atom_path(pos: str, paradigm: str | int, role: str, lemma: str = "") -> Path:
-    return ATOM_DIR / f"{atom_name(pos, paradigm, role, lemma)}.hfstol"
+ENDINGS_PATH = ATOM_DIR / "gen-endings.json"
+ACCENT_PATH = ATOM_DIR / "gen-accent.hfstol"
 
 
-def atom_targets() -> list[tuple[str, str, str, Path]]:
-    """Alle zu bauenden Atome: (pos, paradigm, role, Pfad)."""
+def atom_targets() -> list[tuple[str, str, str, str]]:
+    """Alle Atome: (pos, paradigm, role, Name)."""
     out = []
     for (pos, paradigm), par in sorted(PARADIGMS.items()):
         for role in sorted(par.roles):
-            out.append((pos, paradigm, role, atom_path(pos, paradigm, role)))
+            out.append((pos, paradigm, role, atom_name(pos, paradigm, role)))
     return out
+
+
+def missing_atoms() -> list[str]:
+    """Atome ohne Eintrag in der Endungstabelle (alle, wenn sie fehlt)."""
+    try:
+        table = _endings_table()
+    except FileNotFoundError:
+        return [name for *_, name in atom_targets()]
+    return [name for *_, name in atom_targets() if name not in table]
 
 
 @lru_cache(maxsize=None)
@@ -670,22 +684,27 @@ def _accent():
     """Die Akzentregeln (einmal für alle Atome, siehe gen/atom_fst.build_accent)."""
     import pyhfst
 
-    path = ATOM_DIR / "gen-accent.hfstol"
-    if not path.exists():
-        raise FileNotFoundError(f"{path} fehlt — bauen mit: make atoms (gen/atom_fst.py)")
-    return pyhfst.HfstInputStream(str(path)).read()
+    if not ACCENT_PATH.exists():
+        raise FileNotFoundError(f"{ACCENT_PATH} fehlt — bauen mit: make atoms (gen/atom_fst.py)")
+    return pyhfst.HfstInputStream(str(ACCENT_PATH)).read()
 
 
 @lru_cache(maxsize=None)
-def _atom(pos: str, paradigm: str, role: str):
-    """Atom-FST laden (pyhfst, lazy import — der Build braucht kein pyhfst)."""
-    import pyhfst
+def _endings_table() -> dict[str, dict[str, list[str]]]:
+    """``gen-endings.json`` laden: Atom-Name → Slot → Endungen."""
+    if not ENDINGS_PATH.exists():
+        raise FileNotFoundError(f"{ENDINGS_PATH} fehlt — bauen mit: make atoms (gen/atom_fst.py)")
+    return json.loads(ENDINGS_PATH.read_text(encoding="utf-8"))
 
-    path = atom_path(pos, paradigm, role)
-    if not path.exists():
-        raise FileNotFoundError(
-            f"{path} fehlt — bauen mit: make atoms (gen/atom_fst.py)")
-    return pyhfst.HfstInputStream(str(path)).read()
+
+def _endings(pos: str, paradigm: str, role: str, slot: str) -> list[str]:
+    """Die Endungen (mit ^ ~ >) eines Slots."""
+    name = atom_name(pos, paradigm, role)
+    try:
+        return _endings_table()[name][slot]
+    except KeyError:
+        raise FileNotFoundError(f"{name}/{slot} fehlt in {ENDINGS_PATH} — "
+                                f"neu bauen mit: make atoms (gen/atom_fst.py)") from None
 
 
 # ── Stufe 0 (Regel) / Stufe 1 (gelieferter Stamm) ───────────────────────────
@@ -755,23 +774,22 @@ def generate(pos: str, paradigm: str | int, lemma: str | None = None,
         check_stem(_norm(stem), role,
                    "geliefert" if stems and role in stems else "Regel")
         spec = par.roles[role]
-        tr = _atom(_family_pos(pos), key_paradigm, role)
+        base = _norm(stem)
         accent = _accent()
         for slot in spec.slots:
             out[slot] = tuple(sorted({
                 surface
-                for mid, _w in tr.lookup(_norm(stem) + slot_tag(slot))
-                for surface, _w2 in accent.lookup(mid)}))
+                for ending in _endings(_family_pos(pos), key_paradigm, role, slot)
+                for surface, _w in accent.lookup(base + ending)}))
     return out
 
 
 # ── Stamm aus einer belegten Form (die Grammatik ist das_lineare Messgerät) ──
 #
-# Die Endung eines Slots steht in der Grammatik (gen/*.lexc), nicht in einer Tabelle
-# hier. Deshalb wird sie gemessen: ein Sentinel-Stamm durchläuft dasselbe
-# ``generate``-Rollenatom wie ein echter Stamm; was hinter dem Sentinel
-# herauskommt, ist die Endung des Slots — inklusive Akzentgrenze ``^``, Schutzmarker
-# ``~`` und Geminations-Marker ``>``, weil der Lookup diese Zeichen mitkopiert.
+# Die Endung eines Slots steht in der Grammatik (gen/*.lexc). Gemessen wird sie an
+# der Oberfläche: ein Sentinel-Stamm durchläuft dasselbe ``generate`` (Endung +
+# Akzentregeln) wie ein echter Stamm; was hinter dem Sentinel herauskommt, ist die
+# Endung, wie sie an einer belegten Form steht.
 #
 # Drei Bedingungen an das Sentinel, jede aus gen/accent.regex begründet:
 #   keine Makrone            (Shorten verkürzt sie vor ^)

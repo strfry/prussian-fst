@@ -1,44 +1,45 @@
-"""Build-Zeit-Backen der datenfreien Atom-FSTs (gen/*.lexc → build/gen-*.hfstol).
+"""Build-Zeit-Ablesen der Endungen (gen/*.lexc → build/gen-endings.json) und der
+Akzentregeln (gen/accent.regex → build/gen-accent.hfstol).
 
-Je (pos, Twanksta-Paradigma, Rolle) entsteht genau ein Atom:
+Je (pos, Twanksta-Paradigma, Rolle) gibt es ein Atom, das sind die Infl-Lexika
+der Rolle:
 
     gen/<family>.lexc
         --(nur LEXICON Root ersetzt: <Infl-Lexikone> ;)-->  build/gen-atom-<name>.lexc
-        --hfst.compile_lexc_file-->                          tag ↦ Endung+Marker
-    hfst.regex("[<STEM_ALPHABET>]*")                        Stamm-Kopierer
-        --concatenate (PRODUKT: Stamm bleibt auf beiden Bändern)-->
-    Kopierer ++ Atom --minimize--> --convert(OL)-->
-        build/gen-<family>-<paradigm>[-<role>].hfstol
+        --hfst.compile_lexc_file-->                          Tag ↦ Endung+Marker
+        --alle Pfade ablesen-->                              gen-endings.json[<name>][<slot>]
 
-Also ``Stamm + Tag → Zwischenform`` mit den Markern ``^ ~ >``, z. B.
-``dumsl+Sg+Gen → dumslis``. ``concatenate`` ist das Band-Produkt (der Stamm fließt
-durch). Ein Komponieren statt Produktieren liefert nichts — die Komposition
-verlangt Gleichheit der ganzen Zwischenstrings, ein reiner Stamm-Kopierer kann
-sie nicht herstellen.
+Ein Atom ist eine endliche Tabelle Slot-Tag → Endungen (mit ^ ~ >), z. B.
+``+N+Pl+Dat ↦ ^īmans``. Die Endungen hängen von Paradigma und Rolle ab, nicht vom
+einzelnen Stamm: die Eingabeseite eines Atoms trägt nur Tags. Das prüft der Build
+(``read_endings``); stünden dort Buchstaben oder Flags, wäre das Atom keine Tabelle
+mehr und der Build bricht ab.
 
-Die Akzentregeln (Akzent/Makron/Gemination, gen/accent.regex) stecken NICHT im
-Atom, sondern einmal in ``build/gen-accent.hfstol`` (Kopierer .o. gen-accent.hfst);
-der Generator schickt jede Zwischenform hindurch. Das ist dieselbe Relation wie
-``Atom .o. Akzent``, aber die Regelmaschine (~240 KB) liegt einmal statt in jedem
-der ~250 Atome (ein Atom selbst sind wenige KB).
+Die Phonologie an der Grenze Stamm/Endung (Makronkürzung und Degemination vor ^,
+Schutz durch ~, Gemination vor >, Koda-Vereinfachung vor -s) steckt allein in
+``build/gen-accent.hfstol`` (Kopierer .o. gen-accent.hfst). Der Generator bildet
+``Stamm + Endung`` und schickt es durch diese Regeln — dieselbe Relation wie die
+frühere Komposition ``Kopierer ++ Atom .o. Akzent`` je Atom-FST.
 
 Genau ein lexc-Compile pro Prozess: ``hfst.compile_lexc_file`` liefert ab dem
 zweiten Aufruf im selben Prozess ein leeres Transducer. Deshalb ein Prozess je
-Atom; ``--all`` startet sie als Subprozesse.
+Atom; ``--all`` startet sie als Subprozesse und schreibt die Tabelle.
 
 Der Build ist die einzige Stelle, die die Grammatik anfasst — ``gen/*.lexc`` und
 ``gen/accent.regex`` bleiben die einzige Quelle, ``gen/generator.py`` liest zur
-Laufzeit nur die fertigen Atome.
+Laufzeit nur die Tabelle und die Akzentregeln.
 
     uv run python gen/atom_fst.py --list
-    uv run python gen/atom_fst.py noun 53
+    uv run python gen/atom_fst.py noun 53                 # Endungen eines Atoms zeigen
     uv run python gen/atom_fst.py verb 85 partPresAct
-    uv run python gen/atom_fst.py --all -j8
+    uv run python gen/atom_fst.py --all -j8               # Tabelle + Akzentregeln bauen
 """
 
 from __future__ import annotations
 
 import argparse
+import collections
+import json
 import os
 import re
 import subprocess
@@ -50,15 +51,15 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from generator import (  # noqa: E402
-    ATOM_DIR, ROOT as GEN_ROOT, STEM_ALPHABET, atom_path, atom_targets,
-    paradigm_spec, resolve_paradigm, slot_tag,
+    ACCENT_PATH as ACCENT_OL, ATOM_DIR, ENDINGS_PATH, ROOT as GEN_ROOT, STEM_ALPHABET,
+    atom_name, atom_targets, paradigm_spec, resolve_paradigm, slot_tag,
 )
 
 import hfst  # noqa: E402
 
 OL = hfst.ImplementationType.HFST_OL_TYPE
 ACCENT = ROOT / "build" / "gen-accent.hfst"
-ACCENT_OL = ROOT / "build" / "gen-accent.hfstol"   # Lookup-Form, siehe build_accent
+EPSILON = "@_EPSILON_SYMBOL_@"
 
 # Im hfst.regex sind + ^ ~ > % { } : | ( ) & - $ Sonderzeichen → "%" davor.
 _REGEX_SPECIAL = set("+^~>%{}:|()&-$")
@@ -123,51 +124,54 @@ def _check_alphabet(atom, name: str) -> None:
             f"(gen/generator.py) — der Stammkopierer würde sie nicht durchlassen")
 
 
-def build_atom(pos: str, paradigm: str, role: str, verbose: bool = True,
-               lemma: str = "") -> Path:
-    """Ein Atom backen. Genau ein lexc-Compile — danach ist der Prozess verbraucht.
+def read_endings(pos: str, paradigm: str, role: str,
+                 lemma: str = "") -> tuple[str, dict[str, list[str]]]:
+    """Ein Atom ablesen: (Name, Slot → Endungen). Genau ein lexc-Compile — danach
+    ist der Prozess verbraucht.
 
     ``lemma`` wird nur zur Variantenauflösung gebraucht (Verb 87a/87b); ohne
     Lemma muss die konkrete Paradigmennummer genannt werden.
     """
     par = paradigm_spec(pos, paradigm, lemma)
     spec = par.roles[role]
-    name = atom_path(pos, paradigm, role, lemma).name
+    name = atom_name(pos, paradigm, role, lemma)
     ATOM_DIR.mkdir(parents=True, exist_ok=True)
 
     source = GEN_ROOT / spec.lexc
-    lexc_path = ATOM_DIR / f"gen-atom-{Path(name).stem}.lexc"
+    lexc_path = ATOM_DIR / f"gen-atom-{name}.lexc"
     lexc_path.write_text(rewrite_root(source.read_text(), spec.atoms))
 
     atom = hfst.compile_lexc_file(str(lexc_path))
     if atom is None or atom.number_of_states() == 0:
         raise SystemExit(f"{name}: lexc-Compile leer ({lexc_path})")
-
-    full = hfst.HfstTransducer(hfst.regex(copier_regex()))
-    full.concatenate(atom)
-    full.minimize()
     _check_alphabet(atom, name)
-    full.convert(OL)                 # Zyklus (Kopierer-Stern) stört OL nicht;
-                                     # erst OL liefert Zwischenformen ohne Epsilon
+    if atom.is_cyclic():
+        raise SystemExit(f"{name}: Atom ist zyklisch, keine endliche Endungstabelle")
+
+    by_tag: dict[str, set[str]] = collections.defaultdict(set)
+    for _weight, pairs in atom.extract_paths(output="raw"):
+        stray = sorted({i for i, _o in pairs if i != EPSILON and not i.startswith("+")})
+        if stray:
+            raise SystemExit(
+                f"{name}: Eingabeseite trägt {stray!r} statt nur Tags — die Endung "
+                f"hinge dann vom Stamm ab und ist als Tabelle nicht darstellbar")
+        tag = "".join(i for i, _o in pairs if i != EPSILON)
+        by_tag[tag].add("".join(o for _i, o in pairs if o != EPSILON))
 
     accent = hfst.HfstInputStream(str(build_accent())).read()
     probe = "Teststam"
-    empty = [slot for slot in spec.slots
-             if not any(accent.lookup(mid) for mid, _w in full.lookup(probe + slot_tag(slot)))]
+    endings: dict[str, list[str]] = {}
+    empty = []
+    for slot in spec.slots:
+        found = sorted(by_tag.get(slot_tag(slot), ()))
+        if not found or not all(accent.lookup(probe + e) for e in found):
+            empty.append(slot)
+        endings[slot] = found
     if empty:
         raise SystemExit(
             f"{name}: {len(empty)} Slots ohne Pfad (Atom {spec.atoms} in "
             f"{spec.lexc}): {', '.join(empty[:6])}{' …' if len(empty) > 6 else ''}")
-
-    out = atom_path(pos, paradigm, role, lemma)
-    stream = hfst.HfstOutputStream(filename=str(out), type=OL)
-    stream.write(full)
-    stream.flush()
-    stream.close()
-    if verbose:
-        print(f"{out.name:44} {len(spec.slots):2} Slots  {spec.atoms}"
-              f"  <- {spec.lexc}")
-    return out
+    return name, endings
 
 
 def build_accent(force: bool = False) -> Path:
@@ -195,32 +199,45 @@ def build_accent(force: bool = False) -> Path:
     return ACCENT_OL
 
 
-def _one(args: tuple[str, str, str]) -> str:
-    """Ein Atom im EIGENEN Prozess backen (ein lexc-Compile pro Prozess!)."""
+def _one(args: tuple[str, str, str]) -> tuple[str, dict[str, list[str]]] | str:
+    """Ein Atom im EIGENEN Prozess ablesen (ein lexc-Compile pro Prozess!)."""
     pos, paradigm, role = args
     done = subprocess.run(
-        [sys.executable, str(Path(__file__).resolve()), pos, paradigm, role],
+        [sys.executable, str(Path(__file__).resolve()), pos, paradigm, role, "--json"],
         capture_output=True, text=True)
     if done.returncode:
         detail = (done.stderr or done.stdout).strip().splitlines()
         return f"FEHLER {pos}/{paradigm}/{role}: " + (detail[-1] if detail else "?")
-    sys.stdout.write(done.stdout)
-    return ""
+    name, endings = json.loads(done.stdout)
+    return name, endings
 
 
 def build_all(jobs: int) -> int:
+    """Akzentregeln und die ganze Endungstabelle bauen; alte Atom-FSTs entfernen."""
     build_accent(force=True)
-    targets = [(pos, paradigm, role)
-               for pos, paradigm, role, _path in atom_targets()]
-    targets.sort(key=lambda t: (t[0], len(t[1]), t[1], t[2]))
+    targets = [(pos, paradigm, role) for pos, paradigm, role, _name in atom_targets()]
+    table: dict[str, dict[str, list[str]]] = {}
     errors = 0
     with ThreadPoolExecutor(max_workers=max(jobs, 1)) as pool:
-        for error in pool.map(_one, targets):
-            if error:
+        for result in pool.map(_one, targets):
+            if isinstance(result, str):
                 errors += 1
-                print(error, file=sys.stderr)
-    print(f"{len(targets) - errors}/{len(targets)} Atome gebaut in {ATOM_DIR}")
-    return 1 if errors else 0
+                print(result, file=sys.stderr)
+            else:
+                table[result[0]] = result[1]
+    if errors:
+        print(f"{errors}/{len(targets)} Atome fehlerhaft, {ENDINGS_PATH} nicht geschrieben",
+              file=sys.stderr)
+        return 1
+    tmp = ENDINGS_PATH.with_suffix(f".tmp{os.getpid()}")
+    tmp.write_text(json.dumps(table, ensure_ascii=False, sort_keys=True, indent=1) + "\n",
+                   encoding="utf-8")
+    tmp.replace(ENDINGS_PATH)
+    for stale in ATOM_DIR.glob("gen-*.hfstol"):      # Atom-FSTs der früheren Bauweise
+        if stale != ACCENT_OL:
+            stale.unlink()
+    print(f"{len(table)} Atome, {sum(len(e) for e in table.values())} Slots → {ENDINGS_PATH}")
+    return 0
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -232,10 +249,13 @@ def main(argv: list[str] | None = None) -> int:
                         help="Lemma zur Variantenauflösung (Verb 87a/87b)")
     parser.add_argument("--list", action="store_true",
                         help="alle zu bauenden Atome auflisten")
-    parser.add_argument("--all", action="store_true", help="alle Atome backen")
+    parser.add_argument("--all", action="store_true",
+                        help="Endungstabelle + Akzentregeln bauen")
     parser.add_argument("-j", "--jobs", type=int, default=max(os.cpu_count() or 1, 1))
     parser.add_argument("--print-regex", action="store_true",
                         help="Kopierer-Ausdruck ausgeben")
+    parser.add_argument("--json", action="store_true",
+                        help="ein Atom als JSON [Name, {Slot: Endungen}] ausgeben (für --all)")
     args = parser.parse_args(argv)
 
     if args.print_regex:
@@ -244,8 +264,8 @@ def main(argv: list[str] | None = None) -> int:
     if args.all:
         return build_all(args.jobs)
     if args.list:
-        for pos, paradigm, role, path in atom_targets():
-            print(f"{pos:5} {paradigm:5} {role:9} {path.name}")
+        for pos, paradigm, role, name in atom_targets():
+            print(f"{pos:5} {paradigm:5} {role:9} {name}")
         print(f"{len(atom_targets())} Atome", file=sys.stderr)
         return 0
     if not (args.pos and args.paradigm):
@@ -267,7 +287,13 @@ def main(argv: list[str] | None = None) -> int:
         role = roles[0]
     elif role not in par.roles:
         parser.error(f"unbekannte Rolle {role!r} — {', '.join(sorted(par.roles))}")
-    build_atom(args.pos, args.paradigm, role, lemma=args.lemma)
+    name, endings = read_endings(args.pos, args.paradigm, role, lemma=args.lemma)
+    if args.json:
+        print(json.dumps([name, endings], ensure_ascii=False))
+    else:
+        print(f"{name}  ({len(endings)} Slots, {par.roles[role].lexc})")
+        for slot, found in endings.items():
+            print(f"  {slot:28} {' | '.join(found) or '∅'}")
     return 0
 
 

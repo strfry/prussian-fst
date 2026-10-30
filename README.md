@@ -34,7 +34,7 @@ hfst-CLI nötig; Lookup zur Laufzeit über `pyhfst`.
 
 ```bash
 uv sync
-make atoms   # datenfreie Atom-FSTs aus gen/*.lexc → build/gen-*.hfstol
+make atoms   # Endungstabelle + Akzentregeln → build/gen-endings.json, build/gen-accent.hfstol
 make         # Atome + lean NVH + lexc/ → build/analyzer.lexc → base.fst → *.hfstol
 ```
 
@@ -78,7 +78,7 @@ High-Level-API `prussian_fst.api` (`analyze`, `validate`, `conllu`).
 ├── gen/                      # generativer Kern
 │   ├── {a,aa,i,u,jo,n}stem.lexc, adj.lexc, verb.lexc   # Endungstabellen je Familie
 │   ├── accent.regex          # Akzent/Makron/Gemination
-│   ├── atom_fst.py           # gen/*.lexc → build/gen-<fam>-<paradigm>[-<role>].hfstol
+│   ├── atom_fst.py           # gen/*.lexc → build/gen-endings.json, accent.regex → gen-accent.hfstol
 │   ├── generator.py          # datenfreier Generator: Lemma+Paradigma(+Stämme) → Slots
 │   ├── compress_forms.py     # Kompressor: fette NVH → lean NVH
 │   ├── build_analyzer.py     # lean NVH + Atome + lexc/ → build/analyzer.lexc

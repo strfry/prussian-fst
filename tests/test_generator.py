@@ -3,9 +3,8 @@
 Kein twanksta, kein NVH, kein Korpus: die erwarteten Oberflächen sind von Hand aus
 den handgeschriebenen Grammatiken abgelesen — Stamm (Lemma minus Klassenendung)
 plus Endung aus gen/<family>.lexc bzw. gen/verb.lexc, dazu die Akzentregel
-gen/accent.regex.  Die Atome baut der Test bei Bedarf selbst; hfst.compile_lexc_file
-funktioniert pro Prozess nur einmal, deshalb je Atom ein Subprozess (`make atoms`
-baut alle 245 auf einmal).
+gen/accent.regex.  Endungstabelle und Akzentregeln baut der Test selbst neu
+(``atom_fst.py --all``, wie ``make atoms``), damit er die aktuelle Grammatik prüft.
 """
 
 import re
@@ -38,17 +37,18 @@ WANTED = [
 
 @pytest.fixture(scope="session")
 def atoms():
-    """Die benötigten Atome bauen (Session-Fixture: ~15 Subprozesse)."""
+    """Endungstabelle + Akzentregeln aus der aktuellen Grammatik bauen (Session-Fixture)."""
     pytest.importorskip("hfst", reason="hfst-Paket fehlt (make atoms braucht es)")
     if not (REPO / "build/gen-accent.hfst").exists():
         pytest.skip("build/gen-accent.hfst fehlt — make gen-accent.hfst")
-    for pos, paradigm, role in WANTED:
-        done = subprocess.run(
-            [sys.executable, str(REPO / "gen/atom_fst.py"), pos, paradigm, role],
-            capture_output=True, text=True, cwd=REPO)
-        if done.returncode:
-            pytest.fail(f"Atom {pos}/{paradigm}/{role} nicht baubar:\n"
-                        f"{(done.stderr or done.stdout)[-2000:]}")
+    done = subprocess.run([sys.executable, str(REPO / "gen/atom_fst.py"), "--all"],
+                          capture_output=True, text=True, cwd=REPO)
+    if done.returncode:
+        pytest.fail(f"Atome nicht baubar:\n{(done.stderr or done.stdout)[-2000:]}")
+    gen._endings_table.cache_clear()
+    missing = {gen.atom_name(pos, paradigm, role) for pos, paradigm, role in WANTED} \
+        & set(gen.missing_atoms())
+    assert not missing, f"Atome fehlen in der Tabelle: {sorted(missing)}"
 
 
 # ── reine Tabellen: Slot-Key → lexc-Tag ─────────────────────────────────────
@@ -159,15 +159,14 @@ def test_atoms_exist_in_grammar(pos, paradigm):
 
 def test_atom_names_are_unique_and_251():
     targets = gen.atom_targets()
-    paths = [path for *_rest, path in targets]
-    assert len(targets) == len(set(paths)) == 251          # 245 + P21–24 + adj 68/69
-    assert all(p.suffix == ".hfstol" and p.parent == gen.ATOM_DIR for p in paths)
+    names = [name for *_rest, name in targets]
+    assert len(targets) == len(set(names)) == 251          # 245 + P21–24 + adj 68/69
     # Ein-Rollen-Atome ohne Rollen-Suffix, Mehr-Rollen-Atome mit.
-    assert gen.atom_path("noun", "53", "obl").name == "gen-istem-53.hfstol"
-    assert gen.atom_path("adj", "27", "cmp").name == "gen-adj-27-cmp.hfstol"
+    assert gen.atom_name("noun", "53", "obl") == "gen-istem-53"
+    assert gen.atom_name("adj", "27", "cmp") == "gen-adj-27-cmp"
     # pos: pron|num mit Formtabelle teilt die adj-Atome (kein eigenes Target).
-    assert gen.atom_path("pron", "21", "pos") == gen.atom_path("adj", "21", "pos")
-    assert gen.atom_path("num", "22", "pos").name == "gen-adj-22.hfstol"
+    assert gen.atom_name("pron", "21", "pos") == gen.atom_name("adj", "21", "pos")
+    assert gen.atom_name("num", "22", "pos") == "gen-adj-22"
 
 
 def test_numeral_paradigms_have_only_the_positive():
@@ -495,6 +494,6 @@ def _lexicons_str(text):
 def test_paradigm_aliases_resolve_to_target_atoms():
     # Alias = Ziel-Paradigma mit anderen Stämmen; Atom ist das des Ziels.
     assert gen.resolve_paradigm("verb", "134a") == "134"
-    assert gen.atom_path("verb", "81b", "pres") == gen.atom_path("verb", "81", "pres")
-    assert gen.atom_path("noun", "35a", "obl").name == "gen-astem-35.hfstol"
+    assert gen.atom_name("verb", "81b", "pres") == gen.atom_name("verb", "81", "pres")
+    assert gen.atom_name("noun", "35a", "obl") == "gen-astem-35"
     assert gen.paradigm_spec("noun", "47") is gen.paradigm_spec("noun", "45")

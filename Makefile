@@ -6,7 +6,7 @@
 #
 # Target:
 #   make              — build base.fst from all .lexc files
-#   make atoms        — datenfreie Atome des Kern-Generators (gen/atom_fst.py)
+#   make atoms        — Endungstabelle + Akzentregeln des Kern-Generators (gen/atom_fst.py)
 #   make cg3-sets     — generierte CG3-Sets/-Regeln aus valence.json
 #   make cg3-check    — Syntaxcheck des CG3-Disambiguators
 #   make disambiguate — Vollkorpus-Lauf mit Ambiguitätsstatistik (stdout)
@@ -54,18 +54,18 @@ build/base.gen.hfstol: build/base.fst
 
 # ── Generativer FST: datenfreie Atome (kein twanksta, keine Wortliste) ──
 # Die datenfreie Kern des Generators: gen/generator.py kennt nur die HAND-
-# geschriebenen Grammatiken gen/*.lexc. Jedes Atom ist eine Endungstabelle
-# (gen/<fam>.lexc, gen/adj.lexc, gen/verb.lexc) mit zyklischem Stamm-Kopierer
-# ("STEM* + tag"), komponiert mit gen/accent.hfst und als OL exportiert:
-#   build/gen-<family>-<paradigm>[-<role>].hfstol
+# geschriebenen Grammatiken gen/*.lexc und gen/accent.regex. Jedes Atom
+# (Paradigma + Rolle) ist eine Tabelle Slot → Endungen mit Markern ^ ~ >; die
+# Akzentregeln liegen einmal als Lookup-Transducer daneben:
+#   build/gen-endings.json   build/gen-accent.hfstol
 build/gen-accent.hfst: gen/accent.regex | build/
 	$(HFST) xfst $<
 
-# Genau das liest der Generator zur Laufzeit (pyhfst.lookup(stem + tag)) — die
-# Atome sind der einzige Build-Output des Kern-Generators. Ein hfst.compile_lexc_file
-# funktioniert pro Prozess nur einmal, deshalb baut --all je Atom einen Subprozess.
-#   make atoms                                       # alle 245 Atome
-#   make atom POS=verb PARADIGM=132 ROLE=nonfin      # ein einzelnes
+# Genau das liest der Generator zur Laufzeit (Stamm + Endung → pyhfst-Lookup
+# durch die Akzentregeln). Ein hfst.compile_lexc_file funktioniert pro Prozess nur
+# einmal, deshalb liest --all je Atom in einem Subprozess.
+#   make atoms                                       # Tabelle aller 251 Atome
+#   make atom POS=verb PARADIGM=132 ROLE=nonfin      # Endungen eines Atoms zeigen
 atoms: build/gen-accent.hfst
 	uv run python gen/atom_fst.py --all -j$$(nproc)
 
