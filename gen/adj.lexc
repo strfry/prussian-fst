@@ -398,7 +398,8 @@ LEXICON PartPresActGemKeep
 ! Twanksta `forms.adverb` = {positive, comparative, superlative}. Die Bildung ist
 ! regelhaft (an twanksta verifiziert, n=1019):
 !   Positiv    = Adjektivstamm + Klassensuffix: -ai (a-Stamm Par.25/26),
-!                -jai (i-/jo-Stamm Par.27), -u (u-Stamm Par.30/31).
+!                -jai (i-/jo-Stamm Par.27 und u-Stamm Par.30/31; twanksta hat
+!                bei 13 u-Stämmen fälschlich -u, siehe corpus/TWANKSTA_ERRATA.md).
 !   Komparativ = Positiv + -s (a-/i-/jo-Stamm: -ais/-jais), u-Stamm -uis.
 !   Superlativ = uka- + Komparativ (100 % regelhaft) → uka-Komparativ-Stamm.
 !
@@ -418,7 +419,7 @@ LEXICON AdvI
   +Adv:jai  # ;
 
 LEXICON AdvU
-  +Adv:u    # ;
+  +Adv:jai  # ;
 
 ! ─── Komparativ/Superlativ: gemeinsame i-/jo-Deklination (fix, kein ^) ─────
 ! Der Stamm (AdjCmpStems/AdjSupStems) trägt schon den Grad (-ais/-jais/-uis bzw.

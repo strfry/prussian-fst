@@ -89,11 +89,9 @@ Reklassifizierung; nicht als Slot-Miss gezählt.
 
 ## H. twanksta-Datenfehler (geflaggt, NICHT modelliert)
 
-Verben, deren sämtliche synthetischen Formen = Infinitiv sind (kein echtes
-Paradigma) — automatisch erkannt in `scan_data_errors()`, nicht emittiert:
-`dirtwei, dirtun, kāistwei, enkāistwei, prakāistwei, klīmptwei, tilptwei,
-skrabtwei, rjaūgitwei, preijustwei` (+ `perwīlktun si kāigi`, MWE).
-→ Upstream in twanksta melden.
+Verben, deren sämtliche synthetischen Formen = Infinitiv sind, erkennt
+`scan_data_errors()` automatisch und emittiert sie nicht. Liste und weitere
+twanksta-Fehler: `corpus/TWANKSTA_ERRATA.md`.
 
 ---
 

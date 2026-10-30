@@ -58,11 +58,11 @@ As wis mēri ezze stan krēiwan pjāusin.	ezze	pjāusin	case
 As wis mēri ezze stan krēiwan pjāusin.	stan	pjāusin	det
 As wis mēri ezze stan krēiwan pjāusin.	pjāusin	mēri	obl
 # Postposition: case, Gen+Psp als obl am Verb
-Stesse paggan sta ast brendu.	Stesse	ast	obl
-Stesse paggan sta ast brendu.	paggan	Stesse	case
-Stesse paggan sta ast brendu.	sta	ast	nsubj
-Stesse paggan sta ast brendu.	brendu	ast	advmod
-Stesse paggan sta ast brendu.	ast	0	root
+Stesse paggan sta ast brendjai.	Stesse	ast	obl
+Stesse paggan sta ast brendjai.	paggan	Stesse	case
+Stesse paggan sta ast brendjai.	sta	ast	nsubj
+Stesse paggan sta ast brendjai.	brendjai	ast	advmod
+Stesse paggan sta ast brendjai.	ast	0	root
 # Aux + Partizip + Infinitiv: xcomp am Prädikatskern
 Swāikstan wīrst pagaūwus ebwarītun.	pagaūwus	0	root
 Swāikstan wīrst pagaūwus ebwarītun.	wīrst	pagaūwus	aux

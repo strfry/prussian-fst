@@ -352,14 +352,15 @@ def test_reflexive_lemma_generates_without_stems():
         "msc.sg.nom": "wilnis", "msc.sg.gen": "wilnjas", "neu.sg.nom": "wilni",
         "fem.pl.dat": "wilnimans", "adv": "wilnjai", "adv.comp": "wilnjais",
         "comp.msc.sg.nom": "wilnjaisis", "superl.msc.sg.nom": "ukawilnjaisis"}),
-    # gen/adj.lexc AdjUMobInfl (w-Gleit: Gen.Sg. -was) + AdvU
+    # gen/adj.lexc AdjUMobInfl (w-Gleit: Gen.Sg. -was) + AdvU (-jai; twanksta -u
+    # ist Datenfehler, corpus/TWANKSTA_ERRATA.md)
     ("adj", "31", "tangus", {
-        "msc.sg.nom": "tangus", "msc.sg.gen": "tangwas", "adv": "tangu",
+        "msc.sg.nom": "tangus", "msc.sg.gen": "tangwas", "adv": "tangjai",
         "adv.comp": "tanguis", "comp.msc.sg.nom": "tanguisis",
         "superl.msc.sg.nom": "ukatanguisis"}),
     # Par.30 = reines u-Adverb (keine Deklination)
     ("adj", "30", "sengus", {
-        "adv": "sengu", "adv.comp": "senguis", "adv.superl": "ukasenguis",
+        "adv": "sengjai", "adv.comp": "senguis", "adv.superl": "ukasenguis",
         "comp.msc.sg.nom": "senguisis", "superl.msc.sg.nom": "ukasenguisis"}),
     # gen/verb.lexc Par.132: Pres_I/Pret_I/Imp_Is + SubjOpt, Stamm = Infinitivstamm
     ("verb", "132", "auwaitjātun", {
