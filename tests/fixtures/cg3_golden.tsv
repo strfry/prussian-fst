@@ -48,7 +48,7 @@ Sta ast mussan.	Sta	stas+Pron+Neu+Nom
 Ni izbilāi ezze karjaūsnan.	karjaūsnan	karjaūsnā+N+Fem+Sg+Acc
 # syntax_rules §1+§6c+§11: en→ēn dynamisch + Futur wīrst + Partizip
 As wīrst gūbuns en buttan.	buttan	buttan+N+Neu+Sg+Acc
-As wīrst gūbuns en buttan.	gūbuns	gūbuns+A+Sg+Nom|ēitwei+V+PrfPrc+Act+Msc+Sg+Nom
+As wīrst gūbuns en buttan.	gūbuns	ēitwei+V+PrfPrc+Act+Msc+Sg+Nom
 # Regel 4: be zwischen gleichkasigen Konstituenten ist Cnj (Doc-Beispiele)
 Rānkans be prusnans wīda.	be	be+CC
 Rānkans be prusnans wīda.	Rānkans	rānkā+N+Fem+Pl+Acc
@@ -94,7 +94,7 @@ As sergītun stan.	sergītun	sergītun+V+Inf
 Kitā pawīsts.	pawīsts	pawīstis+N+Fem+Pl+Nom|pawīstis+N+Fem+Sg+Nom
 # Titlecase-Fallback: kleingeschriebenes dēiwan → Dēiws (FST kennt nur Dēiwan);
 # unlizenzierter Gen fällt weg (Section 4)
-As wīda dēiwan.	dēiwan	Dēiws+N+Msc+Sg+Acc
+As wīda dēiwan.	dēiwan	Dēiws+N+Prop+Msc+Sg+Acc
 # Kurzform-Adverb kwei → kwēi (Funktionswort-Kurzformtabelle)
 Kwei tū ēisei?	Kwei	kwēi+Adv
 # Rollen-Uniqueness (SECTION 9/10): eindeutiges Nom-Subjekt macht das
