@@ -6,7 +6,7 @@
 #
 # Target:
 #   make              — build base.fst from all .lexc files
-#   make atoms        — Endungstabelle + Akzentregeln des Kern-Generators (gen/atom_fst.py)
+#   make paradigms    — re-derive the paradigm table gen/paradigms.json from the lean NVH
 #   make cg3-sets     — generierte CG3-Sets/-Regeln aus valence.json
 #   make cg3-check    — Syntaxcheck des CG3-Disambiguators
 #   make disambiguate — Vollkorpus-Lauf mit Ambiguitätsstatistik (stdout)
@@ -18,24 +18,26 @@
 # Python-Ersatz für die hfst-CLI-Werkzeuge (siehe src/prussian_fst/build_fst.py).
 # uv run = Projekt-Env, damit hfst überall verfügbar ist (auch ohne System-Install).
 HFST := uv run python src/prussian_fst/build_fst.py
-# Lean NVH (Wortliste, Stämme, Overrides, Invariable) — vor den Regeln definiert,
-# weil make Voraussetzungen beim Einlesen expandiert.
+# Lean NVH (word list, principal forms and overrides, invariables); defined before
+# the rules because make expands prerequisites while reading.
 LEAN_NVH := ../corpus/parsed/twanksta_dmlex.nvh
 
-.PHONY: all clean cg3-sets cg3-check disambiguate conllu hfstol links atoms atom analyzer analyzer-parity
+.PHONY: all clean cg3-sets cg3-check disambiguate conllu hfstol links paradigms analyzer analyzer-parity
 
 all: build/base.hfstol build/macron.hfstol build/lenient.hfstol build/base.gen.hfstol
 
 build/:
 	mkdir -p build
 
-# base.fst wird aus der gebackenen Merged-Lexc kompiliert — Atom-Generator
-# (gen/*.lexc) + lean NVH (Stämme/Overrides, Invariable) + handgeschriebene
-# Closed-Class (function_words, pronouns). Damit ist base.hfstol (invert) der
-# gebackene Analyzer und base.gen.hfstol (non-invert) der Generator aus EINER Quelle.
-# Deckung gegen das eingefrorene twanksta-Gold: `make analyzer-parity`.
-build/analyzer.lexc: gen/build_analyzer.py lexc/*.lexc gen/*.lexc $(LEAN_NVH) | build/
-	uv run python gen/build_analyzer.py --no-compile
+# base.fst is compiled from the baked merged lexc: the paradigm generator
+# (gen/generator.py + gen/paradigms.json) applied to the lean NVH, plus the
+# hand-written closed classes (function_words, pronouns). base.hfstol (inverted)
+# is the analyzer, base.gen.hfstol (not inverted) the generator, from ONE source.
+# Coverage against the frozen Twanksta gold: `make analyzer-parity`.
+GEN_SOURCES := gen/build_analyzer.py gen/generator.py gen/compress_forms.py gen/paradigms.json
+
+build/analyzer.lexc: $(GEN_SOURCES) lexc/*.lexc $(LEAN_NVH) | build/
+	uv run python gen/build_analyzer.py --no-compile --nvh $(LEAN_NVH)
 
 build/base.fst: build/analyzer.lexc | build/
 	$(HFST) lexc $< $@
@@ -52,39 +54,19 @@ build/base.hfstol: build/base.fst
 build/base.gen.hfstol: build/base.fst
 	$(HFST) hfstol-gen $< $@
 
-# ── Generativer FST: datenfreie Atome (kein twanksta, keine Wortliste) ──
-# Die datenfreie Kern des Generators: gen/generator.py kennt nur die HAND-
-# geschriebenen Grammatiken gen/*.lexc und gen/accent.regex. Jedes Atom
-# (Paradigma + Rolle) ist eine Tabelle Slot → Endungen mit Markern ^ ~ >; die
-# Akzentregeln liegen einmal als Lookup-Transducer daneben:
-#   build/gen-endings.json   build/gen-accent.hfstol
-build/gen-accent.hfst: gen/accent.regex | build/
-	$(HFST) xfst $<
+# Paradigm table: per paradigm number and slot, the source principal form and its
+# suffix rules, learned from the lean NVH expanded with the current table.
+paradigms:
+	uv run python gen/derive_paradigms.py --lean $(LEAN_NVH)
 
-# Genau das liest der Generator zur Laufzeit (Stamm + Endung → pyhfst-Lookup
-# durch die Akzentregeln). Ein hfst.compile_lexc_file funktioniert pro Prozess nur
-# einmal, deshalb liest --all je Atom in einem Subprozess.
-#   make atoms                                       # Tabelle aller 251 Atome
-#   make atom POS=verb PARADIGM=132 ROLE=nonfin      # Endungen eines Atoms zeigen
-atoms: build/gen-accent.hfst
-	uv run python gen/atom_fst.py --all -j$$(nproc)
-
-# ── Option B: gebackener, lemma-fähiger Giella-Analyzer ──
-# Open-Class-Morphologie aus gen/*.lexc, Stämme/Overrides aus der lean NVH
-# (Twanksta-DMLex).  Default-Analyzer bleibt base.hfstol, bis das B-Gate
-# (Deckungsparität) erfüllt ist; umschalten mit PRUSSIAN_FST=build/analyzer.hfstol.
-build/analyzer.hfstol: gen/build_analyzer.py lexc/*.lexc gen/*.lexc $(LEAN_NVH) | build/
-	uv run python gen/build_analyzer.py
+# Opt-in analyzer from the same bake (PRUSSIAN_FST=build/analyzer.hfstol).
+build/analyzer.hfstol: $(GEN_SOURCES) lexc/*.lexc $(LEAN_NVH) | build/
+	uv run python gen/build_analyzer.py --nvh $(LEAN_NVH)
 
 analyzer: build/analyzer.hfstol
 
-analyzer-parity: gen/build_analyzer.py $(LEAN_NVH)
-	uv run python gen/build_analyzer.py --parity
-
-atom: build/gen-accent.hfst
-	@test -n "$(POS)" -a -n "$(PARADIGM)" -a -n "$(ROLE)" || \
-	    { echo "Aufruf: make atom POS=noun PARADIGM=53 ROLE=obl"; exit 1; }
-	uv run python gen/atom_fst.py $(POS) $(PARADIGM) $(ROLE)
+analyzer-parity: $(GEN_SOURCES) $(LEAN_NVH)
+	uv run python gen/build_analyzer.py --parity --nvh $(LEAN_NVH)
 
 # Correction layers, one stage per phenomenon (norm/*.regex → build/norm-*.hfst).
 # Composed onto the canonical surface; use only as fallback analyzer for

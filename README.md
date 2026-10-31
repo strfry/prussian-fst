@@ -1,125 +1,131 @@
 # Prussian FST
 
-Morphologischer Analyzer und Generator fürs Neupreußische (HFST, Giella-Tags).
+Morphological analyzer and generator for New Prussian (HFST, Giella tags).
 
-Die Open-Class-Morphologie (Nomen, Adjektive, Verben, Numeralia) ist
-**generativ**: handgeschriebene Endungstabellen (`gen/*.lexc`) plus
-Akzentregel (`gen/accent.regex`) erzeugen aus Lemma + Twanksta-Paradigmennummer
-die Formen.  Die Lexeme kommen aus der **lean NVH** — der Wortliste, die nur
-noch das enthält, was die Grammatik nicht selbst erzeugt (gelieferte Stämme,
-Override-Zellen).  Geschlossene Klassen (Funktionswörter, Pronomen) bleiben
-handgepflegte lexc.
+Open-class morphology (nouns, adjectives, verbs, numerals) is **generative**: the
+paradigm table `gen/paradigms.json` derives every form from the lemma, the Twanksta
+paradigm number and a few **principal forms**:
 
-## Daten
-
-Alle Dictionary-Daten liegen im
-[`strfry/prussian-corpus`](https://github.com/strfry/prussian-corpus)-Checkout
-nebenan — keine Kopie im fst-Repo:
-
-| Datei (`../corpus/parsed/`) | Rolle |
+| pos | principal forms (besides the lemma) |
 |---|---|
-| `twanksta_dmlex.nvh` | **lean NVH** — Build-Eingabe (Lexeme, `stemOverrides`, Override-Zellen, Invariable) |
-| `twanksta.nvh` | fette NVH — jede Twanksta-Zelle; Eingabe des Kompressors |
-| `twanksta_entries.json` | Roh-Export; noch gelesen von `export_valence.py` |
+| noun | sg.gen, pl.dat |
+| adj | comp.msc.sg.nom, msc.sg.gen |
+| verb | prs.sp3, prt.sp3, part.prs.act.msc.sg.nom, part.prf.act.msc.sg.nom |
 
-Die lean NVH entsteht aus der fetten über den Kompressor
-(`gen/compress_forms.py`), mit der exakten Zusicherung
+Every other cell comes from one of them by a suffix rule (optionally with the
+stressless stem: macrons shortened, geminates simplified). The lexemes come from the
+**lean NVH**, the word list that keeps only what the rules do not produce: wrong
+principal forms and override cells, both as plain `inflectedForm`. Closed classes
+(function words, pronouns) are hand-written lexc.
 
-    generate(lemma, stems) ⊕ overrides == Twanksta-Zellen   (⊕ = Override ersetzt den Slot)
+## Data
 
-## Bauen
+All dictionary data lives in the sibling
+[`strfry/prussian-corpus`](https://github.com/strfry/prussian-corpus) checkout; the
+fst repo has no copy:
 
-Build über das python-`hfst`-Modul (Projekt-Abhängigkeit), keine separate
-hfst-CLI nötig; Lookup zur Laufzeit über `pyhfst`.
+| file (`../corpus/parsed/`) | role |
+|---|---|
+| `twanksta_dmlex.nvh` | **lean NVH**: build input (lexemes, kept cells, invariables) |
+| `twanksta.nvh` | fat NVH: every Twanksta cell |
+| `twanksta_entries.json` | raw export; still read by `export_valence.py` |
+
+The compressor (`gen/compress_forms.py`) turns a full NVH into a lean one, exactly:
+
+    generate(lemma, cells) ⊕ cells == full cells     (⊕ = a cell replaces its slot)
+
+## Build
+
+The build uses the python `hfst` module (a project dependency), no hfst CLI;
+runtime lookup uses `pyhfst`.
 
 ```bash
 uv sync
-make atoms   # Endungstabelle + Akzentregeln → build/gen-endings.json, build/gen-accent.hfstol
-make         # Atome + lean NVH + lexc/ → build/analyzer.lexc → base.fst → *.hfstol
+make         # lean NVH + paradigm table + lexc/ -> build/analyzer.lexc -> base.fst -> *.hfstol
 ```
 
-Weitere Targets:
+More targets:
 
 ```bash
-make analyzer-parity   # Oberflächendeckung gegen das eingefrorene Twanksta-Gold
-make cg3-check         # CG3-Sets generieren + Grammatiken kompilieren
-make disambiguate      # Vollkorpus-Lauf mit Ambiguitätsstatistik
-make conllu            # CoNLL-U-Silberexport → data/prussian_silver.conllu
-make links             # ↑-Verweis-Resolver (Form → Grundform) → build/links.json
-make validate-corpus   # Validator über die Korpora (Fehlalarm-Regression)
+make paradigms         # re-derive gen/paradigms.json from the lean NVH
+make analyzer-parity   # surface coverage against the frozen Twanksta gold
+make cg3-check         # generate CG3 sets + compile the grammars
+make disambiguate      # full-corpus run with ambiguity statistics
+make conllu            # CoNLL-U silver export -> data/prussian_silver.conllu
+make links             # ↑ reference resolver (form -> base form) -> build/links.json
+make validate-corpus   # validator over the corpora (false-alarm regression)
 uv run pytest
 ```
 
-Kompressor (fette → lean NVH):
+Generator and compressor:
 
 ```bash
-uv run python gen/compress_forms.py --stats
-uv run python gen/compress_forms.py --verify-idempotent
+uv run python gen/generator.py generate noun 53 zemē
+uv run python gen/generator.py generate verb 136 kalbītwei --cell prt.sp3=kalbēja
+uv run python gen/generator.py show verb 136          # rules of one paradigm
+uv run python gen/compress_forms.py --dry-run
+uv run python gen/compress_forms.py --out build/lean.nvh --verify-roundtrip
 ```
 
 ## Lookup
 
-Mit der (optionalen) hfst-CLI:
+With the (optional) hfst CLI:
 
 ```bash
-echo "dumslis" | hfst-lookup build/base.hfstol     # Analyse
-echo "dumslē+N+Fem+Sg+Gen" | hfst-lookup build/base.gen.hfstol   # Generierung
+echo "dumslis" | hfst-lookup build/base.hfstol                    # analysis
+echo "dumslē+N+Fem+Sg+Gen" | hfst-lookup build/base.gen.hfstol    # generation
 ```
 
-In Python: `prussian_fst.fst_lookup.flookup_batch` / `glookup_batch`, bzw. die
-High-Level-API `prussian_fst.api` (`analyze`, `validate`, `conllu`).
-`PRUSSIAN_FST=<pfad>` setzt einen anderen Analyzer für die CG3-Pipeline.
+In Python: `prussian_fst.fst_lookup.flookup_batch` / `glookup_batch`, or the
+high-level API `prussian_fst.api` (`analyze`, `validate`, `conllu`).
+`PRUSSIAN_FST=<path>` selects another analyzer for the CG3 pipeline.
 
-## Struktur
+## Layout
 
 ```
 .
 ├── Makefile
-├── gen/                      # generativer Kern
-│   ├── {a,aa,i,u,jo,n}stem.lexc, adj.lexc, verb.lexc   # Endungstabellen je Familie
-│   ├── accent.regex          # Akzent/Makron/Gemination
-│   ├── atom_fst.py           # gen/*.lexc → build/gen-endings.json, accent.regex → gen-accent.hfstol
-│   ├── generator.py          # datenfreier Generator: Lemma+Paradigma(+Stämme) → Slots
-│   ├── compress_forms.py     # Kompressor: fette NVH → lean NVH
-│   ├── build_analyzer.py     # lean NVH + Atome + lexc/ → build/analyzer.lexc
-│   └── DEVIATIONS.md         # Ledger der Regel-Abweichungen
-├── lexc/                     # handgepflegt
-│   ├── root.lexc, symbols.lexc          # Root + Multichar-Tag-Inventar
+├── gen/                      # generative core
+│   ├── paradigms.json        # paradigm table: slot -> source principal form + rules
+│   ├── generator.py          # lemma + paradigm (+ principal forms) -> slots
+│   ├── derive_paradigms.py   # lean (or full) NVH -> paradigms.json
+│   ├── compress_forms.py     # compressor: full NVH -> lean NVH
+│   └── build_analyzer.py     # lean NVH + generator + lexc/ -> build/analyzer.lexc
+├── lexc/                     # hand-written
+│   ├── root.lexc, symbols.lexc          # Root + multichar tag inventory
 │   ├── function_words.lexc
 │   └── pronouns.lexc
 ├── src/prussian_fst/
-│   ├── build_fst.py          # FST-Build über python-hfst (ersetzt hfst-CLI)
-│   ├── fst_lookup.py         # pyhfst-Lookup (Analyse/Generierung)
-│   ├── api.py                # In-Process-API für prussian-mcp
-│   ├── cg3_pipeline.py       # CG3-Disambiguator-/Validator-Pipeline
-│   ├── export_conllu.py      # CoNLL-U-Export
-│   ├── export_valence.py     # Rektion/Valenz → build/valence.json
-│   ├── gen_cg3_sets.py       # valence.json → cg3/generated-sets.cg3
-│   └── linker.py             # ↑-Verweis-Resolver (Form → Grundform) → build/links.json
+│   ├── build_fst.py          # FST build via python-hfst (replaces the hfst CLI)
+│   ├── fst_lookup.py         # pyhfst lookup (analysis/generation)
+│   ├── api.py                # in-process API for prussian-mcp
+│   ├── cg3_pipeline.py       # CG3 disambiguator/validator pipeline
+│   ├── export_conllu.py      # CoNLL-U export
+│   ├── export_valence.py     # government/valency -> build/valence.json
+│   ├── gen_cg3_sets.py       # valence.json -> cg3/generated-sets.cg3
+│   └── linker.py             # ↑ reference resolver (form -> base form) -> build/links.json
 ├── cg3/
-│   ├── disambiguator.cg3     # Hauptgrammatik
-│   ├── dependency.cg3        # Dependenz-Schicht
-│   ├── validator.cg3         # Validierungs-Regeln
-│   └── generated-sets.cg3    # generiert
-├── norm/                     # Normalisierungs-Stufen (pro Phänomen)
-│   ├── macron.regex          # Makron-Verlust (ā ē ī ō ū → a e i o u)
-│   ├── degem.regex           # Degemination (nn → n …)
-│   └── ortho.regex           # w-Prothese, i-Synkope, twei↔tun …
-├── tests/                    # pytest; gold/ = eingefrorene Twanksta-Oberflächen
+│   ├── disambiguator.cg3     # main grammar
+│   ├── dependency.cg3        # dependency layer
+│   ├── validator.cg3         # validation rules
+│   └── generated-sets.cg3    # generated
+├── norm/                     # normalisation stages (one per phenomenon)
+│   ├── macron.regex          # macron loss (ā ē ī ō ū -> a e i o u)
+│   ├── degem.regex           # degemination (nn -> n …)
+│   └── ortho.regex           # w-prothesis, i-syncope, twei↔tun …
+├── tests/                    # pytest; gold/ = frozen Twanksta surfaces
 └── build/
-    ├── gen-*.hfstol          # Atome (Stamm+Tag → Oberfläche)
-    ├── analyzer.lexc         # gebackene Merged-lexc (Quelle von base.fst)
-    ├── base.hfstol           # Analyzer (surface → analysis), strikt
-    ├── base.gen.hfstol       # Generator (analysis → surface)
-    ├── macron.hfstol         # + Makron-Normalisierung
-    ├── lenient.hfstol        # + Degemination/Ortho (Gesamt-Fallback)
+    ├── analyzer.lexc         # baked merged lexc (source of base.fst)
+    ├── base.hfstol           # analyzer (surface -> analysis), strict
+    ├── base.gen.hfstol       # generator (analysis -> surface)
+    ├── macron.hfstol         # + macron normalisation
+    ├── lenient.hfstol        # + degemination/ortho (overall fallback)
     └── cg3/*.bin
 ```
 
 ## Tags
 
-Giella-Inventar (`lexc/symbols.lexc`), Reihenfolge
-`lemma+POS[+Sub]+…`, z. B.:
+Giella inventory (`lexc/symbols.lexc`), order `lemma+POS[+Sub]+…`, e.g.:
 
 ```
 dumslē+N+Fem+Sg+Gen:dumslis
@@ -129,38 +135,35 @@ begalbis+Adv+Comp:begalbjais
 perwaidīntun+V+Ind+Prs+Sg1+Refl:perwaidinnas
 ```
 
-- POS: `+N` (`+Prop` = großgeschriebenes Nomen), `+A`, `+Adv`, `+V`, `+Num`
+- POS: `+N` (`+Prop` = capitalised noun), `+A`, `+Adv`, `+V`, `+Num`
   (`+Card`/`+Ord`), `+Pron`, `+Pr`, `+Po`, `+CC`/`+CS`, `+Pcle`, `+Interj`
-- Nomen tragen das Genus (`+Msc`/`+Fem`/`+Neu`) als Eintragsfakt
-- Verben: `+Ind`/`+Subj`/`+Opt`/`+Imprt`, `+Prs`/`+Prt`, Personen
-  `+Sg1 +Sg2 +SP3 +Pl1 +Pl2`; Partizipien `+PrsPrc`/`+PrfPrc` × `+Act`/`+Pss`
-- Steigerung `+Comp`/`+Superl`, auch an abgeleiteten Adverbien
+- nouns carry their gender (`+Msc`/`+Fem`/`+Neu`) as an entry fact
+- verbs: `+Ind`/`+Subj`/`+Opt`/`+Imprt`, `+Prs`/`+Prt`, persons
+  `+Sg1 +Sg2 +SP3 +Pl1 +Pl2`; participles `+PrsPrc`/`+PrfPrc` × `+Act`/`+Pss`
+- comparison `+Comp`/`+Superl`, also on derived adverbs
 
-Präpositionsrektion steht nicht im FST, sondern als Lemma-Liste in der
-CG-Schicht (`build/valence.json` → `cg3/generated-sets.cg3`).
-`valence.json` enthält außerdem Best-Effort-Verbvalenz (nur die im
-Wörterbuch annotierten Verben).
+Preposition government is not in the FST but a lemma list in the CG layer
+(`build/valence.json` -> `cg3/generated-sets.cg3`). `valence.json` also holds
+best-effort verb valency (only the verbs annotated in the dictionary).
 
-## FSG/CG-Check (CoNLL-U mit Regel-Provenienz)
+## FSG/CG check (CoNLL-U with rule provenance)
 
-Der Einzeltext-Modus der Pipeline liefert das Antwortformat für das
-`validate_prussian`-MCP-Tool (`prussian-mcp`): dreiwertige Prüfung
-(--validate), optional CoNLL-U (ein Block pro Satz).
+The single-text mode of the pipeline produces the answer format of the
+`validate_prussian` MCP tool (`prussian-mcp`): three-valued check (--validate),
+optionally CoNLL-U (one block per sentence).
 
 ```bash
 echo "Labban dēinan!" | python3 src/prussian_fst/cg3_pipeline.py --text - --conllu --trace
 ```
 
-Mit `--trace` wandert Regel-Provenienz nach MISC:
+With `--trace`, rule provenance goes to MISC:
 
-- `Rule=<name,…>` — benannte Grammatikregeln (`KEYWORD:name` in
-  `disambiguator.cg3`), die den Cohort laut `vislcg3 --trace` berührt
-  haben (auch auf entfernten Lesarten). Eine Regel sichtbar machen =
-  ihr in der Grammatik einen `:namen` geben — kein Zwillingsregel-Patch
-  nötig. Benannt sind bisher u. a. `agr-head`, `ka-complementizer`,
-  `gen-negationis`, `steisan-periphrase`, `r6-di-impersonal`,
-  `r7-pred-participle`, `r8-greeting-adj`.
-- `AgrParent=<id>` — echtes Kongruenz-Ziel der `agr-head`-Regeln
-  (`SETPARENT … BARRIER AgrBarrier`), ermittelt über einen Zweitlauf,
-  der vor der Baumschicht (`SECTION dep-tree`) abbricht — bevor
-  SECTION 8 den Parent ggf. überschreibt (Koordination).
+- `Rule=<name,…>`: named grammar rules (`KEYWORD:name` in `disambiguator.cg3`) that
+  touched the cohort according to `vislcg3 --trace` (also on removed readings). To
+  make a rule visible, give it a `:name` in the grammar; no twin-rule patch needed.
+  Named so far, among others: `agr-head`, `ka-complementizer`, `gen-negationis`,
+  `steisan-periphrase`, `r6-di-impersonal`, `r7-pred-participle`, `r8-greeting-adj`.
+- `AgrParent=<id>`: the real agreement target of the `agr-head` rules
+  (`SETPARENT … BARRIER AgrBarrier`), found by a second run that stops before the
+  tree layer (`SECTION dep-tree`), before SECTION 8 may overwrite the parent
+  (coordination).

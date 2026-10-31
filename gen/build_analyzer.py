@@ -1,19 +1,15 @@
 #!/usr/bin/env python3
 """Gebackener, lemma-fähiger Giella-Analyzer (Option B).
 
-Quelle der Open-Class-Morphologie sind die handgeschriebenen ``gen/*.lexc``
-Grammatiken (native Giella-+Tags). Die Lexem-Stämme kommen aus der **lean NVH**
-(``../corpus/parsed/twanksta_dmlex.nvh``): Stufe 1 als ``stemOverrides: ROLE=STEM``,
-Stufe 3 als ``inflectedForm`` + ``tag``. Der Kompressor hat sie bereits so
-verdichtet, dass ``generate(lemma, stems) ⊕ overrides == Twanksta-Zellen`` gilt
-(⊕ = ein Override ersetzt den Slot) — deshalb erreicht der gebackene Analyzer
-dieselbe Oberflächen-Deckung wie die Twanksta-Zellen, ohne Vollform-Expansion und
-ohne falsche Regelformen in gelisteten Slots.
+Open-class forms come from the paradigm generator (``gen/generator.py``) applied to
+the **lean NVH** (``../corpus/parsed/twanksta_dmlex.nvh``), whose ``inflectedForm``
+cells are the principal forms and overrides the compressor kept, so that
+``generate(lemma, cells) ⊕ cells == Twanksta cells`` (⊕ = a cell replaces its slot).
 
 Aufbau::
 
-    lean NVH  --parse_nvh-->  Entry(lemma, pos, paradigm, gender, stems, attested)
-              --generate(pos, paradigm, lemma, stems)-->  slot → Oberflächen (dotted)
+    lean NVH  --parse_nvh-->  Entry(lemma, pos, paradigm, gender, attested)
+              --generate(pos, paradigm, lemma, cells)-->  slot → Oberflächen (dotted)
               --slot_tag(slot)-->  Giella-+Tag           (Nomen: Genus eingefügt)
               --Overrides ersetzen ihren Slot-->         lemma+Tags:surface
     ∪ Closed-Class-lexc (re-getaggt)  --lexc-Compile, invert-->  build/analyzer.hfstol
@@ -181,16 +177,9 @@ def analysis_tags(pos: str, gender: str, slot: str, proper: bool = False,
 
 
 def entry_forms(entry: cf.Entry) -> dict[str, frozenset[str]]:
-    """slot → Oberflächen: Stufe 0/1 (generate) ⊕ Overrides — ein Override **ersetzt**
-    den Slot (``cf._merged``), damit er eine falsche Regelform unterdrückt."""
-    generated: dict[str, tuple[str, ...]] = {}
-    try:
-        generated = cf.regenerate(entry.pos, entry.paradigm, entry.lemma,
-                                  entry.stems)
-    except (KeyError, ValueError) as exc:
-        print(f"  ! generate {entry.pos}/{entry.paradigm} {entry.lemma!r}: {exc}",
-              file=sys.stderr)
-    return cf._merged(generated, entry.attested)
+    """slot -> surfaces: generated from the lemma and the listed principal forms,
+    each listed cell replacing its slot (``cf.expand``)."""
+    return cf.expand(entry)
 
 
 def bake_open(entries: list[cf.Entry]) -> tuple[str, dict]:
@@ -276,7 +265,7 @@ def bake_open(entries: list[cf.Entry]) -> tuple[str, dict]:
                     seen.add(body)
                     by_lexicon[lexicon].append(body)
         stats[pos] += 1
-    out = ["! analyzer — baked from twanksta_dmlex.nvh + gen/*.lexc", ""]
+    out = ["! analyzer — baked from twanksta_dmlex.nvh + gen/paradigms.json", ""]
     for lexicon, _ in OPEN_POS.values():
         out.append(f"LEXICON {lexicon}")
         out.extend(f"  {body}  # ;" for body in by_lexicon[lexicon])

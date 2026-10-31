@@ -1,61 +1,23 @@
-"""§3 Kompressor: fette NVH → lean NVH (Wortliste + nur das Irreduzible).
+"""Compressor: fat NVH -> lean NVH (word list + only what the rules do not give).
 
-Die fette NVH (``twanksta.nvh``: alle POS, Giella-Tags, top-level
-``paradigm``, eigenes ``gender``-Feld) listet **jede** attestierte Zelle als
-``inflectedForm`` + ``tag``. Der Kompressor verdichtet sie **pro Eintrag** mit dem
-listenlosen Generator (``gen/generator.py``) auf das, was die Grammatik nicht
-selbst erzeugt:
+The fat NVH (``twanksta.nvh``) lists every Twanksta cell as ``inflectedForm`` +
+``tag``. Per entry the compressor keeps exactly the cells the generator
+(``gen/generator.py``) does not reproduce from the lemma:
 
-    Stufe 0   Lemma → Stamm je Rolle regelhaft   → wird **nicht** gespeichert
-    Stufe 1   gelieferter Stamm je Rolle          → ``stemOverrides: ROLLE=STAMM``
-    Stufe 2   Override: fertige Form je Zelle     → ``inflectedForm`` + ``tag``
+1. principal forms (sg.gen, prs.sp3, ...) that the lemma rule gets wrong; stored,
+   they become the source of their dependent cells,
+2. every other slot the generator then still gets wrong, as an override.
 
-Ein **gelieferter Stamm** ist der Rollen-Stamm selbst (``obl``, ``pres``, ``pret``,
-``nonfin``, ``partPresAct`` …), nicht eine Belegform. Er wird **aus einer belegten
-Form gewonnen** (``generator.stem_from_form``): die Grammatik misst die Endung des
-Slots, der Rest ist der Stamm. Ein **Override** ist eine gelistete Zelle, die
-``generate(stems)`` nicht **exakt** liefert — sie steht dann vollständig in der lean
-NVH (auch eine generierbare Variante) und **ersetzt** den Slot. Das Paar ist exakt:
+Both are plain ``inflectedForm`` cells; the lean NVH has no other lexical field. An
+override replaces its slot, so a wrong rule form never survives next to the listed
+one. The pair is exact by construction and checked by ``verify``:
 
-    generate(lemma, stems) ⊕ overrides == attested          (zellweise, ⊕ = Ersetzung)
+    generate(lemma, cells=overrides) ⊕ overrides == fat cells     (⊕ = replace slot)
 
-Ersetzung statt Vereinigung, damit ein Override eine falsche Regelform unterdrückt
-(``begalbis`` msc.sg.gen: Regel ``begalbjas``, gelistet ``begalbis``); unter ``∪``
-blieb sie als Falschlesart im Analyzer. Slots ohne gelistete Zelle bleiben generativ.
+Entries without a known paradigm keep all their cells.
 
-Drei Zusicherungen, im Code erzwungen statt behauptet:
-
-* **Minimalität** — ein Stamm wird nur geliefert, wenn er attestierte Zellen *neu*
-  deckt (Greedy über die Rollen eines Paradigmas, Gleichstand → erste der
-  alphabetisch sortierten Kandidaten). Slots zweier Rollen sind disjunkt
-  (``ROLES_ARE_DISJOINT``, eigener Test), die Rollenentscheidungen stören sich
-  also nicht gegenseitig. Stufe 0 identische Stämme werden nie geliefert (Lint).
-* **Fixpunkt/Idempotenz** — ein gelieferter Stamm ist **Eingang**, nicht Ergebnis:
-  die lean NVH trägt ihn als ``stemOverrides`` und der zweite Lauf übernimmt ihn
-  unverändert. Er läuft nicht ins Leere, weil die fette NVH ihn nicht enthält.
-* **Exaktheit** — jede Runde wird gegen das **ursprüngliche** ``attested``
-  geprüft; eine Ableitung, die Zellen verlöre (``missing``) oder in gelisteten Slots
-  Fremdformen ausweist (``extra``), wird verworfen und gemeldet.
-
-Was der Generator nicht abdecken kann, bleibt als Override stehen, damit die lean
-NVH dieselben Zellen ausweist wie die fette — verlustfrei by construction:
-
-* unbekanntes Paradigma (kein ``PARADIGMS``-Key) → alle Zellen Override,
-* Stamm außerhalb des Kopierer-Alphabets (Leerzeichen in Mehrwort-Lemmata wie
-  ``mitātun si``, ``Centralafrikas Republīki``) → die Rolle entfällt, ihre Zellen
-  werden Override,
-* Restzellen, die der Stamm nicht exakt trifft (z. B. Neut.Pl.Nom. -ai ohne
-  Makronshortening-Rückweg, oder eine falsche Regelform) → Override je Zelle.
-
-CLI::
-
-    uv run python gen/compress_forms.py --stats
-    uv run python gen/compress_forms.py --lemma-only --dry-run
-    uv run python gen/compress_forms.py --verify-idempotent
-
-Kern ist reines, importierbares Python (``parse_nvh``, ``derive_minimal``,
-``compress``); die CLI ist ein dünner Entrypoint. Quellen sind die fette NVH und
-die gebackenen Atome — keine Wortliste, kein ``twanksta_entries.json``.
+    uv run python gen/compress_forms.py --dry-run          # statistics only
+    uv run python gen/compress_forms.py --out build/lean.nvh --verify-roundtrip
 """
 
 from __future__ import annotations
@@ -63,9 +25,7 @@ from __future__ import annotations
 import argparse
 import collections
 import sys
-import unicodedata
 from dataclasses import dataclass, field, replace
-from functools import lru_cache
 from pathlib import Path
 from typing import Iterable, Iterator, Mapping, Sequence
 
@@ -77,44 +37,143 @@ ROOT = Path(__file__).resolve().parent.parent
 PARSED = ROOT.parent / "corpus" / "parsed"
 FULL_NVH = PARSED / "twanksta.nvh"
 LEAN_NVH = PARSED / "twanksta_dmlex.nvh"
-
 GENDERS = ("masc", "fem", "neut")
 
-# Die Zeile, die einen gelieferten Stamm je Rolle trägt (Stufe 1 im NVH).
-STEM_OVERRIDES = "stemOverrides"
+# Retired lean-NVH field (stems per role); dropped when read.
+_RETIRED_FIELDS = ("stemOverrides",)
 
-# Bekannter Twanksta-Dumper-Fehler: in manchen Zellen klebt der Parser die
-# Paradigmennummer ans Lemma (federācija → "federācija52", Burkīna Fasō →
-# "Burkīna Fasō45") bzw. an eine abgeleitete Stammform (Superlativ
-# "ukaizpilninamins27", "aušpānstun73").  Solche Oberflächen sind keine
-# Wortformen — keine echte preußische Wortform enthält eine Ziffer — aber sie
-# sind REPARIERBAR: die Ziffern entfernen ergibt die attestierte Form.  Darum
-# werden sie hier repariert (statt verworfen) und in eine Review-Liste
-# geschrieben; so bleibt z. B. der irreguläre Sg.Nom `Dānija` (von Stufe 0 nicht
-# ableitbar) als Override erhalten, statt durch die falsche Regelform `Dānijai`
-# ersetzt zu werden.
+# Known Twanksta dumper error: some cells carry the paradigm number glued to the
+# form (federācija52, ukaizpilninamins27). No Prussian word form contains a digit,
+# so removing the digits restores the cell; the repaired cells go to a review list.
 REVIEW_ARTIFACTS = ROOT / "build" / "review_dumper_artifacts.tsv"
 
 
-def is_dumper_artifact(lemma: str, paradigm: str, surface: str) -> bool:
-    """Geklebter Paradigmen-Fehler: irgendeine Ziffer in der Oberfläche.
+@dataclass(frozen=True)
+class Entry:
+    """One NVH entry: header facts + cells.
 
-    Der Dumper klebt die Paradigmennummer an Lemma-Varianten (``federācija52``,
-    ``Burkīna Fasō45``), Ableitungsstämme (``ukaizpilninamins27``) oder mit
-    Endung (``izpilninamins27is``).  Keine echte preußische Wortform enthält
-    eine Ziffer — Ziffernhaltige Zellen sind per Definition Datenfehler.
+    ``attested`` maps slot -> surfaces (several surfaces are variants of one slot).
+    ``head``/``tail`` are the raw lines around the ``inflectedForm`` blocks, so the
+    writer keeps ``id``, ``label``, ``sense``, ``legacy`` and ``relation`` byte-equal.
     """
+
+    lemma: str
+    pos: str = ""
+    paradigm: str = ""
+    gender: str = ""
+    numtype: str = ""
+    attested: Mapping[str, tuple[str, ...]] = field(default_factory=dict)
+    head: tuple[str, ...] = ()
+    tail: tuple[str, ...] = ()
+
+    @property
+    def cells(self) -> int:
+        return sum(len(v) for v in self.attested.values())
+
+
+# ── NVH reader/writer ────────────────────────────────────────────────────────
+
+
+def _split_pos(value: str) -> tuple[str, str]:
+    """``noun-masc`` (legacy spelling) -> ``("noun", "masc")``."""
+    pos, _, gender = value.partition("-")
+    return pos, gender if gender in GENDERS else ""
+
+
+def parse_nvh(text: str) -> list[Entry]:
+    """NVH text -> entries. Surfaces are NFC-normalised."""
+    entries: list[Entry] = []
+    lemma: str | None = None
+    pos = paradigm = gender = numtype = ""
+    forms: dict[str, set[str]] = {}
+    head: list[str] = []
+    tail: list[str] = []
+    saw_form = False
+    form: str | None = None
+
+    def flush() -> None:
+        if lemma is None:
+            return
+        entries.append(Entry(
+            lemma=lemma, pos=pos, paradigm=paradigm, gender=gender, numtype=numtype,
+            attested={slot: tuple(sorted(s)) for slot, s in sorted(forms.items())},
+            head=tuple(head), tail=tuple(tail)))
+
+    for raw in text.splitlines():
+        line = raw.rstrip()
+        if not line.strip():
+            continue
+        indent = len(line) - len(line.lstrip(" "))
+        key, _, value = line.strip().partition(": ")
+        value = value.strip()
+        if indent == 0:
+            flush()
+            lemma = value
+            pos = paradigm = gender = numtype = ""
+            forms, head, tail = {}, [], []
+            saw_form, form = False, None
+            continue
+        if indent == 2:
+            if key == "inflectedForm":
+                form, saw_form = value, True
+                continue
+            if key in _RETIRED_FIELDS:
+                continue
+            if key == "pos":
+                pos, gender = _split_pos(value)
+            elif key == "gender":
+                gender = value
+            elif key == "paradigm":
+                paradigm = value
+            elif key == "numtype":
+                numtype = value
+            (tail if saw_form else head).append(line)
+            continue
+        if form is not None and key == "tag":
+            forms.setdefault(value, set()).add(gen.nfc(form))
+            form = None
+            continue
+        (tail if saw_form else head).append(line)
+    flush()
+    return entries
+
+
+def read_nvh(path: str | Path) -> list[Entry]:
+    return parse_nvh(Path(path).read_text(encoding="utf-8"))
+
+
+def render_entry(entry: Entry, overrides: Mapping[str, Sequence[str]] | None = None) -> str:
+    """A lean entry: raw header + the kept cells, in the slot order of the input."""
+    overrides = overrides or {}
+    lines = [f"entry: {entry.lemma}", *entry.head]
+    slots = list(entry.attested) + [s for s in overrides if s not in entry.attested]
+    for slot in slots:
+        for surface in sorted(overrides.get(slot, ())):
+            lines.append(f"  inflectedForm: {surface}")
+            lines.append(f"    tag: {slot}")
+    lines.extend(entry.tail)
+    return "\n".join(lines) + "\n"
+
+
+def write_nvh(path: str | Path, pairs: Iterable[tuple[Entry, "Derivation"]]) -> None:
+    Path(path).write_text("".join(render_entry(e, d.overrides) for e, d in pairs),
+                          encoding="utf-8")
+
+
+# ── Dumper artifacts ─────────────────────────────────────────────────────────
+
+
+def is_dumper_artifact(lemma: str, paradigm: str, surface: str) -> bool:
+    """A digit anywhere in the surface: no real Prussian form contains one."""
     return any(ch.isdigit() for ch in surface)
 
 
 def repair_surface(surface: str, paradigm: str = "") -> str:
-    """Geklebte Paradigmennummer aus der Oberfläche entfernen.
+    """Remove a glued paradigm number (``Dānija52`` -> ``Dānija``).
 
-    ``Dānija52`` → ``Dānija``; ``izpilninamins27is`` → ``izpilninaminsis``.
-    Buchstabenparadigmen kleben samt Buchstabe (``Kirsnagārbija35a``,
-    ``menjū0n``, ``perleītun106d``): steht die Paradigmennummer des Eintrags in
-    der Oberfläche, wird sie als Ganzes entfernt, sonst nur die Ziffern.
-    Keine echte Wortform enthält Ziffern, darum ist das Entfernen verlustfrei.
+    Lettered paradigms are glued with their letter (``Kirsnagārbija35a``); when the
+    entry's paradigm occurs in the surface it is removed whole, otherwise only the
+    digits.
     """
     if paradigm and not paradigm.isdigit():
         i = surface.rfind(paradigm)
@@ -123,16 +182,9 @@ def repair_surface(surface: str, paradigm: str = "") -> str:
     return "".join(ch for ch in surface if not ch.isdigit())
 
 
-def repair_dumper_artifacts(
-        entries: Iterable[Entry]) -> tuple[list[Entry], list[tuple[str, str, str]]]:
-    """Geklebte Paradigmen-Artefakte in ``attested`` REPARIEREN (Ziffern raus).
-
-    Rückgabe ``(reparierte Einträge, review)`` mit ``review`` =
-    ``[(lemma, paradigm, slot), …]`` je reparierter Zelle (Datenfehler, zum
-    Review).  Reparieren statt Verwerfen: irreguläre Formen (z. B. ``Dānija``
-    Sg.Nom, von Stufe 0 nicht ableitbar) bleiben als Override erhalten; Verwerfen
-    hätte sie durch die falsche Regelform (``Dānijai``) ersetzt.
-    """
+def repair_dumper_artifacts(entries: Iterable[Entry]
+                            ) -> tuple[list[Entry], list[tuple[str, str, str]]]:
+    """Repair glued-paradigm cells; returns (entries, [(lemma, paradigm, slot)])."""
     clean: list[Entry] = []
     review: list[tuple[str, str, str]] = []
     for entry in entries:
@@ -155,818 +207,179 @@ def repair_dumper_artifacts(
 
 
 def write_review(path: Path, review: Iterable[tuple[str, str, str]]) -> int:
-    """Review-Liste ``lemma<TAB>paradigm<TAB>slot`` schreiben; Anzahl liefern."""
     rows = list(review)
     path.parent.mkdir(parents=True, exist_ok=True)
-    lines = ["lemma\tparadigm\tslot\n"]
-    lines += [f"{lemma}\t{paradigm}\t{slot}\n" for lemma, paradigm, slot in rows]
-    path.write_text("".join(lines), encoding="utf-8")
+    path.write_text("lemma\tparadigm\tslot\n"
+                    + "".join(f"{l}\t{p}\t{s}\n" for l, p, s in rows), encoding="utf-8")
     return len(rows)
 
-# Eine NVH-Zelle = (Slot, Oberfläche). Mehrere Oberflächen je Slot sind Varianten
-# und zählen einzeln (so liefert die Roh-HTML-Quelle sie, §0.1/0.2 des Plans).
+
+# ── Cell algebra ─────────────────────────────────────────────────────────────
 
 
-def slot_class(pos: str, slot: str) -> str:
-    """Zellenklasse eines Slots — die Verben werden in finite/Partizip getrennt.
-
-    Die Verben tragen 18 finite Zellen (prs/prt/subj/opt/imprt) und 72 Partizip-
-    Zellen je Eintrag. Ohne diese Trennung verwässert das Partizip-Grid (80 % der
-    Verbzellen) die Deckungszahl, die ``gen/DEVIATIONS.md`` für die finite Tafel
-    gibt.
-    """
-    return "partizip" if pos == "verb" and slot.startswith("part.") else pos
-
-
-def _roles_are_disjoint() -> bool:
-    for par in gen.PARADIGMS.values():
-        seen: set[str] = set()
-        for spec in par.roles.values():
-            if seen & set(spec.slots):
-                return False
-            seen |= set(spec.slots)
-    return True
-
-
-ROLES_ARE_DISJOINT = _roles_are_disjoint()
-
-
-def _nfc(text: str) -> str:
-    return unicodedata.normalize("NFC", text)
-
-
-# ── NVH-Leser ───────────────────────────────────────────────────────────────
-
-
-@dataclass(frozen=True)
-class Entry:
-    """Ein NVH-Eintrag: Kopfdaten + gelieferte Stämme + attestierte Zellen.
-
-    ``attested`` bildet Slot-Key → **mengenweise** Oberflächen (Varianten eines
-    Slots). ``stems`` sind die ``stemOverrides`` der Zeile (Rolle → Stamm); in der
-    fette NVH ist die Menge leer, in der lean NVH trägt sie die Stufe 1.
-    ``head``/``tail`` sind die Rohzeilen ohne ``stemOverrides``- und
-    ``inflectedForm``-Blöcke, damit der Schreiber den Rest byte-gleich hält:
-    ``id``, ``label``, ``sense``, ``legacy`` und ``relation`` bleiben unangetastet.
-    """
-
-    lemma: str
-    pos: str = ""
-    paradigm: str = ""
-    gender: str = ""
-    numtype: str = ""                  # card | ord (Numeralia, K2) — nur Tag-Fakt
-    attested: Mapping[str, tuple[str, ...]] = field(default_factory=dict)
-    stems: Mapping[str, str] = field(default_factory=dict)
-    head: tuple[str, ...] = ()
-    tail: tuple[str, ...] = ()
-
-    @property
-    def cells(self) -> int:
-        """Attestierte Zellen (Oberflächen, nicht Slots)."""
-        return sum(len(v) for v in self.attested.values())
-
-    @property
-    def generable(self) -> bool:
-        """Eintrag hat POS + Paradigma + überhaupt Zellen."""
-        return bool(self.pos and self.paradigm and self.attested)
-
-
-def _split_pos(value: str) -> tuple[str, str]:
-    """``noun-masc`` (Legacy-Schreibweise) → ``("noun", "masc")``."""
-    pos, _, gender = value.partition("-")
-    return pos, gender if gender in GENDERS else ""
-
-
-def parse_nvh(text: str) -> list[Entry]:
-    """NVH-Text → Einträge (eingerücktes ``key: value``).
-
-    Gelesen werden genau die Felder des Auftrags: ``pos``, ``gender``, ``numtype``,
-    ``paradigm`` (top-level), ``stemOverrides`` (Stufe 1) und ``inflectedForm`` +
-    ``tag`` (Stufe 2 bzw. die fette NVH). Alle übrigen Zeilen — inklusive der
-    tieferen ``sense``-/``legacy``-/``relation``-Blöcke — wandern unverändert nach
-    ``head``/``tail``. Oberflächen werden NFC-normalisiert, weil der Kopierer des
-    Generators NFD-Kombining-Marks nicht kennt.
-    """
-    entries: list[Entry] = []
-    lemma: str | None = None
-    pos = paradigm = gender = numtype = ""
-    forms: dict[str, set[str]] = {}
-    stems: dict[str, str] = {}
-    head: list[str] = []
-    tail: list[str] = []
-    saw_form = False
-    form: str | None = None
-
-    def flush() -> None:
-        nonlocal lemma, pos, paradigm, gender, numtype, forms, stems, head, tail
-        nonlocal saw_form, form
-        if lemma is None:
-            return
-        entries.append(Entry(
-            lemma=lemma, pos=pos, paradigm=paradigm, gender=gender, numtype=numtype,
-            attested={slot: tuple(sorted(surfaces))
-                      for slot, surfaces in sorted(forms.items())},
-            stems=dict(sorted(stems.items())),
-            head=tuple(head), tail=tuple(tail)))
-        lemma = None
-
-    for raw in text.splitlines():
-        line = raw.rstrip()
-        if not line.strip():
-            continue
-        indent = len(line) - len(line.lstrip(" "))
-        key, _, value = line.strip().partition(": ")
-        value = value.strip()
-        if indent == 0:
-            flush()
-            lemma = value
-            pos = paradigm = gender = numtype = ""
-            forms, stems, head, tail = {}, {}, [], []
-            saw_form, form = False, None
-            continue
-        if indent == 2:
-            if key == "inflectedForm":
-                form, saw_form = value, True
-                continue
-            if key == STEM_OVERRIDES:
-                for item in value.split():
-                    role, _, stem = item.partition("=")
-                    if stem:
-                        stems[role] = stem
-                continue
-            if key == "pos":
-                pos, gender = _split_pos(value)
-            elif key == "gender":
-                gender = value
-            elif key == "paradigm":
-                paradigm = value
-            elif key == "numtype":
-                numtype = value
-            (tail if saw_form else head).append(line)
-            continue
-        if form is not None and key == "tag":
-            forms.setdefault(value, set()).add(_nfc(form))
-            form = None
-            continue
-        (tail if saw_form else head).append(line)
-    flush()
-    return entries
-
-
-def read_nvh(path: str | Path) -> list[Entry]:
-    return parse_nvh(Path(path).read_text(encoding="utf-8"))
-
-
-def render_entry(entry: Entry, stems: Mapping[str, str] | None = None,
-                 overrides: Mapping[str, Sequence[str]] | None = None
-                 ) -> str:
-    """Ein leaner Eintrag: Kopfdaten (roh) + gelieferte Stämme + Rest-Overrides.
-
-    Reihenfolge: erst die Kopfdaten, dann ``stemOverrides: ROLLE=STEM`` in der
-    Rollenreihenfolge des Paradigmas, dann die Overrides je Slot sortiert. Ein
-    Eintrag, den Stufe 0 (bzw. die gelieferten Stämme) vollständig deckt, bekommt
-    überhaupt keine Formzeile — genau das ist die Kompression.
-    """
-    stems = stems or {}
-    overrides = overrides or {}
-    order = sorted(stems, key=_role_order(entry))
-    lines = [f"entry: {entry.lemma}", *entry.head]
-    if order:
-        lines.append(f"  {STEM_OVERRIDES}: "
-                     + " ".join(f"{role}={stems[role]}" for role in order))
-    slots = list(entry.attested)
-    slots += [slot for slot in overrides if slot not in slots]
-    for slot in slots:
-        for surface in sorted(overrides.get(slot, ())):
-            lines.append(f"  inflectedForm: {surface}")
-            lines.append(f"    tag: {slot}")
-    lines.extend(entry.tail)
-    return "\n".join(lines) + "\n"
-
-
-@lru_cache(maxsize=None)
-def _role_sort_key(pos: str, paradigm: str) -> tuple[str, ...]:
-    """Rollenreihenfolge eines Paradigmas (stabil, unabhängig vom Lemma)."""
-    try:
-        return tuple(gen.PARADIGMS[(pos, paradigm)].roles)
-    except KeyError:
-        return ()
-
-
-def _role_order(entry: Entry) -> "collections.abc.Callable[[str], tuple[str, ...]]":
-    key = _role_sort_key(entry.pos, gen.resolve_paradigm(entry.pos, entry.paradigm)
-                         if entry.pos in ("noun", "adj", "verb") else entry.paradigm)
-    return lambda role: (key.index(role) if role in key else len(key), role)
-
-
-def write_nvh(path: str | Path,
-              pairs: Iterable[tuple[Entry, Derivation]]) -> None:
-    """Lean NVH schreiben. ``pairs`` ist die Ausgabe von ``compress``."""
-    Path(path).write_text(
-        "".join(render_entry(entry, d.stems, d.overrides) for entry, d in pairs),
-        encoding="utf-8")
-
-
-# ── Generierung (Stufe 0/1) ─────────────────────────────────────────────────
-
-
-def _usable(stem: str) -> bool:
-    """Kann der Stamm in den Kopierer? Leerzeichen/Mehrwort-Lemmata: nein."""
-    try:
-        gen.check_stem(_nfc(stem))
-    except ValueError:
-        return False
-    return True
-
-
-def _merged(generated: Mapping[str, Sequence[str]],
-            overrides: Mapping[str, Sequence[str]]) -> dict[str, frozenset[str]]:
-    """``generate(stems) ⊕ overrides`` als Zellmengen: ein Override **ersetzt** den Slot."""
+def merged(generated: Mapping[str, Sequence[str]],
+           overrides: Mapping[str, Sequence[str]]) -> dict[str, frozenset[str]]:
+    """``generated ⊕ overrides``: an override replaces its slot."""
     out = {slot: frozenset(forms) for slot, forms in generated.items()}
     for slot, surfaces in overrides.items():
         out[slot] = frozenset(surfaces)
     return out
 
 
-def uncovered(attested: Mapping[str, Sequence[str]],
-              produced: Mapping[str, Sequence[str]]) -> dict[str, tuple[str, ...]]:
-    """Attestierte Oberflächen, die ``produced`` an diesem Slot nicht liefert."""
-    out: dict[str, tuple[str, ...]] = {}
-    for slot, surfaces in attested.items():
-        have = frozenset(produced.get(slot, ()))
-        rest = tuple(s for s in surfaces if s not in have)
-        if rest:
-            out[slot] = rest
-    return out
-
-
 def mismatched(attested: Mapping[str, Sequence[str]],
                produced: Mapping[str, Sequence[str]]) -> dict[str, tuple[str, ...]]:
-    """Gelistete Slots, die ``produced`` nicht exakt trifft — mit ihrer **vollen** Zelle.
-
-    Das ist die Override-Menge unter Ersetzung: fehlt eine Form oder kommt eine
-    Fremdform dazu, steht der ganze Slot in der lean NVH.
-    """
+    """Listed slots ``produced`` does not hit exactly, with their full cell."""
     return {slot: tuple(surfaces) for slot, surfaces in attested.items()
             if frozenset(surfaces) != frozenset(produced.get(slot, ()))}
 
 
-def overgenerated(attested: Mapping[str, Sequence[str]],
-                  produced: Mapping[str, Sequence[str]]) -> dict[str, tuple[str, ...]]:
-    """Formen, die ``produced`` in gelisteten Slots zusätzlich ausweist."""
-    out: dict[str, tuple[str, ...]] = {}
+def inexact(attested: Mapping[str, Sequence[str]],
+            expanded: Mapping[str, Sequence[str]]) -> dict[str, dict]:
+    """``{"missing": …, "extra": …}`` per listed slot; empty when exact."""
+    missing, extra = {}, {}
     for slot, surfaces in attested.items():
-        extra = tuple(sorted(frozenset(produced.get(slot, ())) - frozenset(surfaces)))
-        if extra:
-            out[slot] = extra
-    return out
+        have = frozenset(expanded.get(slot, ()))
+        if lost := tuple(s for s in surfaces if s not in have):
+            missing[slot] = lost
+        if more := tuple(sorted(have - frozenset(surfaces))):
+            extra[slot] = more
+    return {k: v for k, v in (("missing", missing), ("extra", extra)) if v}
 
 
-def covered_cells(attested: Mapping[str, Sequence[str]],
-                  produced: Mapping[str, Sequence[str]]) -> int:
-    return sum(1 for slot, surfaces in attested.items()
-               for s in surfaces if s in frozenset(produced.get(slot, ())))
-
-
-def usable_stems(pos: str, paradigm: str, lemma: str,
-                 stems: Mapping[str, str] | None = None) -> dict[str, str]:
-    """Stufe-0-Stämme, überschrieben von den gelieferten — ohne die unbrauchbaren.
-
-    Das Paradigma wird **vor** dem ``generate``-Aufruf aufgelöst (``87`` → ``87a``/
-    ``87b``), weil ``generate`` ohne Lemma sonst die Default-Auflösung nähme.
-    """
-    out = gen.default_stems(pos, paradigm, lemma=lemma)
-    for role, stem in (stems or {}).items():
-        if role not in out:
-            continue                  # unbekannte Rolle → nicht unser Problem
-        out[role] = stem
-    return {role: stem for role, stem in out.items() if _usable(stem)}
-
-
-def regenerate(pos: str, paradigm: str, lemma: str,
-               stems: Mapping[str, str] | None = None) -> dict[str, tuple[str, ...]]:
-    """``generate`` mit den Stufe-0/1-Stämmen (siehe ``usable_stems``)."""
-    return gen.generate(pos, gen.resolve_paradigm(pos, paradigm, lemma),
-                        stems=usable_stems(pos, paradigm, lemma, stems))
-
-
-@lru_cache(maxsize=1 << 16)
-def _role_forms(pos: str, paradigm: str, lemma: str, role: str,
-                stem: str) -> tuple[tuple[str, tuple[str, ...]], ...]:
-    """Nur eine Rolle erzeugen (Kandidatenprüfung im Greedy), Cache je Stamm."""
-    if not _usable(stem):
-        return ()
-    forms = gen.generate(pos, gen.resolve_paradigm(pos, paradigm, lemma),
-                         stems={role: stem})
-    return tuple(sorted(forms.items()))
-
-
-def candidate_stems(pos: str, paradigm: str, lemma: str, role: str,
-                    attested: Mapping[str, Sequence[str]]
-                    ) -> tuple[tuple[str, str], ...]:
-    """(Stamm, Belegform) je Rolle, geordnet — aus **irgendeiner** Zelle der Rolle.
-
-    Der Stamm wird nie geraten, sondern aus einer attestierten Oberfläche
-    zurückgewonnen (``generator.stem_from_form``): die Grammatik misst die Endung
-    des Slots, der Rest ist der Stamm. Endet eine Belegform nicht auf der gemessenen
-    Endung (z. B. weil sie eine Variante ist), ist sie kein Kandidat. Ergebnis ist
-    alphabetisch sortiert und doppelfrei — der Greedy bricht beim ersten
-    Gleichstand ab, die Reihenfolge entscheidet also mit.
-    """
+def expand(entry: Entry) -> dict[str, frozenset[str]]:
+    """Cells of a lean entry: ``generate(cells) ⊕ cells``. Unknown paradigm: the cells."""
     try:
-        spec = gen.paradigm_spec(pos, paradigm, lemma).roles[role]
+        generated = gen.generate(entry.pos, entry.paradigm, entry.lemma, entry.attested)
     except KeyError:
-        return ()
-    out: dict[str, str] = {}
-    for slot in spec.slots:
-        for form in attested.get(slot, ()):
-            try:
-                stem = gen.stem_from_form(pos, paradigm, role, slot, _nfc(form),
-                                           lemma=lemma)
-            except (ValueError, KeyError):
-                continue
-            if not _usable(stem):
-                continue
-            out.setdefault(stem, form)
-    return tuple(sorted(out.items()))
+        generated = {}
+    return merged(generated, entry.attested)
 
 
-def _normalize(attested: Mapping[str, Sequence[str]] | None
-               ) -> dict[str, tuple[str, ...]]:
-    if not attested:
-        return {}
-    return {slot: tuple(sorted({_nfc(s) for s in surfaces}))
-            for slot, surfaces in attested.items() if surfaces}
-
-
-# ── Ableitung ───────────────────────────────────────────────────────────────
+# ── Derivation ───────────────────────────────────────────────────────────────
 
 
 @dataclass
 class Derivation:
-    """Ergebnis für **einen** Eintrag."""
+    """Result for one entry."""
 
-    stems: dict[str, str] = field(default_factory=dict)
     overrides: dict[str, tuple[str, ...]] = field(default_factory=dict)
     generated: dict[str, tuple[str, ...]] = field(default_factory=dict)
-    generated_s0: dict[str, tuple[str, ...]] = field(default_factory=dict)
-    cells: int = 0
-    covered_s0: int = 0
-    covered_s1: int = 0
-    status: str = "ok"                 # ok | unbekanntes-paradigma | kein-stamm
-    stem_fields: tuple[str, ...] = ()  # Lint: Stamm == Stufe-0-Stamm (redundant)
-    supplied_stems: tuple[str, ...] = ()
-    override_variant: int = 0           # Overrides an Slots mit Varianten
-    lint_redundant_override: int = 0    # Override == Regelzelle (Invariante: 0)
-    unstable: bool = False
-    rounds: int = 1
-    attested: Mapping[str, tuple[str, ...]] = field(default_factory=dict, repr=False)
+    lemma_only: dict[str, tuple[str, ...]] = field(default_factory=dict)
+    principal: tuple[str, ...] = ()          # principal forms kept (wrong from the lemma)
+    status: str = "ok"                        # ok | unknown-paradigm | no-pos-paradigm
 
     @property
     def expanded(self) -> dict[str, frozenset[str]]:
-        """Die Zellen, die der lean Eintrag ausweist: ``generate ⊕ overrides``."""
-        return _merged(self.generated, self.overrides)
-
-    @property
-    def missing(self) -> dict[str, tuple[str, ...]]:
-        """Was der lean Eintrag verlöre (leer = verlustfrei)."""
-        return uncovered(self.attested, self.expanded)
-
-    @property
-    def extra(self) -> dict[str, tuple[str, ...]]:
-        """Fremdformen in gelisteten Slots (leer = keine Übergenerierung)."""
-        return overgenerated(self.attested, self.expanded)
-
-    @property
-    def exact(self) -> bool:
-        return not self.missing and not self.extra
-
-    @property
-    def complete_s0(self) -> bool:
-        return self.covered_s0 == self.cells
+        return merged(self.generated, self.overrides)
 
 
-def _derive_once(pos: str, paradigm: str, lemma: str, gender: str,
-                 attested: Mapping[str, tuple[str, ...]],
-                 lemma_only: bool,
-                 supplied: Mapping[str, str] | None = None,
-                 dense: bool = False,
-                 original: Mapping[str, tuple[str, ...]] | None = None
-                 ) -> Derivation:
-    """Ein Durchgang: Stufe 0 → gelieferte Stämme (greedy) → Rest-Overrides.
-
-    ``supplied`` sind die ``stemOverrides`` des Eintrags — Eingang, kein Ergebnis.
-    Sie werden übernommen, auch wenn sie derzeit nichts zudecken; der Greedy darf
-    nur *addieren*. ``attested`` ist die Menge, aus der die Stämme gewonnen und die
-    Overrides gebildet werden. ``original`` ist die Zellenmenge der **fette NVH**,
-    gegen die ``cells``/``covered_*``/``missing`` gerechnet werden. Ohne diesen
-    Unterschied wäre ``missing`` bei jeder Runde ab Runde 2 leer — die
-    Verlustfreiheitszusage wäre dann eine Behauptung.
-
-    ``dense`` heißt: die Eingabe ist selbst eine bereits verdichtete NVH. Dann sind
-    die Zellen die **Aussage der Datei** (sie stehen dort als Override) und bleiben
-    unangetastet; ein Neuableiten aus ihnen wäre Raten mit weniger Information als
-    der erste Lauf — er schlägt die 23 Zellen eines Stufe-0-Partizipstamms für die
-    eine abweichende Nischenform und wirft sie weg (mitātun, partPerfPass 'kalbit').
-    """
-    original = attested if original is None else original
-    supplied = dict(supplied or {})
-    cells = sum(len(v) for v in original.values())
+def derive_entry(entry: Entry) -> Derivation:
+    """Keep wrong principal forms, regenerate from them, keep what is still wrong."""
+    attested = entry.attested
+    if not (entry.pos and entry.paradigm):
+        return Derivation(overrides=dict(attested), status="no-pos-paradigm")
     try:
-        par = gen.paradigm_spec(pos, paradigm, lemma)
+        lemma_only = gen.generate(entry.pos, entry.paradigm, entry.lemma)
     except KeyError:
-        return Derivation(overrides=dict(attested), cells=cells,
-                          status="unbekanntes-paradigma", attested=original)
-
-    if gender and gender not in GENDERS:
-        raise ValueError(f"{lemma}: unbekanntes gender {gender!r} ({'|'.join(GENDERS)})")
-
-    s0 = regenerate(pos, paradigm, lemma)
-    default = gen.default_stems(pos, paradigm, lemma=lemma)
-    stems: dict[str, str] = {role: stem for role, stem in supplied.items()
-                             if role in par.roles and _usable(_nfc(stem))}
-    redundant: list[str] = []
-
-    if not lemma_only and not dense:
-        # Stufe 0 zuerst: ein gelieferter Stamm, der dem Regelstamm entspricht,
-        # deckt nichts neu und ist reiner Ballast (Lint (a)).
-        generated = dict(s0)
-        for role, stem in stems.items():
-            generated = {**generated,
-                         **_dict(_role_forms(pos, paradigm, lemma, role, stem))}
-            if default.get(role) == stem:
-                redundant.append(role)
-        for role, spec in par.roles.items():
-            if role in stems:
-                continue
-            # Ein gelieferter Stamm **ersetzt** den Stufe-0-Stamm seiner Rolle, der
-            # Gewinn ist also eine Differenz: die Slots, die der Kandidat neu exakt
-            # trifft, minus die, die der bisherige Stamm exakt trifft und der
-            # Kandidat verliert. Sonst gewinnt ein Stamm, der eine einzige
-            # Nischenform trifft, während er den Rest der Rolle wegwirft (mitātun:
-            # partPerfPass 'mitat' für die -ai-Form gegen Stufe 0 'mitāt' mit 23
-            # Zellen). Gezählt wird Exaktheit, nicht Deckung: unter Ersetzung kostet
-            # jeder nicht exakt getroffene Slot einen Override, auch eine Fremdform.
-            before = _role_exact(original, generated, spec.slots)
-            best_stem: str | None = None
-            best_gain = 0
-            for stem, _form in candidate_stems(pos, paradigm, lemma, role, attested):
-                if default.get(role) == stem:
-                    continue              # Stufe 0 deckt ihn bereits
-                after = _role_exact(
-                    original,
-                    _dict(_role_forms(pos, paradigm, lemma, role, stem)),
-                    spec.slots)
-                gain = len(after - before) - len(before - after)
-                if gain > best_gain:      # Gleichstand → erster sortierter Kandidat
-                    best_stem, best_gain = stem, gain
-            if best_stem is None:
-                continue
-            stems[role] = best_stem
-            generated = {**generated,
-                         **_dict(_role_forms(pos, paradigm, lemma, role, best_stem))}
-
-    generated = regenerate(pos, paradigm, lemma, stems)
-    # Overrides gegen die **fette** NVH (``original``), auch ab Runde 2: unter
-    # Ersetzung muss jeder gelistete Slot exakt stimmen, nicht nur der Rest.
-    overrides = dict(attested) if dense else mismatched(original, generated)
-    # Lint (b): ein Override, der genau die Regelzelle wiederholt, wäre überflüssig.
-    # Die Overrides sind per Konstruktion die nicht exakten Slots, also muss die
-    # Zahl 0 sein — der Lint prüft die Invariante, statt sie zu behaupten.
-    lint = sum(1 for slot, surfaces in overrides.items()
-               if frozenset(surfaces) == frozenset(generated.get(slot, ())))
-    variants = sum(len(surfaces) for slot, surfaces in overrides.items()
-                   if len(original.get(slot, ())) > 1)
-    return Derivation(
-        stems=stems, overrides=overrides, generated=generated,
-        generated_s0=s0, cells=cells,
-        covered_s0=covered_cells(original, s0), covered_s1=covered_cells(original, generated),
-        status="ok" if usable_stems(pos, paradigm, lemma, stems) else "kein-stamm",
-        stem_fields=tuple(redundant), supplied_stems=tuple(sorted(supplied)),
-        override_variant=variants, lint_redundant_override=lint,
-        attested=original)
+        return Derivation(overrides=dict(attested), status="unknown-paradigm")
+    principal = {slot: attested[slot] for slot in gen.PRINCIPAL.get(gen.family(entry.pos), ())
+                 if slot in attested
+                 and frozenset(attested[slot]) != frozenset(lemma_only.get(slot, ()))}
+    generated = gen.generate(entry.pos, entry.paradigm, entry.lemma, principal)
+    return Derivation(overrides=mismatched(attested, generated), generated=generated,
+                      lemma_only=lemma_only, principal=tuple(principal))
 
 
-def _dict(pairs: Iterable[tuple[str, Sequence[str]]]
-          ) -> dict[str, tuple[str, ...]]:
-    return {slot: tuple(forms) for slot, forms in pairs}
-
-
-def _role_exact(attested: Mapping[str, Sequence[str]],
-               produced: Mapping[str, Sequence[str]],
-               slots: Sequence[str]) -> frozenset[str]:
-    """Gelistete Slots einer Rolle, die ``produced`` exakt trifft (Zelle == Zelle).
-
-    Für den Greedy-Vergleich zählen nur die Slots der Rolle — die Slots zweier
-    Rollen sind disjunkt (``ROLES_ARE_DISJOINT``), ein Kandidat kann also nur
-    innerhalb seiner eigenen Rolle gewinnen oder verlieren.
-    """
-    return frozenset(
-        slot for slot in slots if slot in attested
-        and frozenset(attested[slot]) == frozenset(produced.get(slot, ())))
-
-
-def _lean_attested(derivation: Derivation) -> dict[str, tuple[str, ...]]:
-    """Was die lean NVH für diesen Eintrag an Zellen ausweist: nur die Overrides."""
-    return {slot: tuple(sorted(v)) for slot, v in derivation.overrides.items()}
-
-
-def derive_entry(pos: str, paradigm: str, lemma: str, gender: str = "",
-                 attested: Mapping[str, Sequence[str]] | None = None, *,
-                 supplied: Mapping[str, str] | None = None, dense: bool = False,
-                 lemma_only: bool = False, rounds: int = 4) -> Derivation:
-    """``(stems, overrides)`` + Kennzahlen, bis zum Fixpunkt iteriert.
-
-    ``lemma_only`` ist der Modus „nur Lemma": Stufe 0 ohne gelieferte Stämme, alles
-    Nicht-Regenerierte wird Override. ``dense`` heißt: die Eingabe ist selbst eine
-    verdichtete NVH — die Zellen bleiben Override, die gelieferten Stämme bleiben,
-    es wird nichts neu abgeleitet (siehe ``_derive_once``). Sonst wird bis zum
-    Fixpunkt iteriert: jede weitere Runde leitet aus ``overrides`` ab, misst ihren
-    Gewinn und ihre Verlustfreiheit aber weiterhin an den **Zellen der fette NVH** —
-    bricht diese Invariante, bleibt die letzte verlustfreie Runde stehen und der
-    Eintrag wird als ``unstable`` gemeldet (im Bericht: „nicht konvergiert").
-    """
-    att = _normalize(attested)
-    result = _derive_once(pos, paradigm, lemma, gender, att, lemma_only, supplied, dense)
-    if lemma_only or dense or not (result.stems or result.overrides):
-        return result
-    for round_no in range(2, rounds + 1):
-        nxt = _derive_once(pos, paradigm, lemma, gender, _lean_attested(result),
-                           lemma_only, supplied=result.stems, original=att)
-        if (nxt.stems, nxt.overrides) == (result.stems, result.overrides):
-            result.rounds = round_no
-            return result
-        if not nxt.exact:                # Runde wäre nicht exakt → zurück zur letzten
-            result.unstable = True
-            return result
-        result = nxt
-        result.rounds = round_no
-    result.unstable = True
-    return result
-
-
-def derive_minimal(pos: str, paradigm: str, lemma: str, gender: str = "",
-                   attested: Mapping[str, Sequence[str]] | None = None, *,
-                   supplied: Mapping[str, str] | None = None, dense: bool = False,
-                   lemma_only: bool = False, rounds: int = 4
-                   ) -> tuple[dict[str, str], dict[str, tuple[str, ...]]]:
-    """Minimaler ``(stems, overrides)``-Satz für einen Eintrag.
-
-    Zellenweise verlustfrei: ``generate(pos, paradigm, lemma, stems=stems) ∪
-    overrides == attested``. ``stems`` ist leer, wenn Stufe 0 alles deckt; leere
-    ``overrides`` heißt, dass die gelieferten Stämme das Lexem vollständig
-    regenerieren.
-    """
-    derivation = derive_entry(pos, paradigm, lemma, gender, attested,
-                              supplied=supplied, dense=dense,
-                              lemma_only=lemma_only, rounds=rounds)
-    return derivation.stems, derivation.overrides
-
-
-# ── Statistik ────────────────────────────────────────────────────────────────
-
-
-@dataclass
-class Stats:
-    """Zähler des Berichts; ``record`` je Eintrag, ``report`` als Text.
-
-    ``cells[(pos, kind)]`` mit ``kind`` in ``total`` (alle Zellen des Eintrags),
-    ``status`` (Zellen ungenerierbarer Einträge), ``s0`` (Stufe-0-Deckung) und
-    ``s1`` (Deckung mit gelieferten Stämmen). ``skipped[(pos, grund)]`` zählt
-    Einträge, die der Generator nicht anfasst (unbekanntes Paradigma, Stamm
-    außerhalb des Kopierers) bzw. die keine Wortlisteneinträge sind (fehlende
-    Zellen).
-    """
-
-    entries: collections.Counter = field(default_factory=collections.Counter)
-    s0_complete: collections.Counter = field(default_factory=collections.Counter)
-    stem_entries: collections.Counter = field(default_factory=collections.Counter)
-    stem_fields: collections.Counter = field(default_factory=collections.Counter)
-    status_cells: collections.Counter = field(default_factory=collections.Counter)
-    overrides: collections.Counter = field(default_factory=collections.Counter)
-    override_variant: collections.Counter = field(default_factory=collections.Counter)
-    cells: collections.Counter = field(default_factory=collections.Counter)
-    class_cells: collections.Counter = field(default_factory=collections.Counter)
-    class_s0: collections.Counter = field(default_factory=collections.Counter)
-    class_s1: collections.Counter = field(default_factory=collections.Counter)
-    skipped: collections.Counter = field(default_factory=collections.Counter)
-    lint_redundant_stem: collections.Counter = field(default_factory=collections.Counter)
-    lint_redundant_override: collections.Counter = field(default_factory=collections.Counter)
-    unstable: collections.Counter = field(default_factory=collections.Counter)
-    rounds: collections.Counter = field(default_factory=collections.Counter)
-
-    BLOCKING = ("unbekanntes-paradigma", "kein-stamm")
-
-    def record(self, entry: Entry, derivation: Derivation) -> None:
-        key = (entry.pos, entry.paradigm)
-        self.entries[key] += 1
-        self.cells[(entry.pos, "total")] += derivation.cells
-        self.rounds[derivation.rounds] += 1
-        self.lint_redundant_stem[key] += len(derivation.stem_fields)
-        self.lint_redundant_override[key] += derivation.lint_redundant_override
-        if derivation.unstable:
-            self.unstable[key] += 1
-        for slot, surfaces in derivation.overrides.items():
-            self.overrides[key] += len(surfaces)
-            if len(entry.attested.get(slot, ())) > 1:
-                self.override_variant[key] += len(surfaces)
-        if derivation.status != "ok":
-            self.skipped[(entry.pos, derivation.status)] += 1
-            self.status_cells[(entry.pos, derivation.status)] += derivation.cells
-            self.cells[(entry.pos, "status")] += derivation.cells
-            return
-        self.cells[(entry.pos, "s0")] += derivation.covered_s0
-        self.cells[(entry.pos, "s1")] += derivation.covered_s1
-        for slot, surfaces in entry.attested.items():
-            cls = (entry.pos, slot_class(entry.pos, slot))
-            self.class_cells[cls] += len(surfaces)
-            self.class_s1[cls] += sum(1 for s in surfaces
-                                      if s in frozenset(derivation.generated.get(slot, ())))
-            self.class_s0[cls] += sum(1 for s in surfaces
-                                      if s in frozenset(derivation.generated_s0.get(slot, ())))
-        if derivation.covered_s0 == derivation.cells:
-            self.s0_complete[key] += 1
-        if derivation.stems:
-            self.stem_entries[key] += 1
-            for role in derivation.stems:
-                self.stem_fields[(entry.pos, entry.paradigm, role)] += 1
-
-    def entries_of(self, pos: str) -> int:
-        """Generierbare Einträge (POS + Paradigma + Zellen vorhanden)."""
-        return sum(v for (p, _), v in self.entries.items() if p == pos)
-
-    def blocked(self, pos: str) -> int:
-        """Einträge, die der Generator nicht anfasst."""
-        return sum(v for (p, reason), v in self.skipped.items()
-                   if p == pos and reason in self.BLOCKING)
-
-    def blocked_cells(self, pos: str) -> int:
-        return self.cells[(pos, "status")]
-
-    def report(self, *, title: str = "Kennzahlen",
-               positions: Sequence[str] = ("noun", "adj", "verb")) -> str:
-        out = [f"# {title}", ""]
-        out.append("## POS-Deckung — Einträge mit bekanntem Paradigma **und** brauchbarem Stamm")
-        out.append(f"{'POS':5} {'Einträge':>8} {'Zellen':>8} {'Stufe 0':>18} "
-                   f"{'mit Stämmen':>18} {'Overrides':>9}")
-        for pos in positions:
-            if not self.entries_of(pos):
-                continue
-            total = self.cells[(pos, "total")] - self.blocked_cells(pos)
-            s0, s1 = self.cells[(pos, "s0")], self.cells[(pos, "s1")]
-            out.append(f"{pos:5} {self.entries_of(pos) - self.blocked(pos):>8} {total:>8} "
-                       f"{_pct(s0, total):>18} {_pct(s1, total):>18} {total - s1:>9}")
-        out.append("")
-        out.append("## POS-Deckung — alle Zellen der fette NVH (ungegenerierbare Einträge inkl.)")
-        out.append(f"{'POS':5} {'Einträge':>8} {'Zellen':>8} {'Stufe 0':>18} {'mit Stämmen':>18}")
-        for pos in positions:
-            if not self.entries_of(pos):
-                continue
-            total = self.cells[(pos, "total")]
-            s0, s1 = self.cells[(pos, "s0")], self.cells[(pos, "s1")]
-            out.append(f"{pos:5} {self.entries_of(pos):>8} {total:>8} "
-                       f"{_pct(s0, total):>18} {_pct(s1, total):>18}")
-        out.append("")
-        out.append("## POS-Deckung nach Zellenklasse (finite Verben vs. Partizip-Grid)")
-        out.append(f"{'POS':5} {'Klasse':10} {'Zellen':>8} {'Stufe 0':>18} {'mit Stämmen':>18} "
-                   f"{'Overrides':>9}")
-        for (pos, cls), total in sorted(self.class_cells.items()):
-            if pos not in positions:
-                continue
-            s0, s1 = self.class_s0[(pos, cls)], self.class_s1[(pos, cls)]
-            out.append(f"{pos:5} {cls:10} {total:>8} {_pct(s0, total):>18} "
-                       f"{_pct(s1, total):>18} {total - s1:>9}")
-        out.append("")
-        out.append("## Paradigmen (Einträge / Stufe-0-vollständig / Stamm-Einträge / "
-                   "Stamm-Felder / Rest-Overrides)")
-        out.append(f"{'POS':5} {'Par':>6} {'Eintr':>6} {'Stufe0':>7} {'Stamm':>6} "
-                   f"{'Stamm-Felder':<26} {'Overr.':>7}")
-        for (pos, paradigm), n in sorted(self.entries.items()):
-            if pos not in positions:
-                continue
-            complete = self.s0_complete[(pos, paradigm)]
-            stemmed = self.stem_entries[(pos, paradigm)]
-            over = self.overrides[(pos, paradigm)]
-            if not (complete or stemmed or over):
-                continue
-            fields = ", ".join(f"{role}={n}" for (p, par, role), n in sorted(
-                self.stem_fields.items()) if p == pos and par == paradigm)
-            out.append(f"{pos:5} {paradigm:>6} {n:>6} {complete:>7} {stemmed:>6} "
-                       f"{fields:<26} {over:>7}")
-        out.append("")
-        out.append("## Lint / Befunde")
-        out.append(f"  redundante Stämme (Stamm == Stufe-0-Stamm):     "
-                   f"{sum(self.lint_redundant_stem.values())}")
-        out.append(f"  Overrides == Regelzelle (redundant):          "
-                   f"{sum(self.lint_redundant_override.values())}")
-        out.append(f"  Overrides an Varianten-Slots:                 "
-                   f"{sum(self.override_variant.values())}")
-        for (pos, reason), n in sorted(self.skipped.items()):
-            cells = self.status_cells[(pos, reason)]
-            out.append(f"  übersprungen {pos:5} {reason:24} {n:>7} Einträge"
-                       + (f", {cells} Zellen (alle Override)" if cells else ""))
-        out.append(f"  Fixpunkt-Runden:                              "
-                   f"{dict(sorted(self.rounds.items()))}")
-        out.append(f"  nicht konvergiert:                            "
-                   f"{sum(self.unstable.values())}")
-        return "\n".join(out) + "\n"
-
-
-def _pct(part: int, total: int) -> str:
-    return f"{part / total * 100:.2f} % ({part})" if total else "-"
-
-
-# ── Verdichtung (Einträge → lean NVH) ──────────────────────────────────────
-
-
-def compress(entries: Iterable[Entry], *, lemma_only: bool = False, rounds: int = 4,
-             dense: bool = False, stats: Stats | None = None
+def compress(entries: Iterable[Entry], stats: "Stats | None" = None
              ) -> Iterator[tuple[Entry, Derivation]]:
-    """Jeden Eintrag der fette NVH einmal ableiten — einschließlich derer, die nichts
-    zu komprimieren haben.
-
-    ``dense`` sagt, dass die Eingabe selbst eine verdichtete NVH ist (siehe
-    ``_derive_once``); der Idempotenz-Lauf benutzt es.
-
-    Die lean NVH enthält **denselben** Einträgebestand wie die fette: ein Eintrag,
-    den Stufe 0 (bzw. die gelieferten Stämme) vollständig deckt, wird ohne jede
-    Formzeile geschrieben, ein Eintrag ohne ``pos``/``paradigm`` (Varianteneinträge
-    der NVH: ``variantSkeleton``/``variantOf``) behält seine Metadaten und — falls er
-    je Zellen hätte — alle Zellen als Override. Genau das macht den zweiten Lauf
-    idempotent: die lean NVH ist wieder eine vollständige Eingabe.
-    """
-    stats = stats if stats is not None else Stats()
+    """Derive every entry, including those with nothing to compress."""
     for entry in entries:
-        if not (entry.pos and entry.paradigm):
-            reason = ("kein pos/paradigm" if entry.attested
-                      else "Varianteneintrag (keine Zellen)")
-            stats.skipped[(entry.pos or "-", reason)] += 1
-            yield entry, Derivation(overrides=dict(entry.attested), cells=entry.cells,
-                                    status="kein-pos-paradigma", attested=entry.attested)
-            continue
-        derivation = derive_entry(entry.pos, entry.paradigm, entry.lemma,
-                                  entry.gender, entry.attested,
-                                  supplied=entry.stems, dense=dense,
-                                  lemma_only=lemma_only, rounds=rounds)
-        stats.record(entry, derivation)
+        derivation = derive_entry(entry)
+        if stats is not None:
+            stats.record(entry, derivation)
         yield entry, derivation
 
 
 def verify(pairs: Sequence[tuple[Entry, Derivation]]) -> list[str]:
-    """Exaktheit zellweise prüfen; liefert eine Liste von Fehlern.
-
-    Geprüft wird gegen ``entry.attested`` — die Zellen der **fette NVH** — und
-    nicht gegen ``derivation.missing``/``extra``: die Overrides sind per Konstruktion
-    genau die nicht exakten Slots, deshalb wäre die Ableitung als Zeuge ihres eigenen
-    Rechts untauglich. Fehler sind fehlende Formen und Fremdformen gelisteter Slots.
-    """
-    out: list[str] = []
-    for entry, derivation in pairs:
-        error = _inexact(entry.attested, derivation.expanded)
-        if error:
-            out.append(f"{entry.pos} {entry.paradigm} {entry.lemma}: {error}")
-    return out
+    """Exactness per listed slot against the fat cells (``entry.attested``)."""
+    return [f"{e.pos} {e.paradigm} {e.lemma}: {err}"
+            for e, d in pairs if (err := inexact(e.attested, d.expanded))]
 
 
-def _inexact(attested: Mapping[str, Sequence[str]],
-             expanded: Mapping[str, Sequence[str]]) -> dict[str, dict]:
-    """``{"fehlt": …, "fremd": …}`` — leer, wenn jeder gelistete Slot exakt stimmt."""
-    error = {}
-    if missing := uncovered(attested, expanded):
-        error["fehlt"] = missing
-    if extra := overgenerated(attested, expanded):
-        error["fremd"] = extra
-    return error
+# ── Statistics ───────────────────────────────────────────────────────────────
 
 
-# ── CLI ─────────────────────────────────────────────────────────────────────
+def slot_class(pos: str, slot: str) -> str:
+    """Verb cells split into finite and participle (80 % of verb cells are participles)."""
+    return "participle" if pos == "verb" and slot.startswith("part.") else pos
+
+
+@dataclass
+class Stats:
+    entries: collections.Counter = field(default_factory=collections.Counter)
+    cells: collections.Counter = field(default_factory=collections.Counter)
+    lemma_hits: collections.Counter = field(default_factory=collections.Counter)
+    hits: collections.Counter = field(default_factory=collections.Counter)
+    principal: collections.Counter = field(default_factory=collections.Counter)
+    overrides: collections.Counter = field(default_factory=collections.Counter)
+    by_paradigm: collections.Counter = field(default_factory=collections.Counter)
+    status: collections.Counter = field(default_factory=collections.Counter)
+
+    def record(self, entry: Entry, d: Derivation) -> None:
+        self.status[(entry.pos or "-", d.status)] += 1
+        n_over = sum(len(v) for v in d.overrides.values())
+        if d.status != "ok":
+            self.cells[(entry.pos or "-", "blocked")] += entry.cells
+            return
+        self.entries[entry.pos] += 1
+        self.principal[entry.pos] += len(d.principal)
+        self.by_paradigm[(entry.pos, entry.paradigm)] += n_over
+        for slot, surfaces in entry.attested.items():
+            cls = (entry.pos, slot_class(entry.pos, slot))
+            self.cells[cls] += len(surfaces)
+            self.lemma_hits[cls] += sum(s in d.lemma_only.get(slot, ()) for s in surfaces)
+            self.hits[cls] += sum(s in d.generated.get(slot, ()) for s in surfaces)
+            if slot in d.overrides:
+                self.overrides[cls] += len(surfaces)
+
+    def report(self) -> str:
+        out = ["# Compressor statistics", "",
+               f"{'class':18} {'cells':>8} {'from lemma':>12} {'with principal':>15} "
+               f"{'overrides':>10}"]
+        for cls in sorted(k for k in self.cells if k[1] != "blocked"):
+            n = self.cells[cls]
+            out.append(f"{cls[0] + '/' + cls[1]:18} {n:>8} {_pct(self.lemma_hits[cls], n):>12} "
+                       f"{_pct(self.hits[cls], n):>15} {self.overrides[cls]:>10}")
+        out += ["", "principal forms kept: "
+                + ", ".join(f"{p} {n}" for p, n in sorted(self.principal.items())),
+                "entries by status: "
+                + ", ".join(f"{p}/{s} {n}" for (p, s), n in sorted(self.status.items())),
+                "", "paradigms with the most override cells:"]
+        for (pos, par), n in self.by_paradigm.most_common(25):
+            out.append(f"  {pos:5} {par:>5} {n:>6}")
+        return "\n".join(out) + "\n"
+
+
+def _pct(part: int, total: int) -> str:
+    return f"{part / total * 100:.2f} %" if total else "-"
+
+
+# ── CLI ──────────────────────────────────────────────────────────────────────
 
 
 def _main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(
-        prog="compress_forms.py", description=__doc__.splitlines()[0])
-    parser.add_argument("--in", dest="source", type=Path, default=FULL_NVH,
-                        help="fette NVH (default: %(default)s)")
-    parser.add_argument("--out", dest="target", type=Path, default=LEAN_NVH,
-                        help="lean NVH (default: %(default)s)")
-    parser.add_argument("--dry-run", action="store_true",
-                        help="nicht schreiben, nur Statistik")
-    parser.add_argument("--dense-input", action="store_true",
-                        help="Eingabe ist selbst eine verdichtete NVH: Zellen bleiben "
-                             "Override, Stämme bleiben, nichts wird neu abgeleitet")
-    parser.add_argument("--lemma-only", action="store_true",
-                        help="Modus „nur Lemma“: Stufe 0, keine gelieferten Stämme")
-    parser.add_argument("--rounds", type=int, default=4,
-                        help="Fixpunkt-Runden je Eintrag (default: %(default)s)")
-    parser.add_argument("--limit", type=int, help="nur die ersten N Einträge")
-    parser.add_argument("--report", type=Path, help="Statistik hierhin statt stderr")
-    parser.add_argument("--no-stats", action="store_true", help="keine Statistik")
+    parser = argparse.ArgumentParser(prog="compress_forms.py",
+                                     description=__doc__.splitlines()[0])
+    parser.add_argument("--in", dest="source", type=Path, default=FULL_NVH)
+    parser.add_argument("--out", dest="target", type=Path, default=LEAN_NVH)
+    parser.add_argument("--dry-run", action="store_true", help="statistics only")
+    parser.add_argument("--limit", type=int, help="first N entries only")
+    parser.add_argument("--report", type=Path, help="statistics here instead of stderr")
     parser.add_argument("--keep-artifacts", action="store_true",
-                        help="geklebte Paradigmen-Artefakte NICHT verwerfen")
-    parser.add_argument("--review-out", type=Path, default=REVIEW_ARTIFACTS,
-                        help="Review-Liste der Dumper-Artefakte (default: %(default)s)")
-    parser.add_argument("--verify-idempotent", action="store_true",
-                        help="lean NVH neu einlesen, erneut verdichten, vergleichen")
+                        help="do not repair glued paradigm numbers")
+    parser.add_argument("--review-out", type=Path, default=REVIEW_ARTIFACTS)
+    parser.add_argument("--verify-roundtrip", action="store_true",
+                        help="read the written lean NVH back and expand it against the fat cells")
     args = parser.parse_args(argv)
 
     entries = read_nvh(args.source)
@@ -976,52 +389,31 @@ def _main(argv: list[str] | None = None) -> int:
         entries, review = repair_dumper_artifacts(entries)
         if review:
             n = write_review(args.review_out, review)
-            print(f"# Dumper-Artefakte (lemma+paradigm) repariert: {n} Zellen "
-                  f"→ {args.review_out}", file=sys.stderr)
+            print(f"# dumper artifacts repaired: {n} cells -> {args.review_out}",
+                  file=sys.stderr)
     stats = Stats()
-    done = list(compress(entries, lemma_only=args.lemma_only, dense=args.dense_input,
-                         rounds=args.rounds, stats=stats))
+    done = list(compress(entries, stats))
     problems = verify(done)
-    mode = "nur Lemma (Stufe 0)" if args.lemma_only else "mit gelieferten Stämmen"
-
-    if not args.no_stats:
-        report = (f"# Kompressor — {args.source.name} → {args.target.name} "
-                  f"[{mode}, {len(done)} Einträge]\n"
-                  + stats.report(title=f"Kennzahlen ({mode})"))
-        if args.report:
-            args.report.write_text(report, encoding="utf-8")
-        else:
-            print(report, file=sys.stderr)
+    report = stats.report()
+    if args.report:
+        args.report.write_text(report, encoding="utf-8")
+    else:
+        print(report, file=sys.stderr)
     for problem in problems[:20]:
-        print(f"NICHT EXAKT: {problem}", file=sys.stderr)
-
+        print(f"NOT EXACT: {problem}", file=sys.stderr)
     if args.dry_run:
         return 1 if problems else 0
 
     args.target.parent.mkdir(parents=True, exist_ok=True)
     write_nvh(args.target, done)
-
     status = 1 if problems else 0
-    if args.verify_idempotent:
-        again = read_nvh(args.target)
-        done2 = list(compress(again, lemma_only=args.lemma_only, dense=True,
-                              rounds=args.rounds, stats=Stats()))
-        same = len(done2) == len(done) and all(
-            (d1.stems, d1.overrides) == (d2.stems, d2.overrides)
-            for (_, d1), (_, d2) in zip(done, done2))
-        # Idempotenz allein ist schwach: zwei Läufe können übereinstimmen und beide
-        # Zellen der fette NVH verloren haben. Deshalb wird die zweite Runde noch
-        # einmal gegen die **Zellen des ersten Laufs** geprüft — die fette NVH liegt
-        # hier nicht vor, ihr Zeugnis ist ``entry.attested`` aus ``done``.
-        losses = [f"{e1.pos} {e1.paradigm} {e1.lemma}: {m}"
-                  for (e1, _), (_, d2) in zip(done, done2)
-                  for m in [_inexact(e1.attested, d2.expanded)] if m]
-        print(f"IDEMPOTENZ: {'ok' if same else 'FEHLGESCHLAGEN'} "
-              f"({len(done2)} Einträge)", file=sys.stderr)
-        if losses:
-            print(f"NICHT EXAKT in Runde 2: {len(losses)} Einträge, "
-                  f"z. B. {losses[0]}", file=sys.stderr)
-        status = status or (0 if same and not losses else 1)
+    if args.verify_roundtrip:
+        lean = read_nvh(args.target)
+        losses = [f"{e.lemma}: {err}" for (e, _), l in zip(done, lean)
+                  if (err := inexact(e.attested, expand(l)))]
+        print(f"ROUNDTRIP: {'ok' if not losses else 'FAILED'} ({len(lean)} entries)"
+              + (f", e.g. {losses[0]}" if losses else ""), file=sys.stderr)
+        status = status or (1 if losses or len(lean) != len(done) else 0)
     return status
 
 
