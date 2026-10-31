@@ -1,0 +1,34 @@
+{
+ "verb": {
+  "principal_forms": [
+   "lemma",
+   "prs.sp3",
+   "prt.sp3",
+   "part.prs.act.msc.sg.nom",
+   "part.prf.act.msc.sg.nom"
+  ],
+  "key": "num",
+  "cost": 5430,
+  "lean_cost": 17368
+ },
+ "noun": {
+  "principal_forms": [
+   "lemma",
+   "sg.gen",
+   "pl.dat"
+  ],
+  "key": "num",
+  "cost": 957,
+  "lean_cost": 1217
+ },
+ "adj": {
+  "principal_forms": [
+   "lemma",
+   "comp.msc.sg.nom",
+   "msc.sg.gen"
+  ],
+  "key": "num",
+  "cost": 1388,
+  "lean_cost": 1948
+ }
+}
