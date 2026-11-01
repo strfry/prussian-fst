@@ -6,8 +6,8 @@ forms, after Mažiulis/Palmaitis):
 
     noun  lemma (nom.sg), sg.gen, pl.dat
     adj   lemma (msc.sg.nom), comp.msc.sg.nom, msc.sg.gen
-    verb  lemma (infinitive), prs.sp3, prt.sp3, part.prs.act.msc.sg.nom,
-          part.prf.act.msc.sg.nom
+    verb  lemma (infinitive), prs.sp3, prt.sp3, opt, part.prs.act.msc.sg.nom,
+          part.prf.act.msc.sg.nom, part.prf.pss.msc.sg.nom
 
 A principal form not given by the caller is itself derived from the lemma. A given
 one (``generate(cells=...)``, in the NVH simply an ``inflectedForm`` of that slot)
@@ -16,7 +16,9 @@ lexical input: there are no stems and no stem markers.
 
 The rules live in ``gen/paradigms.json`` (built by ``gen/derive_paradigms.py``): per
 part of speech and Twanksta paradigm number, per slot the source principal form and
-an ordered rule list; the first rule whose ending matches wins. A rule is written
+an ordered rule list; the first rule whose ending matches wins. Verb sources are
+fixed by slot group (VERB_SOURCES); noun and adjective sources are learned, since
+there a fixed choice costs thousands of overrides. A rule is written
 
     x>y         drop the ending x, append y           (ē>is)
     ~x>y        same, and destress the remaining stem  (~ē>īmans)
@@ -50,8 +52,29 @@ FAMILY = {"pron": "adj", "num": "adj"}
 PRINCIPAL = {
     "noun": ("sg.gen", "pl.dat"),
     "adj": ("comp.msc.sg.nom", "msc.sg.gen"),
-    "verb": ("prs.sp3", "prt.sp3", "part.prs.act.msc.sg.nom", "part.prf.act.msc.sg.nom"),
+    "verb": ("prs.sp3", "prt.sp3", "opt", "part.prs.act.msc.sg.nom",
+             "part.prf.act.msc.sg.nom", "part.prf.pss.msc.sg.nom"),
 }
+
+# Verb slot group (dotted prefix, longest wins) -> its principal form. A corrected
+# principal form thus always carries over to its whole group. Principal forms
+# themselves come from the lemma.
+VERB_SOURCES = {
+    "prs": "prs.sp3", "imprt": "prs.sp3", "prt": "prt.sp3", "subj": "opt",
+    "part.prs": "part.prs.act.msc.sg.nom",
+    "part.prf.act": "part.prf.act.msc.sg.nom",
+    "part.prf.pss": "part.prf.pss.msc.sg.nom",
+}
+
+
+def verb_source(slot: str) -> str:
+    """The principal form a verb slot is derived from."""
+    if slot in PRINCIPAL["verb"]:
+        return LEMMA
+    for prefix in sorted(VERB_SOURCES, key=len, reverse=True):
+        if slot.startswith(prefix + "."):
+            return VERB_SOURCES[prefix]
+    return LEMMA
 
 # ── Slot vocabulary (NVH tag:, dotted) ───────────────────────────────────────
 _GENDERS = ("msc", "fem", "neu")

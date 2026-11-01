@@ -13,8 +13,9 @@ form and an ordered suffix-rule list (see gen/generator.py for the notation):
 * decision list: candidates ordered most specific ending first (or by support,
   whichever scores better); a rule stays only if it makes at least MIN_SUPPORT
   more cells right than the rule that would fire in its place,
-* source: the principal form with the best score, cells right minus MIN_SUPPORT
-  per rule (lemma on ties), so a long list never beats a short one by a cell.
+* source: verbs use the fixed group source (gen.VERB_SOURCES); nouns and
+  adjectives the principal form with the best score, cells right minus MIN_SUPPORT
+  per rule (own group, then lemma on ties), so a long list never beats a short one.
 
 MIN_SUPPORT >= 2 keeps single lexemes out of the grammar: what only one word does
 is an override of that word, not a rule.
@@ -161,7 +162,12 @@ def _derive_paradigm(args: tuple[str, list[dict[str, str]], int]) -> dict:
     slots = [s for s in gen.SLOTS[fam] if counts[s] * 2 > len(group)]
     spec = {}
     for slot in slots:
-        sources = [gen.LEMMA] if slot in principal else _sources(slot, principal, slots)
+        if fam == "verb":
+            sources = [gen.verb_source(slot)]
+        elif slot in principal:
+            sources = [gen.LEMMA]
+        else:
+            sources = _sources(slot, principal, slots)
         best = None
         for source in sources:
             examples = [(c[source], c[slot]) for c in group if source in c and slot in c]

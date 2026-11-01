@@ -96,6 +96,8 @@ def test_table_is_well_formed():
                 assert source == gen.LEMMA or source in principal, (fam, par, slot, source)
                 if slot in principal:
                     assert source == gen.LEMMA, (fam, par, slot)
+                if fam == "verb":
+                    assert source == gen.verb_source(slot), (par, slot, source)
 
 
 # ── Forms (expected = Twanksta cells) ────────────────────────────────────────
@@ -131,6 +133,25 @@ def test_given_principal_form_feeds_its_group():
     out = gen.generate("verb", "136", "kalbītwei", {"prt.sp3": ["kalbēja"]})
     assert out["prt.pl1"] == ("kalbējamai",)
     assert out["prt.sp3"] == ("kalbēi",)     # the principal slot itself stays derived
+
+
+@pytest.mark.parametrize("slot, source", [
+    ("prs.pl1", "prs.sp3"), ("imprt.sg2", "prs.sp3"), ("prt.pl2", "prt.sp3"),
+    ("subj.sg1", "opt"), ("opt", "lemma"),
+    ("part.prs.act.fem.sg.gen", "part.prs.act.msc.sg.nom"),
+    ("part.prf.act.neu.pl.dat", "part.prf.act.msc.sg.nom"),
+    ("part.prf.pss.fem.sg.gen", "part.prf.pss.msc.sg.nom"),
+    ("part.prf.pss.msc.sg.nom", "lemma"),
+])
+def test_verb_source_is_fixed_per_group(slot, source):
+    assert gen.verb_source(slot) == source
+
+
+def test_given_optative_feeds_the_subjunctive():
+    """ebēitun (116) has no optative rule of its own; a listed opt carries subj.*."""
+    out = gen.generate("verb", "116", "ebēitun", {"opt": ["ebēisei"]})
+    assert out["subj.sp3"] == ("ebēilai",)
+    assert out["subj.pl1"] == ("ebēilimai",)
 
 
 def test_principal_form_with_variants_is_not_a_source():

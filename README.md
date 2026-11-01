@@ -10,10 +10,13 @@ paradigm number and a few **principal forms**:
 |---|---|
 | noun | sg.gen, pl.dat |
 | adj | comp.msc.sg.nom, msc.sg.gen |
-| verb | prs.sp3, prt.sp3, part.prs.act.msc.sg.nom, part.prf.act.msc.sg.nom |
+| verb | prs.sp3, prt.sp3, opt, part.prs.act.msc.sg.nom, part.prf.act.msc.sg.nom, part.prf.pss.msc.sg.nom |
 
 Every other cell comes from one of them by a suffix rule (optionally with the
-stressless stem: macrons shortened, geminates simplified). The lexemes come from the
+stressless stem: macrons shortened, geminates simplified). A verb cell always comes
+from the principal form of its group (prs/imprt ← prs.sp3, prt ← prt.sp3,
+subj ← opt, each participle ← its msc.sg.nom), so a corrected principal form
+carries over; for nouns and adjectives the table learns the source per paradigm. The lexemes come from the
 **lean NVH**, the word list that keeps only what the rules do not produce: wrong
 principal forms and override cells, both as plain `inflectedForm`. Closed classes
 (function words, pronouns) are hand-written lexc.
