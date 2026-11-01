@@ -6,7 +6,7 @@ forms, after Mažiulis/Palmaitis):
 
     noun  lemma (nom.sg), sg.gen, pl.dat
     adj   lemma (msc.sg.nom), comp.msc.sg.nom, msc.sg.gen
-    verb  lemma (infinitive), prs.sp3, prt.sp3, opt, part.prs.act.msc.sg.nom,
+    verb  lemma (infinitive), prs.sp3, prt.sp3, subj.sp3, part.prs.act.msc.sg.nom,
           part.prf.act.msc.sg.nom, part.prf.pss.msc.sg.nom
 
 A principal form not given by the caller is itself derived from the lemma. A given
@@ -52,15 +52,17 @@ FAMILY = {"pron": "adj", "num": "adj"}
 PRINCIPAL = {
     "noun": ("sg.gen", "pl.dat"),
     "adj": ("comp.msc.sg.nom", "msc.sg.gen"),
-    "verb": ("prs.sp3", "prt.sp3", "opt", "part.prs.act.msc.sg.nom",
+    "verb": ("prs.sp3", "prt.sp3", "subj.sp3", "part.prs.act.msc.sg.nom",
              "part.prf.act.msc.sg.nom", "part.prf.pss.msc.sg.nom"),
 }
 
-# Verb slot group (dotted prefix, longest wins) -> its principal form. A corrected
+# Verb slot group (the slot itself or a dotted prefix, longest wins) -> its
+# principal form. A corrected
 # principal form thus always carries over to its whole group. Principal forms
 # themselves come from the lemma.
 VERB_SOURCES = {
-    "prs": "prs.sp3", "imprt": "prs.sp3", "prt": "prt.sp3", "subj": "opt",
+    "prs": "prs.sp3", "imprt": "prs.sp3", "prt": "prt.sp3",
+    "subj": "subj.sp3", "opt": "subj.sp3",
     "part.prs": "part.prs.act.msc.sg.nom",
     "part.prf.act": "part.prf.act.msc.sg.nom",
     "part.prf.pss": "part.prf.pss.msc.sg.nom",
@@ -72,7 +74,7 @@ def verb_source(slot: str) -> str:
     if slot in PRINCIPAL["verb"]:
         return LEMMA
     for prefix in sorted(VERB_SOURCES, key=len, reverse=True):
-        if slot.startswith(prefix + "."):
+        if slot == prefix or slot.startswith(prefix + "."):
             return VERB_SOURCES[prefix]
     return LEMMA
 

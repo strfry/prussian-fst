@@ -137,7 +137,7 @@ def test_given_principal_form_feeds_its_group():
 
 @pytest.mark.parametrize("slot, source", [
     ("prs.pl1", "prs.sp3"), ("imprt.sg2", "prs.sp3"), ("prt.pl2", "prt.sp3"),
-    ("subj.sg1", "opt"), ("opt", "lemma"),
+    ("subj.sg1", "subj.sp3"), ("opt", "subj.sp3"), ("subj.sp3", "lemma"),
     ("part.prs.act.fem.sg.gen", "part.prs.act.msc.sg.nom"),
     ("part.prf.act.neu.pl.dat", "part.prf.act.msc.sg.nom"),
     ("part.prf.pss.fem.sg.gen", "part.prf.pss.msc.sg.nom"),
@@ -147,11 +147,12 @@ def test_verb_source_is_fixed_per_group(slot, source):
     assert gen.verb_source(slot) == source
 
 
-def test_given_optative_feeds_the_subjunctive():
-    """ebēitun (116) has no optative rule of its own; a listed opt carries subj.*."""
-    out = gen.generate("verb", "116", "ebēitun", {"opt": ["ebēisei"]})
-    assert out["subj.sp3"] == ("ebēilai",)
+def test_given_subjunctive_feeds_its_group_and_the_optative():
+    """ebēitun (116) has no subjunctive rule of its own; a listed subj.sp3 carries
+    subj.* and opt."""
+    out = gen.generate("verb", "116", "ebēitun", {"subj.sp3": ["ebēilai"]})
     assert out["subj.pl1"] == ("ebēilimai",)
+    assert out["opt"] == ("ebēisei",)
 
 
 def test_principal_form_with_variants_is_not_a_source():
